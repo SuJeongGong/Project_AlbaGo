@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.spring.ex.dto.Advertising" alias="Advertising" />
+		<typeAlias type="com.spring.ex.dto.BoardAnnounce" alias="BoardAnnounce" />
+		<typeAlias type="com.spring.ex.dto.BoardCommunity" alias="BoardCommunity" />
+		<typeAlias type="com.spring.ex.dto.BoardRecruit" alias="BoardRecruit" />
+		<typeAlias type="com.spring.ex.dto.Career" alias="Career" />
+		<typeAlias type="com.spring.ex.dto.Enterprise" alias="Enterprise" />
+		<typeAlias type="com.spring.ex.dto.Individual" alias="Individual" />
+		<typeAlias type="com.spring.ex.dto.Payment" alias="Payment" />
+		<typeAlias type="com.spring.ex.dto.Product" alias="Product" />
+		<typeAlias type="com.spring.ex.dto.Recruit" alias="Recruit" />
+		<typeAlias type="com.spring.ex.dto.Resume" alias="Resume" />
+		<typeAlias type="com.spring.ex.dto.Scrap_enterprise"  alias="Scrap_enterprise" />
+		<typeAlias type="com.spring.ex.dto.Scrap_Individual" alias="Scrap_Individual" />
+		<typeAlias type="com.spring.ex.dto.Volunteer" alias="Volunteer" />
+	</typeAliases>
+</configuration>     
