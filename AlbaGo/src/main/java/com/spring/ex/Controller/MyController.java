@@ -14,9 +14,9 @@ public class MyController {
 		return "/test";
 	}
 	
-	@RequestMapping("/Mypage_Individual")
-	public String Mypage_Individual() {
-		return "/Mypage_Individual";
+	@RequestMapping("/board_recruit")
+	public String board_recruit() {
+		return "/board_recruit";
 	}
 	
 	@RequestMapping("/Account_Individual")
