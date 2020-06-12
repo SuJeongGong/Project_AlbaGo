@@ -10,7 +10,5 @@
 	<select id="selectEnterprise" resultType="Enterprise">
 		select * from enterprise GROUP BY enterprise_id;
 	</select>
-	
-	
 
 </mapper>
