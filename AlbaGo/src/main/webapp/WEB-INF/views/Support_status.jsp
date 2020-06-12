@@ -187,7 +187,7 @@
                     </div><!-- 끝 실제 내용 삽입 -->
                 </div><!-- 끝 main 본문  -->
             </div><!-- 끝 main -->
-            <!-- footer -->
+            <!-- footer -->   
             <%@ include file="./footer.jsp" %>
         </div><!-- 끝 content wrapper -->
     </div><!-- 끝  wrapper -->
