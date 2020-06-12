@@ -23,5 +23,9 @@ public class MyController {
 	public String Account_Individual() {
 		return "/Account_Individual";
 	}
+	@RequestMapping("/login")
+	public String login() {
+		return "/login";
+	}
 	
 }
