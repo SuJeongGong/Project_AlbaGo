@@ -12,14 +12,14 @@
 <body>
     <div id="wrapper">
         <!-- 사이드 바 -->
-        <%@ include file="../manager_Sidebar.jsp" %>
+        <%@ include file="./manager_Sidebar.jsp" %>
 
         <!-- content wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- main -->
             <div id="content">
                 <!-- Topbar -->
-                <%@ include file="../manager_topbar.jsp" %>
+                <%@ include file="./manager_topbar.jsp" %>
 
                 <!-- main 본문  -->
                 <div class="container-fluid">
@@ -150,7 +150,7 @@
                 </div><!-- 끝 main 본문  -->
             </div><!-- 끝 main -->
             <!-- footer -->
-            <%@ include file="../manager_footer.jsp" %>
+            <%@ include file="./manager_footer.jsp" %>
         </div><!-- 끝 content wrapper -->
     </div><!-- 끝  wrapper -->
 </body>
