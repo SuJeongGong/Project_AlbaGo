@@ -55,8 +55,7 @@
 
       <!-- 네비게이션 -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#enterprise_area" aria-expanded="true"
-          aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#enterprise_area" aria-expanded="true"  aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>지역</span>
         </a>
