@@ -24,4 +24,14 @@ public class MyController {
 		return "/Account_Individual";
 	}
 	
+	@RequestMapping("/Human_resource_info")
+	public String Human_resource_info() {
+		return "/Human_resource_info";
+	}
+	
+	@RequestMapping("/find_id")
+	public String find_id() {
+		return "/find_id";
+	}
+	
 }
