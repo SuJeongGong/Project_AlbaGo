@@ -33,6 +33,10 @@ public class MyController {
 	public String Manager_Individual() {
 		return "/admin/Manager_Individual";
 	}
+	@RequestMapping("/admin/Manager_payment")
+	public String Manager_payment() {
+		return "/admin/Manager_payment";
+	}
 	@RequestMapping("/admin/list_product")
 	public String list_product() {
 		return "/admin/list_product";
@@ -45,6 +49,18 @@ public class MyController {
 	@RequestMapping("/individual/Account_Individual")
 	public String Account_Individual() {
 		return "/individual/Account_Individual";
+	}
+	@RequestMapping("/Review_list")
+	public String Review_list() {
+		return "/Review_list";
+	}
+	@RequestMapping("/Review_content")
+	public String Review_content() {
+		return "/Review_content";
+	}
+	@RequestMapping("/Review_write")
+	public String Review_write() {
+		return "/Review_write";
 	}
 	
 	@RequestMapping("/Human_resource_info")

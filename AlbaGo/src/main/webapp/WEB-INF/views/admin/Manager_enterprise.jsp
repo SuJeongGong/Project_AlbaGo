@@ -22,15 +22,20 @@
 </head>
 <body>
 <div id="wrapper">
-   <!-- 사이드 바 -->
-   <%@ include file="../serve/Sidebar.jsp" %>
-   
-   <!-- content wrapper -->
-   <div id="content-wrapper" class="d-flex flex-column">
-      <!-- main -->
-         <div id ="content">
-            <!-- Topbar -->
-         <%@ include file="../serve/Topbar.jsp" %>
+        <!-- 사이드 바 -->
+        <%@ include file="../serve/manager_Sidebar.jsp" %>
+
+        <!-- content wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- main -->
+            <div id="content">
+                <!-- Topbar -->
+                <%@ include file="../serve/manager_topbar.jsp" %>
+
+                <!-- main 본문  -->
+                <div class="container-fluid">
+		        <!-- 요기다 작성  -->
+         
          
          <!-- main 본문  -->
          <div class="container-fluid">
