@@ -10,9 +10,6 @@ public class MainController {
 	public String main() {
 		return "/main";
 	}
-	@RequestMapping("payment")
-	public String payment() {
-		return "/payment";
-	}
+
 	
 }

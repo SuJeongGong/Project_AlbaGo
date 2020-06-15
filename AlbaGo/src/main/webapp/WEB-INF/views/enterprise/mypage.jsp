@@ -1,27 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>my page</title>
+<title>Insert title here</title>
 </head>
 <body>
-<div id="wrapper">
-	<!-- 사이드 바 -->
-	<%@ include file="../serve/sidebar.jsp" %>
+	<%@ include file="../serve/header.jsp" %>
 	
-	<!-- content wrapper -->
-	<div id="content-wrapper" class="d-flex flex-column">
-		<!-- main -->
-   		<div id ="content">
-   			<!-- topbar -->
-			<%@ include file="../serve/topbar.jsp" %>
-			
-			<!-- main 본문  -->
+	
+	
+	
+	
+	
+ <!-- main 본문  -->
 			<div class="container-fluid">
 			<!-- main 본문을 한 줄로 묶기 -->
+			<br>
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
             	<h1 class="h3 mb-0 text-gray-800">기업 회원 정보</h1>
        	   	</div>
@@ -145,12 +141,14 @@
                   </div>
                 </div>
               </div>
+			<br>
 			</div><!-- 끝 main 본문  -->
-   		</div><!-- 끝 main -->
-   		
-   		<!-- footer -->
-		<%@ include file="../serve/footer.jsp" %>
-   </div><!-- 끝 content wrapper -->
-</div><!-- 끝  wrapper -->
+	
+	
+	
+	
+	
+	<%@ include file="../serve/footer.jsp" %>
+
 </body>
 </html>

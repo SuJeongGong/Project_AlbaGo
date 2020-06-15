@@ -28,10 +28,10 @@
 	String url= request.getRequestURL().toString();
 	String uri=request.getRequestURI().toString();
 	String context=request.getContextPath();
-	//String basicPath=url.split(uri)[0];
-	String basicPath="http://localhost:8181/ex/";
-	
-//	basicPath= basicPath+context;
+	String basicPath=url.split(uri)[0];
+	String recruitPath=basicPath+"recruit/list";
+	String resumePath=basicPath+"resume/list";
+	String communityPath=basicPath+"community/list";
 
 
 %>
@@ -74,23 +74,23 @@
         <div id="enterprise_area" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">경기도</h6>드롭다운 열었을때 흐릿한 글씨로 설명 된것 -->
-            <a class="collapse-item" href="recruit/list">서울</a>
-            <a class="collapse-item" href="${basicPath}">경기</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">인천</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">부산</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">대구</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">대전</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">경남</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">전남</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">충남</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">광주</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">울산</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">경북</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">전북</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">충북</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">강원</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">제주</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">전국</a>
+            <a class="collapse-item" href="${resumePath}">서울</a>
+            <a class="collapse-item" href="${resumePath}">경기</a>
+            <a class="collapse-item" href="${resumePath}">인천</a>
+            <a class="collapse-item" href="${resumePath}">부산</a>
+            <a class="collapse-item" href="${resumePath}">대구</a>
+            <a class="collapse-item" href="${resumePath}">대전</a>
+            <a class="collapse-item" href="${resumePath}">경남</a>
+            <a class="collapse-item" href="${resumePath}">전남</a>
+            <a class="collapse-item" href="${resumePath}">충남</a>
+            <a class="collapse-item" href="${resumePath}">광주</a>
+            <a class="collapse-item" href="${resumePath}">울산</a>
+            <a class="collapse-item" href="${resumePath}">경북</a>
+            <a class="collapse-item" href="${resumePath}">전북</a>
+            <a class="collapse-item" href="${resumePath}">충북</a>
+            <a class="collapse-item" href="${resumePath}">강원</a>
+            <a class="collapse-item" href="${resumePath}">제주</a>
+            <a class="collapse-item" href="${resumePath}">전국</a>
           </div>
         </div>
       </li>
@@ -105,19 +105,19 @@
         <div id="enterprise_category" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">카테고리별</h6>
-            <a class="collapse-item" href="${basicPath}recruit/list">외식/음료</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">유통/판매</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">문화/여가/생활</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">서비스</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">사무직</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">고객상담/리서치</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">생산/건설/노무</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">교육/강사</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">디자인</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">미디어</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">운전/배달</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">병원/간호/연구</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">IT/컴퓨터</a>
+            <a class="collapse-item" href="${resumePath}">외식/음료</a>
+            <a class="collapse-item" href="${resumePath}">유통/판매</a>
+            <a class="collapse-item" href="${resumePath}">문화/여가/생활</a>
+            <a class="collapse-item" href="${resumePath}">서비스</a>
+            <a class="collapse-item" href="${resumePath}">사무직</a>
+            <a class="collapse-item" href="${resumePath}">고객상담/리서치</a>
+            <a class="collapse-item" href="${resumePath}">생산/건설/노무</a>
+            <a class="collapse-item" href="${resumePath}">교육/강사</a>
+            <a class="collapse-item" href="${resumePath}">디자인</a>
+            <a class="collapse-item" href="${resumePath}">미디어</a>
+            <a class="collapse-item" href="${resumePath}">운전/배달</a>
+            <a class="collapse-item" href="${resumePath}">병원/간호/연구</a>
+            <a class="collapse-item" href="${resumePath}">IT/컴퓨터</a>
           </div>
       </li>
 
@@ -132,12 +132,12 @@
         <div id="enterprise_thema" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">테마</h6>
-            <a class="collapse-item" href="${basicPath}recruit/list">주휴수당</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">대학생</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">주부</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">청소년</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">외국인</a>
-            <a class="collapse-item" href="${basicPath}recruit/list">장년</a>
+            <a class="collapse-item" href="${resumePath}">주휴수당</a>
+            <a class="collapse-item" href="${resumePath}">대학생</a>
+            <a class="collapse-item" href="${resumePath}">주부</a>
+            <a class="collapse-item" href="${resumePath}">청소년</a>
+            <a class="collapse-item" href="${resumePath}">외국인</a>
+            <a class="collapse-item" href="${resumePath}">장년</a>
             </div>
           
           </li>
@@ -174,23 +174,23 @@
         </a>
         <div id="individual_area" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="${basicPath}resume/list">서울</a>
-            <a class="collapse-item" href="${basicPath}resume/list">경기</a>
-            <a class="collapse-item" href="${basicPath}resume/list">인천</a>
-            <a class="collapse-item" href="${basicPath}resume/list">부산</a>
-            <a class="collapse-item" href="${basicPath}resume/list">대구</a>
-            <a class="collapse-item" href="${basicPath}resume/list">대전</a>
-            <a class="collapse-item" href="${basicPath}resume/list">경남</a>
-            <a class="collapse-item" href="${basicPath}resume/list">전남</a>
-            <a class="collapse-item" href="${basicPath}resume/list">충남</a>
-            <a class="collapse-item" href="${basicPath}resume/list">광주</a>
-            <a class="collapse-item" href="${basicPath}resume/list">울산</a>
-            <a class="collapse-item" href="${basicPath}resume/list">경북</a>
-            <a class="collapse-item" href="${basicPath}resume/list">전북</a>
-            <a class="collapse-item" href="${basicPath}resume/list">충북</a>
-            <a class="collapse-item" href="${basicPath}resume/list">강원</a>
-            <a class="collapse-item" href="${basicPath}resume/list">제주</a>
-            <a class="collapse-item" href="${basicPath}resume/list">전국</a>
+            <a class="collapse-item" href="${resumePath}">서울</a>
+            <a class="collapse-item" href="${resumePath}">경기</a>
+            <a class="collapse-item" href="${resumePath}">인천</a>
+            <a class="collapse-item" href="${resumePath}">부산</a>
+            <a class="collapse-item" href="${resumePath}">대구</a>
+            <a class="collapse-item" href="${resumePath}">대전</a>
+            <a class="collapse-item" href="${resumePath}">경남</a>
+            <a class="collapse-item" href="${resumePath}">전남</a>
+            <a class="collapse-item" href="${resumePath}">충남</a>
+            <a class="collapse-item" href="${resumePath}">광주</a>
+            <a class="collapse-item" href="${resumePath}">울산</a>
+            <a class="collapse-item" href="${resumePath}">경북</a>
+            <a class="collapse-item" href="${resumePath}">전북</a>
+            <a class="collapse-item" href="${resumePath}">충북</a>
+            <a class="collapse-item" href="${resumePath}">강원</a>
+            <a class="collapse-item" href="${resumePath}">제주</a>
+            <a class="collapse-item" href="${resumePath}">전국</a>
           </div>
         </div>
       </li>
@@ -205,19 +205,19 @@
         <div id="individual_category" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">카테고리별</h6>
-            <a class="collapse-item" href="${basicPath}resume/list">외식/음료</a>
-            <a class="collapse-item" href="${basicPath}resume/list">유통/판매</a>
-            <a class="collapse-item" href="${basicPath}resume/list">문화/여가/생활</a>
-            <a class="collapse-item" href="${basicPath}resume/list">서비스</a>
-            <a class="collapse-item" href="${basicPath}resume/list">사무직</a>
-            <a class="collapse-item" href="${basicPath}resume/list">고객상담/리서치</a>
-            <a class="collapse-item" href="${basicPath}resume/list">생산/건설/노무</a>
-            <a class="collapse-item" href="${basicPath}resume/list">교육/강사</a>
-            <a class="collapse-item" href="${basicPath}resume/list">디자인</a>
-            <a class="collapse-item" href="${basicPath}resume/list">미디어</a>
-            <a class="collapse-item" href="${basicPath}resume/list">운전/배달</a>
-            <a class="collapse-item" href="${basicPath}resume/list">병원/간호/연구</a>
-            <a class="collapse-item" href="${basicPath}resume/list">IT/컴퓨터</a>
+            <a class="collapse-item" href="${resumePath}">외식/음료</a>
+            <a class="collapse-item" href="${resumePath}">유통/판매</a>
+            <a class="collapse-item" href="${resumePath}">문화/여가/생활</a>
+            <a class="collapse-item" href="${resumePath}">서비스</a>
+            <a class="collapse-item" href="${resumePath}">사무직</a>
+            <a class="collapse-item" href="${resumePath}">고객상담/리서치</a>
+            <a class="collapse-item" href="${resumePath}">생산/건설/노무</a>
+            <a class="collapse-item" href="${resumePath}">교육/강사</a>
+            <a class="collapse-item" href="${resumePath}">디자인</a>
+            <a class="collapse-item" href="${resumePath}">미디어</a>
+            <a class="collapse-item" href="${resumePath}">운전/배달</a>
+            <a class="collapse-item" href="${resumePath}">병원/간호/연구</a>
+            <a class="collapse-item" href="${resumePath}">IT/컴퓨터</a>
           </div>
         </div>
       </li>
@@ -231,9 +231,9 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="${communityPath}">
           <i class="fas fa-fw fa-table"></i>
-          <span>알바후기</span></a>
+          <span>커뮤니티</span></a>
       </li>
 
       <!-- Divider -->

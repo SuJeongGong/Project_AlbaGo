@@ -1,21 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>main</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
-
 <body>
-    <div id="wrapper">
-        <!-- 사이드 바 -->
-        <%@ include file="../serve/sidebar.jsp" %>
-
-
-        <div class="container">
+	<%@ include file="../serve/header.jsp" %>
+	
+	
+	
+	
+	
+	 <div class="container">
             <div class="row">
                 <div class="col"><br>
                     <h1 style="color:black">공고 등록</h1>
@@ -347,36 +345,22 @@
 
             </tbody>
             </table>
-            <div class="container">
                 <div class="row">
-                    <div class="col">
-
-                    </div>
+              
                     <br> <br>
                     <button type="button" class="btn btn-light">&nbsp;&nbsp;취소&nbsp;</button>
                     <button type="button" class="btn btn-primary">등록완료</button>
 
+	
+ </div>
+ </div>
+ </div>
+	
+	
+	
+	
+	
+	<%@ include file="../serve/footer.jsp" %>
 
-
-
-
-
-                    <!-- Bootstrap core JavaScript-->
-                    <script src="<c:url value=" /vendor/jquery/jquery.min.js" />"></script>
-                    <script src="<c:url value=" /vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-
-                    <!-- Core plugin JavaScript-->
-                    <script src="<c:url value=" /vendor/jquery-easing/jquery.easing.min.js" />"></script>
-
-                    <!-- Custom scripts for all pages-->
-                    <script src="<c:url value=" /js/sb-admin-2.min.js" />"></script>
-
-                    <!-- Page level plugins -->
-                    <script src="<c:url value=" /vendor/chart.js/Chart.min.js" />"></script>
-
-                    <!-- Page level custom scripts -->
-                    <script src="<c:url value=" /js/demo/chart-area-demo.js" />"></script>
-                    <script src="<c:url value=" /js/demo/chart-pie-demo.js" />"></script>
 </body>
-
 </html>

@@ -1,44 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>my page</title>
+<title>Insert title here</title>
 </head>
 <body>
-<div id="wrapper">
-   <!-- 사이드 바 -->
-   <%@ include file="../serve/sidebar.jsp" %>
-   
-   <!-- content wrapper -->
-   <div id="content-wrapper" class="d-flex flex-column">
-      <!-- main -->
-         <div id ="content">
-            <!-- topbar -->
-         <%@ include file="../serve/topbar.jsp" %>
-         
-         <!-- main 본문  -->
-         <div class="container-fluid">
-                  
-
-
-<div class="container">
+	<%@ include file="../serve/header.jsp" %>
+	
+	
+	
+	
+	
+	<div class="container">
 				<div class="row">
-          <div class="col-lg-8 ftco-animate">
+          <div class="col-lg-12 ftco-animate">
            
-              <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5 h4 font-weight-bold">알바 후기 작성</h3>
+              <div class="comment-form-wrap pt-12">
                 <form action="#" class="p-5 bg-light">
                   <div class="form-group">
+                  	
+                <h3 class="mb-1 h4 font-weight-bold">커뮤니티 글작성</h3>
                     <label for="title">제목 </label>
                     <input type="text" class="form-control" id="title">
                   </div>
-                  <div class="form-group">
-                    <label for="score">평점 </label>
-                    <input type="text" class="form-control" id="text">
-                    </div>
 
                   <div class="form-group">
                     <label for="message">내용</label>
@@ -56,15 +42,13 @@
 
         
         </div>
-			
+ 
+	
+	
+	
+	
+	
+	<%@ include file="../serve/footer.jsp" %>
 
-
-
-</div><!-- 끝 main 본문  -->
-         </div><!-- 끝 main -->
-         <!-- footer -->
-      <%@ include file="../serve/footer.jsp" %>
-   </div><!-- 끝 content wrapper -->
-</div><!-- 끝  wrapper -->
 </body>
 </html>

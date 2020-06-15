@@ -1,345 +1,177 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
-
+<html>
 <head>
-
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <!-- Custom fonts for this template-->
-  <link href="<c:url value="/vendor/fontawesome-free/css/all.min.css" />" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="<c:url value="/css/sb-admin-2.min.css" />" rel="stylesheet">
-
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
-
 <body>
-    <div id="wrapper">
-        <!-- 사이드 바 -->
-        <%@ include file="../serve/sidebar.jsp" %>
-
-        <!-- content wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <!-- main -->
-            <div id="content">
-                <!-- Topbar -->
-                <%@ include file="../serve/topbar.jsp" %>
-
-                <!-- main 본문  -->
-                <div class="container-fluid">
-                    <!-- main 본문을 한 줄로 묶기 -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">전체 인재 정보</h1>
-                    </div>
-                    <div class="row">
-                        <!--  실제 내용 삽입 -->
-
-                        <div class="container ">
-                            <div class="row">
-                               <div>
-                                  <table>
-                      업직종
-                      &nbsp;
-                    <select name="">
-                       <option value="0">전체</option>
-                       <option value="1">외식/음료</option>
-                        <option value="2">외식/음료</option>
-                        <option value="3">유통/판매</option>
-                        <option value="4">문화/여가/생활</option>
-                        <option value="5">서비스</option>
-                        <option value="6">사무직</option>
-                        <option value="7">고객상담/리서치</option>
-                        <option value="8">생산/건설/노무</option>
-                        <option value="9">교육/강사</option>
-                        <option value="10">디자인</option>
-                        <option value="11">미디어</option>
-                        <option value="12">운전/배달</option>
-                        <option value="13">병원/간호/연구</option>
-                        <option value="14">IT/컴퓨터</option>
-                      </select>
-                      &emsp;
-                                       지역
-                      &nbsp;
-                      <select name="">
-                        <option value="0">전국</option>
-                        <option value="1">서울</option>
-                        <option value="2">경기</option>
-                        <option value="3">인천</option>
-                        <option value="4">부산</option>
-                        <option value="5">대구</option>
-                        <option value="6">대전</option>
-                        <option value="7">경남</option>
-                        <option value="8">전남</option>
-                        <option value="9">충남</option>
-                        <option value="10">광주</option>
-                        <option value="11">울산</option>
-                        <option value="12">경북</option>
-                        <option value="13">전북</option>
-                        <option value="13">충북</option>
-                        <option value="13">강원</option>
-                        <option value="13">제주</option>
-                      </select>
-                      &emsp;
-                      
-                                       작성일자
-                      &nbsp;
-                      <input type="text" name="time">&nbsp;&nbsp; ~ &nbsp;&nbsp;<input type="text" name="time">
-                      &emsp;
-                      <input type="submit" value="오늘" class="btn py-1 px-1 btn-primary">&nbsp;
-                      <input type="submit" value="1주일" class="btn py-1 px-1 btn-primary">&nbsp;
-                      <input type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
-                      </table>
-                      <hr>
-                                       고용형태
-                      &emsp;
-                      <table>
-                      <input type = "checkbox" name = "Employment" value = "football">알바
-                      &emsp;
-                      <input type = "checkbox" name = "Employment" value = "football">정규직
-                      &emsp;
-                      <input type = "checkbox" name = "Employment" value = "football">계약직
-                      &emsp;
-                      <input type = "checkbox" name = "Employment" value = "football">파견직
-                      &emsp;
-                      <input type = "checkbox" name = "Employment" value = "football">청년인턴직
-                      &emsp;
-                      <input type = "checkbox" name = "Employment" value = "football">위촉직
-                      &emsp;
-                      <input type = "checkbox" name = "Employment" value = "football">연수생/교육생
-                    </table>
-                    <hr>
-                                   근무기간
-                    &emsp;
-                    <table>
-                    <input type = "radio" name = "term" value = "football">1주일 이하
-                      &emsp;
-                      <input type = "radio" name = "term" value = "football">1개월
-                      &emsp;
-                      <input type = "radio" name = "term" value = "football">3개월~6개월
-                      &emsp;
-                      <input type = "radio" name = "term" value = "football">6개월~1년
-                      &emsp;
-                      <input type = "radio" name = "term" value = "football">1년이상
-                      &emsp;
-                      <input type = "radio" name = "term" value = "football">기간협의
-                      </table>
-                      <hr>
-                                       근무요일
-                      &emsp;
-                      <table>
-                      <input type = "checkbox" name = "day" value = "football">월
-                      &emsp;
-                      <input type = "checkbox" name = "day" value = "football">화
-                      &emsp;
-                      <input type = "checkbox" name = "day" value = "football">수
-                      &emsp;
-                      <input type = "checkbox" name = "day" value = "football">목
-                      &emsp;
-                      <input type = "checkbox" name = "day" value = "football">금
-                      &emsp;
-                      <input type = "checkbox" name = "day" value = "football">토
-                      &emsp;
-                      <input type = "checkbox" name = "day" value = "football">일
-                      </table>
-                               </div>
-                 
-                       
-                              
-                             
+	<%@ include file="../serve/header.jsp" %>
+	
+	
+	
+	
+	
+	  <!-- job_listing_area_start  -->
+    <div class="job_listing_area plus_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="job_filter white-bg">
+                        <div class="form_inner white-bg">
+                            <h3>검색필터</h3>
+                            <form action="#">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="single_field">
+                                            <select class="wide">
+                                                <option data-display="지역">지역</option>
+                                                <option value="1">Rangpur</option>
+                                                <option value="2">Dhaka </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="single_field">
+                                            <select class="wide">
+                                                <option data-display="카테고리">카테고리</option>
+                                                <option value="1">Category 1</option>
+                                                <option value="2">Category 2 </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="single_field">
+                                            <select class="wide">
+                                                <option data-display="테마">테마</option>
+                                                <option value="1">Experience 1</option>
+                                                <option value="2">Experience 2 </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="single_field">
+                                            <select class="wide">
+                                                <option data-display="성별">성별</option>
+                                                <option value="1">여자</option>
+                                                <option value="2">남자</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="single_field">
+                                            <select class="wide">
+                                                <option data-display="최종학력">최종학력</option>
+                                                <option value="1">Qualification 1</option>
+                                                <option value="2">Qualification 2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="single_field">
+                                            <select class="wide">
+                                                <option data-display="근무기간">근무기간</option>
+                                                <option value="1">male</option>
+                                                <option value="2">female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="single_field">
+                                            <input type="text" placeholder="검색어">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row">
+                            &nbsp 
+                            <div class="reset_btn">
+                                <button  class="boxed-btn3 w-100" type="submit">초기화</button>
+                            </div>&nbsp
+                            <div class="reset_btn">
+                                <button  class="boxed-btn3 w-100" type="submit">검&nbsp &nbsp 색</button>
                             </div>
                         </div>
 
-                        <div class="container">
-                            <div class="row">
-
-                                <div class="col-md-12">
-                                    <div>
-                                        <p>◆ 전체 인재<br></p>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="recent_joblist_wrap">
+                        <div class="recent_joblist white-bg ">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h4>공고글 게시판</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="serch_cat d-flex justify-content-end">
+                                        <select>
+                                            <option data-display="정렬 기준">정렬 기준</option>
+                                            <option value="1">Marketer</option>
+                                            <option value="2">Wordpress </option>
+                                            <option value="4">Designer</option>
+                                        </select>
                                     </div>
-
-                                    <div class="dropdown">
-                                        <a class="btn-top" style="margin-right: 15px;" href="#"
-                                            class="btn btn-primary btn-success"> 수정일순</a>
-                                        <a class="btn-top" style="margin-right: 15px;" href="#"
-                                            class="btn btn-primary btn-success"> 등록일순</a>
-                                        <a class="btn-top" style="margin-right: 15px;" href="#"
-                                            class="btn btn-primary btn-success pull-right">
-                                            &nbsp 마감일순</a>
-                                        <a class="btn-top" style="margin-left: 15px;" href="#"
-                                            class="btn btn-primary btn-success pull-left">
-                                            &nbsp 조회수</a>
-                                    </div>
-
-                                    <div class="table-responsive">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>이름</th>
-                                                    <th>이력서제목</th>
-                                                    <th>경력,자격증</th>
-                                                    <th>희망지역</th>
-                                                    <th>조회수</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        임OO<small>(남/24세)</small>
-                                                    </td>
-                                                    <td><a href="content">믿음직하고 끈기 있는 알바생입니다.</a></td>
-                                                    <td>경력 : 신입</td>
-                                                    <td>경기 고양시</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        임OO<small>(남/24세)</small>
-                                                    </td>
-                                                    <td><a href="#">믿음직하고 끈기 있는 알바생입니다.</a></td>
-                                                    <td>경력 : 신입</td>
-                                                    <td>경기 고양시</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        임OO<small>(남/24세)</small>
-                                                    </td>
-                                                    <td><a href="#">믿음직하고 끈기 있는 알바생입니다.</a></td>
-                                                    <td>경력 : 신입</td>
-                                                    <td>경기 고양시</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        임OO<small>(남/24세)</small>
-                                                    </td>
-                                                    <td><a href="#">믿음직하고 끈기 있는 알바생입니다.</a></td>
-                                                    <td>경력 : 신입</td>
-                                                    <td>경기 고양시</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        임OO<small>(남/24세)</small>
-                                                    </td>
-                                                    <td><a href="#">믿음직하고 끈기 있는 알바생입니다.</a></td>
-                                                    <td>경력 : 신입</td>
-                                                    <td>경기 고양시</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        임OO<small>(남/24세)</small>
-                                                    </td>
-                                                    <td><a href="#">믿음직하고 끈기 있는 알바생입니다.</a></td>
-                                                    <td>경력 : 신입</td>
-                                                    <td>경기 고양시</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        임OO<small>(남/24세)</small>
-                                                    </td>
-                                                    <td><a href="#">믿음직하고 끈기 있는 알바생입니다.</a></td>
-                                                    <td>경력 : 신입</td>
-                                                    <td>경기 고양시</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        임OO<small>(남/24세)</small>
-                                                    </td>
-                                                    <td><a href="#">믿음직하고 끈기 있는 알바생입니다.</a></td>
-                                                    <td>경력 : 신입</td>
-                                                    <td>경기 고양시</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        임OO<small>(남/24세)</small>
-                                                    </td>
-                                                    <td><a href="#">믿음직하고 끈기 있는 알바생입니다.</a></td>
-                                                    <td>경력 : 신입</td>
-                                                    <td>경기 고양시</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        임OO<small>(남/24세)</small>
-                                                    </td>
-                                                    <td><a href="#">믿음직하고 끈기 있는 알바생입니다.</a></td>
-                                                    <td>경력 : 신입</td>
-                                                    <td>경기 고양시</td>
-                                                    <td>12</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-
-                                        <hr />
-                                        <div style="float: right;">
-                                            <a href="write" class="btn btn-primary btn-xs pull-right">글쓰기</a>
-                                        </div>
-
-                                        <div class="text-center" style="float: left;">
-                                            <ul class="pagination">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="#" tabindex="-1"
-                                                        aria-disabled="true">Previous</a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                <li class="page-item active" aria-current="page">
-                                                    <a class="page-link" href="#">2 <span
-                                                            class="sr-only">(current)</span></a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#">Next</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                    </div><!-- 끝 실제 내용 삽입 -->
-                </div><!-- 끝 main 본문  -->
-            </div><!-- 끝 main -->
-            <!-- footer -->
-            <%@ include file="../serve/footer.jsp" %>
-        </div><!-- 끝 content wrapper -->
-    </div><!-- 끝  wrapper -->
-    
-    
-  <!-- Bootstrap core JavaScript-->
-  <script src="<c:url value="/vendor/jquery/jquery.min.js" />"></script>
-  <script src="<c:url value="/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+                    <div class="job_lists m-0">
+                        <div class="row">
 
-  <!-- Core plugin JavaScript-->
-  <script src="<c:url value="/vendor/jquery-easing/jquery.easing.min.js" />"></script>
+                            <div class="col-lg-12 col-md-12">
+                                <div class="single_jobs white-bg d-flex justify-content-between">
+                                    <div class="jobs_left d-flex align-items-center">
 
-  <!-- Custom scripts for all pages-->
-  <script src="<c:url value="/js/sb-admin-2.min.js" />"></script>
+                                        <div class="jobs_conetent">
+                                            <a href="job_details.html"><h4>글제목 </h4></a>
+                                            <div class="links_locat d-flex align-items-center">
+                                                <div class="location">
+                                                    <p> <i class="fa fa-map-marker"></i> 경기도 의정부시</p>
+                                                </div>
+                                                <div class="location">
+                                                    <p> <i class="fa fa-clock-o"></i>2020-05-30</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="jobs_right">
+                                        <div class="apply_now">
+                                            <a href="job_details.html" class="boxed-btn3">글보러가기</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pagination_wrap">
+                                    <ul>
+                                        <li><a href="#"> <i class="ti-angle-left"></i> </a></li>
+                                        <li><a href="#"><span>01</span></a></li>
+                                        <li><a href="#"><span>02</span></a></li>
+                                        <li><a href="#"> <i class="ti-angle-right"></i> </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job_listing_area_end  -->
+ 
+	
+ 
+	
+	
+	
+	
+	
+	<%@ include file="../serve/footer.jsp" %>
 
-  <!-- Page level plugins -->
-  <script src="<c:url value="/vendor/chart.js/Chart.min.js" />"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="<c:url value="/js/demo/chart-area-demo.js" />"></script>
-  <script src="<c:url value="/js/demo/chart-pie-demo.js" />"></script>
-   
-   
 </body>
-
 </html>
