@@ -77,6 +77,14 @@
                             <th>담당자 연락처</th>
                             <td><input type="text" class="form-control" id="name" value="010-1234-5678"></td>
                           </tr>
+                          <tr>
+                            <th>관리자</th>
+                             <td>
+                            	<a class='btn btn-info btn-xs' href="#"><span
+                                    class="glyphicon glyphicon-edit"></span>정보 수정</a> <a href="#"
+                                  class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>계정 삭제</a></td>
+                            </td>  
+                          </tr>
                         </table>
                       </div>
                     </div>
