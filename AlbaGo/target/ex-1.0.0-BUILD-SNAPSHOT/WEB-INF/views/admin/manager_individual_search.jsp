@@ -12,13 +12,13 @@
 <body>
     <div id="wrapper">
         <!-- 사이드 바 -->
-        <%@ include file="../serve/manager_Sidebar.jsp" %>
+        <%@ include file="../serve/manager_sidebar.jsp" %>
 
         <!-- content wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- main -->
             <div id="content">
-                <!-- Topbar -->
+                <!-- topbar -->
                 <%@ include file="../serve/manager_topbar.jsp" %>
 
                 <!-- main 본문  -->

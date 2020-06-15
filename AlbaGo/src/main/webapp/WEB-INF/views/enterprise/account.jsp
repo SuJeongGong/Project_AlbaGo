@@ -10,14 +10,14 @@
 <body>
 <div id="wrapper">
 	<!-- 사이드 바 -->
-	<%@ include file="../serve/Sidebar.jsp" %>
+	<%@ include file="../serve/sidebar.jsp" %>
 	
 	<!-- content wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
 		<!-- main -->
    		<div id ="content">
-   			<!-- Topbar -->
-			<%@ include file="../serve/Topbar.jsp" %>
+   			<!-- topbar -->
+			<%@ include file="../serve/topbar.jsp" %>
 			
 			<!-- main 본문  -->
 			<div class="container-fluid">
