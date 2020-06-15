@@ -194,7 +194,7 @@
                                                     <td>
                                                         임OO<small>(남/24세)</small>
                                                     </td>
-                                                    <td><a href="#">믿음직하고 끈기 있는 알바생입니다.</a></td>
+                                                    <td><a href="content">믿음직하고 끈기 있는 알바생입니다.</a></td>
                                                     <td>경력 : 신입</td>
                                                     <td>경기 고양시</td>
                                                     <td>12</td>
@@ -285,7 +285,7 @@
 
                                         <hr />
                                         <div style="float: right;">
-                                            <a href="#" class="btn btn-primary btn-xs pull-right">글쓰기</a>
+                                            <a href="write" class="btn btn-primary btn-xs pull-right">글쓰기</a>
                                         </div>
 
                                         <div class="text-center" style="float: left;">

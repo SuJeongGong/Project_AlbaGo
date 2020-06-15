@@ -36,6 +36,9 @@ public class IndividualController {
 		
 		return "/individual/support";
 	}
-	
-	//스크랩 알바 빠짐
+	@RequestMapping("/scrap")//스크랩
+	public String scrap() {
+		
+		return "/individual/scrap";
+	}
 }

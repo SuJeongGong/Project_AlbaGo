@@ -58,7 +58,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>서울</td>
-                                                    <td><a href="#">sweet카페 알바 지원해주세요.</a></td>
+                                                    <td><a href="content">sweet카페 알바 지원해주세요.</a></td>
                                                    
                                                     <td>2020-06-15</td>
                                                     <td>9900원</td>
