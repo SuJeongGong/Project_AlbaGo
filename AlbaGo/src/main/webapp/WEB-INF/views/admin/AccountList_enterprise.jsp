@@ -35,7 +35,7 @@
                 <!-- main 본문  -->
                 <div class="container-fluid">
 		        <!-- 요기다 작성  -->
-                  
+                
 
 
  <!-- Page Heading -->
@@ -175,62 +175,115 @@
                
                <br/>
                <br/>
-               <div class="tab-content">
-            <div class="tab-pane fade show active" id="all_list">
-              <table class="table  table-bordered ">
-
+               <div class="table-responsive">
+              <table class="table">
                 <thead>
+                <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger" style="float: right;">
                   <tr>
-                    <th> <input type="checkbox" name="Chk_choice" id="chk"> </th>
-                    <th>공고 번호 작성일</th>
-                    <th>알바공고</th>
+                    <th> </th>
+                    <th>     
+                      <input type="checkbox" class="selectAllMembers" checked=true/>전체선택
+                    </th>
+                    <th>공고작성일</th>
+                    <th>공고 제목</th>
                     <th>모집현황</th>
-                    <th>지원자관리</th>
-                    <th>유료서비스</th>
-                    <th>관리</th>
-
-
+                    <th>지원자 관리</th>
+                    <th>유료 서비스</th>                    
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><input type="checkbox" name="Chk_choice" id="chk"> </td>
-                    <td>2020-05-30</td>
-                    <td>맥도날드</td>
-                    <td>데이터3</td>
-                    <td>무료</td>
-                    <td>데이터5</td>
-                    <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-
-
-
+                    <td>1</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">맥도날드</a></td>
+                    <td></td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>                
                   </tr>
                   <tr>
-                    <td><input type="checkbox" name="Chk_choice" id="chk"> </td>
-                    <td>2020-05-30</td>
-                    <td>데이터2</td>
-                    <td>데이터3</td>
-                    <td>데이터4</td>
-                    <td>데이터5</td>
-                    <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
+                    <td>2</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">맥도날드</a></td>
+                    <td></td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>                
                   </tr>
                   <tr>
-                    <td><input type="checkbox" name="Chk_choice" id="chk"> </td>
-                    <td>2020-05-30</td>
-                    <td>데이터2</td>
-                    <td>데이터3</td>
-                    <td>데이터4</td>
-                    <td>데이터5</td>
-                    <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
+                    <td>3</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">맥도날드</a></td>
+                    <td></td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>                
                   </tr>
-
-                </tbody>
-              </table>
-
-               </div>
+                    <tr>
+                    <td>4</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">맥도날드</a></td>
+                    <td></td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>                
+                  </tr>
+                    <tr>
+                    <td>5</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">맥도날드</a></td>
+                    <td></td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>                
+                  </tr>
+                    <tr>
+                    <td>6</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">맥도날드</a></td>
+                    <td></td>
+                    <td>Table cell</td>
+                    <td>Table cell</td>                
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+             <script>
+      var selectAll = document.querySelector(".selectAllMembers");
+      selectAll.addEventListener('click', function(){
+          var objs = document.querySelectorAll(".memberChk");
+          for (var i = 0; i < objs.length; i++) {
+            objs[i].checked = selectAll.checked;
+          };
+      }, false);
+       
+      var objs = document.querySelectorAll(".memberChk");
+      for(var i=0; i<objs.length ; i++){
+        objs[i].addEventListener('click', function(){
+          var selectAll = document.querySelector(".selectAllMembers");
+          for (var j = 0; j < objs.length; j++) {
+            if (objs[j].checked === false) {
+              selectAll.checked = false;
+              return;
+            };
+          };
+          selectAll.checked = true;                                   
+      }, false);
+      } 
+    </script>
+           
                <br/>
                <hr>
-               
+               </div>
+               </div>
 
                <div class="text-center" style="float: left;">
                 <ul class="pagination">
@@ -267,6 +320,7 @@
     <!-- End of Content Wrapper -->
 
   </div>
+  
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
@@ -291,7 +345,7 @@
 
 
 
-</div><!-- 끝 main 본문  -->
+				</div><!-- 끝 main 본문  -->
             </div><!-- 끝 main -->
             <!-- footer -->
             <%@ include file="../serve/manager_footer.jsp" %>

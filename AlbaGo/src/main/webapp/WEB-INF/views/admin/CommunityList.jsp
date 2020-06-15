@@ -230,7 +230,7 @@
   <script src="js/demo/datatables-demo.js"></script>
 
 
-
+					</div>
 				</div><!-- 끝 main 본문  -->
             </div><!-- 끝 main -->
             <!-- footer -->

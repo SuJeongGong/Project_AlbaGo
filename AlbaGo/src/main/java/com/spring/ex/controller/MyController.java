@@ -71,6 +71,14 @@ public class MyController {
 	public String Support_status() {
 		return "/Support_status";
 	}
+	@RequestMapping("/Payment")
+	public String Payment() {
+		return "/Payment";
+	}
+	@RequestMapping("/Bank_Transfer")
+	public String Bank_Transfer() {
+		return "/Bank_Transfer";
+	}
 	@RequestMapping("/find_id")
 	public String find_id() {
 		return "/find_id";

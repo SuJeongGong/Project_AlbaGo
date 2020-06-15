@@ -32,9 +32,7 @@
                 <!-- Topbar -->
                 <%@ include file="../serve/manager_topbar.jsp" %>
 
-                <!-- main 본문  -->
-                <div class="container-fluid">
-		        <!-- 요기다 작성  -->
+                
          
          
          <!-- main 본문  -->

@@ -144,123 +144,123 @@
                <br/>
                <br/>
                <div class="table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>이름</th>
-                        <th>이력서제목</th>
-                        <th>경력,자격증</th>
-                        <th>희망지역</th>
-                        <th>조회수</th>
-                        <th>관리</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          임OO<small>(남/24세)</small>
-                        </td>
-                        <td>믿음직하고 끈기 있는 알바생입니다.</td>
-                        <td>경력 : 신입</td>
-                        <td>경기 고양시</td>
-                        <td>12</td>
-                        <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          임OO<small>(남/24세)</small>
-                        </td>
-                        <td>유통점 마트 경력 있는 준비된 인재.</td>
-                        <td>경력 : 신입</td>
-                        <td>경기 고양시</td>
-                        <td>12</td>
-                        <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          임OO<small>(남/24세)</small>
-                        </td>
-                        <td>몸도 마음도 건강한 인재입니다.</td>
-                        <td>경력 : 신입</td>
-                        <td>경기 고양시</td>
-                        <td>12</td>
-                        <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          임OO<small>(남/24세)</small>
-                        </td>
-                        <td>밝은 미소와 긍정적 마인드를 가진 인재입니다.</td>
-                        <td>경력 : 신입</td>
-                        <td>경기 고양시</td>
-                        <td>12</td>
-                        <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          임OO<small>(남/24세)</small>
-                        </td>
-                        <td>센스있고 적응력 좋은 인재입니다.</td>
-                        <td>경력 : 신입</td>
-                        <td>경기 고양시</td>
-                        <td>12</td>
-                        <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          임OO<small>(남/24세)</small>
-                        </td>
-                        <td>강인한 체력으로 무장한 믿음직한 인재입니다.</td>
-                        <td>경력 : 신입</td>
-                        <td>경기 고양시</td>
-                        <td>12</td>
-                        <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          임OO<small>(남/24세)</small>
-                        </td>
-                        <td>맡은 일에 최선을 다하는 인재입니다.</td>
-                        <td>경력 : 신입</td>
-                        <td>경기 고양시</td>
-                        <td>12</td>
-                        <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          임OO<small>(남/24세)</small>
-                        </td>
-                        <td>센스있고 적응력 좋은 인재입니다.</td>
-                        <td>경력 : 신입</td>
-                        <td>경기 고양시</td>
-                        <td>12</td>
-                        <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          임OO<small>(남/24세)</small>
-                        </td>
-                        <td>밝은 미소와 긍정적 마인드를 가진 인재입니다.</td>
-                        <td>경력 : 신입</td>
-                        <td>경기 고양시</td>
-                        <td>12</td>
-                        <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          임OO<small>(남/24세)</small>
-                        </td>
-                        <td>강인한 체력으로 무장한 믿음직한 인재입니다.</td>
-                        <td>경력 : 신입</td>
-                        <td>경기 고양시</td>
-                        <td>12</td>
-                        <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-               </div>
+              <table class="table">
+                <thead>
+                <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger" style="float: right;">
+                  <tr>
+                    <th> </th>
+                    <th>     
+                      <input type="checkbox" class="selectAllMembers" checked=true/>전체선택
+                    </th>
+                    <th>작성일</th>
+                    <th>인재글 제목</th>
+                    <th>작성자</th>
+                    <th>경력</th>
+                    <th>희망지역</th>                  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">사장님 나빠요</a></td>
+                    <td>송원준</td>
+                    <td>신입</td>
+                    <td>전국</td>                
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">사장님 나빠요</a></td>
+                    <td>송원준</td>
+                    <td>신입</td>
+                    <td>전국</td>                
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">사장님 나빠요</a></td>
+                    <td>송원준</td>
+                    <td>신입</td>
+                    <td>전국</td>                
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">사장님 나빠요</a></td>
+                    <td>송원준</td>
+                    <td>신입</td>
+                    <td>전국</td>                
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">사장님 나빠요</a></td>
+                    <td>송원준</td>
+                    <td>신입</td>
+                    <td>전국</td>                
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">사장님 나빠요</a></td>
+                    <td>송원준</td>
+                    <td>신입</td>
+                    <td>전국</td>                
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td><input type='checkbox' class='memberChk' checked=true onclick='OnOffMemberAllClickBtn()'>
+					</td>
+                    <td> 2020.01.12-2020.01.23</td>
+                    <td><a href="#">사장님 나빠요</a></td>
+                    <td>송원준</td>
+                    <td>신입</td>
+                    <td>전국</td>                
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+             <script>
+      var selectAll = document.querySelector(".selectAllMembers");
+      selectAll.addEventListener('click', function(){
+          var objs = document.querySelectorAll(".memberChk");
+          for (var i = 0; i < objs.length; i++) {
+            objs[i].checked = selectAll.checked;
+          };
+      }, false);
+       
+      var objs = document.querySelectorAll(".memberChk");
+      for(var i=0; i<objs.length ; i++){
+        objs[i].addEventListener('click', function(){
+          var selectAll = document.querySelector(".selectAllMembers");
+          for (var j = 0; j < objs.length; j++) {
+            if (objs[j].checked === false) {
+              selectAll.checked = false;
+              return;
+            };
+          };
+          selectAll.checked = true;                                   
+      }, false);
+      } 
+    </script>
                <br/>
                <hr>
+               </div>
+               </div>
                
 
                <div class="text-center" style="float: left;">

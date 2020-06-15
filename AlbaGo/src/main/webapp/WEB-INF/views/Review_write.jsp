@@ -35,15 +35,16 @@
                     <label for="title">제목 </label>
                     <input type="text" class="form-control" id="title">
                   </div>
-                  <div class="form-group">
-                    <label for="score">평점 </label>
-                    <input type="text" class="form-control" id="text">
-                    </div>
+                  
+                  <hr>
 
                   <div class="form-group">
                     <label for="message">내용</label>
                     <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
                   </div>
+                  
+                  <hr>
+                  
                   <div class="form-group">
                     <input type="submit" value="등록하기" class="btn py-1 px-1 btn-primary">
                     <input type="submit" value="취소" class="btn py-1 px-1 btn-primary">

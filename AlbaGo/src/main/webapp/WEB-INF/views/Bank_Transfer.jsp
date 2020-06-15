@@ -37,67 +37,52 @@
                   
 
 
- <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">결제 하기</h1>
+ <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                  <h1 class="h3 mb-0 text-gray-800">상품 결제</h1>
+                </div>
+          <!-- main 본문을 한 줄로 묶기 -->
+          <div class="row">
+                    <div class="card col-xl-12 shadow mb-4">
+                      <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">계좌이체  
+                          
+                        </h6>
+                        
+                      </div>
+                      <div class="card-body">
+                        
+                        
+                        <table class="table table-bordered ">
+                          <tr>
+                            <th>상품명</th>
+                            <td><input type="text" class="form-control" id="name" value="플래티넘"></td>
+                          </tr>
+                          <tr>
+                            <th>상품금액</th>
+                            <td><input type="text" class="form-control" id="phone" value="19,800"></td>
+                          </tr>
+                          <tr>
+                          </table>
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h4 class="m-0 font-weight-bold text-primary" >플래티넘</h4>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-               <h5>상품 옵션</h5>
-               <hr>
-               <h6>기간 선택</h6> 
-               <hr>
-               시작일+ &nbsp;&nbsp; <select name="">
-                 <option value="1">1</option>
-                 <option value="2">2</option>
-                 <option value="4">4</option>
-                 <option value="8">8</option>
-                 <option value="16">16</option>
-                 <option value="32">32</option>
-               </select> &nbsp; 일 &emsp;&emsp;&emsp;&emsp; =
-               <input type="text" name="pay" placeholder="0">원
-               <br/>
-               <br/>
-               <br/>
-               <br/>
-               <hr>
+                          <br>
+                          <br>
 
-               <h5>선택한상품 정보</h5>
-               <br/>
-               <br/>
-               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>상품명</th>
-                      <th>기간</th>
-                      <th>단가</th>
-                      <th>소계</th>
-                    </tr>
-                  </thead>
-                    <tr>
-                      <td>플래티넘</td>
-                      <td>시작일무료 + & </td>
-                      <td>198,000</td>
-                      <td>198,000</td>
-                    </tr>
-                </table>
-               </div>
-               <br/>
-               <hr>
-               <br/>
-               <input type="submit" value="결제하기" class="btn py-1 px-1 btn-primary">
-
-
-              </div>
-            </div>
+                        <table class="table table-bordered ">
+                            <th> 입금 계좌번호</th>
+                            <td><input type="email" class="form-control" id="e_mail" value="123-4567-8910"></td>
+                          </tr>
+                          <tr>
+                            <th>입금 기한</th>
+                            <td><input type="text" class="form-control" id="address" value="2020-06-18"></td>
+                          </tr>
+                          <tr>
+                            <th>결제 승인</th>
+                            <td><input type="text" class="form-control" id="name" value="대기중"></td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>         
           </div>
-
-        </div>
         <!-- /.container-fluid -->
 
       </div>

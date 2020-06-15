@@ -36,20 +36,38 @@
                     <label for="title">제목 </label>
                     <input type="text" class="form-control" id="title">
                   </div>
-                  <div class="form-group">
-                    <label for="score">평점 </label>
-                    <input type="text" class="form-control" id="score">
-                  </div>
-
+                  
+                  <hr>
+                  
                   <div class="form-group">
                     <label for="message">내용</label>
                     <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
                   </div>
-
+                  
+                  <hr>
+				  
+                      <div class="card-body">                        
+                        <table class="table table-striped">
+                          <tbody>
+                            <tr>
+                              <td>송원준  2020-05-30<br/> 이거 언제 다 만드누</td> 
+                            </tr>
+                            <tr>
+                              <td>송원준  2020-05-30<br/> 캡스톤 너무 재밌누</td> 
+                            </tr>
+                            <tr>
+                              <td>송원준  2020-05-30<br/> 깃 부셔버리고 싶다</td> 
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                   <hr>
                   <div class="form-group">
                     <label for="message">댓글</label>
                     <textarea name="" id="message" cols="2" rows="2" class="form-control"></textarea>
                   </div>
+                  
+                  <hr>
 
                   <div class="form-group">
                     <input type="submit" value="등록하기" class="btn py-1 px-1 btn-primary">
