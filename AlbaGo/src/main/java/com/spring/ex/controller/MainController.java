@@ -10,6 +10,10 @@ public class MainController {
 	public String main() {
 		return "/main";
 	}
+	@RequestMapping("landing")
+	public String landing() {
+		return "/landing";
+	}
 
 	
 }

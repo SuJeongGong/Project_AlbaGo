@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>알바GO</title>
 </head>
 <body>
 	<%@ include file="./serve/header.jsp" %>
 	
-	    <!-- 검색바_area -->
+<!-- 검색바_area -->
     <div class="catagory_area slider_bg_1">
         <div class="container">
             <div class="row cat_search">
@@ -64,7 +64,6 @@
         </div>
     </div>
     <!--/ 검색바_area -->
-	
 	
     <!-- 아이콘메뉴_start  -->
     <div class="top_companies_area">

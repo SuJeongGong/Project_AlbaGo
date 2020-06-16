@@ -1,159 +1,189 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>my page</title>
+<title>Insert title here</title>
 </head>
 <body>
-<div id="wrapper">
-	<!-- 사이드 바 -->
-	<%@ include file="../serve/sidebar.jsp" %>
+	<%@ include file="../serve/header.jsp" %>
 	
-	<!-- content wrapper -->
-	<div id="content-wrapper" class="d-flex flex-column">
-		<!-- main -->
-   		<div id ="content">
-   			<!-- topbar -->
-			<%@ include file="../serve/topbar.jsp" %>
-			
-			<!-- main 본문  -->
-			<div class="container-fluid">
-			<div class="d-sm-flex align-items-center justify-content-between mb-4">
-            	<h1 class="h3 mb-0 text-gray-800">개인 회원 정보</h1>
+	
+	
+	
+	
+	
+    <div class="job_details_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="job_details_header">
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <div class="jobs_conetent">
+                                    <a href="#">
+                                        <h4>회원정보 수정</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="jobs_right">
+                                <div class="apply_now">
+                                    <a class="boxed-btn3 w-10" href="#"> 수정</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="descript_wrap white-bg">
+                        <div class="single_wrap">
+                            <p>안전한 정보보호를 위해 연락처 일부만 확인가능하며,<br/>수정화면에서 정확한 연락처 확인이 가능합니다.</p>
+                            <ul>
+                                <li>이름 : <span>공수정</span></li>
+                                <li>이메일 : <span>avsd@naver.com</span></li>
+                                <li>연락처  : <span>010-****-6425</span></li>
+                                <li>주소  : <span>서울특별시 동대문구 ******</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="job_details_header">
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <div class="jobs_conetent">
+                                    <a href="#">
+                                        <h4>이력서 관리</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="jobs_right">
+                                <div class="apply_now">
+                                    <a class="boxed-btn3 w-10" href="#"> 자세히</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="descript_wrap white-bg">
+                        <div class="single_wrap">
+                            <p>이력서 수정을 하고싶다면 자세히 버튼을 눌러주세요<br/>이력서 관리 화면에서 수정하실수 있습니다.</p>
+                            <br>
+							<table width="95%">
+								<tr>
+									<th>제목</th><th>작성날짜</th>
+								</tr>
+								<tr>
+									<td>제목</td><td>작성날짜</td>
+								</tr>
+								<tr>
+									<td>제목</td><td>작성날짜</td>
+								</tr>
+								<tr>
+									<td>제목</td><td>작성날짜</td>
+								</tr>
+								<tr>
+									<td>제목</td><td>작성날짜</td>
+								</tr>
+								
+							</table>
+                        </div>
+                    </div>
+                </div>
             </div>
-			<!-- main 본문을 한 줄로 묶기 -->
-			<div class="row">
-                <div class="card col-xl-6 shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">회원 정보  
-                      <a href="account" class="btn btn-primary btn-icon-split"><span class="text">수정</span></a>
-                    </h6>
-                    
-                  </div>
-                  <div class="card-body">
-                    <div class="text-xs">
-                      안전한 정보보호를 위해 연락처 일부만 확인가능하며,<br/> 수정화면에서 정확한 연락처 확인이 가능합니다.<br/><br/>
+            <div class="row">
+            <br><br><br><br><br></div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="job_details_header">
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <div class="jobs_conetent">
+                                    <a href="#">
+                                        <h4>지원 목록</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="jobs_right">
+                                <div class="apply_now">
+                                    <a class="boxed-btn3 w-10" href="#">자세히</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <table>
-                      <tr>
-                        <td>이름</td>
-                        <td>공수정</td>
-                      </tr>
-                      <tr>
-                        <td>이메일</td>
-                        <td>avsd@naver.com</td>
-                      </tr>
-                      <tr>
-                        <td>연락처</td>
-                        <td>010-****-6425</td>
-                      </tr>
-                      <tr>
-                        <td>주소</td>
-                        <td>서울특별시 동대문구 ******</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-                <div class="card col-xl-6 shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">이력서 관리
-                      <a href="profile_list" class="btn btn-primary btn-icon-split"><span class="text">자세히</span></a>
-                    </h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="text-xs">
-                      이력서 수정을 하고싶다면 자세히 버튼을 눌러주세요<br/> 이력서 관리 화면에서 수정하실수 있습니다.<br/><br/>
+                    <div class="descript_wrap white-bg">
+                        <div class="single_wrap">
+                            <p>지원한 알바 목록을 자세히 보고싶으시면<br>
+자세히 버튼을 눌러 지원한 알바 페이지로 이동해주세요 </p>
+                            <br>
+							<table width="95%">
+								<tr>
+									<th>제목</th><th>작성날짜</th>
+								</tr>
+								<tr>
+									<td>제목</td><td>작성날짜</td>
+								</tr>
+								<tr>
+									<td>제목</td><td>작성날짜</td>
+								</tr>								
+							</table>
+                        </div>
                     </div>
-                    
-                    <table>
-                      <tr>
-                        <th>제목</th>
-                        <th>작성 날짜</th>
-                      </tr>
-                      <tr>
-                        <td>열심히 일하겠습니다</td>
-                        <td>2020-05-08</td>
-                      </tr>
-                      <tr>
-                        <td>시켜만 주십시오</td>
-                        <td>2020-05-05</td>
-                      </tr>
-                    </table>
-                  </div>
                 </div>
-              </div>
+                <div class="col-lg-6">
+                    <div class="job_details_header">
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                <div class="jobs_conetent">
+                                    <a href="#">
+                                        <h4>스크랩</h4>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="jobs_right">
+                                <div class="apply_now">
+                                    <a class="boxed-btn3 w-10" href="#">자세히</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="descript_wrap white-bg">
+                        <div class="single_wrap">
+                            <p>스크랩한 알바 목록을 수정하거나 자세히 보고싶으시면
+                            <br>
+자세히 버튼을 눌러 스크랩한 알바 페이지로 이동해주세요 </p>
+                            <br>
+							<table width="95%">
+								<tr>
+									<th>제목</th><th>작성날짜</th>
+								</tr>
+								<tr>
+									<td>제목</td><td>작성날짜</td>
+								</tr>
+								<tr>
+									<td>제목</td><td>작성날짜</td>
+								</tr>
+								<tr>
+									<td>제목</td><td>작성날짜</td>
+								</tr>
+								<tr>
+									<td>제목</td><td>작성날짜</td>
+								</tr>
+								
+							</table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
 
-              <div class="row">
-                <div class="card col-xl-6 shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">지원한 알바
-                      <a href="support" class="btn btn-primary btn-icon-split"><span class="text">자세히</span></a>
-                    </h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="text-xs">
-                      지원한 알바 목록을 자세히 보고싶으시면<br />
-                      자세히 버튼을 눌러 지원한 알바 페이지로 이동해주세요
-                    </div>
-                    
-                    <table>
-                      <tr>
-                        <th>지원한 공고 제목</th>
-                        <th>지원 날짜</th>
-                      </tr>
-                      <tr>
-                        <td>버거킹 의정부DT점</td>
-                        <td>2020-05-08</td>
-                      </tr>
-                      <tr>
-                        <td>전단지 알바</td>
-                        <td>2020-05-05</td>
-                      </tr>
-                      <tr>
-                        <td>교촌치킨 라이더 모집</td>
-                        <td>2020-05-03</td>
-                      </tr>
-                    </table>
-                  </div>
                 </div>
-                <div class="card col-xl-6 shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">스크랩 알바
-                      <a href="scrap" class="btn btn-primary btn-icon-split"><span class="text">자세히</span></a>
-                    </h6>
-                  </div>
-                  <div class="card-body">
-                    <div class="text-xs">
-                      스크랩한 알바 목록을 수정하거나 자세히 보고싶으시면<br />
-                      자세히 버튼을 눌러 스크랩한 알바 페이지로 이동해주세요
-                    </div>
-                    
-                    <table>
-                      <tr>
-                        <th>스크랩한 공고 제목</th>
-                        <th>스크랩 날짜</th>
-                      </tr>
-                      <tr>
-                        <td>맥도날드 녹양점</td>
-                        <td>2020-05-18</td>
-                      </tr>
-                      <tr>
-                        <td>인형탈 알바</td>
-                        <td>2020-05-12</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </div>
-			</div><!-- 끝 main 본문  -->
-   		</div><!-- 끝 main -->
-   		<!-- footer -->
-		<%@ include file="../serve/footer.jsp" %>
-   </div><!-- 끝 content wrapper -->
-</div><!-- 끝  wrapper -->
+            </div>
+        </div>
+    </div>
+	
+	
+	
+	
+	
+	<%@ include file="../serve/footer.jsp" %>
+
 </body>
 </html>

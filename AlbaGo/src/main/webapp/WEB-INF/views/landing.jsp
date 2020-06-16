@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>알바GO</title>
 </head>
 <body>
 	<%@ include file="./serve/header.jsp" %>

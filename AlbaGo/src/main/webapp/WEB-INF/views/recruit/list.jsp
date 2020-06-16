@@ -27,8 +27,23 @@
                                         <div class="single_field">
                                             <select class="wide">
                                                 <option data-display="지역">지역</option>
-                                                <option value="1">Rangpur</option>
-                                                <option value="2">Dhaka </option>
+                            <option value="1">서울</option>
+                            <option value="1">경기</option>
+                            <option value="1">인천</option>
+                            <option value="1">부산</option>
+                            <option value="1">대구</option>
+                            <option value="1">대전</option>
+                            <option value="1">경남</option>
+                            <option value="1">전남</option>
+                            <option value="1">충남</option>
+                            <option value="1">광주</option>
+                            <option value="1">울산</option>
+                            <option value="1">경북</option>
+                            <option value="1">전북</option>
+                            <option value="1">충북</option>
+                            <option value="1">강원</option>
+                            <option value="1">제주</option>
+                            <option value="1">전국</option>
                                             </select>
                                         </div>
                                     </div>
@@ -36,8 +51,19 @@
                                         <div class="single_field">
                                             <select class="wide">
                                                 <option data-display="카테고리">카테고리</option>
-                                                <option value="1">Category 1</option>
-                                                <option value="2">Category 2 </option>
+                            <option value="1">외식/음료</option>
+                            <option value="2">유통/판매</option>
+                            <option value="4">문화/여가/생활</option>
+                            <option value="1">서비스</option>
+                            <option value="2">사무직</option>
+                            <option value="4">고객상담/리서치</option>
+                            <option value="1">생산/건설/노무</option>
+                            <option value="2">교육/강사</option>
+                            <option value="4">디자인</option>
+                            <option value="1">미디어</option>
+                            <option value="2">운전/배달</option>
+                            <option value="4">병원/간호/연구</option>
+                            <option value="1">IT/컴퓨터</option>
                                             </select>
                                         </div>
                                     </div>
@@ -45,8 +71,11 @@
                                         <div class="single_field">
                                             <select class="wide">
                                                 <option data-display="테마">테마</option>
-                                                <option value="1">Experience 1</option>
-                                                <option value="2">Experience 2 </option>
+                                                <option value="1">대학생</option>
+                                                <option value="1">주부</option>
+                                                <option value="1">청소년</option>
+                                                <option value="1">외국인</option>
+                                                <option value="1">장년</option>
                                             </select>
                                         </div>
                                     </div>
@@ -63,8 +92,10 @@
                                         <div class="single_field">
                                             <select class="wide">
                                                 <option data-display="최종학력">최종학력</option>
-                                                <option value="1">Qualification 1</option>
-                                                <option value="2">Qualification 2</option>
+                                                <option value="1">중학교 졸업</option>
+                                                <option value="2">고등학교 졸업</option>
+                                                <option value="1">대학교(2,3년제) 졸업</option>
+                                                <option value="2">대학교(4년제) 졸업</option>
                                             </select>
                                         </div>
                                     </div>
@@ -72,8 +103,10 @@
                                         <div class="single_field">
                                             <select class="wide">
                                                 <option data-display="근무기간">근무기간</option>
-                                                <option value="1">male</option>
-                                                <option value="2">female</option>
+                                                <option value="1">단기알바</option>
+                                                <option value="2">3~6개월</option>
+                                                <option value="2">6~12개월</option>
+                                                <option value="2">12개월 이상</option>
                                             </select>
                                         </div>
                                     </div>
@@ -97,6 +130,7 @@
 
                     </div>
                 </div>
+                
                 <div class="col-lg-9">
                     <div class="recent_joblist_wrap">
                         <div class="recent_joblist white-bg ">
@@ -108,9 +142,9 @@
                                     <div class="serch_cat d-flex justify-content-end">
                                         <select>
                                             <option data-display="정렬 기준">정렬 기준</option>
-                                            <option value="1">Marketer</option>
-                                            <option value="2">Wordpress </option>
-                                            <option value="4">Designer</option>
+                                            <option value="1">최신순</option>
+                                            <option value="2">조회수순 </option>
+                                            <option value="4">지원순</option>
                                         </select>
                                     </div>
                                 </div>

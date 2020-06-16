@@ -10,24 +10,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/img/favicon.png"/>">
-    <!-- Place favicon.ico in the root directory -->
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/owl.carousel.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/magnific-popup.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/font-awesome.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/themify-icons.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/nice-select.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/flaticon.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/gijgo.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/animate.min.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/slicknav.css" />">
-
-    <link rel="stylesheet" href="<c:url value="/css/style.css" />">
-    <!-- <link rel="stylesheet" href="<c:url value="css/responsive" />"> -->
 </head>
 <body>
     <footer class="footer">
