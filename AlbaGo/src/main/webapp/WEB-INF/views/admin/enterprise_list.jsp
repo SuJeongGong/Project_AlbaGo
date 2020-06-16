@@ -64,61 +64,61 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><a href="#">Sample</a></td>
+                                            <td><a href="enterprise_detail">Sample</a></td>
                                             <td>Filter</td>
                                             <td>12-11-2011 11:11</td>
                                             <td>OK</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#">Sample</a></td>
+                                            <td><a href="enterprise_detail">Sample</a></td>
                                             <td>It</td>
                                             <td>11-20-2013 08:56</td>
                                             <td>It</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#">Sample</a></td>
+                                            <td><a href="enterprise_detail">Sample</a></td>
                                             <td>It</td>
                                             <td>11-20-2013 08:56</td>
                                             <td>It</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#">Sample</a></td>
+                                            <td><a href="enterprise_detail">Sample</a></td>
                                             <td>It</td>
                                             <td>11-20-2013 08:56</td>
                                             <td>It</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#">Sample</a></td>
+                                            <td><a href="enterprise_detail">Sample</a></td>
                                             <td>It</td>
                                             <td>11-20-2013 08:56</td>
                                             <td>It</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#">Sample</a></td>
+                                            <td><a href="enterprise_detail">Sample</a></td>
                                             <td>It</td>
                                             <td>11-20-2013 08:56</td>
                                             <td>It</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#">Sample</a></td>
+                                            <td><a href="enterprise_detail">Sample</a></td>
                                             <td>It</td>
                                             <td>11-20-2013 08:56</td>
                                             <td>It</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#">Sample</a></td>
+                                            <td><a href="enterprise_detail">Sample</a></td>
                                             <td>It</td>
                                             <td>11-20-2013 08:56</td>
                                             <td>It</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#">Sample</a></td>
+                                            <td><a href="enterprise_detail">Sample</a></td>
                                             <td>It</td>
                                             <td>11-20-2013 08:56</td>
                                             <td>It</td>
                                         </tr>
                                         <tr>
-                                            <td><a href="#">Sample</a></td>
+                                            <td><a href="enterprise_detail">Sample</a></td>
                                             <td>$</td>
                                             <td>%</td>
                                             <td>&</td>

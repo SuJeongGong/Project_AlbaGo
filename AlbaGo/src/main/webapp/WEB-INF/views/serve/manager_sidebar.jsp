@@ -17,14 +17,12 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="<c:url value="/css/sb-admin-1.min.css" />" rel="stylesheet">
+  <link href="<c:url value="/css/sb-admin-2.min.css" />" rel="stylesheet">
 
 </head>
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -39,9 +37,9 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
-	  
-	  
-	  
+     
+     
+     
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="main">
@@ -107,8 +105,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Management:</h6>
-            <a class="collapse-item" href="">승인관리</a>
+            <a class="collapse-item" href="approve">승인관리</a>
             <a class="collapse-item" href="product">상품관리</a>
+            <a class="collapse-item" href="payment">매출</a>
           </div>
         </div>
       </li>
@@ -131,7 +130,6 @@
 
     </ul>
     <!-- End of Sidebar -->
- </div>
 
     
     <!-- End of Content Wrapper -->
@@ -143,26 +141,6 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="<c:url value="/vendor/jquery/jquery.min.js" />"></script>
-  <script src="<c:url value="/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="<c:url value="/vendor/jquery-easing/jquery.easing.min.js" />"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="<c:url value="/js/sb-admin-1.min.js" />"></script>
-
-  <!-- Page level plugins -->
-  <script src="<c:url value="/vendor/chart.js/Chart.min.js" />"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="<c:url value="/js/demo/chart-area-demo.js" />"></script>
-  <script src="<c:url value="/js/demo/chart-pie-demo.js" />"></script>
-   
-   
 </body>
 
 
