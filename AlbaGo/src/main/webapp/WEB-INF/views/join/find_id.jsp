@@ -18,6 +18,7 @@
 
   <!-- Custom styles for this template-->
   <link href="<c:url value="/css/sb-admin-2.min.css" />" rel="stylesheet">
+<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +26,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>개인회원</title>
+    <title>아이디찾기</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,65 +41,66 @@
 
 <body class="bg-gradient-primary">
 
-  <div class="row text-center" style="width: 135%">
-    <div class="container">
+    <div class="row text-center" style="width: 135%">
+        <div class="container">
 
-        <div class="card o-hidden border-0 shadow-lg my-5 col-lg-7 center-block ">
+            <div class="card o-hidden border-0 shadow-lg my-5 col-lg-7 center-block ">
 
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
 
-                    <div class="col-lg-12">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">아이디찾기</h1>
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">아이디찾기</h1>
+                                </div>
+                                <form class="user">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="text" class="form-control form-control-user" id="NAME"
+                                                placeholder="이름입력">
+                                        </div>
+                                    </div>
+                                    <p style="text-align:left;">핸드폰번호</p>
+                                    <div class="form-group row">
+                                        <div class="col-sm-7 mb-3 mb-sm-0">
+                                            <input type="text" class="form-control form-control-user" id="cellphone"
+                                                placeholder="'-빼고 적어주세요'">
+                                        </div>
+                                    </div>
+                                    <br><br>
+
+
+                                    <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                        아이디찾기
+                                    </a>
+
                             </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="NAME"
-                                            placeholder="이름입력">
-                                    </div>
-                                </div>
-                                핸드폰번호<br>
-                                <div class="form-group row">
-                                    <div class="col-sm-7 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="cellphone"
-                                            placeholder="'-빼고 적어주세요'">
-                                    </div>
-                                </div>
-                                <br><br>
-
-
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    변경하기
-                                </a>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
 
-   
-  <!-- Bootstrap core JavaScript-->
-  <script src="<c:url value="/vendor/jquery/jquery.min.js" />"></script>
-  <script src="<c:url value="/vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="<c:url value=" /vendor/jquery/jquery.min.js" />"></script>
+    <script src="<c:url value=" /vendor/bootstrap/js/bootstrap.bundle.min.js" />"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="<c:url value="/vendor/jquery-easing/jquery.easing.min.js" />"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="<c:url value=" /vendor/jquery-easing/jquery.easing.min.js" />"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="<c:url value="/js/sb-admin-2.min.js" />"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="<c:url value=" /js/sb-admin-2.min.js" />"></script>
 
-  <!-- Page level plugins -->
-  <script src="<c:url value="/vendor/chart.js/Chart.min.js" />"></script>
+    <!-- Page level plugins -->
+    <script src="<c:url value=" /vendor/chart.js/Chart.min.js" />"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="<c:url value="/js/demo/chart-area-demo.js" />"></script>
-  <script src="<c:url value="/js/demo/chart-pie-demo.js" />"></script>
-   </body>
+    <!-- Page level custom scripts -->
+    <script src="<c:url value=" /js/demo/chart-area-demo.js" />"></script>
+    <script src="<c:url value=" /js/demo/chart-pie-demo.js" />"></script>
+</body>
+
 </html>
