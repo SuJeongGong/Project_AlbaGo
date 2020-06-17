@@ -10,6 +10,7 @@ import com.spring.ex.dao.JoinDAO;
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.validator.EnterpriseValidator;
+import com.spring.ex.validator.IndividualValidator;
 
 @Controller
 @RequestMapping("/join")
@@ -44,7 +45,7 @@ public class JoinController {
 	}
 
 	@RequestMapping("/join_enterprise/join_result") // 기업회원가입 완료
-	public String join_enterprise_result(@ModelAttribute("enterprise") Enterprise enterprise, BindingResult result) {
+	public String join_result(@ModelAttribute("enterprise") Enterprise enterprise, BindingResult result) {
 		String page = "/join/join_enterprise"; //회원가입 폼으로 
 
 		EnterpriseValidator validator = new EnterpriseValidator();
@@ -60,7 +61,7 @@ public class JoinController {
 			
 			if(insertResult==1) {
 				System.out.println("DB에 값넣기 성공");
-				page = "/join/join_enterprise_result";//db값넣기 성공시 result페이지로
+				page = "/join/join_result";//db값넣기 성공시 result페이지로
 			}
 			else {
 				System.out.println("DB에 값넣기 실패");
@@ -76,4 +77,32 @@ public class JoinController {
 		return "/join/join_individual";
 	}
 
+	@RequestMapping("/join_individual/join_result") // 개인회원가입 완료
+	public String join_result(@ModelAttribute("individual") Individual individual, BindingResult result) {
+		String page = "/join/join_individual"; //회원가입 폼으로
+		System.out.println("되나1?");
+
+		IndividualValidator validator = new IndividualValidator();
+		System.out.println("되나2?");
+
+		validator.validate(individual, result);
+		System.out.println("되나3?");
+		if (result.hasErrors()) {
+			return page;//에러 있으면 그냥 회원가입 폼으로
+		}
+		
+		else {
+			int insertResult = joinDAO.insertIndividual(individual);
+			
+			if(insertResult==1) {
+				System.out.println("DB에 값넣기 성공");
+				page = "/join/join_result";//db값넣기 성공시 result페이지로
+			}
+			else {
+				System.out.println("DB에 값넣기 실패");
+			}
+		}
+		System.out.println("되나?4");
+		return page;
+	}
 }

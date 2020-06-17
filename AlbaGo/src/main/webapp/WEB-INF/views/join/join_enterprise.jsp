@@ -45,7 +45,7 @@ pageEncoding="UTF-8"%>
               </div>
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user"  name ="enterprise_id"value="${enterprise.enterprise_id}" id="enterprise_id" placeholder="ID입력">S
+                  <input type="text" class="form-control form-control-user"  name ="enterprise_id"value="${enterprise.enterprise_id}" id="enterprise_id" placeholder="ID입력">
 
                 </div>        
                 <div class="col-sm-6"><p><button type="button" class="btn btn-outline-primary btn-block">중복확인</button></p>
@@ -90,7 +90,7 @@ pageEncoding="UTF-8"%>
                   <input type="" class="form-control form-control-user" id="category"  name="category" value="${enterprise.category}" placeholder="서울특별시 강북구 홍길동 (자세히 적어주세요)">
                 </div>
               </div>
-	<input type = "submit" value="전송"/>
+			  <input type = "submit" value="전송" class="btn btn-primary btn-user btn"/>
               <br>
               
 

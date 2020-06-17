@@ -31,9 +31,27 @@
 	</insert>
 	
 	<insert id="insertIndividual" parameterType="Individual" >
-		INSERT INTO individual ()
+		INSERT INTO individual (
+			individual_id,
+			password,
+			name,
+			gender,
+			birth,
+			phone,
+			education,
+			date	
+		)
 
-   		VALUES ()
+   		VALUES (
+   			#{individual_id},
+   			#{password},
+   			#{name},
+   			#{gender},
+   			#{birth},
+   			#{phone},
+   			#{education},
+   			null
+   		)
 	</insert>
 
 </mapper>
