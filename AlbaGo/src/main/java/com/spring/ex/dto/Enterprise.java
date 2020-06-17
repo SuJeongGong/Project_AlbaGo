@@ -1,9 +1,9 @@
 package com.spring.ex.dto;
 
 import lombok.Data;
-
 @Data
 public class Enterprise {
+	
 	String enterprise_id;//아이디
 	String password;//비밀번호
 	String business_number;//사업자번호

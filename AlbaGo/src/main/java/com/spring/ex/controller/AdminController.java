@@ -42,9 +42,9 @@ public class AdminController {
 		return "admin/enterprise_detail";
 	}
 	
-	@RequestMapping("/manager_payment")//결제관리
+	@RequestMapping("/payment")//결제관리
 	public String manager_payment() {
-		return "admin/manager_payment";
+		return "admin/payment";
 	}
 	@RequestMapping("/product")//상품수정,삭제
 	public String product() {
@@ -53,6 +53,10 @@ public class AdminController {
 	@RequestMapping("/add_product")//상품추가
 	public String add_product() {
 		return "admin/add_product";
+	}
+	@RequestMapping("/approve")//상품추가
+	public String approve() {
+		return "admin/approve";
 	}
 
 
