@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <head>
 <meta charset="UTF-8">
 <title>알바GO</title>
@@ -71,51 +73,102 @@
             <div class="row align-items-center mb-40">
             </div>
             <div class="row">
-                <div class="col-lg-4 col-xl-3 col-md-6">
+                <div class="col-lg-3 col-xl-3 col-md-3">
                     <div class="single_company">
-                        <div class="thumb">
-                            <img src="img/svg_icon/5.svg" alt="">
-                        </div>
-                        <a href="jobs.html">
-                            <h3>Snack Studio</h3>
-                        </a>
-                        <p> <span>50</span> Available position</p>
+                    <ul style="display: table; margin: auto; padding:0;">
+                    	<li ><p class="titleSub"><h3>우리동네 알바</h3></p>
+                    	<br />
+							<h4>
+								<a href="#">서울</a> &nbsp;
+								<a href="#">경기</a> &nbsp;
+								<a href="#">인천</a> &nbsp;
+								<a href="#">부산</a>  <br /><br />
+								<a href="#">대구</a> &nbsp;
+								<a href="#">대전</a> &nbsp;
+								<a href="#">경남</a> &nbsp;
+								<a href="#">전남</a>  <br/><br />
+								<a href="#">충남</a> &nbsp;
+								<a href="#">광주</a> &nbsp;
+								<a href="#">울산</a> &nbsp;
+								<a href="#">경북</a> <br/><br />
+								<a href="#">전북</a> &nbsp;
+								<a href="#">충북</a> &nbsp;
+								<a href="#">강원</a> &nbsp;
+								<a href="#">제주</a> <br/><br />
+								<a href="#">세종</a> &nbsp;
+								<a href="#">전국</a>
+							</h4>
+						</li>
+					 </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
+                
+                <div class="col-lg-3 col-xl-3 col-md-3">
                     <div class="single_company">
-                        <div class="thumb">
-                            <img src="img/svg_icon/4.svg" alt="">
-                        </div>
-                        <a href="jobs.html">
-                            <h3>Snack Studio</h3>
-                        </a>
-                        <p> <span>50</span> Available position</p>
+                    <ul style="display: table; margin: auto; padding:0;">
+                    	<li ><p class="titleSub"><h3>카테고리별 알바</h3></p>
+                    	<br />
+							<p>
+								<a href="#"><i class="fas fa-utensils fa-1x"></i>외식/음료</a> &emsp;
+								<a href="#"><i class="fas fa-shopping-cart fa-1x"></i>유통/판매 </a> &nbsp;
+								<a href="#"><i class="fab fa-fort-awesome fa-1x"></i>문화/여가/생활 </a>  &nbsp;
+								<a href="#"><i class="fas fa-concierge-bell fa-1x"></i>서비스</a>
+								<a href="#"><i class="fas fa-pen-fancy fa-1x"></i>사무직</a>
+								<a href="#"><i class="fas fa-headset fa-1x"></i>고객상담/리서치</a>
+								<a href="#"><i class="fas fa-hammer fa-1x"></i>생산/건설/노무</a>  &nbsp;
+								<a href="#"><i class="fas fa-paint-brush fa-1x"></i>디자인</a>
+								<a href="#"><i class="fas fa-truck fa-1x"></i>운전/배달</a> &nbsp;
+								<a href="#"><i class="fas fa-chalkboard-teacher fa-1x"></i>교육/강사</a>
+								<a href="#"><i class="fas fa-desktop fa-1x"></i>IT/컴퓨터</a> &emsp;
+								<a href="#"><i class="fas fa-video fa-1x"></i>미디어</a> &emsp;
+								<a href="#"><i class="fas fa-user-md fa-1x"></i>병원/간호/연구</a>
+								 
+							</p>
+						</li>
+					 </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
+                
+                
+               
+               
+                
+                
+                <div class="col-lg-3 col-xl-3 col-md-3">
                     <div class="single_company">
-                        <div class="thumb">
-                            <img src="img/svg_icon/3.svg" alt="">
-                        </div>
-                        <a href="jobs.html">
-                            <h3>Snack Studio</h3>
-                        </a>
-                        <p> <span>50</span> Available position</p>
+                    <ul style="display: table; margin: auto; padding:0;">
+                        <li><p class="titleSub"><h3>테마 알바</h3></p>
+                        <br />
+							<p>
+								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>단기알바</a> &emsp;
+								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>3~6개월</a> &emsp; <br/>
+								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>6~12개월</a> &nbsp;&nbsp;
+								<a href="#"><i class="fas fa-moon fa-2x"></i>12개월</a><br /><br />
+								<a href="#"><i class="fas fa-male fa-2x"></i>남성 전용</a> &emsp;&nbsp;
+								<a href="#"><i class="fas fa-female fa-2x"></i>여성 전용</a> &emsp; <br/>
+							</p>
+							</li>
+						</ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-xl-3 col-md-6">
+                
+                <div class="col-lg-3 col-xl-3 col-md-3">
                     <div class="single_company">
-                        <div class="thumb">
-                            <img src="img/svg_icon/1.svg" alt="">
-                        </div>
-                        <a href="jobs.html">
-                            <h3>Snack Studio</h3>
-                        </a>
-                        <p> <span>50</span> Available position</p>
+                    <ul style="display: table; margin: auto; padding:0;">
+                        <li><p class="titleSub"><h3>최종학력</h3></p>
+                        <br />
+							<p>		<br/>
+								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>중학교 졸업</a> <br/>
+								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>고등학교 졸업</a> <br/><br/>
+								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>대학교(2,3년) 졸업</a> <br/>
+								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>대학교(4년) 졸업</a>
+							</p>
+							</li>
+						</ul>
                     </div>
                 </div>
-            </div>
+               </div> 
+            
         </div>
     </div>
     <!-- 아이콘메뉴_end  -->
