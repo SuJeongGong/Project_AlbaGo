@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
   <link href="<c:url value="/css/sb-admin-2.min.css" />" rel="stylesheet">
   
   <script>
-  
+  	
   </script>
 </head>
 
@@ -61,10 +61,10 @@ pageEncoding="UTF-8"%>
             </div>
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" name="individual_id" value="${individual.individual_id}" id="individual_id" placeholder="ID입력">
+                <input type="text" class="form-control form-control-user" name="individual_id" value="${individual.individual_id}" id="individual_id" placeholder="ID입력" >
 
               </div>        
-              <div class="col-sm-6"><p><button type="button" class="btn btn-outline-primary btn-block">중복확인</button></p>
+              <div class="col-sm-6"><p><button type="button" class="btn btn-outline-primary btn-block" onclick="return validation()" value="중복확인">중복확인</button></p>
               </div>         
             </div>
             <div class="form-group row">
@@ -141,7 +141,9 @@ pageEncoding="UTF-8"%>
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-
+  <script type="text/javascript">
+  
+  </script>
 </body>
 
 </html>
