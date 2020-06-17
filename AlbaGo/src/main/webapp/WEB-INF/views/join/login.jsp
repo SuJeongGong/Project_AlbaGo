@@ -19,10 +19,26 @@
   <!-- Custom styles for this template-->
   <link href="<c:url value="/css/sb-admin-2.min.css" />" rel="stylesheet">
 
+
 </head>
 
-
 <body class="bg-gradient-primary">
+<%
+	String conPath = request.getContextPath();
+%>
+
+<script>
+function checkMember(){	
+	if(f_login.type.value =="기업"){
+		f_login.action ="<%=conPath%>/join/login/enterprsie";
+		f_login.submit();
+	}
+	if(f_login.type.value =="개인"){
+		f_login.action ="<%=conPath%>/join/login/individual";
+		f_login.submit();
+	}
+}
+</script>
   <div class="row text-center" style="width: 135%">
     <div class="container" >
       <div class="card o-hidden border-0 shadow-lg my-3 col-lg-6 center-block ">
@@ -33,18 +49,22 @@
              <h2 class="card-title text-center" style="color:#113366;">로그인 폼</h2>
            </div>
            <div class="card-body">
-            <form class="form-signin" method="POST" onSubmit="logincall();return false">
+            <form class="form-signin" name = "f_login" onsubmit="checkMember()">
+            	<input type ="radio" name="type" value="기업">기업
+            	<input type ="radio" name="type" value="개인">개인
               <h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
               <label for="inputEmail" class="sr-only">Your ID</label>
-              <input type="text" id="uid" class="form-control" placeholder="Your ID" required autofocus><BR>
+              <input type="text" name="id" id="id" class="form-control" placeholder="Your ID"  autofocus>
+              
+              <BR>
               <label for="inputPassword" class="sr-only">Password</label>
-              <input type="password" id="upw" class="form-control" placeholder="Password" required><br>
+              <input type="password"  name="pw" id="pw" class="form-control" placeholder="Password" ><br>
 
               <button id="btn-Yes" class="btn btn-lg btn-primary btn-block" type="submit">로 그 인</button>
               <br>
               <a href="find_id" id="btn-Find_id"  type="submit">아이디 찾기</a> / 
               <a href="find_pw" id="btn-Find_pw" type="submit">비밀번호 찾기</a> /
-             <a href="join" id="btn-sign"  type="submit">회원가입</a>
+             <a href="join" id="btn-sign"  type="submit" >회원가입</a>
               
             </form>
 
