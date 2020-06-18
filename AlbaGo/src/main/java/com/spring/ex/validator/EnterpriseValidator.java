@@ -1,5 +1,7 @@
 package com.spring.ex.validator;
 
+import java.util.HashMap;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -59,4 +61,20 @@ public class EnterpriseValidator implements Validator{
 			errors.rejectValue("category", "trouble");
 		}
 	}
+	
+	
+//	//로그인시 체크 
+//	public void validate(HashMap<String,String> login, Errors errors) {
+//		String id = login.get("id");
+//		String pw = login.get("pw");
+//		System.out.println("sdf");
+//		if( id==null || id.trim().isEmpty()) {
+//			System.out.println("id is null");
+//			errors.rejectValue("id", "trouble");
+//		}
+//		if( pw==null || pw.trim().isEmpty()) {
+//			System.out.println("pw is null");
+//			errors.rejectValue("pw", "trouble");
+//		}
+//	}
 }

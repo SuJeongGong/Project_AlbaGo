@@ -31,9 +31,42 @@
 	</insert>
 	
 	<insert id="insertIndividual" parameterType="Individual" >
-		INSERT INTO individual ()
+		INSERT INTO individual (
+			individual_id,
+			password,
+			name,
+			gender,
+			birth,
+			phone,
+			education,
+			date	
+		)
 
-   		VALUES ()
+   		VALUES (
+   			#{individual_id},
+   			#{password},
+   			#{name},
+   			#{gender},
+   			#{birth},
+   			#{phone},
+   			#{education},
+   			null
+   		)
 	</insert>
+	
+	<select id="selectCheckEnterpriseId" resultType ="int" parameterType = "String">
+		SELECT COUNT(*) FROM enterprise WHERE enterprise_id= #{id}
+	</select>
+	<select id="selectCheckEnterprisePw"  resultType ="int" parameterType = "String">
+		SELECT COUNT(*) FROM enterprise WHERE password= #{pw}
+	</select>
+	
+	
+	<select id="selectCheckIndividualId"  resultType ="int" parameterType = "String">
+		SELECT COUNT(*) FROM individual WHERE individual_id= #{id}
+	</select>
+	<select id="selectCheckIndividualPw"  resultType ="int" parameterType = "String">
+		SELECT COUNT(*) FROM individual WHERE password= #{pw}
+	</select>
 
 </mapper>
