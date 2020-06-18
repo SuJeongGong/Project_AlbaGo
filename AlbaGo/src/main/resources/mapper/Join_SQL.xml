@@ -30,10 +30,10 @@
    		)
 	</insert>
 	
-	<insert id="insertIndividual" parameterType="Individual" >
-		INSERT INTO individual ()
 
-   		VALUES ()
-	</insert>
+	
+	<select id="selectIndividualId" resultType="String" parameterType="hashmap"  >
+		select individual_id from individual where name=#{name} and phone=#{phone}
+	</select>
 
 </mapper>
