@@ -157,12 +157,15 @@
                     <ul style="display: table; margin: auto; padding:0;">
                         <li><p class="titleSub"><h3>최종학력</h3></p>
                         <br />
-							<p>		<br/>
+                       
+							<p>		
 								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>중학교 졸업</a> <br/>
-								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>고등학교 졸업</a> <br/><br/>
+								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>고등학교 졸업</a> <br/>
 								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>대학교(2,3년) 졸업</a> <br/>
-								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>대학교(4년) 졸업</a>
+								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>대학교(4년) 졸업</a><br />
 							</p>
+							 <br />
+							 <br />
 							</li>
 						</ul>
                     </div>
