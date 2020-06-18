@@ -35,5 +35,8 @@
 	<select id="selectIndividualId" resultType="String" parameterType="hashmap"  >
 		select individual_id from individual where name=#{name} and phone=#{phone}
 	</select>
-
+	
+	<select id="selectEnterpriseId" resultType="String" parameterType="hashmap"  >
+		select enterprise_id from enterprise where manager_name=#{manager_name} and manager_phone=#{manager_phone}
+	</select>
 </mapper>

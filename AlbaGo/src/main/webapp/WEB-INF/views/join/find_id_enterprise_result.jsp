@@ -31,7 +31,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>개인회원</title>
+<title>기업회원</title>
 
 <!-- Custom fonts for this template-->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -68,6 +68,7 @@
 										${id}를 찾았습니다
 									</form>
 								</div>
+
 
 							</div>
 						</div>

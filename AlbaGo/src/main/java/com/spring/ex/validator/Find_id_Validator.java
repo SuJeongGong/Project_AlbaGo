@@ -20,7 +20,6 @@ public class Find_id_Validator implements Validator{
 			System.out.println("name is null empty");
 			errors.rejectValue("name", "trouble");
 		}
-		
 		String phone = find_id.getPhone();//개인 연락처
 		if( phone==null || phone.trim().isEmpty()) {
 			System.out.println("phone is null");

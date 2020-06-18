@@ -11,4 +11,5 @@ public interface JoinDAO {
 	
 	
 	String selectIndividualId(HashMap<String , String > map);
+	String selectEnterpriseId(HashMap<String , String > map);
 }

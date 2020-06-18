@@ -57,47 +57,34 @@ public class JoinController {
 
 		return page;
 	}
+	
+	
+	@RequestMapping("/find_id/find_id_enterprise_result") // 기업 아이디 찾기 성공/
+	public String find_id_enterprise_result(Model m, HttpServletRequest request) {
+		String page = "/join/find_id"; // 아이디 찾기 폼으로 ,
 
-	@RequestMapping("/find_pw") // 비밀번호 찾기
-	public String find_pw() {
-		return "/join/find_pw";
-	}
+		String manager_name = request.getParameter("name");
+		String manager_phone = request.getParameter("phone");
 
-	@RequestMapping("/join") // 회원가입
-	public String join() {
-		return "/join/join";
-	}
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("manager_name", manager_name);
+		map.put("manager_phone", manager_phone);
+		System.out.println(manager_name);
+		System.out.println(manager_phone);
 
-	@RequestMapping("/join_enterprise") // 기업회원가입 폼
-	public String join_enterprise() {
-		return "/join/join_enterprise";
-	}
-
-	@RequestMapping("/join_enterprise/join_result") // 기업회원가입 완료
-	public String join_enterprise_result(@ModelAttribute("enterprise") Enterprise enterprise, BindingResult result) {
-		String page = "/join/join_enterprise"; // 회원가입 폼으
-
-		EnterpriseValidator validator = new EnterpriseValidator();
-
-		validator.validate(enterprise, result);
-
-		if (result.hasErrors()) {
-			return page;// 에러 있으면 그냥 회원가입 폼으
-		}
-
-		else {
-			int insertResult = joinDAO.insertEnterprise(enterprise);
-
-			if (insertResult == 1) {
-				System.out.println("DB에 값넣기 성공");
-				page = "/join/join_enterprise_result";// db값넣기 성공시 result페이지로
-			} else {
-				System.out.println("DB에 값넣기 실패");
-			}
+		String selectId = joinDAO.selectEnterpriseId(map);
+		System.out.println(selectId);
+		
+		if (!selectId.equals("")) {
+			m.addAttribute("id", selectId);
+		
+			System.out.println("DB에서 select 성공");
+			page = "/join/find_id_enterprise_result";// db값넣기 성공시 아이디확인 페이지로
+		} else {
+			System.out.println("DB에 select 실패");
 		}
 
 		return page;
-
 	}
 
 	@RequestMapping("/join_individual") // 개인 회원가입 폼
