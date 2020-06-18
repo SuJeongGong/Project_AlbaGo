@@ -6,7 +6,6 @@
 <title>알바GO</title>
 </head>
 <body>
-	${sessionScop.id}
 	<%@ include file="./serve/header.jsp" %>
 	
 <!-- 검색바_area -->

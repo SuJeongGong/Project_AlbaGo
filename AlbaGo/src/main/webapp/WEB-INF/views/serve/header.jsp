@@ -25,23 +25,20 @@
 
     <link rel="stylesheet" href="<c:url value="/css/style.css" />">
     <link rel="stylesheet" href="<c:url value="/css/responsive" />">
-    <%
+<%
 
-	String url= request.getRequestURL().toString();
-	String uri=request.getRequestURI().toString();
-	String context=request.getContextPath();
-	String basicPath=url.split(uri)[0];
+    String conPath = request.getContextPath();
 	
-	String recruitPath=basicPath+"/ex/recruit/list";
-	String resumePath=basicPath+"/ex/resume/list";
-	String productPath=basicPath+"/ex/product/list";
-	String communityPath=basicPath+"/ex/community/list";
+	String recruitPath=conPath+"/recruit/list";
+	String resumePath=conPath+"/resume/list";
+	String productPath=conPath+"/product/list";
+	String communityPath=conPath+"/community/list";
 	
-	String joinLoginPath=basicPath+"/ex/join/login";
-	String joinJoinPath=basicPath+"/ex/join/join";
+	String joinLoginPath=conPath+"/join/login";
+	String joinJoinPath=conPath+"/join/join";
 	
-	String enterpisePath=basicPath+"/ex/enterprise/mypage";
-	String individualPath=basicPath+"/ex/individual/mypage";
+	String enterpisePath=conPath+"/enterprise/mypage";
+	String individualPath=conPath+"/individual/mypage";
 	
 
 %>
@@ -66,7 +63,7 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li  class="submenu">알바</i>
-                                            <li><a href="#">지역 </a>
+                                            <li><a href="<%=recruitPath%>">지역 </a>
                                                 <ul class="submenu">
                                                     <li><a href="<%=recruitPath%>">서울</a></li>
                                                     <li><a href="<%=recruitPath%>">경기</a></li>
@@ -87,7 +84,7 @@
                                                     <li><a href="<%=recruitPath%>">전국</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">카테고리 </a>
+                                            <li><a href="<%=recruitPath%>">카테고리 </a>
                                                 <ul class="submenu">
                                                     <li><a href="<%=recruitPath%>">외식/음료</a></li>
                                                     <li><a href="<%=recruitPath%>">유통/판매</a></li>
@@ -161,6 +158,12 @@
                                     </nav>
                                 </div>
                             </div>
+                            
+                            
+<% if (	session.getAttribute("id")==null){
+	%>
+	
+	 
                             <div class="col-xl-2 col-lg-1 d-none d-lg-block">
                                 <div class="Appointment">
                                     <div class="phone_num d-none d-xl-block">
@@ -174,6 +177,64 @@
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
+	
+	
+	<%
+}else{
+	
+	if(session.getAttribute("type").toString().equals("기업")){
+		
+	%>
+	
+	 
+                            <div class="col-xl-2 col-lg-1 d-none d-lg-block">
+                                <div class="Appointment">
+                                	<div class="phone_num d-none d-xl-block">
+                                        <a href="<%=conPath%>/join/logout">로그아웃</a>
+                                    </div>
+                                    <div class="d-none d-lg-block">
+                                        <a href="<%=conPath%>/enterprise/mypage" class="boxed-btn3" >마이페이지</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+	
+	<%
+	}
+	else{
+		
+		
+		%>
+					                      <div class="col-xl-2 col-lg-1 d-none d-lg-block">
+                                <div class="Appointment">
+                                    <div class="phone_num d-none d-xl-block">
+                                        <a href="<%=conPath%>/join/logout">로그아웃</a>
+                                    </div>
+                                    <div class="d-none d-lg-block">
+                                        <a href="<%=conPath%>/individual/mypage" class="boxed-btn3" >마이페이지</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+		
+		
+		
+		<%
+	}
+}
+%>
+                            
+                           
+                            
+                            
+                            
+                            
+                            
+                            
                         </div>
                     </div>
 
@@ -191,6 +252,8 @@
             </div>
         </div>
     </div>
+    
+    
 
 
 
