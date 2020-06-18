@@ -6,10 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.ex.dao.JoinDAO;
 import com.spring.ex.dto.Enterprise;
@@ -109,12 +112,9 @@ public class JoinController {
 	public String join() {
 		return "/join/join";
 	}
+	
 
-	@RequestMapping("/join_enterprise") // 기업회원가입 폼
-	public String join_enterprise() {
-		return "/join/join_enterprise";
-	}
-
+	
 	@RequestMapping("/join_enterprise/join_result") // 기업회원가입 완료
 	public String join_result(@ModelAttribute("enterprise") Enterprise enterprise, BindingResult result) {
 		String page = "/join/join_enterprise"; //회원가입 폼으로 
@@ -175,5 +175,19 @@ public class JoinController {
 		}
 		System.out.println("되나?4");
 		return page;
+	}
+	
+
+	//개인회원 아이디 체크
+	@RequestMapping(value="selectCheckId",method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int selectCheckId(String individual_id) {
+		int result = 0;
+		result = joinDAO.selectCheckId(individual_id);
+		return result;
+	}
+
+	@RequestMapping("/join_enterprise") // 기업회원가입 폼
+	public String join_enterprise() {
+		return "/join/join_enterprise";
 	}
 }

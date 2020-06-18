@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.ex.dao.JoinDAO">
+	
+	<insert id="insertRecruit" parameterType="Recruit">
+		INSERT INTO recruit
+		VALUES (
+			NULL,
+			#{enterprise_id},
+			#{place},
+			#{salay_type},
+			#{salay_amount},
+			#{category},
+			#{term},
+			#{time},
+			#{day},
+			NULL
+		)
+	</insert>
+	
+</mapper>

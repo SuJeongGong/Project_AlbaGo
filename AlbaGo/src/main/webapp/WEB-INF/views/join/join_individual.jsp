@@ -20,15 +20,54 @@ pageEncoding="UTF-8"%>
   <!-- Custom styles for this template-->
   <link href="<c:url value="/css/sb-admin-2.min.css" />" rel="stylesheet">
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <%
+	String conPath = request.getContextPath();
+  %>
   <script>
+  	$(document).ready(function() {
+  		$("#individual_id").change(function() {
+  			if($(this).val().trim() != '') {
+  				selectCheckId($(this).val());
+  			}
+  			else {
+  				$("#dupChk").html('');
+  			}
+  		});
+  	})
   	
+  	function selectCheckId(individual_id) {
+  		
+  		$.ajax({
+  			url : "../join/selectCheckId",//컨트롤러에 요청할것 RequestMapping과 맞게끔
+  			method : "GET",
+  			data : {
+  				individual_id : individual_id
+  			},
+  			success : function(res) {
+  				var text;
+  				if(res==1){
+  					text="<span style='color:red'>이미 아이디가 존재합니다.</span>";
+  				}else{
+  					text="<span style = 'color:blue'>사용 가능한 아이디입니다.</span>";
+  				}
+  				$("#dupChk").html(text);
+  				if(res == 0) {
+  					btn.disabled = false;  					
+  				}
+  				else {
+  					btn.disabled = 'disabled';
+  				}
+  			}
+  		});
+  	}
+  	
+
   </script>
 </head>
 
 <body class="bg-gradient-primary">
-<%
-	String conPath = request.getContextPath();
-%>
+
   <div class="row text-center" style="width: 135%">
     <div class="container" >
 
@@ -37,7 +76,7 @@ pageEncoding="UTF-8"%>
         <div class="col-lg-12">
           <div class="p-5">
             <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-3">개인 회원가입</h1>
+              <h1 class="h4 text-gray-900 mb-3" id ="test">개인 회원가입</h1>
               <hr>
             </div>
             <form class="user" action ="<%=conPath%>/join/join_individual/join_result">
@@ -62,10 +101,10 @@ pageEncoding="UTF-8"%>
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <input type="text" class="form-control form-control-user" name="individual_id" value="${individual.individual_id}" id="individual_id" placeholder="ID입력" >
-
+              </div> 
+              <div class="col-sm-6">
+              	<span id="dupChk"></span>
               </div>        
-              <div class="col-sm-6"><p><button type="button" class="btn btn-outline-primary btn-block" onclick="return validation()" value="중복확인">중복확인</button></p>
-              </div>         
             </div>
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
@@ -122,7 +161,7 @@ pageEncoding="UTF-8"%>
               </div>
             </div>
             <br>
-            <input type = "submit" value="전송" class="btn btn-primary btn-user btn"/>
+            <input type = "submit" value="전송" class="btn btn-primary btn-user btn" id="btn"/>
  
 			</form>
           </div>

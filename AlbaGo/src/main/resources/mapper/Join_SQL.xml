@@ -68,5 +68,9 @@
 	<select id="selectCheckIndividualPw"  resultType ="int" parameterType = "String">
 		SELECT COUNT(*) FROM individual WHERE password= #{pw}
 	</select>
+	
+	<select id="selectCheckId" parameterType="string" resultType="int">
+		select count(*) from individual where individual_id=#{id}
+	</select>
 
 </mapper>

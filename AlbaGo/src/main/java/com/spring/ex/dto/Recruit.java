@@ -8,6 +8,8 @@ public class Recruit {
 	String category;// 업종
 	String salary_type;// 월급 종류
 	int salary_amount;// 월급 금액
+	String time;//시간
+	String day;//요일
 	String term;// 기간
 
 }
