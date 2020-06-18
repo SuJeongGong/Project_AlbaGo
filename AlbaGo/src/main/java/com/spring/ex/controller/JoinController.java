@@ -185,6 +185,14 @@ public class JoinController {
 		result = joinDAO.selectCheckId(individual_id);
 		return result;
 	}
+	
+	//기업회원 아이디 체크
+	@RequestMapping(value="selectCheckId_e",method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int selectCheckId_e(String enterprise_id) {
+		int result = 0;
+		result = joinDAO.selectCheckId_e(enterprise_id);
+		return result;
+	}
 
 	@RequestMapping("/join_enterprise") // 기업회원가입 폼
 	public String join_enterprise() {

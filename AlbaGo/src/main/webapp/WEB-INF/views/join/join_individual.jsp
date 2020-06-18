@@ -24,6 +24,8 @@ pageEncoding="UTF-8"%>
   <%
 	String conPath = request.getContextPath();
   %>
+  
+  <!-- 아이디 중복 확인 -->
   <script>
   	$(document).ready(function() {
   		$("#individual_id").change(function() {
@@ -47,7 +49,7 @@ pageEncoding="UTF-8"%>
   			success : function(res) {
   				var text;
   				if(res==1){
-  					text="<span style='color:red'>이미 아이디가 존재합니다.</span>";
+  					text="<span style='color:red'>이미 등록된 아이디 입니다.</span>";
   				}else{
   					text="<span style = 'color:blue'>사용 가능한 아이디입니다.</span>";
   				}
@@ -61,9 +63,24 @@ pageEncoding="UTF-8"%>
   			}
   		});
   	}
-  	
-
   </script>
+  
+  <!-- 비번 일치 확인 -->
+  <script>
+    var same_result = false;
+  	function ok_pwd() {
+  		var pwd1 = $('#password').val();
+  		var pwd2 = $('#password2').val();
+  		var s_result = $('#s_result');
+  		var text;
+  		if(pwd1 == pwd2) {
+  			text="<span style = 'color:blue'>비밀번호가 일치합니다.</span>";
+  			same_result=true;
+  			s_result.html(text);
+  		}
+  	}
+  </script>
+  
 </head>
 
 <body class="bg-gradient-primary">
@@ -111,7 +128,10 @@ pageEncoding="UTF-8"%>
                 <input type="password" class="form-control form-control-user" name ="password"value="${individual.password}" id="password" placeholder="Password">
               </div>
               <div class="col-sm-6">
-                <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                <input type="password" class="form-control form-control-user" name = "password2" id="password2" placeholder="Repeat Password" onKeyUp="ok_pwd()">
+              </div>
+              <div class="col-sm-12" style="text-align:center">
+                  <span style="color:red" id="s_result">비밀번호가 일치하지 않습니다.</span>
               </div>
             </div>
             <hr>

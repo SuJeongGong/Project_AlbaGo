@@ -18,6 +18,65 @@ pageEncoding="UTF-8"%>
 
   <!-- Custom styles for this template-->
   <link href="<c:url value="/css/sb-admin-2.min.css" />" rel="stylesheet">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+  <!-- 아이디 중복 확인 -->
+  <script>
+  	$(document).ready(function() {
+  		$("#enterprise_id").change(function() {
+  			if($(this).val().trim() != '') {
+  				selectCheckId_e($(this).val());
+  			}
+  			else {
+  				$("#dupChk_e").html('');
+  			}
+  		});
+  	})
+  	
+  	function selectCheckId_e(enterprise_id) {
+  		
+  		$.ajax({
+  			url : "../join/selectCheckId_e",//컨트롤러에 요청할것 RequestMapping과 맞게끔
+  			method : "GET",
+  			data : {
+  				enterprise_id : enterprise_id
+  			},
+  			success : function(res) {
+  				var text;
+  				if(res==1){
+  					text="<span style='color:red'>이미 등록된 아이디 입니다.</span>";
+  				}else{
+  					text="<span style = 'color:blue'>사용 가능한 아이디입니다.</span>";
+  				}
+  				$("#dupChk_e").html(text);
+  				if(res == 0) {
+  					btn.disabled = false;  					
+  				}
+  				else {
+  					btn.disabled = 'disabled';
+  				}
+  			}
+  		});
+  	}
+  </script>
+  
+  <!-- 비번 일치 확인 -->
+  <script>
+    var same_result = false;
+  	function ok_pwd() {
+  		var pwd1 = $('#password').val();
+  		var pwd2 = $('#password2').val();
+  		var s_result = $('#s_result');
+  		var text;
+  		if(pwd1 == pwd2) {
+  			text="<span style = 'color:blue'>비밀번호가 일치합니다.</span>";
+  			same_result=true;
+  			s_result.html(text);
+  		}
+  	}
+  </script>
+  
 </head>
 
 <body class="bg-gradient-primary">
@@ -46,17 +105,20 @@ pageEncoding="UTF-8"%>
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="text" class="form-control form-control-user"  name ="enterprise_id"value="${enterprise.enterprise_id}" id="enterprise_id" placeholder="ID입력">
-
-                </div>        
-                <div class="col-sm-6"><p><button type="button" class="btn btn-outline-primary btn-block">중복확인</button></p>
-                </div>         
+                </div>
+	            <div class="col-sm-6">
+	              <span id="dupChk_e"></span>
+	            </div>      
               </div>
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                   <input type="password" class="form-control form-control-user"  name ="password"value="${enterprise.password}" id="password" placeholder="Password">
                 </div>
                 <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                  <input type="password" class="form-control form-control-user" name="password2" id="password2" placeholder="Repeat Password" onKeyUp="ok_pwd()">
+                </div>
+                <div class="col-sm-12" style="text-align:center">
+                  <span style="color:red" id="s_result">비밀번호가 일치하지 않습니다.</span>
                 </div>
               </div>
               <hr>
@@ -87,10 +149,10 @@ pageEncoding="UTF-8"%>
               <span class="box">카테고리</span><br><br>
               <div class="form-group row">
                 <div class="col-sm-12 mb-3 mb-sm-0">
-                  <input type="" class="form-control form-control-user" id="category"  name="category" value="${enterprise.category}" placeholder="서울특별시 강북구 홍길동 (자세히 적어주세요)">
+                  <input type="text" class="form-control form-control-user" id="category"  name="category" value="${enterprise.category}" placeholder="서울특별시 강북구 홍길동 (자세히 적어주세요)">
                 </div>
               </div>
-			  <input type = "submit" value="전송" class="btn btn-primary btn-user btn"/>
+			  <input type = "submit" value="전송" class="btn btn-primary btn-user btn" id="btn"/>
               <br>
               
 
