@@ -11,7 +11,7 @@ import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 
 public interface EnterpriseDAO {
-	List<Product> selectNow(HashMap<String, Object> map);
+//	List<Product> selectNow(HashMap<String, Object> map);
 
 	Enterprise selectEnterprise(String id);
 	ArrayList<Recruit> selectRecruit(String id);

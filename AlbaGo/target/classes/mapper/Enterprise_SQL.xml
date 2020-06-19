@@ -15,7 +15,7 @@
 		</where>
 	</select>
 	
-	<select id="selectScrap" parameterType="String" resultType="Scrap">
+	<select id="selectScrap" parameterType="String" resultType="Scrap_enterprise">
 		select resume.title AS title, scrap_enterprise.date AS DATE 
 		from scrap_enterprise, resume
 		where scrap_enterprise.board_resume_id = resume.resume_id
@@ -24,14 +24,13 @@
 	</select>
 	
 	<select id="selectVolunteer" parameterType="String" resultType="Volunteer">
-		SELECT individual.individual_id AS id , 
+		SELECT individual.individual_id  , 
 				volunteer.date AS DATE , 
 				recruit.title AS title   
 		FROM individual,volunteer,recruit
 		WHERE individual.individual_id = volunteer.individual_id 
 				AND volunteer.board_recruit_id = recruit.recruit_id
-		GROUP BY recruit.enterprise_id
-		HAVING recruit.enterprise_id = #{id}
+				and recruit.enterprise_id = #{id}
 	</select>
 	
 	<select id="selectRecruit" parameterType="String" resultType="Recruit">
@@ -39,7 +38,6 @@
 				scrap_enterprise.date AS DATE 
 		FROM board_resume, scrap_enterprise
 		WHERE board_resume.board_resume_id = scrap_enterprise.board_resume_id
-		GROUP BY scrap_enterprise.enterprise_id
-		HAVING scrap_enterprise.enterprise_id =#{id}
+				and scrap_enterprise.enterprise_id = #{id}
 	</select>
 </mapper>

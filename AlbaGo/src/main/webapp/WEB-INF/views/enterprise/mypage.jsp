@@ -23,7 +23,7 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/enterprise/account">
                                         <h4>회원정보 수정</h4>
                                     </a>
                                 </div>
@@ -61,14 +61,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="/account">
                                         <h4>공고 관리</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#"> 자세히</a>
+                                    <a class="boxed-btn3 w-10" href="/recruit"> 자세히</a>
                                 </div>
                             </div>
                         </div>
