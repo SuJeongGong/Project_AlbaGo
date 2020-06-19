@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.ex.dao.BoardRecruitDAO">
+	<select id = "selectList" resultType="BoardRecruit1">
+		select board_recruit.title, board_recruit.date, board_recruit.views, recruit.place 
+		from recruit, board_recruit
+		where recruit.recruit_id = board_recruit.recruit_id
+	</select>
+</mapper>

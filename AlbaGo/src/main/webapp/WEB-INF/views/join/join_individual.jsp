@@ -174,7 +174,7 @@ pageEncoding="UTF-8"%>
               </div>&nbsp;&nbsp;&nbsp;&nbsp;
               <div class="a custom-radio">
                 <input type="radio" name="education" id="high" class="a-input" value="고등학교 졸업" checked>
-                <label class="a-label" for="high">고등학교 졸업</label>
+                고등학교 졸업
               </div>&nbsp;&nbsp;&nbsp;&nbsp;<br>
               <div class="a custom-radio">
                 <input type="radio" name="education" id="collage23" class="a-input" value="2/3년제 졸업" checked>

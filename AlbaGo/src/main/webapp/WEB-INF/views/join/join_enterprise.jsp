@@ -151,10 +151,25 @@ pageEncoding="UTF-8"%>
                   <input type="text" class="form-control form-control-user" id="adress" placeholder="서울특별시 강북구 홍길동 (자세히 적어주세요)">
                 </div>
               </div>
-              <span class="box">카테고리</span><br><br>
+              <span class="box">업종</span><br><br>
               <div class="form-group row">
-                <div class="col-sm-12 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="category"  name="category" value="${enterprise.category}" placeholder="서울특별시 강북구 홍길동 (자세히 적어주세요)">
+                <div class="col-lg-12">
+                  <select class="form-control col-lg-12" id="cateogry" name="category">
+                    <option data-display="카테고리">카테고리</option>
+                    <option value="외식/음료">외식/음료</option>
+                    <option value="유통/판매">유통/판매</option>
+                    <option value="문화/여가/생활">문화/여가/생활</option>
+                    <option value="서비스">서비스</option>
+                    <option value="사무직">사무직</option>
+                    <option value="고객상담/리서치">고객상담/리서치</option>
+                    <option value="생산/건설/노무">생산/건설/노무</option>
+                    <option value="교육/강사">교육/강사</option>
+                    <option value="디자인">디자인</option>
+                    <option value="미디어">미디어</option>
+                    <option value="운전/배달">운전/배달</option>
+                    <option value="병원/간호/연구">병원/간호/연구</option>
+                    <option value="IT/컴퓨터">IT/컴퓨터</option>
+                  </select>
                 </div>
               </div>
 			  <input type = "submit" value="전송" class="btn btn-primary btn-user btn" id="btn"/>

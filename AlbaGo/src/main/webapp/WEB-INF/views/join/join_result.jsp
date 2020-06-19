@@ -58,7 +58,7 @@
                                 <br><br>
 
 
-                                <a href="main" class="btn btn-primary btn-user btn-block">메인으로
+                                <a href="<%=request.getContextPath() %>/main" class="btn btn-primary btn-user btn-block">메인으로
                                 </a>
 
                         </div>

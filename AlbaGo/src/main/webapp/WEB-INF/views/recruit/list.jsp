@@ -1,3 +1,5 @@
+<%@page import="com.spring.ex.dto.BoardRecruit1"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -154,19 +156,32 @@
 
                     <div class="job_lists m-0">
                         <div class="row">
+                        
+                        <%
+                        	ArrayList<BoardRecruit1> recruits = (ArrayList<BoardRecruit1>)request.getAttribute("recruits");
+                        	for(int i=0; i<recruits.size(); i++) {
+                        		BoardRecruit1 recruit = recruits.get(i);
+                        		String title = recruit.getTitle();
+                        		String date = recruit.getDate();
+                        		String place = recruit.getPlace();
+                        		int views = recruit.getViews();
+                        		
+                        		%>
 
                             <div class="col-lg-12 col-md-12">
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
-
                                         <div class="jobs_conetent">
-                                            <a href="job_details.html"><h4>글제목 </h4></a>
+                                            <a href="job_details.html"><h4><%=title %> </h4></a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
-                                                    <p> <i class="fa fa-map-marker"></i> 경기도 의정부시</p>
+                                                    <p> <i class="fa fa-map-marker"></i><%=place %></p>
                                                 </div>
                                                 <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i>2020-05-30</p>
+                                                    <p> <i class="fa fa-clock-o"></i><%=date %></p>
+                                                </div>
+                                                <div class="location">
+                                                	<p> 조회수 : <%=views %></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -178,6 +193,11 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <%
+                        	}
+                            %>
+                            
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
