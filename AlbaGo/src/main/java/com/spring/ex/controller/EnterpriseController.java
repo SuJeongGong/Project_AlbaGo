@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ex.dao.EnterpriseDAO;
 import com.spring.ex.dto.Enterprise;
+import com.spring.ex.dto.Recruit;
+import com.spring.ex.dto.Scrap_enterprise;
+import com.spring.ex.dto.Volunteer;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 @Controller
@@ -33,10 +36,10 @@ public class EnterpriseController {
 		}else {
 			String id = session.getAttribute("id").toString();
 			
-//			//받아올 곳 생성
-//			ArrayList<HashMap<String, String>> recruit = new ArrayList<HashMap<String,String>>();//공고
-//			ArrayList<HashMap<String, String>> volunteer = new ArrayList<HashMap<String,String>>();//지원
-			ArrayList<HashMap<String, String>> scrap = new ArrayList<HashMap<String,String>>();//스크랩
+			//받아올 곳 생성
+			ArrayList<Recruit> recruit = new ArrayList<Recruit>();//공고
+			ArrayList<Volunteer> volunteer = new ArrayList<Volunteer>();//지원
+			ArrayList<Scrap_enterprise> scrap = new ArrayList<Scrap_enterprise>();//스크랩
 			Enterprise enterprise = new Enterprise();
 			
 			
@@ -44,15 +47,23 @@ public class EnterpriseController {
 			//쿼리문 실행
 			enterprise = enterpriseDAO.selectEnterprise(id);//기업정보 받아옴
 			scrap = enterpriseDAO.selectScrap(id);
+			recruit = enterpriseDAO.selectRecruit(id);
+			volunteer = enterpriseDAO.selectVolunteer(id);
 			
-			
-			//모델에 담기
-			m.addAttribute("Einfo", enterprise);//기업정보
-			m.addAttribute("scrap", scrap);//스크랩
+
 			
 			if(enterprise!=null) {
 				System.out.println("DB연결성공");
-				System.out.println(enterprise.toString());
+				System.out.println(scrap.toString());
+				System.out.println(recruit.toString());
+				System.out.println(volunteer.toString());
+				
+				
+				//모델에 담기
+				m.addAttribute("Einfo", enterprise);//기업정보
+				m.addAttribute("scrap", scrap);//스크랩
+				m.addAttribute("recruit", recruit);//스크랩
+				m.addAttribute("volunteer", volunteer);//스크랩
 				
 				page="/enterprise/mypage";
 			}else {

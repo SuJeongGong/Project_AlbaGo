@@ -1,3 +1,10 @@
+<%@page import="com.spring.ex.dto.Recruit"%>
+<%@page import="com.spring.ex.dto.Volunteer"%>
+<%@page import="com.spring.ex.dto.Scrap_enterprise"%>
+<%@page import="com.spring.ex.dto.Enterprise"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="sun.security.util.Length"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,16 +39,19 @@
                         <div class="single_wrap">
                             <p>안전한 정보보호를 위해 연락처 일부만 확인가능하며,<br/>수정화면에서 정확한 연락처 확인이 가능합니다.</p>
                             <ul>
-                                <li>아이디 : <span>#{Einfo.enterprise_id}</span></li>
-                                <li>비밀번호 : <span>#{Einfo.password}</span></li>
-                                <li>이름 : <span>#{Einfo.name}</span></li>
-                                <li>사업자 번호 : <span>#{Einfo.business_number}</span></li>
-                                <li>담당자 이름 : <span>#{Einfo.manager_name}</span></li>
-                                <li>담당자 연락처 : <span>#{Einfo.manager_phone}</span></li>
-                                <li>카테고리 : <span>#{Einfo.category}</span></li>
-                                <li>UP 횟수 : <span>#{Einfo.up_count}</span></li>
-                                <li>이력서 횟수 : <span>#{Einfo.resume_count}</span></li>
-                                <li>가입날짜 : <span>#{Einfo.date}</span></li>
+                            <%
+                            Enterprise Einfo = (Enterprise)request.getAttribute("Einfo");
+                            %>
+                                <li>아이디 : <span><%=Einfo.getEnterprise_id()%></span></li>
+                                <li>비밀번호 : <span><%= Einfo.getPassword()%></span></li>
+                                <li>이름 : <span><%=Einfo.getName()%></span></li>
+                                <li>사업자 번호 : <span><%=Einfo.getBusiness_number()%></span></li>
+                                <li>담당자 이름 : <span><%=Einfo.getManager_name()%></span></li>
+                                <li>담당자 연락처 : <span><%=Einfo.getManager_phone()%></span></li>
+                                <li>카테고리 : <span><%=Einfo.getCategory()%></span></li>
+                                <li>UP 횟수 : <span><%=Einfo.getUp_count()%></span></li>
+                                <li>이력서 횟수 : <span><%=Einfo.getResume_count()%></span></li>
+                                <li>가입날짜 : <span><%=Einfo.getDate()%></span></li>
                             </ul>
                         </div>
                     </div>
@@ -71,16 +81,19 @@
 								<tr>
 									<th>제목</th><th>작성날짜</th>
 								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								
+							<%
+							ArrayList<Recruit> recruits = (ArrayList)request.getAttribute("recruit");
+								for(int i =0;i<recruits.size();i++){
+									Recruit recruit=  recruits.get(i);
+									String title =recruit.getTitle();
+									String date = recruit.getDate();
+									%>
+									<tr>
+										<td><%=title %></td><td><%=date %></td>
+									</tr>									
+									<%
+								}
+							%>
 							</table>
                         </div>
                     </div>
@@ -113,14 +126,22 @@
                             <br>
 							<table width="95%">
 								<tr>
-									<th>제목</th><th>작성날짜</th>
+									<th>제목</th><th>작성날짜</th><th>지원자</th>
 								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>								
+	<%
+							ArrayList<Volunteer> volunteers = (ArrayList)request.getAttribute("volunteer");
+								for(int i =0;i<volunteers.size();i++){
+									Volunteer volunteer=  volunteers.get(i);
+									String individual_id =volunteer.getIndividual_id();
+									String title =volunteer.getTitle();
+									String date = volunteer.getDate();
+									%>
+									<tr>
+										<td><%=title %></td><td><%=date %></td><td><%=individual_id %></td>
+									</tr>									
+									<%
+								}
+							%>							
 							</table>
                         </div>
                     </div>
@@ -152,15 +173,19 @@
 								<tr>
 									<th>제목</th><th>작성날짜</th>
 								</tr>
-								<tr>
-									<td>#{scrap.title}</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
+							<%
+							ArrayList<Scrap_enterprise> scraps = (ArrayList)request.getAttribute("scrap");
+								for(int i =0;i<scraps.size();i++){
+									Scrap_enterprise scrap=  scraps.get(i);
+									String title =scrap.getTitle();
+									String date = scrap.getDate();
+									%>
+									<tr>
+										<td><%=title %></td><td><%=date %></td>
+									</tr>									
+									<%
+								}
+							%>
 								
 							</table>
                         </div>

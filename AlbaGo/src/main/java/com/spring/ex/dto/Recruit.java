@@ -1,6 +1,8 @@
 package com.spring.ex.dto;
 
+import lombok.Data;
 
+@Data
 public class Recruit {
 	String enterprise_id;//기업회원 id
 	int recruit_id;//공고 id
@@ -9,5 +11,6 @@ public class Recruit {
 	String salary_type;// 월급 종류
 	int salary_amount;// 월급 금액
 	String term;// 기간
-
+	String date; //작성날짜
+	String title; //작성날짜
 }
