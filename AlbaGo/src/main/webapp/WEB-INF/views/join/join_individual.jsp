@@ -78,6 +78,11 @@ pageEncoding="UTF-8"%>
   			same_result=true;
   			s_result.html(text);
   		}
+  		else {
+  			text="<span style = 'color:red'>비밀번호가 일치하지 않습니다.</span>";
+  			same_result=false;
+  			s_result.html(text);
+  		}
   	}
   </script>
   
