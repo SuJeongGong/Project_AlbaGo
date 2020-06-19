@@ -42,11 +42,12 @@
 	
 	<update id="updateIndividualPW"  parameterType="hashmap"  >
 		update individual set password="1234" where individual_id=#{id} and phone=#{phone}
-		<!--  UPDATE individual SET PASSWORD="1234" WHERE individual_id="a" -->
+
 	</update>
-		<update id="updateEnterprisePW"  parameterType="hashmap"  >
-		update enterprise set password="1234" where enterprise_id=#{id} and manager_phone=#{phone}
-		<!--  UPDATE individual SET PASSWORD="1234" WHERE individual_id="a" -->
+	
+	<update id="updateEnterprisePW"  parameterType="hashmap"  >
+		update enterprise set password="1234" where enterprise_id=#{enterprise_id} and manager_phone=#{manager_phone}
+
 	</update>
 	
 </mapper>
