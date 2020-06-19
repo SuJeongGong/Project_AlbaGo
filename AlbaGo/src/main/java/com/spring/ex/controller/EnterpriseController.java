@@ -99,9 +99,19 @@ public class EnterpriseController {
 	}
 
 	@RequestMapping("/scrap") // 스크랩 인재
-	public String scrap() {
-
-		return "/enterprise/scrap";
+	public String scrap(HttpServletRequest request,Model m) {
+		String page = "/enterprise/mypage";
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("type")); 
+		if (!session.getAttribute("type").toString().equals("기업")) {
+			return page;
+		} else {
+			String id = session.getAttribute("id").toString();
+			System.out.println(enterpriseService.selectScrap(id));
+			m.addAttribute("scraps", enterpriseService.selectScrap(id));
+			page="/enterprise/scrap";
+		}
+		return page;
 	}
 
 	@RequestMapping("/recruit/list") // 공고 리스트
@@ -134,10 +144,14 @@ public class EnterpriseController {
 			return page;
 		} else {
 			String id = session.getAttribute("id").toString();
-			System.out.println(enterpriseService.selectVolunteer(id));
+			
+			
+//			System.out.println(enterpriseService.selectVolunteer(id)); - 테스트 주석
+			
+			
 			m.addAttribute("volunteers", enterpriseService.selectVolunteer(id));//why salary는 안나오죠?
 			page="/enterprise/volunteer_list";
 		}
-		return "/enterprise/volunteer_list";
+		return page;
 	}
 }

@@ -170,7 +170,7 @@
                             <br>
 							<table width="95%">
 								<tr>
-									<th>인재글 제목</th><th>작성날짜</th>
+									<th>인재글 제목</th><th>스크랩날짜</th>
 								</tr>
 							<%
 							ArrayList<Scrap_enterprise> scraps = (ArrayList)request.getAttribute("scrap");

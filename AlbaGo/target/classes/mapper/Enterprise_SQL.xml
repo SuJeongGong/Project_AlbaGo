@@ -18,13 +18,14 @@
 		</where>
 	</select>
 
-	<select id="selectScrap" parameterType="String"
-		resultType="Scrap_enterprise">
-		select board_resume.title AS title, scrap_enterprise.date AS DATE
+	<select id="selectScrap" parameterType="String" resultType="Scrap_enterprise">
+		SELECT board_resume.title AS title, scrap_enterprise.date AS DATE,
+				board_resume.date AS resume_date, resume.individual_id as individual_id
 		from
-		scrap_enterprise, board_resume
+		scrap_enterprise, board_resume , resume
 		<where>
-			scrap_enterprise.board_resume_id =board_resume.board_resume_id
+				scrap_enterprise.board_resume_id =board_resume.board_resume_id
+			AND resume.resume_id = board_resume.resume_id
 		</where>
 		group by enterprise_id
 		HAVING enterprise_id = #{id}
