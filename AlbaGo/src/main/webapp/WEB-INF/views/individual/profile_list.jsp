@@ -10,16 +10,12 @@
 <body>
 <div id="wrapper">
 	<!-- 사이드 바 -->
-	<%@ include file="../serve/manager_sidebar.jsp" %>
+	<%@ include file="../serve/header.jsp" %>
 	
 	<!-- content wrapper -->
 	<div id="content-wrapper" class="d-flex flex-column">
 		<!-- main -->
    		<div id ="content">
-   			<!-- topbar -->
-			<%@ include file="../serve/manager_topbar.jsp" %>
-			
-			<!-- main 본문  -->
 			<div class="container-fluid">
 			<!-- main 본문을 한 줄로 묶기 -->
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -124,7 +120,7 @@
 			</div><!-- 끝 main 본문  -->
    		</div><!-- 끝 main -->
    		<!-- footer -->
-		<%@ include file="../serve/manager_footer.jsp" %>
+		<%@ include file="../serve/footer.jsp" %>
    </div><!-- 끝 content wrapper -->
 </div><!-- 끝  wrapper -->
 </body>

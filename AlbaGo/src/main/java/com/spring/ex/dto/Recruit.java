@@ -12,5 +12,6 @@ public class Recruit {
 	int salary_amount;// 월급 금액
 	String term;// 기간
 	String date; //작성날짜
-	String title; //작성날짜
+	String title; //제목
+	String day; //요일
 }

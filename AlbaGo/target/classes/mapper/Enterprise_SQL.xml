@@ -20,11 +20,11 @@
 
 	<select id="selectScrap" parameterType="String"
 		resultType="Scrap_enterprise">
-		select resume.title AS title, scrap_enterprise.date AS DATE
+		select board_resume.title AS title, scrap_enterprise.date AS DATE
 		from
-		scrap_enterprise, resume
+		scrap_enterprise, board_resume
 		<where>
-			scrap_enterprise.board_resume_id =resume.resume_id
+			scrap_enterprise.board_resume_id =board_resume.board_resume_id
 		</where>
 		group by enterprise_id
 		HAVING enterprise_id = #{id}
@@ -32,26 +32,28 @@
 
 	<select id="selectVolunteer" parameterType="String"
 		resultType="Volunteer">
-		SELECT individual.individual_id ,
-		volunteer.date AS DATE ,
-		recruit.title AS title
-		FROM individual,volunteer,recruit
+		SELECT volunteer.board_recruit_id as recruit_id,
+				board_recruit.title as recruit_title,
+				volunteer.individual_id as individual_id,
+				volunteer.memo as memo,
+				volunteer.date as date,
+				resume.title as resume_title
+		FROM resume,volunteer,board_recruit,enterprise,recruit
 		<where>
-			individual.individual_id =volunteer.individual_id
-			AND volunteer.board_recruit_id = recruit.recruit_id
-			and recruit.enterprise_id = #{id}
+			resume.resume_id =volunteer.resume_id
+			AND volunteer.board_recruit_id = board_recruit.board_recruit_id
+			AND recruit.recruit_id = board_recruit.recruit_id
+			AND enterprise.enterprise_id = recruit.enterprise_id
+			and enterprise.enterprise_id = #{id}
 		</where>
 	</select>
 
 	<select id="selectRecruit" parameterType="String"
 		resultType="Recruit">
-		SELECT board_resume.title AS title ,
-		scrap_enterprise.date AS DATE
-		FROM
-		board_resume, scrap_enterprise
+		SELECT *
+		FROM recruit
 		<where>
-			board_resume.board_resume_id = scrap_enterprise.board_resume_id
-			and scrap_enterprise.enterprise_id = #{id}
+			enterprise_id = #{id}
 		</where>
 	</select>
 
