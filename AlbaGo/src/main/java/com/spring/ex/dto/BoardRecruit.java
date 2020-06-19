@@ -3,7 +3,7 @@ package com.spring.ex.dto;
 import lombok.Data;
 
 @Data
-public class BoardRecruit {
+public class BoardRecruit { //인재
 	int board_recruit_id;//인재글 id;
 	String title;// 제목
 	String memo;// 내용

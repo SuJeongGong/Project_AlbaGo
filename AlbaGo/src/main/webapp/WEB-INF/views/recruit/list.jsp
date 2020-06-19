@@ -165,6 +165,7 @@
                         		String date = recruit.getDate();
                         		String place = recruit.getPlace();
                         		int views = recruit.getViews();
+                        		int board_recruit_id = recruit.getBoard_recruit_id();
                         		
                         		%>
 
@@ -188,7 +189,7 @@
                                     </div>
                                     <div class="jobs_right">
                                         <div class="apply_now">
-                                            <a href="job_details.html" class="boxed-btn3">글보러가기</a>
+                                            <a href="<%=request.getContextPath() %>/recruit/content?<%=board_recruit_id %>" class="boxed-btn3">글보러가기</a>
                                         </div>
                                     </div>
                                 </div>

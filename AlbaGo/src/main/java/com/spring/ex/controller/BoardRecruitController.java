@@ -42,6 +42,12 @@ public class BoardRecruitController {
 	
 	@RequestMapping("/content")//보는화면
 	public String content() {
+		//디비처리 select로 글 내용 가져오기
+		// update로 조회수
+		
+		
+		
+		
 		return "/recruit/content";
 	}
 	@RequestMapping("/update")//수정화면
