@@ -13,5 +13,6 @@ public class Volunteer {
 	String date; //지원 날짜
 	String title;//지원한 공고글의 제목
 	String memo;//메모
+	String result;//결과
 	
 }

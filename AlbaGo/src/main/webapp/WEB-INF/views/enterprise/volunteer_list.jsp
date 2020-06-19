@@ -43,8 +43,7 @@
                                             <th>이력서</th>
                                             <th>메모</th>
                                             <th>지원날짜 </th>
-                                            <th>승락</th>
-                                            <th>거절</th>
+                                            <th>결과</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,6 +58,7 @@
                                     		String resume_title = volunteer.getResume_title();
                                     		String memo = volunteer.getMemo();
                                     		String date =volunteer.getDate();                                    		
+                                    		String result =volunteer.getResult();                                    		
                                     		%>
 
 
@@ -72,8 +72,23 @@
                                             <td><%=resume_title %></td>
                                             <td><%=memo %></td>
                                             <td><%=date %></td>
-                                            <td><button type="submit" class="btn btn-outline-danger">승락</button></td>
-                                            <td><button type="submit" class="btn btn-outline-danger">거절</button></td>
+                                            <%
+                                            
+                                            if(result==null){
+                                            	%>
+                                            	
+                                            	
+                                            <td><button type="submit" class="btn btn-outline-danger">승락</button><button type="submit" class="btn btn-outline-danger">거절</button></td>
+                                
+                                            	
+                                            	
+                                            	<%
+                                            }else{
+                                            	%>
+                                            	<td ><%=result %></td>
+                                            	<%
+                                            }
+                                            %>
 
                                         </tr>
                                     		<%
