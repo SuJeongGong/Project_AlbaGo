@@ -4,7 +4,6 @@
 <%@page import="com.spring.ex.dto.Enterprise"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="sun.security.util.Length"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -30,7 +29,7 @@
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#"> 수정</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/account"> 수정</a>
                                 </div>
                             </div>
                         </div>
@@ -61,14 +60,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="/account">
+                                    <a href="<%=request.getContextPath() %>/enterprise/recruit/list">
                                         <h4>공고 관리</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="/recruit"> 자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/recruit/list"> 자세히</a>
                                 </div>
                             </div>
                         </div>
@@ -107,14 +106,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/enterprise/volunteer">
                                         <h4>지원 목록</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#">자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/volunteer">자세히</a>
                                 </div>
                             </div>
                         </div>
@@ -151,14 +150,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/enterprise/scrap">
                                         <h4>스크랩</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#">자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/scrap">자세히</a>
                                 </div>
                             </div>
                         </div>

@@ -3,41 +3,67 @@
 
 <mapper namespace="com.spring.ex.dao.EnterpriseDAO">
 
-	<select id="selectNow" resultType="Product" parameterType="hashmap">
-		select * from enterprise where enterprise_id=#{param1} and price=#{param2};
+	<select id="selectNow" resultType="Product"
+		parameterType="hashmap">
+		select * from enterprise where enterprise_id=#{param1}
+		and price=#{param2};
 	</select>
 
-	<select id="selectEnterprise" parameterType="String" resultType="Enterprise">
+	<select id="selectEnterprise" parameterType="String"
+		resultType="Enterprise">
 		select *
-		from enterprise 
+		from enterprise
 		<where>
 			enterprise_id = #{id}
 		</where>
 	</select>
-	
-	<select id="selectScrap" parameterType="String" resultType="Scrap_enterprise">
-		select resume.title AS title, scrap_enterprise.date AS DATE 
-		from scrap_enterprise, resume
-		where scrap_enterprise.board_resume_id = resume.resume_id
+
+	<select id="selectScrap" parameterType="String"
+		resultType="Scrap_enterprise">
+		select resume.title AS title, scrap_enterprise.date AS DATE
+		from
+		scrap_enterprise, resume
+		<where>
+			scrap_enterprise.board_resume_id =resume.resume_id
+		</where>
 		group by enterprise_id
 		HAVING enterprise_id = #{id}
 	</select>
-	
-	<select id="selectVolunteer" parameterType="String" resultType="Volunteer">
-		SELECT individual.individual_id  , 
-				volunteer.date AS DATE , 
-				recruit.title AS title   
+
+	<select id="selectVolunteer" parameterType="String"
+		resultType="Volunteer">
+		SELECT individual.individual_id ,
+		volunteer.date AS DATE ,
+		recruit.title AS title
 		FROM individual,volunteer,recruit
-		WHERE individual.individual_id = volunteer.individual_id 
-				AND volunteer.board_recruit_id = recruit.recruit_id
-				and recruit.enterprise_id = #{id}
+		<where>
+			individual.individual_id =volunteer.individual_id
+			AND volunteer.board_recruit_id = recruit.recruit_id
+			and recruit.enterprise_id = #{id}
+		</where>
 	</select>
-	
-	<select id="selectRecruit" parameterType="String" resultType="Recruit">
-		SELECT  board_resume.title AS title , 
-				scrap_enterprise.date AS DATE 
-		FROM board_resume, scrap_enterprise
-		WHERE board_resume.board_resume_id = scrap_enterprise.board_resume_id
-				and scrap_enterprise.enterprise_id = #{id}
+
+	<select id="selectRecruit" parameterType="String"
+		resultType="Recruit">
+		SELECT board_resume.title AS title ,
+		scrap_enterprise.date AS DATE
+		FROM
+		board_resume, scrap_enterprise
+		<where>
+			board_resume.board_resume_id = scrap_enterprise.board_resume_id
+			and scrap_enterprise.enterprise_id = #{id}
+		</where>
 	</select>
+
+	<update id="updateAccount" parameterType="Enterprise">
+		update enterprise 
+		set name = #{name},
+			business_number = #{business_number},
+			manager_name = #{manager_name},
+			manager_phone = #{manager_phone},
+			category = #{category}
+		<where>
+			enterprise_id = #{enterprise_id}
+		</where>
+	</update>
 </mapper>

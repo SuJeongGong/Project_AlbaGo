@@ -32,15 +32,8 @@ public class JoinController {
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
-//		Enumeration enumeraion1 = session.getAttributeNames();
-//		while(enumeraion1.hasMoreElements()) {
-//			String name = enumeraion1.nextElement().toString();
-//			String value = session.getAttribute(name).toString();
-//			System.out.println("while문 안에 - "+name+":"+value);
-//		}
-		session.invalidate();
 
-		
+		session.invalidate();
 		
 		return "/main";
 	}
@@ -60,7 +53,7 @@ public class JoinController {
 
 			session.setAttribute("id", id);// 세션에 아이디 넣기
 			session.setAttribute("type", "기업");// 세션에 기업인지, 개인인지 구분자 넣기
-			session.setMaxInactiveInterval(10);
+			session.setMaxInactiveInterval(180);
 
 			page = "/main";// db값넣기 성공시 result페이지로
 		} else {

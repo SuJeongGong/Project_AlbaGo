@@ -34,7 +34,7 @@
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#"> 수정</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/individual/account"> 수정</a>
                                 </div>
                             </div>
                         </div>

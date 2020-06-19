@@ -17,5 +17,6 @@ public interface EnterpriseDAO {
 	ArrayList<Recruit> selectRecruit(String id);
 	ArrayList<Scrap_enterprise> selectScrap(String id);
 	ArrayList<Volunteer> selectVolunteer(String id);
+	int updateAccount(Enterprise enterprise);
 	
 }
