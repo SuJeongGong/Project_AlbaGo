@@ -106,14 +106,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="<%=request.getContextPath() %>/enterprise/volunteer">
+                                    <a href="<%=request.getContextPath() %>/enterprise/volunteer/list">
                                         <h4>지원 목록</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/volunteer">자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/volunteer/list">자세히</a>
                                 </div>
                             </div>
                         </div>
@@ -125,14 +125,14 @@
                             <br>
 							<table width="95%">
 								<tr>
-									<th>제목</th><th>작성날짜</th><th>지원자</th>
+									<th>공고글 제목</th><th>지원날짜</th><th>지원자</th>
 								</tr>
 	<%
 							ArrayList<Volunteer> volunteers = (ArrayList)request.getAttribute("volunteer");
 								for(int i =0;i<volunteers.size();i++){
 									Volunteer volunteer=  volunteers.get(i);
 									String individual_id =volunteer.getIndividual_id();
-									String title =volunteer.getTitle();
+									String title =volunteer.getRecruit_title();
 									String date = volunteer.getDate();
 									%>
 									<tr>
@@ -170,7 +170,7 @@
                             <br>
 							<table width="95%">
 								<tr>
-									<th>제목</th><th>작성날짜</th>
+									<th>인재글 제목</th><th>작성날짜</th>
 								</tr>
 							<%
 							ArrayList<Scrap_enterprise> scraps = (ArrayList)request.getAttribute("scrap");

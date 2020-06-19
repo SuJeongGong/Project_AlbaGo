@@ -30,8 +30,9 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
-                                    	<tr>
-                                    	   <button type="submit" class="btn btn-outline-primary" style="float: right;">선택삭제</button>
+                                    	<tr >
+                                    		<button  type="submit" class="btn btn-outline-danger" style="float: right;">선택거절</button>
+                                    	    <button type="submit" class="btn btn-outline-danger"style="float: right;">선택승락</button>
                                         </tr>
                                         <tr>
                                             <th>
@@ -79,7 +80,7 @@
                                             	
                                             	
                                             <td><button type="submit" class="btn btn-outline-danger">승락</button><button type="submit" class="btn btn-outline-danger">거절</button></td>
-                                
+                                            <td></td>
                                             	
                                             	
                                             	<%
