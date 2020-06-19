@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.ex.dao.CommunityDAO">
+	
+	<insert id = "insertContent" parameterType="hashmap"> 
+		INSERT INTO community
+		(community_id,
+		individual_id,
+		title,
+		contents,
+		date,
+		views)
+			
+		VALUES
+		(null,
+		#{individaul_id},
+		#{title},
+		#{contents},
+		null,
+		0
+		)
+	</insert>
+	
+	<select id = "selectList" resultType="BoardCommunity">
+		select title, date, individual_id from community	
+	</select>
+	
+	
+	
+	
+</mapper>

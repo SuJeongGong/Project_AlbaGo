@@ -13,12 +13,10 @@
 	
 	
 	
-          <div class="col-lg-12 ftco-animate">
-           
+          <div class="col-lg-12 ftco-animate">      
               <div class="comment-form-wrap pt-12">
                 <form action="#" class="p-5 bg-light">
                   <div class="form-group">
-                  	
                 	<h3 class="mb-1 h4 font-weight-bold">커뮤니티 글작성</h3>
                     <label for="title">제목 </label>
                     <input type="text" class="form-control" id="title">
