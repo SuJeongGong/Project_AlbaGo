@@ -39,4 +39,14 @@
 	<select id="selectEnterpriseId" resultType="String" parameterType="hashmap"  >
 		select enterprise_id from enterprise where manager_name=#{manager_name} and manager_phone=#{manager_phone}
 	</select>
+	
+	<update id="updateIndividualPW"  parameterType="hashmap"  >
+		update individual set password="1234" where individual_id=#{id} and phone=#{phone}
+		<!--  UPDATE individual SET PASSWORD="1234" WHERE individual_id="a" -->
+	</update>
+		<update id="updateEnterprisePW"  parameterType="hashmap"  >
+		update enterprise set password="1234" where enterprise_id=#{id} and manager_phone=#{phone}
+		<!--  UPDATE individual SET PASSWORD="1234" WHERE individual_id="a" -->
+	</update>
+	
 </mapper>
