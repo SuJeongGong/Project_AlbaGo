@@ -7,8 +7,8 @@ public class Scrap_Individual {
 	int scrap_id;//스크랩id
 	int boardAnnounce_id;//공고글id
 	String date;//스크랩한 날짜
-	String individual_id;//개인회원 id
-	String distinguish;//구별 - 지원인지, 스크랩인지
-	String title;
+	String recruit_date;//공고글 작성 날짜
+	String title;//공고글 제목
+	String name;//기업이름
 	
 }

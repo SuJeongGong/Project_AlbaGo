@@ -18,5 +18,6 @@ public interface EnterpriseDAO {
 	ArrayList<Scrap_enterprise> selectScrap(String id);
 	ArrayList<Volunteer> selectVolunteer(String id);
 	int updateAccount(Enterprise enterprise);
+	int updateVolunteerResult(HashMap<String, Object> map);
 	
 }

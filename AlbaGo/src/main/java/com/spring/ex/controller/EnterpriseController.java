@@ -1,15 +1,18 @@
 package com.spring.ex.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Recruit;
@@ -63,11 +66,11 @@ public class EnterpriseController {
 
 			
 			
-			if (enterpriseService.selectRecruit(id) != null) {
+			if (enterpriseService.selectEnterprise(id) != null) {
 				System.out.println("DB연결성공");
 
 				// 모델에 담기
-				m.addAttribute("Einfo", enterpriseService.selectRecruit(id));// 기업정보
+				m.addAttribute("Einfo", enterpriseService.selectEnterprise(id));// 기업정보
 
 				page = "/enterprise/account";
 			} else {
@@ -152,5 +155,21 @@ public class EnterpriseController {
 			page="/enterprise/volunteer_list";
 		}
 		return page;
+	}
+	@RequestMapping(value="/volunteer/updateResult",method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String updateResult(String result,int id) {
+		
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("volunteer_id", id);
+		map.put("result", result);
+		System.out.println(result);//jsp 에서 가져온값 
+		System.out.println(id);
+		System.out.println(enterpriseService.updateVolunteerResult(map));
+		
+		if(1<=enterpriseService.updateVolunteerResult(map)) {
+			System.out.println("DB연결 성공!");
+		}
+		return result;
 	}
 }

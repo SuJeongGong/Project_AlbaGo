@@ -8,6 +8,26 @@
 <head>
 <meta charset="UTF-8">
 <title>지원자 관리</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function updateResult(id,result) {
+	$.ajax({
+		url : "./updateResult",
+		method : "GET",
+		data : {
+			result : result,
+			id:id
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+
+</script>
 </head>
 <body>
 
@@ -59,6 +79,7 @@
                                     		String memo = volunteer.getMemo();
                                     		String date =volunteer.getDate();                                    		
                                     		String result =volunteer.getResult();                                    		
+                                    		int volunteer_id = volunteer.getVolunteer_id();
                                     		%>
 
 
@@ -66,6 +87,7 @@
                                             <td>
                                                 <input type="checkbox" class="memberChk" onclick='OnOffMemberAllClickBtn()'>
                                             </td>
+                                            <td><%=volunteer_id %></td>
                                             <td><%=recruit_id %></td>
                                             <td><%=title %></td>
                                             <td><%=individual_id %></td>
@@ -78,14 +100,14 @@
                                             	%>
                                             	
                                             	
-                                            <td><button type="submit" class="btn btn-outline-danger">승락</button><button type="submit" class="btn btn-outline-danger">거절</button></td>
+                                            <td class = "result" ><button onclick="updateResult(<%=volunteer_id %>,'승락')" id="accept"class="btn btn-outline-danger" >승락</button><button  onclick="updateResult(<%=volunteer_id %>,'거절')"  type="submit" id ="reject" class="btn btn-outline-danger">거절</button></td>
                                 
                                             	
                                             	
                                             	<%
                                             }else{
                                             	%>
-                                            	<td ><%=result %></td>
+                                            	<td class = "result"><%=result %></td>
                                             	<%
                                             }
                                             %>

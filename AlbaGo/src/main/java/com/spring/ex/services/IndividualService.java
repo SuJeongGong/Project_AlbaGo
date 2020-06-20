@@ -3,6 +3,7 @@ package com.spring.ex.services;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.IndividualDAO;
 import com.spring.ex.dto.Individual;
@@ -10,6 +11,8 @@ import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Volunteer;
 
+
+@Service
 public class IndividualService {
 	@Autowired
 	IndividualDAO individualDAO;

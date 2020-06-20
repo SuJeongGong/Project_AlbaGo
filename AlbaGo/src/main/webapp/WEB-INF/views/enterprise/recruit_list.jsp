@@ -38,6 +38,7 @@
                                             <th>
                                                 <input type="checkbox" class="selectAllMembers" />
                                             </th>
+                                            <th>volunteer_id</th>
                                             <th>공고번호</th>
                                             <th>제목</th>
                                             <th>카테고리</th>

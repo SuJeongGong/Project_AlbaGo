@@ -11,7 +11,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+                            <%
+                            Individual  Iinfo = (Individual)request.getAttribute("Iinfo");
+                            %>
+<title><%=Iinfo.getIndividual_id()%>님의 마이페이지</title>
 </head>
 <body>
 	<%@ include file="../serve/header.jsp" %>
@@ -38,11 +41,8 @@
                     <div class="descript_wrap white-bg">
                         <div class="single_wrap">
                             <p>안전한 정보보호를 위해 연락처 일부만 확인가능하며,<br/>수정화면에서 정확한 연락처 확인이 가능합니다.</p>
-                            <%
-                            Individual  Iinfo = (Individual)request.getAttribute("Iinfo");
-                            %>
+
                                 <li>아이디 : <span><%=Iinfo.getIndividual_id()%></span></li>
-                                <li>비밀번호 : <span><%= Iinfo.getPassword()%></span></li>
                                 <li>이름 : <span><%=Iinfo.getName()%></span></li>
                                 <li>성별 : <span><%=Iinfo.getGender()%></span></li>
                                 <li>연락처 : <span><%=Iinfo.getPhone()%></span></li>
@@ -126,15 +126,14 @@
 									<th>제목</th><th>작성날짜</th>
 								</tr>
 	<%
-							ArrayList<Volunteer> volunteers = (ArrayList)request.getAttribute("volunteer");
+							ArrayList<Volunteer> volunteers = (ArrayList)request.getAttribute("volunteers");
 								for(int i =0;i<volunteers.size();i++){
 									Volunteer volunteer=  volunteers.get(i);
-									String enterprise_id =volunteer.getEnterprise_id();
 									String title =volunteer.getRecruit_title();
 									String date = volunteer.getDate();
 									%>
 									<tr>
-										<td><%=title %></td><td><%=date %></td><td><%=enterprise_id %></td>
+										<td><%=title %></td><td><%=date.split(" ")[0] %></td>
 									</tr>									
 									<%
 								}
@@ -171,7 +170,7 @@
 									<th>제목</th><th>작성날짜</th>
 								</tr>
 							<%
-							ArrayList<Scrap_Individual> scraps = (ArrayList)request.getAttribute("scrap");
+							ArrayList<Scrap_Individual> scraps = (ArrayList)request.getAttribute("scraps");
 								for(int i =0;i<scraps.size();i++){
 									Scrap_Individual scrap=  scraps.get(i);
 									String title =scrap.getTitle();

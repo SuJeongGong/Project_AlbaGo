@@ -1,6 +1,7 @@
 package com.spring.ex.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,8 @@ public class EnterpriseService {
 	}
 	public int updateAccount(Enterprise enterprise) {
 		return enterpriseDAO.updateAccount(enterprise);
+	}
+	public int updateVolunteerResult(HashMap<String, Object> map) {
+		return enterpriseDAO.updateVolunteerResult(map);
 	}
 }
