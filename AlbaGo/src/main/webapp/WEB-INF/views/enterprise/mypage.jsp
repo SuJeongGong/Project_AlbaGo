@@ -170,11 +170,8 @@
                             <br>
 							<table width="95%">
 								<tr>
-<<<<<<< gong-0618-mypageDB
 									<th>인재글 제목</th><th>스크랩날짜</th>
-=======
 									<th>제목</th><th>작성날짜</th>
->>>>>>> f888f4c gong - 마이페이지, 지원목록 수정
 								</tr>
 							<%
 							ArrayList<Scrap_enterprise> scraps = (ArrayList)request.getAttribute("scrap");
