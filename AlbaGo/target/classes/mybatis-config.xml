@@ -4,7 +4,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.spring.ex.dto.Advertising" alias="Advertising" />
-		<typeAlias type="com.spring.ex.dto.BoardAnnounce" alias="BoardAnnounce" />
+		<typeAlias type="com.spring.ex.dto.BoardResume" alias="BoardResume" />
 		<typeAlias type="com.spring.ex.dto.BoardCommunity" alias="BoardCommunity" />
 		<typeAlias type="com.spring.ex.dto.BoardRecruit" alias="BoardRecruit" />
 		<typeAlias type="com.spring.ex.dto.Career" alias="Career" />
@@ -18,5 +18,6 @@
 		<typeAlias type="com.spring.ex.dto.Scrap_Individual" alias="Scrap_Individual" />
 		<typeAlias type="com.spring.ex.dto.Volunteer" alias="Volunteer" />
 		<typeAlias type="com.spring.ex.dto.BoardRecruit1" alias="BoardRecruit1" />
+		<typeAlias type="com.spring.ex.dto.BoardResume1" alias="BoardResume1" />
 	</typeAliases>
 </configuration>     

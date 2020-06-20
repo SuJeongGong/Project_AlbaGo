@@ -30,7 +30,10 @@ public class BoardRecruitController {
 		return "/recruit/list";
 	}
 	@RequestMapping("/write")//작성화면
-	public String write() {
+	public String write(@ModelAttribute("boardrecruit") BoardRecruit boardrecruit, BindingResult result) {
+		
+		
+		
 		return "/recruit/write";
 	}
 	

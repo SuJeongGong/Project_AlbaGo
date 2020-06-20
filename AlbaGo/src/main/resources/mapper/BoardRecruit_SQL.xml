@@ -10,5 +10,25 @@
 	</select>
 	
 	<!-- 게시글작성 -->
-	<!-- <insert id = "insertBoardRecruit" parameterType="" -->
+	<insert id = "insertBoardRecruit" parameterType="BoardRecruit">
+		insert into board_recruit
+		(
+			board_recruit_id,
+			recruit_id,
+			title,
+			views,
+			memo,
+			date
+		)
+		values
+		(
+			null,
+			#{recruit_id},
+			#{title},
+			#{views},
+			#{memo},
+			null,
+			
+		)
+	</insert>
 </mapper>

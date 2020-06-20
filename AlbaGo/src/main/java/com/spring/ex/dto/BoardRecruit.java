@@ -3,15 +3,13 @@ package com.spring.ex.dto;
 import lombok.Data;
 
 @Data
-public class BoardRecruit { //인재
-	int board_recruit_id;//인재글 id;
+public class BoardRecruit { //공고
+	int board_recruit_id;//공고글 id;
 	String title;// 제목
-	String memo;// 내용
+	String views;//조회수
+	String memo;// 메모
 	String date;// 작성날짜
-	String individual_id;//개인회원 id
-	int resume_id;//이력서id
-	int view;//조회수
-	
-	
-	
+	String enterprise_id;//기업회원 id
+	int recruit_id;//공고id
 }
+

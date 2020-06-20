@@ -148,6 +148,7 @@
                                             <option value="2">조회수순 </option>
                                             <option value="4">지원순</option>
                                         </select>
+                                        <a href="<%=request.getContextPath() %>/recruit/write" class="boxed-btn3">글쓰기</a>
                                     </div>
                                 </div>
                             </div>
