@@ -15,14 +15,14 @@ import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
-import com.spring.ex.services.EnterpriseServiece;
+import com.spring.ex.services.EnterpriseService;
 
 @Controller
 @RequestMapping("/enterprise")
 public class EnterpriseController {
 
 	@Autowired
-	EnterpriseServiece enterpriseService;
+	EnterpriseService enterpriseService;
 
 	@RequestMapping("/mypage") // 마이페이지
 	public String mypage(HttpServletRequest request, Model m) {
@@ -89,7 +89,6 @@ public class EnterpriseController {
 			if (enterpriseService.updateAccount(enterprise) ==1) {
 				System.out.println("DB연결성공");
 				
-				
 				page = "/main";// /enterprise/mypage으로 보내기 실패ㅠ 
 			} else {
 				System.out.println("DB연결실패");
@@ -138,7 +137,7 @@ public class EnterpriseController {
 	@RequestMapping("/volunteer/list") // 지원한 인재
 	public String volunteerList(HttpServletRequest request,Model m) {
 		String page = "/enterprise/mypage";
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(); 
 		System.out.println(session.getAttribute("type")); 
 		if (!session.getAttribute("type").toString().equals("기업")) {
 			return page;

@@ -1,3 +1,5 @@
+<%@page import="com.spring.ex.dto.Volunteer"%>
+<%@page import="com.spring.ex.dto.Resume"%>
 <%@page import="com.spring.ex.dto.Scrap_Individual"%>
 <%@page import="com.spring.ex.dto.Scrap_enterprise"%>
 <%@page import="java.util.HashMap"%>
@@ -13,12 +15,6 @@
 </head>
 <body>
 	<%@ include file="../serve/header.jsp" %>
-	
-	
-	
-	
-	
-	
     <div class="job_details_area">
         <div class="container">
             <div class="row">
@@ -27,7 +23,7 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/individual/account">
                                         <h4>회원정보 수정</h4>
                                     </a>
                                 </div>
@@ -61,14 +57,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/individual/profile/list">
                                         <h4>이력서 관리</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#"> 자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/individual/profile/list"> 자세히</a>
                                 </div>
                             </div>
                         </div>
@@ -81,12 +77,19 @@
 								<tr>
 									<th>제목</th><th>작성날짜</th>
 								</tr>
-								</tr>
-       
-       
-       
-       
-       
+													<%
+							ArrayList<Resume> resumes = (ArrayList)request.getAttribute("resumes");
+								for(int i =0;i<resumes.size();i++){
+									Resume resume=  resumes.get(i);
+									String title =resume.getTitle();
+									String date = resume.getDate();
+									%>
+									<tr>
+										<td><%=title %></td><td><%=date %></td>
+									</tr>									
+									<%
+								}
+							%>
 								
 							</table>
                         </div>
@@ -101,14 +104,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/individual/support">
                                         <h4>지원 목록</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#">자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/individual/support">자세히</a>
                                 </div>
                             </div>
                         </div>
@@ -123,14 +126,15 @@
 									<th>제목</th><th>작성날짜</th>
 								</tr>
 	<%
-								ArrayList<HashMap<String, String>> volunteers = (ArrayList)request.getAttribute("volunteer");
+							ArrayList<Volunteer> volunteers = (ArrayList)request.getAttribute("volunteer");
 								for(int i =0;i<volunteers.size();i++){
-									HashMap<String, String>volunteer=  volunteers.get(i);
-									String title =volunteer.get("title");
-									String date = volunteer.get("date");
+									Volunteer volunteer=  volunteers.get(i);
+									String enterprise_id =volunteer.getEnterprise_id();
+									String title =volunteer.getRecruit_title();
+									String date = volunteer.getDate();
 									%>
 									<tr>
-										<td><%=title %></td><td><%=date %></td>
+										<td><%=title %></td><td><%=date %></td><td><%=enterprise_id %></td>
 									</tr>									
 									<%
 								}
@@ -144,14 +148,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/individual/scrap">
                                         <h4>스크랩</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#">자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/individual/scrap">자세히</a>
                                 </div>
                             </div>
                         </div>

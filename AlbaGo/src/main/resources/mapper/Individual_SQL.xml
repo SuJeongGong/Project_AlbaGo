@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.ex.dao.EnterpriseDAO">
+
+	<select id="selectNow" resultType="Product"
+		parameterType="hashmap">
+		select * from enterprise where enterprise_id=#{param1}
+		and price=#{param2};
+	</select>
+
+	<select id="selectEnterprise" parameterType="String"
+		resultType="Enterprise">
+		select *
+		from individual_id
+		<where>
+			individual_id = #{id}
+		</where>
+	</select>
+
+	<select id="selectScrap" parameterType="String" resultType="Scrap_invididual">
+		SELECT board_resume.title AS title, scrap_enterprise.date AS DATE,
+				board_resume.date AS resume_date, resume.individual_id as individual_id
+		from
+		scrap_enterprise, board_resume , resume
+		<where>
+				scrap_enterprise.board_resume_id =board_resume.board_resume_id
+			AND resume.resume_id = board_resume.resume_id
+		</where>
+		group by enterprise_id
+		HAVING enterprise_id = #{id}
+	</select>
+
+	<select id="selectVolunteer" parameterType="String"
+		resultType="Volunteer">
+		SELECT volunteer.board_recruit_id as recruit_id,
+				board_recruit.title as recruit_title,
+				volunteer.individual_id as individual_id,
+				volunteer.memo as memo,
+				volunteer.date as date,
+				volunteer.result as result,
+				resume.title as resume_title
+		FROM resume,volunteer,board_recruit,enterprise,recruit
+		<where>
+			resume.resume_id =volunteer.resume_id
+			AND volunteer.board_recruit_id = board_recruit.board_recruit_id
+			AND recruit.recruit_id = board_recruit.recruit_id
+			AND enterprise.individual_id = recruit.individual_id
+			and enterprise.individual_id = #{id}
+		</where>
+	</select>
+
+	<select id="selectRecruit" parameterType="String"
+		resultType="Resume">
+		SELECT *
+		FROM resume
+		<where>
+			individual_id = #{id}
+		</where>
+	</select>
+
+	<update id="updateAccount" parameterType="Individual">
+		update individual 
+		set name = #{name},
+			gender = #{gender},
+			birth = #{birth},
+			phone = #{phone},
+			education = #{education}
+		<where>
+			individual_id = #{individual_id}
+		</where>
+	</update>
+</mapper>

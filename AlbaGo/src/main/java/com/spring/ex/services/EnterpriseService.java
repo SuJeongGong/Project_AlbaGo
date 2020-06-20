@@ -12,7 +12,7 @@ import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 
 @Service
-public class EnterpriseServiece {
+public class EnterpriseService {
 	
 	@Autowired
 	EnterpriseDAO enterpriseDAO;
