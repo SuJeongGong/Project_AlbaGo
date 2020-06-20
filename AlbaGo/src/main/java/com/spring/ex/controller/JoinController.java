@@ -50,6 +50,7 @@ public class JoinController {
 			page = "/join/find_id_individual_result";// db값넣기 성공시 아이디확인 페이지로
 		} else {
 			System.out.println("DB에 select 실패");
+			
 		}
 
 		return page;
@@ -79,6 +80,7 @@ public class JoinController {
 			page = "/join/find_id_enterprise_result";// db값넣기 성공시 아이디확인 페이지로
 		} else {
 			System.out.println("DB에 select 실패");
+			
 		}
 
 		return page;
@@ -118,7 +120,7 @@ public class JoinController {
 		return page;
 	}
 	
-	@RequestMapping("/find_pw/find_pw_enterprise_result") // 개인 비밀번호 찾기 성공
+	@RequestMapping("/find_pw/find_pw_enterprise_result") // 기업 비밀번호 찾기 성공
 	public String find_pw_enterprise_result(Model model, HttpServletRequest request) {
 		String page = "/join/find_pw"; // 아이디 찾기 폼으로 ,
 

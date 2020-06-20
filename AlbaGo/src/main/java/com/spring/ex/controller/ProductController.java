@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/product")
 public class ProductController {
 
-	@RequestMapping("payment")//결게화면
+	@RequestMapping("payment")//결제화면
 	public String payment() {
 		return "/product/payment";
 	}
