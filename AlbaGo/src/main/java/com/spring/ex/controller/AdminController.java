@@ -57,9 +57,9 @@ public class AdminController {
 	}
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
-	public String enterprise_detail() { 
+	public String enterprise_detail() {  
 		return "admin/enterprise_detail";
-	}
+	} 
 
 	@RequestMapping("/payment") // 결제관리
 	public String manager_payment() {
