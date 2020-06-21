@@ -44,6 +44,9 @@
 	String individualPath=basicPath+"/ex/individual/mypage";
 	
 
+	String product=basicPath+"/ex/product/list";
+	
+
 %>
 </head>
 <body>
@@ -155,6 +158,8 @@
                                                 </ul>
                                             </li>
                                             <li><a href="<%=communityPath %>">커뮤니티</a></li>
+                                            
+                                            <li><a href="<%=product%>">상품</a></li>
 
 
                                         </ul>

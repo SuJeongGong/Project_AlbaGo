@@ -1,6 +1,5 @@
 package com.spring.ex.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +11,5 @@ public interface EnterpriseDAO {
 
 	List<Enterprise> selectEnterprise();
 
-	ArrayList<Product> selectList(); //기업에서 상품보기
  
 }

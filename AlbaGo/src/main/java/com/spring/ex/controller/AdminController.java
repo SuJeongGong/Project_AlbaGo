@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.spring.ex.dao.ProductDAO;
 import com.spring.ex.dto.Product;
 
-@Controller
+@Controller 
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -23,7 +23,7 @@ public class AdminController {
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main() {
-		return "admin/main";
+		return "admin/main"; 
 	}
 
 	@RequestMapping("/recruit") // 공고글 게시판 - 관리자ver
@@ -68,7 +68,7 @@ public class AdminController {
 
 	@RequestMapping("/product") // 상품수정,삭제
 	public String list(Model m) {
-		ArrayList<Product> products = productDAO.selectList();
+		ArrayList<Product> products = productDAO.selectList(); 
 
 		m.addAttribute("products", products);
 
@@ -78,7 +78,7 @@ public class AdminController {
 	@RequestMapping("/add_product_term") // 기간있는 상품추가 보여주는 폼
 	public String add_product_term() {
 		String page = "/admin/add_product_term";
-		return page;
+		return page; 
 	}
 
 	@RequestMapping("/add_product_term/result") // 상품추가 DB

@@ -24,8 +24,20 @@ function checkMember(){
    if(select.radio.value =="기간필요x"){
 	   select.action ="<%=conPath%>/admin/add_product_no_term";
 				select.submit();
-			}
+			} 
 		}
+
+		
+function update(){
+		update="/admin/product"
+		
+		
+	
+	
+	
+	
+}
+
 	</script>
 	<div id="wrapper">
 		<!-- 사이드 바 -->
@@ -54,8 +66,7 @@ function checkMember(){
 								type="submit">상품 추가</button>
 
 						</div>
-
-							<%
+				<%
 								ArrayList<Product> products = (ArrayList) request.getAttribute("products");
 							for (int i = 0; i < products.size(); i++) {
 								Product list = products.get(i);
@@ -82,28 +93,23 @@ function checkMember(){
 															<h1
 																class="h4 font-weight-normal text-primary text-center mb-0"
 																data-pricing-value="15">
-																<input type="text" size="7" value="<%=price%>" />원 <span
-																	class="h6 text-muted ml-2"><%=amount%>개</span>
+																<input type="text" size="7" value="<%=price%>" />원 <br>
+																<input type="text"><%=amount%>개</span>
 															</h1>
 												</div>
 										<div class="card-body pt-0">
 											<ul class="list-unstyled mb-4">
-												<input type="text" cols=121 rows=5 class="form-control"
-													style="border-radius: 0px" value="<%=term%>" />
+												<input type="text" cols=121 rows=5 class="form-control" style="border-radius: 0px" value="<%=term%>" />
 
 											</ul>
 											<ul class="list-unstyled mb-4">
-												<input type="text" cols=121 rows=5 class="form-control"
-													style="border-radius: 0px" value="<%=product_explan%>" />
+												<input type="text" cols=121 rows=5 class="form-control"	style="border-radius: 0px" value="<%=product_explan%>" />
 
 											</ul>
 
-											<a class="btn btn-info edit" href="path/to/settings"
-												aria-label="ASettings"> <i class="fa fa-pencil-square-o"
-												aria-hidden="true">수정</i>
-											</a> <a class="btn btn-danger btn-xs" href="path/to/settings"
-												aria-label="Settings"> <i class="fa fa-pencil-square-o"
-												aria-hidden="true">삭제</i>
+											<button class="btn btn-info edit" name="update"onclick="update()" type="submit" aria-label="ASettings"> 
+											수정</button>
+											 <a class="btn btn-danger btn-xs" href="pasth/to/setting" aria-label="Settings"> 삭제
 											</a>
 										</div>
 								
