@@ -9,6 +9,48 @@
 <head>
 <meta charset="UTF-8">
 <title>스크랩 목록</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function deleteScrap(scrap_id) {
+	console.log(scrap_id);
+	$.ajax({
+		url : "./deleteScrap",
+		method : "GET",
+		data : {
+			scrap_id : scrap_id
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+function deleteScraps() {
+	var scrap_ids = [];
+	$("input[name='scrap_id']:checked").each(function(){
+		if(this.checked){
+			scrap_ids.push($(this).val());
+			console.log($(this).val());
+		}
+	})
+	
+	$.ajax({
+		url : "./deleteScraps",
+		method : "GET",
+		data : {
+			scrap_ids: scrap_ids
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+
+</script>
 </head>
 
 <body>
@@ -19,12 +61,12 @@
 	<!-- main 본문  -->
 	<div class="container">
 		<div class="row">
-			<h1>지원자 관리</h1>
+			<h1>스크랩 관리</h1>
 		</div>
 		<div class="row">
 			<ul>
-				<li>공고는 5개까지 작성 가능합니다</li>
-				<li>공고등록 제한규정에 해당될 경우 사전 동의 없이 공고를 삭제/수정 할 수 있습니다.</li>
+				<li>스크랩은 제한 갯수가 없습니다.</li>
+				<li>버튼을 눌러 삭제할 수 있습니다.</li>
 			</ul>
 
 		</div>
@@ -33,13 +75,10 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<button type="submit" class="btn btn-outline-danger"
-								style="float: right;">선택거절</button>
-							<button type="submit" class="btn btn-outline-danger"
-								style="float: right;">선택승락</button>
+							<button type="submit" class="btn btn-outline-danger" style="float: right;"   onclick="deleteScraps()" >선택삭제</button>
 						</tr>
 						<tr>
-							<th><input type="checkbox" class="selectAllMembers" /></th>
+							<th><input type="checkbox" class="selectAllMembers"  onclick='OnOffMemberAllClickBtn()'/></th>
 							<th>인재글 제목</th>
 							<th>인재 아이디</th>
 							<th>인재글 작성날짜</th>
@@ -52,23 +91,21 @@
 							ArrayList<Scrap_enterprise> scraps = (ArrayList) request.getAttribute("scraps");
 							for (int i = 0; i < scraps.size(); i++) {
 								Scrap_enterprise scrap = scraps.get(i);
-
+								int scrap_id = scrap.getScrap_enterprise_id();
 								String title = scrap.getTitle();
 								String individual_id = scrap.getIndividual_id();
-								String board_date = scrap.getResume_date();
-								String scrap_date = scrap.getDate();
+								String board_date = scrap.getResume_date().split(" ")[0];
+								String scrap_date = scrap.getDate().split(" ")[0];
 						%>
 
 
 						<tr>
-							<td><input type="checkbox" class="memberChk"
-								onclick='OnOffMemberAllClickBtn()'></td>
+							<td><input type="checkbox" class="memberChk"	name = "scrap_id" value="<%=scrap_id %>"	></td>
 							<td><%=title%></td>
 							<td><%=individual_id%></td>
 							<td><%=board_date%></td>
 							<td><%=scrap_date%></td>
-
-							<td><button type="submit" class="btn btn-outline-danger">삭제</button></td>
+							<td><button  onclick="deleteScrap(<%=scrap_id %>)"  class="btn btn-outline-danger">삭제</button></td>
 
 
 

@@ -162,9 +162,6 @@ public class EnterpriseController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("volunteer_id", id);
 		map.put("result", result);
-		System.out.println(result);// jsp 에서 가져온값
-		System.out.println(id);
-		System.out.println(enterpriseService.updateVolunteerResult(map));
 
 		if (1 <= enterpriseService.updateVolunteerResult(map)) {
 			System.out.println("DB연결 성공!");
@@ -173,22 +170,33 @@ public class EnterpriseController {
 	}
 
 	@RequestMapping(value = "/volunteer/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String updateResults(@RequestParam(value = "result") String result,
-			@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
+	public String updateResults(@RequestParam(value = "result") String result, @RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("volunteer_ids", volunteer_ids);
 		map.put("result", result);
 
-//		System.out.println(result);// jsp 에서 가져온값
-//		System.out.println("volunteer_ids 값 : " + volunteer_ids);
-//		System.out.println(volunteer_ids.size());
-//		System.out.println(volunteer_ids.get(0));
-//		System.out.println(enterpriseService.updateVolunteerResults(map));
-
 		if (1 <= enterpriseService.updateVolunteerResults(map)) {
 			System.out.println("DB연결 성공!");
 		}
 		return result;
+	}
+
+	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void updateResult(int scrap_id) {
+		System.out.println(scrap_id);// jsp 에서 가져온값
+		if (1 <= enterpriseService.deleteScrap(scrap_id)) {
+			System.out.println("DB연결 성공!");
+		}
+		return;
+	}
+
+	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void updateResults(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_id) {
+		System.out.println(scrap_id);
+		if (1 <= enterpriseService.deleteScraps(scrap_id)) {
+			System.out.println("DB연결 성공!");
+		}
+		return;
 	}
 }

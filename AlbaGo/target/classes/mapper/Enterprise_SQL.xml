@@ -19,16 +19,18 @@
 	</select>
 
 	<select id="selectScrap" parameterType="String" resultType="Scrap_enterprise">
-		SELECT board_resume.title AS title, scrap_enterprise.date AS DATE,
-				board_resume.date AS resume_date, resume.individual_id as individual_id
+		SELECT board_resume.title AS title, 
+				scrap_enterprise.date AS DATE,
+				board_resume.date AS resume_date, 
+				resume.individual_id as individual_id,
+				scrap_enterprise.scrap_enterprise_id as scrap_enterprise_id
 		from
 		scrap_enterprise, board_resume , resume
 		<where>
 				scrap_enterprise.board_resume_id =board_resume.board_resume_id
-			AND resume.resume_id = board_resume.resume_id
+				AND resume.resume_id = board_resume.resume_id
+				and enterprise_id = #{id}
 		</where>
-		group by enterprise_id
-		HAVING enterprise_id = #{id}
 	</select>
 
 	<select id="selectVolunteer" parameterType="String"
@@ -80,4 +82,10 @@
 			volunteer_id = #{volunteer_id}
 		</where>
 	</update>
+	
+	<delete id ="deleteScrap" parameterType="int">
+	
+		delete from Scrap_enterprise where scrap_enterprise_id = #{volunteer_id}
+	</delete>
+	
 </mapper>

@@ -42,9 +42,6 @@ public class EnterpriseService {
 		String result = map.get("result").toString();
 		int res = 0;
 		ArrayList<String> ids= (ArrayList<String>) map.get("volunteer_ids");
-//		System.out.println(ids);
-//		System.out.println(ids.size());
-//		System.out.println(ids.get(0));
 		
 		for(int i =0; i<ids.size();i++) {
 			HashMap<String, Object> data = new HashMap<String, Object>();
@@ -55,6 +52,21 @@ public class EnterpriseService {
 			}
 		}
 
+		return res;
+	}
+	public int deleteScrap(int scrap_id) {
+		return enterpriseDAO.deleteScrap(scrap_id);
+	}
+	public int deleteScraps(ArrayList<String> ids) {
+		int res = 0;
+		
+		for(int i =0; i<ids.size();i++) {
+		
+			if(1<=enterpriseDAO.deleteScrap(Integer.parseInt(ids.get(i)))) {
+				res = 1;
+			}
+		}
+		
 		return res;
 	}
 }

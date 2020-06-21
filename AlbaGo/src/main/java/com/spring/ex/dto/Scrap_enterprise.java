@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Scrap_enterprise {
-	int scrap_id;//스크랩id
+	int scrap_enterprise_id;//스크랩id
 	int boardRecruit_id;//인재글 id
 	String date;//스크랩날짜
 	String resume_date;//인재글 작성 날짜
