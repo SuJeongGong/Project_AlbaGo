@@ -2,9 +2,13 @@ package com.spring.ex.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ex.dao.ProductDAO;
@@ -13,11 +17,10 @@ import com.spring.ex.dto.Product;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	
-	
+
 	@Autowired
-	ProductDAO product;//DAO 클래스를 생성해서 사용해야지,,,,
-	
+	ProductDAO productDAO;// DAO 클래스를 생성해서 사용해야지,,,,
+
 	@RequestMapping("/main") // 관리자 메인
 	public String main() {
 		return "admin/main";
@@ -54,7 +57,7 @@ public class AdminController {
 	}
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
-	public String enterprise_detail() {
+	public String enterprise_detail() { 
 		return "admin/enterprise_detail";
 	}
 
@@ -65,21 +68,49 @@ public class AdminController {
 
 	@RequestMapping("/product") // 상품수정,삭제
 	public String list(Model m) {
-	      ArrayList<Product> products = product.selectList();
-	    		  
-	      m.addAttribute("products", products);
-	      
-	      return "/admin/product";
-	   }
+		ArrayList<Product> products = productDAO.selectList();
 
-	@RequestMapping("/add_product_term") // 상품추가
-	public String add_product_term() {
-		return "admin/add_product_term";
+		m.addAttribute("products", products);
+
+		return "/admin/product";
 	}
 
-	@RequestMapping("/add_product_no_term") // 상품추가
+	@RequestMapping("/add_product_term") // 기간있는 상품추가 보여주는 폼
+	public String add_product_term() {
+		String page = "/admin/add_product_term";
+		return page;
+	}
+
+	@RequestMapping("/add_product_term/result") // 상품추가 DB
+	public String add_product_term_result(HttpServletRequest request, @ModelAttribute("product") Product product,
+			BindingResult result) {
+
+		String page = "/admin/add_product_term/result";
+
+		if (productDAO.insertProduct_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
+			page = "/admin/main";
+		}
+
+		return page;
+	}
+
+	@RequestMapping("/add_product_no_term") // 기간이없는 상품추가 보여주는 폼
 	public String add_product_no_term() {
-		return "admin/add_product_no_term";
+		String page = "admin/add_product_no_term";
+		return page;
+	}
+
+	@RequestMapping("/add_product_no_term/result") // 기간이없는 상품추가 DB
+	public String add_product_no_term_result(HttpServletRequest request, @ModelAttribute("product") Product product,
+			BindingResult result) {
+
+		String page = "/admin/add_product_no_term/result";
+
+		if (productDAO.insertProduct_no_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
+			page = "/admin/main";
+		}
+
+		return page;
 	}
 
 	@RequestMapping("/approve") // 결제승인

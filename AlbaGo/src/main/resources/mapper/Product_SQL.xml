@@ -5,4 +5,32 @@
 	<select id = "selectList" resultType="Product">
 		SELECT * FROM product
 	</select>
+	
+		<insert id="insertProduct_term" parameterType="product">
+		INSERT INTO product 
+		VALUES 
+   		(NULL,
+   		#{name},
+   		#{term},
+   		#{price},
+   		#{product_explan},
+   		#{amount}
+   		)
+	</insert>
+	
+	<insert id="insertProduct_no_term" parameterType="product">
+		INSERT INTO product 
+		(product_id,
+		name,
+		price,
+		product_explan,
+		amount)
+		VALUES 
+   		(NULL,
+   		#{name},
+   		#{price},
+   		#{product_explan},
+   		#{amount}
+   		)
+	</insert>
 </mapper>

@@ -9,95 +9,23 @@
 <body>
 	<%@ include file="../serve/header.jsp" %>
 	
-	
-	
-	
-	
-	
   <!-- featured_candidates_area_start  -->
     <div class="featured_candidates_area candidate_page_padding">
         <div class="container">
             <div class="row">
+            <!-- 시작 -->
                 <div class="col-md-6 col-lg-3">
                     <div class="single_candidates text-center">
                         <div class="thumb">
-                            <h2>UP 횟수<br> + 500</h2> 
+                            <h2 name="name">UP 횟수</h2> <br>
+                            <h3 name="amount"> + 500</h3> 
                         </div>
                         <br>
                         <a href="#"><h4>구매하기</h4></a>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="single_candidates text-center">
-                        <div class="thumb">
-                            <h2>UP 횟수<br> + 500</h2> 
-                        </div>
-                        <br>
-                        <a href="#"><h4>구매하기</h4></a>
-                    </div>
-                </div>                <div class="col-md-6 col-lg-3">
-                    <div class="single_candidates text-center">
-                        <div class="thumb">
-                            <h2>UP 횟수<br> + 500</h2> 
-                        </div>
-                        <br>
-                        <a href="#"><h4>구매하기</h4></a>
-                    </div>
-                </div>                <div class="col-md-6 col-lg-3">
-                    <div class="single_candidates text-center">
-                        <div class="thumb">
-                            <h2>UP 횟수<br> + 500</h2> 
-                        </div>
-                        <br>
-                        <a href="#"><h4>구매하기</h4></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="single_candidates text-center">
-                        <div class="thumb">
-                            <h2>UP 횟수<br> + 500</h2> 
-                        </div>
-                        <br>
-                        <a href="#"><h4>구매하기</h4></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="single_candidates text-center">
-                        <div class="thumb">
-                            <h2>UP 횟수<br> + 500</h2> 
-                        </div>
-                        <br>
-                        <a href="#"><h4>구매하기</h4></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="single_candidates text-center">
-                        <div class="thumb">
-                            <h2>UP 횟수<br> + 500</h2> 
-                        </div>
-                        <br>
-                        <a href="#"><h4>구매하기</h4></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="single_candidates text-center">
-                        <div class="thumb">
-                            <h2>UP 횟수<br> + 500</h2> 
-                        </div>
-                        <br>
-                        <a href="#"><h4>구매하기</h4></a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="single_candidates text-center">
-                        <div class="thumb">
-                            <h2>UP 횟수<br> + 500</h2> 
-                        </div>
-                        <br>
-                        <a href="#"><h4>구매하기</h4></a>
-                    </div>
-                </div>
-            </div>
+               </div>
+              <!-- 끝 -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="pagination_wrap">

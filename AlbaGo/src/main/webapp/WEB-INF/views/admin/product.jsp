@@ -23,7 +23,7 @@ function checkMember(){
    }
    if(select.radio.value =="기간필요x"){
 	   select.action ="<%=conPath%>/admin/add_product_no_term";
-	select.submit();
+				select.submit();
 			}
 		}
 	</script>
@@ -54,60 +54,71 @@ function checkMember(){
 								type="submit">상품 추가</button>
 
 						</div>
-						<%
-						ArrayList<Product> products = (ArrayList)request.getAttribute("products");
-						for (int i = 0; i < products.size(); i++) {
-							Product list = products.get(i);
-							int Product_id = list.getProduct_id();
-							String name = list.getName();
-							String term = list.getTerm();
-							int price = list.getPrice();
-							String product_explan = list.getProduct_explan();
-							int amount = list.getAmount();
-						%>
-						<div class="container mb-5 mt-5">
-							<div class="pricing card-deck flex-column flex-md-row mb-3">
-								<div class="card card-pricing text-center px-3 mb-4">
-
-									<span
-										class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm"><%= Product_id%> <%=name %></span>
-									<div class="bg-transparent card-header pt-4 border-0">
-										<h1
-											class="h4 font-weight-normal text-primary text-center mb-0"
-											data-pricing-value="15">
-											<input type="text" size="7" value="<%=price %>"/>원 
-											<span
-												class="h6 text-muted ml-2"><%=amount%>개</span>
-										</h1>
-									</div>
-									<div class="card-body pt-0">
-										<ul class="list-unstyled mb-4">
-											<input type="text" cols=121 rows=5 class="form-control" style="border-radius: 0px" value="<%=term%>"/>
-								
-										</ul>
-										<ul class="list-unstyled mb-4">
-											<input type="text" cols=121 rows=5 class="form-control" style="border-radius: 0px" value="<%=product_explan%>"/>
-										
-										</ul>
-
-										<a class="btn btn-info edit" href="path/to/settings"
-											aria-label="ASettings"> <i class="fa fa-pencil-square-o"
-											aria-hidden="true">수정</i>
-										</a> <a class="btn btn-danger btn-xs" href="path/to/settings"
-											aria-label="Settings"> <i class="fa fa-pencil-square-o"
-											aria-hidden="true">삭제</i>
-										</a>
-									</div>
-								</div>
-
-							</div>
 
 							<%
-								}
+								ArrayList<Product> products = (ArrayList) request.getAttribute("products");
+							for (int i = 0; i < products.size(); i++) {
+								Product list = products.get(i);
+								int Product_id = list.getProduct_id();
+								String name = list.getName();
+								String term = list.getTerm();
+								int price = list.getPrice();
+								String product_explan = list.getProduct_explan();
+								int amount = list.getAmount();
+								
+								if ((i % 4) == 0) {
 							%>
+								<div class="container mb-5 mt-5">
+									<div class="pricing card-deck flex-column flex-md-row mb-3">
+								<%
+								} 
+									%>
+										<div class="card card-pricing text-center px-3 mb-4">
 
-						</div>
+												<span
+													class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm"><%=Product_id%>
+													<%=name%></span>
+												<div class="bg-transparent card-header pt-4 border-0">
+															<h1
+																class="h4 font-weight-normal text-primary text-center mb-0"
+																data-pricing-value="15">
+																<input type="text" size="7" value="<%=price%>" />원 <span
+																	class="h6 text-muted ml-2"><%=amount%>개</span>
+															</h1>
+												</div>
+										<div class="card-body pt-0">
+											<ul class="list-unstyled mb-4">
+												<input type="text" cols=121 rows=5 class="form-control"
+													style="border-radius: 0px" value="<%=term%>" />
 
+											</ul>
+											<ul class="list-unstyled mb-4">
+												<input type="text" cols=121 rows=5 class="form-control"
+													style="border-radius: 0px" value="<%=product_explan%>" />
+
+											</ul>
+
+											<a class="btn btn-info edit" href="path/to/settings"
+												aria-label="ASettings"> <i class="fa fa-pencil-square-o"
+												aria-hidden="true">수정</i>
+											</a> <a class="btn btn-danger btn-xs" href="path/to/settings"
+												aria-label="Settings"> <i class="fa fa-pencil-square-o"
+												aria-hidden="true">삭제</i>
+											</a>
+										</div>
+								
+
+									</div>
+
+									<%
+									if ((i % 4) == 3) {
+										%>
+											</div>
+											</div>
+											<%
+											} 
+			}
+									%>
 
 					</form>
 				</div>
