@@ -3,7 +3,7 @@
 
 <mapper namespace="com.spring.ex.dao.CommunityDAO">
 	
-	<insert id = "insertContent" parameterType="hashmap"> 
+	<insert id = "insertContent" parameterType="BoardCommunity"> 
 		INSERT INTO community
 		(community_id,
 		individual_id,
@@ -14,7 +14,7 @@
 			
 		VALUES
 		(null,
-		#{individaul_id},
+		#{individual_id},
 		#{title},
 		#{contents},
 		null,
@@ -23,9 +23,12 @@
 	</insert>
 	
 	<select id = "selectList" resultType="BoardCommunity">
-		select title, date, individual_id from community	
+		select title, date, individual_id, contents from community	
 	</select>
 	
+	<select id = "selectContent" resultType="BoardCommunity" parameterType="String">
+		select individual_id, title, views, date, contents from community	
+	</select>
 	
 	
 	
