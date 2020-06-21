@@ -12,7 +12,20 @@
 	<%
 		String conPath = request.getContextPath();
 	%>
+<script>
+function checkterm(){   
+	if($('input:radio[id=term_need]').is(':checked')){
+		  $('#divid').show();
+	    
+	   }
+	else{
+		  $('#divid').hide();
+	         } 
+	      }
+
+</script>
 <body>
+
 	<div id="wrapper">
 		<!-- 사이드 바 -->
 		<%@ include file="../serve/manager_sidebar.jsp"%>
@@ -27,8 +40,16 @@
 				<div class="container-fluid">
 					<!-- 요기다 작성  -->
 
-					<div class="container mb-5 mt-5"
-						style="height: 200px; width: 700px;">
+					<div class="container mb-5 mt-5" style="height: 200px; width: 700px;">
+						  <div style="float: center">
+		                     <label class="radio-inline"> 
+		                     <input type="radio"  id="term_need" checked="checked" name="check" value="기간필요o" onchange="checkterm()"> 기간필요o
+		                     </label> <label class="radio-inline"> 
+		                     <input type="radio"   id="term_unnecessary" value="기간필요x" name="check"onchange="checkterm()"> 기간필요x
+		                     </label>
+		 				 </div>
+               
+                        
 						<form action="<%=request.getContextPath()%>/admin/add_product_term/result" name="product">
 						
 						<div class="pricing card-deck flex-column flex-md-row mb-3">
@@ -44,10 +65,11 @@
 									</h1>
 								</div>
 								<div class="card-body pt-0">
+								<div id="divid">
 									<ul class="list-unstyled mb-4">
 										<input type="text" cols=121 rows=5 class="form-control" style="border-radius: 0px" placeholder="기간을 알려주세요" name="term">
 									</ul>
-								
+								</div>
 									<ul class="list-unstyled mb-4">
 										<input type="text" cols=121 rows=5 class="form-control" style="border-radius: 0px" placeholder="게시글 정보를 알려주세요" name="product_explan">
 									</ul>

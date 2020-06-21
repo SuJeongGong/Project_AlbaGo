@@ -38,8 +38,6 @@ public class ProductController {
 		return page;
 	}
 
-
-
 	@RequestMapping("/Waiting_for_approval")
 	public String approval(HttpServletRequest request, @ModelAttribute("product") Product product,
 			BindingResult result) {

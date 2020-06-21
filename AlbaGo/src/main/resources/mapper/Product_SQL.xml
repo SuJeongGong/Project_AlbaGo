@@ -36,6 +36,13 @@
 		)
 	</insert>
 	
+	<update id="update_product">
+	   UPDATE product 
+	   SET name=#{name},term=#{term},price=#{price},product_explan=#{product_explan},amount=#{amount}
+	   WHERE product_id=#{product_id}
+   
+	</update>
+	
 	
 	<!-- 기업입니다 -->
 	<select id="enterprise_selectList" resultType="Product"><!-- 기업에서 상품보기 -->
