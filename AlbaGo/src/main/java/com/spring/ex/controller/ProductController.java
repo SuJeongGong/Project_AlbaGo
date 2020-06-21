@@ -20,10 +20,10 @@ import com.spring.ex.dto.Product;
 public class ProductController {
 
 	@Autowired
-	ProductDAO enterpriseDAO;
+	ProductDAO enterpriseDAO; 
 
 	@RequestMapping("payment") // 결제화면 
-	public String payment() {
+	public String payment() { 
 		return "/product/payment";
 	} 
 

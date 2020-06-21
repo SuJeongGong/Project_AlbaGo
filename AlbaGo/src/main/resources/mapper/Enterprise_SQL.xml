@@ -3,33 +3,16 @@
 
 <mapper namespace="com.spring.ex.dao.EnterpriseDAO">
 
+	<select id="selectEnterprise" resultType="Enterprise">
+		select * from
+		enterprise GROUP BY enterprise_id;
+	</select>
+	
 	<select id="selectNow" resultType="Product" parameterType="hashmap">
 		select * from enterprise where enterprise_id=#{param1} and price=#{param2};
 	</select>
 
-	<select id="selectEnterprise" resultType="Enterprise">
-		select * from enterprise GROUP BY enterprise_id;
-	</select>
 	
-		<select id = "selectList" resultType="Product"><!-- 기업에서 상품보기 -->
-		SELECT * FROM product
-	</select>
 	
-	<insert id="insertProduct_payment" parameterType="int"> <!-- 결제승인하기 -->
-
- 		INSERT INTO payment 
- 		
-		(payment_id,
-		product_id,
-		enterprise_id,
-		date)		
-		VALUES 
-		
-   		(null,
-   		#{product_id},
-   		"a",
-   		null);
-
-	</insert>
-			
+	
 </mapper>

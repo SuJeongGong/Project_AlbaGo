@@ -29,12 +29,8 @@ function checkMember(){
 
 		
 function update(){
-		update="/admin/product"
+		update="<%=conPath%>/admin/product";
 		
-		
-	
-	
-	
 	
 }
 
@@ -94,20 +90,20 @@ function update(){
 																class="h4 font-weight-normal text-primary text-center mb-0"
 																data-pricing-value="15">
 																<input type="text" size="7" value="<%=price%>" />원 <br>
-																<input type="text"><%=amount%>개</span>
+																<input type="text" size="7"value="<%=amount%>">개
 															</h1>
 												</div>
 										<div class="card-body pt-0">
 											<ul class="list-unstyled mb-4">
-												<input type="text" cols=121 rows=5 class="form-control" style="border-radius: 0px" value="<%=term%>" />
+												기간<input type="text" cols=121 rows=5 class="form-control" style="border-radius: 0px" value="<%=term%>" />
 
 											</ul>
 											<ul class="list-unstyled mb-4">
-												<input type="text" cols=121 rows=5 class="form-control"	style="border-radius: 0px" value="<%=product_explan%>" />
+												설명<input type="text" cols=121 rows=5 class="form-control"	style="border-radius: 0px" value="<%=product_explan%>" />
 
 											</ul>
 
-											<button class="btn btn-info edit" name="update"onclick="update()" type="submit" aria-label="ASettings"> 
+											<button class="btn btn-info edit" id="update" name="update"onclick="update()" type="button" aria-label="ASettings"> 
 											수정</button>
 											 <a class="btn btn-danger btn-xs" href="pasth/to/setting" aria-label="Settings"> 삭제
 											</a>

@@ -1,36 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.ex.dao.ProductDAO">
-	
-	<select id = "selectList" resultType="Product">
+
+	<!-- 관리자 상품입니다 -->
+	<select id="selectList" resultType="Product"> <!-- 관리자에서 상품보기 -->
 		SELECT * FROM product
 	</select>
-	
-		<insert id="insertProduct_term" parameterType="product">
-		INSERT INTO product 
-		VALUES 
-   		(NULL,
-   		#{name},
-   		#{term},
-   		#{price},
-   		#{product_explan},
-   		#{amount}
-   		)
+
+	<insert id="insertProduct_term" parameterType="product"> <!-- 관리자에서 기간있는 상품추가 -->
+		INSERT INTO
+		product
+		VALUES
+		(NULL,
+		#{name},
+		#{term},
+		#{price},
+		#{product_explan},
+		#{amount}
+		)
 	</insert>
-	
-	<insert id="insertProduct_no_term" parameterType="product">
-		INSERT INTO product 
+	<insert id="insertProduct_no_term" parameterType="product"> <!-- 관리자에서 기간없는 상품추가 -->
+		INSERT INTO
+		product
 		(product_id,
 		name,
 		price,
 		product_explan,
 		amount)
-		VALUES 
-   		(NULL,
-   		#{name},
-   		#{price},
-   		#{product_explan},
-   		#{amount}
-   		)
+		VALUES
+		(NULL,
+		#{name},
+		#{price},
+		#{product_explan},
+		#{amount}
+		)
 	</insert>
+	
+	
+	<!-- 기업입니다 -->
+	<select id="enterprise_selectList" resultType="Product"><!-- 기업에서 상품보기 -->
+		SELECT * FROM product
+	</select>
+
+	<insert id="insertProduct_payment" parameterType="int"> <!-- 기업에서 결제승인하기 -->
+
+		INSERT INTO payment
+
+		(payment_id,
+		product_id,
+		enterprise_id,
+		date)
+		VALUES
+
+		(null,
+		#{product_id},
+		"a",
+		null);
+</insert>
+
+
 </mapper>
