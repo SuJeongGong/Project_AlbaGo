@@ -26,6 +26,29 @@ function updateResult(id,result) {
 		}
 	});
 }
+function updateResults(result) {
+	var volunteer_ids = [];
+	$("input[name='volunteer_id']:checked").each(function(){
+		if(this.checked){
+			volunteer_ids.push($(this).val());
+			console.log($(this).val());
+		}
+	})
+	
+	$.ajax({
+		url : "./updateResults",
+		method : "GET",
+		data : {
+			result : result,
+			volunteer_ids: volunteer_ids
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
 
 </script>
 </head>
@@ -41,8 +64,8 @@ function updateResult(id,result) {
 	      </div>
 	      <div class="row">
 	          <ul>
-	          	<li>공고는 5개까지 작성 가능합니다</li>
-	          	<li>공고등록 제한규정에 해당될 경우 사전 동의 없이 공고를 삭제/수정 할 수 있습니다.</li>
+	          	<li>공고글에 지원한 지원자들을 확인하고 결과를 저장할 수 있습니다.</li>
+	          	<li>결과는 언제든 수정 가능합니다</li>
 	          </ul>
           
 		</div>
@@ -51,12 +74,14 @@ function updateResult(id,result) {
                                 <table class="table">
                                     <thead>
                                     	<tr>
-                                    	   <button type="submit" class="btn btn-outline-primary" style="float: right;">선택삭제</button>
+                                    	   <button type="submit" onclick="updateResults('거절')" class="btn btn-outline-primary" style="float: right;">선택거절</button>
+                                    	   <button type="submit" onclick="updateResults('승락')"  class="btn btn-outline-primary" style="float: right;">선택승락</button>
                                         </tr>
                                         <tr>
                                             <th>
-                                                <input type="checkbox" class="selectAllMembers" />
+                                                <input type="checkbox" class="selectAllMembers"  onclick='OnOffMemberAllClickBtn()'/>
                                             </th>
+                                            <th>지원번호</th>
                                             <th>공고글번호</th>
                                             <th>공고글 제목</th>
                                             <th>지원자 아이디</th>
@@ -64,6 +89,7 @@ function updateResult(id,result) {
                                             <th>메모</th>
                                             <th>지원날짜 </th>
                                             <th>결과</th>
+                                            <th>결과선택</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -85,7 +111,7 @@ function updateResult(id,result) {
 
   										<tr>
                                             <td>
-                                                <input type="checkbox" class="memberChk" onclick='OnOffMemberAllClickBtn()'>
+                                                <input type="checkbox" class="memberChk" name = "volunteer_id" value="<%=volunteer_id%>">
                                             </td>
                                             <td><%=volunteer_id %></td>
                                             <td><%=recruit_id %></td>
@@ -94,23 +120,8 @@ function updateResult(id,result) {
                                             <td><%=resume_title %></td>
                                             <td><%=memo %></td>
                                             <td><%=date %></td>
-                                            <%
-                                            
-                                            if(result==null){
-                                            	%>
-                                            	
-                                            	
+                                         	<td class = "result"><%=result %></td>
                                             <td class = "result" ><button onclick="updateResult(<%=volunteer_id %>,'승락')" id="accept"class="btn btn-outline-danger" >승락</button><button  onclick="updateResult(<%=volunteer_id %>,'거절')"  type="submit" id ="reject" class="btn btn-outline-danger">거절</button></td>
-                                
-                                            	
-                                            	
-                                            	<%
-                                            }else{
-                                            	%>
-                                            	<td class = "result"><%=result %></td>
-                                            	<%
-                                            }
-                                            %>
 
                                         </tr>
                                     		<%

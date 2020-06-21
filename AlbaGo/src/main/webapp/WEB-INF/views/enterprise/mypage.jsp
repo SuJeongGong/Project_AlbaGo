@@ -107,14 +107,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="<%=request.getContextPath() %>/enterprise/volunteer">
+                                    <a href="<%=request.getContextPath() %>/enterprise/volunteer/list">
                                         <h4>지원 목록</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/volunteer">자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/volunteer/list">자세히</a>
                                 </div>
                             </div>
                         </div>

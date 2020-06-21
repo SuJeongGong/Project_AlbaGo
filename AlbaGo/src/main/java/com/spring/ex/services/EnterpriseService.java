@@ -1,7 +1,9 @@
 package com.spring.ex.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,24 @@ public class EnterpriseService {
 	}
 	public int updateVolunteerResult(HashMap<String, Object> map) {
 		return enterpriseDAO.updateVolunteerResult(map);
+	}
+	public int updateVolunteerResults(HashMap<String, Object> map) {
+		String result = map.get("result").toString();
+		int res = 0;
+		ArrayList<String> ids= (ArrayList<String>) map.get("volunteer_ids");
+//		System.out.println(ids);
+//		System.out.println(ids.size());
+//		System.out.println(ids.get(0));
+		
+		for(int i =0; i<ids.size();i++) {
+			HashMap<String, Object> data = new HashMap<String, Object>();
+			data.put("volunteer_id", ids.get(i));
+			data.put("result", result);
+			if(1<=enterpriseDAO.updateVolunteerResult(data)) {
+				res = 1;
+			}
+		}
+
+		return res;
 	}
 }
