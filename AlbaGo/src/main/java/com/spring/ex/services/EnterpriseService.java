@@ -69,4 +69,21 @@ public class EnterpriseService {
 		
 		return res;
 	}
+	public int deleteRecruit(int recruit_id) {
+		System.out.println(recruit_id);
+		return enterpriseDAO.deleteRecruit(recruit_id);
+	}
+	public int deleteRecruits(ArrayList<String> ids) {
+		int res = 0;
+		System.out.println(ids);
+		
+		for(int i =0; i<ids.size();i++) {
+			
+			if(1<=enterpriseDAO.deleteRecruit(Integer.parseInt(ids.get(i)))) {
+				res = 1;
+			}
+		}
+		
+		return res;
+	}
 }

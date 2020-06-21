@@ -7,6 +7,48 @@
 <head>
 <meta charset="UTF-8">
 <title>공고 관리</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function deleteRecruit(recruit_id) {
+	console.log(recruit_id);
+	$.ajax({
+		url : "./deleteRecruit",
+		method : "GET",
+		data : {
+			recruit_id : recruit_id
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+function deleteRecruits() {
+	var recruit_ids = [];
+	$("input[name='recruit_id']:checked").each(function(){
+		if(this.checked){
+			recruit_ids.push($(this).val());
+			console.log($(this).val());
+		}
+	})
+	
+	$.ajax({
+		url : "./deleteRecruits",
+		method : "GET",
+		data : {
+			recruit_ids: recruit_ids
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+
+</script>
 </head>
 <body>
 
@@ -32,13 +74,12 @@
                                     	<tr>
                                     	   <a  href="<%=request.getContextPath()%>/enterprise/recruit/write" class="btn btn-outline-primary" style="float: right;" >공고등록</a>
                                     	   &ensp;&ensp;
-                                    	   <button type="submit" class="btn btn-outline-primary" style="float: right;">선택삭제</button>
+                                    	   <button type="submit" onclick="deleteRecruits()"  class="btn btn-outline-primary" style="float: right;">선택삭제</button>
                                         </tr>
                                         <tr>
                                             <th>
                                                 <input type="checkbox" class="selectAllMembers" />
                                             </th>
-                                            <th>volunteer_id</th>
                                             <th>공고번호</th>
                                             <th>제목</th>
                                             <th>카테고리</th>
@@ -65,14 +106,14 @@
                                     		String term =recruit.getTerm();
                                     		String time =recruit.getTerm();
                                     		String day =recruit.getDay();
-                                    		String date=recruit.getDate();
+                                    		String date=recruit.getDate().split(" ")[0];
                                     		
                                     		%>
 
 
   										<tr>
                                             <td>
-                                                <input type="checkbox" class="memberChk" onclick='OnOffMemberAllClickBtn()'>
+                                                <input type="checkbox" name = "recruit_id"class="memberChk" onclick='OnOffMemberAllClickBtn()' value="<%=recruit_id %>">
                                             </td>
                                             <td><%=recruit_id %></td>
                                             <td><%=title %></td>
@@ -83,7 +124,7 @@
                                             <td><%=day %></td>
                                             <td><%=salary %></td>
                                             <td><%=date %></td>
-                                            <td><button type="submit" class="btn btn-outline-danger">삭제</button></td>
+                                            <td><button onclick="deleteRecruit(<%=recruit_id %>)"  class="btn btn-outline-danger">삭제</button></td>
 
                                         </tr>
 

@@ -60,6 +60,7 @@
 		FROM recruit
 		<where>
 			enterprise_id = #{id}
+			 AND delete_CHECK =1
 		</where>
 	</select>
 
@@ -85,7 +86,15 @@
 	
 	<delete id ="deleteScrap" parameterType="int">
 	
-		delete from Scrap_enterprise where scrap_enterprise_id = #{volunteer_id}
+		delete from Scrap_enterprise where scrap_enterprise_id = #{scrap_id}
 	</delete>
+
+	<update id="deleteRecruit" parameterType="int">
+		update recruit 
+		set delete_CHECK = 0
+		<where>
+			recruit_id = #{recruit_id}
+		</where>
+	</update>
 	
 </mapper>

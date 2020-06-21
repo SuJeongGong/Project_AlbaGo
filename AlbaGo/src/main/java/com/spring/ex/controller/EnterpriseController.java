@@ -199,4 +199,22 @@ public class EnterpriseController {
 		}
 		return;
 	}
+	
+	@RequestMapping(value = "/recruit/deleteRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteRecruit(int recruit_id) {
+		System.out.println(recruit_id);// jsp 에서 가져온값
+		if (1 <= enterpriseService.deleteRecruit(recruit_id)) {
+			System.out.println("DB연결 성공!");
+		}
+		return;
+	}
+	
+	@RequestMapping(value = "/recruit/deleteRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteRecruits(@RequestParam(value = "recruit_ids[]") ArrayList<String> recruit_id) {
+		System.out.println(recruit_id);
+		if (1 <= enterpriseService.deleteRecruits(recruit_id)) {
+			System.out.println("DB연결 성공!");
+		}
+		return;
+	}
 }
