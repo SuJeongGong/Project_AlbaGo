@@ -9,6 +9,12 @@
 <body>
 	<%@ include file="../serve/header.jsp" %>
 	
+	
+	
+    
+	
+	
+	
    <!--================Blog Area =================-->
    <section class="blog_area single-post-area section-padding">
       <div class="container">
@@ -16,16 +22,24 @@
             <div class="col-lg-12 posts-list">
                <div class="single-post">
                   <div class="blog_details">
-                     <h2>
-                        커뮤니티 글 제목
-                     </h2>
+                      <h2>
+                      <%
+						String title = request.getSession().getAttribute("title").toString();
+						String id = request.getSession().getAttribute("id").toString();
+						String date = request.getSession().getAttribute("date").toString();
+						String content = request.getSession().getAttribute("contnet").toString();
+    				  %>
+                      
+                        <%=title %></h2>
+                     
+                    
                      <ul class="blog-info-link mt-3 mb-4">
-                        <li><i class="fa fa-user"></i> 아이디</li>
+                        <li><i class="fa fa-user"></i><%=id %></li>
                         <li><i class="fa fa-comments"></i> 댓글 갯수</li>
-                        <li><i class="fa fa-comments"></i> 2020-05-12</li>
+                            <li><i class="fa fa-comments"></i><%=date %></li>
                      </ul>
                      <p class="excert">
-                        글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용글내용
+                        <%=content %>
                      </p>
                   </div>
                </div>
@@ -54,6 +68,7 @@
                      </div>
                   </div>
                </div>
+               
                <div class="comment-form">
                   <h4>댓글달기</h4>
                   <form class="form-contact comment_form" action="#" id="commentForm">
