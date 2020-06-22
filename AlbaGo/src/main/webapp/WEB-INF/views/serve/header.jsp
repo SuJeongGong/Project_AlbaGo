@@ -30,18 +30,18 @@
 	String url= request.getRequestURL().toString();
 	String uri=request.getRequestURI().toString();
 	String context=request.getContextPath();
-	String basicPath=url.split(uri)[0];
+	String conPath=url.split(uri)[0];
 	
-	String recruitPath=basicPath+"/ex/recruit/list";
-	String resumePath=basicPath+"/ex/resume/list";
-	String productPath=basicPath+"/ex/product/list";
-	String communityPath=basicPath+"/ex/community/list";
+	String recruitPath=conPath+"/ex/recruit/list";
+	String resumePath=conPath+"/ex/resume/list";
+	String productPath=conPath+"/ex/product/list";
+	String communityPath=conPath+"/ex/community/list";
 	
-	String joinLoginPath=basicPath+"/ex/join/login";
-	String joinJoinPath=basicPath+"/ex/join/join";
+	String joinLoginPath=conPath+"/ex/join/login";
+	String joinJoinPath=conPath+"/ex/join/join";
 	
-	String enterpisePath=basicPath+"/ex/enterprise/mypage";
-	String individualPath=basicPath+"/ex/individual/mypage";
+	String enterpisePath=conPath+"/ex/enterprise/mypage";
+	String individualPath=conPath+"/ex/individual/mypage";
 	
 
 	String product=conPath+"/ex/product/list";

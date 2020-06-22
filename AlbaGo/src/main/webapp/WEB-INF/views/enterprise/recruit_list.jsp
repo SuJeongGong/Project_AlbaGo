@@ -19,7 +19,9 @@
             <!-- main -->
             <div id="content">
                 <!-- topbar -->
-                <%@ include file="../serve/topbar.jsp" %>
+                <%@ include file="../serve/header.jsp" %>   
+                
+                
 
                 <!-- main 본문  -->
                 <div class="container-fluid">
