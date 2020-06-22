@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Recruit_Content {
+	String enterprise_id;	//기업아이디
 	String name;			//기업 이름
 	String manager_name;	//매니저이름
 	String manager_phone;	//매니저폰

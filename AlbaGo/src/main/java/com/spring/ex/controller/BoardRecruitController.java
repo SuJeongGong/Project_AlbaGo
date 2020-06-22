@@ -3,6 +3,7 @@ package com.spring.ex.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ex.dao.BoardRecruitDAO;
 import com.spring.ex.dto.BoardRecruit;
+import com.spring.ex.dto.Recruit;
 import com.spring.ex.services.BoardRecruitService;
+import com.spring.ex.services.RecruitService;
 
 @Controller
 @RequestMapping("/recruit")
@@ -21,9 +24,11 @@ public class BoardRecruitController {
 	
 	@Autowired
 	BoardRecruitService boardRecruitService;
+	@Autowired
+	RecruitService recruitService;
 	
 	@RequestMapping("/list")//리스트
-	public String list(Model m) {
+	public String list(Model m) { //enterprise_id 가져오고
 		ArrayList<BoardRecruit> recruits = boardRecruitService.selectList();
 		
 		m.addAttribute("recruits", recruits);
@@ -64,12 +69,18 @@ public class BoardRecruitController {
 	}
 	
 	@RequestMapping("/write") //
-	public String write(HttpServletRequest request) {
+	public String write(HttpServletRequest request, Model m) {
 		String id = request.getSession().getAttribute("id").toString();//로그인한 사람 아이디
 		String type = request.getSession().getAttribute("type").toString();//로그인한 회원 타입  - 기업, 개인
+	
+		ArrayList<Recruit> recruits = recruitService.selectRecruit(id);
 		System.out.println(id);
 		System.out.println(type);
 		System.out.println("잘되라");
+		
+		
+		m.addAttribute("recruit", recruits);
+		
 		return "/recruit/write";
 	}
 	
@@ -79,14 +90,37 @@ public class BoardRecruitController {
 		//디비처리 select로 글 내용 가져오기
 		// update로 조회수
 		
+		String id = request.getSession().getAttribute("id").toString();
+		System.out.println(id);
+				
 		System.out.println(request.getParameter("board_recruit_id").toString());
 		String board_recruit_id = request.getParameter("board_recruit_id").toString();
-		
+				
 		System.out.println("되나?1");
 		
 		m.addAttribute("board_content", boardRecruitService.selectView(board_recruit_id));//여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
 		return "/recruit/content";
 	}
+	
+//	@RequestMapping("/content/update")
+//	public String contentUpdate(HttpServletRequest request, @ModelAttribute("recruit") BoardRecruit boardRecruit) {
+//		String page = "/recruit/content_update";
+//		HttpSession session = request.getSession();
+//		
+//		if(!session.getAttribute("type").toString().equals("기업")) {
+//			return "/recruit/list";
+//		} else {
+//			System.out.println(boardRecruit.getDate());
+//			
+//			if(boardRecruitService.updateRecruit(boardRecruit) == 1) {
+//				System.out.println("DB연결 성공");
+//			} else {
+//				System.out.println("DB연경 실패");
+//			}
+//		}
+//		return page;
+//	}
+	
 	@RequestMapping("/update")//수정화면
 	public String update() {
 		return "/recruit/update";

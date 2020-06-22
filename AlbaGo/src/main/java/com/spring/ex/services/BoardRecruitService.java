@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.BoardRecruitDAO;
 import com.spring.ex.dto.BoardRecruit;
+import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Recruit_Content;
 
 @Service
@@ -30,4 +31,10 @@ public class BoardRecruitService {
 	public void deleteBoard(String id) {
 		boardRecruitDAO.deleteBoard(id);
 	}
+	
+	public int updateRecruit(BoardRecruit boardrecruit) {
+		return boardRecruitDAO.updateBoard(boardrecruit);
+	}
+
+	
 }

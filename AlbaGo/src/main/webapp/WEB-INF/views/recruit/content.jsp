@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
 	<%@ include file="../serve/header.jsp" %>
 	
@@ -40,8 +41,14 @@
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                	<%-- <a class="btn btn-info edit w-10" href="#"> 수정</a>
-                                	<a class="btn btn-danger w-10" href="<%=request.getContextPath() %>/recruit/list?board_recruit_id=<%=board_recruit_id %>"> 삭제</a> --%>
+                                	 <%
+                                	String id = request.getSession().getAttribute("id").toString();
+                                	
+                                	System.out.println(id + "세션에서 가져온");
+                                	System.out.println(board_content.getEnterprise_id() +"디비에서 가져온");
+                                	if(id.equals(board_content.getEnterprise_id())) { 
+                                		%> <a class="btn btn-info edit w-10" href="#">수정하기</a> <a class="btn btn-info edit w-10" href="#">삭제하기</a> <%
+                                	} %>
                                     <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
                                 </div>
                             </div>

@@ -18,4 +18,7 @@ public interface BoardRecruitDAO {
 	
 	//삭제
 	public void deleteBoard(String id);
+	
+	//수정
+	int updateBoard(BoardRecruit boardrecruit);
 }
