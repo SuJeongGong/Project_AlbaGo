@@ -3,11 +3,12 @@ package com.spring.ex.services;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.JoinDAO;
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
-
+@Service
 public class JoinService {
 	
 	@Autowired

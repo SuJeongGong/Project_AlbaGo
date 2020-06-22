@@ -10,6 +10,4 @@ public class Advertising {
 	String startDate;// 시작날짜
 	String endDate;// 끝날짜
 	String title;// 광고문구
-
-
 }

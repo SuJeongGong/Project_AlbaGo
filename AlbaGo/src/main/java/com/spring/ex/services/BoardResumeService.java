@@ -3,12 +3,13 @@ package com.spring.ex.services;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.BoardResumeDAO;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.BoardResume1;
 import com.spring.ex.dto.Resume_Content;
-
+@Service
 public class BoardResumeService {
 	
 	
