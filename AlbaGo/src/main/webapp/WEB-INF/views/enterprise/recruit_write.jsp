@@ -5,14 +5,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>공고 작성</title>
 </head>
 
 <body>
     <%@ include file="../serve/header.jsp" %>
     <div class="col-lg-12 ftco-animate">
         <div class="comment-form-wrap pt-12">
-            <form action="#" class="p-5 bg-light">
+            <form action="<%=request.getContextPath() %>/enterprise/recruit/write/save" class="p-5 bg-light" name = "recruit">
                 <h3 class="mb-1 h4 font-weight-bold">모집 내용</h3>
                 <hr />
                 <div class="form-group row">
@@ -98,6 +98,28 @@
                     </select><input type="text" class="col-sm-2 form-control" maxlength="20" size="20"
                         id="salary_amount" name="salary_amount">원
                 </div>
+                <div class="form-group row">
+                    <h5 class="font-weight-bold">근무 지역&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                    <select class="form-control col-lg-2" name="place">
+                        <option value="서울">서울</option>
+                        <option value="경기">경기</option>
+                        <option value="인천">인천</option>
+                        <option value="부산">부산</option>
+                        <option value="대구">대구</option>
+                        <option value="대전">대전</option>
+                        <option value="경남">경남</option>
+                        <option value="전남">전남</option>
+                        <option value="충남">충남</option>
+                        <option value="광주">광주</option>
+                        <option value="울산">울산</option>
+                        <option value="경북">경북</option>
+                        <option value="전북">전북</option>
+                        <option value="충북">충북</option>
+                        <option value="강원">강원</option>
+                        <option value="제주">제주</option>
+                        <option value="전국">전국</option>
+                    </select>
+                </div>
 
 
                 <br /><br />
@@ -114,9 +136,9 @@
                 </div>
                 <div class="form-group row">
                     <h5 class="font-weight-bold">연령</h5>&nbsp;&nbsp;
-                    <input type="text" id="age_min" name="age_min" maxlength="20" class="col-sm-1 form-control">&nbsp;세
+                    <input type="text" id="age" name="age" maxlength="20" class="col-sm-1 form-control">&nbsp;세
                     이상 ~ &nbsp;
-                    <input type="text" id="age_max" name="age_max" maxlength="20" class="col-sm-1 form-control">&nbsp;세
+                    <input type="text" id="age" name="age" maxlength="20" class="col-sm-1 form-control">&nbsp;세
                 </div>
                 <div class="row  form-group">
                     <h5 class="font-weight-bold">학력조건</h5>&nbsp;&nbsp;
@@ -133,8 +155,9 @@
                 <br />
                 <div class="row">
 
-                    <input type="submit" value="등록하기" class="btn py-1 px-1 btn-primary col-lg-6 ">
-                    <input type="submit" value="취소" class="btn py-1 px-1 btn-primary col-lg-6">
+                    <input type="submit" value="등록하기" class="btn py-1 px-1 btn-primary col-lg-4">
+                    <input type="reset" value="처음부터" class="btn py-1 px-1 btn-primary col-lg-4">
+                    <input type="button" value="마이페이지" class="btn py-1 px-1 btn-primary col-lg-4">
                 </div>
             </form>
         </div>

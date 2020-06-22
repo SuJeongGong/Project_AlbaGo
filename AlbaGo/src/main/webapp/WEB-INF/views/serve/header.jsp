@@ -51,12 +51,12 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">                        
                                 <div class="logo">                                     <!-- 로고자리_area -->        
-                                    <a href="main.jsp">
-                                        <img src="img/logo2.JPG" alt="로고" width="200" hright="100">
+                                    <a href="<%=request.getContextPath() %>/main">
+                                        <img src="<c:url value="/img/logo2.JPG" />" alt="로고" width="90%" hright="40%">
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-xl-8 col-lg-8">
+                            <div class="col-xl-7 col-lg-7">
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
@@ -153,10 +153,10 @@
 	%>
 	
 	 
-                            <div class="col-xl-2 col-lg-1 d-none d-lg-block">
+                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="Appointment">
                                     <div class="phone_num d-none d-xl-block">
-                                        <a href="<%=joinLoginPath%>">로그인</a>
+                                        <a href="<%=joinLoginPath%>" class="boxed-btn4">로그인</a>
                                     </div>
                                     <div class="d-none d-lg-block">
                                         <a href="<%=joinJoinPath %>" class="boxed-btn3" >회원가입</a>
@@ -176,10 +176,10 @@
 	%>
 	
 	 
-                            <div class="col-xl-2 col-lg-1 d-none d-lg-block">
+                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="Appointment">
                                 	<div class="phone_num d-none d-xl-block">
-                                        <a href="<%=conPath%>/join/logout">로그아웃</a>
+                                        <a href="<%=conPath%>/join/logout" class="boxed-btn4">로그아웃</a>
                                     </div>
                                     <div class="d-none d-lg-block">
                                         <a href="<%=conPath%>/enterprise/mypage" class="boxed-btn3" >마이페이지</a>
@@ -199,7 +199,7 @@
 					                      <div class="col-xl-2 col-lg-1 d-none d-lg-block">
                                 <div class="Appointment">
                                     <div class="phone_num d-none d-xl-block">
-                                        <a href="<%=conPath%>/join/logout">로그아웃</a>
+                                        <a href="<%=conPath%>/join/logout" class="boxed-btn4">로그아웃</a>
                                     </div>
                                     <div class="d-none d-lg-block">
                                         <a href="<%=conPath%>/individual/mypage" class="boxed-btn3" >마이페이지</a>

@@ -41,7 +41,10 @@ public class EnterpriseService {
 	public int updateVolunteerResult(HashMap<String, Object> map) {
 		return enterpriseDAO.updateVolunteerResult(map);
 	}
-
+	
+	public int insertRecruit(Recruit recruit) {
+		return enterpriseDAO.insertRecruit(recruit);
+	}
 	public int updateVolunteerResults(HashMap<String, Object> map) {
 		String result = map.get("result").toString();
 		int res = 0;

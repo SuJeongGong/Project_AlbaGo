@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -10,197 +9,145 @@
 </head>
 
 <body>
-    <div id="wrapper">
-        <!-- 사이드 바 -->
-        <%@ include file="../serve/sidebar.jsp" %>
+    <%@ include file="../serve/header.jsp" %>
+    <div class="col-lg-12 ftco-animate">
+        <div class="comment-form-wrap pt-12">
+            <form action="#" class="p-5 bg-light">
+                <h3 class="mb-1 h4 font-weight-bold">이력서 작성</h3>
+                <hr />
+                <div class="form-group row">
+                    <h5 class="font-weight-bold">이력서 제목&nbsp;&nbsp;&nbsp;</h5><input type="text"
+                        class="col-sm-10 form-control " id="title" maxlength="20" size="20" name="title"
+                        placeholder="회원님께서 구분 가능하게 이력서의 이름을 지어주세요. / 공고 게시판에 올라가는 제목은 아닙니다.">
+                </div>
+                <br /><br />
 
-        <!-- content wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <!-- main -->
-            <div id="content">
-                <!-- topbar -->
-                <%@ include file="../serve/topbar.jsp" %>
+                <h3 class="mb-1 h4 font-weight-bold">희망 근무 조건</h3>
+                <hr />
+                <div class="row form-group ">
+                    <h5 class="font-weight-bold ">희망 업직종</h5>&nbsp;&nbsp;
+                    <select class="form-control col-lg-2" name="category">
+                        <option value="외식/음료">외식/음료</option>
+                        <option value="유통/판매">유통/판매</option>
+                        <option value="문화/여가/생활">문화/여가/생활</option>
+                        <option value="서비스">서비스</option>
+                        <option value="사무직">사무직</option>
+                        <option value="고객상담/리서치">고객상담/리서치</option>
+                        <option value="생산/건설/노무">생산/건설/노무</option>
+                        <option value="교육/강사">교육/강사</option>
+                        <option value="디자인">디자인</option>
+                        <option value="미디어">미디어</option>
+                        <option value="운전/배달">운전/배달</option>
+                        <option value="병원/간호/연구">병원/간호/연구</option>
+                        <option value="IT/컴퓨터">IT/컴퓨터</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <h5 class="font-weight-bold">희망 근무 기간</h5>&nbsp;&nbsp;
+                    <input type="radio" name="term" id="term_5" value="하루" class="ip">&nbsp;
+                    <label for="term_5">하루</label>&nbsp;
+                    <input type="radio" name="term" id="term_5" value="1주일 이하" class="ip">&nbsp;
+                    <label for="term_5">1주일 이하</label>&nbsp;
+                    <input type="radio" name="term" id="term_10" value="1개월" class="ip">&nbsp;
+                    <label for="term_10">1개월</label>&nbsp;
+                    <input type="radio" name="term" id="term_20" value="3개월~6개월" class="ip">&nbsp;
+                    <label for="term_20">3개월~6개월</label>&nbsp;
+                    <input type="radio" name="term" id="term_30" value="6개월~1년" class="ip">&nbsp;
+                    <label for="term_30">6개월~1년</label>&nbsp;
+                    <input type="radio" name="term" id="term_40" value="1년이상" class="ip">&nbsp;
+                    <label for="term_40">1년이상</label>&nbsp;
+                    <input type="radio" name="term" id="term_45" value="기간협의" class="ip">&nbsp;
+                    <label for="term_45">기간협의</label>
 
-                <!-- main 본문  -->
-                <div class="container-fluid">
-                    <!-- main 본문을 한 줄로 묶기 -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">이력서 작성</h1>
-                    </div>
-                    <div class="row">
-                        <!--  실제 내용 삽입 -->
+                </div>
+                <div class="form-group row">
+                    <h5 class="font-weight-bold">희망 근무 요일</h5>&nbsp;&nbsp;
+                    <input type="checkbox" name="day" id="day_1" value="월">&nbsp;
+                    <label for="day_1">월</label>&nbsp;
+                    <input type="checkbox" name="day" id="day_2" value="화">&nbsp;
+                    <label for="day_2">화</label>&nbsp;
+                    <input type="checkbox" name="day" id="day_3" value="수">&nbsp;
+                    <label for="day_3">수</label>&nbsp;
+                    <input type="checkbox" name="day" id="day_4" value="목">&nbsp;
+                    <label for="day_4">목</label>&nbsp;
+                    <input type="checkbox" name="day" id="day_5" value="금">&nbsp;
+                    <label for="day_5">금</label>&nbsp;
+                    <input type="checkbox" name="day" id="day_6" value="토">&nbsp;
+                    <label for="day_6">토</label>&nbsp;
+                    <input type="checkbox" name="day" id="day_7" value="일">&nbsp;
+                    <label for="day_7">일</label>
+                </div>
+                <div class="form-group row">
+                    <h5 class="font-weight-bold">희망 근무 시간&nbsp;&nbsp;&nbsp;&nbsp;</h5><input type="text"
+                        class="col-sm-1 form-control" id="title" name="time">시간
+                </div>
+                <div class="form-group row">
+                    <h5 class="font-weight-bold">희망 급여&nbsp;&nbsp;&nbsp;</h5>
+                    <select name="salary_type" class="col-lg-1">
+                        <option value="시급">시급</option>
+                        <option value="일급">일급</option>
+                        <option value="주급">주급</option>
+                        <option value="월급">월급</option>
+                    </select><input type="text" class="col-sm-2 form-control" maxlength="20" size="20"
+                        id="salary_amount" name="salary_amount">원
+                </div>
+                <div class="form-group row">
+                    <h5 class="font-weight-bold">희망 지역&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                    <select class="form-control col-lg-2" name="area">
+                        <option value="서울">서울</option>
+                        <option value="경기">경기</option>
+                        <option value="인천">인천</option>
+                        <option value="부산">부산</option>
+                        <option value="대구">대구</option>
+                        <option value="대전">대전</option>
+                        <option value="경남">경남</option>
+                        <option value="전남">전남</option>
+                        <option value="충남">충남</option>
+                        <option value="광주">광주</option>
+                        <option value="울산">울산</option>
+                        <option value="경북">경북</option>
+                        <option value="전북">전북</option>
+                        <option value="충북">충북</option>
+                        <option value="강원">강원</option>
+                        <option value="제주">제주</option>
+                        <option value="전국">전국</option>
+                    </select>
+                </div>
 
-                        <!-- DataTales Example -->
-                        <!-- 파란색 글자 이력서 관리 -->
-                        <div class="card shadow mb-4">
+                <br /><br />
+                <h3 class="mb-1 h4 font-weight-bold">경력사항<button>한줄 추가</button></h3>
+                <hr />
+                <div class="row">
+                    <h5 class="font-weight-bold col-lg-2">기업 이름</h5>
+                    <h5 class="font-weight-bold col-lg-6">맡은 업무</h5>
+                    <h5 class="font-weight-bold col-lg-2">시작 날짜</h5>
+                    <h5 class="font-weight-bold col-lg-2">끝 날짜</h5>
+                </div>
+                <div class="row">
+                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
+                    <input type="text" class="col-sm-6 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
+                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
+                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
+                </div>
+                <div class="row">
+                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
+                    <input type="text" class="col-sm-6 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
+                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
+                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
+                </div>
 
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="card">
-                                            <div class="card-body p-0">
+                <br />
+                <div class="row">
+                    <input type="submit" value="등록하기" class="btn py-1 px-1 btn-primary col-lg-4">
+                    <input type="reset" value="처음부터" class="btn py-1 px-1 btn-primary col-lg-4">
+                    <input type="button" value="마이페이지" class="btn py-1 px-1 btn-primary col-lg-4">
+                </div>
+            </form>
+        </div>
+    </div>
 
-                                                <!-- 개인기본정보 -->
-                                                <div class="row p-5">
+    <%@ include file="../serve/footer.jsp" %>
 
-                                                    <!-- ◆개인기본정보 -->
-                                                    <div>
-                                                        <p class="font-weight-bold mb-4">◆
-                                                            개인기본정보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가입
-                                                            시 등록한 개인정보를 한번 더
-                                                            확인해주세요.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button>회원정보수정</button>
-                                                        </p>
-                                                    </div>
-
-                                                    <!-- 사진 이름 나이 휴대폰 이메일 등 -->
-                                                    <div class="col-md-6">
-                                                        <img src="http://via.placeholder.com/200x250?text=picture">
-                                                    </div>
-
-                                                    <div class="col-md-6 text-right">
-                                                        <p>
-                                                        <pre><strong>김경민</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;남자24세&nbsp;/&nbsp;1997년생</pre>
-                                                        </p>
-                                                        <p class="text-muted">
-                                                            휴대폰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;010-2782-****
-                                                        </p>
-                                                        <p class="text-muted">
-                                                            이메일&nbsp;&nbsp;&nbsp;&nbsp;kyungmin@google.com</p>
-                                                        <p class="text-muted">
-                                                            주소&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경기도
-                                                            의정부시 </p>
-                                                    </div>
-                                                </div>
-
-                                                <hr class="my-5">
-
-                                                <!-- 이력서 작성 부분 -->
-                                                <div class="row pb-5 p-5">
-                                                    <div class="col">
-
-                                                        <!-- 이력서 제목 -->
-                                                        <div class="col-xs-6 pull-right form-group">
-                                                            <p class="font-weight-bold mb-4">◆ 이력서 제목</p><input
-                                                                type="text" class="form-control"
-                                                                style="border-radius:0px" placeholder="이력서 제목">
-                                                        </div>
-
-                                                        <!-- 희망 근무지 -->
-                                                        <div class="col-xs-4 pull-right form-group">
-                                                            <p class="font-weight-bold mb-4">◆ 희망 근무지</p><input
-                                                                type="text" class="form-control"
-                                                                style="border-radius:0px" placeholder="시/군/구">
-                                                        </div>
-
-                                                        <!-- 희망 업종직 -->
-                                                        <div class="col-xs-6 pull-right form-group">
-                                                            <p class="font-weight-bold mb-4">◆ 희망 업종직</p><input
-                                                                type="text" class="form-control"
-                                                                style="border-radius:0px"
-                                                                placeholder="키워드를 입력해보세요. ex. 서빙, 맥도날드">
-                                                        </div>
-
-                                                        <!-- 장단점 -->
-                                                        <div class="col-xs-6 pull-right form-group">
-                                                            <p class="font-weight-bold mb-4">◆ 장점 º 단점</p><input
-                                                                type="text" class="form-control"
-                                                                style="border-radius:0px"
-                                                                placeholder="키워드를 입력해보세요. ex. 체력, 성실, 인사">
-                                                        </div>
-
-                                                        <!-- 경럭사항 -->
-                                                        <div class="col-xs-6 pull-right form-group">
-                                                            <p class="font-weight-bold mb-4">◆ 경력사항</p><input
-                                                                type="text" class="form-control"
-                                                                style="border-radius:0px"
-                                                                placeholder="아르바이트 경험 등 경력사항이 있다면, 입력해보세요. 채용 확률이 올라갑니다.">
-                                                        </div>
-
-                                                        <!-- 하고싶은말 -->
-                                                        <div class="col-xs-6 pull-right form-group">
-                                                            <p class="font-weight-bold mb-4">◆ 하고 싶은 말</p><textarea
-                                                                cols=121 rows=5 class="form-control"
-                                                                style="border-radius:0px"
-                                                                placeholder="간단한 자기소개와 각오 한마디를 입력해 주세요."></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <hr class="my-5">
-
-                                                <!-- 공개기간 추가연락처 부분 -->
-                                                <div class="row p-5">
-                                                    <div class="col">
-
-                                                        <!-- 공개기간 -->
-                                                        <div>
-                                                            <p class="font-weight-bold mb-4">◆ 공개
-                                                                기간&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <input type="radio" name="chk_info"
-                                                                    value="90">90일&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <input type="radio" name="chk_info" value="60"
-                                                                    checked="checked">60일&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <input type="radio" name="chk_info"
-                                                                    value="30">30일&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                                        </div>
-
-                                                        <!-- 추가연락처 -->
-                                                        <div>
-                                                            <p class="font-weight-bold mb-4">◆ 추가
-                                                                연락처&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <input type="checkbox" name="chk_info" value="email"">이메일&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <input type="checkbox" name="chk_info"
-                                                                    value="homepage" checked="checked">홈페이지</p>
-                                                        </div>
-
-                                                        <!-- 기업에게 하고싶은말 -->
-                                                        <div class="col-xs-6 pull-right form-group">
-                                                            <p class="font-weight-bold mb-4">◆ 기업에게 전하고 싶은 말</p>
-                                                            <textarea cols=121 rows=5 class="form-control"
-                                                                style="border-radius:0px"
-                                                                placeholder="오전, 오후 둘 다 근무 가능합니다.(오후 6시 이후에만 연락 가능)."></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- 이력서 등록한다 -->
-                                                <div class="d-flex flex-row-reverse bg-dark text-white p-4">
-                                                    <div class="col">
-                                                        <h4>본 이력서를 인재정보에 등록합니다.</h4>
-                                                        <p>⊙ 이력서가 인재정보에 공개되며, 기업으로부터 알바제의를 받을 수 있습니다.</p>
-                                                        <p>⊙ 연락처 비공개를 선택하시면 연락처를 제외한 이력서를 공개하며 알바제의만 받을 수 있는 서비스입니다.</p>
-                                                    </div>
-                                                </div>
-
-                                                <!-- 버튼 -->
-                                                <div class="row p-5">
-                                                    <div class="pull">
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-success btn-filter"
-                                                                data-target="save">저장</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- /.container-fluid -->
-
-                        </div>
-
-
-
-                    </div><!-- 끝 실제 내용 삽입 -->
-                </div><!-- 끝 main 본문  -->
-            </div><!-- 끝 main -->
-            <!-- footer -->
-            <%@ include file="../serve/footer.jsp" %>
-        </div><!-- 끝 content wrapper -->
-    </div><!-- 끝  wrapper -->
 </body>
 
 </html>
