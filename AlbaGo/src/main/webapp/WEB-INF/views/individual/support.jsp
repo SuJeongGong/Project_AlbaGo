@@ -1,196 +1,131 @@
+<%@page import="com.spring.ex.dto.Volunteer"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <title>지원현황</title>
+<meta charset="UTF-8">
+<title>지원현황</title>
 </head>
 
 <body>
-    <div id="wrapper">
-        <!-- 사이드 바 -->
-        <%@ include file="../serve/sidebar.jsp" %>
 
-        <!-- content wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <!-- main -->
-            <div id="content">
-                <!-- topbar -->
-                <%@ include file="../serve/topbar.jsp" %>
+	<%@ include file="../serve/header.jsp"%>
+	<!-- content wrapper -->
 
-                <!-- main 본문  -->
-                <div class="container-fluid">
-                    <!-- main 본문을 한 줄로 묶기 -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">지원 현황</h1>
-                    </div>
-                    <div class="row">
-                        <!--  실제 내용 삽입 -->
+	<!-- main 본문  -->
+	<div class="container">
+		<div class="row">
+			<h1>지원현황 관리</h1>
+		</div>
+		<div class="row">
+			<ul>
+				<li>공고는 5개까지 작성 가능합니다</li>
+				<li>공고등록 제한규정에 해당될 경우 사전 동의 없이 공고를 삭제/수정 할 수 있습니다.</li>
+			</ul>
 
-                        <div class="card-body">
-                            <div class="table-responsive">
+		</div>
+		<div class="row">
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<button type="submit" class="btn btn-outline-primary" style="float: right;">선택삭제</button>
+						</tr>
+						<tr>
+							<th><input type="checkbox" class="selectAllMembers" /></th>
+							<th>공고글 제목</th>
+							<th>이력서 제목</th>
+							<th>메모</th>
+							<th>지원날짜</th>
+							<th>결과</th>
+							<th>취소하기</th>
+						</tr>
+					</thead>
+					<tbody>
+						<%
+							ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers");
+							for (int i = 0; i < volunteers.size(); i++) {
+								Volunteer volunteer = volunteers.get(i);
 
-                                <!-- 테이블 -->
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-
-                                        <!-- 제목 -->
-                                        <tr>
-                                            <th style="width:10%">지원일</th>
-                                            <th style="width:25%">지원내역</th>
-                                            <th style="width:10%">지원방법</th>
-                                            <th style="width:10%">열람여부</th>
-                                            <th style="width:10%">게재상태</th>
-                                            <th style="width:10%">지원상태</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        <!-- 1번째 -->
-                                        <tr>
-                                            <td>2008-12-19</td>
-                                            <td><a href="#">버거킹</a></td>
-                                            <td>온라인지원</td>
-                                            <td>미열람</td>
-                                            <td>마감</td>
-                                            <td><button type="submit"
-                                                    class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
-                                        </tr>
-
-                                        <!-- 두번째 -->
-                                        <tr>
-                                            <td>2008-12-19</td>
-                                            <td><a href="#">버거킹</a></td>
-                                            <td>온라인지원</td>
-                                            <td>미열람</td>
-                                            <td>마감</td>
-                                            <td><button type="submit"
-                                                    class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
-                                        </tr>
-
-                                        <!-- 세번째 -->
-                                        <tr>
-                                            <td>2008-12-19</td>
-                                            <td><a href="#">버거킹</a></td>
-                                            <td>온라인지원</td>
-                                            <td>미열람</td>
-                                            <td>마감</td>
-                                            <td><button type="submit"
-                                                    class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
-                                        </tr>
-
-                                        <!-- 4 -->
-                                        <tr>
-                                            <td>2008-12-19</td>
-                                            <td><a href="#">버거킹</a></td>
-                                            <td>온라인지원</td>
-                                            <td>미열람</td>
-                                            <td>마감</td>
-                                            <td><button type="submit"
-                                                    class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
-                                        </tr>
-
-                                        <!-- 5 -->
-                                        <tr>
-                                            <td>2008-12-19</td>
-                                            <td><a href="#">버거킹</a></td>
-                                            <td>온라인지원</td>
-                                            <td>미열람</td>
-                                            <td>마감</td>
-                                            <td><button type="submit"
-                                                    class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
-                                        </tr>
-
-                                        <!-- 6 -->
-                                        <tr>
-                                            <td>2008-12-19</td>
-                                            <td><a href="#">버거킹</a></td>
-                                            <td>온라인지원</td>
-                                            <td>미열람</td>
-                                            <td>마감</td>
-                                            <td><button type="submit"
-                                                    class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
-                                        </tr>
-
-                                        <!-- 7 -->
-                                        <tr>
-                                            <td>2008-12-19</td>
-                                            <td><a href="#">버거킹</a></td>
-                                            <td>온라인지원</td>
-                                            <td>미열람</td>
-                                            <td>마감</td>
-                                            <td><button type="submit"
-                                                    class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
-                                        </tr>
-
-                                        <!-- 8 -->
-                                        <tr>
-                                            <td>2008-12-19</td>
-                                            <td><a href="#">버거킹</a></td>
-                                            <td>온라인지원</td>
-                                            <td>미열람</td>
-                                            <td>마감</td>
-                                            <td><button type="submit"
-                                                    class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
-                                        </tr>
-
-                                        <!-- 9 -->
-                                        <tr>
-                                            <td>2008-12-19</td>
-                                            <td><a href="#">버거킹</a></td>
-                                            <td>온라인지원</td>
-                                            <td>미열람</td>
-                                            <td>마감</td>
-                                            <td><button type="submit"
-                                                    class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
-                                        </tr>
-
-                                        <!-- 10 -->
-                                        <tr>
-                                            <td>2008-12-19</td>
-                                            <td><a href="#">버거킹</a></td>
-                                            <td>온라인지원</td>
-                                            <td>미열람</td>
-                                            <td>마감</td>
-                                            <td><button type="submit"
-                                                    class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-
-                                <div class="text-center" style="float: left;">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1"
-                                                aria-disabled="true">Previous</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+								int recruit_id = volunteer.getRecruit_id();
+								String title = volunteer.getRecruit_title();
+								String individual_id = volunteer.getIndividual_id();
+								String resume_title = volunteer.getResume_title();
+								String memo = volunteer.getMemo();
+								String date = volunteer.getDate();
+								String result = volunteer.getResult();
+						%>
 
 
-                    </div><!-- 끝 실제 내용 삽입 -->
-                </div><!-- 끝 main 본문  -->
-            </div><!-- 끝 main -->
-            <!-- footer -->   
-            <%@ include file="../serve/footer.jsp" %>
-        </div><!-- 끝 content wrapper -->
-    </div><!-- 끝  wrapper -->
+						<tr>
+							<td><input type="checkbox" class="memberChk"
+								onclick='OnOffMemberAllClickBtn()'></td>
+							<td><%=title%></td>
+							<td><%=resume_title%></td>
+							<td><%=memo%></td>
+							<td><%=date%></td>
+							<%
+								if (result == null) {
+							%>
+
+
+							<td>미정</td>
+							<td><button type="submit" class="btn btn-outline-danger">취소하기</button></td>
+
+
+
+							<%
+								} else {
+							%>
+							<td><%=result%></td>
+							<td>취소 불가</td>
+							<%
+								}
+							%>
+
+						</tr>
+						<%
+							}
+						%>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+	<%@ include file="../serve/footer.jsp"%>
+	<script>
+		var selectAll = document.querySelector(".selectAllMembers");
+		selectAll.addEventListener('click', function() {
+			var objs = document.querySelectorAll(".memberChk");
+			for (var i = 0; i < objs.length; i++) {
+				objs[i].checked = selectAll.checked;
+			}
+			;
+		}, false);
+
+		var objs = document.querySelectorAll(".memberChk");
+		for (var i = 0; i < objs.length; i++) {
+			objs[i].addEventListener('click', function() {
+				var selectAll = document.querySelector(".selectAllMembers");
+				for (var j = 0; j < objs.length; j++) {
+					if (objs[j].checked === false) {
+						selectAll.checked = false;
+						return;
+					}
+					;
+				}
+				;
+				selectAll.checked = true;
+			}, false);
+		}
+	</script>
 </body>
 
 </html>

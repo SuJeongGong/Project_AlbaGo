@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Individual"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,51 +9,65 @@
 <title>회원정보 수정</title>
 </head>
 <body>
-<div id="wrapper">
-	<!-- 사이드 바 -->
-	<%@ include file="../serve/sidebar.jsp" %>
+<%@ include file="../serve/header.jsp" %>
+	<%
+		Individual individual = (Individual)request.getAttribute("Iinfo");
 	
-	<!-- content wrapper -->
-	<div id="content-wrapper" class="d-flex flex-column">
-		<!-- main -->
-   		<div id ="content">
-   			<!-- topbar -->
-			<%@ include file="../serve/topbar.jsp" %>
-			
-			<!-- main 본문  -->
+		String id = individual.getIndividual_id();
+		String name = individual.getName();
+		String birth = individual.getBirth();
+		String gender = individual.getGender();
+		String date = individual.getDate();//가입날짜
+		String education = individual.getEducation();
+		String phone = individual.getPhone();
+	
+	%>
+				<!-- main 본문  -->
 			<div class="container-fluid">
+			<br>
 				<div class="d-sm-flex align-items-center justify-content-between mb-4">
-            		<h1 class="h3 mb-0 text-gray-800">개인 회원 정보</h1>
+            		<h1 class="h3 mb-0 text-gray-800">기업 회원 정보</h1>
           		</div>
 				<!-- main 본문을 한 줄로 묶기 -->
 				<div class="row" >
-					<form action="" class="col-xl-12" >
+					<form action="<%=request.getContextPath() %>/individual/account/update" name = "individual" id  = "individual" class="col-xl-11" >
 	               		<table class="table table-bordered ">
 	               			<tr>
-	               				<th>회원이름</th>
-	               				<td><input type="text" class="form-control" id="name" value="공수정"></td>
+	               				<th>아이디</th>
+	               				<td><input type="text" name ="individual_id" id ="individual_id" value="<%=id%>" ></td>
 	               			</tr>
 	               			<tr>
-	               				<th>전화번호</th>
-	               				<td><input type="text" class="form-control" id="phone" value="010-1234-5678"></td>
+	               				<th>이름</th>
+	               				<td><input type="text" class="form-control" name = "name" id="name" value="<%=name%>"></td>
 	               			</tr>
 	               			<tr>
-	               				<th>이메일</th>
-	               				<td><input type="email" class="form-control" id="e_mail" value="abcd"></td>
+	               				<th>성별</th>
+	               				<td><input type="text" class="form-control" name = "gender" id="gender" value="<%=gender%>"></td>
 	               			</tr>
 	               			<tr>
-	               				<th>주소</th>
-	               				<td><input type="text" class="form-control" id="address" value="서울시 종로구 행복동 123-4번지"></td>
+	               				<th>연락처</th>
+	               				<td><input type="text" class="form-control" name = "phone" id="phone" value="<%=phone%>"></td>
+	               			</tr>
+	               			<tr>
+	               				<th>생년월일</th>
+	               				<td><input type="text" class="form-control" name = "birth" id="birth" value="<%=birth %>"></td>
+	               			</tr>
+	               			<tr>
+	               				<th>최종학력</th>
+	               				<td><input type="text" class="form-control" name = "education" id="education" value="<%=education %>"></td>
+	               			</tr>
+	               			<tr>
+	               				<th>가입날짜</th>
+	               				<td><input type ="text" name ="date" id ="date" value="<%=date%>"><%=date%></td>
 	               			</tr>
 	               		</table>
 	               		<input type ="submit" class ="btn btn-primary " value="수정" >
+	               		<a class="btn btn-primary" href="<%=request.getContextPath()%>/individual/mypage">뒤로가기 </a>
+	               		<a class="btn btn-primary" href="<%=request.getContextPath()%>/main">메인으로 </a>
 	               	</form>
             	</div>
+			<br>
 			</div><!-- 끝 main 본문  -->
-   		</div><!-- 끝 main -->
-   		<!-- footer -->
-		<%@ include file="../serve/footer.jsp" %>
-   </div><!-- 끝 content wrapper -->
-</div><!-- 끝  wrapper -->
+	<%@ include file="../serve/footer.jsp"%>
 </body>
 </html>

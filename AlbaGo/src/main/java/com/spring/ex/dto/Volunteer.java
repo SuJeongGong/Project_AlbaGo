@@ -1,34 +1,18 @@
 package com.spring.ex.dto;
 
+import lombok.Data;
+
+@Data
 public class Volunteer {
 	int volunteer_id;//지원 id 키값
-	int boardAnnounce_id;//공고글 id
+	int recruit_id;//공고글 id
+	String recruit_title;//공고글 id
 	String enterprise_id;//기업id
+	String individual_id;//개인 id - 지원한 사람
+	String resume_title;//지원할 때 사용한 이력서 제목
 	String date; //지원 날짜
-	public int getVolunteer_id() {
-		return volunteer_id;
-	}
-	public void setVolunteer_id(int volunteer_id) {
-		this.volunteer_id = volunteer_id;
-	}
-	public int getBoardAnnounce_id() {
-		return boardAnnounce_id;
-	}
-	public void setBoardAnnounce_id(int boardAnnounce_id) {
-		this.boardAnnounce_id = boardAnnounce_id;
-	}
-	public String getEnterprise_id() {
-		return enterprise_id;
-	}
-	public void setEnterprise_id(String enterprise_id) {
-		this.enterprise_id = enterprise_id;
-	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
-	}
-	
+	String title;//지원한 공고글의 제목
+	String memo;//메모
+	String result;//결과
 	
 }

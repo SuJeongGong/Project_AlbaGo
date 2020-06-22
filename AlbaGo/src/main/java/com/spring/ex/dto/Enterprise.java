@@ -15,7 +15,7 @@ public class Enterprise {
 	String category;//기업카테고리
 	int resume_count;//이력서보는 횟수
 	int up_count;//up 횟수
-	String date;
+	String date;//가입날짜
 	
 	
 }

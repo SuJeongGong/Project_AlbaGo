@@ -1,19 +1,23 @@
+<%@page import="com.spring.ex.dto.Volunteer"%>
+<%@page import="com.spring.ex.dto.Resume"%>
+<%@page import="com.spring.ex.dto.Scrap_Individual"%>
+<%@page import="com.spring.ex.dto.Scrap_enterprise"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.spring.ex.dto.Individual"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+                            <%
+                            Individual  Iinfo = (Individual)request.getAttribute("Iinfo");
+                            %>
+<title><%=Iinfo.getIndividual_id()%>님의 마이페이지</title>
 </head>
 <body>
 	<%@ include file="../serve/header.jsp" %>
-	
-	
-	
-	
-	
-	
     <div class="job_details_area">
         <div class="container">
             <div class="row">
@@ -22,14 +26,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/individual/account">
                                         <h4>회원정보 수정</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#"> 수정</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/individual/account"> 수정</a>
                                 </div>
                             </div>
                         </div>
@@ -37,12 +41,14 @@
                     <div class="descript_wrap white-bg">
                         <div class="single_wrap">
                             <p>안전한 정보보호를 위해 연락처 일부만 확인가능하며,<br/>수정화면에서 정확한 연락처 확인이 가능합니다.</p>
-                            <ul>
-                                <li>이름 : <span>공수정</span></li>
-                                <li>이메일 : <span>avsd@naver.com</span></li>
-                                <li>연락처  : <span>010-****-6425</span></li>
-                                <li>주소  : <span>서울특별시 동대문구 ******</span></li>
-                            </ul>
+
+                                <li>아이디 : <span><%=Iinfo.getIndividual_id()%></span></li>
+                                <li>이름 : <span><%=Iinfo.getName()%></span></li>
+                                <li>성별 : <span><%=Iinfo.getGender()%></span></li>
+                                <li>연락처 : <span><%=Iinfo.getPhone()%></span></li>
+                                <li>생년월일 : <span><%=Iinfo.getBirth()%></span></li>
+                                <li>최종학력 : <span><%=Iinfo.getEducation()%></span></li>
+                                <li>가입날짜 : <span><%=Iinfo.getDate()%></span></li>
                         </div>
                     </div>
                 </div>
@@ -51,14 +57,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/individual/profile/list">
                                         <h4>이력서 관리</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#"> 자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/individual/profile/list"> 자세히</a>
                                 </div>
                             </div>
                         </div>
@@ -71,18 +77,19 @@
 								<tr>
 									<th>제목</th><th>작성날짜</th>
 								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
+													<%
+							ArrayList<Resume> resumes = (ArrayList)request.getAttribute("resumes");
+								for(int i =0;i<resumes.size();i++){
+									Resume resume=  resumes.get(i);
+									String title =resume.getTitle();
+									String date = resume.getDate();
+									%>
+									<tr>
+										<td><%=title %></td><td><%=date %></td>
+									</tr>									
+									<%
+								}
+							%>
 								
 							</table>
                         </div>
@@ -97,14 +104,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/individual/support">
                                         <h4>지원 목록</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#">자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/individual/support">자세히</a>
                                 </div>
                             </div>
                         </div>
@@ -118,12 +125,19 @@
 								<tr>
 									<th>제목</th><th>작성날짜</th>
 								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>								
+	<%
+							ArrayList<Volunteer> volunteers = (ArrayList)request.getAttribute("volunteers");
+								for(int i =0;i<volunteers.size();i++){
+									Volunteer volunteer=  volunteers.get(i);
+									String title =volunteer.getRecruit_title();
+									String date = volunteer.getDate();
+									%>
+									<tr>
+										<td><%=title %></td><td><%=date.split(" ")[0] %></td>
+									</tr>									
+									<%
+								}
+							%>								
 							</table>
                         </div>
                     </div>
@@ -133,14 +147,14 @@
                         <div class="single_jobs white-bg d-flex justify-content-between">
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
-                                    <a href="#">
+                                    <a href="<%=request.getContextPath() %>/individual/scrap">
                                         <h4>스크랩</h4>
                                     </a>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="#">자세히</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/individual/scrap">자세히</a>
                                 </div>
                             </div>
                         </div>
@@ -155,18 +169,19 @@
 								<tr>
 									<th>제목</th><th>작성날짜</th>
 								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
-								<tr>
-									<td>제목</td><td>작성날짜</td>
-								</tr>
+							<%
+							ArrayList<Scrap_Individual> scraps = (ArrayList)request.getAttribute("scraps");
+								for(int i =0;i<scraps.size();i++){
+									Scrap_Individual scrap=  scraps.get(i);
+									String title =scrap.getTitle();
+									String date = scrap.getDate();
+									%>
+									<tr>
+										<td><%=title %></td><td><%=date %></td>
+									</tr>									
+									<%
+								}
+							%>
 								
 							</table>
                         </div>

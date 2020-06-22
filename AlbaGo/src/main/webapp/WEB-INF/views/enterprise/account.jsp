@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Enterprise"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,11 +9,21 @@
 </head>
 <body>
 	<%@ include file="../serve/header.jsp" %>
+	<%
+		Enterprise enterprise = (Enterprise)request.getAttribute("Einfo");
 	
+		String id = enterprise.getEnterprise_id();
+		String manager_name = enterprise.getManager_name();
+		String manager_phone = enterprise.getManager_phone();
+		String category = enterprise.getCategory();
+		String date = enterprise.getDate();
+		String business_number = enterprise.getBusiness_number();
+		String name = enterprise.getName();
+		int resume_count = enterprise.getResume_count();
+		int up_count = enterprise.getUp_count();
+		
 	
-	
-	
-	
+	%>
 				<!-- main 본문  -->
 			<div class="container-fluid">
 			<br>
@@ -21,34 +32,48 @@
           		</div>
 				<!-- main 본문을 한 줄로 묶기 -->
 				<div class="row" >
-					<form action="" class="col-xl-11" >
+					<form action="<%=request.getContextPath() %>/enterprise/account/update" name = "enterprise" id  = "enterprise" class="col-xl-11" >
 	               		<table class="table table-bordered ">
 	               			<tr>
+	               				<th>아이디</th>
+	               				<td><input type="text" name ="enterprise_id" id ="enterprise_id" value="<%=id%>" ></td>
+	               			</tr>
+	               			<tr>
 	               				<th>기업이름</th>
-	               				<td><input type="text" class="form-control" id="name" value="LG"></td>
+	               				<td><input type="text" class="form-control" name = "name" id="name" value="<%=name%>"></td>
 	               			</tr>
 	               			<tr>
-	               				<th>전화번호</th>
-	               				<td><input type="text" class="form-control" id="phone" value="02"></td>
+	               				<th>사업자 번호</th>
+	               				<td><input type="text" class="form-control" name = "business_number" id="business_number" value="<%=business_number%>"></td>
 	               			</tr>
 	               			<tr>
-	               				<th>이메일</th>
-	               				<td><input type="email" class="form-control" id="e_mail" value="abcd"></td>
-	               			</tr>
-	               			<tr>
-	               				<th>주소</th>
-	               				<td><input type="text" class="form-control" id="address" value="서울시 종로구 행복동 123-4번지"></td>
+	               				<th>카테고리</th>
+	               				<td><input type="text" class="form-control" name = "category" id="category" value="<%=category%>"></td>
 	               			</tr>
 	               			<tr>
 	               				<th>담당자 이름</th>
-	               				<td><input type="text" class="form-control" id="name" value="공수정"></td>
+	               				<td><input type="text" class="form-control" name = "manager_name" id="manager_name" value="<%=manager_name %>"></td>
 	               			</tr>
 	               			<tr>
 	               				<th>담당자 연락처</th>
-	               				<td><input type="text" class="form-control" id="name" value="010-1234-5678"></td>
+	               				<td><input type="text" class="form-control" name = "manager_phone" id="manager_phone" value="<%=manager_phone %>"></td>
+	               			</tr>
+	               			<tr>
+	               				<th>가입날짜</th>
+	               				<td><input type ="text" name ="date" id ="date" value="<%=date%>"><%=date%></td>
+	               			</tr>
+	               			<tr>
+	               				<th>연락처 읽기 횟수</th>
+	               				<td><input type ="text" name ="resume_count" id ="resume_count" value="<%=resume_count%>"><%=resume_count%></td>
+	               			</tr>
+	               			<tr>
+	               				<th>UP 횟수</th>
+	               				<td><input type ="text" name ="up_count" id ="up_count" value="<%=up_count%>"><%=up_count%></td>
 	               			</tr>
 	               		</table>
 	               		<input type ="submit" class ="btn btn-primary " value="수정" >
+	               		<a class="btn btn-primary" href="<%=request.getContextPath()%>/enterprise/mypage">뒤로가기 </a>
+	               		<a class="btn btn-primary" href="<%=request.getContextPath()%>/main">메인으로 </a>
 	               	</form>
             	</div>
 			<br>
@@ -59,7 +84,7 @@
 	
 	
 	
-	<%@ include file="../serve/footer.jsp" %>
+	<%@ include file="../serve/footer.jsp"%>
 
 </body>
 </html>
