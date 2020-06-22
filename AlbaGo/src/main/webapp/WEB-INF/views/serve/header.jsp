@@ -99,16 +99,6 @@
                                                     <li><a href="<%=recruitPath%>">IT/컴퓨터</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">테마</a>
-                                                <ul class="submenu">
-                                                    <li><a href="<%=recruitPath%>">주휴수당</a></li>
-                                                    <li><a href="<%=recruitPath%>">대학생</a></li>
-                                                    <li><a href="<%=recruitPath%>">주부</a></li>
-                                                    <li><a href="<%=recruitPath%>">청소년</a></li>
-                                                    <li><a href="<%=recruitPath%>">외국인</a></li>
-                                                    <li><a href="<%=recruitPath%>">장년</a></li>
-                                                </ul>
-                                            </li>
                                             <span>|</span>
                                             <li  class="submenu">인재</i>
                                             <li><a href="<%=resumePath%>">지역 </a>
@@ -132,7 +122,7 @@
                                                     <li><a href="<%=resumePath%>">전국</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">카테고리 </a>
+                                            <li><a href="<%=resumePath%>">카테고리 </a>
                                                 <ul class="submenu">
                                                     <li><a href="<%=resumePath%>">외식/음료</a></li>
                                                     <li><a href="<%=resumePath%>">유통/판매</a></li>

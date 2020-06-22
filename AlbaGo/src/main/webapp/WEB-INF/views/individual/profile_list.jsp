@@ -73,7 +73,7 @@ function deleteResumes() {
 				<table class="table">
 					<thead>
 						<tr>
-							<a href="<%=request.getContextPath()%>/individual/resume/write"
+							<a href="<%=request.getContextPath()%>/individual/profile/write"
 								class="btn btn-outline-primary" style="float: right;">이력서 등록</a>
 							&ensp;&ensp;
 							<button type="submit" class="btn btn-outline-primary" onclick="deleteResumes()"
