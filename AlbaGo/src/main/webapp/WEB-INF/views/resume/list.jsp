@@ -1,3 +1,5 @@
+<%@page import="com.spring.ex.dto.BoardResume1"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -145,6 +147,7 @@
                                             <option value="2">조회수순 </option>
                                             <option value="4">지원순</option>
                                         </select>
+                                        <a href="<%=request.getContextPath() %>/resume/write" class="boxed-btn3">글쓰기</a>
                                     </div>
                                 </div>
                             </div>
@@ -153,30 +156,48 @@
 
                     <div class="job_lists m-0">
                         <div class="row">
-
+							
+							<%
+								ArrayList<BoardResume1> resumes = (ArrayList<BoardResume1>)request.getAttribute("resumes");
+								for(int i=0; i<resumes.size(); i++) {
+									BoardResume1 resume = resumes.get(i);
+									String title = resume.getTitle();
+									String date = resume.getDate();
+									String place = resume.getPlace();
+									int views = resume.getViews();
+									int board_resume_id = resume.getBoard_resume_id();
+								
+							%>
+							
                             <div class="col-lg-12 col-md-12">
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
 
                                         <div class="jobs_conetent">
-                                            <a href="job_details.html"><h4>글제목 </h4></a>
+                                            <a href="job_details.html"><h4><%=title %> </h4></a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
-                                                    <p> <i class="fa fa-map-marker"></i> 경기도 의정부시</p>
+                                                    <p> <i class="fa fa-map-marker"></i><%=place %></p>
                                                 </div>
                                                 <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i>2020-05-30</p>
+                                                    <p> <i class="fa fa-clock-o"></i><%=date %></p>
+                                                </div>
+                                                <div class="location">
+                                                	<p> 조회수 : <%=views %></p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="jobs_right">
                                         <div class="apply_now">
-                                            <a href="job_details.html" class="boxed-btn3">글보러가기</a>
+                                            <a href="<%=request.getContextPath() %>/resume/content?board_resume_id=<%=board_resume_id %>" class="boxed-btn3">글보러가기</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <%
+								}
+                            %>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">

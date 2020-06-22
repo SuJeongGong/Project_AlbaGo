@@ -7,7 +7,9 @@ public interface JoinDAO {
 	
 	//회원가입
 	int insertEnterprise(Enterprise enterprise);//기업
+	int selectCheckId_e(String e_id);//기업 아이디 체크
 	int insertIndividual(Individual individual);//개인
+	int selectCheckId(String id);//개인아이디체크
 	
 	
 	//찾기

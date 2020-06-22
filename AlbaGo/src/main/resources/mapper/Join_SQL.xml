@@ -10,6 +10,7 @@
 		name, 
 		business_number,
 		manager_name,
+		address,
 		manager_phone,
 		category,
 		up_count,
@@ -22,6 +23,7 @@
    		#{name},
    		#{business_number},
    		#{manager_name},
+   		#{address},
    		#{manager_phone},
    		#{category},
    		0,
@@ -67,6 +69,16 @@
 	</select>
 	<select id="selectCheckIndividualPw"  resultType ="int" parameterType = "String">
 		SELECT COUNT(*) FROM individual WHERE password= #{pw}
+	</select>
+	
+	
+	<!-- 기업 , 개인 아이디 중복 확인 -->
+	<select id="selectCheckId" parameterType="string" resultType="int">
+		select count(*) from individual where individual_id=#{id}
+	</select>
+	
+	<select id="selectCheckId_e" parameterType="string" resultType="int">
+		select count(*) from enterprise where enterprise_id=#{e_id}
 	</select>
 
 </mapper>
