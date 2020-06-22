@@ -41,6 +41,14 @@
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
+                                	<%
+                                	String id = request.getSession().getAttribute("id").toString();
+                                	
+                                	System.out.println(id + "세션에서 가져온");
+                                	System.out.println(board_content.getIndividual_id() +"디비에서 가져온");
+                                	if(id.equals(board_content.getIndividual_id())) { 
+                                		%> <a class="btn btn-info edit w-10" href="#">수정하기</a> <a class="btn btn-info edit w-10" href="#">삭제하기</a> <%
+                                	} %>
                                     <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
                                 </div>
                             </div>

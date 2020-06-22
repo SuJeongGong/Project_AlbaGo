@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ex.dao.BoardResumeDAO;
 import com.spring.ex.dto.BoardResume;
+import com.spring.ex.dto.Resume;
 import com.spring.ex.services.BoardResumeService;
+import com.spring.ex.services.ResumeService;
 @Controller
 @RequestMapping("/resume")
 public class BoardResumeController {
 	
 	@Autowired
 	BoardResumeService boardResumeService;
+	@Autowired
+	ResumeService resumeService;
 	
 	@RequestMapping("/list")//리스트
 	public String list(Model m) {
@@ -65,18 +69,28 @@ public class BoardResumeController {
 	
 	
 	@RequestMapping("/write")//작성화면
-	public String write(HttpServletRequest request) {
+	public String write(HttpServletRequest request, Model m) {
 		String id = request.getSession().getAttribute("id").toString(); //로그인한 사람
 		String type = request.getSession().getAttribute("type").toString(); //로그인한 회원 타입 - 기업, 개인
+		
+		ArrayList<Resume> resumes = resumeService.selectResume(id);
 		System.out.println(id);
 		System.out.println(type);
 		System.out.println("잘되라");
+		
+		m.addAttribute("resume", resumes);
+		
 		return "/resume/write";
 	}
 	
 	
 	@RequestMapping("/content")//보는화면
 	public String content(Model m, HttpServletRequest request) {
+		
+		String id = request.getSession().getAttribute("id").toString();
+		System.out.println(id);
+		
+		System.out.println(request.getParameter("board_resume_id").toString());
 		String board_resume_id = request.getParameter("board_resume_id").toString();
 		
 		System.out.println("될꺼야");

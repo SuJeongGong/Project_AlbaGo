@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Resume_Content {
+	String individual_id;
 	String name;			//개인 이름
 	String gender;			//성별
 	String birth;			//나이
