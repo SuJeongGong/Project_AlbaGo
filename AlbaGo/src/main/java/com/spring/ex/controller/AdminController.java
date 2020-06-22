@@ -10,7 +10,7 @@ public class AdminController {
 	public String main() {
 		return "admin/main";
 	}
-	@RequestMapping("/recruit")//공고글 게시판 - 관리자ver
+	@RequestMapping("/recruit")//공고글 게시판 - 관리자 ver
 	public String recruit() {
 		return "admin/recruit";
 	}

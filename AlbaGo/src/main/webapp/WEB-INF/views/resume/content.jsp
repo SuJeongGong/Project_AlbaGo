@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Resume_Content"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +10,9 @@
 <body>
 	<%@ include file="../serve/header.jsp" %>
 	
-	
+	<%
+		Resume_Content board_content = (Resume_Content)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
+	%>
 	
 	
 	
@@ -24,14 +27,14 @@
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
                                     <a href="#">
-                                        <h4>인재글 제목</h4>
+                                        <h4><%=board_content.getTitle() %></h4>
                                     </a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i>서울 특별시</p>
+                                            <p> <i class="fa fa-map-marker"></i><%=board_content.getPlace() %></p>
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i>2020-05-30</p>
+                                            <p> <i class="fa fa-clock-o"></i><%=board_content.getDate()%></p>
                                         </div>
                                     </div>
                                 </div>
@@ -47,11 +50,11 @@
                         <div class="single_wrap">
                             <h4>희망조건</h4>
                             <ul>
-                                <li>급여 : <span>시급 : 8,590원</span></li>
-                                <li>근무 기간 : <span>6개월 이상</span></li>
-                                <li>근무 요일 : <span>월, 화, 수, 목, 금</span></li>
-                                <li>근무 시간 : <span>협의</span></li>
-                                <li>업직종 : <span>유통, 판매 기타</span></li>
+                                <li>급여 : <span><%=board_content.getSalary_type() %> : <%=board_content.getSalary_amount() %>원</span></li>
+                                <li>근무 기간 : <span><%=board_content.getTerm() %></span></li>
+                                <li>근무 요일 : <span><%=board_content.getDay() %></span></li>
+                                <li>근무 시간 : <span><%=board_content.getTime() %></span></li>
+                                <li>업직종 : <span><%=board_content.getCategory() %></span></li>
                             </ul>
                         </div>
                         <div class="single_wrap">
@@ -77,7 +80,7 @@
                         </div>
                         <div class="single_wrap">
                             <h4></h4>
-                            <p>설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글</p>
+                            <p><%=board_content.getMemo() %></p>
                         </div>
                     </div>
                 </div>
@@ -88,12 +91,11 @@
                         </div>
                         <div class="job_content">
                             <ul>
-                                <li>이름 : <span>2020-06-30</span></li>
-                                <li>성별 : <span>여성</span></li>
-                                <li>연령 : <span>23살</span></li>
-                                <li>최종학력 : <span>고등학교 졸업</span></li>
-                                <li>연락처 : <span>010-****-****</span></li>
-                                <li>연락 가능한 시간 : <span>00:00~24:00</span></li>
+                                <li>이름 : <span><%=board_content.getName() %></span></li>
+                                <li>성별 : <span><%=board_content.getGender() %></span></li>
+                                <li>연령 : <span><%=board_content.getBirth() %></span></li>
+                                <li>최종학력 : <span><%=board_content.getEducation() %></span></li>
+                                <li>연락처 : <span><%=board_content.getPhone() %></span></li>
                             </ul>
                         </div>
                         <form action="#">
