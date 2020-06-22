@@ -23,4 +23,5 @@ public class Recruit_Content {
 	String title;			//공고글 제목
 	String memo;			//공고글 내용
 	String date;			//공고글 쓴 날짜
+	int delete_check;	//삭제되었는지 안되었는지
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ex.dao.BoardRecruitDAO;
 import com.spring.ex.dto.BoardRecruit;
-import com.spring.ex.dto.BoardRecruit1;
 import com.spring.ex.services.BoardRecruitService;
 
 @Controller
@@ -25,7 +24,7 @@ public class BoardRecruitController {
 	
 	@RequestMapping("/list")//리스트
 	public String list(Model m) {
-		ArrayList<BoardRecruit1> recruits = boardRecruitService.selectList();
+		ArrayList<BoardRecruit> recruits = boardRecruitService.selectList();
 		
 		m.addAttribute("recruits", recruits);
 		

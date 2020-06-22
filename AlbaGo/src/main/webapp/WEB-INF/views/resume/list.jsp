@@ -1,4 +1,4 @@
-<%@page import="com.spring.ex.dto.BoardResume1"%>
+<%@page import="com.spring.ex.dto.BoardResume"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -158,9 +158,9 @@
                         <div class="row">
 							
 							<%
-								ArrayList<BoardResume1> resumes = (ArrayList<BoardResume1>)request.getAttribute("resumes");
+								ArrayList<BoardResume> resumes = (ArrayList<BoardResume>)request.getAttribute("resumes");
 								for(int i=0; i<resumes.size(); i++) {
-									BoardResume1 resume = resumes.get(i);
+									BoardResume resume = resumes.get(i);
 									String title = resume.getTitle();
 									String date = resume.getDate();
 									String place = resume.getPlace();

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.BoardRecruitDAO;
 import com.spring.ex.dto.BoardRecruit;
-import com.spring.ex.dto.BoardRecruit1;
 import com.spring.ex.dto.Recruit_Content;
 
 @Service
@@ -20,7 +19,7 @@ public class BoardRecruitService {
 		return boardRecruitDAO.insertBoard_recruit(boardrecruit);
 	}
 
-	public ArrayList<BoardRecruit1> selectList() {
+	public ArrayList<BoardRecruit> selectList() {
 		return boardRecruitDAO.selectList();
 	}
 

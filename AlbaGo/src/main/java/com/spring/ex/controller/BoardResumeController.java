@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ex.dao.BoardResumeDAO;
 import com.spring.ex.dto.BoardResume;
-import com.spring.ex.dto.BoardResume1;
 import com.spring.ex.services.BoardResumeService;
 @Controller
 @RequestMapping("/resume")
@@ -24,7 +23,7 @@ public class BoardResumeController {
 	
 	@RequestMapping("/list")//리스트
 	public String list(Model m) {
-		ArrayList<BoardResume1> resumes = boardResumeService.selectList();
+		ArrayList<BoardResume> resumes = boardResumeService.selectList();
 		
 		m.addAttribute("resumes", resumes);
 		

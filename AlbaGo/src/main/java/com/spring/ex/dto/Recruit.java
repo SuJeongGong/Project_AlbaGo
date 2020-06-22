@@ -14,4 +14,5 @@ public class Recruit {
 	String date; //작성날짜
 	String title; //제목
 	String day; //요일
+	int delete_check; //삭제 되었는지 안되어있는지
 }
