@@ -150,6 +150,7 @@
                                                 </ul>
                                             </li>
                                             <li><a href="<%=communityPath %>">커뮤니티</a></li>
+                                            <li><a href="<%=productPath %>">상품</a></li>
 
 
                                         </ul>
