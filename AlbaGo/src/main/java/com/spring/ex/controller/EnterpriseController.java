@@ -155,6 +155,10 @@ public class EnterpriseController {
 		}
 		return page;
 	}
+	
+	
+	
+	//아약스 처리
 
 	@RequestMapping(value = "/volunteer/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String updateResult(String result, int id) {

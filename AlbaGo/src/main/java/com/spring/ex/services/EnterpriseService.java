@@ -64,16 +64,8 @@ public class EnterpriseService {
 	}
 
 	public int deleteScraps(ArrayList<String> ids) {
-		int res = 0;
 
-		for (int i = 0; i < ids.size(); i++) {
-
-			if (1 <= enterpriseDAO.deleteScrap(Integer.parseInt(ids.get(i)))) {
-				res = 1;
-			}
-		}
-
-		return res;
+		return forDeleteSQL(ids,"deleteRecruit");
 	}
 
 	public int deleteRecruit(int recruit_id) {
@@ -82,16 +74,26 @@ public class EnterpriseService {
 	}
 
 	public int deleteRecruits(ArrayList<String> ids) {
-		int res = 0;
 		System.out.println(ids);
 
-		for (int i = 0; i < ids.size(); i++) {
-
-			if (1 <= enterpriseDAO.deleteRecruit(Integer.parseInt(ids.get(i)))) {
-				res = 1;
+		return forDeleteSQL(ids,"deleteRecruit");
+	}
+	
+	
+	public int forDeleteSQL(ArrayList<String> ids,String methodName) {
+		int res = 0;
+		for(int i =0; i<ids.size();i++) {
+			if(methodName.equals("deleteRecruit")) {
+				if (1 <= enterpriseDAO.deleteRecruit(Integer.parseInt(ids.get(i)))) {
+					res = 1;
+				}
+			}
+			else if(methodName.equals("deleteScrap")) {
+				if (1 <= enterpriseDAO.deleteScrap(Integer.parseInt(ids.get(i)))) {
+					res = 1;
+				}
 			}
 		}
-
 		return res;
 	}
 }

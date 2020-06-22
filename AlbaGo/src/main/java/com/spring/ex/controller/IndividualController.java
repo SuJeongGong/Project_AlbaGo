@@ -1,13 +1,18 @@
 package com.spring.ex.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dao.EnterpriseDAO;
 import com.spring.ex.dto.Enterprise;
@@ -129,6 +134,61 @@ public class IndividualController {
 		page = "/individual/support";
 
 		return page;
+	}
+	  
+	
+	@RequestMapping(value = "/profile/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteRecruit(int resume_id) {
+		System.out.println(resume_id);// jsp 에서 가져온값
+		if (1 <= individualSerive.deleteResume(resume_id)) {
+			System.out.println("DB연결 성공!");
+		}
+		return;
+	}
+	
+	@RequestMapping(value = "/profile/deleteResumes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteRecruits(@RequestParam(value = "resume_ids[]") ArrayList<String> resume_ids) {
+		System.out.println(resume_ids);
+		if (1 <= individualSerive.deleteResume(resume_ids)) {
+			System.out.println("DB연결 성공!");
+		}
+		return;
+	}
+
+	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteScrap(int scrap_id) {
+		System.out.println(scrap_id);// jsp 에서 가져온값
+		if (1 <= individualSerive.deleteScrap(scrap_id)) {
+			System.out.println("DB연결 성공!");
+		}
+		return;
+	}
+
+	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteScraps(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_ids) {
+		System.out.println(scrap_ids);
+		if (1 <= individualSerive.deleteScrap(scrap_ids)) {
+			System.out.println("DB연결 성공!");
+		}
+		return;
+	}
+	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteVolunteer(int volunteer_id) {
+		System.out.println("asdfsd");
+		System.out.println(volunteer_id);// jsp 에서 가져온값
+		if (1 <= individualSerive.deleteVolunteer(volunteer_id)) {
+			System.out.println("DB연결 성공!");
+		}
+		return;
+	}
+	
+	@RequestMapping(value = "/deleteVolunteers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteVolunteers(@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
+		System.out.println(volunteer_ids);
+		if (1 <= individualSerive.deleteVolunteer(volunteer_ids)) {
+			System.out.println("DB연결 성공!");
+		}
+		return;
 	}
 
 }

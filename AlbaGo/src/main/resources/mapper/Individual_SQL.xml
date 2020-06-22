@@ -16,33 +16,38 @@
 		SELECT board_recruit.title AS title, 
 				scrap_individual.date AS DATE,
 				board_recruit.date AS recruit_date, 
+				scrap_individual.scrap_individual_id AS scrap_id, 
 				enterprise.name as name
+
 		from
 		scrap_individual, board_recruit , recruit,enterprise
 		<where>
 				scrap_individual.board_recruit_id =board_recruit.board_recruit_id
 			AND recruit.recruit_id = board_recruit.recruit_id
 			AND enterprise.enterprise_id = recruit.enterprise_id
+			and individual_id = #{id}
 	</where>
-		group by individual_id
-		HAVING individual_id = #{id}
 	</select>
 
 	<select id="selectVolunteer" parameterType="String"
 		resultType="Volunteer">
-		SELECT board_recruit.title AS title,
-				enterprise.name AS NAME,
-				resume.title AS tresume_title,
-				volunteer.date AS DATE,
-				volunteer.result
+	SELECT volunteer.board_recruit_id as recruit_id,
+				board_recruit.title as recruit_title,
+				volunteer.memo as memo,
+				volunteer.date as date,
+				volunteer.result as result,
+				resume.title as resume_title,
+				volunteer.volunteer_id as volunteer_id
 				
-		FROM board_recruit,enterprise,resume,volunteer,recruit
-		<where>board_recruit.recruit_id = recruit.recruit_id 
-			AND recruit.enterprise_id = enterprise.enterprise_id
-			AND volunteer.resume_id = resume.resume_id
+		FROM resume,volunteer,board_recruit,enterprise,recruit
+		<where>
+		resume.resume_id =volunteer.resume_id
 			AND volunteer.board_recruit_id = board_recruit.board_recruit_id
+			AND recruit.recruit_id = board_recruit.recruit_id
+			AND enterprise.enterprise_id = recruit.enterprise_id
 				AND volunteer.individual_id = #{id}
 		</where>
+
 	</select>
 
 	<select id="selectResume" parameterType="String" resultType="Resume">
@@ -50,6 +55,7 @@
 		FROM resume
 		<where>
 			individual_id = #{id}
+			and delete_check = 1
 		</where>
 	</select>
 
@@ -62,6 +68,24 @@
 			education = #{education}
 		<where>
 			individual_id = #{individual_id}
+		</where>
+	</update>
+	<delete id="deleteVolunteer" parameterType="int">
+		delete from volunteer
+		<where>
+			volunteer_id = #{volunteer_id}
+		</where>
+	</delete>
+	
+	<delete id ="deleteScrap" parameterType="int">
+		delete from Scrap_individual where scrap_individual_id = #{scrap_id}
+	</delete>
+
+	<update id="deleteResume" parameterType="int">
+		update resume 
+		set delete_CHECK = 0
+		<where>
+			resume_id = #{resume_id}
 		</where>
 	</update>
 </mapper>

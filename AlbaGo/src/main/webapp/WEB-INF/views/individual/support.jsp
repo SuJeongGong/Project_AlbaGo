@@ -9,6 +9,48 @@
 <head>
 <meta charset="UTF-8">
 <title>지원현황</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function deleteVolunteer(volunteer_id) {
+	console.log(volunteer_id);
+	$.ajax({
+		url : "./deleteVolunteer",
+		method : "GET",
+		data : {
+			volunteer_id:volunteer_id
+		},
+		completer : function(res) {
+			console.log(id);
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+function deleteVolunteers() {
+	var volunteer_ids = [];
+	$("input[name='volunteer_id']:checked").each(function(){
+		if(this.checked){
+			volunteer_ids.push($(this).val());
+			console.log($(this).val());
+		}
+	})
+	
+	$.ajax({
+		url : "./deleteVolunteers",
+		method : "GET",
+		data : {
+			volunteer_ids: volunteer_ids
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+
+</script>
 </head>
 
 <body>
@@ -23,8 +65,8 @@
 		</div>
 		<div class="row">
 			<ul>
-				<li>공고는 5개까지 작성 가능합니다</li>
-				<li>공고등록 제한규정에 해당될 경우 사전 동의 없이 공고를 삭제/수정 할 수 있습니다.</li>
+				<li>지원은 횟수 제한이 없습니다.</li>
+				<li>지원 취소는 기업이 결과를 입력하지 않았을 때에만 가능합니다.</li>
 			</ul>
 
 		</div>
@@ -33,10 +75,10 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<button type="submit" class="btn btn-outline-primary" style="float: right;">선택삭제</button>
+							<button type="submit" class="btn btn-outline-primary" onclick="deleteVolunteers()" style="float: right;">선택지원취소</button>
 						</tr>
 						<tr>
-							<th><input type="checkbox" class="selectAllMembers" /></th>
+							<th><input type="checkbox" class="selectAllMembers" onclick='OnOffMemberAllClickBtn()'/></th>
 							<th>공고글 제목</th>
 							<th>이력서 제목</th>
 							<th>메모</th>
@@ -51,30 +93,33 @@
 							for (int i = 0; i < volunteers.size(); i++) {
 								Volunteer volunteer = volunteers.get(i);
 
-								int recruit_id = volunteer.getRecruit_id();
+								int recruit_id = volunteer.getRecruit_id();                     		
+                        		int volunteer_id = volunteer.getVolunteer_id();
 								String title = volunteer.getRecruit_title();
 								String individual_id = volunteer.getIndividual_id();
 								String resume_title = volunteer.getResume_title();
 								String memo = volunteer.getMemo();
 								String date = volunteer.getDate();
 								String result = volunteer.getResult();
+								
+								
 						%>
 
 
 						<tr>
-							<td><input type="checkbox" class="memberChk"
-								onclick='OnOffMemberAllClickBtn()'></td>
+							<td><input type="checkbox" class="memberChk" name = "volunteer_id" value="<%=volunteer_id%>"
+								></td>
 							<td><%=title%></td>
 							<td><%=resume_title%></td>
 							<td><%=memo%></td>
-							<td><%=date%></td>
+							<td><%=date.split(" ")[0]%></td>
 							<%
 								if (result == null) {
 							%>
 
 
 							<td>미정</td>
-							<td><button type="submit" class="btn btn-outline-danger">취소하기</button></td>
+							<td><button type="submit" onclick="deleteVolunteer(<%=volunteer_id %>)" class="btn btn-outline-danger">취소하기</button></td>
 
 
 

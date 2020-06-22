@@ -8,6 +8,48 @@
 <head>
 <meta charset="UTF-8">
 <title>이력서 관리</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function deleteResume(resume_id) {
+	console.log(resume_id);
+	$.ajax({
+		url : "./deleteResume",
+		method : "GET",
+		data : {
+			resume_id : resume_id
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+function deleteResumes() {
+	var resume_ids = [];
+	$("input[name='resume_id']:checked").each(function(){
+		if(this.checked){
+			resume_ids.push($(this).val());
+			console.log($(this).val());
+		}
+	})
+	
+	$.ajax({
+		url : "./deleteResumes",
+		method : "GET",
+		data : {
+			resume_ids: resume_ids
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+
+</script>
 </head>
 <body>
 
@@ -21,8 +63,8 @@
 		</div>
 		<div class="row">
 			<ul>
-				<li>공고는 5개까지 작성 가능합니다</li>
-				<li>공고등록 제한규정에 해당될 경우 사전 동의 없이 공고를 삭제/수정 할 수 있습니다.</li>
+				<li>이력서는 5개까지 작성 가능합니다</li>
+				<li>이력서등록 제한규정에 해당될 경우 사전 동의 없이 이력서를 삭제/수정 할 수 있습니다.</li>
 			</ul>
 
 		</div>
@@ -31,14 +73,14 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<a href="<%=request.getContextPath()%>/enterprise/recruit/write"
-								class="btn btn-outline-primary" style="float: right;">공고등록</a>
+							<a href="<%=request.getContextPath()%>/individual/resume/write"
+								class="btn btn-outline-primary" style="float: right;">이력서 등록</a>
 							&ensp;&ensp;
-							<button type="submit" class="btn btn-outline-primary"
+							<button type="submit" class="btn btn-outline-primary" onclick="deleteResumes()"
 								style="float: right;">선택삭제</button>
 						</tr>
 						<tr>
-							<th><input type="checkbox" class="selectAllMembers" /></th>
+							<th><input type="checkbox" onclick='OnOffMemberAllClickBtn()' class="selectAllMembers" /></th>
 							<th>이력서번호</th>
 							<th>제목</th>
 							<th>카테고리</th>
@@ -57,7 +99,7 @@
 							for (int i = 0; i < resumes.size(); i++) {
 								Resume resume = resumes.get(i);
 
-								int recruit_id = resume.getResume_id();
+								int resume_id = resume.getResume_id();
 								String title = resume.getTitle();
 								String place = resume.getPlace();
 								String salary = resume.getSalary_type() + String.valueOf(resume.getSalary_amount());
@@ -70,9 +112,9 @@
 
 
 						<tr>
-							<td><input type="checkbox" class="memberChk"
-								onclick='OnOffMemberAllClickBtn()'></td>
-							<td><%=recruit_id%></td>
+							<td><input type="checkbox" class="memberChk" name="resume_id" value=<%=resume_id %>
+								></td>
+							<td><%=resume_id%></td>
 							<td><%=title%></td>
 							<td><%=category%></td>
 							<td><%=place%></td>
@@ -81,7 +123,7 @@
 							<td><%=day%></td>
 							<td><%=salary%></td>
 							<td><%=date%></td>
-							<td><button type="submit" class="btn btn-outline-danger">삭제</button></td>
+							<td><button type="submit" class="btn btn-outline-danger" onclick="deleteResume(<%=resume_id%>)">삭제</button></td>
 
 						</tr>
 

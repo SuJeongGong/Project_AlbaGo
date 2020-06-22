@@ -133,7 +133,7 @@
 								for(int i =0;i<volunteers.size();i++){
 									Volunteer volunteer=  volunteers.get(i);
 									String individual_id =volunteer.getIndividual_id();
-									String title =volunteer.getTitle();
+									String title =volunteer.getRecruit_title();
 									String date = volunteer.getDate();
 									%>
 									<tr>
