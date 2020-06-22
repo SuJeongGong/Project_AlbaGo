@@ -23,7 +23,7 @@
                             </h3>
                             <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s"></p>
                             <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-                                <a href="#" class="boxed-btn3">알바GO 홈화면으로 이동</a>
+                                <a href="/main" class="boxed-btn3">알바GO 홈화면으로 이동</a>
                             </div>
                         </div>
                     </div>
