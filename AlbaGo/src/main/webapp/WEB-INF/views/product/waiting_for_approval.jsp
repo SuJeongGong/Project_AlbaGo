@@ -18,7 +18,6 @@
 		<div class="container">
 
 			<!-- 시작 -->
-			<form action="<%=request.getContextPath()%>/main" name="payment">
 				<div class="row">
 
 					
@@ -26,34 +25,18 @@
 			<h1>승인 대기 중 입니다</h1>
 							<button class="btn btn-info edit" aria-label="Settings"
 								value="submit">
-								<i class="fa fa-pencil-square-o" aria-hidden="true">확인</i>
+								<a class="fa fa-pencil-square-o" href="<%=request.getContextPath() %>/main"aria-hidden="true">확인</a>
 							</button>
 
 						</div>
 			
 					</div>
 				
-			</form>
 </div>
 			<!-- 끝 -->
 		</div>
 
 
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="pagination_wrap">
-					<ul>
-						<li><a href="#"> <i class="ti-angle-left"></i>
-						</a></li>
-						<li><a href="#"><span>01</span></a></li>
-						<li><a href="#"><span>02</span></a></li>
-						<li><a href="#"> <i class="ti-angle-right"></i>
-						</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- featured_candidates_area_end  -->
 

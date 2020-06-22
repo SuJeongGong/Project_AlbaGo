@@ -18,8 +18,7 @@
 	<script>
 
 function update(){
-		update.action="<%=conPath%>"
-		/admin/product/update_product";
+		update.action="<%=conPath%>"/admin/product/update_product";
 
 		}
 	</script>
@@ -50,7 +49,7 @@ function update(){
 					String name = list.getName();
 					String term = list.getTerm();
 					int price = list.getPrice();
-					String product_explan = list.getProduct_explan();
+					String explan = list.getExplan();
 					int amount = list.getAmount();
 
 					if ((i % 4) == 0) {
@@ -82,7 +81,7 @@ function update(){
 								<ul class="list-unstyled mb-4">
 									설명
 									<input type="text" cols=121 rows=5 class="form-control"
-										style="border-radius: 0px" value="<%=product_explan%>" />
+										style="border-radius: 0px" value="<%=explan%>" />
 
 								</ul>
 
@@ -115,7 +114,7 @@ function update(){
 		<%@ include file="../serve/manager_footer.jsp"%>
 	</div>
 	<!-- 끝 content wrapper -->
-	</div>
+
 	<!-- 끝  wrapper -->
 </body>
 

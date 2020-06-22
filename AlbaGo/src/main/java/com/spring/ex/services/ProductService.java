@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.ProductDAO;
+import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
 
 @Service
@@ -34,9 +35,11 @@ public class ProductService {
 	public ArrayList<Product> enterprise_selectList() {
 		return productDAO.enterprise_selectList();
 	}
-
-	public int insertProduct_payment(int product_id) {
-		return productDAO.insertProduct_payment(product_id);
+	public Product enterprise_selectWrite(int product_id) {
+		return productDAO.enterprise_selectWrite(product_id);
+	}
+	public int insertProduct_payment(Payment payment) {
+		return productDAO.insertProduct_payment(payment);
 	}
 
 }

@@ -71,7 +71,7 @@ function checkterm(){
 									</ul>
 								</div>
 									<ul class="list-unstyled mb-4">
-										<input type="text" cols=121 rows=5 class="form-control" style="border-radius: 0px" placeholder="게시글 정보를 알려주세요" name="product_explan">
+										<input type="text" cols=121 rows=5 class="form-control" style="border-radius: 0px" placeholder="게시글 정보를 알려주세요" name="explan">
 									</ul>
 
 								

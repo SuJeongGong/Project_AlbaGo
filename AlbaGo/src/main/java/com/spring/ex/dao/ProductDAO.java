@@ -2,6 +2,7 @@ package com.spring.ex.dao;
 
 import java.util.ArrayList;
 
+import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
 
 public interface ProductDAO {
@@ -13,7 +14,8 @@ public interface ProductDAO {
 	
 	
 //기업
-	ArrayList<Product> enterprise_selectList(); //기업에서 상품보기
-	int insertProduct_payment(int product_id);//기업에서 결제승인대기하기
+	ArrayList<Product> enterprise_selectList(); //기업에서 상품목록보기
+	Product enterprise_selectWrite(int product_id); //기업에서 상품결제하기전에 상세보기
+	int insertProduct_payment(Payment payment);//기업에서 결제승인대기하기
 }
  
