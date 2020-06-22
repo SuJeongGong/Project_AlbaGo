@@ -27,7 +27,7 @@ public class ProductService {
 		return productDAO.update_product(product_id);
 	} 
 	
-	ArrayList<Product>  enterprise_selectList(){
+	public ArrayList<Product>  enterprise_selectList(){
 		return productDAO.enterprise_selectList();
 	} 
 	
