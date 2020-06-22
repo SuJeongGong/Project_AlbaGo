@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -204,10 +205,6 @@ public class JoinController {
 		return page;
 	}
 	
-	@RequestMapping("/find_pw") // 아이디 찾기
-	public String find_pw() {
-		return "/join/find_pw";
-	}
 
 	@RequestMapping("/find_pw/find_pw_individual_result") // 개인 비밀번호 찾기 성공
 	public String find_pw_individual_result(Model model, HttpServletRequest request) {

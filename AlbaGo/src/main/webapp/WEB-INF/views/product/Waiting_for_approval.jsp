@@ -11,9 +11,7 @@
 </head>
 <body>
 	<%@ include file="../serve/header.jsp"%>
-	<%
-		String conPath = request.getContextPath();
-	%>
+
 	<!-- featured_candidates_area_start  -->
 	<div class="featured_candidates_area candidate_page_padding">
 

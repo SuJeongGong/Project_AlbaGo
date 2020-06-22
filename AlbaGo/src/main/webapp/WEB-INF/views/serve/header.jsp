@@ -41,7 +41,7 @@
 	String individualPath=conPath+"/individual/mypage";
 	
 
-	String product=basicPath+"/ex/product/list";
+	String product=conPath+"/ex/product/list";
 	
 
 %>

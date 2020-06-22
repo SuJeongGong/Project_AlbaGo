@@ -1,5 +1,7 @@
 package com.spring.ex.dao;
 
+import java.util.HashMap;
+
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
 

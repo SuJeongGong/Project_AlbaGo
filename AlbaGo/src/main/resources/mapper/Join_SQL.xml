@@ -71,6 +71,7 @@
 	
 	<update id="updateEnterprisePW"  parameterType="hashmap"  >
 		update enterprise set password="1234" where enterprise_id=#{enterprise_id} and manager_phone=#{manager_phone}
+	</update>
 	
 	<select id="selectCheckEnterpriseId" resultType ="int" parameterType = "String">
 		SELECT COUNT(*) FROM enterprise WHERE enterprise_id= #{id}
