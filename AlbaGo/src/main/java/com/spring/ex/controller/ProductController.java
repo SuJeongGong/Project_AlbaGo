@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.spring.ex.dao.EnterpriseDAO;
 import com.spring.ex.dao.ProductDAO;
 import com.spring.ex.dto.Product;
+import com.spring.ex.services.ProductService;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
 
 	@Autowired
-	ProductDAO enterpriseDAO; 
+	ProductService productService; 
 
 	@RequestMapping("payment") // 결제화면 
 	public String payment() { 
@@ -31,7 +32,7 @@ public class ProductController {
 	public String list(Model m, HttpServletRequest request) {
 		String page="/product/list";
 
-		ArrayList<Product> products = enterpriseDAO.enterprise_selectList();
+		ArrayList<Product> products = productService.enterprise_selectList();
 
 		m.addAttribute("products", products);
 
@@ -52,7 +53,7 @@ public class ProductController {
 		
 		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		System.out.println(product_id);
-		if (enterpriseDAO.insertProduct_payment(product_id) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
+		if (productService.insertProduct_payment(product_id) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
 			page ="/product/Waiting_for_approval";
 		}
 		return page;

@@ -14,17 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.spring.ex.dao.BoardRecruitDAO;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardRecruit1;
+import com.spring.ex.services.BoardRecruitService;
 
 @Controller
 @RequestMapping("/recruit")
 public class BoardRecruitController {
 	
 	@Autowired
-	BoardRecruitDAO boardrecruitDAO;
+	BoardRecruitService boardRecruitService;
 	
 	@RequestMapping("/list")//리스트
 	public String list(Model m) {
-		ArrayList<BoardRecruit1> recruits = boardrecruitDAO.selectList();
+		ArrayList<BoardRecruit1> recruits = boardRecruitService.selectList();
 		
 		m.addAttribute("recruits", recruits);
 		
@@ -55,7 +56,7 @@ public class BoardRecruitController {
 			System.out.println("되나?2");
 			page = "/recruit/lsit";
 		}
-		if(1<=boardrecruitDAO.insertBoard_recruit(boardrecruit)) {
+		if(1<=boardRecruitService.insertBoard_recruit(boardrecruit)) {
 			System.out.println("되나?2");
 			page = "/main";
 		}
@@ -84,7 +85,7 @@ public class BoardRecruitController {
 		
 		System.out.println("되나?1");
 		
-		m.addAttribute("board_content", boardrecruitDAO.selectView(board_recruit_id));//여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
+		m.addAttribute("board_content", boardRecruitService.selectView(board_recruit_id));//여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
 		return "/recruit/content";
 	}
 	@RequestMapping("/update")//수정화면

@@ -14,16 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.spring.ex.dao.BoardResumeDAO;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.BoardResume1;
+import com.spring.ex.services.BoardResumeService;
 @Controller
 @RequestMapping("/resume")
 public class BoardResumeController {
 	
 	@Autowired
-	BoardResumeDAO boardresumeDAO;
+	BoardResumeService boardResumeService;
 	
 	@RequestMapping("/list")//리스트
 	public String list(Model m) {
-		ArrayList<BoardResume1> resumes = boardresumeDAO.selectList();
+		ArrayList<BoardResume1> resumes = boardResumeService.selectList();
 		
 		m.addAttribute("resumes", resumes);
 		
@@ -55,7 +56,7 @@ public class BoardResumeController {
 			System.out.println("되라1");
 			page = "/recruit/lsit";
 		}
-		if(1<=boardresumeDAO.insertBoard_resume(boardresume)) {
+		if(1<=boardResumeService.insertBoard_resume(boardresume)) {
 			System.out.println("되라2");
 			page = "/main";
 		}
@@ -81,7 +82,7 @@ public class BoardResumeController {
 		
 		System.out.println("될꺼야");
 		
-		m.addAttribute("board_content", boardresumeDAO.selectView(board_resume_id));
+		m.addAttribute("board_content", boardResumeService.selectView(board_resume_id));
 		return "/resume/content";
 	}
 	
