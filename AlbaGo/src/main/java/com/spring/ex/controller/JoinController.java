@@ -150,6 +150,7 @@ public class JoinController {
 
 	@RequestMapping("/join_individual/join_result") // 개인회원가입 완료
 	public String join_result(@ModelAttribute("individual") Individual individual, BindingResult result) {
+		
 		String page = "/join/join_individual"; //회원가입 폼으로
 		System.out.println("되나1?");
 
