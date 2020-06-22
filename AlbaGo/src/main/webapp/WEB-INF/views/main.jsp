@@ -10,7 +10,6 @@
 <body>
 	${sessionScop.id}
 	<%@ include file="./serve/header.jsp" %>
-	
 <!-- 검색바_area -->
     <div class="catagory_area slider_bg_1">
         <div class="container">

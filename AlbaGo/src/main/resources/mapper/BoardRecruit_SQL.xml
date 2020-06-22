@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.ex.dao.BoardRecruitDAO">
+	<!-- 공고글 리스트 -->
+	<select id = "selectList" resultType="BoardRecruit1">
+		select board_recruit.board_recruit_id, board_recruit.title, board_recruit.date, board_recruit.views, recruit.place 
+		from recruit, board_recruit
+		where recruit.recruit_id = board_recruit.recruit_id
+	</select>
+	
+	<!-- 게시글작성 -->
+	<insert id = "insertBoard_recruit" parameterType="BoardRecruit">
+		insert into board_recruit
+		(
+			board_recruit_id,
+			recruit_id,
+			title,
+			views,
+			memo,
+			date
+		)
+		values
+		(
+			null,
+			#{recruit_id},
+			#{title},
+			0,
+			#{memo},
+			null
+			
+		)
+	</insert>
+	
+	<!-- 글보여주기 -->
+	<select id = "selectView" resultType="Recruit_Content" parameterType="String">
+		SELECT enterprise.`name`, enterprise.manager_name, enterprise.manager_phone, enterprise.category AS Enter_category, enterprise.address,
+			recruit.place, recruit.salay_type, recruit.salay_amount, recruit.category AS Recruit_category, recruit.term, recruit.`time`, recruit.`day`, recruit.education, recruit.gender, recruit.age, recruit.people_count,
+			board_recruit.title, board_recruit.memo, board_recruit.`date`
+		FROM enterprise, recruit, board_recruit
+		WHERE enterprise.enterprise_id = recruit.enterprise_id
+		AND recruit.recruit_id = board_recruit.recruit_id
+		AND board_recruit.board_recruit_id = #{id}
+	</select>
+	
+	<!-- 글삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from board_recruit where board_recruit_id = #{id}
+	</delete>
+</mapper>

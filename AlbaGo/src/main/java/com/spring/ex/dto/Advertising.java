@@ -12,5 +12,4 @@ public class Advertising {
 	String title;// 광고문구
 
 
-
 }

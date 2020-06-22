@@ -44,6 +44,9 @@
 	String individualPath=basicPath+"/ex/individual/mypage";
 	
 
+	String product=conPath+"/ex/product/list";
+	
+
 %>
 </head>
 <body>
@@ -56,7 +59,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-2 col-lg-2">                        
                                 <div class="logo">                                     <!-- 로고자리_area -->        
-                                    <a href="main.jsp">
+                                    <a href="#">
                                         <img src="img/logo2.JPG" alt="로고" width="200" hright="100">
                                     </a>
                                 </div>
@@ -155,6 +158,8 @@
                                                 </ul>
                                             </li>
                                             <li><a href="<%=communityPath %>">커뮤니티</a></li>
+                                            
+                                            <li><a href="<%=product%>">상품</a></li>
 
 
                                         </ul>

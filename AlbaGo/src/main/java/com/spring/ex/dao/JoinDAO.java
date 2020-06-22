@@ -1,5 +1,7 @@
 package com.spring.ex.dao;
 
+import java.util.HashMap;
+
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
 
@@ -7,13 +9,18 @@ public interface JoinDAO {
 	
 	//회원가입
 	int insertEnterprise(Enterprise enterprise);//기업
+	int selectCheckId_e(String e_id);//기업 아이디 체크
 	int insertIndividual(Individual individual);//개인
+	int selectCheckId(String id);//개인아이디체크
 	
 	
 	//찾기
 	//아이디
 	//비번
-	
+	String selectIndividualId(HashMap<String , String > map);
+	String selectEnterpriseId(HashMap<String , String > map);
+	int updateIndividualPW(HashMap<String , String > map);
+	int updateEnterprisePW(HashMap<String , String > map);
 	
 	
 	

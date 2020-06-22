@@ -10,4 +10,6 @@ public interface EnterpriseDAO {
 	List<Product> selectNow(HashMap<String, Object> map);
 
 	List<Enterprise> selectEnterprise();
+
+ 
 }
