@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Recruit_Content"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +10,9 @@
 <body>
 	<%@ include file="../serve/header.jsp" %>
 	
-	
+	<%
+		Recruit_Content board_content = (Recruit_Content)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
+	%>
 	
 	
 	
@@ -23,20 +26,22 @@
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
                                     <a href="#">
-                                        <h4>공고글 제목</h4>
+                                        <h4><%=board_content.getTitle() %></h4> <!-- 제목 -->
                                     </a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i>서울 특별시</p>
+                                            <p> <i class="fa fa-map-marker"></i><%=board_content.getPlace() %></p> <!-- 장소 -->
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i>2020-05-30</p>
+                                            <p> <i class="fa fa-clock-o"></i><%=board_content.getTime() %></p><!-- 시간 -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
+                                	<%-- <a class="btn btn-info edit w-10" href="#"> 수정</a>
+                                	<a class="btn btn-danger w-10" href="<%=request.getContextPath() %>/recruit/list?board_recruit_id=<%=board_recruit_id %>"> 삭제</a> --%>
                                     <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
                                 </div>
                             </div>
@@ -46,16 +51,16 @@
                         <div class="single_wrap">
                             <h4>근무조건</h4>
                             <ul>
-                                <li>급여 : <span>시급 : 8,590원</span></li>
-                                <li>근무 기간 : <span>6개월 이상</span></li>
-                                <li>근무 요일 : <span>월, 화, 수, 목, 금</span></li>
-                                <li>근무 시간 : <span>협의</span></li>
-                                <li>업직종 : <span>유통, 판매 기타</span></li>
+                                <li>급여 : <span><%=board_content.getSalay_type() %> : <%=board_content.getSalay_amount() %></span></li>
+                                <li>근무 기간 : <span><%=board_content.getDate() %></span></li>
+                                <li>근무 요일 : <span><%=board_content.getDay() %></span></li>
+                                <li>근무 시간 : <span><%=board_content.getTime() %></span></li>
+                                <li>업직종 : <span><%=board_content.getRecruit_category() %></span></li>
                             </ul>
                         </div>
                         <div class="single_wrap">
                             <h4></h4>
-                            <p>설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글설명글</p>
+                            <p><%=board_content.getMemo() %></p>
                         </div>
                     </div>
                 </div>
@@ -66,11 +71,10 @@
                         </div>
                         <div class="job_content">
                             <ul>
-                                <li>마감일 : <span>2020-06-30</span></li>
-                                <li>채용인원 : <span>2</span></li>
-                                <li>성별 : <span>무관</span></li>
-                                <li>연령 : <span>무관</span></li>
-                                <li>최종학력 : <span>중학교 졸업 이상</span></li>
+                                <li>채용인원 : <span><%=board_content.getPeople_count() %></span></li>
+                                <li>성별 : <span><%=board_content.getGender() %></span></li>
+                                <li>연령 : <span><%=board_content.getAge() %></span></li>
+                                <li>최종학력 : <span><%=board_content.getEducation() %></span></li>
                             </ul>
                         </div>
                         <hr/>
@@ -79,12 +83,11 @@
                         </div>
                         <div class="job_content">
                             <ul>
-                                <li>기업이름 : <span>2 Position</span></li>
-                                <li>대표자 : <span>12 Nov, 2019</span></li>
-                                <li>회사주소 : <span>경기도 의정부시 가능동 서부로 545</span></li>
-                                <li>카테고리 : <span>알바고 판매</span></li>
-                                <li>담당자 이름 : <span>공수정</span></li>
-                                <li>담당자 연락처 : <span>010-1234-1234</span></li>
+                                <li>기업이름 : <span><%=board_content.getName() %></span></li>
+                                <li>회사주소 : <span><%=board_content.getAddress() %></span></li>
+                                <li>카테고리 : <span><%=board_content.getEnter_category() %></span></li>
+                                <li>담당자 이름 : <span><%=board_content.getManager_name() %></span></li>
+                                <li>담당자 연락처 : <span><%=board_content.getManager_phone() %></span></li>
                             </ul>
                         </div>
                         <form action="#">

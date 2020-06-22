@@ -58,7 +58,8 @@ public class JoinController {
 		int selectIdResult = joinDAO.selectCheckEnterpriseId(id);
 		int selectPwResult = joinDAO.selectCheckEnterprisePw(pw);
 		System.out.println(selectIdResult);
-		if (selectIdResult == 1 && selectPwResult == 1) {
+		System.out.println(selectPwResult);
+		if (selectIdResult >= 1 && selectPwResult >= 1) {
 			System.out.println("session 기본값 : "+session.toString());
 
 			session.setAttribute("id", id);// 세션에 아이디 넣기
@@ -83,7 +84,7 @@ public class JoinController {
 		int selectIdResult = joinDAO.selectCheckIndividualId(id);
 		int selectPwResult = joinDAO.selectCheckIndividualPw(pw);
 		System.out.println(selectIdResult);
-		if (selectIdResult == 1 && selectPwResult == 1) {
+		if (selectIdResult >= 1 && selectPwResult >= 1) {
 			System.out.println("login 성공");
 
 			session.setAttribute("id", id);// 세션에 아이디 넣기

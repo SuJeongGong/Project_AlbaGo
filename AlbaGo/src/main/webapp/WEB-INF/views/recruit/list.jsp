@@ -190,7 +190,7 @@
                                     </div>
                                     <div class="jobs_right">
                                         <div class="apply_now">
-                                            <a href="<%=request.getContextPath() %>/recruit/content?<%=board_recruit_id %>" class="boxed-btn3">글보러가기</a>
+                                            <a href="<%=request.getContextPath() %>/recruit/content?board_recruit_id=<%=board_recruit_id %>" class="boxed-btn3">글보러가기</a>
                                         </div>
                                     </div>
                                 </div>

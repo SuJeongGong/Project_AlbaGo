@@ -9,4 +9,37 @@
 		where resume.resume_id = board_resume.resume_id
 	</select>
 	
+	<!-- 인재글 작성 -->
+	<insert id = "insertBoard_resume" parameterType="BoardResume">
+		insert into board_resume
+		(
+			board_resume_id,
+			resume_id,
+			title,
+			views,
+			memo,
+			date
+		)
+		values
+		(
+			null,
+			#{resume_id},
+			#{title},
+			0,
+			#{memo},
+			null
+		)
+	</insert>
+	
+	<!-- 글보여주기 -->
+	<select id = "selectView" resultType="Resume_Content" parameterType="String">
+		SELECT individual.`name`, individual.gender, individual.birth, individual.phone, individual.education, 
+		resume.place, resume.salary_type, resume.salary_amount, resume.category, resume.term, resume.`time`, resume.`day`, 
+		board_resume.title, board_resume.memo, board_resume.`date`
+		FROM individual, resume, board_resume
+		WHERE individual.individual_id = resume.individual_id
+		AND resume.resume_id = board_resume.resume_id
+		AND board_resume.board_resume_id = #{id}
+	</select>
+	
 </mapper>

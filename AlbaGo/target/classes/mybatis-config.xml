@@ -19,5 +19,7 @@
 		<typeAlias type="com.spring.ex.dto.Volunteer" alias="Volunteer" />
 		<typeAlias type="com.spring.ex.dto.BoardRecruit1" alias="BoardRecruit1" />
 		<typeAlias type="com.spring.ex.dto.BoardResume1" alias="BoardResume1" />
+		<typeAlias type="com.spring.ex.dto.Recruit_Content" alias="Recruit_Content" />
+		<typeAlias type="com.spring.ex.dto.Resume_Content" alias="Resume_Content" />
 	</typeAliases>
 </configuration>     

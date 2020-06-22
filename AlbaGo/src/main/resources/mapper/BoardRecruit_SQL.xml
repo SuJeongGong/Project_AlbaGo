@@ -10,7 +10,7 @@
 	</select>
 	
 	<!-- 게시글작성 -->
-	<insert id = "insertBoardRecruit" parameterType="BoardRecruit">
+	<insert id = "insertBoard_recruit" parameterType="BoardRecruit">
 		insert into board_recruit
 		(
 			board_recruit_id,
@@ -25,10 +25,26 @@
 			null,
 			#{recruit_id},
 			#{title},
-			#{views},
+			0,
 			#{memo},
-			null,
+			null
 			
 		)
 	</insert>
+	
+	<!-- 글보여주기 -->
+	<select id = "selectView" resultType="Recruit_Content" parameterType="String">
+		SELECT enterprise.`name`, enterprise.manager_name, enterprise.manager_phone, enterprise.category AS Enter_category, enterprise.address,
+			recruit.place, recruit.salay_type, recruit.salay_amount, recruit.category AS Recruit_category, recruit.term, recruit.`time`, recruit.`day`, recruit.education, recruit.gender, recruit.age, recruit.people_count,
+			board_recruit.title, board_recruit.memo, board_recruit.`date`
+		FROM enterprise, recruit, board_recruit
+		WHERE enterprise.enterprise_id = recruit.enterprise_id
+		AND recruit.recruit_id = board_recruit.recruit_id
+		AND board_recruit.board_recruit_id = #{id}
+	</select>
+	
+	<!-- 글삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from board_recruit where board_recruit_id = #{id}
+	</delete>
 </mapper>

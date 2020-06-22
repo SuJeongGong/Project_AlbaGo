@@ -148,7 +148,7 @@ pageEncoding="UTF-8"%>
               <span class="box">회사 주소</span><br><br>
               <div class="form-group row">
                 <div class="col-sm-12 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="adress" placeholder="서울특별시 강북구 홍길동 (자세히 적어주세요)">
+                  <input type="text" class="form-control form-control-user" id="address" name="address" placeholder="서울특별시 강북구 홍길동 (자세히 적어주세요)" value="${enterprise.address}">
                 </div>
               </div>
               <span class="box">업종</span><br><br>
