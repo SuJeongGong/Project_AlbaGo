@@ -8,6 +8,6 @@
 	</select>
 	
 	<insert id = "insetContent">
-		inset into community value (null,#{individual_id},#{individual_id},#{individual_id},#{individual_id},);
+		insert into community value (null,#{individual_id},#{individual_id},#{individual_id},#{individual_id},);
 	</insert>
-	
+	</mapper>

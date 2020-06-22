@@ -1,6 +1,7 @@
 package com.spring.ex.dto;
 
 import lombok.Data;
+
 @Data
 public class Enterprise {
 	

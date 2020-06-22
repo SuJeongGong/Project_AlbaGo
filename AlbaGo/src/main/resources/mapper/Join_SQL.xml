@@ -56,6 +56,23 @@
    		)
 	</insert>
 	
+	<select id="selectIndividualId" resultType="String" parameterType="hashmap"  >
+		select individual_id from individual where name=#{name} and phone=#{phone}
+	</select>
+	
+	<select id="selectEnterpriseId" resultType="String" parameterType="hashmap"  >
+		select enterprise_id from enterprise where manager_name=#{manager_name} and manager_phone=#{manager_phone}
+	</select>
+	
+	<update id="updateIndividualPW"  parameterType="hashmap"  >
+		update individual set password="1234" where individual_id=#{id} and phone=#{phone}
+
+	</update>
+	
+	<update id="updateEnterprisePW"  parameterType="hashmap"  >
+		update enterprise set password="1234" where enterprise_id=#{enterprise_id} and manager_phone=#{manager_phone}
+	</update>
+	
 	<select id="selectCheckEnterpriseId" resultType ="int" parameterType = "String">
 		SELECT COUNT(*) FROM enterprise WHERE enterprise_id= #{id}
 	</select>

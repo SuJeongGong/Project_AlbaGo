@@ -9,11 +9,6 @@
 <body>
 	<%@ include file="../serve/header.jsp" %>
 	
-	
-	
-	
-	
-	
    <!--================Blog Area =================-->
    <section class="blog_area single-post-area section-padding">
       <div class="container">
