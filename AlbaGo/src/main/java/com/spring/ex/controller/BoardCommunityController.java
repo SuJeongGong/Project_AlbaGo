@@ -13,19 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ex.dao.CommunityDAO;
 import com.spring.ex.dto.BoardCommunity;
+import com.spring.ex.services.CommunityService;
 
 @Controller
 @RequestMapping("/community")
 public class BoardCommunityController {
 	
 	@Autowired
-	 CommunityDAO   communityDAO;
+	 CommunityService   communityService;
 	
 	
 	@RequestMapping("/list")//리스트
 	public String list(Model m) {
 		
-		ArrayList<BoardCommunity> communitys =communityDAO.selectList();
+		ArrayList<BoardCommunity> communitys =communityService.selectList();
 		
 		m.addAttribute("communitys", communitys);
 		
@@ -45,7 +46,7 @@ public class BoardCommunityController {
 		System.out.println(community);
 
 			
-		int result = communityDAO.insertContent(community);//()안에는 메서드를 실행할때 필요한 값 , = 왼쪽은 메서드를 실행하고 난 결과값
+		int result = communityService.insertContent(community);//()안에는 메서드를 실행할때 필요한 값 , = 왼쪽은 메서드를 실행하고 난 결과값
 		//communitys = 저장할 값
 		return "/main"; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
 	}
@@ -65,7 +66,7 @@ public class BoardCommunityController {
 	@RequestMapping("/content")//읽기
 	public String content(Model m) {
 		
-		ArrayList<BoardCommunity> communitys1 =communityDAO.selectContent();
+		ArrayList<BoardCommunity> communitys1 =communityService.selectContent();
 		
 		m.addAttribute("communitys1", communitys1);
 		System.out.println(communitys1);

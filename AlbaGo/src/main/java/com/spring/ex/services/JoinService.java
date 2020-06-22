@@ -14,63 +14,63 @@ public class JoinService {
 	JoinDAO joinDAO;
 	
 	//회원가입
-	int insertEnterprise(Enterprise enterprise) {
+	public int insertEnterprise(Enterprise enterprise) {
 		return joinDAO.insertEnterprise(enterprise);
 	}
 	
-	int selectCheckId_e(String id) {
+	public int selectCheckId_e(String id) {
 		return joinDAO.selectCheckId_e(id);
 	}
 	
-	int insertIndividual(Individual individual) {
+	public int insertIndividual(Individual individual) {
 		return joinDAO.insertIndividual(individual);
 	}
 	
-	int selectCheckId(String id) {
+	public int selectCheckId(String id) {
 		return joinDAO.selectCheckId(id);
 	}
 	
 	
 	
 	
-	String selectIndividualId(HashMap<String , String > map) {
+	public String selectIndividualId(HashMap<String , String > map) {
 		return joinDAO.selectIndividualId(map);
 	}
 	
 	
-	String selectEnterpriseId(HashMap<String , String > map) {
+	public String selectEnterpriseId(HashMap<String , String > map) {
 		return joinDAO.selectEnterpriseId(map);
 	}
 	
 	
-	int updateIndividualPW(HashMap<String , String > map) {
+	public int updateIndividualPW(HashMap<String , String > map) {
 		return joinDAO.updateIndividualPW(map);
 	}
 	
 	
-	int updateEnterprisePW(HashMap<String , String > map) {
+	public int updateEnterprisePW(HashMap<String , String > map) {
 		return joinDAO.updateEnterprisePW(map);
 	}
 	
 	
 	
-	String selectCheckEnterpriseId(HashMap<String , String > map) {
-		return joinDAO.selectIndividualId(map);
+	public int selectCheckEnterpriseId(String id) {
+		return joinDAO.selectCheckEnterpriseId(id);
 	}
 	
 	
-	String selectCheckEnterprisePw(HashMap<String , String > map) {
-		return joinDAO.selectEnterpriseId(map);
+	public int selectCheckEnterprisePw(String id) {
+		return joinDAO.selectCheckEnterprisePw(id);
 	}
 	
 	
-	int selectCheckIndividualId(HashMap<String , String > map) {
-		return joinDAO.updateIndividualPW(map);
+	public int selectCheckIndividualId(String id) {
+		return joinDAO.selectCheckIndividualId(id);
 	}
 	
 	
-	int selectCheckIndividualPw(HashMap<String , String > map) {
-		return joinDAO.updateEnterprisePW(map);
+	public int selectCheckIndividualPw(String id) {
+		return joinDAO.selectCheckIndividualPw(id);
 	}
 
 

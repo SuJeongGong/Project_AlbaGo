@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.ex.dao.JoinDAO;
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
+import com.spring.ex.services.JoinService;
 import com.spring.ex.validator.EnterpriseValidator;
 import com.spring.ex.validator.IndividualValidator;
 
@@ -30,7 +31,7 @@ import com.spring.ex.validator.IndividualValidator;
 public class JoinController {
 	
 	@Autowired
-	JoinDAO joinDAO;
+	JoinService joinService;
 	
 	@RequestMapping("/login") // 로그인
 	public String login() {
@@ -53,8 +54,8 @@ public class JoinController {
 		String id=request.getParameter("id");
 		String pw=request.getParameter("pw");
 
-		int selectIdResult = joinDAO.selectCheckEnterpriseId(id);
-		int selectPwResult = joinDAO.selectCheckEnterprisePw(pw);
+		int selectIdResult = joinService.selectCheckEnterpriseId(id);
+		int selectPwResult = joinService.selectCheckEnterprisePw(pw);
 		System.out.println(selectIdResult);
 		System.out.println(selectPwResult);
 		if (selectIdResult >= 1 && selectPwResult >= 1) {
@@ -79,8 +80,8 @@ public class JoinController {
 		String id=request.getParameter("id");
 		String pw=request.getParameter("pw");
 
-		int selectIdResult = joinDAO.selectCheckIndividualId(id);
-		int selectPwResult = joinDAO.selectCheckIndividualPw(pw);
+		int selectIdResult = joinService.selectCheckIndividualId(id);
+		int selectPwResult = joinService.selectCheckIndividualPw(pw);
 		System.out.println(selectIdResult);
 		if (selectIdResult >= 1 && selectPwResult >= 1) {
 			System.out.println("login 성공");
@@ -127,7 +128,7 @@ public class JoinController {
 		}
 		
 		else {
-			int insertResult = joinDAO.insertEnterprise(enterprise);
+			int insertResult = joinService.insertEnterprise(enterprise);
 			
 			if(insertResult==1) {
 				System.out.println("DB에 값넣기 성공");
@@ -152,7 +153,7 @@ public class JoinController {
 		map.put("name", name);
 		map.put("phone", phone);
 
-		String selectId = joinDAO.selectIndividualId(map);
+		String selectId = joinService.selectIndividualId(map);
 		System.out.println(selectId);
 		
 		if (!selectId.equals("")) {
@@ -182,7 +183,7 @@ public class JoinController {
 		System.out.println(manager_name);
 		System.out.println(manager_phone);
 
-		String selectId = joinDAO.selectEnterpriseId(map);
+		String selectId = joinService.selectEnterpriseId(map);
 		System.out.println(selectId);
 		
 		if (!selectId.equals("")) {
@@ -213,7 +214,7 @@ public class JoinController {
 		map.put("id", individual_id);
 		map.put("phone", phone);
 
-		int updatePW = joinDAO.updateIndividualPW(map);
+		int updatePW = joinService.updateIndividualPW(map);
 
 		System.out.println(updatePW);
 
@@ -242,7 +243,7 @@ public class JoinController {
 		map.put("enterprise_id", enterprise_id);
 		map.put("manager_phone", manager_phone);
 
-		int updatePW = joinDAO.updateEnterprisePW(map);
+		int updatePW = joinService.updateEnterprisePW(map);
 
 		System.out.println(updatePW);
 
@@ -278,7 +279,7 @@ public class JoinController {
 		}
 		
 		else {
-			int insertResult = joinDAO.insertIndividual(individual);
+			int insertResult = joinService.insertIndividual(individual);
 			
 			if(insertResult==1) {
 				System.out.println("DB에 값넣기 성공");
@@ -297,7 +298,7 @@ public class JoinController {
 	@RequestMapping(value="selectCheckId",method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int selectCheckId(String individual_id) {
 		int result = 0;
-		result = joinDAO.selectCheckId(individual_id);
+		result = joinService.selectCheckId(individual_id);
 		return result;
 	}
 	
@@ -305,7 +306,7 @@ public class JoinController {
 	@RequestMapping(value="selectCheckId_e",method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int selectCheckId_e(String enterprise_id) {
 		int result = 0;
-		result = joinDAO.selectCheckId_e(enterprise_id);
+		result = joinService.selectCheckId_e(enterprise_id);
 		return result;
 	}
 

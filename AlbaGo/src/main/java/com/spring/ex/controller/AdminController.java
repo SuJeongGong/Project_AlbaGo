@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.ex.dao.ProductDAO;
 import com.spring.ex.dto.Product;
+import com.spring.ex.services.ProductService;
 
 @Controller 
 @RequestMapping("/admin")
 public class AdminController {
 
 	@Autowired
-	ProductDAO productDAO;// DAO 클래스를 생성해서 사용해야지,,,,
+	ProductService productService; 
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main() {
@@ -68,7 +69,7 @@ public class AdminController {
 
 	@RequestMapping("/product") // 상품수정,삭제
 	public String list(Model m) {
-		ArrayList<Product> products = productDAO.selectList(); 
+		ArrayList<Product> products = productService.selectList(); 
 
 		m.addAttribute("products", products);
 
@@ -87,7 +88,7 @@ public class AdminController {
 
 		String page = "/admin/add_product_term/result";
 
-		if (productDAO.insertProduct_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
+		if (productService.insertProduct_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
 			page = "/admin/main";
 		}
 
@@ -106,7 +107,7 @@ public class AdminController {
 
 		String page = "/admin/add_product_no_term/result";
 
-		if (productDAO.insertProduct_no_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
+		if (productService.insertProduct_no_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
 			page = "/admin/main";
 		}
 
