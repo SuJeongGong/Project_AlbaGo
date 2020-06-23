@@ -14,7 +14,7 @@ public interface IndividualDAO {
 	List<Individual> selectIndividual();
 	
 	Individual selectIndividual(String id);
-	ArrayList<Resume> selectResume(String id);
+	ArrayList<Resume> selectResumeList(String id);
 	ArrayList<Scrap_Individual> selectScrap(String id);
 	ArrayList<Volunteer> selectVolunteer(String id);
 	int updateAccount(Individual individual);
@@ -23,4 +23,6 @@ public interface IndividualDAO {
 	int deleteResume(int resume_id);
 	int insertResume(Resume resume);
 	int insertCareer(Career career);
+	Resume selectResume(int resume_id);
+	ArrayList<Career> selectCareer(int resume_id);
 }

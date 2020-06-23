@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.spring.ex.dao.IndividualDAO">
-
+<mapper namespace="com.spring.ex.dao.Individaul">
 	<select id="selectIndividual" parameterType="String"
 		resultType="Individual">
 		select *
@@ -50,7 +49,7 @@
 
 	</select>
 
-	<select id="selectResume" parameterType="String" resultType="Resume">
+	<select id="selectResumeList" parameterType="String" resultType="Resume">
 		SELECT *
 		FROM resume
 		<where>
@@ -137,9 +136,13 @@
 	#{start_date},
 	#{end_date},
 	#{task}
-	)
-	
-	
-	
+	)	
 	</insert>
+	
+	<select id = "selectResume" parameterType="int" resultType="Resume">
+		select * from resume where resume_id = #{resume_id}
+	</select>
+	<select id = "selectCareer" parameterType="int" resultType="Career">
+		select * from Career where resume_id = #{resume_id}
+	</select>
 </mapper>

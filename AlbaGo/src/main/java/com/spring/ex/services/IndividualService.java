@@ -26,7 +26,7 @@ public class IndividualService {
 		return individualDAO.selectScrap(id);
 	}
 	public ArrayList<Resume> selectResumes(String id) {
-		return individualDAO.selectResume(id);
+		return individualDAO.selectResumeList(id);
 	}
 	public ArrayList<Volunteer> selectVolunteer(String id) {
 		return individualDAO.selectVolunteer(id);
@@ -79,6 +79,11 @@ public class IndividualService {
 		return forDeleteSQL(ids,"deleteResume");
 	}
 	
+	public Resume selectResume(int resume_id) {
+		Resume resume = individualDAO.selectResume(resume_id);
+		resume.setCareer(individualDAO.selectCareer(resume_id));
+		return resume;
+	}
 	
 	public int forDeleteSQL(ArrayList<String> ids,String methodName) {
 		int res = 0;

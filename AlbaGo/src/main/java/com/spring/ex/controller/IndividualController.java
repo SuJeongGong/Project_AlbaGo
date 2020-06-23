@@ -117,8 +117,17 @@ public class IndividualController {
 
 	@RequestMapping("/profile/write") // 이력서 작성 - 화면보여주기
 	public String profileWrite() {
-
 		return "/individual/profile_write";
+	}
+	
+	@RequestMapping("/profile/content") // 이력서 상세보기
+	public String profileContent(@RequestParam("resume_id") int resume_id,@ModelAttribute("resume")Resume resume) {
+		String page =  "/individual/profile_list";
+		resume = individualSerive.selectResume(resume_id);
+		if(resume!=null) {
+			page= "individual/profile_content";
+		}
+		return page;
 	}
 
 

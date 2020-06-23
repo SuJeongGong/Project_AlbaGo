@@ -90,6 +90,7 @@ function deleteResumes() {
 							<th>요일</th>
 							<th>급여</th>
 							<th>작성일</th>
+							<th>상세보기</th>
 							<th>삭제</th>
 						</tr>
 					</thead>
@@ -107,7 +108,7 @@ function deleteResumes() {
 								String term = resume.getTerm();
 								String time = resume.getTerm();
 								String day = resume.getDay();
-								String date = resume.getDate();
+								String date = resume.getDate().split(" ")[0];
 						%>
 
 
@@ -123,23 +124,17 @@ function deleteResumes() {
 							<td><%=day%></td>
 							<td><%=salary%></td>
 							<td><%=date%></td>
+							<td><a type="submit" class="btn btn-outline-primary" href="<%=request.getContextPath() %>/individual/profile/content?resume_id=<%=resume_id%>">상세보기</a></td>
 							<td><button type="submit" class="btn btn-outline-danger" onclick="deleteResume(<%=resume_id%>)">삭제</button></td>
-
 						</tr>
-
-
-
 						<%
 							}
 						%>
-
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
-
 	<%@ include file="../serve/footer.jsp"%>
 	<script>
 		var selectAll = document.querySelector(".selectAllMembers");
