@@ -1,6 +1,7 @@
 package com.spring.ex.services;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class CommunityService {
 		return communityDAO.selectList();
 	}
 
-	public ArrayList<BoardCommunity> selectContent() {
+	public List<BoardCommunity> selectContent() {
 		return communityDAO.selectContent();
 	}
 

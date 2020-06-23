@@ -2,6 +2,7 @@ package com.spring.ex.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.spring.ex.dto.BoardCommunity;
 
@@ -11,7 +12,7 @@ public interface CommunityDAO {
 	
 	ArrayList<BoardCommunity> selectList();   //list
 	
-	ArrayList<BoardCommunity> selectContent();   //content
+	List<BoardCommunity> selectContent();   //content
 	
 		
  }

@@ -10,7 +10,12 @@
 	<%@ include file="../serve/header.jsp" %>
 	
 	
-	
+	 <%
+		String title = request.getSession().getAttribute("title").toString();
+		String id = request.getSession().getAttribute("id").toString();
+		String date = request.getSession().getAttribute("date").toString();
+		String content = request.getSession().getAttribute("contnet").toString();
+     %>
     
 	
 	
@@ -23,13 +28,6 @@
                <div class="single-post">
                   <div class="blog_details">
                       <h2>
-                      <%
-						String title = request.getSession().getAttribute("title").toString();
-						String id = request.getSession().getAttribute("id").toString();
-						String date = request.getSession().getAttribute("date").toString();
-						String content = request.getSession().getAttribute("contnet").toString();
-    				  %>
-                      
                         <%=title %></h2>
                      
                     
@@ -43,6 +41,8 @@
                      </p>
                   </div>
                </div>
+               
+               
                <div class="comments-area">
                   <h4>댓글</h4>
                   <div class="comment-list">
@@ -53,12 +53,12 @@
                            </div>
                            <div class="desc">
                               <p class="comment">
-                                댓글내용
+                                	댓글내용
                               </p>
                               <div class="d-flex justify-content-between">
                                  <div class="d-flex align-items-center">
                                     <h5>
-                                       아이디
+                                       	아이디
                                     </h5>
                                     <p class="date">2020-05-30 18:34</p>
                                  </div>

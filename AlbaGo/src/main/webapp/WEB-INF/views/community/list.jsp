@@ -28,6 +28,7 @@
 							String title = community.getTitle();
 							String id = community.getIndividual_id();
 							String date = community.getDate();
+							int views = community.getViews();
 						%>
 
 
@@ -39,9 +40,15 @@
 									<div class="col-lg-6">
 										<i class="fa fa-clock-o "></i><%=date%></div>
 								</div>
-								<br /> <a class="d-inline-block" href="content">
+								<div class = "row">
+								<p class ="col-lg-6"></p>&emsp;<p class ="col-lg-1.5">조회수</p><p class ="col-lg-2"><%=views%></p>
+								</div>
+								<br />
+								<a class="d-inline-block" href="content">
 									<h2><%=title%></h2>
 								</a>
+								
+								
 							</div>
 						</article>
 

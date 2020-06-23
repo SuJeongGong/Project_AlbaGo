@@ -63,14 +63,15 @@ public class BoardCommunityController {
 		return "/community/update";
 	}
 	
+	
 	@RequestMapping("/content")//읽기
-	public String content(Model m) {
+	public String content(Model m, HttpServletRequest request) {
+
 		
-		ArrayList<BoardCommunity> communitys1 =communityService.selectContent();
+		int community_id = Integer.parseInt(request.getParameter("community_id"));
+		System.out.println(community_id);
 		
-		m.addAttribute("communitys1", communitys1);
-		System.out.println(communitys1);
-		
+		m.addAttribute("board_content", CommunityService.selectContnet(community_id));
 	 
 		return "/community/content";
 		
