@@ -88,4 +88,53 @@
 			resume_id = #{resume_id}
 		</where>
 	</update>
+	<insert id = "insertResume" useGeneratedKeys="true" keyProperty="resume_id" parameterType ="Resume">
+		insert into Resume
+		(
+		resume_id,
+		individual_id,
+		title,
+		place,
+		salary_amount,
+		salary_type,
+		category,
+		term,
+		time,
+		day,
+		date,
+		delete_check
+		)
+		values(
+		null,
+		#{individual_id},
+		#{title},
+		#{place},
+		#{salary_amount},
+		#{salary_type},
+		#{category},
+		#{term},
+		#{time},
+		#{day},
+		null,
+		1		
+		)
+	</insert>
+	<insert id ="insertCareer" parameterType="arraylist">
+	insert into Career
+	(
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	)
+	
+	
+	</insert>
 </mapper>

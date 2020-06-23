@@ -1,6 +1,7 @@
 package com.spring.ex.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,13 +11,18 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.ex.dao.EnterpriseDAO;
+import com.spring.ex.dto.Career;
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
+import com.spring.ex.dto.Recruit;
+import com.spring.ex.dto.Resume;
 import com.spring.ex.services.EnterpriseService;
 import com.spring.ex.services.IndividualService;
 
@@ -117,10 +123,48 @@ public class IndividualController {
 	}
 	
 	
-	@RequestMapping("/profile/write") // 이력서 작성
+	@RequestMapping("/profile/write") // 이력서 작성 - 화면보여주기
 	public String profileWrite() {
 
 		return "/individual/profile_write";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/profile/write/save") // 이력서 작성 - 저장하기
+	public String profileWriteSave(@ModelAttribute("profile")Resume resume,HttpServletRequest request) {
+		String page="/profile/write/save";//성공 하
+
+		int i =0;
+		while(true) {
+		if (request.getParameter("career_end_date" + i) == null) {
+			break;
+		}
+		System.out.println(request.getParameter("career_name"+i));
+		System.out.println(request.getParameter("career_task"+i));
+		System.out.println(request.getParameter("career_start_date"+i));
+		System.out.println(request.getParameter("career_end_date"+i));
+	
+			i=i+1;
+		}
+		
+//		System.out.println("resume : "+resume);
+//		System.out.println("career_names : "+career_names);
+//		System.out.println("career_tasks : "+career_tasks);
+//		System.out.println("career_start_date : "+career_start_date);
+//		System.out.println("career_end_date : "+career_end_date);
+		
+		
+//		resume.setIndividual_id(request.getSession().getAttribute("id").toString());
+//		if(1<=individualSerive.insertResume(resume)) {
+//			System.out.println("DB에 값 넣기 성공 ( 이력서 )");
+//			
+//			if(1<=individualSerive.insertCareer(careers,resume.getResume_id())) {
+//				System.out.println("DB에 값 넣기 성공 ( 경력 )");
+//				page="/main"; // 성공했을때 경로
+//			}
+//			
+//		}
+		return page;
 	}
 
 	@RequestMapping("/support") // 지원현황 - 리스트 보여주기

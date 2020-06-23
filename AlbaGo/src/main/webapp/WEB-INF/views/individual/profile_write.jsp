@@ -12,7 +12,7 @@
     <%@ include file="../serve/header.jsp" %>
     <div class="col-lg-12 ftco-animate">
         <div class="comment-form-wrap pt-12">
-            <form action="#" class="p-5 bg-light">
+            <form action="<%=request.getContextPath() %>/individual/profile/write/save" name ="profile"class="p-5 bg-light">
                 <h3 class="mb-1 h4 font-weight-bold">이력서 작성</h3>
                 <hr />
                 <div class="form-group row">
@@ -93,7 +93,7 @@
                 </div>
                 <div class="form-group row">
                     <h5 class="font-weight-bold">희망 지역&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                    <select class="form-control col-lg-2" name="area">
+                    <select class="form-control col-lg-2" name="place">
                         <option value="서울">서울</option>
                         <option value="경기">경기</option>
                         <option value="인천">인천</option>
@@ -115,26 +115,30 @@
                 </div>
 
                 <br /><br />
-                <h3 class="mb-1 h4 font-weight-bold">경력사항<button>한줄 추가</button></h3>
-                <hr />
                 <div class="row">
-                    <h5 class="font-weight-bold col-lg-2">기업 이름</h5>
-                    <h5 class="font-weight-bold col-lg-6">맡은 업무</h5>
-                    <h5 class="font-weight-bold col-lg-2">시작 날짜</h5>
-                    <h5 class="font-weight-bold col-lg-2">끝 날짜</h5>
-                </div>
-                <div class="row">
-                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
-                    <input type="text" class="col-sm-6 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
-                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
-                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
-                </div>
-                <div class="row">
-                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
-                    <input type="text" class="col-sm-6 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
-                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
-                    <input type="text" class="col-sm-2 form-control" maxlength="20" size="20" id="salary_amount" name="salary_amount">
-                </div>
+                <h3 class="mb-1 h4 font-weight-bold">경력사항</h3>
+                <input type="button"  style="float: right; class="btn py-1 px-1 btn-primary " onclick="javascript:addRow()" value="한줄 추가">
+                <input type="button" style="float: right; class="btn py-1 px-1 btn-primary "   onclick="javascript:deleteRow()" value="한줄 제거">
+                </div><hr />
+                <table class="table table-bordered" width="100%" name="career">
+                    <thead>
+                        <th>기업이름</th>
+                        <th>맡은업무</th>
+                        <th>시작날짜</th>
+                        <th>마지막날짜</th>
+                    </thead>
+                    <tbody id="career">
+                        <tr>
+                            <td><input type="text"class='form-control'  name="career_name0" /></td>
+                            <td><input type="text" class='form-control' name="career_task0" /></td>
+                            <td><input type="text" class='form-control' name="career_start_date0" /></td>
+                            <td><input type="text"class='form-control'  name="career_end_date0" /></td>
+                        </tr>
+                    </tbody>
+
+
+                </table>
+
 
                 <br />
                 <div class="row">
@@ -147,7 +151,77 @@
     </div>
 
     <%@ include file="../serve/footer.jsp" %>
+    <script>
+	 var count= 1;
+        function addRow() {//테이블 동적으로 추가하기
+            career = document.getElementById('career');  //행을 추가할 테이블
+            row = career.insertRow(career.rows.length);  //추가할 행
 
+            cell1 = row.insertCell(0);  //실제 행 추가 여기서의 숫자는 컬럼 수
+            cell2 = row.insertCell(1);
+            cell3 = row.insertCell(2);
+            cell4 = row.insertCell(3);
+
+            cell1.innerHTML = "<td><input type ='text'class='form-control' name ='career_name"+count+"' /></td>";//추가한 행에 원하는  요소추가
+            cell2.innerHTML = "<td><input type ='text'class='form-control'  name ='career_task"+count+"' /></td>";
+            cell3.innerHTML = "<td><input type ='text'class='form-control'  name ='career_start_date"+count+"' /></td>";
+            cell4.innerHTML = "<td><input type ='text'class='form-control'  name ='career_end_date"+count+"' /></td>";
+        count = count + 1;
+        //alert(count);
+        }
+
+        function deleteRow() {
+            var career = document.getElementById('career');
+            if (career.rows.length < 1) return;
+            career.deleteRow( career.rows.length-1 ); // 하단부터 삭제
+          }
+/*
+        //동적으로 만든 테이블 접근
+        var dataArray ="";
+
+        var career_name = document.getElementsByName("career_name").value;//동적으로 만든 테이블의 속성값 접근 :career_name,career_task,career_start_date,career_end_date
+        var career_task = document.getElementsByName("career_task").value;//동적으로 만든 테이블의 속성값 접근 :career_name,career_task,career_start_date,career_end_date
+        var career_start_date = document.getElementsByName("career_start_date").value;//동적으로 만든 테이블의 속성값 접근 :career_name,career_task,career_start_date,career_end_date
+        var career_end_date = document.getElementsByName("career_end_date").value;//동적으로 만든 테이블의 속성값 접근 :career_name,career_task,career_start_date,career_end_date
+		
+        
+        var title = document.getElementsByName("title").value;
+		var category = document.getElementsByName("category").value;
+		var term = document.getElementsByName("term").value;
+		var day = document.getElementsByName("day").value;
+		var time = document.getElementsByName("time").value;
+		var salary_type = document.getElementsByName("salary_type").value;
+		var salary_amount = document.getElementsByName("salary_amount").value;
+		var place = document.getElementsByName("place").value;
+
+        for (var i = 0; i < rowCount; i++) {
+            var row = career.rows.item(i);//한줄을 가져오는 듯? 
+            for (var j = 0; j < row.cells.length; j++) {
+                var col = row.cells.item(j);
+                if (col.firstChild.getAttribute('name') == "career_name") { 
+                    dataObj.career_name = career_name;
+                }else if(col.firstChild.getAttribute('name') == "career_task") {
+                    dataObj.career_task = career_task;
+                }else if(col.firstChild.getAttribute('name') == "career_start_date") {
+                    dataObj.career_start_date = career_start_date;
+                }else if(col.firstChild.getAttribute('name') == "career_end_date") {
+                    dataObj.career_end_date = career_end_date;
+                }
+            }
+            dataArray =   dataArray+ dataObj;//데이터를 json 형식으로 만들어줌 stringify
+        }
+		var title = 
+        var result = { '"career"': [dataArray]};
+        var str = '';
+        for (var i in result) {
+            if (result.hasOwnProperty(i)) {
+                str += i + ":[" + result[i] + "]";
+            }
+        }
+        var dataParam = "{" + str ,"title":title,"category":category,"term":term,"day":day,"time":time
+		"salary_type":salary_type,"salary_amount":salary_amount,"place":place+"}";
+		console.log(dataParam)  ;
+        */
+    </script>
 </body>
-
 </html>

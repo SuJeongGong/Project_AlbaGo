@@ -16,6 +16,7 @@ public class Resume {
 	int salary_amount;//희망 월급 금액
 	String day;//희망 월급 금액
 	String term;//희망 기간
+	String time;//희망 기간
 	ArrayList<Career> career;//경력사항
 		
 }

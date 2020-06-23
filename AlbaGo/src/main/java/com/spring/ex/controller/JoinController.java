@@ -42,7 +42,7 @@ public class JoinController {
 		HttpSession session = request.getSession();
 		
 
-		session.invalidate();
+		session.invalidate();//세션초기화
 		
 		return "/main";
 	}

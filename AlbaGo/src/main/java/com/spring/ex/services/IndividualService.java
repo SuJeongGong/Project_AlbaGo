@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.IndividualDAO;
+import com.spring.ex.dto.Career;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_Individual;
@@ -33,7 +34,23 @@ public class IndividualService {
 	public int updateAccount(Individual individual) {
 		return individualDAO.updateAccount(individual);
 	}
-	
+	public int insertResume(Resume resume) {
+		return individualDAO.insertResume(resume);
+	}
+	public int insertCareer(HashMap<String,Object> careers,int resume_id) {
+		int result =0;
+
+		
+		
+//		for(int i =0; i<careers.size();i++) {
+//			Career career =careers.get(i);
+//			career.setResume_id(resume_id);
+//			if(1<=individualDAO.insertCareer(careers.get(i))) {
+//				result = 1;
+//			}
+//		}
+		return result;
+	}
 
 	public int deleteVolunteer(int volunteer_id) {
 		System.out.println(volunteer_id);

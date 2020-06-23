@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.spring.ex.dto.Career;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_Individual;
@@ -20,4 +21,6 @@ public interface IndividualDAO {
 	int deleteVolunteer(int volunteer_id);
 	int deleteScrap(int scrap_id);
 	int deleteResume(int resume_id);
+	int insertResume(Resume resume);
+	int insertCareer(Career career);
 }

@@ -52,7 +52,7 @@
                             <div class="col-xl-2 col-lg-2">                        
                                 <div class="logo">                                     <!-- 로고자리_area -->        
                                     <a href="<%=request.getContextPath() %>/main">
-                                        <img src="<c:url value="/img/logo2.JPG" />" alt="로고" width="90%" hright="40%">
+                                        <img src="<c:url value="/img/logo.png" />" alt="로고" width="90%" hright="40%">
                                     </a>
                                 </div>
                             </div>
