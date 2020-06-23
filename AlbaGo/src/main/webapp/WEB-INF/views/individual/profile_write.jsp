@@ -175,53 +175,7 @@
             if (career.rows.length < 1) return;
             career.deleteRow( career.rows.length-1 ); // 하단부터 삭제
           }
-/*
-        //동적으로 만든 테이블 접근
-        var dataArray ="";
 
-        var career_name = document.getElementsByName("career_name").value;//동적으로 만든 테이블의 속성값 접근 :career_name,career_task,career_start_date,career_end_date
-        var career_task = document.getElementsByName("career_task").value;//동적으로 만든 테이블의 속성값 접근 :career_name,career_task,career_start_date,career_end_date
-        var career_start_date = document.getElementsByName("career_start_date").value;//동적으로 만든 테이블의 속성값 접근 :career_name,career_task,career_start_date,career_end_date
-        var career_end_date = document.getElementsByName("career_end_date").value;//동적으로 만든 테이블의 속성값 접근 :career_name,career_task,career_start_date,career_end_date
-		
-        
-        var title = document.getElementsByName("title").value;
-		var category = document.getElementsByName("category").value;
-		var term = document.getElementsByName("term").value;
-		var day = document.getElementsByName("day").value;
-		var time = document.getElementsByName("time").value;
-		var salary_type = document.getElementsByName("salary_type").value;
-		var salary_amount = document.getElementsByName("salary_amount").value;
-		var place = document.getElementsByName("place").value;
-
-        for (var i = 0; i < rowCount; i++) {
-            var row = career.rows.item(i);//한줄을 가져오는 듯? 
-            for (var j = 0; j < row.cells.length; j++) {
-                var col = row.cells.item(j);
-                if (col.firstChild.getAttribute('name') == "career_name") { 
-                    dataObj.career_name = career_name;
-                }else if(col.firstChild.getAttribute('name') == "career_task") {
-                    dataObj.career_task = career_task;
-                }else if(col.firstChild.getAttribute('name') == "career_start_date") {
-                    dataObj.career_start_date = career_start_date;
-                }else if(col.firstChild.getAttribute('name') == "career_end_date") {
-                    dataObj.career_end_date = career_end_date;
-                }
-            }
-            dataArray =   dataArray+ dataObj;//데이터를 json 형식으로 만들어줌 stringify
-        }
-		var title = 
-        var result = { '"career"': [dataArray]};
-        var str = '';
-        for (var i in result) {
-            if (result.hasOwnProperty(i)) {
-                str += i + ":[" + result[i] + "]";
-            }
-        }
-        var dataParam = "{" + str ,"title":title,"category":category,"term":term,"day":day,"time":time
-		"salary_type":salary_type,"salary_amount":salary_amount,"place":place+"}";
-		console.log(dataParam)  ;
-        */
     </script>
 </body>
 </html>

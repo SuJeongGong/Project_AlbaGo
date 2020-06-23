@@ -119,21 +119,26 @@
 		1		
 		)
 	</insert>
-	<insert id ="insertCareer" parameterType="arraylist">
+	<insert id ="insertCareer" parameterType="Career">
 	insert into Career
 	(
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	career_id,
+	resume_id,
+	name,
+	start_date,
+	end_date,
+	task
 	)
+	values
+	(
+	null,
+	#{resume_id},
+	#{name},
+	#{start_date},
+	#{end_date},
+	#{task}
+	)
+	
 	
 	
 	</insert>

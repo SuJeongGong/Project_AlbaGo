@@ -37,18 +37,16 @@ public class IndividualService {
 	public int insertResume(Resume resume) {
 		return individualDAO.insertResume(resume);
 	}
-	public int insertCareer(HashMap<String,Object> careers,int resume_id) {
+	public int insertCareer(ArrayList<Career> careers,int resume_id) {
 		int result =0;
 
-		
-		
-//		for(int i =0; i<careers.size();i++) {
-//			Career career =careers.get(i);
-//			career.setResume_id(resume_id);
-//			if(1<=individualDAO.insertCareer(careers.get(i))) {
-//				result = 1;
-//			}
-//		}
+		for(int i =0; i<careers.size();i++) {
+			Career career =careers.get(i);
+			career.setResume_id(resume_id);
+			if(1<=individualDAO.insertCareer(careers.get(i))) {
+				result = 1;
+			}
+		}
 		return result;
 	}
 
