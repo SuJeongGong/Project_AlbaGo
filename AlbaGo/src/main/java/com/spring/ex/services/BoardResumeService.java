@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.BoardResumeDAO;
 import com.spring.ex.dto.BoardResume;
-import com.spring.ex.dto.Resume_Content;
 @Service
 public class BoardResumeService {
 	
@@ -15,16 +14,24 @@ public class BoardResumeService {
 	@Autowired
 	BoardResumeDAO boardResumeDAO;
 	
+	public int insertBoard_resume(BoardResume boardresume) {
+		return boardResumeDAO.insertBoard_resume(boardresume);
+	}
 	
 	public ArrayList<BoardResume> selectList(){
 		return boardResumeDAO.selectList();
 	}
 	
-	public int insertBoard_resume(BoardResume boardresume) {
-		return boardResumeDAO.insertBoard_resume(boardresume);
-	}
-	public Resume_Content selectView(String id){
+	public BoardResume selectView(int id){
 		return boardResumeDAO.selectView(id);
+	}
+	
+	public int deleteBoard(int board_resume_id) {
+		return boardResumeDAO.deleteBoard(board_resume_id);
+	}
+	
+	public int updateBoard(BoardResume boardresume) {
+		return boardResumeDAO.updateBoard(boardresume);
 	}
 	
 }

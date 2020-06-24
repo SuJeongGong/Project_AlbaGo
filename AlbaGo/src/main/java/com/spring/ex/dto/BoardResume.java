@@ -13,4 +13,15 @@ public class BoardResume { //인재
 	int resume_id;//이력서id
 	int views;//조회수
 	int delete_check;//삭제됐는지안됐는지
+	String name;			//개인 이름
+	String gender;			//성별
+	String birth;			//나이
+	String phone;			//폰번호
+	String education;		//최종학력
+	String salary_type;		//주급
+	int salary_amount;	//돈
+	String category;		//카테고리
+	String term;			//몇개월
+	String time;			//시간
+	String day;				//월~금
 }
