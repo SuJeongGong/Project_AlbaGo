@@ -174,7 +174,7 @@
 								for(int i =0;i<scraps.size();i++){
 									Scrap_Individual scrap=  scraps.get(i);
 									String title =scrap.getTitle();
-									String date = scrap.getDate();
+									String date = scrap.getDate().split(" ")[0];
 									%>
 									<tr>
 										<td><%=title %></td><td><%=date %></td>

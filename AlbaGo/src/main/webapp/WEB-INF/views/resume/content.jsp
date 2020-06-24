@@ -48,7 +48,7 @@
                                 				<a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/resume/delete?board_resume_id=<%=board_content.getBoard_resume_id() %>">삭제하기</a> <%
                                 		} 
                                 	}%>
-                                    <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
+                                	<a class="boxed-btn3 w-10"  href="<%=request.getContextPath()%>/enterprise/scrap/save?board_resume_id=<%=board_content.getBoard_resume_id() %>">스크랩</a>
                                 </div>
                             </div>
                         </div>

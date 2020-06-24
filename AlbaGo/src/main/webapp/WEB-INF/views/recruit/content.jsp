@@ -50,7 +50,7 @@
                                 				<a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/recruit/delete?board_recruit_id=<%=board_content.getBoard_recruit_id() %>">삭제하기</a> <%
                                 		} 
                                 	}%>
-                                    <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
+                                   <a class="boxed-btn3 w-10" href="<%=request.getContextPath()%>/individual/scrap/save?board_recruit_id=<%=board_content.getBoard_recruit_id() %>"> 스크랩</a>
                                 </div>
                             </div>
                         </div>

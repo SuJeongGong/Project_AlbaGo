@@ -131,7 +131,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 		} else {
 			String id = session.getAttribute("id").toString();
 			m.addAttribute("scraps", enterpriseService.insertScrap(board_resume_id,request.getSession().getAttribute("id").toString()));
-			page = "/resume/content?board_resume_id="+board_resume_id;
+			page = "redirect:/resume/content?board_resume_id="+board_resume_id;
 		}
 		return page;
 	}

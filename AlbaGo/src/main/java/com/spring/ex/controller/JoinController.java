@@ -63,7 +63,7 @@ public class JoinController {
 
 			session.setAttribute("id", id);// 세션에 아이디 넣기
 			session.setAttribute("type", "기업");// 세션에 기업인지, 개인인지 구분자 넣기
-			session.setMaxInactiveInterval(180);
+			session.setMaxInactiveInterval(900);
 
 			page = "/main";// db값넣기 성공시 result페이지로
 		} else {
