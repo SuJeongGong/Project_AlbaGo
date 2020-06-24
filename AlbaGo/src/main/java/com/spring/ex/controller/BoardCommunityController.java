@@ -106,7 +106,7 @@ public class BoardCommunityController {
 		
 		int community_id = Integer.parseInt(request.getParameter("community_id"));
 		
-		BoardCommunity community = communityService.deleteContent(community_id);
+		//BoardCommunity community = communityService.deleteContent(community_id);
 		
 		
 		return "/community/delete";
