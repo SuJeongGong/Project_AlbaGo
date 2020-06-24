@@ -16,11 +16,11 @@
 		String conPath = request.getContextPath();
 	%>
 	<script>
-
-function update(){
-		update.action="<%=conPath%>"/admin/product/update_product";
-
-		}
+		
+		function update(){
+				update.action="<%=conPath%>/admin/product/update_product";
+		
+				}
 	</script>
 	<div id="wrapper">
 		<!-- 사이드 바 -->
@@ -45,7 +45,7 @@ function update(){
 					ArrayList<Product> products = (ArrayList) request.getAttribute("products");
 				for (int i = 0; i < products.size(); i++) {
 					Product list = products.get(i);
-					int Product_id = list.getProduct_id();
+					int product_id = list.getProduct_id();
 					String name = list.getName();
 					String term = list.getTerm();
 					int price = list.getPrice();
@@ -62,8 +62,10 @@ function update(){
 						<div class="card card-pricing text-center px-3 mb-4">
 
 							<span
-								class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm"><%=Product_id%>
-								<%=name%></span>
+								class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">
+								<%=product_id%>
+								<input type="text" value="<%=name%>">
+								</span>
 							<div class="bg-transparent card-header pt-4 border-0">
 								<h1 class="h4 font-weight-normal text-primary text-center mb-0"
 									data-pricing-value="15">
@@ -85,9 +87,12 @@ function update(){
 
 								</ul>
 
-								<button class="btn btn-info edit" id="update" name="update"
+							<!-- 	<button class="btn btn-info edit" id="update" name="update"
 									onclick="update()" type="submit" aria-label="ASettings">
-									수정</button>
+									수정</button> -->
+
+								<a class="btn btn-info edit" href="<%=conPath%>/admin/product_account?product_id=<%=product_id%>"
+									aria-label="Settings"> 수정 </a>
 								<a class="btn btn-danger btn-xs" href="pasth/to/setting"
 									aria-label="Settings"> 삭제 </a>
 							</div>
