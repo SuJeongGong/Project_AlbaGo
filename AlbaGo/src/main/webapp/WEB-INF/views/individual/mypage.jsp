@@ -48,7 +48,7 @@
                                 <li>연락처 : <span><%=Iinfo.getPhone()%></span></li>
                                 <li>생년월일 : <span><%=Iinfo.getBirth()%></span></li>
                                 <li>최종학력 : <span><%=Iinfo.getEducation()%></span></li>
-                                <li>가입날짜 : <span><%=Iinfo.getDate()%></span></li>
+                                <li>가입날짜 : <span><%=Iinfo.getDate().split(" ")[0]%></span></li>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
 									String date = resume.getDate();
 									%>
 									<tr>
-										<td><%=title %></td><td><%=date %></td>
+										<td><%=title %></td><td><%=date.split(" ")[0] %></td>
 									</tr>									
 									<%
 								}

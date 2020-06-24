@@ -72,23 +72,18 @@ function deleteRecruits() {
                                 <table class="table">
                                     <thead>
                                     	<tr>
-                                    	   <a  href="<%=request.getContextPath()%>/enterprise/recruit/write" class="btn btn-outline-primary" style="float: right;" >공고등록</a>
+                                    	   <button type="submit" onclick="deleteRecruits()"  class="btn btn-outline-danger" style="float: right;">선택삭제</button>
                                     	   &ensp;&ensp;
-                                    	   <button type="submit" onclick="deleteRecruits()"  class="btn btn-outline-primary" style="float: right;">선택삭제</button>
+                                    	   <a  href="<%=request.getContextPath()%>/enterprise/recruit/write" class="btn btn-outline-primary" style="float: right;" >공고등록</a>
                                         </tr>
                                         <tr>
                                             <th>
                                                 <input type="checkbox" class="selectAllMembers" />
                                             </th>
-                                            <th>공고번호</th>
                                             <th>제목</th>
                                             <th>카테고리</th>
-                                            <th>장소</th>
-                                            <th>기간</th>
-                                            <th>시간</th>
-                                            <th>요일</th>
-                                            <th>급여</th>
                                             <th>작성일</th>
+                                            <th>상세보기</th>
                                             <th>삭제</th>
                                         </tr>
                                     </thead>
@@ -100,12 +95,7 @@ function deleteRecruits() {
                                     		
                                     		int recruit_id = recruit.getRecruit_id();
                                     		String title = recruit.getTitle();
-                                    		String place = recruit.getPlace();
-                                    		String salary = recruit.getSalary_type()+String.valueOf(recruit.getSalary_amount());
                                     		String category = recruit.getCategory();
-                                    		String term =recruit.getTerm();
-                                    		String time =recruit.getTerm();
-                                    		String day =recruit.getDay();
                                     		String date=recruit.getDate().split(" ")[0];
                                     		
                                     		%>
@@ -115,15 +105,10 @@ function deleteRecruits() {
                                             <td>
                                                 <input type="checkbox" name = "recruit_id"class="memberChk" onclick='OnOffMemberAllClickBtn()' value="<%=recruit_id %>">
                                             </td>
-                                            <td><%=recruit_id %></td>
                                             <td><%=title %></td>
                                             <td><%=category %></td>
-                                            <td><%=place %></td>
-                                            <td><%=term %></td>
-                                            <td><%=time %></td>
-                                            <td><%=day %></td>
-                                            <td><%=salary %></td>
                                             <td><%=date %></td>
+                                            <td><a href="<%=request.getContextPath() %>/enterprise/recruit/content?recruit_id=<%=recruit_id %>"  class="btn btn-outline-primary">상세보기</a></td>
                                             <td><button onclick="deleteRecruit(<%=recruit_id %>)"  class="btn btn-outline-danger">삭제</button></td>
 
                                         </tr>

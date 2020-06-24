@@ -21,7 +21,7 @@
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
                             <div class="footer_logo">
                                 <a href="#">
-                                    <img src="img/logo2.JPG" alt="로고" width="230" height="50">
+                                    <img src="<c:url value="/img/logo.png" />" alt="로고" width="230" height="50">
                                 </a>
                             </div>
 

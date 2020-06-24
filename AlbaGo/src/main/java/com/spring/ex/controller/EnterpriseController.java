@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Recruit;
+import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 import com.spring.ex.services.EnterpriseService;
 
 @Controller
 @RequestMapping("/enterprise")
-public class EnterpriseController {
+public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구분 맞는지,아이디값이 있는지 , insert랑 update시 값 전부다 입력되어있는지 (자바스크립트)
 
 	@Autowired
 	EnterpriseService enterpriseService;
@@ -44,7 +45,7 @@ public class EnterpriseController {
 				// 모델에 담기
 				m.addAttribute("Einfo", enterpriseService.selectEnterprise(id));// 기업정보
 				m.addAttribute("scrap", enterpriseService.selectScrap(id));// 스크랩
-				m.addAttribute("recruit", enterpriseService.selectRecruit(id));// 스크랩
+				m.addAttribute("recruit", enterpriseService.selectRecruits(id));// 스크랩
 				m.addAttribute("volunteer", enterpriseService.selectVolunteer(id));// 스크랩
 
 				page = "/enterprise/mypage";
@@ -118,7 +119,7 @@ public class EnterpriseController {
 	}
 
 	@RequestMapping("/recruit/list") // 공고 리스트
-	public String recruit_write(HttpServletRequest request, Model m) {
+	public String recruitList(HttpServletRequest request, Model m) {
 		String page = "/main";
 		HttpSession session = request.getSession();
 		System.out.println(session.getAttribute("type"));
@@ -126,16 +127,40 @@ public class EnterpriseController {
 			return page;
 		} else {
 			String id = session.getAttribute("id").toString();
-			m.addAttribute("Recruits", enterpriseService.selectRecruit(id));// why salary는 안나오죠?
+			m.addAttribute("Recruits", enterpriseService.selectRecruits(id));// why salary는 안나오죠?
 			page = "/enterprise/recruit_list";
 		}
 		return page;
 	}
 
-	@RequestMapping("/recruit/write") // 공고 작성하기===>토요일날 구현
-	public String recruitList() {
-
+	@RequestMapping("/recruit/write") // 공고 작성하기 - 화면 보여주기
+	public String recruitWrite() {
 		return "/enterprise/recruit_write";
+	}
+	
+	@RequestMapping("/recruit/content") // 공고 상세보기 
+	public String recruitContent(@RequestParam("recruit_id") int recruit_id,Model m) {
+		String page = "/enterprise/list";//원래 경로
+		Recruit recruit = enterpriseService.selectRecruit(recruit_id);
+		System.out.println(recruit);
+		if(recruit!=null) {
+			m.addAttribute("recruit", recruit);
+			page= "enterprise/recruit_content";
+		}
+		return page;
+		
+		
+	}
+
+	@RequestMapping("/recruit/write/save") // 공고 작성하기 - 저장하기
+	public String recruitWriteSave(@ModelAttribute("recruit") Recruit recruit,HttpServletRequest request) {
+		String page="/recruit/write/save";
+		recruit.setEnterprise_id(request.getSession().getAttribute("id").toString());
+		if(1<=enterpriseService.insertRecruit(recruit)) {
+			System.out.println("DB에 값 넣기 성공");
+			page="/main";
+		}
+		return page;
 	}
 
 	@RequestMapping("/volunteer/list") // 지원한 인재
@@ -155,6 +180,19 @@ public class EnterpriseController {
 		}
 		return page;
 	}
+	@RequestMapping("/volunteer/resume") // 지원한 사람의 지원한 이력서 보기 
+	public String volunteerResume(@RequestParam("resume_id")int resume_id, Model m) {
+		String page = "/enterprise/mypage";//성공 안했을때 경로
+			
+			
+			
+			m.addAttribute("resume", enterpriseService.selectVolunteerResume(resume_id));
+			page = "/enterprise/volunteer_resume";
+	
+		return page;
+	}
+
+	// 아약스 처리
 
 	@RequestMapping(value = "/volunteer/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String updateResult(String result, int id) {
@@ -170,7 +208,8 @@ public class EnterpriseController {
 	}
 
 	@RequestMapping(value = "/volunteer/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String updateResults(@RequestParam(value = "result") String result, @RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
+	public String updateResults(@RequestParam(value = "result") String result,
+			@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("volunteer_ids", volunteer_ids);
@@ -199,7 +238,7 @@ public class EnterpriseController {
 		}
 		return;
 	}
-	
+
 	@RequestMapping(value = "/recruit/deleteRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteRecruit(int recruit_id) {
 		System.out.println(recruit_id);// jsp 에서 가져온값
@@ -208,7 +247,7 @@ public class EnterpriseController {
 		}
 		return;
 	}
-	
+
 	@RequestMapping(value = "/recruit/deleteRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteRecruits(@RequestParam(value = "recruit_ids[]") ArrayList<String> recruit_id) {
 		System.out.println(recruit_id);

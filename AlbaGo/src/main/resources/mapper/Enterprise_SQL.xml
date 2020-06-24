@@ -2,13 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.ex.dao.EnterpriseDAO">
-
-	<select id="selectNow" resultType="Product"
-		parameterType="hashmap">
-		select * from enterprise where enterprise_id=#{param1}
-		and price=#{param2};
-	</select>
-
 	<select id="selectEnterprise" parameterType="String"
 		resultType="Enterprise">
 		select *
@@ -18,83 +11,153 @@
 		</where>
 	</select>
 
-	<select id="selectScrap" parameterType="String" resultType="Scrap_enterprise">
-		SELECT board_resume.title AS title, 
-				scrap_enterprise.date AS DATE,
-				board_resume.date AS resume_date, 
-				resume.individual_id as individual_id,
-				scrap_enterprise.scrap_enterprise_id as scrap_enterprise_id
+	<select id="selectScrap" parameterType="String"
+		resultType="Scrap_enterprise">
+		SELECT board_resume.title AS title,
+		scrap_enterprise.date AS DATE,
+		board_resume.date AS resume_date,
+		resume.individual_id as individual_id,
+		scrap_enterprise.scrap_enterprise_id as scrap_enterprise_id
 		from
 		scrap_enterprise, board_resume , resume
 		<where>
-				scrap_enterprise.board_resume_id =board_resume.board_resume_id
-				AND resume.resume_id = board_resume.resume_id
-				and enterprise_id = #{id}
+			scrap_enterprise.board_resume_id =board_resume.board_resume_id
+			AND resume.resume_id = board_resume.resume_id
+			and enterprise_id = #{id}
 		</where>
 	</select>
 
 	<select id="selectVolunteer" parameterType="String"
 		resultType="Volunteer">
 		SELECT volunteer.board_recruit_id as recruit_id,
-				board_recruit.title as recruit_title,
-				volunteer.individual_id as individual_id,
-				volunteer.memo as memo,
-				volunteer.date as date,
-				volunteer.result as result,
-				resume.title as resume_title,
-				volunteer.volunteer_id as volunteer_id
-				
+		board_recruit.title as recruit_title,
+		volunteer.individual_id as individual_id,
+		volunteer.memo as memo,
+		volunteer.date as date,
+		volunteer.result as result,
+		volunteer.resume_id as resume_id,
+		resume.title as resume_title,
+		volunteer.volunteer_id as volunteer_id
+
 		FROM resume,volunteer,board_recruit,enterprise,recruit
 		<where>
 			resume.resume_id =volunteer.resume_id
-			AND volunteer.board_recruit_id = board_recruit.board_recruit_id
-			AND recruit.recruit_id = board_recruit.recruit_id
-			AND enterprise.enterprise_id = recruit.enterprise_id
-			and enterprise.enterprise_id = #{id}
+			AND
+			volunteer.board_recruit_id = board_recruit.board_recruit_id
+			AND
+			recruit.recruit_id = board_recruit.recruit_id
+			AND
+			enterprise.enterprise_id = recruit.enterprise_id
+			and
+			enterprise.enterprise_id = #{id}
 		</where>
 	</select>
 
-	<select id="selectRecruit" parameterType="String"
+	<select id="selectRecruits" parameterType="String"
 		resultType="Recruit">
 		SELECT *
 		FROM recruit
 		<where>
 			enterprise_id = #{id}
-			 AND delete_CHECK =1
+			AND delete_CHECK =1
+		</where>
+	</select>
+	<select id="selectRecruit" parameterType="int"
+		resultType="Recruit">
+		SELECT *
+		FROM recruit
+		<where>
+			recruit_id=#{recruit_id}
+			AND delete_CHECK =1
 		</where>
 	</select>
 
+	<insert id="insertRecruit" parameterType="Recruit">
+		insert Into Recruit
+		(
+		recruit_id,
+		enterprise_id,
+		title,
+		salary_type,
+		salary_amount,
+		place,
+		category,
+		term,
+		time,
+		day,
+		delete_check,
+		education,
+		age,
+		people_count,
+		gender,
+		date
+		)
+		values(
+		null,
+		#{enterprise_id},
+		#{title},
+		#{salary_type},
+		#{salary_amount},
+		#{place},
+		#{category},
+		#{term},
+		#{time},
+		#{day},
+		1,
+		#{education},
+		#{age},
+		#{people_count},
+		#{gender}	,
+		null	
+		)
+		
+		
+	</insert>
 	<update id="updateAccount" parameterType="Enterprise">
-		update enterprise 
+		update enterprise
 		set name = #{name},
-			business_number = #{business_number},
-			manager_name = #{manager_name},
-			manager_phone = #{manager_phone},
-			category = #{category}
+		business_number = #{business_number},
+		manager_name = #{manager_name},
+		manager_phone = #{manager_phone},
+		category = #{category}
 		<where>
 			enterprise_id = #{enterprise_id}
 		</where>
 	</update>
 
 	<update id="updateVolunteerResult" parameterType="hashmap">
-		update volunteer 
+		update volunteer
 		set result = #{result}
 		<where>
 			volunteer_id = #{volunteer_id}
 		</where>
 	</update>
-	
-	<delete id ="deleteScrap" parameterType="int">
-	
+
+	<delete id="deleteScrap" parameterType="int">
+
 		delete from Scrap_enterprise where scrap_enterprise_id = #{scrap_id}
 	</delete>
 
 	<update id="deleteRecruit" parameterType="int">
-		update recruit 
+		update recruit
 		set delete_CHECK = 0
 		<where>
 			recruit_id = #{recruit_id}
 		</where>
 	</update>
 	
+		<select id = "selectVolunteerResume" parameterType="int" resultType="Resume">
+		SELECT *
+		FROM resume, individual
+		<where>resume.individual_id = individual.individual_id
+				and resume.resume_id = #{resume_id}
+		</where>
+	</select>
+		<select id = "selectVolunteerCareer" parameterType="int" resultType="Career">
+		SELECT *
+		FROM career
+		<where>resume_id = #{resume_id}
+		</where>
+	</select>
+
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.spring.ex.dao.EnterpriseDAO;
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Recruit;
+import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 
@@ -26,14 +27,21 @@ public class EnterpriseService {
 		return enterpriseDAO.selectScrap(id);
 	}
 
-	public ArrayList<Recruit> selectRecruit(String id) {
-		return enterpriseDAO.selectRecruit(id);
+	public ArrayList<Recruit> selectRecruits(String id) {
+		return enterpriseDAO.selectRecruits(id);
 	}
 
 	public ArrayList<Volunteer> selectVolunteer(String id) {
 		return enterpriseDAO.selectVolunteer(id);
 	}
-
+	public Resume selectVolunteerResume(int resume_id) {
+		Resume resume = enterpriseDAO.selectVolunteerResume(resume_id);
+		resume.setCareer(enterpriseDAO.selectVolunteerCareer(resume_id));		
+		return resume;
+	}
+	public Recruit selectRecruit(int recruit_id) {
+		return enterpriseDAO.selectRecruit(recruit_id);
+	}
 	public int updateAccount(Enterprise enterprise) {
 		return enterpriseDAO.updateAccount(enterprise);
 	}
@@ -41,7 +49,10 @@ public class EnterpriseService {
 	public int updateVolunteerResult(HashMap<String, Object> map) {
 		return enterpriseDAO.updateVolunteerResult(map);
 	}
-
+	
+	public int insertRecruit(Recruit recruit) {
+		return enterpriseDAO.insertRecruit(recruit);
+	}
 	public int updateVolunteerResults(HashMap<String, Object> map) {
 		String result = map.get("result").toString();
 		int res = 0;
@@ -64,16 +75,8 @@ public class EnterpriseService {
 	}
 
 	public int deleteScraps(ArrayList<String> ids) {
-		int res = 0;
 
-		for (int i = 0; i < ids.size(); i++) {
-
-			if (1 <= enterpriseDAO.deleteScrap(Integer.parseInt(ids.get(i)))) {
-				res = 1;
-			}
-		}
-
-		return res;
+		return forDeleteSQL(ids,"deleteRecruit");
 	}
 
 	public int deleteRecruit(int recruit_id) {
@@ -82,16 +85,26 @@ public class EnterpriseService {
 	}
 
 	public int deleteRecruits(ArrayList<String> ids) {
-		int res = 0;
 		System.out.println(ids);
 
-		for (int i = 0; i < ids.size(); i++) {
-
-			if (1 <= enterpriseDAO.deleteRecruit(Integer.parseInt(ids.get(i)))) {
-				res = 1;
+		return forDeleteSQL(ids,"deleteRecruit");
+	}
+	
+	
+	public int forDeleteSQL(ArrayList<String> ids,String methodName) {
+		int res = 0;
+		for(int i =0; i<ids.size();i++) {
+			if(methodName.equals("deleteRecruit")) {
+				if (1 <= enterpriseDAO.deleteRecruit(Integer.parseInt(ids.get(i)))) {
+					res = 1;
+				}
+			}
+			else if(methodName.equals("deleteScrap")) {
+				if (1 <= enterpriseDAO.deleteScrap(Integer.parseInt(ids.get(i)))) {
+					res = 1;
+				}
 			}
 		}
-
 		return res;
 	}
 }

@@ -51,7 +51,7 @@
                                 <li>카테고리 : <span><%=Einfo.getCategory()%></span></li>
                                 <li>UP 횟수 : <span><%=Einfo.getUp_count()%></span></li>
                                 <li>이력서 횟수 : <span><%=Einfo.getResume_count()%></span></li>
-                                <li>가입날짜 : <span><%=Einfo.getDate()%></span></li>
+                                <li>가입날짜 : <span><%=Einfo.getDate().split(" ")[0]%></span></li>
                             </ul>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
 									String date = recruit.getDate();
 									%>
 									<tr>
-										<td><%=title %></td><td><%=date %></td>
+										<td><%=title %></td><td><%=date.split(" ")[0]%></td>
 									</tr>									
 									<%
 								}
@@ -133,8 +133,8 @@
 								for(int i =0;i<volunteers.size();i++){
 									Volunteer volunteer=  volunteers.get(i);
 									String individual_id =volunteer.getIndividual_id();
-									String title =volunteer.getTitle();
-									String date = volunteer.getDate();
+									String title =volunteer.getRecruit_title();
+									String date = volunteer.getDate().split(" ")[0];
 									%>
 									<tr>
 										<td><%=title %></td><td><%=date %></td><td><%=individual_id %></td>
@@ -179,7 +179,7 @@
 								for(int i =0;i<scraps.size();i++){
 									Scrap_enterprise scrap=  scraps.get(i);
 									String title =scrap.getTitle();
-									String date = scrap.getDate();
+									String date = scrap.getDate().split(" ")[0];
 									%>
 									<tr>
 										<td><%=title %></td><td><%=date %></td>
