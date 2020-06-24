@@ -20,7 +20,7 @@
 		#{price},
 		#{amount},
 		#{explan},
-		#{delete_check}
+		1
 		)
 
 	</insert>
