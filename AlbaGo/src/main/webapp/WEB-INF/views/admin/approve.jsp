@@ -197,7 +197,6 @@
                                     objs[i].checked = selectAll.checked;
                                 };
                             }, false);
-
                             var objs = document.querySelectorAll(".memberChk");
                             for (var i = 0; i < objs.length; i++) {
                                 objs[i].addEventListener('click', function () {
