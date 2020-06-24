@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function scrap(){//로그인 했는지 안헀는지 기능 구현하기, 안했으면 로그인 화면, 했으면 스크랩 진행
+	if()
+}
+
+
+
+
+</script>
 </head>
 <body>
 	<%@ include file="../serve/header.jsp" %>
@@ -33,7 +42,7 @@
                                         <div class="location">
                                             <p> <i class="fa fa-map-marker"></i><%=board_content.getPlace() %></p>
                                         </div>
-                                        <div class="location">
+                                        <div class="location">T
                                             <p> <i class="fa fa-clock-o"></i><%=board_content.getDate()%></p>
                                         </div>
                                     </div>
@@ -49,7 +58,7 @@
                                 	if(id.equals(board_content.getIndividual_id())) { 
                                 		%> <a class="btn btn-info edit w-10" href="#">수정하기</a> <a class="btn btn-info edit w-10" href="#">삭제하기</a> <%
                                 	} %>
-                                    <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath()%>/enterprise/scrap/save?board_resume_id="> 스크랩</a>
                                 </div>
                             </div>
                         </div>

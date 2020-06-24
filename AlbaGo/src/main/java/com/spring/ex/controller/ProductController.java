@@ -7,13 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.ex.dao.EnterpriseDAO;
-import com.spring.ex.dao.ProductDAO;
+
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
 import com.spring.ex.services.ProductService;
@@ -34,7 +31,7 @@ public class ProductController {
 		m.addAttribute("product", product);
 		
 
-		return page;
+		return page; 
 	}
 
 	@RequestMapping("/list") // 기업이 상품리스트 보는화면

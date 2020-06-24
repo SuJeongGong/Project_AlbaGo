@@ -29,12 +29,16 @@ public class ProductService {
 	}
 
 	public Product product_account(int product_id) {
-		return productDAO.product_account(product_id); //수정상세보는거야
+		return productDAO.product_account(product_id); //수정상세
 	}
-	public int update_product(Product product) { //수정하는거야!~
+	public int update_product(Product product) { //수정
 		return productDAO.update_product(product);
 	}
-
+	
+	public int delete_product(Product product) {//삭제
+		return productDAO.delete_product(product);
+	}
+	//기업
 	public ArrayList<Product> enterprise_selectList() {
 		return productDAO.enterprise_selectList();
 	}

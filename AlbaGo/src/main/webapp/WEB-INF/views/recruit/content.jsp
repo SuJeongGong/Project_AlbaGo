@@ -56,15 +56,13 @@ function deleteBoard(board_recruit_id) {
                             <div class="jobs_right">
                                 <div class="apply_now">
                                 	<%
-                                	String id = request.getSession().getAttribute("id").toString();
-                                	
-                                	System.out.println(id + "세션에서 가져온");
-                                	System.out.println(board_content.getEnterprise_id() +"디비에서 가져온");
-                                	if(id.equals(board_content.getEnterprise_id())) { 
-                                		%>  <a class="btn btn-info edit w-10" href="<%=request.getContextPath()%>/recruit/write_update?board_recruit_id=<%=board_content.getBoard_recruit_id() %>">수정하기</a> 
-                                			<a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/recruit/delete?board_recruit_id=<%=board_content.getBoard_recruit_id() %>">삭제하기</a> <%
-                                	} %>
-                                    <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
+                                	if(request.getSession().getAttribute("id")!=null){
+	                                	if(request.getSession().getAttribute("id").equals(board_content.getEnterprise_id())) { 
+	                                		%>  <a class="btn btn-info edit w-10" href="<%=request.getContextPath()%>/recruit/write_update?board_recruit_id=<%=board_content.getBoard_recruit_id() %>">수정하기</a> 
+	                                			<a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/recruit/delete?board_recruit_id=<%=board_content.getBoard_recruit_id() %>">삭제하기</a> <%
+	                                	} 
+                                	}%>
+                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath()%>/individual/scrap/save?board_recruit_id=<%=board_content.getBoard_recruit_id() %>"> 스크랩</a>
                                 </div>
                             </div>
                         </div>

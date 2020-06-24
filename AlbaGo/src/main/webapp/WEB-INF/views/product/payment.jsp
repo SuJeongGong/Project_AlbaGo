@@ -43,12 +43,12 @@
 						</div>
 						<form action="#">
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-6"> 
 									<div class="submit_btn">
 									<a href="<%=request.getContextPath()%>/product/payment/result?product_id=<%=product.getProduct_id()%>"
-											>결제하기</a>
+											>결제하기</a> 
 											</div>
-								</div>
+								</div> 
 								<div class="col-md-6">
 									<div class="submit_btn">
 										<a href="<%=request.getContextPath() %>/product/list">목록으로</a>

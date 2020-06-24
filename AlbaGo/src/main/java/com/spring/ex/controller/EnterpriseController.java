@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
@@ -117,6 +118,20 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 			System.out.println(enterpriseService.selectScrap(id));
 			m.addAttribute("scraps", enterpriseService.selectScrap(id));
 			page = "/enterprise/scrap";
+		}
+		return page;
+	}
+	@RequestMapping("/scrap/save") // 스크랩 인재 - 추가하기
+	public String scrapSave(@RequestParam("board_resume_id") int board_resume_id,HttpServletRequest request, Model m) {
+		String page = "/enterprise/mypage";
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("type"));
+		if (!session.getAttribute("type").toString().equals("기업")) {
+			return page;
+		} else {
+			String id = session.getAttribute("id").toString();
+			m.addAttribute("scraps", enterpriseService.insertScrap(board_resume_id,request.getSession().getAttribute("id").toString()));
+			page = "/resume/content?board_resume_id="+board_resume_id;
 		}
 		return page;
 	}

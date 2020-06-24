@@ -92,11 +92,11 @@ public class BoardRecruitController {
 	public String content(Model m,HttpServletRequest request) {
 		//디비처리 select로 글 내용 가져오기
 		// update로 조회수
-		
-		String id = request.getSession().getAttribute("id").toString();
-		System.out.println(id);
-				
-		System.out.println(request.getParameter("board_recruit_id").toString());
+//		
+//		String id = request.getSession().getAttribute("id").toString();
+//		System.out.println(id);
+//				
+//		System.out.println(request.getParameter("board_recruit_id").toString());
 		int board_recruit_id = Integer.parseInt(request.getParameter("board_recruit_id"));
 				
 		System.out.println("되나?1");

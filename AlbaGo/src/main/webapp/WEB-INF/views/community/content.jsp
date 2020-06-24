@@ -13,6 +13,7 @@
 	
 	 <%
 	BoardCommunity community = (BoardCommunity)request.getAttribute("community_content");//한줄 받는거 
+		int community_id =community.getCommunity_id();
 		String title = community.getTitle();
 		String id =community.getIndividual_id();
 		String date = community.getDate();
@@ -43,7 +44,15 @@
                      <p class="excert">
                         <%=content %>
                      </p>
-                     
+                     			<%
+                                 String session_id = request.getSession().getAttribute("id").toString();
+                                 
+                                 System.out.println(session_id + "세션에서 가져온");
+                                   System.out.println(community.getIndividual_id() +"디비에서 가져온");
+                                   if(id.equals(community.getIndividual_id())) { 
+                                      %>  <a class="btn btn-info edit w-10" href="<%=request.getContextPath()%>/community/write_update?community_id=<%=community.getCommunity_id()%>">수정하기</a> 
+                                         <a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/community/delete?board_recruit_id=<%=community.getCommunity_id()%>>">삭제하기</a> <%
+                                   } %>			
                   </div>
                </div>
                

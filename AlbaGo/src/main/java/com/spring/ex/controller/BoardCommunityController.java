@@ -3,6 +3,7 @@ package com.spring.ex.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dao.CommunityDAO;
@@ -80,39 +82,50 @@ public class BoardCommunityController {
 		if(1<=communityService.updateViews(community_id)) {//성공했다면
 			System.out.println("조회수 증가 DB연결 성공");
 			m.addAttribute("community_content",community );
-		}
-		
-		
-		
-		
+		}		
 		return "/community/content";
+					}
+	
+	
+	@RequestMapping("/write_update")//수정화면보기
+	public String update(HttpServletRequest request, Model m) {
+		String page = "/community/list";
+		HttpSession session = request.getSession();		//아이디 세션 가져오기
 		
+		if(!session.getAttribute("type").toString().equals("개인")) {//개인 확인 
+			return  "/community/list";
+		} else {
+			String id = session.getAttribute("id").toString();//로그인 된 아이디
+			int community_id = Integer.parseInt(request.getParameter("community_id"));//파라미터로 들어온 값 , 글번호 
+			ArrayList<BoardCommunity> communitys =communityService.selectList();
+			m.addAttribute("communitys", communitys);
+				
+				BoardCommunity boardCommunity = communityService.selectContent(community_id);
+				boardCommunity.setCommunity_id(community_id);
+				System.out.println("수정 화면 보여주는 컨트롤러 "+boardCommunity);
+				m.addAttribute("board_Community", boardCommunity); // 여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
+				page = "community/update";//redirect:/community/list
 		
-		
+		}
+		return page;
 	}
 	
-	@RequestMapping("/update")//수정
-	public String update() {
-		
-		
-		return "/community/update";
+	
+	@RequestMapping(value = "/deleteContent", method = RequestMethod.GET)//삭제
+	public String delete(HttpServletRequest request, @ModelAttribute("community_id")int community_id) {
+		String page = "/community/content";
+
+		if(1 <= communityService.deleteContent(community_id)) {
+			System.out.println("DB연결 성공!");
+			page = "/main";
+		}
+		else {
+			System.out.println("DB연결 실패!");
+		}
+		return page;
 	}
 	
-	
-	
-	
-	@RequestMapping("/delete")//삭제
-	public String delete(Model m, HttpServletRequest request) {
-		
-		int community_id = Integer.parseInt(request.getParameter("community_id"));
-		
-		//BoardCommunity community = communityService.deleteContent(community_id);
-		
-		
-		return "/community/delete";
-	}
-	//화면에서 가져옴
-	
+
 	
 	
 			//		hashpmap map 
