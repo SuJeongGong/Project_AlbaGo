@@ -28,7 +28,7 @@
 						<a  class="btn py-1 px-1 btn-primary col-lg-2" href="">기업정보 수정</a>
 						<a  class="btn py-1 px-1 btn-primary col-lg-2" href="">공고 수정</a>
 					</div>
-					<input name ="board_recruit_id" value="<%=board_content.getBoard_recruit_id()%>">
+					<input type="hidden" name ="board_recruit_id" value="<%=board_content.getBoard_recruit_id()%>">
 					<label for="title">제목 </label>
 					<input type="text" class="form-control" id="title" name="title" value="<%=board_content.getTitle() %>">
 					<label for="message">내용</label>

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script>
+<!-- <script>
 function deleteBoard(board_recruit_id) {
 	if(confirm("정말 삭제하시겠습니까??") == true) { //확인
 		location.href = "/delete?board_recruit_id="+${board_recruit_id.board_recruit_id};
@@ -19,7 +19,7 @@ function deleteBoard(board_recruit_id) {
 }
 
 </script>
-
+ -->
 </head>
 
 <body>
@@ -62,7 +62,7 @@ function deleteBoard(board_recruit_id) {
                                 	System.out.println(board_content.getEnterprise_id() +"디비에서 가져온");
                                 	if(id.equals(board_content.getEnterprise_id())) { 
                                 		%>  <a class="btn btn-info edit w-10" href="<%=request.getContextPath()%>/recruit/write_update?board_recruit_id=<%=board_content.getBoard_recruit_id() %>">수정하기</a> 
-                                			<%-- <button class="btn btn-outline-danger w-10" onclick="deleteBoard(<%=board_recruit_id%>)">삭제하기</button> --%> <%
+                                			<a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/recruit/delete?board_recruit_id=<%=board_content.getBoard_recruit_id() %>">삭제하기</a> <%
                                 	} %>
                                     <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
                                 </div>
@@ -73,7 +73,7 @@ function deleteBoard(board_recruit_id) {
                         <div class="single_wrap">
                             <h4>근무조건</h4>
                             <ul>
-                                <li>급여 : <span><%=board_content.getSalay_type() %> : <%=board_content.getSalay_amount() %></span></li>
+                                <li>급여 : <span><%=board_content.getSalary_type() %> : <%=board_content.getSalary_amount() %></span></li>
                                 <li>근무 기간 : <span><%=board_content.getDate() %></span></li>
                                 <li>근무 요일 : <span><%=board_content.getDay() %></span></li>
                                 <li>근무 시간 : <span><%=board_content.getTime() %></span></li>
