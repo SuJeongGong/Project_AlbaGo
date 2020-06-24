@@ -39,14 +39,17 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 			return page;
 		} else {
 			String id = session.getAttribute("id").toString();
+			System.out.println("else문 들어와서  ");
 
 			if (enterpriseService.selectEnterprise(id) != null) {
+				System.out.println("모델 담기전 ");
 
 				// 모델에 담기
 				m.addAttribute("Einfo", enterpriseService.selectEnterprise(id));// 기업정보
 				m.addAttribute("scrap", enterpriseService.selectScrap(id));// 스크랩
 				m.addAttribute("recruit", enterpriseService.selectRecruits(id));// 스크랩
 				m.addAttribute("volunteer", enterpriseService.selectVolunteer(id));// 스크랩
+				System.out.println("모델  후");
 
 				page = "/enterprise/mypage";
 			} else {

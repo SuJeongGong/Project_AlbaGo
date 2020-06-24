@@ -25,6 +25,8 @@
 			AND resume.resume_id = board_resume.resume_id
 			and enterprise_id = #{id}
 		</where>
+		ORDER BY scrap_enterprise.scrap_enterprise_id DESC
+		
 	</select>
 
 	<select id="selectVolunteer" parameterType="String"
@@ -50,7 +52,8 @@
 			enterprise.enterprise_id = recruit.enterprise_id
 			and
 			enterprise.enterprise_id = #{id}
-		</where>
+		</where> 
+		ORDER BY volunteer.volunteer_id DESC
 	</select>
 
 	<select id="selectRecruits" parameterType="String"
@@ -61,6 +64,8 @@
 			enterprise_id = #{id}
 			AND delete_CHECK =1
 		</where>
+		ORDER BY recruit.recruit_id DESC
+		
 	</select>
 	<select id="selectRecruit" parameterType="int"
 		resultType="Recruit">
@@ -70,6 +75,7 @@
 			recruit_id=#{recruit_id}
 			AND delete_CHECK =1
 		</where>
+		ORDER BY recruit.recruit_id DESC
 	</select>
 
 	<insert id="insertRecruit" parameterType="Recruit">
