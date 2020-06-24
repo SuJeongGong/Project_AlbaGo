@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.BoardCommunity"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,10 +12,12 @@
 	
 	
 	 <%
-		String title = request.getSession().getAttribute("title").toString();
-		String id = request.getSession().getAttribute("id").toString();
-		String date = request.getSession().getAttribute("date").toString();
-		String content = request.getSession().getAttribute("contnet").toString();
+	BoardCommunity community = (BoardCommunity)request.getAttribute("community_content");//한줄 받는거 
+		String title = community.getTitle();
+		String id =community.getIndividual_id();
+		String date = community.getDate();
+		String content = community.getContents();
+		int views = community.getViews();
      %>
     
 	
@@ -34,7 +37,8 @@
                      <ul class="blog-info-link mt-3 mb-4">
                         <li><i class="fa fa-user"></i><%=id %></li>
                         <li><i class="fa fa-comments"></i> 댓글 갯수</li>
-                            <li><i class="fa fa-comments"></i><%=date %></li>
+                        <li><i class="fa fa-views"></i>조회수 <%=views %></li>
+                            <li><i class="fa fa-comments"></i><%=date.split(":")[0] %>:<%=date.split(":")[1] %></li>
                      </ul>
                      <p class="excert">
                         <%=content %>

@@ -22,8 +22,19 @@ public class CommunityService {
 		return communityDAO.selectList();
 	}
 
-	public List<BoardCommunity> selectContent() {
-		return communityDAO.selectContent();
+	public BoardCommunity selectContent(int community_id) {
+		return communityDAO.selectContent(community_id);
+	}
+	
+	public int deleteContent(int community_id) {
+		return communityDAO.deleteContent(community_id);
+	}
+	
+	public int updateContent(int community_id) {
+		return communityDAO.updateContent(community_id);
+	}
+	public int updateViews(int community_id) {
+		return communityDAO.updateViews(community_id);
 	}
 
 }

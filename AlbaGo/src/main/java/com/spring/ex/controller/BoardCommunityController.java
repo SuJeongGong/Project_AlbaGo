@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dao.CommunityDAO;
 import com.spring.ex.dto.BoardCommunity;
@@ -58,25 +59,49 @@ public class BoardCommunityController {
 		return "/community/write"; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
 	}
 	
-	@RequestMapping("/update")//수정
-	public String update() {
-		return "/community/update";
-	}
+	
 	
 	
 	@RequestMapping("/content")//읽기
 	public String content(Model m, HttpServletRequest request) {
 
 		
-		int community_id = Integer.parseInt(request.getParameter("community_id"));
-		System.out.println(community_id);
+	//	String id = request.getSession().getAttribute("id").toString(); //로그인된 id 가져오기 
+	//	System.out.println(id);
 		
-		m.addAttribute("board_content", CommunityService.selectContnet(community_id));
-	 
+		System.out.println(request.getParameter("community_id").toString());
+		
+		int community_id = Integer.parseInt(request.getParameter("community_id"));
+		//DB에서 글 하나 가져오기
+		BoardCommunity community = communityService.selectContent(community_id);
+		//DB에서 글 하나 가져온 것을 다음 화면에 보여주기 위해서 m에다가 담음
+
+		//조회수 증가 쿼리문 전송
+		if(1<=communityService.updateViews(community_id)) {//성공했다면
+			System.out.println("조회수 증가 DB연결 성공");
+			m.addAttribute("community_content",community );
+		}
+		
+		
+		
+		
 		return "/community/content";
 		
 		
 		
+	}
+	
+	@RequestMapping("/update")//수정
+	public String update() {
+		return "/community/update";
+	}
+	
+	
+	
+	
+	@RequestMapping("/delete")//삭제
+	public String delete() {
+		return "/community/delete";
 	}
 	//화면에서 가져옴
 	
