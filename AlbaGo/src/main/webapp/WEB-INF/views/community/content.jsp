@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.BoardCommunity"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,7 +11,14 @@
 	<%@ include file="../serve/header.jsp" %>
 	
 	
-	
+	 <%
+	BoardCommunity community = (BoardCommunity)request.getAttribute("community_content");//한줄 받는거 
+		String title = community.getTitle();
+		String id =community.getIndividual_id();
+		String date = community.getDate();
+		String content = community.getContents();
+		int views = community.getViews();
+     %>
     
 	
 	
@@ -23,26 +31,22 @@
                <div class="single-post">
                   <div class="blog_details">
                       <h2>
-                      <%
-						String title = request.getSession().getAttribute("title").toString();
-						String id = request.getSession().getAttribute("id").toString();
-						String date = request.getSession().getAttribute("date").toString();
-						String content = request.getSession().getAttribute("contnet").toString();
-    				  %>
-                      
                         <%=title %></h2>
                      
                     
                      <ul class="blog-info-link mt-3 mb-4">
                         <li><i class="fa fa-user"></i><%=id %></li>
                         <li><i class="fa fa-comments"></i> 댓글 갯수</li>
-                            <li><i class="fa fa-comments"></i><%=date %></li>
+                        <li><i class="fa fa-views"></i>조회수 <%=views %></li>
+                            <li><i class="fa fa-comments"></i><%=date.split(":")[0] %>:<%=date.split(":")[1] %></li>
                      </ul>
                      <p class="excert">
                         <%=content %>
                      </p>
                   </div>
                </div>
+               
+               
                <div class="comments-area">
                   <h4>댓글</h4>
                   <div class="comment-list">
@@ -53,12 +57,12 @@
                            </div>
                            <div class="desc">
                               <p class="comment">
-                                댓글내용
+                                	댓글내용
                               </p>
                               <div class="d-flex justify-content-between">
                                  <div class="d-flex align-items-center">
                                     <h5>
-                                       아이디
+                                       	아이디
                                     </h5>
                                     <p class="date">2020-05-30 18:34</p>
                                  </div>

@@ -25,9 +25,12 @@
 							ArrayList<BoardCommunity> communitys = (ArrayList<BoardCommunity>) request.getAttribute("communitys");
 						for (int i = 0; i < communitys.size(); i++) {
 							BoardCommunity community = communitys.get(i);
+							
 							String title = community.getTitle();
+							int c_id = community.getCommunity_id();
 							String id = community.getIndividual_id();
 							String date = community.getDate();
+							int views = community.getViews();
 						%>
 
 
@@ -39,9 +42,15 @@
 									<div class="col-lg-6">
 										<i class="fa fa-clock-o "></i><%=date%></div>
 								</div>
-								<br /> <a class="d-inline-block" href="content">
+								<div class = "row">
+								<p class ="col-lg-6"></p>&emsp;<p class ="col-lg-1.5">조회수</p><p class ="col-lg-2"><%=views%></p>
+								</div>
+								<br />
+								<a class="d-inline-block" href="<%=request.getContextPath()%>/community/content?community_id=<%=c_id%>">
 									<h2><%=title%></h2>
 								</a>
+								
+								
 							</div>
 						</article>
 
