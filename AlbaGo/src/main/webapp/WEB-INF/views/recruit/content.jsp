@@ -1,4 +1,4 @@
-<%@page import="com.spring.ex.dto.Recruit_Content"%>
+<%@page import="com.spring.ex.dto.BoardRecruit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,12 +6,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script>
+function deleteBoard(board_recruit_id) {
+	if(confirm("정말 삭제하시겠습니까??") == true) { //확인
+		location.href = "/delete?board_recruit_id="+${board_recruit_id.board_recruit_id};
+		console.log(board_recruit_id);
+	} else {
+		console.log("fail");
+		return false;
+	}
+}
+
+</script>
+
 </head>
+
 <body>
 	<%@ include file="../serve/header.jsp" %>
 	
 	<%
-		Recruit_Content board_content = (Recruit_Content)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
+	BoardRecruit board_content = (BoardRecruit)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
 	%>
 	
 	
@@ -33,15 +48,22 @@
                                             <p> <i class="fa fa-map-marker"></i><%=board_content.getPlace() %></p> <!-- 장소 -->
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i><%=board_content.getTime() %></p><!-- 시간 -->
+                                            <p> <i class="fa fa-clock-o"></i><%=board_content.getDate() %></p><!-- 시간 -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                	<%-- <a class="btn btn-info edit w-10" href="#"> 수정</a>
-                                	<a class="btn btn-danger w-10" href="<%=request.getContextPath() %>/recruit/list?board_recruit_id=<%=board_recruit_id %>"> 삭제</a> --%>
+                                	<%
+                                	String id = request.getSession().getAttribute("id").toString();
+                                	
+                                	System.out.println(id + "세션에서 가져온");
+                                	System.out.println(board_content.getEnterprise_id() +"디비에서 가져온");
+                                	if(id.equals(board_content.getEnterprise_id())) { 
+                                		%>  <a class="btn btn-info edit w-10" href="<%=request.getContextPath()%>/recruit/write_update?board_recruit_id=<%=board_content.getBoard_recruit_id() %>">수정하기</a> 
+                                			<%-- <button class="btn btn-outline-danger w-10" onclick="deleteBoard(<%=board_recruit_id%>)">삭제하기</button> --%> <%
+                                	} %>
                                     <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
                                 </div>
                             </div>

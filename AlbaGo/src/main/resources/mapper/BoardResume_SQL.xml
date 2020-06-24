@@ -3,10 +3,11 @@
 
 <mapper namespace="com.spring.ex.dao.BoardResumeDAO">
 	<!-- 공고글 리스트 -->
-	<select id = "selectList" resultType="BoardResume1">
+	<select id = "selectList" resultType="BoardResume">
 		select board_resume.board_resume_id, board_resume.title, board_resume.date, board_resume.views, resume.place 
 		from resume, board_resume
 		where resume.resume_id = board_resume.resume_id
+		and board_resume.delete_check = 1
 	</select>
 	
 	<!-- 인재글 작성 -->
@@ -18,7 +19,8 @@
 			title,
 			views,
 			memo,
-			date
+			date,
+			delete_check
 		)
 		values
 		(
@@ -27,19 +29,21 @@
 			#{title},
 			0,
 			#{memo},
-			null
+			null,
+			1
 		)
 	</insert>
 	
 	<!-- 글보여주기 -->
 	<select id = "selectView" resultType="Resume_Content" parameterType="String">
-		SELECT individual.`name`, individual.gender, individual.birth, individual.phone, individual.education, 
-		resume.place, resume.salary_type, resume.salary_amount, resume.category, resume.term, resume.`time`, resume.`day`, 
-		board_resume.title, board_resume.memo, board_resume.`date`
+		SELECT individual.individual_id, individual.`name`, individual.gender, individual.birth, individual.phone, individual.education, 
+		resume.place, resume.salary_type, resume.salary_amount, resume.category, resume.term, resume.`time`, resume.`day`,  
+		board_resume.title, board_resume.memo, board_resume.`date`, board_resume.delete_check
 		FROM individual, resume, board_resume
 		WHERE individual.individual_id = resume.individual_id
 		AND resume.resume_id = board_resume.resume_id
 		AND board_resume.board_resume_id = #{id}
+		AND board_resume.delete_check = 1
 	</select>
 	
 </mapper>

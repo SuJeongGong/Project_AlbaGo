@@ -18,6 +18,7 @@ public class Resume {
 	String term;//희망 기간
 	String time;//희망 기간
 	ArrayList<Career> career;//경력사항
+	int delete_check;//삭제 되었는지 안되어있는지
 		
 	
 	

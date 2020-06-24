@@ -1,3 +1,5 @@
+<%@page import="com.spring.ex.dto.Resume"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,12 +33,13 @@
                     <div class="row col-lg-12">
                     	<h4 class="col-lg-2">이력서 선택</h4>
                     	<select name="resume_id" class="col-lg-6">
-	                       	<option value="1">이력서 제목1</option>
-	                       	<option value="2">이력서 제목2</option>
-	                        <option value="3">이력서 제목3</option>
-	                        <option value="4">이력서 제목4</option>
-	                        <option value="5">이력서 제목5</option>
-	                        <option value="6">이력서 제목6</option>
+	                    <%
+                        	ArrayList<Resume> resumes = (ArrayList<Resume>)request.getAttribute("resume");
+                        	for(int i=0; i<resumes.size(); i++) {
+                        		Resume resume = resumes.get(i);
+                        		String title = resume.getTitle();
+                        		int resume_id = resume.getResume_id();%>
+	                       	<option value="<%=resume_id%>"><%=title%></option>	<%} %>
 	                     </select>
 	                    <input type="submit" value="등록하기" class="btn py-1 px-1 btn-primary col-lg-2 ">
 	                    <input type="submit" value="취소" class="btn py-1 px-1 btn-primary col-lg-2">

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.ex.dao.RecruitDAO">
+
+
+	<!-- 글쓸때 공고 가져오기 -->
+	<select id="selectRecruit" resultType="BoardRecruit" parameterType="String">
+		select title, recruit_id
+		from recruit
+		where enterprise_id = #{enterprise_id}
+
+	</select>
+</mapper>

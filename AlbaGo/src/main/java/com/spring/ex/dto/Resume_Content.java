@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Resume_Content {
+	String individual_id;
 	String name;			//개인 이름
 	String gender;			//성별
 	String birth;			//나이
@@ -19,4 +20,5 @@ public class Resume_Content {
 	String title;			//제목
 	String memo;			//내용
 	String date;			//날짜
+	int delete_check;	//삭제 되었는지 안되었는지
 }
