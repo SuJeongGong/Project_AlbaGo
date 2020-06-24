@@ -116,9 +116,24 @@
 		#{gender}	,
 		null	
 		)
-		
-		
 	</insert>
+
+	<insert id="insertScrap" parameterType="scrap_enterprise">
+		insert Into scrap_enterprise
+		(
+		scrap_enterprise_id,
+		board_resume_id,
+		enterprise_id,
+		date
+		)
+		values(
+		null,
+		#{board_resume_id},
+		#{enterprise_id},
+		null	
+		)
+	</insert>
+	
 	<update id="updateAccount" parameterType="Enterprise">
 		update enterprise
 		set name = #{name},

@@ -141,6 +141,22 @@
 	#{task}
 	)	
 	</insert>
+	<insert id ="insertScrap" parameterType="Scrap_individual">
+	insert into scrap_individual
+	(
+	scrap_individual_id,
+	individual_id,
+	board_recruit_id,
+	date
+	)
+	values
+	(
+	null,
+	#{individual_id},
+	#{board_recruit_id},
+	null
+	)	
+	</insert>
 	
 	<select id = "selectResume" parameterType="int" resultType="Resume">
 		select * from resume where resume_id = #{resume_id}

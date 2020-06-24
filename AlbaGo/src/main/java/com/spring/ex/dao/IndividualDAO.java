@@ -23,6 +23,7 @@ public interface IndividualDAO {
 	int deleteResume(int resume_id);
 	int insertResume(Resume resume);
 	int insertCareer(Career career);
+	int insertScrap(Scrap_Individual scrap);
 	Resume selectResume(int resume_id);
 	ArrayList<Career> selectCareer(int resume_id);
 }
