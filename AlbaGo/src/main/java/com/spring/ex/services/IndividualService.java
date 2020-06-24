@@ -51,7 +51,6 @@ public class IndividualService {
 	}
 
 	public int deleteVolunteer(int volunteer_id) {
-		System.out.println(volunteer_id);
 		return individualDAO.deleteVolunteer(volunteer_id);
 	}
 

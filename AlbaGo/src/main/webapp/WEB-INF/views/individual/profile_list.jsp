@@ -84,11 +84,6 @@ function deleteResumes() {
 							<th>이력서번호</th>
 							<th>제목</th>
 							<th>카테고리</th>
-							<th>장소</th>
-							<th>기간</th>
-							<th>시간</th>
-							<th>요일</th>
-							<th>급여</th>
 							<th>작성일</th>
 							<th>상세보기</th>
 							<th>삭제</th>
@@ -99,15 +94,9 @@ function deleteResumes() {
 							ArrayList<Resume> resumes = (ArrayList) request.getAttribute("Resumes");
 							for (int i = 0; i < resumes.size(); i++) {
 								Resume resume = resumes.get(i);
-
 								int resume_id = resume.getResume_id();
 								String title = resume.getTitle();
-								String place = resume.getPlace();
-								String salary = resume.getSalary_type() + String.valueOf(resume.getSalary_amount());
 								String category = resume.getCategory();
-								String term = resume.getTerm();
-								String time = resume.getTerm();
-								String day = resume.getDay();
 								String date = resume.getDate().split(" ")[0];
 						%>
 
@@ -118,11 +107,6 @@ function deleteResumes() {
 							<td><%=resume_id%></td>
 							<td><%=title%></td>
 							<td><%=category%></td>
-							<td><%=place%></td>
-							<td><%=term%></td>
-							<td><%=time%></td>
-							<td><%=day%></td>
-							<td><%=salary%></td>
 							<td><%=date%></td>
 							<td><a type="submit" class="btn btn-outline-primary" href="<%=request.getContextPath() %>/individual/profile/content?resume_id=<%=resume_id%>">상세보기</a></td>
 							<td><button type="submit" class="btn btn-outline-danger" onclick="deleteResume(<%=resume_id%>)">삭제</button></td>

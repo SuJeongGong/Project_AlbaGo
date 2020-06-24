@@ -35,6 +35,7 @@
 		volunteer.memo as memo,
 		volunteer.date as date,
 		volunteer.result as result,
+		volunteer.resume_id as resume_id,
 		resume.title as resume_title,
 		volunteer.volunteer_id as volunteer_id
 
@@ -52,12 +53,21 @@
 		</where>
 	</select>
 
-	<select id="selectRecruit" parameterType="String"
+	<select id="selectRecruits" parameterType="String"
 		resultType="Recruit">
 		SELECT *
 		FROM recruit
 		<where>
 			enterprise_id = #{id}
+			AND delete_CHECK =1
+		</where>
+	</select>
+	<select id="selectRecruit" parameterType="int"
+		resultType="Recruit">
+		SELECT *
+		FROM recruit
+		<where>
+			recruit_id=#{recruit_id}
 			AND delete_CHECK =1
 		</where>
 	</select>
@@ -135,5 +145,19 @@
 			recruit_id = #{recruit_id}
 		</where>
 	</update>
+	
+		<select id = "selectVolunteerResume" parameterType="int" resultType="Resume">
+		SELECT *
+		FROM resume, individual
+		<where>resume.individual_id = individual.individual_id
+				and resume.resume_id = #{resume_id}
+		</where>
+	</select>
+		<select id = "selectVolunteerCareer" parameterType="int" resultType="Career">
+		SELECT *
+		FROM career
+		<where>resume_id = #{resume_id}
+		</where>
+	</select>
 
 </mapper>

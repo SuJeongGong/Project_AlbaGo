@@ -102,6 +102,7 @@ function updateResults(result) {
                                     		String title = volunteer.getRecruit_title();
                                     		String individual_id = volunteer.getIndividual_id();
                                     		String resume_title = volunteer.getResume_title();
+                                    		String resume_id = volunteer.getResume_id();
                                     		String memo = volunteer.getMemo();
                                     		String date =volunteer.getDate();                                    		
                                     		String result =volunteer.getResult();                                    		
@@ -114,10 +115,10 @@ function updateResults(result) {
                                                 <input type="checkbox" class="memberChk" name = "volunteer_id" value="<%=volunteer_id%>">
                                             </td>
                                             <td><%=volunteer_id %></td>
-                                            <td><%=recruit_id %></td>
+                                            <td><a href ="<%=request.getContextPath() %>/recruit/content?board_recruit_id=<%=recruit_id %>"><%=recruit_id %></a></td>
                                             <td><%=title %></td>
                                             <td><%=individual_id %></td>
-                                            <td><%=resume_title %></td>
+                                            <td><a href ="<%=request.getContextPath() %>/enterprise/volunteer/resume?resume_id=<%=resume_id%>"><%=resume_title %></a></td>
                                             <td><%=memo %></td>
                                             <td><%=date %></td>
                                          	<td class = "result"><%=result %></td>
