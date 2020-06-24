@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.spring.ex.dto.Resume"%>
 <%@page import="com.spring.ex.dto.BoardRecruit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,14 +9,50 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
+<style type="text/css">
+.modal-backdrop {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999999;
+    background-color: #000
+}
+</style>
+<script type="text/javascript">
+function insertVolunteer(board_recruit_id) {
+	console.log(board_recruit_id);
+	var resume_id =$("#resume_id option:selected").val();
+	var memo =$("#memo").val();
+	console.log(resume_id);
+	$.ajax({
+		url : "<%=request.getContextPath() %>/individual/support/save",
+		method : "GET",
+		data : {
+			board_recruit_id : board_recruit_id,
+			resume_id:resume_id,
+			memo:memo
+		},
+		success : function(res) {
+			console.log("서엉고옹");
+			$('#basicExampleModal').modal('hide');
+		}
+	});
+}
+</script>
 </head>
 
 <body>
+
+
+
+
 	<%@ include file="../serve/header.jsp" %>
 	
 	<%
 	BoardRecruit board_content = (BoardRecruit)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
+	ArrayList<Resume> resumes = (ArrayList)request.getAttribute("resumes");
+	
 	%>
 	
 	
@@ -102,7 +140,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="submit_btn">
-                                        <button class="boxed-btn3 w-100" type="submit">Apply Now</button>
+                                        <button type="button" class="boxed-btn3 w-100" data-toggle="modal" data-target="#basicExampleModal">지원하기</button>
                                     </div>
                                 </div>
                             </div>
@@ -112,12 +150,47 @@
             </div>
         </div>
     </div>
-	
-	
-	
-	
-	
+
+<!-- Button trigger modal -->
+
+
+
+	<!-- Modal -->
+
 	<%@ include file="../serve/footer.jsp" %>
 
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">지원하기</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+       	<p>지원할 때 남길 메모 :</p><input type="text" id="memo" class="form-control"/><br/>
+       	<p>사용할 이력서 선택하세요 </p><select id="resume_id">
+       	<% for(int i=0;i<resumes.size();i++){
+       		Resume resume = resumes.get(i);
+       	%>
+       	<option value = "<%=resume.getResume_id()%>"><%=resume.getTitle()%></option>
+       	
+       	<% }%>
+       	</select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" onclick="insertVolunteer(<%=board_content.getBoard_recruit_id() %>)" class="btn btn-primary" >지원하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+	
+	
+	
 </body>
 </html>

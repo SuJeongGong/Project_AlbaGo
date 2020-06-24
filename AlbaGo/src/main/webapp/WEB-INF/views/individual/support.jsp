@@ -20,10 +20,12 @@ function deleteVolunteer(volunteer_id) {
 		data : {
 			volunteer_id:volunteer_id
 		},
-		completer : function(res) {
-			console.log(id);
-			var text = res;
-			$(".result").html(text);
+		success :function(res){
+			if(res=="성공"){
+				alert("삭제 성공");
+			}else{
+				alert("삭제 실패");
+			}
 		}
 	});
 }
@@ -42,10 +44,12 @@ function deleteVolunteers() {
 		data : {
 			volunteer_ids: volunteer_ids
 		},
-		completer : function(res) {
-			console.log("sdgsehwsbdsd");
-			var text = res;
-			$(".result").html(text);
+		success :function(res){
+			if(res=="성공"){
+				alert("삭제 성공");
+			}else{
+				alert("삭제 실패");
+			}
 		}
 	});
 }

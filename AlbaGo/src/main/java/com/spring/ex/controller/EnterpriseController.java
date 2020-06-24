@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
@@ -98,7 +99,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 			if (enterpriseService.updateAccount(enterprise) == 1) {
 				System.out.println("DB연결성공");
  
-				page = "/main";// /enterprise/mypage으로 보내기 실패ㅠ
+				page = "redirect:/enterprise/mypage";// /enterprise/mypage으로 보내기 실패ㅠ
 			} else {
 				System.out.println("DB연결실패");
 			}
@@ -176,7 +177,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 		recruit.setEnterprise_id(request.getSession().getAttribute("id").toString());
 		if(1<=enterpriseService.insertRecruit(recruit)) {
 			System.out.println("DB에 값 넣기 성공");
-			page="/main";
+			page="redirect:/enterprise/recruit/list";
 		}
 		return page;
 	}
@@ -212,6 +213,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 
 	// 아약스 처리
 
+	@ResponseBody
 	@RequestMapping(value = "/volunteer/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String updateResult(String result, int id) {
 
@@ -239,6 +241,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 		return result;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void updateResult(int scrap_id) {
 		System.out.println(scrap_id);// jsp 에서 가져온값
@@ -248,6 +251,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 		return;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void updateResults(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_id) {
 		System.out.println(scrap_id);
@@ -257,6 +261,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 		return;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/recruit/deleteRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteRecruit(int recruit_id) {
 		System.out.println(recruit_id);// jsp 에서 가져온값
@@ -266,6 +271,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 		return;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/recruit/deleteRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteRecruits(@RequestParam(value = "recruit_ids[]") ArrayList<String> recruit_id) {
 		System.out.println(recruit_id);

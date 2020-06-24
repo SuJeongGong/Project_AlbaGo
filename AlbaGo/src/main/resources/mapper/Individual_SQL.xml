@@ -157,6 +157,28 @@
 	null
 	)	
 	</insert>
+	<insert id ="insertVolunteer" parameterType="Volunteer">
+	insert into Volunteer
+	(
+	volunteer_id,
+	individual_id,
+	board_recruit_id,
+	resume_id,
+	date,
+	memo,
+	result
+	)
+	values
+	(
+	null,
+	#{individual_id},
+	#{board_recruit_id},
+	#{resume_id},
+	null,
+	#{memo},
+	null
+	)	
+	</insert>
 	
 	<select id = "selectResume" parameterType="int" resultType="Resume">
 		select * from resume where resume_id = #{resume_id}

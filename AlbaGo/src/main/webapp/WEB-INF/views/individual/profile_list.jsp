@@ -19,10 +19,12 @@ function deleteResume(resume_id) {
 		data : {
 			resume_id : resume_id
 		},
-		completer : function(res) {
-			console.log("sdgsehwsbdsd");
-			var text = res;
-			$(".result").html(text);
+		success :function(res){
+			if(res=="성공"){
+				alert("삭제 성공");
+			}else{
+				alert("삭제 실패");
+			}
 		}
 	});
 }
@@ -41,10 +43,12 @@ function deleteResumes() {
 		data : {
 			resume_ids: resume_ids
 		},
-		completer : function(res) {
-			console.log("sdgsehwsbdsd");
-			var text = res;
-			$(".result").html(text);
+		success :function(res){
+			if(res=="성공"){
+				alert("삭제 성공");
+			}else{
+				alert("삭제 실패");
+			}
 		}
 	});
 }
