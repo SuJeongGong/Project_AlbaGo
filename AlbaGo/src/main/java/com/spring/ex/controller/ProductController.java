@@ -28,7 +28,7 @@ public class ProductController {
 	@RequestMapping("/payment") // 상세보기
 	public String payment(HttpServletRequest request, Model m,@RequestParam("product_id")int product_id) {
 		String page="/product/payment";
-		
+		 
 		Product product=productService.enterprise_selectWrite(product_id);
 		
 		m.addAttribute("product", product);
