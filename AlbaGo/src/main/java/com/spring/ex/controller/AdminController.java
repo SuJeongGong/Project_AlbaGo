@@ -76,7 +76,7 @@ public class AdminController {
 		m.addAttribute("products", products);
 
 		return "/admin/product";
-	}
+	} 
 
 	@RequestMapping("/product_account") // 상품상세보기
 	public String update_account(HttpServletRequest request, Model m, @RequestParam("product_id") int product_id) {
