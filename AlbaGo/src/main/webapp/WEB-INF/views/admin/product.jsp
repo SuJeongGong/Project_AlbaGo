@@ -15,13 +15,6 @@
 	<%
 		String conPath = request.getContextPath();
 	%>
-	<script>
-		
-		function update(){
-				update.action="<%=conPath%>/admin/product/update_product";
-		
-				}
-	</script>
 	<div id="wrapper">
 		<!-- 사이드 바 -->
 		<%@ include file="../serve/manager_sidebar.jsp"%>
@@ -86,14 +79,11 @@
 
 								</ul>
 
-							<!-- 	<button class="btn btn-info edit" id="update" name="update"
-									onclick="update()" type="submit" aria-label="ASettings">
-									수정</button> -->
+
 
 								<a class="btn btn-info edit" href="<%=conPath%>/admin/product_account?product_id=<%=product_id%>"
 									aria-label="Settings"> 수정 </a>
-								<a class="btn btn-danger btn-xs" href="pasth/to/setting"
-									aria-label="Settings"> 삭제 </a>
+				       
 							</div>
 
 

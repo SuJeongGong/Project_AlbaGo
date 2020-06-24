@@ -5,6 +5,9 @@
 	<!-- 관리자 상품입니다 -->
 	<select id="selectList" resultType="Product"> <!-- 관리자에서 상품보기 -->
 		SELECT * FROM product
+		<where>
+		delete_check =1
+		</where>
 	</select>
 
 	<insert id="insertProduct_term" parameterType="product"> <!-- 관리자에서 기간있는 상품추가 -->
@@ -17,7 +20,7 @@
 		#{price},
 		#{amount},
 		#{explan},
-		1
+		#{delete_check}
 		)
 
 	</insert>
@@ -34,30 +37,60 @@
 		#{name},
 		#{price},
 		#{explan},
-		#{amount}
+		#{amount},
+		#{delete_check}
 		)
 	</insert>
 	
 	<select id="product_account" resultType="Product" parameterType ="int"><!-- 수정에서 수정상세보기 -->
-		SELECT * FROM product where product_id =#{product_id}
+		SELECT * FROM product 
+		<where>
+		product_id =#{product_id}
+		and			
+		delete_check =1
+		</where>
 	</select>
 	
 	
-	<update id="update_product" parameterType="Product"> <!-- 상품수정을 할꺼야 꼭 알아둬,, -->
+	<update id="update_product" parameterType="Product"> <!-- 상품 수정입니다! -->
 	   UPDATE product 
 	   SET name=#{name},term=#{term},price=#{price}, explan=#{explan},amount=#{amount}
-	   WHERE product_id=#{product_id}
+	   <where>
+		product_id =#{product_id}
+		and			
+		delete_check =1
+		</where>
    
 	</update>
 	
+	<delete id="delete_product" parameterType="Product" ><!-- 상풍 삭제입니다! -->
+	update  product SET delete_check=0
+	<where>
+		product_id =#{product_id}
+		and			
+		delete_check =1
+		</where>
+	</delete>
+	
+	
+	
+	<!-- ############################################################# -->
 	
 	<!-- 기업입니다 -->
 	<select id="enterprise_selectList" resultType="Product"><!-- 기업에서 상품보기 -->
 		SELECT * FROM product
+		<where>
+		delete_check =1
+		</where>
 	</select>
 	
 	<select id="enterprise_selectWrite" resultType="Product" parameterType ="int"><!-- 기업에서 상세보기 -->
-		SELECT * FROM product where product_id =#{product_id}
+		SELECT * FROM product 
+		<where>
+		product_id =#{product_id}
+		and			
+		delete_check =1
+		</where>
 	</select>
 	
 

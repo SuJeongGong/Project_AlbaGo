@@ -102,7 +102,23 @@ public class AdminController {
 		}
 		return page;
 	}
+	
+	@RequestMapping("/account/delete") // 상품삭제하기
+	public String delete(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
+		String page = "/admin/product_account";
+		
+		if (productService.delete_product(product) >= 1) {
+			page = "/admin/main";
+			System.out.println("DB연결성공");
+		} else {
+			page = "/admin/product_account";
+		System.out.println("실패라고요");
+		}
+		return page;
+	}
+
+	
 	@RequestMapping("/add_product_term") // 기간있는 상품추가 보여주는 폼
 	public String add_product_term() {
 		String page = "/admin/add_product_term";
