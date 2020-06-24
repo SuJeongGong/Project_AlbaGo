@@ -1,4 +1,4 @@
-<%@page import="com.spring.ex.dto.Recruit_Content"%>
+<%@page import="com.spring.ex.dto.BoardRecruit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ function deleteBoard(board_recruit_id) {
 	<%@ include file="../serve/header.jsp" %>
 	
 	<%
-		Recruit_Content board_content = (Recruit_Content)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
+	BoardRecruit board_content = (BoardRecruit)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
 	%>
 	
 	

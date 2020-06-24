@@ -1,5 +1,5 @@
+<%@page import="com.spring.ex.dto.BoardRecruit"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.spring.ex.dto.Recruit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -94,14 +94,14 @@ function deleteRecruits() {
                                     </thead>
                                     <tbody>
                                     <%
-                                    	ArrayList<Recruit> recruits = (ArrayList)request.getAttribute("Recruits");
+                                    	ArrayList<BoardRecruit> recruits = (ArrayList)request.getAttribute("Recruits");
                                     	for(int i=0; i<recruits.size();i++){
-                                    		Recruit recruit = recruits.get(i);
+                                    		BoardRecruit recruit = recruits.get(i);
                                     		
                                     		int recruit_id = recruit.getRecruit_id();
                                     		String title = recruit.getTitle();
                                     		String place = recruit.getPlace();
-                                    		String salary = recruit.getSalary_type()+String.valueOf(recruit.getSalary_amount());
+                                    		String salary = recruit.getSalay_type()+String.valueOf(recruit.getSalay_amount());
                                     		String category = recruit.getCategory();
                                     		String term =recruit.getTerm();
                                     		String time =recruit.getTerm();

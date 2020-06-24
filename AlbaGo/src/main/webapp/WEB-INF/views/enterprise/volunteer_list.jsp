@@ -1,6 +1,5 @@
 <%@page import="com.spring.ex.dto.Volunteer"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.spring.ex.dto.Recruit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

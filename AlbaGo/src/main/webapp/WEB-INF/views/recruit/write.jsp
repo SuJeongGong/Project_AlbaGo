@@ -1,5 +1,5 @@
+<%@page import="com.spring.ex.dto.BoardRecruit"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.spring.ex.dto.Recruit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,9 +32,9 @@
                     	<h4 class="col-lg-2">공고 선택</h4>
                     	<select name="recruit_id" class="col-lg-6"> 
                     	<%
-                        	ArrayList<Recruit> recruits = (ArrayList<Recruit>)request.getAttribute("recruit");
+                        	ArrayList<BoardRecruit> recruits = (ArrayList<BoardRecruit>)request.getAttribute("recruit");
                         	for(int i=0; i<recruits.size(); i++) {
-                        		Recruit recruit = recruits.get(i);
+                        		BoardRecruit recruit = recruits.get(i);
                         		String title = recruit.getTitle();
                         		int recruit_id = recruit.getRecruit_id();%>
 	                       	<option value="<%=recruit_id%>"><%=title%></option>	<%} %>

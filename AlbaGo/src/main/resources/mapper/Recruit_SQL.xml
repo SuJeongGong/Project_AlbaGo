@@ -5,7 +5,7 @@
 
 
 	<!-- 글쓸때 공고 가져오기 -->
-	<select id="selectRecruit" resultType="Recruit" parameterType="String">
+	<select id="selectRecruit" resultType="BoardRecruit" parameterType="String">
 		select title, recruit_id
 		from recruit
 		where enterprise_id = #{enterprise_id}
