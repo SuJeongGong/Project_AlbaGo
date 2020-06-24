@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dto.Enterprise;
-import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 import com.spring.ex.services.EnterpriseService;

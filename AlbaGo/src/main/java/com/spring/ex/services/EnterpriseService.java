@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.EnterpriseDAO;
+import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.Enterprise;
-import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 
@@ -26,7 +26,7 @@ public class EnterpriseService {
 		return enterpriseDAO.selectScrap(id);
 	}
 
-	public ArrayList<Recruit> selectRecruit(String id) {
+	public ArrayList<BoardRecruit> selectRecruit(String id) {
 		return enterpriseDAO.selectRecruit(id);
 	}
 

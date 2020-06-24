@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.BoardRecruitDAO;
 import com.spring.ex.dto.BoardRecruit;
-import com.spring.ex.dto.Recruit;
-import com.spring.ex.dto.Recruit_Content;
 
 @Service
 public class BoardRecruitService {
@@ -24,15 +22,15 @@ public class BoardRecruitService {
 		return boardRecruitDAO.selectList();
 	}
 
-	public Recruit_Content selectView(String id) {
+	public BoardRecruit selectView(int id) {
 		return boardRecruitDAO.selectView(id);
 	}
 
-	public void deleteBoard(String id) {
-		boardRecruitDAO.deleteBoard(id);
+	public int deleteBoard(int board_recruit_id) {
+		return boardRecruitDAO.deleteBoard(board_recruit_id);
 	}
 	
-	public int updateRecruit(BoardRecruit boardrecruit) {
+	public int updateBoard(BoardRecruit boardrecruit) {
 		return boardRecruitDAO.updateBoard(boardrecruit);
 	}
 

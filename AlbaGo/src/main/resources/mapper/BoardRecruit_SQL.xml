@@ -36,7 +36,7 @@
 	
 	
 	<!-- 글보여주기 -->
-	<select id = "selectView" resultType="Recruit_Content" parameterType="String">
+	<select id = "selectView" resultType="Recruit_Content" parameterType="int">
 		SELECT enterprise.enterprise_id, enterprise.`name`, enterprise.manager_name, enterprise.manager_phone, enterprise.category AS Enter_category, enterprise.address,
 			recruit.place, recruit.salay_type, recruit.salay_amount, recruit.category AS Recruit_category, recruit.term, recruit.`time`, recruit.`day`, recruit.education, recruit.gender, recruit.age, recruit.people_count,
 			board_recruit.title, board_recruit.memo, board_recruit.`date`, board_recruit.delete_check
@@ -54,14 +54,12 @@
 	
 	
 	<!-- 글 수정 -->
-	<!-- <update id="updateRecruit" parameterType="BoardRecruit">
+	 <update id="updateBoard" parameterType="BoardRecruit">
 		update board_recruit
 		set title = #{title},
-			place = #{place},
-			date = #{date},
-			memo = #{memo}
+		    memo = #{memo}
 		<where>
-			
+			board_recruit_id = #{board_recruit_id}
 		</where>
-	</update> -->
+	</update> 
 </mapper>

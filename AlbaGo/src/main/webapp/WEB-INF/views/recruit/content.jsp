@@ -6,6 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script>
+function deleteBoard(board_recruit_id) {
+	if(confirm("정말 삭제하시겠습니까??") == true) { //확인
+		location.href = "/delete?board_recruit_id="+${board_recruit_id.board_recruit_id};
+		console.log(board_recruit_id);
+	} else {
+		console.log("fail");
+		return false;
+	}
+}
+
+</script>
+
 </head>
 
 <body>
@@ -41,13 +55,14 @@
                             </div>
                             <div class="jobs_right">
                                 <div class="apply_now">
-                                	 <%
+                                	<%
                                 	String id = request.getSession().getAttribute("id").toString();
                                 	
                                 	System.out.println(id + "세션에서 가져온");
                                 	System.out.println(board_content.getEnterprise_id() +"디비에서 가져온");
                                 	if(id.equals(board_content.getEnterprise_id())) { 
-                                		%> <a class="btn btn-info edit w-10" href="#">수정하기</a> <a class="btn btn-info edit w-10" href="#">삭제하기</a> <%
+                                		%>  <a class="btn btn-info edit w-10" href="<%=request.getContextPath()%>/recruit/write_update?board_recruit_id=<%=board_content.getBoard_recruit_id() %>">수정하기</a> 
+                                			<%-- <button class="btn btn-outline-danger w-10" onclick="deleteBoard(<%=board_recruit_id%>)">삭제하기</button> --%> <%
                                 	} %>
                                     <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
                                 </div>

@@ -3,7 +3,6 @@ package com.spring.ex.dao;
 import java.util.ArrayList;
 
 import com.spring.ex.dto.BoardRecruit;
-import com.spring.ex.dto.Recruit_Content;
 
 public interface BoardRecruitDAO {
 	
@@ -14,10 +13,10 @@ public interface BoardRecruitDAO {
 	ArrayList<BoardRecruit> selectList();
 	
 	//공고글 보여주기
-	Recruit_Content selectView(String id);
+	BoardRecruit selectView(int id);
 	
 	//삭제
-	public void deleteBoard(String id);
+	int deleteBoard(int board_recruit_id);
 	
 	//수정
 	int updateBoard(BoardRecruit boardrecruit);
