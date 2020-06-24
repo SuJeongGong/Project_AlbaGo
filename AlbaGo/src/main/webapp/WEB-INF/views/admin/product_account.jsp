@@ -77,9 +77,9 @@
 									수정</button> 
 					
 			
-						<!-- <a class="btn btn-info edit" href="/admin/product/update?product_id="
-									aria-label="Settings"> 수정 </a> -->		
-									<a	class="btn btn-danger btn-xs" href="pasth/to/setting"
+	
+							
+									<a	class="btn btn-danger btn-xs" href="<%=request.getContextPath()%>/admin/account/delete?product_id=<%=product_id%>"
 										aria-label="Settings"> 삭제 </a>
 								</div>
 
