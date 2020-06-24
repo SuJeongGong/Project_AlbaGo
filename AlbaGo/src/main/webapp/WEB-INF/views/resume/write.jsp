@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.BoardResume"%>
 <%@page import="com.spring.ex.dto.Resume"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -34,9 +35,9 @@
                     	<h4 class="col-lg-2">이력서 선택</h4>
                     	<select name="resume_id" class="col-lg-6">
 	                    <%
-                        	ArrayList<Resume> resumes = (ArrayList<Resume>)request.getAttribute("resume");
+                        	ArrayList<BoardResume> resumes = (ArrayList<BoardResume>)request.getAttribute("resume");
                         	for(int i=0; i<resumes.size(); i++) {
-                        		Resume resume = resumes.get(i);
+                        		BoardResume resume = resumes.get(i);
                         		String title = resume.getTitle();
                         		int resume_id = resume.getResume_id();%>
 	                       	<option value="<%=resume_id%>"><%=title%></option>	<%} %>

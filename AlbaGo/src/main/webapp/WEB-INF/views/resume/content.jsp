@@ -1,4 +1,4 @@
-<%@page import="com.spring.ex.dto.Resume_Content"%>
+<%@page import="com.spring.ex.dto.BoardResume"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
 	<%@ include file="../serve/header.jsp" %>
 	
 	<%
-		Resume_Content board_content = (Resume_Content)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
+		BoardResume board_content = (BoardResume)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
 	%>
 	
 	
@@ -42,13 +42,12 @@
                             <div class="jobs_right">
                                 <div class="apply_now">
                                 	<%
-                                	String id = request.getSession().getAttribute("id").toString();
-                                	
-                                	System.out.println(id + "세션에서 가져온");
-                                	System.out.println(board_content.getIndividual_id() +"디비에서 가져온");
-                                	if(id.equals(board_content.getIndividual_id())) { 
-                                		%> <a class="btn btn-info edit w-10" href="#">수정하기</a> <a class="btn btn-info edit w-10" href="#">삭제하기</a> <%
-                                	} %>
+                                	if(request.getSession().getAttribute("id")!= null||request.getSession().getAttribute("id")=="") {
+                                		if(request.getSession().getAttribute("id").toString().equals(board_content.getIndividual_id())) { 
+                                			%>  <a class="btn btn-outline-primary w-10" href="<%=request.getContextPath()%>/resume/write_update?board_resume_id=<%=board_content.getBoard_resume_id() %>">수정하기</a> 
+                                				<a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/resume/delete?board_resume_id=<%=board_content.getBoard_resume_id() %>">삭제하기</a> <%
+                                		} 
+                                	}%>
                                     <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
                                 </div>
                             </div>

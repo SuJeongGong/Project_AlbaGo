@@ -130,11 +130,6 @@ public class BoardRecruitController {
 	@RequestMapping("/write_update")//수정화면보기
 	public String update(HttpServletRequest request, Model m) {
 		String page = "/recruit/list";
-		//게시판 키값만 가져옴 
-		//이용해서 select 게시글 가져오고
-		//거기에서 getEnterprise_id 랑 session id 비교하고
-		//맞다면 공고 리스트 가져오고 m 담기,select 가져온 게시글을 m 담기
-		//리턴
 		HttpSession session = request.getSession();		//아이디 세션 가져오기
 		
 		if(!session.getAttribute("type").toString().equals("기업")) {//기업인 확인 
