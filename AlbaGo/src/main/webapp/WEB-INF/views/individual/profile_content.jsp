@@ -14,15 +14,6 @@
 <body>
                     <%
 	                    	Resume resume=(Resume)request.getAttribute("resume");
-                    		String title = resume.getTitle();
-                    		String time = resume.getTime();
-                    		String term = resume.getTerm();
-                    		String day = resume.getDay();
-                    		String date = resume.getDate();
-                    		String place = resume.getPlace();
-                    		String category = resume.getCategory();
-                    		String salary_type = resume.getSalary_type();
-                    		int salary_amount = resume.getSalary_amount();
                     		ArrayList<Career> careers = resume.getCareer();
                     
                     %>
@@ -47,13 +38,13 @@
 
                 </div>
                 <div class="form-group row">
-                    <h5 class="font-weight-bold">희망 근무 요일</h5>&nbsp;&nbsp;<%=resume.getDate()%>
+                    <h5 class="font-weight-bold">희망 근무 요일</h5>&nbsp;&nbsp;<%=resume.getDate().split(" ")[0]%>
                 </div>
                 <div class="form-group row">
                     <h5 class="font-weight-bold">희망 근무 시간&nbsp;&nbsp;&nbsp;&nbsp;</h5> <%=resume.getTime()%>시간
                 </div>
                 <div class="form-group row">
-                    <h5 class="font-weight-bold">희망 급여&nbsp;&nbsp;&nbsp;</h5><%=resume.getSalary_type()%>&nbsp;&nbsp;<%=resume.getSalary_amount()%>
+                    <h5 class="font-weight-bold">희망 급여&nbsp;&nbsp;&nbsp;</h5><%=resume.getSalary_type()%>&nbsp;&nbsp;<%=resume.getSalary_amount()%>원
                 </div>
                 <div class="form-group row">
                     <h5 class="font-weight-bold">희망 지역&nbsp;&nbsp;&nbsp;&nbsp;</h5><%=resume.getPlace()%>
@@ -62,8 +53,6 @@
                 <br /><br />
                 <div class="row">
                 <h3 class="mb-1 h4 font-weight-bold">경력사항</h3>
-                <input type="button"  style="float: right; class="btn py-1 px-1 btn-primary " onclick="javascript:addRow()" value="한줄 추가">
-                <input type="button" style="float: right; class="btn py-1 px-1 btn-primary "   onclick="javascript:deleteRow()" value="한줄 제거">
                 </div><hr />
                 <table class="table table-bordered" width="100%" name="career">
                     <thead>
@@ -78,10 +67,10 @@
 						Career career = careers.get(i);
 						%>
 						  <tr>
-                            <td><input type="text"class='form-control'  value="<%=career.getName() %>" name="career_name" /></td>
-                            <td><input type="text" class='form-control'  value="<%=career.getTask() %>"  name="career_task" /></td>
-                            <td><input type="text" class='form-control'  value="<%=career.getStart_date() %>"  name="career_start_date" /></td>
-                            <td><input type="text"class='form-control'  value="<%=career.getEnd_date() %>" name="career_end_date" /></td>
+                            <td> <%=career.getName() %></td>
+                            <td><%=career.getTask() %></td>
+                            <td><%=career.getStart_date().split(" ")[0] %></td>
+                            <td><%=career.getEnd_date().split(" ")[0] %></td>
                         </tr>
 						
 						<%

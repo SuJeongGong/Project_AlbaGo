@@ -121,10 +121,11 @@ public class IndividualController {
 	}
 	
 	@RequestMapping("/profile/content") // 이력서 상세보기
-	public String profileContent(@RequestParam("resume_id") int resume_id,@ModelAttribute("resume")Resume resume) {
+	public String profileContent(@RequestParam("resume_id") int resume_id,Model m) {
 		String page =  "/individual/profile_list";
-		resume = individualSerive.selectResume(resume_id);
+		Resume resume = individualSerive.selectResume(resume_id);
 		if(resume!=null) {
+			m.addAttribute("resume", resume);
 			page= "individual/profile_content";
 		}
 		return page;
