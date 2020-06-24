@@ -157,37 +157,20 @@ public class BoardRecruitController {
 				page =  "/recruit/write_update";
 		
 		}
-		
-//		
-//		String enterprise_id = boardRecruit.getEnterprise_id();
-//		System.out.println(enterprise_id + "기업 아이디값");
-//		
-//		String id = request.getSession().getAttribute("id").toString(); //로그인한 사람 아이디
-//		System.out.println(id + "지금 로그인 된 아이디값");
-//		
-//		//String board_recruit_id = request.getParameter("board_recruit_id").toString();
-//
-//		System.out.println(board_recruit_id);
-//		//select 해온것 한줄을 m에 담아줌 - 공고글 1개
-//		ArrayList<Recruit> recruits = recruitService.selectRecruit(id); // 공고 글쓴 값들 ?recruit의 값들 가져오기?
-//		
-//		m.addAttribute("recruit", recruits); // 공고값
-//		m.addAttribute("board_content", boardRecruitService.selectView(board_recruit_id)); // 여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
-//		
-//		if(id.equals(enterprise_id)) { //로그인한 사람 아이디 값과 기업 아이디값이 같으면
-//			//화면으로가기
-//			page = "/recruit/write_update";
-//		}
-//		
 		return page;
 	}
 	
-//	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-//	public void delete(int board_recruit_id) {
-//		System.out.println(board_recruit_id);  //jsp에서 가져온 값
-//		if(1 <= boardRecruitService.deleteBoard(board_recruit_id)) {
-//			System.out.println("DB연결 성공!");
-//		}
-//		return;
-//	}
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(int board_recruit_id) {
+		String page = "/recruit/content";
+		System.out.println(board_recruit_id);  //jsp에서 가져온 값
+		if(1 <= boardRecruitService.deleteBoard(board_recruit_id)) {
+			System.out.println("DB연결 성공!");
+			page = "/main";
+		}
+		else {
+			System.out.println("DB연결 실패!");
+		}
+		return page;
+	}
 }

@@ -12,8 +12,8 @@ public class BoardRecruit { //공고
 	String Enter_category;	//기업 카테고리
 	String address;			//기업주소
 	String place;			//공고 기업위치
-	String salay_type;		//공고 주급, 월급
-	int salay_amount;		//공고 돈
+	String salary_type;		//공고 주급, 월급
+	int salary_amount;		//공고 돈
 	String Recruit_category;//공고 카테고리
 	String term;			//공고 몇개월
 	String time;			//공고 시간

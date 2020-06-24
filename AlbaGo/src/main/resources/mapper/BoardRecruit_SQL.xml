@@ -38,7 +38,7 @@
 	<!-- 글보여주기 -->
 	<select id = "selectView" resultType="BoardRecruit" parameterType="int">
 		SELECT enterprise.enterprise_id, enterprise.`name`, enterprise.manager_name, enterprise.manager_phone, enterprise.category AS Enter_category, enterprise.address,
-			recruit.place, recruit.salay_type, recruit.salay_amount, recruit.category AS Recruit_category, recruit.term, recruit.`time`, recruit.`day`, recruit.education, recruit.gender, recruit.age, recruit.people_count,
+			recruit.place, recruit.salary_type, recruit.salary_amount, recruit.category AS Recruit_category, recruit.term, recruit.`time`, recruit.`day`, recruit.education, recruit.gender, recruit.age, recruit.people_count,
 			board_recruit.title, board_recruit.memo, board_recruit.`date`, board_recruit.delete_check
 		FROM enterprise, recruit, board_recruit
 		WHERE enterprise.enterprise_id = recruit.enterprise_id
@@ -49,7 +49,9 @@
 	
 	<!-- 글삭제 -->
 	<delete id="deleteBoard" parameterType="int">
-		delete from board_recruit where board_recruit_id = #{id}
+		UPDATE board_recruit
+		SET delete_check = 0
+		WHERE board_recruit_id = #{board_recruit_id}
 	</delete>
 	
 	
