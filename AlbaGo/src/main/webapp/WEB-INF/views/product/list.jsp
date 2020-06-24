@@ -31,7 +31,7 @@
 							String name = list.getName();
 							String term = list.getTerm();
 							int price = list.getPrice();
-							String product_explan = list.getProduct_explan();
+							String explan = list.getExplan();
 							int amount = list.getAmount();
 						%>
 						<div class="single_candidates text-center">
@@ -40,12 +40,12 @@
 								<h2 name="name"> 
 							<%=name%></h2>
 								<h3 name="amount"><%=amount%></h3>
-								<p name="product_explan"><%=product_explan%></p>
+								<p name="product_explan"><%=explan%></p>
 							</div>
 							<br> <br> <br><br><br><br>
 				
 							
-							<a href="<%=request.getContextPath()%>/product/Waiting_for_approval/result?product_id=<%=product_id %>" name = "product_id">결제</a>
+							<a href="<%=request.getContextPath()%>/product/payment?product_id=<%=product_id %>" name = "product_id">결제</a>
 
 						</div>
 						<%

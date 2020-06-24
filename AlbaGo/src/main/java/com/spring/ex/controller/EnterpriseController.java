@@ -85,7 +85,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 	public String accountUpdate(HttpServletRequest request, @ModelAttribute("enterprise") Enterprise enterprise) {
 		String page = "/enterprise/account";
 		HttpSession session = request.getSession();
-
+  
 		if (!session.getAttribute("type").toString().equals("기업")) {// 기업회원이 맞는지 확인
 			return "/join/logout";
 		} else {
@@ -93,7 +93,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 
 			if (enterpriseService.updateAccount(enterprise) == 1) {
 				System.out.println("DB연결성공");
-
+ 
 				page = "/main";// /enterprise/mypage으로 보내기 실패ㅠ
 			} else {
 				System.out.println("DB연결실패");
