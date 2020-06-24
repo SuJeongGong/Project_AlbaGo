@@ -76,7 +76,7 @@ public class EnterpriseController {
 			} else {
 				System.out.println("DB연결실패");
 			}
-		}
+		} 
 		return page;
 	}
 
