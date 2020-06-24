@@ -40,23 +40,23 @@
 	               			</tr>
 	               			<tr>
 	               				<th>기업이름</th>
-	               				<td><input type="text" class="form-control" name = "name" id="name" value="<%=name%>"></td>
+	               				<td><input type="text" class="col-sm-10 form-control" name = "name" id="name" value="<%=name%>"></td>
 	               			</tr>
 	               			<tr>
 	               				<th>사업자 번호</th>
-	               				<td><input type="text" class="form-control" name = "business_number" id="business_number" value="<%=business_number%>"></td>
+	               				<td><input type="text" class="col-sm-10 form-control" name = "business_number" id="business_number" value="<%=business_number%>"></td>
 	               			</tr>
 	               			<tr>
 	               				<th>카테고리</th>
-	               				<td><input type="text" class="form-control" name = "category" id="category" value="<%=category%>"></td>
+	               				<td><input type="text" class="col-sm-10 form-control" name = "category" id="category" value="<%=category%>"></td>
 	               			</tr>
 	               			<tr>
 	               				<th>담당자 이름</th>
-	               				<td><input type="text" class="form-control" name = "manager_name" id="manager_name" value="<%=manager_name %>"></td>
+	               				<td><input type="text" class="col-sm-10 form-control" name = "manager_name" id="manager_name" value="<%=manager_name %>"></td>
 	               			</tr>
 	               			<tr>
 	               				<th>담당자 연락처</th>
-	               				<td><input type="text" class="form-control" name = "manager_phone" id="manager_phone" value="<%=manager_phone %>"></td>
+	               				<td><input type="text" class="col-sm-10 form-control" name = "manager_phone" id="manager_phone" value="<%=manager_phone %>"></td>
 	               			</tr>
 	               			<tr>
 	               				<th>가입날짜</th>

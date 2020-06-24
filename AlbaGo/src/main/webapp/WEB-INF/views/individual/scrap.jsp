@@ -8,6 +8,48 @@
 <head>
 <meta charset="UTF-8">
 <title>개인 스크랩</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function deleteScrap(scrap_id) {
+	console.log(scrap_id);
+	$.ajax({
+		url : "./deleteScrap",
+		method : "GET",
+		data : {
+			scrap_id : scrap_id
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+function deleteScraps() {
+	var scrap_ids = [];
+	$("input[name='scrap_id']:checked").each(function(){
+		if(this.checked){
+			scrap_ids.push($(this).val());
+			console.log($(this).val());
+		}
+	})
+	
+	$.ajax({
+		url : "./deleteScraps",
+		method : "GET",
+		data : {
+			scrap_ids: scrap_ids
+		},
+		completer : function(res) {
+			console.log("sdgsehwsbdsd");
+			var text = res;
+			$(".result").html(text);
+		}
+	});
+}
+
+</script>
 </head>
 <body>
 
@@ -30,11 +72,11 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<button type="submit" class="btn btn-outline-danger"
+							<button type="submit" class="btn btn-outline-danger" onclick="deleteScraps()"
 								style="float: right;">선택삭제</button>
 						</tr>
 						<tr>
-							<th><input type="checkbox" class="selectAllMembers" /></th>
+							<th><input type="checkbox" class="selectAllMembers"  onclick='OnOffMemberAllClickBtn()'/></th>
 							<th>공고글 제목</th>
 							<th>기업이름</th>
 							<th>공고글 작성날짜</th>
@@ -47,7 +89,7 @@
 							ArrayList<Scrap_Individual> scraps = (ArrayList) request.getAttribute("scraps");
 							for (int i = 0; i < scraps.size(); i++) {
 								Scrap_Individual scrap = scraps.get(i);
-
+								int scrap_id= scrap.getScrap_id();
 								String title = scrap.getTitle();
 								String name = scrap.getName();
 								String board_date = scrap.getRecruit_date();
@@ -56,14 +98,14 @@
 
 
 						<tr>
-							<td><input type="checkbox" class="memberChk"
-								onclick='OnOffMemberAllClickBtn()'></td>
+							<td><input type="checkbox" class="memberChk" 	name = "scrap_id" value="<%=scrap_id %>"
+								></td>
 							<td><%=title%></td>
 							<td><%=name%></td>
 							<td><%=board_date.split(" ")[0]%></td>
 							<td><%=scrap_date.split(" ")[0]%></td>
 
-							<td><button type="submit" class="btn btn-outline-danger">삭제</button></td>
+							<td><button type="submit" class="btn btn-outline-danger" onclick="deleteScrap(<%=scrap_id%>)">삭제</button></td>
 
 
 

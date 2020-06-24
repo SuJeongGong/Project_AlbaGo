@@ -10,6 +10,7 @@ public class Volunteer {
 	String enterprise_id;//기업id
 	String individual_id;//개인 id - 지원한 사람
 	String resume_title;//지원할 때 사용한 이력서 제목
+	String resume_id;//지원할 때 사용한 이력서 제목
 	String date; //지원 날짜
 	String title;//지원한 공고글의 제목
 	String memo;//메모
