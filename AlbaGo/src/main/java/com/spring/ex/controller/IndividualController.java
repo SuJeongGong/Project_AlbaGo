@@ -111,7 +111,7 @@ public class IndividualController {
 		String page = sessionType(request.getSession());
 		 if(1<=individualSerive.insertScrap(board_recruit_id,id)) {
 			 System.out.println("DB 연결 성공!");
-				page = "/recruit/content?board_resume_id="+board_recruit_id;
+				page = "redirect:/recruit/list";
 		 }
 		
 		return page;

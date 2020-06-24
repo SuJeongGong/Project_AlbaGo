@@ -40,7 +40,7 @@ public class IndividualService {
 	public int insertScrap(int boardAnnounce_id,String individual_id) {
 		Scrap_Individual scrap= new Scrap_Individual();
 		scrap.setIndividual_id(individual_id);
-		scrap.setBoardAnnounce_id(boardAnnounce_id);
+		scrap.setBoard_recruit_id(boardAnnounce_id);
 		return individualDAO.insertScrap(scrap);
 	}
 	public int insertCareer(ArrayList<Career> careers,int resume_id) {
