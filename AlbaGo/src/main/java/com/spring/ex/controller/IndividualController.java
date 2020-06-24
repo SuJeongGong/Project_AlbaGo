@@ -104,7 +104,19 @@ public class IndividualController {
 
 		return page;
 	}
-
+	
+	@RequestMapping("/scrap/save") //스크랩 저장하기
+	public String scrapSave(HttpServletRequest request,@RequestParam("board_recruit_id") int board_recruit_id) {
+		String id = sessionId(request.getSession());
+		String page = sessionType(request.getSession());
+		 if(1<=individualSerive.insertScrap(board_recruit_id,id)) {
+			 System.out.println("DB 연결 성공!");
+				page = "/recruit/content?board_resume_id="+board_recruit_id;
+		 }
+		
+		return page;
+	}
+	
 	@RequestMapping("/profile/list") // 이력서 - 리스트 보여주기
 	public String profileList(HttpServletRequest request, Model m) {
 		String id = sessionId(request.getSession());

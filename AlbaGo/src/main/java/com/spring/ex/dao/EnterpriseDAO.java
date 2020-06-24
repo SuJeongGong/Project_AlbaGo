@@ -25,5 +25,5 @@ public interface EnterpriseDAO {
 	Recruit selectRecruit(int recruit_id);
 	Resume selectVolunteerResume(int resume_id);//지원자의 지원 이력서 가져오기
 	ArrayList<Career> selectVolunteerCareer(int resume_id);//지원자의 지원 이력서중에 경력 가져오기
-	
+	int insertScrap(Scrap_enterprise scrap);//기업이 인재 스크랩 추가하기
 }
