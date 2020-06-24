@@ -16,7 +16,7 @@
 		String manager_name = enterprise.getManager_name();
 		String manager_phone = enterprise.getManager_phone();
 		String category = enterprise.getCategory();
-		String date = enterprise.getDate();
+		String date = enterprise.getDate().split(" ")[0];
 		String business_number = enterprise.getBusiness_number();
 		String name = enterprise.getName();
 		int resume_count = enterprise.getResume_count();
@@ -36,7 +36,7 @@
 	               		<table class="table table-bordered ">
 	               			<tr>
 	               				<th>아이디</th>
-	               				<td><input type="text" name ="enterprise_id" id ="enterprise_id" value="<%=id%>" ></td>
+	               				<td><input type = "hidden"name ="enterprise_id" id ="enterprise_id" value="<%=id%>" ><%=id%></td>
 	               			</tr>
 	               			<tr>
 	               				<th>기업이름</th>
@@ -60,15 +60,15 @@
 	               			</tr>
 	               			<tr>
 	               				<th>가입날짜</th>
-	               				<td><input type ="text" name ="date" id ="date" value="<%=date%>"><%=date%></td>
+	               				<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date%></td>
 	               			</tr>
 	               			<tr>
 	               				<th>연락처 읽기 횟수</th>
-	               				<td><input type ="text" name ="resume_count" id ="resume_count" value="<%=resume_count%>"><%=resume_count%></td>
+	               				<td><input type ="hidden" name ="resume_count" id ="resume_count" value="<%=resume_count%>"><%=resume_count%></td>
 	               			</tr>
 	               			<tr>
 	               				<th>UP 횟수</th>
-	               				<td><input type ="text" name ="up_count" id ="up_count" value="<%=up_count%>"><%=up_count%></td>
+	               				<td><input type ="hidden" name ="up_count" id ="up_count" value="<%=up_count%>"><%=up_count%></td>
 	               			</tr>
 	               		</table>
 	               		<input type ="submit" class ="btn btn-primary " value="수정" >

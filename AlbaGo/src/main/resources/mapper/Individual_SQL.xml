@@ -26,6 +26,7 @@
 			AND enterprise.enterprise_id = recruit.enterprise_id
 			and individual_id = #{id}
 	</where>
+		ORDER BY scrap_individual.scrap_individual_id DESC
 	</select>
 
 	<select id="selectVolunteer" parameterType="String"
@@ -46,6 +47,7 @@
 			AND enterprise.enterprise_id = recruit.enterprise_id
 				AND volunteer.individual_id = #{id}
 		</where>
+		ORDER BY volunteer.volunteer_id DESC
 
 	</select>
 
@@ -56,6 +58,7 @@
 			individual_id = #{id}
 			and delete_check = 1
 		</where>
+		ORDER BY resume.resume_id DESC
 	</select>
 
 	<update id="updateAccount" parameterType="Individual">

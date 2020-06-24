@@ -1,4 +1,4 @@
-<%@page import="com.spring.ex.dto.BoardRecruit"%>
+<%@page import="com.spring.ex.dto.Recruit"%>
 <%@page import="com.spring.ex.dto.Volunteer"%>
 <%@page import="com.spring.ex.dto.Scrap_enterprise"%>
 <%@page import="com.spring.ex.dto.Enterprise"%>
@@ -82,9 +82,9 @@
 									<th>제목</th><th>작성날짜</th>
 								</tr>
 							<%
-							ArrayList<BoardRecruit> recruits = (ArrayList)request.getAttribute("recruit");
+							ArrayList<Recruit> recruits = (ArrayList)request.getAttribute("recruit");
 								for(int i =0;i<recruits.size();i++){
-									BoardRecruit recruit=  recruits.get(i);
+									Recruit recruit=  recruits.get(i);
 									String title =recruit.getTitle();
 									String date = recruit.getDate();
 									%>

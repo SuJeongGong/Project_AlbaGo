@@ -99,7 +99,7 @@ function deleteVolunteers() {
 								String individual_id = volunteer.getIndividual_id();
 								String resume_title = volunteer.getResume_title();
 								String memo = volunteer.getMemo();
-								String date = volunteer.getDate();
+								String date = volunteer.getDate().split(" ")[0];
 								String result = volunteer.getResult();
 								
 								
