@@ -20,7 +20,7 @@
                 	<h3 class="mb-1 h4 font-weight-bold">커뮤니티 글작성</h3>
                     <label for="title">제목 </label>
                     <input type="text" name="title" class="form-control" id="title">
-                    <input type="text" name="individaul_id" class="form-control" id="individaul_id" value="<%=id %>" >
+                    <input type="hidden" name="individaul_id" class="form-control" id="individaul_id" value="<%=id %>" >
                     <label for="message">내용</label>
                     <textarea name="contents" id="message" cols="30" rows="10" class="form-control"></textarea>
                     <br/>

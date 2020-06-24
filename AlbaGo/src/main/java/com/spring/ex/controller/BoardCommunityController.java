@@ -93,6 +93,8 @@ public class BoardCommunityController {
 	
 	@RequestMapping("/update")//수정
 	public String update() {
+		
+		
 		return "/community/update";
 	}
 	
@@ -100,7 +102,13 @@ public class BoardCommunityController {
 	
 	
 	@RequestMapping("/delete")//삭제
-	public String delete() {
+	public String delete(Model m, HttpServletRequest request) {
+		
+		int community_id = Integer.parseInt(request.getParameter("community_id"));
+		
+		BoardCommunity community = communityService.deleteContent(community_id);
+		
+		
 		return "/community/delete";
 	}
 	//화면에서 가져옴

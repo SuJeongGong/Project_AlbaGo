@@ -17,5 +17,6 @@ public interface CommunityDAO {
 	int deleteContent(int community_id);    //삭제
 	
 	int updateContent(int community_id);    //수정
+	
 	int updateViews(int community_id);//조회수 증가
  }

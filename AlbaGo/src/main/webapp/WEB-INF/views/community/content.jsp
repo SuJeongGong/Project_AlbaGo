@@ -43,6 +43,7 @@
                      <p class="excert">
                         <%=content %>
                      </p>
+                     
                   </div>
                </div>
                

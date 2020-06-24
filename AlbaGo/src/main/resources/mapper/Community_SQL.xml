@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.ex.dao.CommunityDAO">
-	
+
+	<!-- 커뮤니티글 작성 -->
 	<insert id = "insertContent" parameterType="BoardCommunity">  
 		INSERT INTO community
 		(community_id,
@@ -22,21 +23,35 @@
 		)
 	</insert>
 	
+	<!-- 커뮤니티글 리스트 -->
 	<select id = "selectList" resultType="BoardCommunity">        
 		select* from community	
 	</select>
 	
+	<!-- 커뮤니티글 보기 -->
 	<select id = "selectContent" resultType="BoardCommunity" parameterType="int">
 		select * from community where community_id = #{community_id}
 	</select>
 	
+	<!-- 커뮤니티글 수정 -->
+	<update id="updateContent" parameterType="int">
+		update community
+		set title = #{title},
+		    content = #{content}
+		<where>
+			community_id = #{community_id}
+		</where>
+	</update> 
+	
+	<!-- 커뮤니티글 삭제 -->
 	<delete id="deleteContent" parameterType="int">
 		DELETE FROM community WHERE community_id = #{community_id}
 	</delete>
 	
+	
+	<!-- 커뮤니티글 조회수 -->
 	<update id ="updateViews" parameterType="int">
-
-update community set views = views + 1 where community_id = #{community_id}
+		update community set views = views + 1 where community_id = #{community_id}
 	</update>
 	
 	
