@@ -70,10 +70,10 @@ public class EnterpriseService {
 		return res;
 	}
 
-	public int insertScrap(int boardRecruit_id,String enterprise_id) {
+	public int insertScrap(int board_resume_id,String enterprise_id) {
 		Scrap_enterprise scrap = new Scrap_enterprise();
 		scrap.setEnterprise_id(enterprise_id);
-		scrap.setBoardRecruit_id(boardRecruit_id);
+		scrap.setBoard_resume_id(board_resume_id);
 		return enterpriseDAO.insertScrap(scrap);
 	}
 	public int deleteScrap(int scrap_id) {

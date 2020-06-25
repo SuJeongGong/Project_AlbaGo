@@ -24,6 +24,7 @@ public interface IndividualDAO {
 	int insertResume(Resume resume);
 	int insertCareer(Career career);
 	int insertScrap(Scrap_Individual scrap);
+	int insertVolunteer(Volunteer volunteer);
 	Resume selectResume(int resume_id);
 	ArrayList<Career> selectCareer(int resume_id);
 }

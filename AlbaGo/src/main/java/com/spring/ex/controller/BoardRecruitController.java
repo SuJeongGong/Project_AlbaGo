@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.ex.dao.BoardRecruitDAO;
 import com.spring.ex.dto.BoardRecruit;
+import com.spring.ex.dto.Resume;
 import com.spring.ex.services.BoardRecruitService;
 import com.spring.ex.services.EnterpriseService;
 import com.spring.ex.services.RecruitService;
@@ -102,6 +103,14 @@ public class BoardRecruitController {
 		board_content.setBoard_recruit_id(board_recruit_id);
 		
 		System.out.println(board_content);
+		
+		
+		if(request.getSession().getAttribute("id")!=null) {
+			ArrayList<Resume> resume = boardRecruitService.selectResumes(request.getSession().getAttribute("id").toString());
+			if(resume!=null) {
+				m.addAttribute("resumes", resume);
+			}
+		}
 		m.addAttribute("board_content", board_content);//여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
 		return "/recruit/content";
 	}
