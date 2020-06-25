@@ -244,9 +244,9 @@
                                             <th> </th>
                                             <th>공고작성일</th>
                                             <th>공고 제목</th>
-                                            <th>모집현황</th>
+                                            <th>기업 아이디</th>
                                             <th>지원자 관리</th>
-                                            <th>유료 서비스</th>
+                                            <th>베너 사용</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -258,7 +258,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                         <tr>
@@ -269,7 +269,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                         <tr>
@@ -280,7 +280,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                         <tr>
@@ -291,7 +291,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                         <tr>
@@ -302,7 +302,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                         <tr>
@@ -313,7 +313,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                     </tbody>
