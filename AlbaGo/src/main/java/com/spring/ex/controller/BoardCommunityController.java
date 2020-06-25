@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dao.CommunityDAO;
 import com.spring.ex.dto.BoardCommunity;
+import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.services.CommunityService;
 
 @Controller
@@ -86,17 +87,19 @@ public class BoardCommunityController {
 		return "/community/content";
 					}
 	
+	
+	
 	@RequestMapping("/content/update") // 수정화면에 수정 버튼 누르면
 	public String contentUpdate(HttpServletRequest request,@ModelAttribute("community") BoardCommunity boardCommunity) {
 		String page = "/community/update"; //안되면 
 		HttpSession session = request.getSession();
-
+		
 		if(!session.getAttribute("type").toString().equals("개인")) { 
 			return "/community/list";
 		} else {
-
+			
 			System.out.println(boardCommunity);
-
+			
 			if(communityService.updateContent(boardCommunity) >= 1) {
 				System.out.println("DB연결 성공");
 				page="redirect:/community/list";
@@ -106,6 +109,8 @@ public class BoardCommunityController {
 		}
 		return page;
 	}
+	
+	
 	
 	@RequestMapping("/update")//수정화면보기
 	public String update(HttpServletRequest request, Model m) {
@@ -124,7 +129,7 @@ public class BoardCommunityController {
 				boardCommunity.setCommunity_id(community_id);
 				System.out.println("수정 화면 보여주는 컨트롤러 "+boardCommunity);
 				m.addAttribute("board_Community", boardCommunity); // 여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
-				page = "community/update";//redirect:/community/list
+				page = "/community/update";//redirect:/community/list
 		
 		}
 		return page;
@@ -133,11 +138,11 @@ public class BoardCommunityController {
 	
 	@RequestMapping(value = "/deleteContent", method = RequestMethod.GET)//삭제
 	public String delete(int community_id) {
-		String page = "/community/list";
-		System.out.println(community_id);  //jsp에서 가져온 값
+		String page = "/community/content";
+
 		if(1 <= communityService.deleteContent(community_id)) {
 			System.out.println("DB연결 성공!");
-			page = "/list";
+			page = "/main";
 		}
 		else {
 			System.out.println("DB연결 실패!");
@@ -146,25 +151,5 @@ public class BoardCommunityController {
 	}
 	
 
-	
-	
-			//		hashpmap map 
-			/*map.put("이름","공수정 ");
-			int result = dao.int(map);
-			
-			
-			//결과값 확인 
-			if() {
-				return "/community/content";
-				
-			}else {
-
-				return "/community/content";
-			}
-			
-			
-
-			return "/community/content";
-		}*/
 }
 
