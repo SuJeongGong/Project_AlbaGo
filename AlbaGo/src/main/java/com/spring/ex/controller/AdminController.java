@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,8 @@ import com.spring.ex.dao.ProductDAO;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
+import com.spring.ex.services.AdminService;
+import com.spring.ex.services.IndividualService;
 import com.spring.ex.services.ProductService;
 
 @Controller
@@ -24,6 +27,8 @@ public class AdminController {
 
 	@Autowired
 	ProductService productService;
+	@Autowired
+	AdminService adminService;
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main() {
@@ -46,8 +51,13 @@ public class AdminController {
 	}
 
 	@RequestMapping("/individual_list") // 개인 리스트
-	public String individual_list() {
-		return "admin/individual_list";
+	public String individual_list(Model m) {
+		String page="/admin/individual_list";
+		System.out.println("왜안돼");
+		ArrayList<Individual> individuals=adminService.selectlist();
+		System.out.println(individuals);
+		m.addAttribute("individuals",individuals);
+		return page;
 	}
 
 	@RequestMapping("/enterprise_list") // 기업 리스트
@@ -71,7 +81,8 @@ public class AdminController {
 	}
 
 	@RequestMapping("/product") // 상품보기
-	public String list(Model m) {
+	public String list(Model m, HttpServletRequest request) {
+		
 		ArrayList<Product> products = productService.selectList();
 		m.addAttribute("products", products);
 
