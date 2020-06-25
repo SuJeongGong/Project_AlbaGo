@@ -74,7 +74,7 @@ function insertVolunteer(board_recruit_id) {
                                             <p> <i class="fa fa-map-marker"></i><%=board_content.getPlace() %></p> <!-- 장소 -->
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i><%=board_content.getDate() %></p><!-- 시간 -->
+                                            <p> <i class="fa fa-clock-o"></i><%=board_content.getDate().split(" ")[0] %></p><!-- 시간 -->
                                         </div>
                                     </div>
                                 </div>

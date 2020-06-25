@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.BoardResumeDAO;
 import com.spring.ex.dto.BoardResume;
+import com.spring.ex.dto.Career;
 @Service
 public class BoardResumeService {
 	
@@ -32,6 +33,10 @@ public class BoardResumeService {
 	
 	public int updateBoard(BoardResume boardresume) {
 		return boardResumeDAO.updateBoard(boardresume);
+	}
+	
+	public ArrayList<Career> selectCareers(int board_resume_id) {
+		return boardResumeDAO.selectCareers(board_resume_id);
 	}
 	
 }

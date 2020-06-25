@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.spring.ex.dto.Career"%>
 <%@page import="com.spring.ex.dto.BoardResume"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -70,18 +72,23 @@
                                 <tr>
                                     <th>점포명</th><th>맡은업무</th><th>시작날짜</th><th>끝난날짜</th>
                                 </tr>
-                                <tr>
-                                    <td>아리따움</td><td>판매</td><td>2020-03-20</td><td>2020-03-20</td>
+                                
+                                <%
+                                	ArrayList<Career> careers = (ArrayList)request.getAttribute("careers");
+                                	for(int i =0; i<careers.size();i++){
+                                		Career career = careers.get(i);
+                                		
+                                		%>
+                                		
+                                		   <tr>
+                                    <td><%=career.getName() %></td><td><%=career.getTask() %></td><td><%=career.getStart_date() %></td><td><%=career.getEnd_date() %></td>
                                 </tr>
-                                <tr>
-                                    <td>훠궈</td><td>서빙</td><td>2020-03-20</td><td>2020-03-20</td>
-                                </tr>
-                                <tr>
-                                    <td>아리따움</td><td>판매</td><td>2020-03-20</td><td>2020-03-20</td>
-                                </tr>
-                                <tr>
-                                    <td>훠궈</td><td>서빙</td><td>2020-03-20</td><td>2020-03-20</td>
-                                </tr>
+                                		
+                                		<%
+                                	}                                
+                                %>
+                             
+                           
 
                             </table>
                         </div>

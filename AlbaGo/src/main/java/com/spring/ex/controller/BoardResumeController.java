@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.ex.dao.BoardResumeDAO;
 import com.spring.ex.dto.BoardResume;
+import com.spring.ex.dto.Career;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.services.BoardResumeService;
 import com.spring.ex.services.IndividualService;
@@ -96,13 +97,15 @@ public class BoardResumeController {
 		System.out.println(request.getParameter("board_resume_id").toString());
 		int board_resume_id = Integer.parseInt(request.getParameter("board_resume_id").toString());
 		
+		
 		System.out.println("될꺼야");
 		
 		BoardResume board_content = boardResumeService.selectView(board_resume_id);
 		board_content.setBoard_resume_id(board_resume_id);
-		
+		ArrayList<Career> careers = boardResumeService.selectCareers(board_resume_id);
 		System.out.println(board_content);
 		m.addAttribute("board_content", board_content);
+		m.addAttribute("careers", careers);
 		return "/resume/content";
 	}
 	
