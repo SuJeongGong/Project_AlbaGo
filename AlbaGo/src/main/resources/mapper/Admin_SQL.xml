@@ -8,6 +8,34 @@
 		from Individual
 	</select>
 	
+	<select id = "selectId" resultType="Individual" parameterType="String">
+		select *
+		from Individual
+	</select>
+	
+	<select id="selectIdIndividual_id" resultType="Individual" parameterType="String">
+	select *
+	from Individual
+	<where>
+	individual_id=#{individual_id}
+	</where> 
+	</select>
+	
+	<select id="selectIdName" resultType="Individual" parameterType="String">
+	select *
+	from Individual
+	<where>
+	name=#{name}
+	</where> 
+	</select>
+	
+	<select id="selectIdPhone" resultType="Individual" parameterType="String">
+	select *
+	from Individual
+	<where>
+	phone=#{phone}
+	</where> 
+	</select>
 	<!-- #################  -->
 	<!-- 임승재  -->
 	

@@ -1,15 +1,14 @@
 package com.spring.ex.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.AdminDAO;
-import com.spring.ex.dto.BoardRecruit;
-import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
-
+ 
 @Service
 public class AdminService {
 	@Autowired
@@ -19,8 +18,21 @@ public class AdminService {
 		return adminDAO.selectlist();
 	}
 
+	public ArrayList<Individual> selectId(String category, String search) {
+		ArrayList<Individual> individuals=null;
+		
+		
+		if(category.equals("individual_id")) {
+			return adminDAO.selectIdIndividual_id(search);
+		}else if(category.equals("name")) {
+			return adminDAO.selectIdName(search);
+		}else if(category.equals("phone")) {
+			return adminDAO.selectIdPhone(search);
+		}
+		return null;
+	}
 
-	/*##################################################*/
-	//임승재
-	
+	/* ################################################## */
+	// 임승재
+
 }

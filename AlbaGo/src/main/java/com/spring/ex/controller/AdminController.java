@@ -1,6 +1,7 @@
 package com.spring.ex.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -53,10 +54,19 @@ public class AdminController {
 	@RequestMapping("/individual_list") // 개인 리스트
 	public String individual_list(Model m) {
 		String page="/admin/individual_list";
-	 
+	  
 		ArrayList<Individual> individuals=adminService.selectlist();
 		m.addAttribute("individuals",individuals);
+		System.out.println(individuals);
 		return page;
+	}   
+	@RequestMapping("/individual_list/id") //  개인 검색
+	public String individual_id(Model m ,@RequestParam("category")String category,@RequestParam("search")String search) {
+		String page="/admin/individual_list";
+		ArrayList<Individual> individuals=adminService.selectId(category, search);
+		m.addAttribute("individuals",individuals);
+	
+		return page; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
 	}
 
 	@RequestMapping("/enterprise_list") // 기업 리스트
