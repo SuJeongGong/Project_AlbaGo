@@ -52,7 +52,7 @@ public class BoardCommunityController {
 			
 		int result = communityService.insertContent(community);//()안에는 메서드를 실행할때 필요한 값 , = 왼쪽은 메서드를 실행하고 난 결과값
 		//communitys = 저장할 값
-		return "/main"; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
+		return "redirect:/community/list"; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
 	}
 	
 	@RequestMapping("/write")//작성
@@ -85,7 +85,7 @@ public class BoardCommunityController {
 			m.addAttribute("community_content",community );
 		}		
 		return "/community/content";
-					}
+	}
 	
 	
 	
@@ -136,13 +136,13 @@ public class BoardCommunityController {
 	}
 	
 	
-	@RequestMapping(value = "/deleteContent", method = RequestMethod.GET)//삭제
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)//삭제
 	public String delete(int community_id) {
 		String page = "/community/content";
-
+		System.out.println(community_id);
 		if(1 <= communityService.deleteContent(community_id)) {
 			System.out.println("DB연결 성공!");
-			page = "/main";
+			page = "redirect:/community/list";
 		}
 		else {
 			System.out.println("DB연결 실패!");
