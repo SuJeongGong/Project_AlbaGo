@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.EnterpriseDAO;
 import com.spring.ex.dto.Enterprise;
+import com.spring.ex.dto.PaymentHistory;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
@@ -75,6 +76,16 @@ public class EnterpriseService {
 		scrap.setEnterprise_id(enterprise_id);
 		scrap.setBoard_resume_id(board_resume_id);
 		return enterpriseDAO.insertScrap(scrap);
+	}
+	public int resumeUse(String enterprise_id,int board_resume_id) {//기업회원 resume_count 횟수 줄이기, 결제이력에 삽입하기
+		PaymentHistory paymentHistory= new PaymentHistory();
+		paymentHistory.setBoard_resume_id(board_resume_id);
+		paymentHistory.setEnterprise_id(enterprise_id);
+		int result = 0;
+		if(enterpriseDAO.insertPaymentHistory(paymentHistory) >=1 && enterpriseDAO.updateResume_count(enterprise_id)>=1) {
+			result =1;
+		}
+		return result;
 	}
 	public int deleteScrap(int scrap_id) {
 		return enterpriseDAO.deleteScrap(scrap_id);

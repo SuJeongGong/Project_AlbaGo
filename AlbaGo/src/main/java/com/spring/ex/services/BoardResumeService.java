@@ -39,4 +39,8 @@ public class BoardResumeService {
 		return boardResumeDAO.selectCareers(board_resume_id);
 	}
 	
+	public int selectResume_count(String enterprise_id) {
+		return boardResumeDAO.selectResume_count(enterprise_id);
+	}
+	
 }

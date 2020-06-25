@@ -100,102 +100,205 @@
                     </div>
                 </div>
             </div>
+            
+            
+            
+            
             <div class="row">
             <br><br><br><br><br></div>
+            
+            
+            
+            
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="job_details_header">
-                        <div class="single_jobs white-bg d-flex justify-content-between">
-                            <div class="jobs_left d-flex align-items-center">
-                                <div class="jobs_conetent">
-                                    <a href="<%=request.getContextPath() %>/enterprise/volunteer/list">
-                                        <h4>지원 목록</h4>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="jobs_right">
-                                <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/volunteer/list">자세히</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="descript_wrap white-bg">
-                        <div class="single_wrap">
-                            <p>지원한 인재 목록을 자세히 보고싶으시면<br>
-자세히 버튼을 눌러 지원한 인재 페이지로 이동해주세요 </p>
-                            <br>
-							<table width="95%">
-								<tr>
-									<th>제목</th><th>작성날짜</th><th>지원자</th>
-								</tr>
-	<%
-							ArrayList<Volunteer> volunteers = (ArrayList)request.getAttribute("volunteer");
-								for(int i =0;i<volunteers.size();i++){
-									Volunteer volunteer=  volunteers.get(i);
-									String individual_id =volunteer.getIndividual_id();
-									String title =volunteer.getBoard_recruit_title();//null나옴 아마 sql문을 고져야할듯 as board_recruit_title로 
-									String date = volunteer.getDate().split(" ")[0];
-									%>
-									<tr>
-										<td><%=title %></td><td><%=date %></td><td><%=individual_id %></td>
-									</tr>									
-									<%
-								}
-							%>							
-							</table>
-                        </div>
-                    </div>
+				                    <div class="job_details_header">
+					                        <div class="single_jobs white-bg d-flex justify-content-between">
+							                            <div class="jobs_left d-flex align-items-center">
+							                                <div class="jobs_conetent">
+							                                    <a href="<%=request.getContextPath() %>/enterprise/volunteer/list">
+							                                        <h4>지원 목록</h4>
+							                                    </a>
+							                                </div>
+							                            </div>
+							                            <div class="jobs_right">
+							                                <div class="apply_now">
+							                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/volunteer/list">자세히</a>
+							                                </div>
+							                            </div>
+					                        </div>
+				                    </div>
+				                    <div class="descript_wrap white-bg">
+						                        <div class="single_wrap">
+												                            <p>지원한 인재 목록을 자세히 보고싶으시면<br>
+												자세히 버튼을 눌러 지원한 인재 페이지로 이동해주세요 </p>
+												                            <br>
+																			<table width="95%">
+																				<tr>
+																					<th>제목</th><th>작성날짜</th><th>지원자</th>
+																				</tr>
+													<%
+																			ArrayList<Volunteer> volunteers = (ArrayList)request.getAttribute("volunteer");
+																				for(int i =0;i<volunteers.size();i++){
+																					Volunteer volunteer=  volunteers.get(i);
+																					String individual_id =volunteer.getIndividual_id();
+																					String title =volunteer.getBoard_recruit_title();//null나옴 아마 sql문을 고져야할듯 as board_recruit_title로 
+																					String date = volunteer.getDate().split(" ")[0];
+																					%>
+																					<tr>
+																						<td><%=title %></td><td><%=date %></td><td><%=individual_id %></td>
+																					</tr>									
+																					<%
+																				}
+																			%>							
+																			</table>
+						                        </div>
+				                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="job_details_header">
-                        <div class="single_jobs white-bg d-flex justify-content-between">
-                            <div class="jobs_left d-flex align-items-center">
-                                <div class="jobs_conetent">
-                                    <a href="<%=request.getContextPath() %>/enterprise/scrap">
-                                        <h4>스크랩</h4>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="jobs_right">
-                                <div class="apply_now">
-                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/scrap">자세히</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="descript_wrap white-bg">
-                        <div class="single_wrap">
-                            <p>스크랩한 인재 목록을 수정하거나 자세히 보고싶으시면
-                            <br>
-자세히 버튼을 눌러 스크랩한 인재 페이지로 이동해주세요 </p>
-                            <br>
-							<table width="95%">
-								<tr>
-									<th>인재글 제목</th><th>스크랩날짜</th>
-								</tr>
-							<%
-							ArrayList<Scrap_enterprise> scraps = (ArrayList)request.getAttribute("scrap");
-								for(int i =0;i<scraps.size();i++){
-									Scrap_enterprise scrap=  scraps.get(i);
-									String title =scrap.getTitle();
-									String date = scrap.getDate().split(" ")[0];
-									%>
-									<tr>
-										<td><%=title %></td><td><%=date %></td>
-									</tr>									
-									<%
-								}
-							%>
-								
-							</table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-
-                </div>
+				                <div class="col-lg-6">
+						                    <div class="job_details_header">
+						                        <div class="single_jobs white-bg d-flex justify-content-between">
+						                            <div class="jobs_left d-flex align-items-center">
+						                                <div class="jobs_conetent">
+						                                    <a href="<%=request.getContextPath() %>/enterprise/scrap">
+						                                        <h4>스크랩</h4>
+						                                    </a>
+						                                </div>
+						                            </div>
+						                            <div class="jobs_right">
+						                                <div class="apply_now">
+						                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/scrap">자세히</a>
+						                                </div>
+						                            </div>
+						                        </div>
+						                    </div>
+					                    	<div class="descript_wrap white-bg">
+								                        <div class="single_wrap">
+											                            <p>스크랩한 인재 목록을 수정하거나 자세히 보고싶으시면
+											                            <br>
+											자세히 버튼을 눌러 스크랩한 인재 페이지로 이동해주세요 </p>
+											                            <br>
+																		<table width="95%">
+																			<tr>
+																				<th>인재글 제목</th><th>스크랩날짜</th>
+																			</tr>
+																		<%
+																		ArrayList<Scrap_enterprise> scraps = (ArrayList)request.getAttribute("scrap");
+																			for(int i =0;i<scraps.size();i++){
+																				Scrap_enterprise scrap=  scraps.get(i);
+																				String title =scrap.getTitle();
+																				String date = scrap.getDate().split(" ")[0];
+																				%>
+																				<tr>
+																					<td><%=title %></td><td><%=date %></td>
+																				</tr>									
+																				<%
+																			}
+																		%>
+																			
+																		</table>
+								                        </div>
+					                    	</div>
+				                </div>
+          
             </div>
+            
+            
+             <div class="row">
+                <div class="col-lg-6">
+				                    <div class="job_details_header">
+					                        <div class="single_jobs white-bg d-flex justify-content-between">
+							                            <div class="jobs_left d-flex align-items-center">
+							                                <div class="jobs_conetent">
+							                                    <a href="<%=request.getContextPath() %>/enterprise/volunteer/list">
+							                                        <h4>상품 구매 기록</h4>
+							                                    </a>
+							                                </div>
+							                            </div>
+							                            <div class="jobs_right">
+							                                <div class="apply_now">
+							                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/volunteer/list">자세히</a>
+							                                </div>
+							                            </div>
+					                        </div>
+				                    </div>
+				                    <div class="descript_wrap white-bg">
+						                        <div class="single_wrap">
+												                           <p>최근에 구매한 5개의 결제 기록을 보여줍니다.
+											                            <br>더 많은 결제 목록을 보시려면 자세히 버튼을 눌러주세요</p>
+											                            <br>
+																			<table width="95%">
+																				<tr>
+																					<th>상품 이름</th><th>결제 날짜</th>
+																				</tr>
+													<%
+																			ArrayList<Volunteer> volunteers1 = (ArrayList)request.getAttribute("volunteer");
+																				for(int i =0;i<volunteers.size();i++){
+																					Volunteer volunteer=  volunteers1.get(i);
+																					String individual_id =volunteer.getIndividual_id();
+																					String title =volunteer.getBoard_recruit_title();//null나옴 아마 sql문을 고져야할듯 as board_recruit_title로 
+																					String date = volunteer.getDate().split(" ")[0];
+																					%>
+																					<tr>
+																						<td><%=title %></td><td><%=date %></td><td><%=individual_id %></td>
+																					</tr>									
+																					<%
+																				}
+																			%>							
+																			</table>
+						                        </div>
+				                    </div>
+                </div>
+				                <div class="col-lg-6">
+						                    <div class="job_details_header">
+						                        <div class="single_jobs white-bg d-flex justify-content-between">
+						                            <div class="jobs_left d-flex align-items-center">
+						                                <div class="jobs_conetent">
+						                                    <a href="<%=request.getContextPath() %>/enterprise/scrap">
+						                                        <h4>상품 사용 기록</h4>
+						                                    </a>
+						                                </div>
+						                            </div>
+						                            <div class="jobs_right">
+						                                <div class="apply_now">
+						                                    <a class="boxed-btn3 w-10" href="<%=request.getContextPath() %>/enterprise/scrap">자세히</a>
+						                                </div>
+						                            </div>
+						                        </div>
+						                    </div>
+					                    	<div class="descript_wrap white-bg">
+								                        <div class="single_wrap">
+											                            <p>최근에 시용한 5개의 상품 기록을 보여줍니다.
+											                            <br>더 많은 사용 목록을 보시려면 자세히 버튼을 눌러주세요</p>
+											                            <br>
+																		<table width="95%">
+																			<tr>
+																				<th>상품 이름</th><th>사용한 날짜</th>
+																			</tr>
+																		<%
+																		ArrayList<Scrap_enterprise> scraps1 = (ArrayList)request.getAttribute("scrap");
+																			for(int i =0;i<scraps.size();i++){
+																				Scrap_enterprise scrap=  scraps1.get(i);
+																				String title =scrap.getTitle();
+																				String date = scrap.getDate().split(" ")[0];
+																				%>
+																				<tr>
+																					<td><%=title %></td><td><%=date %></td>
+																				</tr>									
+																				<%
+																			}
+																		%>
+																			
+																		</table>
+								                        </div>
+					                    	</div>
+				                </div>
+          
+            </div>
+            
+            
+            
+            
         </div>
     </div>
 	

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.spring.ex.dto.Career;
 import com.spring.ex.dto.Enterprise;
+import com.spring.ex.dto.PaymentHistory;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
@@ -26,4 +27,8 @@ public interface EnterpriseDAO {
 	Resume selectVolunteerResume(int resume_id);//지원자의 지원 이력서 가져오기
 	ArrayList<Career> selectVolunteerCareer(int resume_id);//지원자의 지원 이력서중에 경력 가져오기
 	int insertScrap(Scrap_enterprise scrap);//기업이 인재 스크랩 추가하기
+	
+	
+	int updateResume_count(String  enterprise_id);//기업 Resume_count 하나 줄이기 
+	int insertPaymentHistory(PaymentHistory paymentHistory);//board_resume에서 연락처 뽑아오기
 }

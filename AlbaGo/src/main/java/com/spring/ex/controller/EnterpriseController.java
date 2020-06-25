@@ -289,4 +289,19 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 		}
 		return res;
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/resume/use", method = RequestMethod.GET)
+	public String  resumeUse(@RequestParam(value = "enterprise_id") String enterprise_id,@RequestParam(value = "board_resume_id") int board_resume_id) {//기업 아이템 사용 목록에 insert , resume_count 사용한 내역
+		String res="";
+		if (1 <= enterpriseService.resumeUse(enterprise_id,board_resume_id)) {
+			System.out.println("DB연결 성공!");
+			res = "성공";
+		}
+		return res;
+	}
+	
+	
+	
 }

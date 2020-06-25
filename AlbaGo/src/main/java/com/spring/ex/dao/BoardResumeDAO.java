@@ -21,5 +21,8 @@ public interface BoardResumeDAO {
 	
 	//수정
 	int updateBoard(BoardResume boardresume);
+	
+	//기업회원의 resume_count 가져오기
+	int selectResume_count(String enterprise_id);
 
 }
