@@ -163,8 +163,8 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 	public String recruitContent(@RequestParam("recruit_id") int recruit_id, Model m) {
 		String page = "/enterprise/list";// 원래 경로
 		Recruit recruit = enterpriseService.selectRecruit(recruit_id);
-		System.out.println(recruit);
 		if (recruit != null) {
+			System.out.println(recruit);
 			m.addAttribute("recruit", recruit);
 			page = "enterprise/recruit_content";
 		}

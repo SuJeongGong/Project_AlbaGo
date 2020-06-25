@@ -34,10 +34,10 @@
 	</select>
 	
 	<!-- 커뮤니티글 수정 -->
-	<update id="updateContent" parameterType="int">
+	<update id="updateContent" parameterType="BoardCommunity">
 		update community
 		set title = #{title},
-		    content = #{content}
+		    contents = #{contents}
 		<where>
 			community_id = #{community_id}
 		</where>

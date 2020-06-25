@@ -39,10 +39,10 @@
                                     <div class="input-group">
                                         <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
                                       
-                                            <select name="search">
-                                                <option value="individual_id">아이디</option>
-                                                <option value="name">이름</option>
-                                                <option value="phone">연락처</option>
+                                            <select id="category" name="category"> 
+                                                <option value="아이디" id="individual_id">아이디</option>
+                                                <option value="회원이름" id="name">이름</option>
+                                                <option value="연락처" id="phone">연락처</option>
                                             </select>
                                         
                                         <input class="form-control" id="system-search" name="q" placeholder="Search for" required> <!-- 검색내용입력 -->
@@ -79,7 +79,7 @@
 												String date=list.getDate();
 											%>
                                         <tr>
-                                            <td><a href="individual_detail"></a><%=name%></td>
+                                            <td><a href="individual_detail"><%=name%></a></td>
                                             <td><%=individual_id%></td>
                                             <td><%=password %></td>
                                             <td><%=phone %></td>

@@ -53,9 +53,8 @@ public class AdminController {
 	@RequestMapping("/individual_list") // 개인 리스트
 	public String individual_list(Model m) {
 		String page="/admin/individual_list";
-		System.out.println("왜안돼");
+	 
 		ArrayList<Individual> individuals=adminService.selectlist();
-		System.out.println(individuals);
 		m.addAttribute("individuals",individuals);
 		return page;
 	}
