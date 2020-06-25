@@ -18,6 +18,7 @@
 <body>
 	<%@ include file="../serve/header.jsp" %>	
     <div class="job_details_area">
+        <!-- <h3 style="float: center;"><%=Einfo.getEnterprise_id()%> 기업 마이페이지</h3> -->
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">

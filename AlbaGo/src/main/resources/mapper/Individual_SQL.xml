@@ -31,13 +31,15 @@
 
 	<select id="selectVolunteer" parameterType="String"
 		resultType="Volunteer">
-	SELECT volunteer.board_recruit_id as recruit_id,
-				board_recruit.title as recruit_title,
+	SELECT volunteer.board_recruit_id as board_recruit_id,
+				board_recruit.title as board_recruit_title,
 				volunteer.memo as memo,
 				volunteer.date as date,
 				volunteer.result as result,
 				resume.title as resume_title,
-				volunteer.volunteer_id as volunteer_id
+				volunteer.volunteer_id as volunteer_id,
+				volunteer.resume_id as resume_id,
+				volunteer.board_recruit_id as board_recruit_id
 				
 		FROM resume,volunteer,board_recruit,enterprise,recruit
 		<where>

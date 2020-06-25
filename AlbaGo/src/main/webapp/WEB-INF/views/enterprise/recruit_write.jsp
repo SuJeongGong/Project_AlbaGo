@@ -53,8 +53,8 @@
                     <h5 class="font-weight-bold">근무 기간</h5>&nbsp;&nbsp;
                     <input type="radio" name="term" id="term_5" value="하루" class="ip">&nbsp;
                     <label for="term_5">하루</label>&nbsp;
-                    <input type="radio" name="term" id="term_5" value="1주일 이하" class="ip">&nbsp;
-                    <label for="term_5">1주일 이하</label>&nbsp;
+                    <input type="radio" name="term" id="term_6" value="1주일 이하" class="ip">&nbsp;
+                    <label for="term_6">1주일 이하</label>&nbsp;
                     <input type="radio" name="term" id="term_10" value="1개월" class="ip">&nbsp;
                     <label for="term_10">1개월</label>&nbsp;
                     <input type="radio" name="term" id="term_20" value="3개월~6개월" class="ip">&nbsp;

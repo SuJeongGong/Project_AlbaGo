@@ -105,7 +105,7 @@ function updateResults(result) {
 								int recruit_id = volunteer.getBoard_recruit_id();
 								String title = volunteer.getBoard_recruit_title();
 								String individual_id = volunteer.getIndividual_id();
-								String resume_title = volunteer.getResume_title();
+								String resume_title = volunteer.getBoard_recruit_title();
 								int resume_id = volunteer.getResume_id();
 								String memo = volunteer.getMemo();
 								String date = volunteer.getDate().split(" ")[0];
@@ -123,7 +123,7 @@ function updateResults(result) {
 								name="volunteer_id" value="<%=volunteer_id%>"></td>
 							<td><%=volunteer_id%></td>
 							<td><a
-								href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=title%>"><%=title%></a></td>
+								href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=volunteer.getBoard_recruit_id() %>"><%=title%></a></td>
 							<td><%=individual_id%></td>
 							<td><a
 								href="<%=request.getContextPath()%>/enterprise/volunteer/resume?resume_id=<%=resume_id%>"

@@ -31,8 +31,8 @@
 
 	<select id="selectVolunteer" parameterType="String"
 		resultType="Volunteer">
-		SELECT volunteer.board_recruit_id as recruit_id,
-		board_recruit.title as recruit_title,
+		SELECT volunteer.board_recruit_id as board_recruit_id,
+		board_recruit.title as board_recruit_title,
 		volunteer.individual_id as individual_id,
 		volunteer.memo as memo,
 		volunteer.date as date,
