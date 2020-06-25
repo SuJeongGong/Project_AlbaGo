@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>인재글 보기</title>
 </head>
 <body>
 	<%@ include file="../serve/header.jsp" %>
@@ -48,7 +48,7 @@
                                 				<a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/resume/delete?board_resume_id=<%=board_content.getBoard_resume_id() %>">삭제하기</a> <%
                                 		} 
                                 	}%>
-                                    <a class="boxed-btn3 w-10" href="#"> 스크랩</a>
+                                	<a class="boxed-btn3 w-10"  href="<%=request.getContextPath()%>/enterprise/scrap/save?board_resume_id=<%=board_content.getBoard_resume_id() %>">스크랩</a>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="submit_btn">
-                                        <button class="boxed-btn3 w-100" type="submit">연락하기</button>
+                                        <a class="boxed-btn3 w-100" href ="<%=request.getContextPath()%>/enterprise/show?board_resume_id=<%=board_content.getBoard_resume_id() %>">숨겨진 연락처 보기</a>
                                     </div>
                                 </div>
                             </div>

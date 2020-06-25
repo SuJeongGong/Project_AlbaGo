@@ -3,6 +3,7 @@ package com.spring.ex.dao;
 import java.util.ArrayList;
 
 import com.spring.ex.dto.BoardRecruit;
+import com.spring.ex.dto.Resume;
 
 public interface BoardRecruitDAO {
 	
@@ -20,4 +21,6 @@ public interface BoardRecruitDAO {
 	
 	//수정
 	int updateBoard(BoardRecruit boardrecruit);
+	
+	ArrayList<Resume> selectResumes(String individual_id);
 }

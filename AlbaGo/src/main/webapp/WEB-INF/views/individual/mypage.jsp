@@ -129,7 +129,7 @@
 							ArrayList<Volunteer> volunteers = (ArrayList)request.getAttribute("volunteers");
 								for(int i =0;i<volunteers.size();i++){
 									Volunteer volunteer=  volunteers.get(i);
-									String title =volunteer.getRecruit_title();
+									String title =volunteer.getResume_title();
 									String date = volunteer.getDate();
 									%>
 									<tr>
@@ -174,7 +174,7 @@
 								for(int i =0;i<scraps.size();i++){
 									Scrap_Individual scrap=  scraps.get(i);
 									String title =scrap.getTitle();
-									String date = scrap.getDate();
+									String date = scrap.getDate().split(" ")[0];
 									%>
 									<tr>
 										<td><%=title %></td><td><%=date %></td>

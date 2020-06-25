@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
@@ -26,7 +27,7 @@ import com.spring.ex.services.EnterpriseService;
 
 @Controller
 @RequestMapping("/enterprise")
-public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구분 맞는지,아이디값이 있는지 , insert랑 update시 값 전부다 입력되어있는지 (자바스크립트)
+public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구분 맞는지,아이디값이 있는지 , insert랑 update시 값 전부다 입력되어있는지 (자바스크립트)
 
 	@Autowired
 	EnterpriseService enterpriseService;
@@ -89,7 +90,7 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 	public String accountUpdate(HttpServletRequest request, @ModelAttribute("enterprise") Enterprise enterprise) {
 		String page = "/enterprise/account";
 		HttpSession session = request.getSession();
-  
+
 		if (!session.getAttribute("type").toString().equals("기업")) {// 기업회원이 맞는지 확인
 			return "/join/logout";
 		} else {
@@ -97,8 +98,8 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 
 			if (enterpriseService.updateAccount(enterprise) == 1) {
 				System.out.println("DB연결성공");
- 
-				page = "/main";// /enterprise/mypage으로 보내기 실패ㅠ
+
+				page = "redirect:/enterprise/mypage";// /enterprise/mypage으로 보내기 실패ㅠ
 			} else {
 				System.out.println("DB연결실패");
 			}
@@ -121,8 +122,9 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 		}
 		return page;
 	}
+
 	@RequestMapping("/scrap/save") // 스크랩 인재 - 추가하기
-	public String scrapSave(@RequestParam("board_resume_id") int board_resume_id,HttpServletRequest request, Model m) {
+	public String scrapSave(@RequestParam("board_resume_id") int board_resume_id, HttpServletRequest request, Model m) {
 		String page = "/enterprise/mypage";
 		HttpSession session = request.getSession();
 		System.out.println(session.getAttribute("type"));
@@ -130,8 +132,9 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 			return page;
 		} else {
 			String id = session.getAttribute("id").toString();
-			m.addAttribute("scraps", enterpriseService.insertScrap(board_resume_id,request.getSession().getAttribute("id").toString()));
-			page = "/resume/content?board_resume_id="+board_resume_id;
+			m.addAttribute("scraps",
+					enterpriseService.insertScrap(board_resume_id, request.getSession().getAttribute("id").toString()));
+			page = "redirect:/resume/content?board_resume_id=" + board_resume_id;
 		}
 		return page;
 	}
@@ -155,28 +158,27 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 	public String recruitWrite() {
 		return "/enterprise/recruit_write";
 	}
-	
-	@RequestMapping("/recruit/content") // 공고 상세보기 
-	public String recruitContent(@RequestParam("recruit_id") int recruit_id,Model m) {
-		String page = "/enterprise/list";//원래 경로
+
+	@RequestMapping("/recruit/content") // 공고 상세보기
+	public String recruitContent(@RequestParam("recruit_id") int recruit_id, Model m) {
+		String page = "/enterprise/list";// 원래 경로
 		Recruit recruit = enterpriseService.selectRecruit(recruit_id);
 		System.out.println(recruit);
-		if(recruit!=null) {
+		if (recruit != null) {
 			m.addAttribute("recruit", recruit);
-			page= "enterprise/recruit_content";
+			page = "enterprise/recruit_content";
 		}
 		return page;
-		
-		
+
 	}
 
 	@RequestMapping("/recruit/write/save") // 공고 작성하기 - 저장하기
-	public String recruitWriteSave(@ModelAttribute("recruit") Recruit recruit,HttpServletRequest request) {
-		String page="/recruit/write/save";
+	public String recruitWriteSave(@ModelAttribute("recruit") Recruit recruit, HttpServletRequest request) {
+		String page = "/recruit/write/save";
 		recruit.setEnterprise_id(request.getSession().getAttribute("id").toString());
-		if(1<=enterpriseService.insertRecruit(recruit)) {
+		if (1 <= enterpriseService.insertRecruit(recruit)) {
 			System.out.println("DB에 값 넣기 성공");
-			page="/main";
+			page = "redirect:/enterprise/recruit/list";
 		}
 		return page;
 	}
@@ -198,36 +200,38 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 		}
 		return page;
 	}
-	@RequestMapping("/volunteer/resume") // 지원한 사람의 지원한 이력서 보기 
-	public String volunteerResume(@RequestParam("resume_id")int resume_id, Model m) {
-		String page = "/enterprise/mypage";//성공 안했을때 경로
-			
-			
-			
-			m.addAttribute("resume", enterpriseService.selectVolunteerResume(resume_id));
-			page = "/enterprise/volunteer_resume";
-	
+
+	@RequestMapping("/volunteer/resume") // 지원한 사람의 지원한 이력서 보기
+	public String volunteerResume(@RequestParam("resume_id") int resume_id, Model m) {
+		String page = "/enterprise/mypage";// 성공 안했을때 경로
+
+		m.addAttribute("resume", enterpriseService.selectVolunteerResume(resume_id));
+		page = "/enterprise/volunteer_resume";
+
 		return page;
 	}
 
 	// 아약스 처리
 
+	@ResponseBody
 	@RequestMapping(value = "/volunteer/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String updateResult(String result, int id) {
-
+		String res = "";
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("volunteer_id", id);
 		map.put("result", result);
 
 		if (1 <= enterpriseService.updateVolunteerResult(map)) {
 			System.out.println("DB연결 성공!");
+			res = "성공";
 		}
-		return result;
+		return res;
 	}
 
 	@RequestMapping(value = "/volunteer/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String updateResults(@RequestParam(value = "result") String result,
 			@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
+		String res = "";
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("volunteer_ids", volunteer_ids);
@@ -235,43 +239,54 @@ public class EnterpriseController {//회원 벨리데이션 처리 - 회원 구�
 
 		if (1 <= enterpriseService.updateVolunteerResults(map)) {
 			System.out.println("DB연결 성공!");
+			res = "성공";
 		}
-		return result;
+		return res;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void updateResult(int scrap_id) {
+	public String updateResult(int scrap_id) {
+		String res = "";
 		System.out.println(scrap_id);// jsp 에서 가져온값
 		if (1 <= enterpriseService.deleteScrap(scrap_id)) {
 			System.out.println("DB연결 성공!");
 		}
-		return;
+		return res;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void updateResults(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_id) {
+	public String updateResults(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_id) {
+		String res = "";
 		System.out.println(scrap_id);
 		if (1 <= enterpriseService.deleteScraps(scrap_id)) {
 			System.out.println("DB연결 성공!");
+			res = "성공";
 		}
-		return;
+		return res;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/recruit/deleteRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void deleteRecruit(int recruit_id) {
+	public String deleteRecruit(int recruit_id) {
+		String res = "";
 		System.out.println(recruit_id);// jsp 에서 가져온값
 		if (1 <= enterpriseService.deleteRecruit(recruit_id)) {
 			System.out.println("DB연결 성공!");
 		}
-		return;
+		return res;
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/recruit/deleteRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void deleteRecruits(@RequestParam(value = "recruit_ids[]") ArrayList<String> recruit_id) {
+	public String  deleteRecruits(@RequestParam(value = "recruit_ids[]") ArrayList<String> recruit_id) {
+		String res = "";
 		System.out.println(recruit_id);
 		if (1 <= enterpriseService.deleteRecruits(recruit_id)) {
 			System.out.println("DB연결 성공!");
+			res = "성공";
 		}
-		return;
+		return res;
 	}
 }

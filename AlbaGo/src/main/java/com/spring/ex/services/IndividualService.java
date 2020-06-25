@@ -55,7 +55,14 @@ public class IndividualService {
 		}
 		return result;
 	}
-
+	public int insertVolunteer(int board_recruit_id, int resume_id,String individual_id,String memo) {
+		Volunteer volunteer = new Volunteer();
+		volunteer.setBoard_recruit_id(board_recruit_id);
+		volunteer.setResume_id(resume_id);
+		volunteer.setIndividual_id(individual_id);
+		volunteer.setMemo(memo);
+		return individualDAO.insertVolunteer(volunteer);
+	}
 	public int deleteVolunteer(int volunteer_id) {
 		return individualDAO.deleteVolunteer(volunteer_id);
 	}

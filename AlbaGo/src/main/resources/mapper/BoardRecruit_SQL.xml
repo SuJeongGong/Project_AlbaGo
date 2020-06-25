@@ -64,4 +64,14 @@
 			board_recruit_id = #{board_recruit_id}
 		</where>
 	</update> 
+	
+	
+	<select id="selectResumes" parameterType="String" resultType="Resume">
+		select * from resume
+		<where>
+			individual_id= #{individual_id}
+			and delete_check =1
+		</where>
+	
+	</select>
 </mapper>
