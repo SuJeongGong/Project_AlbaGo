@@ -6,15 +6,19 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.ex.dao.ProductDAO;
 import com.spring.ex.dto.BoardRecruit;
+import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
@@ -51,14 +55,68 @@ public class AdminController {
 		int yesterdaycount = adminService.yesterday_Count();
 		m.addAttribute("yesterdaycount", yesterdaycount);
 		
-		return "admin/recruit";
+		//공고글 리스트
+		ArrayList<BoardRecruit> boardrecruits=adminService.recruit_List();
+		m.addAttribute("boardrecruits",boardrecruits);
 		
+		return "/admin/recruit";
+		
+	}
+	
+	@RequestMapping("/recruit/id") //공고글 검색
+	public String boardrecruit_id(Model m, @RequestParam("category")String category, @RequestParam("search")String search) {
+		String page = "/admin/recruit";
+		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_id(category, search);
+		m.addAttribute("boardrecruits", boardrecruits);
+		
+		return page;
+	}
+	
+	// ajax처리
+	@ResponseBody
+	@RequestMapping(value = "/deleteBoardRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String deleteBoardRecruits(@RequestParam(value = "boardrecruit_ids[]") ArrayList<String> boardrecruit_id) {
+		String res = "";
+		System.out.println(boardrecruit_id);
+		if (1 <= adminService.deleteBoardRecruits(boardrecruit_id)) {
+			System.out.println("DB연결 성공");
+			res = "성공";
+		}
+		return res;
 	}
 
 	@RequestMapping("/resume") // 인재글 게시판 - 관리자 ver
-	public String resume() {
-		return "admin/resume";
+	public String resume(Model m) {
+		// 전체 공고 갯수
+		int allcount_resume = adminService.all_Count_resume();
+		m.addAttribute("allcount_resume", allcount_resume);
+		
+		// 오늘 공고 갯수
+		int todaycount_resume = adminService.today_Count_resume();
+		m.addAttribute("todaycount_resume", todaycount_resume);
+		
+		// 오늘 공고 갯수
+		int yesterdaycount_resume = adminService.yesterday_Count_resume();
+		m.addAttribute("yesterdaycount_resume", yesterdaycount_resume);
+				
+		//공고글 리스트
+		ArrayList<BoardResume> boardresumes=adminService.resume_List();
+		m.addAttribute("boardresumes",boardresumes);
+		return "/admin/resume";
 	}
+	
+	// ajax처리
+		@ResponseBody
+		@RequestMapping(value = "/deleteBoardResumes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		public String deleteBoardResumes(@RequestParam(value = "boardresume_ids[]") ArrayList<String> boardresume_id) {
+			String res = "";
+			System.out.println(boardresume_id);
+			if (1 <= adminService.deleteBoardResumes(boardresume_id)) {
+				System.out.println("DB연결 성공");
+				res = "성공";
+			}
+			return res;
+		}
 
 	@RequestMapping("/community") // 커뮤니티 게시판 -관리자 ver
 	public String community() {

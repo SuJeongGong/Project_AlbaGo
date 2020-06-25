@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.spring.ex.dto.BoardRecruit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,6 +13,34 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>공고글관리</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    function deleteRecruits() {
+    	var boardrecruit_ids = [];
+    	$("input[name='boardrecruit_id']:checked").each(function(){
+    		if(this.checked){
+    			console.log($(this).val());
+    			boardrecruit_ids.push($(this).val());
+    			console.log($(this).val());
+    		}
+    	})
+    	
+    	$.ajax({
+    		url : "./deleteBoardRecruits",
+    		method : "GET",
+    		data : {
+    			boardrecruit_ids: boardrecruit_ids
+    		},
+    		success :function(res){
+    			if(res=="성공"){
+    				alert("삭제 성공");
+    			}else{
+    				alert("삭제 실패");
+    			}
+    		}
+    	});
+    }
+    </script>
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -182,11 +211,11 @@
                                             
                                         <td><select id="category" name="category" style="width: 100px;">
                                                 <option value="전체">전체</option>
-                                                <option value="작성자">작성자</option>
-                                                <option value="제목">제목</option>
+                                                <option value="writer" id="writer">작성자</option>
+                                                <option value="title" id="title">제목</option>
                                             </select>
-                                            <input type="text" name="time" style="width: 350px;">
-                                            <input type="submit" value="검색" class="btn py-1 px-1 btn-primary">
+                                            <input type="text" name="search" style="width: 350px;">
+                                            <a class="btn py-1 px-1 btn-primary" href="<%=request.getContextPath()%>">검색</a>
                                         </td>
                                         
                                     </tr>
@@ -234,8 +263,8 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
-                                        <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"
-                                            style="float: right;">
+                                        <button type="submit" onclick="deleteRecruits()" class="btn py-1 px-1 btn-danger"
+                                            style="float: right;">삭제</button>
                                         <tr>
                                             <th>
                                                 <input type="checkbox" class="selectAllMembers" checked=false />
@@ -249,72 +278,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                    ArrayList<BoardRecruit> boardrecruits = (ArrayList)request.getAttribute("boardrecruits");
+                                    for (int i=0; i<boardrecruits.size(); i++) {
+                                    	BoardRecruit list = boardrecruits.get(i);
+                                    	int boardrecruit_id = list.getBoard_recruit_id();
+                                    	String boardrecruit_date = list.getDate().split(" ")[0];
+                                    	String boardrecruit_title = list.getTitle();
+                                    	String enterprise_id = list.getEnterprise_id();
+                                    	
+                                    %>
                                         <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
+                                            <td><input type='checkbox' name="boardrecruit_id" class='memberChk'
+                                                    onclick='OnOffMemberAllClickBtn()' value="<%=boardrecruit_id %>">
                                             </td>
-                                            <td>1</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
+                                            <td><%=boardrecruit_id %></td>
+                                            <td><%=boardrecruit_date %></td>
+                                            <td><a href="<%=request.getContextPath() %>/recruit/list?board_recruit_id=<%=boardrecruit_id%>"><%=boardrecruit_title%></a></td>
+                                            <td><%=enterprise_id %></td>
                                             <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>2</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>3</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>4</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>5</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>6</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
-                                        </tr>
+                                    <%} %>
                                     </tbody>
                                 </table>
                             </div>

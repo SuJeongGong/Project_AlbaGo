@@ -1,3 +1,5 @@
+<%@page import="com.spring.ex.dto.BoardResume"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,6 +13,34 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>인재글관리</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    function deleteResumes() {
+    	var boardresume_ids = [];
+    	$("input[name='boardresume_id']:checked").each(function(){
+    		if(this.checked){
+    			console.log($(this).val());
+    			boardresume_ids.push($(this).val());
+    			console.log($(this).val());
+    		}
+    	})
+    	
+    	$.ajax({
+    		url : "./deleteBoardResumes",
+    		method : "GET",
+    		data : {
+    			boardresume_ids: boardresume_ids
+    		},
+    		success :function(res){
+    			if(res=="성공"){
+    				alert("삭제 성공");
+    			}else{
+    				alert("삭제 실패");
+    			}
+    		}
+    	});
+    }
+    </script>
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -98,8 +128,8 @@
                                             </select></td>
 
                                         <td><input type="text" name="date" style="width: 150px;">&nbsp;&nbsp; ~
-                                            &nbsp;&nbsp;<input type="text" name="date" style="width: 150px;"> <input type="submit" value="오늘"
-                                                class="btn py-1 px-1 btn-primary">&nbsp;
+                                            &nbsp;&nbsp;<input type="text" name="date" style="width: 150px;"> 
+                                            <input type="submit" value="오늘" class="btn py-1 px-1 btn-primary">&nbsp;
                                             <input type="submit" value="1주일" class="btn py-1 px-1 btn-primary">&nbsp;
                                             <input type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
                                         </td>
@@ -173,7 +203,6 @@
                                                 <option value="2">고등학교 졸업</option>
                                                 <option value="3">대학교(2, 3년) 졸업</option>
                                                 <option value="4">대학교(4년) 졸업</option>
-                                                <option value="5">대학원 졸업</option>
                                             </select> </td>
                                             
                                         <td><select name="" style="width: 100px;">
@@ -196,9 +225,9 @@
                                 <div class="card card-stats" style="float:left; width:33%; padding:10px;">
                                     <div class="card-header card-header-warning card-header-icon">
                                         <div class="card-icon">
-                                            <i class="material-icons">전체 인재수</i>
+                                            <i class="material-icons">전체 인재</i>
                                         </div>
-                                        <h3 class="card-title">280,012<small>개</small>
+                                        <h3 class="card-title" id="allcount_resume" name="allcount_resume"><%=request.getAttribute("allcount_resume")%><small>개</small>
                                         </h3>
                                     </div>
 
@@ -206,18 +235,18 @@
                                 <div class="card card-stats" style="float:left; width:33%; padding:10px;">
                                     <div class="card-header card-header-warning card-header-icon">
                                         <div class="card-icon">
-                                            <i class="material-icons">오늘의 인재수</i>
+                                            <i class="material-icons">오늘의 인재</i>
                                         </div>
-                                        <h3 class="card-title">896<small>개</small></h3>
+                                        <h3 class="card-title" id="todaycount_resume"><%=request.getAttribute("todaycount_resume")%><small>개</small></h3>
                                     </div>
 
                                 </div>
                                 <div class="card card-stats" style="float:left; width:33%; padding:10px;">
                                     <div class="card-header card-header-warning card-header-icon">
                                         <div class="card-icon">
-                                            <i class="material-icons">어제의 인재수</i>
+                                            <i class="material-icons">어제의 인재</i>
                                         </div>
-                                        <h3 class="card-title">896<small>개</small></h3>
+                                        <h3 class="card-title" id="yesterday_resume"><%=request.getAttribute("yesterday_resume")%><small>개</small></h3>
                                     </div>
                                 </div>
                             </div>
@@ -229,8 +258,8 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
-                                        <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"
-                                            style="float: right;">
+                                        <button type="submit" onclick="deleteResumes()" class="btn py-1 px-1 btn-danger"
+                                            style="float: right;">삭제</button>
                                         <tr>
                                             <th>
                                                 <input type="checkbox" class="selectAllMembers" checked=false />
@@ -244,83 +273,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                    ArrayList<BoardResume> boardresumes = (ArrayList)request.getAttribute("boardresumes");
+                                    for (int i=0; i<boardresumes.size(); i++) {
+                                    	BoardResume list = boardresumes.get(i);
+                                    	int boardresume_id = list.getBoard_resume_id();
+                                    	String boardresume_date = list.getDate().split(" ")[0];
+                                    	String boardresume_title = list.getTitle();
+                                    	String individual_id = list.getIndividual_id();
+                                    	
+                                    %>
                                         <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
+                                            <td><input type='checkbox' class='memberChk' 
                                                     onclick='OnOffMemberAllClickBtn()'>
                                             </td>
-                                            <td>1</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
+                                            <td><%=boardresume_id %></td>
+                                            <td><%=boardresume_date %></td>
+                                            <td><a href="<%=request.getContextPath() %>/resume/list?board_resume_id=<%=boardresume_id%>"><%=boardresume_title%></a></td>
+                                            <td><%=individual_id %></td>
                                             <td>신입</td>
                                             <td>전국</td>
                                         </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>2</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                            <td>신입</td>
-                                            <td>전국</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>3</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                            <td>신입</td>
-                                            <td>전국</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>4</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                            <td>신입</td>
-                                            <td>전국</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>5</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                            <td>신입</td>
-                                            <td>전국</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>6</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                            <td>신입</td>
-                                            <td>전국</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>7</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                            <td>신입</td>
-                                            <td>전국</td>
-                                        </tr>
+                                    <%} %>
                                     </tbody>
                                 </table>
                             </div>
