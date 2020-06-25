@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.spring.ex.dto.Individual"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -20,7 +22,8 @@
             <div id="content">
                 <!-- Topbar -->
                 <%@ include file="../serve/manager_topbar.jsp" %>
-
+		
+				
                 <!-- main 본문  -->
                 <div class="container-fluid">
 
@@ -35,93 +38,55 @@
                                 <form action="#" method="get">
                                     <div class="input-group">
                                         <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                                        <form>
+                                      
                                             <select name="search">
-                                                <option value="name">회원이름</option>
-                                                <option value="phone">회원전화번호</option>
-                                                <option value="email">회원이메일</option>
-                                                <option value="address">회원주소</option>
+                                                <option value="individual_id">아이디</option>
+                                                <option value="name">이름</option>
+                                                <option value="phone">연락처</option>
                                             </select>
-                                        </form>
-                                        <input class="form-control" id="system-search" name="q" placeholder="Search for"
-                                            required>
+                                        
+                                        <input class="form-control" id="system-search" name="q" placeholder="Search for" required> <!-- 검색내용입력 -->
                                         <span class="input-group-btn">
                                             <button type="submit" class="btn btn-info">검색</button>
                                         </span>
                                     </div>
-                                </form>
+                               </form>
                             </div>
+                      
                             <div class="col-md-12">
-                                <table class="table table-list-search">
+                                <table class="table table-list-search"> <!-- 테이블시작 -->
                                     <thead>
                                         <tr>
                                             <th>회원이름</th>
-                                            <th>전화번호</th>
-                                            <th>이메일</th>
-                                            <th>주소</th>
+                                            <th>아이디</th>
+                                            <th>비밀번호</th>
+                                         
+                                            <th>연락처</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+											ArrayList<Individual> individuals = (ArrayList)request.getAttribute("individuals");
+											for (int i = 0; i < individuals.size(); i++) {
+												Individual list = individuals.get(i);
+												String individual_id=list.getIndividual_id();
+												String password=list.getPassword();
+												String name=list.getName();
+												String gender=list.getGender();
+												String birth=list.getBirth();
+												String phone=list.getPhone();
+												String education=list.getEducation();
+												String date=list.getDate();
+											%>
                                         <tr>
-                                            <td><a href="individual_detail">Sample</a></td>
-                                            <td>Filter</td>
-                                            <td>12-11-2011 11:11</td>
-                                            <td>OK</td>
+                                            <td><a href="individual_detail"></a><%=name%></td>
+                                            <td><%=individual_id%></td>
+                                            <td><%=password %></td>
+                                            <td><%=phone %></td>
                                         </tr>
-                                        <tr>
-                                            <td><a href="individual_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="individual_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="individual_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="individual_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="individual_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="individual_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="individual_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="individual_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="individual_detail">Sample</a></td>
-                                            <td>$</td>
-                                            <td>%</td>
-                                            <td>&</td>
-                                        </tr>
+                                       
+                                        <%} %>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -145,7 +110,7 @@
                         </div>
                     </div>
 
-                </div><!-- 끝 main 본문  -->
+                </div>
             </div><!-- 끝 main -->
             <!-- footer -->
             <%@ include file="../serve/manager_footer.jsp" %>
