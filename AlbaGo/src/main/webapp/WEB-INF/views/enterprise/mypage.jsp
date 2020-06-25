@@ -133,7 +133,7 @@
 								for(int i =0;i<volunteers.size();i++){
 									Volunteer volunteer=  volunteers.get(i);
 									String individual_id =volunteer.getIndividual_id();
-									String title =volunteer.getRecruit_title();
+									String title =volunteer.getBoard_recruit_title();//null나옴 아마 sql문을 고져야할듯 as board_recruit_title로 
 									String date = volunteer.getDate().split(" ")[0];
 									%>
 									<tr>
@@ -172,7 +172,6 @@
 							<table width="95%">
 								<tr>
 									<th>인재글 제목</th><th>스크랩날짜</th>
-									<th>제목</th><th>작성날짜</th>
 								</tr>
 							<%
 							ArrayList<Scrap_enterprise> scraps = (ArrayList)request.getAttribute("scrap");

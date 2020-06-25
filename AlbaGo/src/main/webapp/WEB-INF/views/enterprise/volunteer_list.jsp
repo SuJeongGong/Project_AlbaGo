@@ -18,10 +18,12 @@ function updateResult(id,result) {
 			result : result,
 			id:id
 		},
-		completer : function(res) {
-			console.log("sdgsehwsbdsd");
-			var text = res;
-			$(".result").html(text);
+		success :function(res){
+			if(res=="성공"){
+				alert("삭제 성공");
+			}else{
+				alert("삭제 실패");
+			}
 		}
 	});
 }
@@ -41,10 +43,12 @@ function updateResults(result) {
 			result : result,
 			volunteer_ids: volunteer_ids
 		},
-		completer : function(res) {
-			console.log("sdgsehwsbdsd");
-			var text = res;
-			$(".result").html(text);
+		success :function(res){
+			if(res=="성공"){
+				alert("삭제 성공");
+			}else{
+				alert("삭제 실패");
+			}
 		}
 	});
 }
@@ -98,11 +102,11 @@ function updateResults(result) {
 							for (int i = 0; i < volunteers.size(); i++) {
 								Volunteer volunteer = volunteers.get(i);
 
-								int recruit_id = volunteer.getRecruit_id();
-								String title = volunteer.getRecruit_title();
+								int recruit_id = volunteer.getBoard_recruit_id();
+								String title = volunteer.getBoard_recruit_title();
 								String individual_id = volunteer.getIndividual_id();
 								String resume_title = volunteer.getResume_title();
-								String resume_id = volunteer.getResume_id();
+								int resume_id = volunteer.getResume_id();
 								String memo = volunteer.getMemo();
 								String date = volunteer.getDate().split(" ")[0];
 								String result = volunteer.getResult();

@@ -96,10 +96,9 @@ function deleteVolunteers() {
 							ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers");
 							for (int i = 0; i < volunteers.size(); i++) {
 								Volunteer volunteer = volunteers.get(i);
-
-								int recruit_id = volunteer.getRecruit_id();                     		
+             		
                         		int volunteer_id = volunteer.getVolunteer_id();
-								String title = volunteer.getRecruit_title();
+								String title = volunteer.getBoard_recruit_title();
 								String individual_id = volunteer.getIndividual_id();
 								String resume_title = volunteer.getResume_title();
 								String memo = volunteer.getMemo();
