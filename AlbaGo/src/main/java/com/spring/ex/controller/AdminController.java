@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dao.ProductDAO;
+import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
@@ -36,8 +37,22 @@ public class AdminController {
 	}
 
 	@RequestMapping("/recruit") // 공고글 게시판 - 관리자ver
-	public String recruit() {
+	public String recruit(Model m) {
+		
+		// 전체 공고 갯수
+		int allcount = adminService.all_Count();
+		m.addAttribute("allcount", allcount);
+		
+		// 오늘 공고 갯수
+		int todaycount = adminService.today_Count();
+		m.addAttribute("todaycount", todaycount);
+		
+		// 오늘 공고 갯수
+		int yesterdaycount = adminService.yesterday_Count();
+		m.addAttribute("yesterdaycount", yesterdaycount);
+		
 		return "admin/recruit";
+		
 	}
 
 	@RequestMapping("/resume") // 인재글 게시판 - 관리자 ver

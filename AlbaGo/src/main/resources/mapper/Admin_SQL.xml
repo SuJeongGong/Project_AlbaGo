@@ -11,4 +11,23 @@
 	<!-- #################  -->
 	<!-- 임승재  -->
 	
+	<!-- 전체 공고 갯수 -->
+	<select id = "all_Count" resultType="int">
+		select count(*)
+		from board_recruit
+	</select>
+	
+	<!-- 오늘 공고 갯수 -->
+	<select id = "today_Count" resultType="int">
+		select count(*)
+		from board_recruit
+		where date >= CURDATE()
+	</select>
+	
+	<!-- 어제 공고 갯수 -->
+	<select id = "yesterday_Count" resultType="int">
+		select count(*)
+		from board_recruit
+		where date > DATE_SUB(NOW(), INTERVAL 1 DAY)
+	</select>
 </mapper>
