@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.ex.dao.ProductDAO;
+import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
@@ -87,19 +88,19 @@ public class AdminController {
 
 	@RequestMapping("/resume") // 인재글 게시판 - 관리자 ver
 	public String resume(Model m) {
-		// 전체 공고 갯수
+		// 전체 인재 갯수
 		int allcount_resume = adminService.all_Count_resume();
 		m.addAttribute("allcount_resume", allcount_resume);
 		
-		// 오늘 공고 갯수
+		// 오늘 인재 갯수
 		int todaycount_resume = adminService.today_Count_resume();
 		m.addAttribute("todaycount_resume", todaycount_resume);
 		
-		// 오늘 공고 갯수
+		// 오늘 인재 갯수
 		int yesterdaycount_resume = adminService.yesterday_Count_resume();
 		m.addAttribute("yesterdaycount_resume", yesterdaycount_resume);
 				
-		//공고글 리스트
+		//인재글 리스트
 		ArrayList<BoardResume> boardresumes=adminService.resume_List();
 		m.addAttribute("boardresumes",boardresumes);
 		return "/admin/resume";
@@ -119,7 +120,10 @@ public class AdminController {
 		}
 
 	@RequestMapping("/community") // 커뮤니티 게시판 -관리자 ver
-	public String community() {
+	public String community(Model m) {
+		//커뮤니티 리스트
+		ArrayList<BoardCommunity> boardcommunities=adminService.community_List();
+		m.addAttribute("boardcommunities",boardcommunities);
 		return "admin/community";
 	}
 

@@ -115,5 +115,10 @@
 		where board_resume_id = #{boardresume_id}
 	</update>
 	
-	
+	<!-- 커뮤니티 게시판 -->
+	<select id = "community_List" resultType = "BoardCommunity">
+		select community.community_id, community.date, community.title, community.individual_id
+		from community
+		where community.delete_check = 1
+	</select>
 </mapper>

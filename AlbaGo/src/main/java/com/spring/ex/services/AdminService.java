@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.AdminDAO;
+import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
@@ -118,6 +119,13 @@ public class AdminService {
 			}
 		}
 		return res;
+	}
+	
+	
+	
+	//공고 게시판
+	public ArrayList<BoardCommunity> community_List() {
+		return adminDAO.community_List();
 	}
 
 }

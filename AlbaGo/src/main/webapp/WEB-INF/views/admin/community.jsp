@@ -1,3 +1,5 @@
+<%@page import="com.spring.ex.dto.BoardCommunity"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -102,69 +104,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                    ArrayList<BoardCommunity> boardcommunities = (ArrayList)request.getAttribute("boardcommunities");
+                                    for (int i=0; i<boardcommunities.size(); i++) {
+                                    	BoardCommunity list = boardcommunities.get(i);
+                                    	int community_id = list.getCommunity_id();
+                                    	String community_date = list.getDate().split(" ")[0];
+                                    	String community_title = list.getTitle();
+                                    	String individual_id = list.getIndividual_id();
+                                    	
+                                    %>
                                         <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
+                                            <td><input type='checkbox' class='memberChk'
+                                                    onclick='OnOffMemberAllClickBtn()' value="<%=community_id %>">
                                             </td>
-                                            <td>1</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
+                                            <td><%=community_id %></td>
+                                            <td><%=community_date %></td>
+                                            <td><a href="<%=request.getContextPath() %>/community/list?community_id=<%=community_id%>"><%=community_title%></a></td>
+                                            <td><%=individual_id %></td>
                                         </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>2</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>3</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>4</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>5</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>6</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>7</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">사장님 나빠요</a></td>
-                                            <td>송원준</td>
-                                        </tr>
+                                    <%} %>
                                     </tbody>
                                 </table>
                             </div>

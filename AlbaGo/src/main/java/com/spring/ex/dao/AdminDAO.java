@@ -2,6 +2,7 @@ package com.spring.ex.dao;
 
 import java.util.ArrayList;
 
+import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
@@ -44,4 +45,9 @@ public interface AdminDAO {
 		//인제 게시판
 		ArrayList<BoardResume> resume_List();
 		int deleteBoardResumes(int boardresume_id); //인재글 삭제하기
+		
+	/** 커뮤니티 관리 */
+		//공고 게시판
+		ArrayList<BoardCommunity> community_List();
+	
 }
