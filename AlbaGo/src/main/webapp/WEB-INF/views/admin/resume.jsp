@@ -97,15 +97,67 @@
                                                 <option value="13">제주</option>
                                             </select></td>
 
-                                        <td><input type="text" name="date">&nbsp;&nbsp; ~
-                                            &nbsp;&nbsp;<input type="text" name="date"> <input type="submit" value="오늘"
+                                        <td><input type="text" name="date" style="width: 150px;">&nbsp;&nbsp; ~
+                                            &nbsp;&nbsp;<input type="text" name="date" style="width: 150px;"> <input type="submit" value="오늘"
                                                 class="btn py-1 px-1 btn-primary">&nbsp;
                                             <input type="submit" value="1주일" class="btn py-1 px-1 btn-primary">&nbsp;
                                             <input type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
                                         </td>
                                     </tr>
+                                    
+                                    <tr>
+                                        <th>근무기간 </th>
+                                        <th>근무요일</th>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:500px">
+                                            <label class="checkbox-inline2">
+                                                <input type="checkbox" id="term1" value="option1">1주일 이하
+                                            </label>
+                                            <label class="checkbox-inline2">
+                                                <input type="checkbox" id="term2" value="option2">1개월
+                                            </label>
+                                            <label class="checkbox-inline2">
+                                                <input type="checkbox" id="term3" value="option3">3개월~6개월
+                                            </label>
+                                            <label class="checkbox-inline2">
+                                                <input type="checkbox" id="term4" value="option4"> 1년 이상
+                                            </label>
+                                            <label class="checkbox-inline2">
+                                                <input type="checkbox" id="term5" value="option5"> 기간협의
+                                            </label>
+                                        </td>
+
+
+                                        <td style="width:500px">
+                                            <label class="checkbox-inline3">
+                                                <input type="checkbox" id="term1" value="option1">월
+                                            </label>
+                                            <label class="checkbox-inline3">
+                                                <input type="checkbox" id="term2" value="option2">화
+                                            </label>
+                                            <label class="checkbox-inline3">
+                                                <input type="checkbox" id="term3" value="option3">수
+                                            </label>
+                                            <label class="checkbox-inline3">
+                                                <input type="checkbox" id="term4" value="option4">목
+                                            </label>
+                                            <label class="checkbox-inline3">
+                                                <input type="checkbox" id="term5" value="option5">금
+                                            </label>
+                                            <label class="checkbox-inline3">
+                                                <input type="checkbox" id="term5" value="option5">토
+                                            </label>
+                                            <label class="checkbox-inline3">
+                                                <input type="checkbox" id="term5" value="option5">일
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    
                                     <th>성별</th>
                                     <th>학력</th>
+                                    <th>검색</th>
+                                    <th></th>
 
                                     <tr>
                                         <td><select name="">
@@ -123,19 +175,16 @@
                                                 <option value="4">대학교(4년) 졸업</option>
                                                 <option value="5">대학원 졸업</option>
                                             </select> </td>
-
-                                    </tr>
-
-                                    <th>검색</th>
-                                    <tr>
+                                            
                                         <td><select name="" style="width: 100px;">
                                                 <option value="0">전체</option>
                                                 <option value="1">작성자</option>
                                                 <option value="2">제목</option>
-                                            </select></td>
-                                        <td><input type="text" name="time" style="width: 450px;">
+                                            </select>
+                                            <input type="text" name="time" style="width: 350px;">
+                                            <input type="submit" value="검색" class="btn py-1 px-1 btn-primary">
                                         </td>
-                                        <td><input type="submit" value="검색" class="btn py-1 px-1 btn-primary"></td>
+                                        
                                     </tr>
                                 </table>
                             </div>
@@ -147,7 +196,7 @@
                                 <div class="card card-stats" style="float:left; width:33%; padding:10px;">
                                     <div class="card-header card-header-warning card-header-icon">
                                         <div class="card-icon">
-                                            <i class="material-icons">전체 인재글</i>
+                                            <i class="material-icons">전체 인재수</i>
                                         </div>
                                         <h3 class="card-title">280,012<small>개</small>
                                         </h3>
@@ -157,7 +206,7 @@
                                 <div class="card card-stats" style="float:left; width:33%; padding:10px;">
                                     <div class="card-header card-header-warning card-header-icon">
                                         <div class="card-icon">
-                                            <i class="material-icons">오늘의 인재글</i>
+                                            <i class="material-icons">오늘의 인재수</i>
                                         </div>
                                         <h3 class="card-title">896<small>개</small></h3>
                                     </div>
@@ -166,7 +215,7 @@
                                 <div class="card card-stats" style="float:left; width:33%; padding:10px;">
                                     <div class="card-header card-header-warning card-header-icon">
                                         <div class="card-icon">
-                                            <i class="material-icons">채용된 인재글</i>
+                                            <i class="material-icons">어제의 인재수</i>
                                         </div>
                                         <h3 class="card-title">896<small>개</small></h3>
                                     </div>

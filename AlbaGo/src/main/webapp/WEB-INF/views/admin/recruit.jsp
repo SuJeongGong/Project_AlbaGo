@@ -102,8 +102,8 @@
                                         </td>
 
                                         <td>
-                                            <input type="text" name="date">&nbsp;&nbsp; ~ &nbsp;&nbsp;<input type="text"
-                                                name="date">
+                                            <input type="text" name="date" style="width: 150px;">&nbsp;&nbsp; ~ &nbsp;&nbsp;<input type="text"
+                                                name="date" style="width: 150px;">
                                             <input type="submit" value="오늘" class="btn py-1 px-1 btn-primary">&nbsp;
                                             <input type="submit" value="1주일" class="btn py-1 px-1 btn-primary">&nbsp;
                                             <input type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
@@ -111,24 +111,8 @@
                                     </tr>
 
                                     <tr>
-                                        <td>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox5" value="option5"> 청년인턴직
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox6" value="option6"> 위촉직
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" id="inlineCheckbox7" value="option7"> 연수생/교육생
-                                            </label>
-                                        </td>
-                                    </tr>
-
-
-
-                                    <tr>
                                         <th>근무기간 </th>
-                                        <th>근무시간</th>
+                                        <th>근무요일</th>
                                     </tr>
                                     <tr>
                                         <td style="width:500px">
@@ -174,6 +158,39 @@
                                             </label>
                                         </td>
                                     </tr>
+                                    
+                                    <th>성별</th>
+                                    <th>학력</th>
+                                    <th>검색</th>
+                                    <th></th>
+
+                                    <tr>
+                                        <td><select name="">
+                                                <option value="0">무관</option>
+                                                <option value="1">남자</option>
+                                                <option value="2">여자</option>
+                                            </select></td>
+
+
+                                        <td><select name="">
+                                                <option value="0">초등학교 졸업</option>
+                                                <option value="1">중학교 졸업</option>
+                                                <option value="2">고등학교 졸업</option>
+                                                <option value="3">대학교(2, 3년) 졸업</option>
+                                                <option value="4">대학교(4년) 졸업</option>
+                                                <option value="5">대학원 졸업</option>
+                                            </select> </td>
+                                            
+                                        <td><select name="" style="width: 100px;">
+                                                <option value="0">전체</option>
+                                                <option value="1">작성자</option>
+                                                <option value="2">제목</option>
+                                            </select>
+                                            <input type="text" name="time" style="width: 350px;">
+                                            <input type="submit" value="검색" class="btn py-1 px-1 btn-primary">
+                                        </td>
+                                        
+                                    </tr>
 
                                 </table>
 
@@ -203,7 +220,7 @@
                                 <div class="card card-stats" style="float:left; width:33%; padding:10px;">
                                     <div class="card-header card-header-warning card-header-icon">
                                         <div class="card-icon">
-                                            <i class="material-icons">채용된 공고</i>
+                                            <i class="material-icons">어제의 공고</i>
                                         </div>
                                         <h3 class="card-title">896<small>개</small></h3>
                                     </div>
@@ -227,9 +244,9 @@
                                             <th> </th>
                                             <th>공고작성일</th>
                                             <th>공고 제목</th>
-                                            <th>모집현황</th>
+                                            <th>기업 아이디</th>
                                             <th>지원자 관리</th>
-                                            <th>유료 서비스</th>
+                                            <th>베너 사용</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -241,7 +258,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                         <tr>
@@ -252,7 +269,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                         <tr>
@@ -263,7 +280,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                         <tr>
@@ -274,7 +291,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                         <tr>
@@ -285,7 +302,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                         <tr>
@@ -296,7 +313,7 @@
                                             <td> 2020.01.12-2020.01.23</td>
                                             <td><a href="#">맥도날드</a></td>
                                             <td></td>
-                                            <td>Table cell</td>
+                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
                                     </tbody>
