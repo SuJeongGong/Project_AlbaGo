@@ -86,8 +86,28 @@ public class BoardCommunityController {
 		return "/community/content";
 					}
 	
+	@RequestMapping("/content/update") // 수정화면에 수정 버튼 누르면
+	public String contentUpdate(HttpServletRequest request,@ModelAttribute("community") BoardCommunity boardCommunity) {
+		String page = "/community/update"; //안되면 
+		HttpSession session = request.getSession();
+
+		if(!session.getAttribute("type").toString().equals("개인")) { 
+			return "/community/list";
+		} else {
+
+			System.out.println(boardCommunity);
+
+			if(communityService.updateContent(boardCommunity) >= 1) {
+				System.out.println("DB연결 성공");
+				page="redirect:/community/list";
+			} else {
+				System.out.println("DB연결 실패");
+			}
+		}
+		return page;
+	}
 	
-	@RequestMapping("/write_update")//수정화면보기
+	@RequestMapping("/update")//수정화면보기
 	public String update(HttpServletRequest request, Model m) {
 		String page = "/community/list";
 		HttpSession session = request.getSession();		//아이디 세션 가져오기
@@ -112,12 +132,12 @@ public class BoardCommunityController {
 	
 	
 	@RequestMapping(value = "/deleteContent", method = RequestMethod.GET)//삭제
-	public String delete(HttpServletRequest request, @ModelAttribute("community_id")int community_id) {
-		String page = "/community/content";
-
+	public String delete(int community_id) {
+		String page = "/community/list";
+		System.out.println(community_id);  //jsp에서 가져온 값
 		if(1 <= communityService.deleteContent(community_id)) {
 			System.out.println("DB연결 성공!");
-			page = "/main";
+			page = "/list";
 		}
 		else {
 			System.out.println("DB연결 실패!");
