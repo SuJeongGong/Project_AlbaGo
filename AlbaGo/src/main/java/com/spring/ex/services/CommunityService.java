@@ -30,8 +30,8 @@ public class CommunityService {
 		return communityDAO.deleteContent(community_id);
 	}
 	
-	public int updateContent(int community_id) {
-		return communityDAO.updateContent(community_id);
+	public int updateContent(BoardCommunity content) {
+		return communityDAO.updateContent(content);
 	}
 	public int updateViews(int community_id) {
 		return communityDAO.updateViews(community_id);
