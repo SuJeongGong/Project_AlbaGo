@@ -33,6 +33,9 @@
 </script>
 
 <body>
+	<%
+		String conPath = request.getContextPath();
+	%>
     <div id="wrapper">
         <!-- 사이드 바 -->
         <%@ include file="../serve/manager_sidebar.jsp" %>
@@ -99,9 +102,9 @@
 												String education=list.getEducation();
 												String date=list.getDate();
 											%>
-                            			
+                            	
                                         <tr>
-                                            <td><a href="individual_detail"><%=name%></a></td>
+                                            <td><a href="<%=conPath%>/admin/individual_detail?individual_id=<%=individual_id%>"><%=name%></a></td>
                                             <td><%=individual_id%></td>
                                             <td><%=password %></td>
                                             <td><%=phone %></td>

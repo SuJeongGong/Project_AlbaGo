@@ -36,6 +36,15 @@
 	phone=#{phone}
 	</where> 
 	</select>
+	
+	<!-- 개인관리자 링크타고 -->
+	<select id="selectIndividualAccount" parameterType="String" resultType="Individual">
+	select * 
+	from Individual
+	<where>
+	individual_id=#{id}
+	</where>
+	</select>	
 	<!-- #################  -->
 	<!-- 임승재  -->
 	

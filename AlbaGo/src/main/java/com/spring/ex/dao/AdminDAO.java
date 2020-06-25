@@ -11,6 +11,9 @@ public interface AdminDAO {
 	ArrayList<Individual> selectIdIndividual_id(String individual_id);
 	ArrayList<Individual> selectIdName(String name);
 	ArrayList<Individual> selectIdPhone(String phone);
+	//개인 링크타고 들어오는곳
+
+	Individual selectIndividualAccount(String id);
 	/*############################*/
 	//---임승재---
 	

@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Individual"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -25,6 +26,7 @@
 </head>
 
 <body>
+
     <div id="wrapper">
         <!-- 사이드 바 -->
         <%@ include file="../serve/manager_sidebar.jsp" %>
@@ -35,9 +37,19 @@
             <div id="content">
                 <!-- Topbar -->
                 <%@ include file="../serve/manager_topbar.jsp" %>
-
-
-
+					<%
+						Individual individual = (Individual)request.getAttribute("individual");
+					
+						String id = individual.getIndividual_id();
+				    	String password=individual.getPassword();
+						String name = individual.getName();
+						String birth = individual.getBirth().split(" ")[0];;
+						String gender = individual.getGender();
+						String date = individual.getDate().split(" ")[0];;//가입날짜
+						String education = individual.getEducation();
+						String phone = individual.getPhone();
+						
+					%>
                 <!-- main 본문  -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -56,35 +68,48 @@
 
 
                                 <table class="table table-bordered ">
-                                    <tr>
-                                        <th>회원이름</th>
-                                        <td><input type="text" class="form-control" id="name" value="공수정"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>전화번호</th>
-                                        <td><input type="text" class="form-control" id="phone" value="010-****-****">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>이메일</th>
-                                        <td><input type="email" class="form-control" id="e_mail" value="avsd@naver.com">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>주소</th>
-                                        <td><input type="text" class="form-control" id="address"
-                                                value="서울시 동대문구 행복동 123-4번지"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>관리자</th>
-                                        <td>
-                                            <a class='btn btn-info btn-xs' href="#"><span
-                                                    class="glyphicon glyphicon-edit"></span>정보 수정</a> <a href="#"
-                                                class="btn btn-danger btn-xs"><span
-                                                    class="glyphicon glyphicon-remove"></span>계정 삭제</a></td>
-                                        </td>
-                                    </tr>
-                                </table>
+	               			<tr>
+	               				<th>아이디</th>
+	               				<td><input type="text" name ="id" id ="id" value="<%=id%>" ></td>
+	               			</tr>
+	               			<tr>
+	               				<th>비밀번호</th>
+	               				<td><input type="text" name ="password" id ="password" value="<%=password%>" ></td>
+	               			</tr>
+	               			<tr>
+	               				<th>이름</th>
+	               				<td><input type="text" class="form-control" name = "name" id="name" value="<%=name%>"></td>
+	               			</tr>
+	               			<tr>
+	               				<th>성별</th>
+	               				<td><input type="text" class="form-control" name = "gender" id="gender" value="<%=gender%>"></td>
+	               			</tr>
+	               			<tr>
+	               				<th>연락처</th>
+	               				<td><input type="text" class="form-control" name = "phone" id="phone" value="<%=phone%>"></td>
+	               			</tr>
+	               			<tr>
+	               				<th>생년월일</th>
+	               				<td><input type="text" class="form-control" name = "birth" id="birth" value="<%=birth%>"></td>
+	               			</tr>
+	               			<tr>
+	               				<th>최종학력</th>
+	               				<td><input type="text" class="form-control" name = "education" id="education" value="<%=education%>"></td>
+	               			</tr>
+	               			<tr>
+	               				<th>가입날짜</th>
+	               				<td><input type ="text" name ="date" id ="date" value="<%=date%>"></td>
+	               			</tr>
+	               			<tr>
+	               				<th></th>
+	               				<td>
+                                    <a class='btn btn-info btn-xs' href="#">
+                                    <span class="glyphicon glyphicon-edit"></span>정보 수정</a> 
+                                    <a href="#" class="btn btn-danger btn-xs">
+                                    <span class="glyphicon glyphicon-remove"></span>계정 삭제</a>
+                                </td>
+	               			</tr>
+	               		</table>
                             </div>
                         </div>
 

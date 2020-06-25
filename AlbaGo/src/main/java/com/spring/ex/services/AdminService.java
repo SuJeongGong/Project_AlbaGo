@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.AdminDAO;
 import com.spring.ex.dto.Individual;
+import com.spring.ex.dto.Product;
  
 @Service
 public class AdminService {
@@ -31,7 +32,22 @@ public class AdminService {
 		}
 		return null;
 	}
+	
+	public Individual selectIndividualAccount(String id){
+		return adminDAO.selectIndividualAccount(id);	
+	}
+	
 
+
+
+	
+	
+	
+	
+	
+	
+	
+	
 	/* ################################################## */
 	// 임승재
 

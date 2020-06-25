@@ -34,6 +34,7 @@ public class AdminController {
 	@RequestMapping("/main") // 관리자 메인
 	public String main() {
 		return "admin/main";
+		
 	}
 
 	@RequestMapping("/recruit") // 공고글 게시판 - 관리자ver
@@ -54,7 +55,7 @@ public class AdminController {
 	@RequestMapping("/individual_list") // 개인 리스트
 	public String individual_list(Model m) {
 		String page="/admin/individual_list";
-	  
+	   
 		ArrayList<Individual> individuals=adminService.selectlist();
 		m.addAttribute("individuals",individuals);
 		System.out.println(individuals);
@@ -64,7 +65,7 @@ public class AdminController {
 	public String individual_id(Model m ,@RequestParam("category")String category,@RequestParam("search")String search) {
 		String page="/admin/individual_list";
 		ArrayList<Individual> individuals=adminService.selectId(category, search);
-		m.addAttribute("individuals",individuals);
+		m.addAttribute("individuals",individuals); 
 	
 		return page; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
 	}
@@ -75,9 +76,13 @@ public class AdminController {
 	}
 
 	@RequestMapping("/individual_detail") // 개인 - 디테일?
-	public String individual_detail() {
-		return "admin/individual_detail";
-	}
+	public String individual_detail(Model m,@RequestParam("individual_id") String individual_id) {
+		String page="/admin/individual_detail";
+		Individual individual = adminService.selectIndividualAccount(individual_id);
+		m.addAttribute("individual", individual);
+		return page;
+	}  
+
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail() {
@@ -93,7 +98,7 @@ public class AdminController {
 	public String list(Model m, HttpServletRequest request) {
 		
 		ArrayList<Product> products = productService.selectList();
-		m.addAttribute("products", products);
+		m.addAttribute("products", products);  
 
 		return "/admin/product";
 	} 
