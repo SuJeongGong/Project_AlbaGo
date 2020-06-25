@@ -49,9 +49,9 @@
                                  
                                  System.out.println(session_id + "세션에서 가져온");
                                    System.out.println(community.getIndividual_id() +"디비에서 가져온");
-                                   if(id.equals(community.getIndividual_id())) { 
-                                      %>  <a class="btn btn-info edit w-10" href="<%=request.getContextPath()%>/community/write_update?community_id=<%=community.getCommunity_id()%>">수정하기</a> 
-                                         <a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/community/delete?board_recruit_id=<%=community.getCommunity_id()%>>">삭제하기</a> <%
+                                   if(session_id.equals(community.getIndividual_id())) { 
+                                      %>  <a class="btn btn-info edit w-10" href="<%=request.getContextPath()%>/community/update?community_id=<%=community.getCommunity_id()%>">수정하기</a> 
+                                         <a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/community/delete?community_id=<%=community.getCommunity_id()%>>">삭제하기</a> <%
                                    } %>			
                   </div>
                </div>

@@ -17,9 +17,9 @@ BoardCommunity community = (BoardCommunity)request.getAttribute("board_Community
 	<%@ include file="../serve/header.jsp" %>
           <div class="col-lg-12 ftco-animate">      
               <div class="comment-form-wrap pt-12">
-                <form action="<%=request.getContextPath() %>/community/write/save" name ="community" class="p-5 bg-light">
+                <form action="<%=request.getContextPath() %>/community/content/update" name ="community" class="p-5 bg-light">
                   <div class="form-group">
-                	<h3 class="mb-1 h4 font-weight-bold">커뮤니티 글작성</h3>
+                	<h3 class="mb-1 h4 font-weight-bold">커뮤니티 글수정</h3>
                     <label for="title">제목 </label>
                     <input type="text" name="title" class="form-control" id="title" value="<%=community.getTitle()%>">
                     <input type="hidden" name="individaul_id" class="form-control" id="individaul_id" value="<%=id %>" >
@@ -28,7 +28,9 @@ BoardCommunity community = (BoardCommunity)request.getAttribute("board_Community
                     <br/>
                     <div class="row">
                 
-	                    <input type="submit" value="등록하기" class="btn py-1 px-1 btn-primary col-lg-6 ">
+                    <input type="hidden" name="community_id"  value="<%=community.getCommunity_id()%>">
+                    <input type="hidden" name="individual_id"" value="<%=community.getIndividual_id()%>">
+	                    <input type="submit" value="수정하기" class="btn py-1 px-1 btn-primary col-lg-6 ">
 	                    <input type="submit" value="취소" class="btn py-1 px-1 btn-primary col-lg-6">
                     
                     </div>
