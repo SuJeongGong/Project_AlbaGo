@@ -85,13 +85,27 @@
 
 		FROM board_resume ,resume,individual
 
-		<where> board_resume.resume_id = resume.resume_id 
+		<where> 
+		board_resume.resume_id = resume.resume_id 
 		AND resume.individual_id = individual.individual_id
 		AND individual.individual_id = #{id}
 		AND board_resume.delete_check =1
 		</where>
 	</select>
 
+	<!--커뮤니티 게시판 작성글  -->
+	<select id="selectCommunity" parameterType="String" resultType="BoardCommunity">
+	SELECT community.date AS date,
+		 title,
+		 individual.name AS name
+		
+		FROM community,individual
+		
+		<where> community.individual_id=individual.individual_id 
+		AND individual.individual_id=#{id}
+		</where>
+	</select>
+	
 	<!-- #################  -->
 	<!-- 임승재  -->
 	

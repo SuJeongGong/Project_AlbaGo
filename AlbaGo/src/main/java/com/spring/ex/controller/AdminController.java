@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -165,7 +166,7 @@ public class AdminController {
 		ArrayList<Individual> individuals=adminService.selectId(category, search);
 		m.addAttribute("individuals",individuals); 
 	
-		return page; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
+		return page; // 
 	}
 
 	@RequestMapping("/enterprise_list") // 기업 리스트
@@ -191,7 +192,12 @@ public class AdminController {
 
 		//인재 게시판 작성글
 		ArrayList<BoardResume> resumewrite=adminService.selectResumeWrite(individual_id);
-		m.addAttribute("resumewrite",resumewrite);
+		m.addAttribute("resumewrite",resumewrite); 
+		
+		//커뮤니티 게시판 작성글
+		ArrayList<BoardCommunity> community=adminService.selectCommunity(individual_id);
+		m.addAttribute("communitys",community);  
+	
 		
 		return page;  
 		
@@ -245,7 +251,7 @@ public class AdminController {
 	@RequestMapping("/account/delete") // 상품삭제하기
 	public String delete(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
-		String page = "/admin/product_account";
+		String page = "/admin/product_account"; 
 		  
 		if (productService.delete_product(product) >= 1) {
 			page = "/admin/main";

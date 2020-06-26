@@ -14,11 +14,13 @@ public interface AdminDAO {
 	//---이예슬---
 	//## 관리자페이지 ##
 	ArrayList<Individual> selectlist(); //개인회원정보 전체를 보여주는 테이블
+	
 	//개인회원정보에서 카테고리를 선택해서 검색
 	ArrayList<Individual> selectId(String category,String search);
 	ArrayList<Individual> selectIdIndividual_id(String individual_id);
 	ArrayList<Individual> selectIdName(String name);
 	ArrayList<Individual> selectIdPhone(String phone);
+	
 	//<!-- 개인관리자 링크타고 -->
 	//<!-- 개인 회원 정보 -->
 	Individual selectIndividualAccount(String id);
@@ -28,6 +30,10 @@ public interface AdminDAO {
 	ArrayList<Volunteer> selectApplypartjob(String id);
 	//<!--인재글 게시판-->
 	ArrayList<BoardResume> selectResumeWrite(String id);
+	//<!--커뮤니티 게시판 작성글-->
+	ArrayList<BoardCommunity> selectCommunity(String id);
+	
+	
 	
 	
 	/*############################*/

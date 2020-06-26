@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.BoardCommunity"%>
 <%@page import="sun.reflect.ReflectionFactory.GetReflectionFactoryAction"%>
 <%@page import="com.spring.ex.dto.BoardResume"%>
 <%@page import="com.spring.ex.dto.Volunteer"%>
@@ -257,6 +258,8 @@
                                
                                 </thead>
                                 <tbody>         
+                                
+                                
                                 <%
 										ArrayList<BoardResume> resumewrite = (ArrayList) request.getAttribute("resumewrite");
 										for (int i = 0; i < resumewrite.size(); i++) {
@@ -284,6 +287,9 @@
                             </table>
                         </div>
                     </div>
+                    
+                   <!-- ################################# -->     
+					<!-- 커뮤니티 게시판 작성글 -->
                     <div class="card col-xl-12 shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">커뮤니티 게시판 작성글
@@ -293,56 +299,35 @@
 
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
-                                    <tr>
-                                        <th>작성일</th>
-                                        <th>제목</th>
+                                    	<th>글제목</th>
                                         <th>작성자</th>
+                                        <th>작성일</th>
                                         <th>관리</th>
-                                        <th>조회수</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>20200530</td>
-                                        <td>후기</td>
-                                        <td>송원준</td>
-                                        <td><input type="submit" value="수정" class="btn py-1 px-1 btn-info">
+  
+                                <%
+										ArrayList<BoardCommunity> communitys = (ArrayList) request.getAttribute("communitys");
+										for (int i = 0; i < communitys.size(); i++) {
+											BoardCommunity community = communitys.get(i);
+			             						
+											String title = community.getTitle();
+											String community_name = community.getName();
+											String community_date=community.getDate().split(" ")[0];
+											
+										%>  
+                                    <tr class="text-center">
+                                    	<td style="width:30%"><a href="#"><%=title %></td>
+                                        <td style="width:20%"><%=community_name%></td> 
+                                        <td style="width:20%"><%=community_date%></td>
+                                        <td style="width:10%"> 
                                             <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger">
                                         </td>
-                                        <td>61</td>
                                     </tr>
-
-                                    <tr>
-                                        <td>20200530</td>
-                                        <td>후기</td>
-                                        <td>송원준</td>
-                                        <td><input type="submit" value="수정" class="btn py-1 px-1 btn-info">
-                                            <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger">
-                                        </td>
-                                        <td>61</td>
-                                    </tr>
-                                    <tr>
-                                        <td>20200530</td>
-                                        <td>후기</td>
-                                        <td>송원준</td>
-                                        <td><input type="submit" value="수정" class="btn py-1 px-1 btn-info">
-                                            <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger">
-                                        </td>
-                                        <td>61</td>
-                                    </tr>
-                                    <tr>
-                                        <td>20200530</td>
-                                        <td>후기</td>
-                                        <td>송원준</td>
-                                        <td><input type="submit" value="수정" class="btn py-1 px-1 btn-info">
-                                            <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger">
-                                        </td>
-                                        <td>61</td>
-                                    </tr>
-
-
-
-
+									<%} %>
+                                    
                                 </tbody>
                             </table>
                         </div>

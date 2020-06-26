@@ -10,6 +10,9 @@
 </head>
 
 <body>
+	<%
+		String conPath = request.getContextPath();
+	%>
     <div id="wrapper">
         <!-- 사이드 바 -->
         <%@ include file="../serve/manager_sidebar.jsp" %>
@@ -36,14 +39,14 @@
                                 <form action="#" method="get">
                                     <div class="input-group">
                                         <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                                        <form>
+                                      
                                             <select name="search">
                                                 <option value="name">회원이름</option>
                                                 <option value="phone">회원전화번호</option>
                                                 <option value="email">회원이메일</option>
                                                 <option value="address">회원주소</option>
                                             </select>
-                                        </form>
+                                       
                                         <input class="form-control" id="system-search" name="q" placeholder="Search for"
                                             required>
                                         <span class="input-group-btn">
@@ -69,60 +72,7 @@
                                             <td>12-11-2011 11:11</td>
                                             <td>OK</td>
                                         </tr>
-                                        <tr>
-                                            <td><a href="enterprise_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="enterprise_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="enterprise_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="enterprise_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="enterprise_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="enterprise_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="enterprise_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="enterprise_detail">Sample</a></td>
-                                            <td>It</td>
-                                            <td>11-20-2013 08:56</td>
-                                            <td>It</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="enterprise_detail">Sample</a></td>
-                                            <td>$</td>
-                                            <td>%</td>
-                                            <td>&</td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
