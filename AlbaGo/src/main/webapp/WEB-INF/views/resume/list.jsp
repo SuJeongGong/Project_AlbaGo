@@ -161,7 +161,7 @@
 								ArrayList<BoardResume> resumes = (ArrayList<BoardResume>)request.getAttribute("resumes");
 								for(int i=0; i<resumes.size(); i++) {
 									BoardResume resume = resumes.get(i);
-									String title = resume.getTitle();
+									String title = resume.getBoard_resume_title();
 									String date = resume.getDate();
 									String place = resume.getPlace();
 									int views = resume.getViews();

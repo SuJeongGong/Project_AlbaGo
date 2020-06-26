@@ -38,7 +38,7 @@
                         	ArrayList<BoardResume> resumes = (ArrayList<BoardResume>)request.getAttribute("resume");
                         	for(int i=0; i<resumes.size(); i++) {
                         		BoardResume resume = resumes.get(i);
-                        		String title = resume.getTitle();
+                        		String title = resume.getBoard_resume_title();
                         		int resume_id = resume.getResume_id();%>
 	                       	<option value="<%=resume_id%>"><%=title%></option>	<%} %>
 	                     </select>

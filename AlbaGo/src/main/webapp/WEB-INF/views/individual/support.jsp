@@ -21,10 +21,12 @@ function deleteVolunteer(volunteer_id) {
 			volunteer_id:volunteer_id
 		},
 		success :function(res){
-			if(res=="성공"){
-				alert("삭제 성공");
+			if(res>=1){
+				alert("결과 저장 완료");
+
+				 $("#res").load(window.location.href + " #res");
 			}else{
-				alert("삭제 실패");
+				alert("사용실패")
 			}
 		}
 	});
@@ -45,10 +47,12 @@ function deleteVolunteers() {
 			volunteer_ids: volunteer_ids
 		},
 		success :function(res){
-			if(res=="성공"){
-				alert("삭제 성공");
+			if(res>=1){
+				alert("결과 저장 완료");
+
+				 $("#res").load(window.location.href + " #res");
 			}else{
-				alert("삭제 실패");
+				alert("사용실패")
 			}
 		}
 	});
@@ -76,7 +80,7 @@ function deleteVolunteers() {
 		</div>
 		<div class="row">
 			<div class="table-responsive">
-				<table class="table">
+				<table class="table" id = "res">
 					<thead>
 						<tr>
 							<button type="submit" class="btn btn-outline-primary" onclick="deleteVolunteers()" style="float: right;">선택지원취소</button>

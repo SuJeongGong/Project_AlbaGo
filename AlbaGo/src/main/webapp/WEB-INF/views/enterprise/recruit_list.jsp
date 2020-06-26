@@ -7,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>공고 관리</title>
+<%
+
+ArrayList<Recruit> recruits = (ArrayList)request.getAttribute("Recruits");
+%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -19,10 +23,13 @@ function deleteRecruit(recruit_id) {
 			recruit_id : recruit_id
 		},
 		success :function(res){
-			if(res=="성공"){
-				alert("삭제 성공");
+			console.log(res);
+			if(res>=1){
+				alert("결과 저장 완료");
+
+				 $("#res").load(window.location.href + " #res");
 			}else{
-				alert("삭제 실패");
+				alert("사용실패")
 			}
 		}
 	});
@@ -43,10 +50,13 @@ function deleteRecruits() {
 			recruit_ids: recruit_ids
 		},
 		success :function(res){
-			if(res=="성공"){
-				alert("삭제 성공");
+			console.log(res);
+			if(res>=1){
+				alert("결과 저장 완료");
+
+				 $("#res").load(window.location.href + " #res");
 			}else{
-				alert("삭제 실패");
+				alert("사용실패")
 			}
 		}
 	});
@@ -73,7 +83,7 @@ function deleteRecruits() {
 		</div>
       <div class="row">
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table" id="res">
                                     <thead>
                                     	<tr>
                                     	   <button type="submit" onclick="deleteRecruits()"  class="btn btn-outline-danger" style="float: right;">선택삭제</button>
@@ -93,7 +103,6 @@ function deleteRecruits() {
                                     </thead>
                                     <tbody>
                                     <%
-                                    	ArrayList<Recruit> recruits = (ArrayList)request.getAttribute("Recruits");
                                     	for(int i=0; i<recruits.size();i++){
                                     		Recruit recruit = recruits.get(i);
                                     		

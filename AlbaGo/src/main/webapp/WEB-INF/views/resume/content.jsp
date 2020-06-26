@@ -15,7 +15,6 @@
 	
 <script type="text/javascript">
 function UseResume(){
-	console.log("실행은 되니?");
 	var board_resume_id =$("#resume_id").val();
 	var enterprise_id =$("#enterprise_id").val();
 	$.ajax({
@@ -27,8 +26,9 @@ function UseResume(){
 		},
 		success : function(res) {
 
-			console.log("success");
-			if(res!="성공"){
+			console.log(res);
+			if(res>=1){
+				alert("마이페이지에서 확인 가능합니다");
 				$('#basicExampleModal').modal('hide');
 			}else{
 				alert("사용실패")
@@ -52,7 +52,7 @@ function UseResume(){
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
                                     <a href="#">
-                                        <h4><%=board_content.getTitle() %></h4>
+                                        <h4><%=board_content.getBoard_resume_title() %></h4>
                                     </a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
@@ -132,7 +132,7 @@ function UseResume(){
                                 <li>성별 : <span><%=board_content.getGender() %></span></li>
                                 <li>연령 : <span><%=board_content.getBirth().split(" ")[0] %></span></li>
                                 <li>최종학력 : <span><%=board_content.getEducation() %></span></li>
-                                <li>연락처 : <span><%=board_content.getPhone() %></span></li>
+                                <li>연락처 : <span>010-****-****</span></li>
                             </ul>
                         </div>
                         <input type ="hidden" value ="<%= board_content.getBoard_resume_id()%>" id="resume_id"/>

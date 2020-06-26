@@ -193,9 +193,8 @@ public class IndividualController {
 
 		return page;
 	}
-	@ResponseBody
 	@RequestMapping( value ="/support/save", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 지원하기
-	public void supportSave(HttpServletRequest request, @RequestParam("board_recruit_id")int board_recruit_id,@RequestParam("resume_id")int resume_id,@RequestParam("memo")String memo,Model m) {
+	public 	@ResponseBody  void supportSave(HttpServletRequest request, @RequestParam("board_recruit_id")int board_recruit_id,@RequestParam("resume_id")int resume_id,@RequestParam("memo")String memo,Model m) {
 		String id = sessionId(request.getSession());
 		String page = sessionType(request.getSession());
 		System.out.println("board_recruit_id : "+board_recruit_id);
@@ -205,78 +204,39 @@ public class IndividualController {
 		
 		return ;
 	}
-
-	@ResponseBody//이력서 삭제
+	//이력서 삭제
 	@RequestMapping(value = "/profile/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteResuem(int resume_id) {
-		String result="";
-		System.out.println(resume_id);// jsp 에서 가져온값
-		if (1 <= individualSerive.deleteResume(resume_id)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public 	@ResponseBody int deleteResuem(int resume_id) {
+		return individualSerive.deleteResume(resume_id);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/profile/deleteResumes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteResuems(@RequestParam(value = "resume_ids[]") ArrayList<String> resume_ids) {
-		String result="";
-		System.out.println(resume_ids);
-		if (1 <= individualSerive.deleteResume(resume_ids)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public 	@ResponseBody int deleteResuems(@RequestParam(value = "resume_ids[]") ArrayList<String> resume_ids) {
+
+		return individualSerive.deleteResume(resume_ids);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteScrap(int scrap_id) {
-		String result="";
-		System.out.println(scrap_id);// jsp 에서 가져온값
-		if (1 <= individualSerive.deleteScrap(scrap_id)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public 	@ResponseBody int deleteScrap(int scrap_id) {
+	
+		return individualSerive.deleteScrap(scrap_id);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteScraps(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_ids) {
-		String result="";
-		System.out.println(scrap_ids);
-		if (1 <= individualSerive.deleteScrap(scrap_ids)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public 	@ResponseBody int deleteScraps(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_ids) {
+	
+		return individualSerive.deleteScrap(scrap_ids);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteVolunteer(int volunteer_id) {
-		String result="";
-		System.out.println("asdfsd");
-		System.out.println(volunteer_id);// jsp 에서 가져온값
-		if (1 <= individualSerive.deleteVolunteer(volunteer_id)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public 	@ResponseBody int deleteVolunteer(int volunteer_id) {
+	
+		return individualSerive.deleteVolunteer(volunteer_id);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/deleteVolunteers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteVolunteers(@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
-		String result="";
-		System.out.println(volunteer_ids);
-		if (1 <= individualSerive.deleteVolunteer(volunteer_ids)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public 	@ResponseBody int deleteVolunteers(@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
+		return individualSerive.deleteVolunteer(volunteer_ids);
 	}
 
 }

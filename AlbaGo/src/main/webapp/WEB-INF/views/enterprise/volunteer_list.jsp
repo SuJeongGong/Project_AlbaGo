@@ -7,53 +7,66 @@
 <head>
 <meta charset="UTF-8">
 <title>지원자 관리</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-function updateResult(id,result) {
-	$.ajax({
-		url : "./updateResult",
-		method : "GET",
-		data : {
-			result : result,
-			id:id
-		},
-		success :function(res){
-			if(res=="성공"){
-				alert("삭제 성공");
-			}else{
-				alert("삭제 실패");
-			}
-		}
-	});
-}
-function updateResults(result) {
-	var volunteer_ids = [];
-	$("input[name='volunteer_id']:checked").each(function(){
-		if(this.checked){
-			volunteer_ids.push($(this).val());
-			console.log($(this).val());
-		}
-	})
-	
-	$.ajax({
-		url : "./updateResults",
-		method : "GET",
-		data : {
-			result : result,
-			volunteer_ids: volunteer_ids
-		},
-		success :function(res){
-			if(res=="성공"){
-				alert("삭제 성공");
-			}else{
-				alert("삭제 실패");
-			}
-		}
-	});
-}
+<%
+ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers");
+%>
 
-</script>
+<script>
+  function updateResult(id,result) {
+                        	
+                        	$.ajax({
+                        		url : "./updateResult",
+                        		method : "GET",
+                        		data : {
+                        			result : result,
+                        			id:id
+                        		},
+                        		success :function(res){
+                        			if(res>=1){
+                        				alert("결과 저장 완료");
+                        				<% for(int i =0; i< volunteers.size()  ;i++){ %>
+
+                   					 $("#res<%=i%>").load(window.location.href + " #res<%=i%>");
+                        				<% } %>
+                        			}else{
+                        				alert("실패");
+                        			}
+                        		}
+                        	});
+                        }
+                        function updateResults(result) {
+                        	var volunteer_ids = [];
+                        	$("input[name='volunteer_id']:checked").each(function(){
+                        		if(this.checked){
+                        			volunteer_ids.push($(this).val());
+                        			console.log($(this).val());
+                        		}
+                        	})
+                        	
+                        	$.ajax({
+                        		url : "./updateResults",
+                        		method : "GET",
+                        		data : {
+                        			result : result,
+                        			volunteer_ids: volunteer_ids
+                        		},
+                        		success :function(res){
+                        			if(res>=1){
+                        				alert("결과 저장 완료");
+                        				<% for(int i =0; i< volunteers.size()  ;i++){ %>
+
+                   					 $("#res<%=i%>").load(window.location.href + " #res<%=i%>");
+                        				<% } %>
+                        			}else{
+                        				alert("실패");
+                        			}
+                        		}
+                        	});
+                        }
+
+                            
+                            
+                        </script>
 </head>
 <body>
 
@@ -78,10 +91,8 @@ function updateResults(result) {
 				<table class="table">
 					<thead>
 						<tr>
-							<button type="submit" onclick="updateResults('거절')"
-								class="btn btn-outline-danger" style="float: right;">선택거절</button>
-							<button type="submit" onclick="updateResults('승락')"
-								class="btn btn-outline-primary" style="float: right;">선택승락</button>
+							<button type="submit" onclick="updateResults('거절')" 	class="btn btn-outline-danger" style="float: right;">선택거절</button>
+							<button type="submit" onclick="updateResults('승락')" class="btn btn-outline-primary" style="float: right;">선택승락</button>
 						</tr>
 						<tr>
 							<th><input type="checkbox" class="selectAllMembers"
@@ -98,7 +109,7 @@ function updateResults(result) {
 					</thead>
 					<tbody>
 						<%
-							ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers");
+				
 							for (int i = 0; i < volunteers.size(); i++) {
 								Volunteer volunteer = volunteers.get(i);
 
@@ -130,8 +141,8 @@ function updateResults(result) {
 								class="btn btn-outline-primary">보기</a></td>
 							<td><%=memo%></td>
 							<td><%=date%></td>
-							<td class="result"><%=result%></td>
-							<td class="result"><button
+							<td><div id ="res<%=i%>"><%=result%></div></td>
+							<td><button
 									onclick="updateResult(<%=volunteer_id%>,'승락')" id='accept'
 									class="btn btn-outline-primary">승락</button>
 								<button onclick="updateResult(<%=volunteer_id%>,'거절')"
@@ -149,7 +160,6 @@ function updateResults(result) {
 	</div>
 
 
-	<%@ include file="../serve/footer.jsp"%>
 	<script>
                             var selectAll = document.querySelector(".selectAllMembers");
                             selectAll.addEventListener('click', function () {
@@ -171,7 +181,12 @@ function updateResults(result) {
                                     };
                                     selectAll.checked = true;
                                 }, false);
-                            } 
-                        </script>
+                            }                     
+             
+                      </script>
+                        
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+	<%@ include file="../serve/footer.jsp"%>
 </body>
 </html>

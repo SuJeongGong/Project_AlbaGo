@@ -218,93 +218,60 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 
 	// 아약스 처리
 
-	@ResponseBody
+	
 	@RequestMapping(value = "/volunteer/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String updateResult(String result, int id) {
-		String res = "";
+	public @ResponseBody int  updateResult(String result, int id) {
+	
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("volunteer_id", id);
 		map.put("result", result);
 
-		if (1 <= enterpriseService.updateVolunteerResult(map)) {
-			System.out.println("DB연결 성공!");
-			res = "성공";
-		}
-		return res;
+		return enterpriseService.updateVolunteerResult(map);
 	}
 
 	@RequestMapping(value = "/volunteer/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String updateResults(@RequestParam(value = "result") String result,
+	public @ResponseBody int  updateResults(@RequestParam(value = "result") String result,
 			@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
-		String res = "";
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("volunteer_ids", volunteer_ids);
 		map.put("result", result);
 
-		if (1 <= enterpriseService.updateVolunteerResults(map)) {
-			System.out.println("DB연결 성공!");
-			res = "성공";
-		}
-		return res;
+		return enterpriseService.updateVolunteerResults(map);
 	}
 
-	@ResponseBody
+	
 	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String updateResult(int scrap_id) {
-		String res = "";
-		System.out.println(scrap_id);// jsp 에서 가져온값
-		if (1 <= enterpriseService.deleteScrap(scrap_id)) {
-			System.out.println("DB연결 성공!");
-		}
-		return res;
+	public @ResponseBody int updateResult(int scrap_id) {
+		return enterpriseService.deleteScrap(scrap_id);
 	}
 
-	@ResponseBody
+	
 	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String updateResults(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_id) {
-		String res = "";
-		System.out.println(scrap_id);
-		if (1 <= enterpriseService.deleteScraps(scrap_id)) {
-			System.out.println("DB연결 성공!");
-			res = "성공";
-		}
-		return res;
+	public @ResponseBody int updateResults(ArrayList<String> scrap_id) {
+	
+		return enterpriseService.deleteScraps(scrap_id);
 	}
 
-	@ResponseBody
+
 	@RequestMapping(value = "/recruit/deleteRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteRecruit(int recruit_id) {
-		String res = "";
-		System.out.println(recruit_id);// jsp 에서 가져온값
-		if (1 <= enterpriseService.deleteRecruit(recruit_id)) {
-			System.out.println("DB연결 성공!");
-		}
-		return res;
+	public @ResponseBody int deleteRecruit(int recruit_id) {
+		
+		return enterpriseService.deleteRecruit(recruit_id);
 	}
 
-	@ResponseBody
+
 	@RequestMapping(value = "/recruit/deleteRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String  deleteRecruits(@RequestParam(value = "recruit_ids[]") ArrayList<String> recruit_id) {
-		String res = "";
-		System.out.println(recruit_id);
-		if (1 <= enterpriseService.deleteRecruits(recruit_id)) {
-			System.out.println("DB연결 성공!");
-			res = "성공";
-		}
-		return res;
+	public  @ResponseBody int  deleteRecruits(ArrayList<String> recruit_id) {
+		
+		return enterpriseService.deleteRecruits(recruit_id);
 	}
 	
 	
-	@ResponseBody
-	@RequestMapping(value = "/resume/use", method = RequestMethod.GET)
-	public String  resumeUse(@RequestParam(value = "enterprise_id") String enterprise_id,@RequestParam(value = "board_resume_id") int board_resume_id) {//기업 아이템 사용 목록에 insert , resume_count 사용한 내역
-		String res="";
-		if (1 <= enterpriseService.resumeUse(enterprise_id,board_resume_id)) {
-			System.out.println("DB연결 성공!");
-			res = "성공";
-		}
-		return res;
+	@RequestMapping(value = "/resume/use", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public  @ResponseBody int  resumeUse(@RequestParam(value = "enterprise_id") String enterprise_id,@RequestParam(value = "board_resume_id") int board_resume_id) {//기업 아이템 사용 목록에 insert , resume_count 사용한 내역
+
+		return enterpriseService.resumeUse(enterprise_id,board_resume_id);
 	}
 	
 	

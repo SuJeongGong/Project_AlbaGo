@@ -53,10 +53,6 @@ public class AdminService {
 		return adminDAO.selectResumeWrite(id);	
 	}
 
-
-
-	
-	
 	/* ################################################## */
 	// 임승재
 
