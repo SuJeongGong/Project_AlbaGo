@@ -95,4 +95,154 @@
 	<!-- #################  -->
 	<!-- 임승재  -->
 	
+	<!-- 예슬이가 아에 감싸는 거라고 설명해줌 -->
+	<select id = "recruit_List_id" resultType="BoardRecruit" parameterType="String">
+		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+	</select>
+	
+	<!-- 작성자로 검색 -->
+	<select id = "writer_search" resultType="BoardRecruit" parameterType="String">
+		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		and recruit.enterprise_id like '%'+#{recruit.enterprise_id}+'%'
+	</select>
+	
+	<!-- 제목으로 검색 -->
+	<select id = "title_search" resultType="BoardRecruit" parameterType="String">
+		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		and board_recruit.title like '%'+#{board_recruit.title}+'%'
+	</select>
+	
+	<!-- 전체 공고 갯수 -->
+	<select id = "all_Count" resultType="int">
+		select count(*)
+		from board_recruit
+		where board_recruit.delete_check = 1
+	</select>
+	
+	<!-- 오늘 공고 갯수 -->
+	<select id = "today_Count" resultType="int">
+		select count(*)
+		from board_recruit
+		where date >= CURDATE()
+		and board_recruit.delete_check = 1
+	</select>
+	
+	<!-- 어제 공고 갯수 -->
+	<select id = "yesterday_Count" resultType="int">
+		select count(*)
+		from board_recruit
+		where date > DATE_SUB(NOW(), INTERVAL 1 DAY)
+		and board_recruit.delete_check = 1
+	</select>
+	
+	<!-- 공고글 게시판 -->
+	<select id = "recruit_List" resultType="BoardRecruit">
+		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+	</select>
+	
+	<!-- 공고글 삭제 -->
+	<update id="deleteBoardRecruits" parameterType="int">
+		update board_recruit
+		set delete_check = 0
+		where board_recruit_id = #{boardrecruit_id}
+	</update>
+	
+	
+	
+	<!-- 전체 인재 갯수 -->
+	<select id = "all_Count_resume" resultType="int">
+		select count(*)
+		from board_resume
+		where board_resume.delete_check = 1
+	</select>
+	
+	<!-- 오늘 인재 갯수 -->
+	<select id = "today_Count_resume" resultType="int">
+		select count(*)
+		from board_resume
+		where date >= CURDATE()
+		and board_resume.delete_check = 1
+	</select>
+	
+	<!-- 어제 인재 갯수 -->
+	<select id = "yesterday_Count_resume" resultType="int">
+		select count(*)
+		from board_resume
+		where date > DATE_SUB(NOW(), INTERVAL 1 DAY)
+		and board_resume.delete_check = 1
+	</select>
+	
+	<!-- 인재글 게시판 -->
+	<select id = "resume_List" resultType="BoardResume">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
+		FROM board_resume, resume
+		WHERE board_resume.resume_id = resume.resume_id
+		and board_resume.delete_check = 1
+	</select>
+	
+	<!-- 인재글 삭제 -->
+	<update id="deleteBoardResumes" parameterType="int">
+		update board_resume
+		set delete_check = 0
+		where board_resume_id = #{boardresume_id}
+	</update>
+	
+	<!-- 커뮤니티 게시판 -->
+	<select id = "community_List" resultType = "BoardCommunity">
+		select community.community_id, community.date, community.title, community.individual_id
+		from community
+	</select>
+	
+	<!-- 예슬이가 아에 감싸는 거라고 설명해줌 -->
+	<select id = "community_List_id" resultType="BoardCommunity" parameterType="String">
+		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+	</select>
+	
+	<!-- 작성자로 검색 -->
+	<select id = "writer_search_C" resultType="BoardCommunity" parameterType="String">
+		SELECT community.community_id, community.`date`, community.title, community.individual_id
+		FROM community
+		WHERE individual_id like CONCAT('%',#{individual_id},'%')
+	</select>
+	
+	<!-- 제목으로 검색 -->
+	<select id = "title_search_C" resultType="BoardCommunity" parameterType="String">
+		SELECT community.community_id, community.`date`, community.title, community.individual_id
+		FROM community
+		WHERE title like CONCAT('%',#{title},'%')
+	</select>
+	
+	<!-- 커뮤니티 게시글 삭제 -->
+	<delete id="deleteCommunities" parameterType="int">
+		delete from community
+		where community_id = #{community_id}
+	</delete>
+	
+	<!-- 커뮤니티 댓글 확인 -->
+	<select id = "countComment" resultType="int">
+		select count(*) 
+		from comment 
+		where community_id = #{community_id}
+	</select>
+	
+	<!-- 커뮤니티 댓글이 있다면 -->
+	<delete id = "deleteComment" parameterType="int">
+		delete from comment
+		where community_id = #{community_id}
+	</delete>
 </mapper>

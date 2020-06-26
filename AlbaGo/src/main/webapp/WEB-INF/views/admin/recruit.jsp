@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.spring.ex.dto.BoardRecruit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -11,6 +13,34 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>공고글관리</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    function deleteRecruits() {
+    	var boardrecruit_ids = [];
+    	$("input[name='boardrecruit_id']:checked").each(function(){
+    		if(this.checked){
+    			console.log($(this).val());
+    			boardrecruit_ids.push($(this).val());
+    			console.log($(this).val());
+    		}
+    	})
+    	
+    	$.ajax({
+    		url : "./deleteBoardRecruits",
+    		method : "GET",
+    		data : {
+    			boardrecruit_ids: boardrecruit_ids
+    		},
+    		success :function(res){
+    			if(res=="성공"){
+    				alert("삭제 성공");
+    			}else{
+    				alert("삭제 실패");
+    			}
+    		}
+    	});
+    }
+    </script>
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -55,49 +85,49 @@
                         <!-- Card Content - Collapse -->
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body">
+                            <form action="<%=request.getContextPath() %>/admin/recruit/id" method="get" name="keyword" id="keyword">
                                 <table>
                                     <th>업직종</th>
                                     <th>지역</th>
                                     <th style="width:1000px;">작성일자</th>
                                     <tr>
                                         <td>
-                                            <select name="enterprise_category">
-                                                <option value="0">전체</option>
-                                                <option value="1">외식/음료</option>
-                                                <option value="2">외식/음료</option>
-                                                <option value="3">유통/판매</option>
-                                                <option value="4">문화/여가/생활</option>
-                                                <option value="5">서비스</option>
-                                                <option value="6">사무직</option>
-                                                <option value="7">고객상담/리서치</option>
-                                                <option value="8">생산/건설/노무</option>
-                                                <option value="9">교육/강사</option>
-                                                <option value="10">디자인</option>
-                                                <option value="12">운전/배달</option>
-                                                <option value="13">병원/간호/연구</option>
-                                                <option value="14">IT/컴퓨터</option>
+                                            <select id="enterprise_category" name="enterprise_category">
+                                                <option value="전체">전체</option>
+                                                <option value="외식/음료">외식/음료</option>
+                                                <option value="유통/판매">유통/판매</option>
+                                                <option value="문화/여가/생활">문화/여가/생활</option>
+                                                <option value="서비스">서비스</option>
+                                                <option value="사무직">사무직</option>
+                                                <option value="고객상담/리서치">고객상담/리서치</option>
+                                                <option value="생산/건설/노무">생산/건설/노무</option>
+                                                <option value="교육/강사">교육/강사</option>
+                                                <option value="디자인">디자인</option>
+                                                <option value="운전/배달">운전/배달</option>
+                                                <option value="병원/간호/연구">병원/간호/연구</option>
+                                                <option value="IT/컴퓨터">IT/컴퓨터</option>
                                             </select>
                                         </td>
 
                                         <td>
-                                            <select name="local_category">
-                                                <option value="0">전국</option>
-                                                <option value="1">서울</option>
-                                                <option value="2">경기</option>
-                                                <option value="3">인천</option>
-                                                <option value="4">부산</option>
-                                                <option value="5">대구</option>
-                                                <option value="6">대전</option>
-                                                <option value="7">경남</option>
-                                                <option value="8">전남</option>
-                                                <option value="9">충남</option>
-                                                <option value="10">광주</option>
-                                                <option value="11">울산</option>
-                                                <option value="12">경북</option>
-                                                <option value="13">전북</option>
-                                                <option value="13">충북</option>
-                                                <option value="13">강원</option>
-                                                <option value="13">제주</option>
+                                            <select id="local_category" name="local_category">
+                                                <option value="전국">전국</option>
+                                                <option value="서울">서울</option>
+                                                <option value="경기">경기</option>
+                                                <option value="인천">인천</option>
+                                                <option value="부산">부산</option>
+                                                <option value="대구">대구</option>
+                                                <option value="대전">대전</option>
+                                                <option value="경남">경남</option>
+                                                <option value="전남">전남</option>
+                                                <option value="충남">충남</option>
+                                                <option value="광주">광주</option>
+                                                <option value="울산">울산</option>
+                                                <option value="경북">경북</option>
+                                                <option value="전북">전북</option>
+                                                <option value="충북">충북</option>
+                                                <option value="강원">강원</option>
+                                                <option value="제주">제주</option>
                                             </select>
                                         </td>
 
@@ -165,35 +195,34 @@
                                     <th></th>
 
                                     <tr>
-                                        <td><select name="">
-                                                <option value="0">무관</option>
-                                                <option value="1">남자</option>
-                                                <option value="2">여자</option>
+                                        <td><select id="gender" name="gender">
+                                                <option value="무관">무관</option>
+                                                <option value="남자">남자</option>
+                                                <option value="여자">여자</option>
                                             </select></td>
 
 
-                                        <td><select name="">
-                                                <option value="0">초등학교 졸업</option>
-                                                <option value="1">중학교 졸업</option>
-                                                <option value="2">고등학교 졸업</option>
-                                                <option value="3">대학교(2, 3년) 졸업</option>
-                                                <option value="4">대학교(4년) 졸업</option>
-                                                <option value="5">대학원 졸업</option>
+                                        <td><select id="education" name="education">
+                                                <option value="초등학교 졸업">초등학교 졸업</option>
+                                                <option value="중학교 졸업">중학교 졸업</option>
+                                                <option value="고등학교 졸업">고등학교 졸업</option>
+                                                <option value="2/3년제 졸업">2/3년제 졸업</option>
+                                                <option value="4년제 졸업">4년제 졸업</option>
                                             </select> </td>
                                             
-                                        <td><select name="" style="width: 100px;">
-                                                <option value="0">전체</option>
-                                                <option value="1">작성자</option>
-                                                <option value="2">제목</option>
+                                        <td><select id="category" name="category" style="width: 100px;">
+                                                <option value="전체">전체</option>
+                                                <option value="writer" id="writer">작성자</option>
+                                                <option value="title" id="title">제목</option>
                                             </select>
-                                            <input type="text" name="time" style="width: 350px;">
-                                            <input type="submit" value="검색" class="btn py-1 px-1 btn-primary">
+                                            <input type="text" name="search" style="width: 350px;">
+                                            <button class="btn py-1 px-1 btn-primary" type ="submit" >검색</button>
                                         </td>
                                         
                                     </tr>
 
                                 </table>
-
+							</form>
                             </div>
                         </div>
                         <div class="card shadow mb-3">
@@ -203,7 +232,7 @@
                                         <div class="card-icon">
                                             <i class="material-icons">전체 공고</i>
                                         </div>
-                                        <h3 class="card-title">280,012<small>개</small>
+                                        <h3 class="card-title" id="allcount" name="allcount"><%=request.getAttribute("allcount")%><small>개</small>
                                         </h3>
                                     </div>
 
@@ -213,7 +242,7 @@
                                         <div class="card-icon">
                                             <i class="material-icons">오늘의 공고</i>
                                         </div>
-                                        <h3 class="card-title">896<small>개</small></h3>
+                                        <h3 class="card-title" id="todaycount" name="todaycount"><%=request.getAttribute("todaycount")%><small>개</small></h3>
                                     </div>
 
                                 </div>
@@ -222,7 +251,7 @@
                                         <div class="card-icon">
                                             <i class="material-icons">어제의 공고</i>
                                         </div>
-                                        <h3 class="card-title">896<small>개</small></h3>
+                                        <h3 class="card-title" id="yesterdaycount" name="yesterdaycount"><%=request.getAttribute("yesterdaycount")%><small>개</small></h3>
                                     </div>
                                 </div>
                             </div>
@@ -235,8 +264,8 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
-                                        <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"
-                                            style="float: right;">
+                                        <button type="submit" onclick="deleteRecruits()" class="btn py-1 px-1 btn-danger"
+                                            style="float: right;">삭제</button>
                                         <tr>
                                             <th>
                                                 <input type="checkbox" class="selectAllMembers" checked=false />
@@ -250,72 +279,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+                                    ArrayList<BoardRecruit> boardrecruits = (ArrayList)request.getAttribute("boardrecruits");
+                                    for (int i=0; i<boardrecruits.size(); i++) {
+                                    	BoardRecruit list = boardrecruits.get(i);
+                                    	int boardrecruit_id = list.getBoard_recruit_id();
+                                    	String boardrecruit_date = list.getDate().split(" ")[0];
+                                    	String boardrecruit_title = list.getTitle();
+                                    	String enterprise_id = list.getEnterprise_id();
+                                    	
+                                    %>
                                         <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
+                                            <td><input type='checkbox' name="boardrecruit_id" class='memberChk'
+                                                    onclick='OnOffMemberAllClickBtn()' value="<%=boardrecruit_id %>">
                                             </td>
-                                            <td>1</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
+                                            <td><%=boardrecruit_id %></td>
+                                            <td><%=boardrecruit_date %></td>
+                                            <td><a href="<%=request.getContextPath() %>/recruit/list?board_recruit_id=<%=boardrecruit_id%>"><%=boardrecruit_title%></a></td>
+                                            <td><%=enterprise_id %></td>
                                             <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td>Table cell</td>
                                         </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>2</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>3</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>4</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>5</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
-                                        </tr>
-                                        <tr>
-                                            <td><input type='checkbox' class='memberChk' checked=false
-                                                    onclick='OnOffMemberAllClickBtn()'>
-                                            </td>
-                                            <td>6</td>
-                                            <td> 2020.01.12-2020.01.23</td>
-                                            <td><a href="#">맥도날드</a></td>
-                                            <td></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
-                                        </tr>
+                                    <%} %>
                                     </tbody>
                                 </table>
                             </div>
