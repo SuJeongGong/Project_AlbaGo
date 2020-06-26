@@ -101,14 +101,7 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 
 		return "/enterprise/scrap";
 	}
-	@RequestMapping("/scrap/save") // 스크랩 인재 - 추가하기
-	public String scrapSave(@RequestParam("board_resume_id") int board_resume_id, @AuthUser String id , Model m) {
 
-		m.addAttribute("scraps",
-				enterpriseService.insertScrap(board_resume_id, id));
-
-		return "redirect:/resume/content?board_resume_id=" + board_resume_id;
-	}
 	@RequestMapping("/recruit/list") // 공고 리스트
 	public String recruitList(@AuthUser String id , Model m) {
 		m.addAttribute("Recruits", enterpriseService.selectRecruits(id));// why salary는 안나오죠?
@@ -199,6 +192,21 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 			@RequestParam(value = "board_resume_id") int board_resume_id) {// 기업 아이템 사용 목록에 insert , resume_count 사용한 내역
 
 		return enterpriseService.resumeUse(enterprise_id, board_resume_id);
+	}
+	@RequestMapping(value = "/resume/check", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int resumeCheck(@AuthUser String id ) {// 기업 아이템 사용 목록에 insert , resume_count 사용한 내역
+		if(id==null) {
+			return  -1;
+		}
+		int resume_count=enterpriseService.selectResume_count(id);	
+		return resume_count;
+	}	
+	@RequestMapping(value = "/scrap/save", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)// 스크랩 인재 - 추가하기
+	public @ResponseBody int scrapSave(@RequestParam("board_resume_id") int board_resume_id, @AuthUser String id , Model m) {
+		if(id==null) {
+			return  -1;
+		}
+		return enterpriseService.insertScrap(board_resume_id, id);
 	}
 
 }

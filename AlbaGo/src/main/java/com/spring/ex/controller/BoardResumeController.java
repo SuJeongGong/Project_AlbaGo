@@ -105,9 +105,7 @@ public class BoardResumeController {
 		ArrayList<Career> careers = boardResumeService.selectCareers(board_resume_id);
 		m.addAttribute("board_content", board_content);
 		m.addAttribute("careers", careers);
-		int resume_count=boardResumeService.selectResume_count(request.getSession().getAttribute("id").toString());
-		System.out.println(resume_count);
-		m.addAttribute("resume_count",resume_count);
+		
 		return "/resume/content";
 	}
 	

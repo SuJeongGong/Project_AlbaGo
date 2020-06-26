@@ -73,12 +73,4 @@ FROM board_resume,resume,career
 	</update>
 	
 	
-	<select id="selectResume_count" parameterType="String" resultType="int">
-		select resume_count 
-		from enterprise
-		<where>
-		 enterprise_id = #{enterprise_id}
-		</where>
-	
-	</select>
 </mapper>

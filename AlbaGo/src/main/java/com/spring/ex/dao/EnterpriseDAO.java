@@ -38,4 +38,6 @@ public interface EnterpriseDAO {
 	
 	int updateResume_count(String  enterprise_id);//기업 Resume_count 하나 줄이기 
 	int insertPaymentHistoryResume(PaymentHistoryResume paymentHistory);//board_resume에서 연락처 뽑아오기
+	//기업회원의 resume_count 가져오기
+	int selectResume_count(String enterprise_id);
 }

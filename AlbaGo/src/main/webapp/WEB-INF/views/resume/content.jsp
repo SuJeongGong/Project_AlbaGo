@@ -14,6 +14,42 @@
 	%>
 	
 <script type="text/javascript">
+function resumeCheck(){
+	$.ajax({
+		url : "<%=request.getContextPath() %>/enterprise/resume/check",
+		method : "GET",
+		success : function(res) {
+			console.log(res);
+			if(res>=1){
+				$('#resume_count').html(res);
+				$('#basicExampleModal').modal('show');
+			}else if(res ==-1){
+				alert("로그인 후 이용해주세요.");
+			}else{
+				alert("실패 : 연락처 보기 아이템 횟수가 없습니다");
+			}
+		}
+	});
+}
+function scrapSave(board_resume_id){
+	$.ajax({
+		url : "<%=request.getContextPath()%>/enterprise/scrap/save",
+		method : "GET",
+		data : {
+			board_resume_id : board_resume_id
+		},
+		success : function(res) {
+			console.log(res);
+			if(res>=1){
+				alert("스크랩 되었습니다.<br>마이페이지에서 확인 가능합니다.");
+			}else if(res ==-1){
+				alert("로그인 후 이용해주세요.");
+			}else{
+				alert("실패.");
+			}
+		}
+	});
+}
 function UseResume(){
 	var board_resume_id =$("#resume_id").val();
 	var enterprise_id =$("#enterprise_id").val();
@@ -31,7 +67,7 @@ function UseResume(){
 				alert("마이페이지에서 확인 가능합니다");
 				$('#basicExampleModal').modal('hide');
 			}else{
-				alert("사용실패")
+				alert("사용실패");
 			}
 		}
 	});
@@ -73,7 +109,7 @@ function UseResume(){
                                 				<a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/resume/delete?board_resume_id=<%=board_content.getBoard_resume_id() %>">삭제하기</a> <%
                                 		} 
                                 	}%>
-                                	<a class="boxed-btn3 w-10"  href="<%=request.getContextPath()%>/enterprise/scrap/save?board_resume_id=<%=board_content.getBoard_resume_id() %>">스크랩</a>
+                                	<button class="boxed-btn3 w-10" onclick="scrapSave(<%=board_content.getBoard_resume_id() %>)" >스크랩</button>
                                 </div>
                             </div>
                         </div>
@@ -136,12 +172,11 @@ function UseResume(){
                             </ul>
                         </div>
                         <input type ="hidden" value ="<%= board_content.getBoard_resume_id()%>" id="resume_id"/>
-                        <input type ="hidden" value ="<%= request.getSession().getAttribute("id").toString()%>" id="enterprise_id"/>
                         <form action="#">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="submit_btn">
-                                        <button type="button" class="boxed-btn3 w-100"  data-toggle="modal" data-target="#basicExampleModal" >숨겨진 연락처 보기</button>
+                                        <button type="button" class="boxed-btn3 w-100" onclick="resumeCheck()" >숨겨진 연락처 보기</button>
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +208,7 @@ function UseResume(){
         </button>
       </div>
       <div class="modal-body" >
-       	<p>현재 이력서 보기 횟수 :</p><p><%=request.getAttribute("resume_count")%></p>
+       	<p>현재 이력서 보기 횟수 :</p><p id ="resume_count"></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
