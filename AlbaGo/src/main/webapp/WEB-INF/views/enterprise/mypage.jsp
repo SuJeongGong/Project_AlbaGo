@@ -16,6 +16,7 @@
 <meta charset="UTF-8">
 <%
 	Enterprise Einfo = (Enterprise) request.getAttribute("Einfo");
+int end = 0;
 %>
 <title><%=Einfo.getEnterprise_id()%> 기업의 마이페이지</title>
 </head>
@@ -94,7 +95,12 @@
 								</tr>
 								<%
 									ArrayList<Recruit> recruits = (ArrayList) request.getAttribute("recruit");
-									for (int i = 0; i < recruits.size(); i++) {
+								if ( recruits.size() > 5) {
+									end = 5;
+								} else {
+									end = recruits.size();
+								}
+									for (int i = 0; i < end; i++) {
 										Recruit recruit = recruits.get(i);
 										String title = recruit.getTitle();
 										String date = recruit.getDate();
@@ -156,7 +162,12 @@
 								</tr>
 								<%
 									ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteer");
-									for (int i = 0; i < volunteers.size(); i++) {
+								if ( volunteers.size() > 5) {
+									end = 5;
+								} else {
+									end = volunteers.size();
+								}
+									for (int i = 0; i < end; i++) {
 										Volunteer volunteer = volunteers.get(i);
 										String individual_id = volunteer.getIndividual_id();
 										String title = volunteer.getBoard_recruit_title();//null나옴 아마 sql문을 고져야할듯 as board_recruit_title로 
@@ -205,8 +216,13 @@
 									<th>스크랩날짜</th>
 								</tr>
 								<%
-									ArrayList<Scrap_enterprise> scraps = (ArrayList) request.getAttribute("scrap");
-									for (int i = 0; i < scraps.size(); i++) {
+									ArrayList<Scrap_enterprise> scraps = (ArrayList) request.getAttribute("scrap");			
+									if ( scraps.size() > 5) {
+										end = 5;
+									} else {
+										end = scraps.size();
+									}
+									for (int i = 0; i <end; i++) {
 										Scrap_enterprise scrap = scraps.get(i);
 										String title = scrap.getTitle();
 										String date = scrap.getDate().split(" ")[0];
@@ -261,7 +277,12 @@
 								</tr>
 								<%
 									ArrayList<Payment> payments = (ArrayList) request.getAttribute("payment");
-									for (int i = 0; i < payments.size(); i++) {
+								if ( payments.size() > 5) {
+									end = 5;
+								} else {
+									end = payments.size();
+								}
+									for (int i = 0; i < end; i++) {
 										Payment payment = payments.get(i);
 										String name = payment.getProduct_name();//null나옴 아마 sql문을 고져야할듯 as board_recruit_title로 
 										String date = payment.getDate().split(" ")[0];
@@ -311,8 +332,16 @@
 									<th>끝나는 날짜</th>
 								</tr>
 								<%
+								
 									ArrayList<Advertising> advertisings = (ArrayList) request.getAttribute("advertising");
-									for (int i = 0; i < advertisings.size(); i++) {
+								
+
+								if ( advertisings.size() > 5) {
+									end = 5;
+								} else {
+									end = advertisings.size();
+								}
+								for (int i = 0; i < end; i++) {
 										Advertising advertising = advertisings.get(i);
 										String title = advertising.getBoard_recruit_title();
 										String startDate = advertising.getStart_date().split(" ")[0];
@@ -377,8 +406,14 @@
 											.getAttribute("payment_history_resume");
 
 									System.out.println("jsp 에서 :" + paymentHistoriesResume);
+							
 
-									for (int i = 0; i < paymentHistoriesResume.size(); i++) {
+									if ( paymentHistoriesResume.size() > 5) {
+										end = 5;
+									} else {
+										end = paymentHistoriesResume.size();
+									}
+									for (int i = 0; i <end; i++) {
 										PaymentHistoryResume paymentHistoryResume = paymentHistoriesResume.get(i);
 										String boardResumeTitle = paymentHistoryResume.getBoard_resume_title();
 										String phone = paymentHistoryResume.getResume_phone();//null나옴 아마 sql문을 고져야할듯 as board_recruit_title로 
@@ -401,7 +436,8 @@
 						<div class="single_jobs white-bg d-flex justify-content-between">
 							<div class="jobs_left d-flex align-items-center">
 								<div class="jobs_conetent">
-									<a href="<%=request.getContextPath()%>/enterprise/payment/resume">
+									<a
+										href="<%=request.getContextPath()%>/enterprise/payment/resume">
 										<h4>up 버튼 사용 기록</h4>
 									</a>
 								</div>
@@ -427,8 +463,14 @@
 								</tr>
 								<%
 									ArrayList<PaymentHistoryUp> paymentHistoriessUp = (ArrayList) request.getAttribute("payment_history_up");
+				
 
-									for (int i = 0; i < paymentHistoriessUp.size(); i++) {
+									if (paymentHistoriessUp.size() > 5) {
+										end = 5;
+									} else {
+										end = paymentHistoriessUp.size();
+									}
+									for (int i = 0; i < end; i++) {
 										PaymentHistoryUp paymentHistoryUp = paymentHistoriessUp.get(i);
 										String title = paymentHistoryUp.getBoard_recruit_title();
 										String date = paymentHistoryUp.getDate().split(" ")[0];

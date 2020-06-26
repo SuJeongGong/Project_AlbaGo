@@ -6,7 +6,8 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd"
+		xmlns:mvc="http://www.springframework.org/schema/mvc">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
@@ -28,7 +29,19 @@
 
 	<context:component-scan base-package="com.spring.ex.controller" />
 	<context:component-scan base-package="com.spring.ex.services" />
+	
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+        <mvc:mapping path="/**" /> 
+        <beans:bean class="com.spring.ex.interceptor.AuthInterceptor" />
+	</mvc:interceptor>
+</mvc:interceptors>
+	<mvc:annotation-driven>
+         <mvc:argument-resolvers>
+                  <beans:bean class="com.spring.ex.interceptor.AuthUserHandlerMethodArgumentResolver" />
 
+         </mvc:argument-resolvers>
 
-
+</mvc:annotation-driven>
 </beans:beans>
