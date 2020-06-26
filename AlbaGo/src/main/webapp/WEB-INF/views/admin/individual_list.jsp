@@ -11,7 +11,11 @@
     <title>개인검색</title>
 </head>
 
+
 <body>
+	<%
+		String conPath = request.getContextPath();
+	%>
     <div id="wrapper">
         <!-- 사이드 바 -->
         <%@ include file="../serve/manager_sidebar.jsp" %>
@@ -35,19 +39,19 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="#" method="get">
+                                <form action="<%=request.getContextPath()%>/admin/individual_list/id" method="get" name="keyword" id="keyword">
+	            
                                     <div class="input-group">
                                         <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
-                                      
-                                            <select id="category" name="category"> 
-                                                <option value="아이디" id="individual_id">아이디</option>
-                                                <option value="회원이름" id="name">이름</option>
-                                                <option value="연락처" id="phone">연락처</option>
+                                          <select id="category" name="category"> 
+                                                <option value="individual_id" id="individual_id">아이디</option>
+                                                <option value="name" id="name">이름</option>
+                                                <option value="phone" id="phone">연락처</option>
                                             </select>
-                                        
-                                        <input class="form-control" id="system-search" name="q" placeholder="Search for" required> <!-- 검색내용입력 -->
+                                        <input type="text" class="form-control form-control-sm" name="search" > <!-- 검색내용입력 -->
                                         <span class="input-group-btn">
-                                            <button type="submit" class="btn btn-info">검색</button>
+                                        <button class="btn btn-sm btn-primary" type ="submit" >검색</button>
+
                                         </span>
                                     </div>
                                </form>
@@ -78,8 +82,9 @@
 												String education=list.getEducation();
 												String date=list.getDate();
 											%>
+                            	
                                         <tr>
-                                            <td><a href="individual_detail"><%=name%></a></td>
+                                            <td><a href="<%=conPath%>/admin/individual_detail?individual_id=<%=individual_id%>"><%=name%></a></td>
                                             <td><%=individual_id%></td>
                                             <td><%=password %></td>
                                             <td><%=phone %></td>
