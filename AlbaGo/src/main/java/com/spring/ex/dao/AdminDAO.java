@@ -2,6 +2,7 @@ package com.spring.ex.dao;
 
 import java.util.ArrayList;
 
+import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Volunteer;
@@ -22,6 +23,9 @@ public interface AdminDAO {
 	ArrayList<Resume> selectResume(String id);
 	//<!-- 지원한 알바-->
 	ArrayList<Volunteer> selectApplypartjob(String id);
+	//<!--인재글 게시판-->
+	ArrayList<BoardResume> selectResumeWrite(String id);
+	
 	
 	/*############################*/
 	//---임승재---

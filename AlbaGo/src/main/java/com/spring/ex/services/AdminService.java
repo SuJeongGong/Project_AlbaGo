@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.AdminDAO;
+import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Volunteer;
@@ -44,16 +45,13 @@ public class AdminService {
 	public ArrayList<Volunteer> selectApplypartjob(String id){
 		return adminDAO.selectApplypartjob(id);
 	}
-	
+	//인재 게시판 작성글
+	public ArrayList<BoardResume> selectResumeWrite(String id) {
+		return adminDAO.selectResumeWrite(id);	
+	}
 
 
 
-	
-	
-	
-	
-	
-	
 	
 	
 	/* ################################################## */

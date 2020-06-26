@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Resume;
@@ -76,9 +77,11 @@ public class AdminController {
 	@RequestMapping("/individual_detail") // 개인 - 디테일?
 	public String individual_detail(Model m,@RequestParam("individual_id") String individual_id) {
 		String page="/admin/individual_detail";
+		
 		//회원정보 상세보기
 		Individual individual = adminService.selectIndividualAccount(individual_id); 
 		m.addAttribute("individual", individual);
+		
 		//이력서 관리
 		ArrayList<Resume> resume=adminService.selectResume(individual_id);
 		m.addAttribute("resume",resume);
@@ -86,6 +89,10 @@ public class AdminController {
 		//지원한알바
 		ArrayList<Volunteer> volunteer=adminService.selectApplypartjob(individual_id);
 		m.addAttribute("volunteers", volunteer);
+
+		//인재 게시판 작성글
+		ArrayList<BoardResume> resumewrite=adminService.selectResumeWrite(individual_id);
+		m.addAttribute("resumewrite",resumewrite);
 		
 		return page;  
 		

@@ -75,6 +75,22 @@
 	ORDER BY volunteer.volunteer_id DESC
 	</select>
 
+	<!-- 인재 게시판 작성글 -->
+	<select id="selectResumeWrite" parameterType="String" resultType="BoardResume">
+	SELECT 
+		board_resume.title AS board_resume_title ,
+		resume.title AS resume_title,
+		board_resume.memo,
+		board_resume.date
+
+		FROM board_resume ,resume,individual
+
+		<where> board_resume.resume_id = resume.resume_id 
+		AND resume.individual_id = individual.individual_id
+		AND individual.individual_id = #{id}
+		AND board_resume.delete_check =1
+		</where>
+	</select>
 
 
 	

@@ -1,3 +1,5 @@
+<%@page import="sun.reflect.ReflectionFactory.GetReflectionFactoryAction"%>
+<%@page import="com.spring.ex.dto.BoardResume"%>
 <%@page import="com.spring.ex.dto.Volunteer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.spring.ex.dto.Resume"%>
@@ -243,25 +245,41 @@
                         <form>
                             <table class="table table-striped">
                                 <thead>
+                                
                                     <tr class="text-center">
                                         <th>글 제목</th>
                                         <th>사용한이력서제목</th>
                                         <th>메모</th>
                                         <th>작성날짜</th>
                                         <th>관리</th>
-                                    </tr>
+                                    </tr> 
+                           
+                               
                                 </thead>
-                                <tbody>
+                                <tbody>         
+                                <%
+										ArrayList<BoardResume> resumewrite = (ArrayList) request.getAttribute("resumewrite");
+										for (int i = 0; i < resumewrite.size(); i++) {
+											BoardResume list = resumewrite.get(i);
+			             						
+											String title = list.getBoard_resume_title();
+											String resume_title = list.getResume_title();
+											String memo = list.getMemo();
+											String resume_date=list.getDate().split(" ")[0];
+											
+										%>  
                                     <tr class="text-center">
-                                        <td>글제목</td>
-                                        <td><a href="#">사용한 이력서 제목</a></td>
-                                        <td>메모</td>
-                                        <td>작성날짜</td>
+                                        <td><%=title %></td>
+                                        <td><a href="#"><%=resume_title %></a></td>
+                                        <td><%=memo %></td>
+                                        <td><%=resume_date %></td>
                                         <td>   
                                         <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger">
                                       	</td>
                                     </tr>
-                                   
+                                        <%
+                                    }
+                                    %>
                                 </tbody>
                             </table>
                         </div>
