@@ -6,6 +6,7 @@
 		<typeAlias type="com.spring.ex.dto.Advertising" alias="Advertising" />
 		<typeAlias type="com.spring.ex.dto.BoardResume" alias="BoardResume" />
 		<typeAlias type="com.spring.ex.dto.BoardCommunity" alias="BoardCommunity" />
+		<typeAlias type="com.spring.ex.dto.BoardComment" alias="BoardComment" />
 		<typeAlias type="com.spring.ex.dto.BoardRecruit" alias="BoardRecruit" />
 		<typeAlias type="com.spring.ex.dto.Career" alias="Career" />
 		<typeAlias type="com.spring.ex.dto.Enterprise" alias="Enterprise" />

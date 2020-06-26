@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.spring.ex.dto.BoardComment"%>
 <%@page import="com.spring.ex.dto.BoardCommunity"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,6 +22,7 @@
 		String content = community.getContents();
 		int views = community.getViews();
      %>
+
     
 
 	
@@ -56,8 +59,28 @@
                                    } %>			
                   </div>
                </div>
-               
-               
+                    <%
+   
+		
+			
+			   ArrayList<BoardComment> comments = (ArrayList)request.getAttribute("comments");//글에 적여있는 댓글 여러개 가져오기 
+			   System.out.println(comments + "댓글 확인");
+				if(comments!=null){
+			   for(int i =0; i<comments.size();i++){
+				   BoardComment  comment= comments.get(i);//한줄 
+				   
+			   
+			   
+			   
+				int comment_id = comment.getComment_id();
+		      	int cm_community_id = comment.getCommunity_id();
+				String cm_id =comment.getIndividual_id();
+				String cm_date = comment.getDate();
+				String cm_contents = comment.getContents();
+			
+			%>
+			
+			
                <div class="comments-area">
                   <h4>댓글</h4>
                   <div class="comment-list">
@@ -68,14 +91,15 @@
                            </div>
                            <div class="desc">
                               <p class="comment">
-                                	댓글내용
+                                             
+                      	<%=cm_contents %>
                               </p>
                               <div class="d-flex justify-content-between">
                                  <div class="d-flex align-items-center">
                                     <h5>
-                                       	아이디
+                                       	<%=cm_community_id %>아이디
                                     </h5>
-                                    <p class="date">2020-05-30 18:34</p>
+                                    <p class="date"><%= cm_date%></p>
                                  </div>
                               </div>
                            </div>
@@ -83,6 +107,18 @@
                      </div>
                   </div>
                </div>
+			
+			
+			
+			
+			
+			
+			<%
+
+			   }
+		}
+     %>
+           
                
                <div class="comment-form">
                   <h4>댓글달기</h4>

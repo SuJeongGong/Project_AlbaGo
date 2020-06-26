@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dao.CommunityDAO;
+import com.spring.ex.dto.BoardComment;
 import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.services.CommunityService;
@@ -25,7 +26,6 @@ public class BoardCommunityController {
 	
 	@Autowired
 	 CommunityService   communityService;
-	
 	
 	@RequestMapping("/list")//리스트
 	public String list(Model m) {
@@ -79,10 +79,14 @@ public class BoardCommunityController {
 		BoardCommunity community = communityService.selectContent(community_id);
 		//DB에서 글 하나 가져온 것을 다음 화면에 보여주기 위해서 m에다가 담음
 
+		ArrayList<BoardComment> comments =communityService.selectComments(community_id);
+		System.out.println(community);
+		System.out.println(comments);
 		//조회수 증가 쿼리문 전송
 		if(1<=communityService.updateViews(community_id)) {//성공했다면
 			System.out.println("조회수 증가 DB연결 성공");
 			m.addAttribute("community_content",community );
+			m.addAttribute("comments", comments);
 		}		
 		return "/community/content";
 	}
@@ -149,6 +153,8 @@ public class BoardCommunityController {
 		}
 		return page;
 	}
+	
+	
 	
 
 }
