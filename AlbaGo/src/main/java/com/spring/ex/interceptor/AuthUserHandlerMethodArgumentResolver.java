@@ -29,7 +29,9 @@ public class AuthUserHandlerMethodArgumentResolver implements HandlerMethodArgum
 			return null;
 		}
 		
-		return session.getAttribute("id");
+		String res = session.getAttribute("id")+"/"+session.getAttribute("type");
+		
+		return res;
 	}
 
 	@Override

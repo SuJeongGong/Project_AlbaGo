@@ -96,6 +96,9 @@ public class IndividualService {
 		resume.setCareer(individualDAO.selectCareer(resume_id));
 		return resume;
 	}
+	public int selectResumeCount(String id) {
+		return  individualDAO.selectResumeCount(id);
+	}
 	
 	public int forDeleteSQL(ArrayList<String> ids,String methodName) {
 		int res = 0;

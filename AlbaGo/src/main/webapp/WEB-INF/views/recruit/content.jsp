@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공고글 보기</title>
 
 <style type="text/css">
 .modal-backdrop {
@@ -20,6 +20,45 @@
 }
 </style>
 <script type="text/javascript">
+function resumeCheck(){
+	$.ajax({
+		url : "<%=request.getContextPath() %>/individual/check/id",
+		method : "GET",
+		success : function(res) {
+			console.log(res);
+			if(res>=1){
+				$('#basicExampleModal').modal('show');
+			}else if(res ==-1){
+				alert("로그인 후 이용해주세요.");
+			}else if(res ==-2){
+				alert("기업회원은 사용할 수 없는 기능입니다.");
+			}else{
+				alert("실패 : 작성한 이력서가 없습니다");
+			}
+		}
+	});
+}
+function scrapSave(board_recruit_id){
+	$.ajax({
+		url : "<%=request.getContextPath()%>/individual/scrap/save",
+		method : "GET",
+		data : {
+			board_recruit_id : board_recruit_id
+		},
+		success : function(res) {
+			console.log(res);
+			if(res>=1){
+				alert("스크랩 되었습니다.<br>마이페이지에서 확인 가능합니다.");
+			}else if(res ==-2){
+				alert("기업회원은 사용할 수 없는 기능입니다.");
+			}else if(res ==-1){
+				alert("로그인 후 이용해주세요.");
+			}else{
+				alert("실패.");
+			}
+		}
+	});
+}
 function insertVolunteer(board_recruit_id) {
 	console.log(board_recruit_id);
 	var resume_id =$("#resume_id option:selected").val();
@@ -88,7 +127,7 @@ function insertVolunteer(board_recruit_id) {
                                 				<a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/recruit/delete?board_recruit_id=<%=board_content.getBoard_recruit_id() %>">삭제하기</a> <%
                                 		} 
                                 	}%>
-                                   <a class="boxed-btn3 w-10" href="<%=request.getContextPath()%>/individual/scrap/save?board_recruit_id=<%=board_content.getBoard_recruit_id() %>"> 스크랩</a>
+                                	<button class="boxed-btn3 w-10" onclick="scrapSave(<%=board_content.getBoard_recruit_id() %>)" >스크랩</button>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +179,7 @@ function insertVolunteer(board_recruit_id) {
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="submit_btn">
-                                        <button type="button" class="boxed-btn3 w-100" data-toggle="modal" data-target="#basicExampleModal">지원하기</button>
+                                        <button type="button" class="boxed-btn3 w-100" onclick="resumeCheck()" >지원하기</button>
                                     </div>
                                 </div>
                             </div>
@@ -173,12 +212,15 @@ function insertVolunteer(board_recruit_id) {
       <div class="modal-body" >
        	<p>지원할 때 남길 메모 :</p><input type="text" id="memo" class="form-control"/><br/>
        	<p>사용할 이력서 선택하세요 </p><select id="resume_id">
-       	<% for(int i=0;i<resumes.size();i++){
+       	<% 
+       	if(resumes!=null){
+       	
+       	for(int i=0;i<resumes.size();i++){
        		Resume resume = resumes.get(i);
        	%>
        	<option value = "<%=resume.getResume_id()%>"><%=resume.getTitle()%></option>
        	
-       	<% }%>
+       	<% }}%>
        	</select>
       </div>
       <div class="modal-footer">

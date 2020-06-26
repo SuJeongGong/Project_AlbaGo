@@ -23,10 +23,12 @@ function resumeCheck(){
 			if(res>=1){
 				$('#resume_count').html(res);
 				$('#basicExampleModal').modal('show');
+			}else if(res ==-2){
+				alert("개인회원은 사용할 수 없는 기능입니다.");
 			}else if(res ==-1){
 				alert("로그인 후 이용해주세요.");
 			}else{
-				alert("실패 : 연락처 보기 아이템 횟수가 없습니다");
+				alert("실패 : 연락처 보기 아이템 횟수가 없거나 기업회원이 아닙니다.");
 			}
 		}
 	});
@@ -42,6 +44,8 @@ function scrapSave(board_resume_id){
 			console.log(res);
 			if(res>=1){
 				alert("스크랩 되었습니다.<br>마이페이지에서 확인 가능합니다.");
+			}else if(res ==-2){
+				alert("개인회원은 사용할 수 없는 기능입니다.");
 			}else if(res ==-1){
 				alert("로그인 후 이용해주세요.");
 			}else{
