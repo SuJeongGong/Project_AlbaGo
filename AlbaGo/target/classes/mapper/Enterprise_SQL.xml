@@ -258,22 +258,29 @@
 	
 	</update>
 	<insert id = "insertPaymentHistoryResume" parameterType="PaymentHistoryResume">
-		insert into payment_history
+		insert into payment_history_resume
 		(
-			payment_history_id,
+			payment_history_resume_id,
 			enterprise_id,
-			advertising_id,
 			board_resume_id,
-			board_recruit_id,
+			resume_phone,
+			resume_count,
 			date		
 		)
 		values
 		(
 			null,
 			#{enterprise_id},
-			null,
 			#{board_resume_id},
-			null,
+			(
+			SELECT individual.phone 
+			FROM individual,resume , board_resume
+			WHERE individual.individual_id = resume.individual_id
+					AND resume.resume_id = board_resume.resume_id
+					AND board_resume.board_resume_id =#{board_resume_id}
+						
+			),
+			(select resume_count from enterprise where enterprise_id = #{enterprise_id}),
 			null
 		)
 	</insert>

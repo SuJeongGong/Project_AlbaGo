@@ -185,10 +185,10 @@
 																			</tr>
 																		<%
 																			ArrayList<Scrap_enterprise> scraps = (ArrayList)request.getAttribute("scrap");
-																																			for(int i =0;i<scraps.size();i++){
-																																				Scrap_enterprise scrap=  scraps.get(i);
-																																				String title =scrap.getTitle();
-																																				String date = scrap.getDate().split(" ")[0];
+																								for(int i =0;i<scraps.size();i++){
+																														Scrap_enterprise scrap=  scraps.get(i);
+																															String title =scrap.getTitle();
+																							String date = scrap.getDate().split(" ")[0];
 																		%>
 																				<tr>
 																					<td><%=title%></td><td><%=date%></td>
@@ -226,15 +226,12 @@
 				                    <div class="descript_wrap white-bg">
 						                        <div class="single_wrap">
 												                           <p>최근에 구매한 5개의 결제 기록을 보여줍니다.
-											                            <br>더 많은 결제 목록을 보시려면 자세히 버튼을 눌러주세요</p>
-											                            <br><table width="95%">
+											                            <br>더 많은 결제 목록을 보시려면 자세히 버튼을 눌러주세요</p><br><table width="95%">
 																				<tr>
 																					<th>상품 이름</th><th>가격</th><th>결제 날짜</th>
 																				</tr>
 													<%
 														ArrayList<Payment> payments = (ArrayList)request.getAttribute("payment");
-													System.out.println("jsp 에서 :"+payments);
-													
 																for(int i =0;i<payments.size();i++){
 																		Payment payment=  payments.get(i);
 																		String name =payment.getProduct_name();//null나옴 아마 sql문을 고져야할듯 as board_recruit_title로 
@@ -242,7 +239,7 @@
 																		int product_price = payment.getProduct_price();
 													%>
 																					<tr>
-																						<td><%=name%></td><	<td><%=product_price%></td><td><%=date.split(" ")[0]%></td>
+																						<td><%=name%></td><td><%=product_price%></td><td><%=date.split(" ")[0]%></td>
 																					</tr>									
 																					<%
 																															}
@@ -279,7 +276,6 @@
 																			</tr>
 																		<%
 																			ArrayList<Advertising> advertisings = (ArrayList)request.getAttribute("advertising");
-																		System.out.println("jsp 에서 :"+advertisings);
 																			for(int i =0;i<advertisings.size();i++){
 																				Advertising advertising=  advertisings.get(i);
 																				String title =advertising.getBoard_recruit_title();

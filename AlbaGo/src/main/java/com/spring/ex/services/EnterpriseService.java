@@ -96,12 +96,12 @@ public class EnterpriseService {
 		scrap.setBoard_resume_id(board_resume_id);
 		return enterpriseDAO.insertScrap(scrap);
 	}
-	public int resumeUse(String enterprise_id,int board_resume_id) {//기업회원 resume_count 횟수 줄이기, 결제이력에 삽입하기
-		PaymentHistoryResume paymentHistory= new PaymentHistoryResume();
-		paymentHistory.setBoard_resume_id(board_resume_id);
-		paymentHistory.setEnterprise_id(enterprise_id);
+	public int resumeUse(String enterprise_id,int board_resume_id) {//기업회원 resume_count 횟수 줄이기, paymentHistoryResume에 기록 삽입하기
+		PaymentHistoryResume paymentHistoryResume= new PaymentHistoryResume();
+		paymentHistoryResume.setBoard_resume_id(board_resume_id);
+		paymentHistoryResume.setEnterprise_id(enterprise_id);
 		int result = 0;
-		if(enterpriseDAO.insertPaymentHistoryResume(paymentHistory) >=1 && enterpriseDAO.updateResume_count(enterprise_id)>=1) {
+		if(enterpriseDAO.insertPaymentHistoryResume(paymentHistoryResume) >=1 && enterpriseDAO.updateResume_count(enterprise_id)>=1) {
 			result =1;
 		}
 		return result;
