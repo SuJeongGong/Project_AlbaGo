@@ -17,6 +17,7 @@
 		<typeAlias type="com.spring.ex.dto.Scrap_enterprise"  alias="Scrap_enterprise" />
 		<typeAlias type="com.spring.ex.dto.Scrap_Individual" alias="Scrap_Individual" />
 		<typeAlias type="com.spring.ex.dto.Volunteer" alias="Volunteer" />
-		<typeAlias type="com.spring.ex.dto.PaymentHistory" alias="PaymentHistory" />
+		<typeAlias type="com.spring.ex.dto.PaymentHistoryResume" alias="PaymentHistoryResume" />
+		<typeAlias type="com.spring.ex.dto.PaymentHistoryUp" alias="PaymentHistoryUp" />
 	</typeAliases>
 </configuration>     

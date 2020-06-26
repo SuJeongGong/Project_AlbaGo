@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.EnterpriseDAO;
+import com.spring.ex.dto.Advertising;
 import com.spring.ex.dto.Enterprise;
-import com.spring.ex.dto.PaymentHistory;
+import com.spring.ex.dto.Payment;
+import com.spring.ex.dto.PaymentHistoryResume;
+import com.spring.ex.dto.PaymentHistoryUp;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
@@ -34,6 +37,22 @@ public class EnterpriseService {
 
 	public ArrayList<Volunteer> selectVolunteer(String id) {
 		return enterpriseDAO.selectVolunteer(id);
+	}
+	
+	public ArrayList<Payment> selectPayment(String id) {//결제기록
+		return enterpriseDAO.selectPayment(id);
+	}
+	
+	public ArrayList<Advertising> selectAdvertising(String id) {//광고/배던
+		return enterpriseDAO.selectAdvertising(id);
+	}
+	
+	public ArrayList<PaymentHistoryResume> paymentHistoryResume(String id) {//이력서보기 사용기록
+		return enterpriseDAO.selectpaymentHistoryResume(id);
+	}
+	
+	public ArrayList<PaymentHistoryUp> paymentHistoryUp(String id) {//up버튼 사용기록
+		return enterpriseDAO.selectpaymentHistoryUp(id);
 	}
 	public Resume selectVolunteerResume(int resume_id) {
 		Resume resume = enterpriseDAO.selectVolunteerResume(resume_id);
@@ -78,11 +97,11 @@ public class EnterpriseService {
 		return enterpriseDAO.insertScrap(scrap);
 	}
 	public int resumeUse(String enterprise_id,int board_resume_id) {//기업회원 resume_count 횟수 줄이기, 결제이력에 삽입하기
-		PaymentHistory paymentHistory= new PaymentHistory();
+		PaymentHistoryResume paymentHistory= new PaymentHistoryResume();
 		paymentHistory.setBoard_resume_id(board_resume_id);
 		paymentHistory.setEnterprise_id(enterprise_id);
 		int result = 0;
-		if(enterpriseDAO.insertPaymentHistory(paymentHistory) >=1 && enterpriseDAO.updateResume_count(enterprise_id)>=1) {
+		if(enterpriseDAO.insertPaymentHistoryResume(paymentHistory) >=1 && enterpriseDAO.updateResume_count(enterprise_id)>=1) {
 			result =1;
 		}
 		return result;

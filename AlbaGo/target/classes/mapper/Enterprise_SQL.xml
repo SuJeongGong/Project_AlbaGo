@@ -60,8 +60,7 @@
 		ORDER BY volunteer.volunteer_id DESC
 	</select>
 
-	<select id="selectRecruits" parameterType="String"
-		resultType="Recruit">
+	<select id="selectRecruits" parameterType="String" 	resultType="Recruit">
 		SELECT *
 		FROM recruit
 		<where>
@@ -71,8 +70,7 @@
 		ORDER BY recruit.recruit_id DESC
 
 	</select>
-	<select id="selectRecruit" parameterType="int"
-		resultType="Recruit">
+	<select id="selectRecruit" parameterType="int" resultType="Recruit">
 		SELECT *
 		FROM recruit
 		<where>
@@ -81,7 +79,67 @@
 		</where>
 		ORDER BY recruit.recruit_id DESC
 	</select>
+	
+	
 
+	<select id="selectPayment" parameterType="String" resultType="Payment">
+		SELECT product.name  AS product_name, payment.date AS date, product.price as product_price
+		FROM payment,product  
+		<where>
+				payment.product_id = product.product_id
+		 	 AND enterprise_id  = #{id}
+		</where>
+		ORDER BY payment.payment_id DESC
+	</select>
+	
+	<select id="selectAdvertising" parameterType="String"	resultType="Advertising">
+		SELECT 
+				board_recruit.title AS board_recruit_title,
+				advertising.start_date AS start_date,
+				advertising.end_date AS end_date 
+				
+		FROM Advertising,board_recruit,payment
+		<where>
+			payment.enterprise_id= #{id}
+			and	Advertising.board_recruit_id=board_recruit.board_recruit_id
+			AND payment.payment_id = advertising.payment_id
+		</where>
+		ORDER BY advertising.advertising_id DESC
+	</select>
+	
+
+	<select id="selectpaymentHistoryResume" parameterType="String" resultType="PaymentHistoryResume">
+		SELECT 	board_resume.title  AS board_resume_title,
+			 	payment_history_resume.resume_phone AS resume_phone, 
+			   	payment_history_resume.date as date
+			   	
+		FROM 	payment_history_resume,board_resume 
+		
+		<where>	
+				payment_history_resume.board_resume_id = board_resume.board_resume_id
+		 	 	AND enterprise_id  = #{id}
+		</where>
+		 	 	
+		ORDER BY payment_history_resume.payment_history_resume_id DESC
+		
+	</select>
+	<select id="selectpaymentHistoryUp" parameterType="String"	resultType="PaymentHistoryUp">
+		SELECT 	board_recruit.title as board_recruit_title,
+				payment_history_up.date as date
+				
+		FROM 	payment_history_up,board_recruit
+		
+		<where>
+			board_recruit.board_recruit_id=payment_history_up.board_recruit_id
+			and enterprise_id='w'
+		</where>
+		ORDER BY payment_history_up.payment_history_up_id DESC
+	</select>
+	
+	
+	
+	
+	
 	<insert id="insertRecruit" parameterType="Recruit">
 		insert Into Recruit
 		(
@@ -199,7 +257,7 @@
 		</where>
 	
 	</update>
-	<insert id = "insertPaymentHistory" parameterType="PaymentHistory">
+	<insert id = "insertPaymentHistoryResume" parameterType="PaymentHistoryResume">
 		insert into payment_history
 		(
 			payment_history_id,

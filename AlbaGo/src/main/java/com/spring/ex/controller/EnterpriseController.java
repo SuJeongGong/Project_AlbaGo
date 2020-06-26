@@ -49,8 +49,13 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 				// 모델에 담기
 				m.addAttribute("Einfo", enterpriseService.selectEnterprise(id));// 기업정보
 				m.addAttribute("scrap", enterpriseService.selectScrap(id));// 스크랩
-				m.addAttribute("recruit", enterpriseService.selectRecruits(id));// 스크랩
-				m.addAttribute("volunteer", enterpriseService.selectVolunteer(id));// 스크랩
+				m.addAttribute("recruit", enterpriseService.selectRecruits(id));//공고
+				m.addAttribute("volunteer", enterpriseService.selectVolunteer(id));//지원자
+				m.addAttribute("payment", enterpriseService.selectPayment(id));//결제 기록
+				m.addAttribute("advertising", enterpriseService.selectAdvertising(id));//광고 기록
+				m.addAttribute("payment_history_resume", enterpriseService.paymentHistoryResume(id));//광고 기록
+				m.addAttribute("payment_history_up", enterpriseService.paymentHistoryUp(id));//광고 기록
+				
 				System.out.println("모델  후");
 
 				page = "/enterprise/mypage";
