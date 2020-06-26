@@ -246,7 +246,7 @@
                                         <div class="card-icon">
                                             <i class="material-icons">어제의 인재</i>
                                         </div>
-                                        <h3 class="card-title" id="yesterday_resume"><%=request.getAttribute("yesterday_resume")%><small>개</small></h3>
+                                        <h3 class="card-title" id="yesterdaycount_resume"><%=request.getAttribute("yesterdaycount_resume")%><small>개</small></h3>
                                     </div>
                                 </div>
                             </div>
@@ -284,7 +284,7 @@
                                     	
                                     %>
                                         <tr>
-                                            <td><input type='checkbox' class='memberChk' 
+                                            <td><input type='checkbox' class='memberChk' name = "boardresume_id" value="<%=boardresume_id %>"
                                                     onclick='OnOffMemberAllClickBtn()'>
                                             </td>
                                             <td><%=boardresume_id %></td>

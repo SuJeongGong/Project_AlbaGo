@@ -49,5 +49,11 @@ public interface AdminDAO {
 	/** 커뮤니티 관리 */
 		//공고 게시판
 		ArrayList<BoardCommunity> community_List();
+		ArrayList<BoardCommunity> community_List_id(String category, String search);//선택검색
+		ArrayList<BoardCommunity> writer_search_C(String writer); //작성자검색
+		ArrayList<BoardCommunity> title_search_C(String title); //제목 검색
+		int deleteCommunities(int community_id); //커뮤니티글 삭제하기
+		int countComment(int comment_id); //댓글 확인
+		int deleteComment(int comment_id); //댓글 삭제
 	
 }

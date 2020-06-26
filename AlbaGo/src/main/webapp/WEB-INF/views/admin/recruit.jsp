@@ -85,6 +85,7 @@
                         <!-- Card Content - Collapse -->
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body">
+                            <form action="<%=request.getContextPath() %>/admin/recruit/id" method="get" name="keyword" id="keyword">
                                 <table>
                                     <th>업직종</th>
                                     <th>지역</th>
@@ -215,13 +216,13 @@
                                                 <option value="title" id="title">제목</option>
                                             </select>
                                             <input type="text" name="search" style="width: 350px;">
-                                            <a class="btn py-1 px-1 btn-primary" href="<%=request.getContextPath()%>">검색</a>
+                                            <button class="btn py-1 px-1 btn-primary" type ="submit" >검색</button>
                                         </td>
                                         
                                     </tr>
 
                                 </table>
-
+							</form>
                             </div>
                         </div>
                         <div class="card shadow mb-3">

@@ -13,6 +13,34 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>커뮤니티</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    function deleteBoardCommunities() {
+    	var boardcommunity_ids = [];
+    	$("input[name='boardcommunity_id']:checked").each(function(){
+    		if(this.checked){
+    			console.log($(this).val());
+    			boardcommunity_ids.push($(this).val());
+    			console.log($(this).val());
+    		}
+    	})
+    	
+    	$.ajax({
+    		url : "./deleteBoardCommunities",
+    		method : "GET",
+    		data : {
+    			boardcommunity_ids: boardcommunity_ids
+    		},
+    		success :function(res){
+    			if(res=="성공"){
+    				alert("삭제 성공");
+    			}else{
+    				alert("삭제 실패");
+    			}
+    		}
+    	});
+    }
+    </script>
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -57,6 +85,7 @@
                         <!-- Card Content - Collapse -->
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body">
+                            <form action="<%=request.getContextPath() %>/admin/community/id" method="get" name="keyword" id="keyword">
                                 <table>
                                     <th style="width: 900px;">작성일자</th>
                                     <tr>
@@ -72,16 +101,17 @@
                                         <th>검색 </th>
                                     </tr>
                                     <tr>
-                                    	<td><select name="" style="width: 100px;">
-                                                <option value="0">전체</option>
-                                                <option value="1">작성자</option>
-                                                <option value="2">제목</option>
+                                    	<td><select name="category" style="width: 100px;">
+                                                <option value="전체">전체</option>
+                                                <option value="writer">작성자</option>
+                                                <option value="title">제목</option>
                                             </select>
-                                            <input type="text" name="time" style="width: 350px;">
-                                            <input type="submit" value="검색" class="btn py-1 px-1 btn-primary">
+                                            <input type="text" name="search" style="width: 350px;">
+                                            <button type="submit" class="btn py-1 px-1 btn-primary">검색</button>
                                         </td>
                                     </tr>
                                 </table>
+                            </form>
                             </div>
                         </div>
 
@@ -91,8 +121,8 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
-                                        <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"
-                                            style="float: right;">
+                                        <button type="submit" class="btn py-1 px-1 btn-danger" onclick="deleteBoardCommunities()"
+                                            style="float: right;">삭제</button>
                                         <tr>
                                             <th>
                                                 <input type="checkbox" class="selectAllMembers" checked=false />
@@ -115,7 +145,7 @@
                                     	
                                     %>
                                         <tr>
-                                            <td><input type='checkbox' class='memberChk'
+                                            <td><input type='checkbox' class='memberChk' name="boardcommunity_id"
                                                     onclick='OnOffMemberAllClickBtn()' value="<%=community_id %>">
                                             </td>
                                             <td><%=community_id %></td>

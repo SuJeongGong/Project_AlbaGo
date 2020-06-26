@@ -107,17 +107,17 @@ public class AdminController {
 	}
 	
 	// ajax처리
-		@ResponseBody
-		@RequestMapping(value = "/deleteBoardResumes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-		public String deleteBoardResumes(@RequestParam(value = "boardresume_ids[]") ArrayList<String> boardresume_id) {
-			String res = "";
-			System.out.println(boardresume_id);
-			if (1 <= adminService.deleteBoardResumes(boardresume_id)) {
-				System.out.println("DB연결 성공");
-				res = "성공";
-			}
-			return res;
+	@ResponseBody
+	@RequestMapping(value = "/deleteBoardResumes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String deleteBoardResumes(@RequestParam(value = "boardresume_ids[]") ArrayList<String> boardresume_id) {
+		String res = "";
+		System.out.println(boardresume_id);
+		if (1 <= adminService.deleteBoardResumes(boardresume_id)) {
+			System.out.println("DB연결 성공");
+			res = "성공";
 		}
+		return res;
+	}
 
 	@RequestMapping("/community") // 커뮤니티 게시판 -관리자 ver
 	public String community(Model m) {
@@ -126,6 +126,29 @@ public class AdminController {
 		m.addAttribute("boardcommunities",boardcommunities);
 		return "admin/community";
 	}
+	
+	@RequestMapping("/community/id") //공고글 검색
+	public String community_id(Model m, @RequestParam("category")String category, @RequestParam("search")String search) {
+		String page = "/admin/community";
+		ArrayList<BoardCommunity> boardcommunities = adminService.community_List_id(category, search);
+		m.addAttribute("boardcommunities", boardcommunities);
+		
+		return page;
+	}
+	
+	// ajax처리
+	@ResponseBody
+	@RequestMapping(value = "/deleteBoardCommunities", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String deleteBoardCommunities(@RequestParam(value = "boardcommunity_ids[]") ArrayList<String> boardcommunity_id) {
+		String res = "";
+		System.out.println(boardcommunity_id);
+		if (1 <= adminService.deleteBoardCommunities(boardcommunity_id)) {
+			System.out.println("DB연결 성공");
+			res = "성공";
+		}
+		return res;
+	}
+	
 
 	@RequestMapping("/individual_list") // 개인 리스트
 	public String individual_list(Model m) {
