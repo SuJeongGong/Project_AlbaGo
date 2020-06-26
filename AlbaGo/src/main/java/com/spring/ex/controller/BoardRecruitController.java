@@ -109,7 +109,9 @@ public class BoardRecruitController {
 			ArrayList<Resume> resume = boardRecruitService.selectResumes(request.getSession().getAttribute("id").toString());
 			if(resume!=null) {
 				m.addAttribute("resumes", resume);
+				System.out.println("if문 안에 :"+resume);
 			}
+			System.out.println("if문 밖ㅇ에 :"+resume);
 		}
 		m.addAttribute("board_content", board_content);//여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
 		return "/recruit/content";

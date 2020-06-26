@@ -4,10 +4,94 @@
 <mapper namespace="com.spring.ex.dao.AdminDAO">
 	<!-- 이예슬 -->
 	<select id = "selectlist" resultType="Individual">
-		select *
-		from Individual
+		SELECT *
+		FROM Individual
 	</select>
 	
+	<select id = "selectId" resultType="Individual" parameterType="String">
+		SELECT *
+		FROM Individual
+	</select>
+	
+	<select id="selectIdIndividual_id" resultType="Individual" parameterType="String">
+	SELECT *
+	FROM Individual
+	<where>
+	individual_id like CONCAT('%',#{individual_id},'%') 
+	</where> 
+	</select>
+	
+	<select id="selectIdName" resultType="Individual" parameterType="String">
+	SELECT *
+	FROM Individual
+	<where>
+	name like CONCAT('%',#{individual_id},'%') 
+	</where> 
+	</select>
+	
+	<select id="selectIdPhone" resultType="Individual" parameterType="String">
+	SELECT *
+	FROM Individual
+	<where>
+	phone like CONCAT('%',#{phone},'%')
+	</where> 
+	</select>
+				<!-- ................................................. -->
+	<!-- 개인관리자 링크타고 -->
+	<!-- 개인 회원 정보 -->
+	<select id="selectIndividualAccount" parameterType="String" resultType="Individual">
+	SELECT * 
+	FROM Individual
+	<where>
+	individual_id=#{id}
+	</where>
+	</select>	
+	<!-- 이력서관리 -->
+	<select id="selectResume" parameterType="String" resultType="Resume">
+	SELECT title,date 
+	FROM RESUME 
+	<where>
+	individual_id=#{id}
+	</where> 	
+	</select>
+	<!-- 지원한 알바 -->
+	<select id="selectApplypartjob" parameterType="String" resultType="Volunteer">
+	Select
+		board_recruit.title as board_recruit_title,
+		enterprise.name AS NAME,
+		resume.title as resume_title,
+		volunteer.date as date,
+		volunteer.result as result
+				
+		FROM resume,volunteer,board_recruit,enterprise,recruit
+	<where>
+	resume.resume_id =volunteer.resume_id
+	AND volunteer.board_recruit_id = board_recruit.board_recruit_id
+	AND recruit.recruit_id = board_recruit.recruit_id
+	AND enterprise.enterprise_id = recruit.enterprise_id
+	AND volunteer.individual_id =#{id}
+	AND board_recruit.delete_check =1
+	</where>
+	ORDER BY volunteer.volunteer_id DESC
+	</select>
+
+	<!-- 인재 게시판 작성글 -->
+	<select id="selectResumeWrite" parameterType="String" resultType="BoardResume">
+	SELECT 
+		board_resume.title AS board_resume_title ,
+		resume.title AS resume_title,
+		board_resume.memo,
+		board_resume.date
+
+		FROM board_resume ,resume,individual
+
+		<where> board_resume.resume_id = resume.resume_id 
+		AND resume.individual_id = individual.individual_id
+		AND individual.individual_id = #{id}
+		AND board_resume.delete_check =1
+		</where>
+	</select>
+
 	<!-- #################  -->
 	<!-- 임승재  -->
 	

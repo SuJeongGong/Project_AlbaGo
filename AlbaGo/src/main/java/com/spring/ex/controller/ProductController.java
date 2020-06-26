@@ -25,20 +25,16 @@ public class ProductController {
 	@RequestMapping("/payment") // 상세보기
 	public String payment(HttpServletRequest request, Model m,@RequestParam("product_id")int product_id) {
 		String page="/product/payment";
-		 
 		Product product=productService.enterprise_selectWrite(product_id);
-		
 		m.addAttribute("product", product);
-		
-
 		return page; 
-	}
+	}  
 
 	@RequestMapping("/list") // 기업이 상품리스트 보는화면
 	public String list(Model m, HttpServletRequest request) {
 		String page="/product/list";
 
-		ArrayList<Product> products = productService.enterprise_selectList();
+		ArrayList<Product> products = productService.enterprise_selectList(); 
 
 		m.addAttribute("products", products);
 
