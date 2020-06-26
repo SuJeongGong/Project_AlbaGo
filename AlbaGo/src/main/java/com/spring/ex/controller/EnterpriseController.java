@@ -49,8 +49,13 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 				// 모델에 담기
 				m.addAttribute("Einfo", enterpriseService.selectEnterprise(id));// 기업정보
 				m.addAttribute("scrap", enterpriseService.selectScrap(id));// 스크랩
-				m.addAttribute("recruit", enterpriseService.selectRecruits(id));// 스크랩
-				m.addAttribute("volunteer", enterpriseService.selectVolunteer(id));// 스크랩
+				m.addAttribute("recruit", enterpriseService.selectRecruits(id));//공고
+				m.addAttribute("volunteer", enterpriseService.selectVolunteer(id));//지원자
+				m.addAttribute("payment", enterpriseService.selectPayment(id));//결제 기록
+				m.addAttribute("advertising", enterpriseService.selectAdvertising(id));//광고 기록
+				m.addAttribute("payment_history_resume", enterpriseService.paymentHistoryResume(id));//광고 기록
+				m.addAttribute("payment_history_up", enterpriseService.paymentHistoryUp(id));//광고 기록
+				
 				System.out.println("모델  후");
 
 				page = "/enterprise/mypage";
@@ -289,4 +294,19 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 		}
 		return res;
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/resume/use", method = RequestMethod.GET)
+	public String  resumeUse(@RequestParam(value = "enterprise_id") String enterprise_id,@RequestParam(value = "board_resume_id") int board_resume_id) {//기업 아이템 사용 목록에 insert , resume_count 사용한 내역
+		String res="";
+		if (1 <= enterpriseService.resumeUse(enterprise_id,board_resume_id)) {
+			System.out.println("DB연결 성공!");
+			res = "성공";
+		}
+		return res;
+	}
+	
+	
+	
 }

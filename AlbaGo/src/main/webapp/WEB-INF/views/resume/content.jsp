@@ -1,3 +1,6 @@
+<%@page import="com.spring.ex.dto.Enterprise"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.spring.ex.dto.Career"%>
 <%@page import="com.spring.ex.dto.BoardResume"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,18 +9,40 @@
 <head>
 <meta charset="UTF-8">
 <title>인재글 보기</title>
+<%
+		BoardResume board_content = (BoardResume)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
+	%>
+	
+<script type="text/javascript">
+function UseResume(){
+	console.log("실행은 되니?");
+	var board_resume_id =$("#resume_id").val();
+	var enterprise_id =$("#enterprise_id").val();
+	$.ajax({
+		url : "<%=request.getContextPath() %>/enterprise/resume/use",
+		method : "GET",
+		data : {
+			enterprise_id : enterprise_id,
+			board_resume_id : board_resume_id
+		},
+		success : function(res) {
+
+			console.log("success");
+			if(res!="성공"){
+				$('#basicExampleModal').modal('hide');
+			}else{
+				alert("사용실패")
+			}
+		}
+	});
+}
+</script>
 </head>
 <body>
 	<%@ include file="../serve/header.jsp" %>
 	
-	<%
-		BoardResume board_content = (BoardResume)request.getAttribute("board_content");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
-	%>
 	
 	
-	
-	
-   
     <div class="job_details_area">
         <div class="container">
             <div class="row">
@@ -70,18 +95,23 @@
                                 <tr>
                                     <th>점포명</th><th>맡은업무</th><th>시작날짜</th><th>끝난날짜</th>
                                 </tr>
-                                <tr>
-                                    <td>아리따움</td><td>판매</td><td>2020-03-20</td><td>2020-03-20</td>
+                                
+                                <%
+                                	ArrayList<Career> careers = (ArrayList)request.getAttribute("careers");
+                                	for(int i =0; i<careers.size();i++){
+                                		Career career = careers.get(i);
+                                		
+                                		%>
+                                		
+                                		   <tr>
+                                    <td><%=career.getName() %></td><td><%=career.getTask() %></td><td><%=career.getStart_date().split(" ")[0] %></td><td><%=career.getEnd_date().split(" ")[0] %></td>
                                 </tr>
-                                <tr>
-                                    <td>훠궈</td><td>서빙</td><td>2020-03-20</td><td>2020-03-20</td>
-                                </tr>
-                                <tr>
-                                    <td>아리따움</td><td>판매</td><td>2020-03-20</td><td>2020-03-20</td>
-                                </tr>
-                                <tr>
-                                    <td>훠궈</td><td>서빙</td><td>2020-03-20</td><td>2020-03-20</td>
-                                </tr>
+                                		
+                                		<%
+                                	}                                
+                                %>
+                             
+                           
 
                             </table>
                         </div>
@@ -100,16 +130,18 @@
                             <ul>
                                 <li>이름 : <span><%=board_content.getName() %></span></li>
                                 <li>성별 : <span><%=board_content.getGender() %></span></li>
-                                <li>연령 : <span><%=board_content.getBirth() %></span></li>
+                                <li>연령 : <span><%=board_content.getBirth().split(" ")[0] %></span></li>
                                 <li>최종학력 : <span><%=board_content.getEducation() %></span></li>
                                 <li>연락처 : <span><%=board_content.getPhone() %></span></li>
                             </ul>
                         </div>
+                        <input type ="hidden" value ="<%= board_content.getBoard_resume_id()%>" id="resume_id"/>
+                        <input type ="hidden" value ="<%= request.getSession().getAttribute("id").toString()%>" id="enterprise_id"/>
                         <form action="#">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="submit_btn">
-                                        <a class="boxed-btn3 w-100" href ="<%=request.getContextPath()%>/enterprise/show?board_resume_id=<%=board_content.getBoard_resume_id() %>">숨겨진 연락처 보기</a>
+                                        <button type="button" class="boxed-btn3 w-100"  data-toggle="modal" data-target="#basicExampleModal" >숨겨진 연락처 보기</button>
                                     </div>
                                 </div>
                             </div>
@@ -126,6 +158,30 @@
 	
 	
 	<%@ include file="../serve/footer.jsp" %>
+	
+	
+	
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">지원하기</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+       	<p>현재 이력서 보기 횟수 :</p><p><%=request.getAttribute("resume_count")%></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" onclick="UseResume()" class="btn btn-primary" >횟수 사용하기</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

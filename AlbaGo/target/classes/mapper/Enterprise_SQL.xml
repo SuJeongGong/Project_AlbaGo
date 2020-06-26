@@ -16,24 +16,28 @@
 		SELECT board_resume.title AS title,
 		scrap_enterprise.date AS DATE,
 		board_resume.date AS resume_date,
-		resume.individual_id as individual_id,
-		scrap_enterprise.scrap_enterprise_id as scrap_enterprise_id
+		resume.individual_id as
+		individual_id,
+		scrap_enterprise.scrap_enterprise_id as
+		scrap_enterprise_id
 		from
 		scrap_enterprise, board_resume , resume
 		<where>
 			scrap_enterprise.board_resume_id =board_resume.board_resume_id
 			AND resume.resume_id = board_resume.resume_id
-			and enterprise_id = #{id}
+			and enterprise_id =
+			#{id}
 		</where>
 		ORDER BY scrap_enterprise.scrap_enterprise_id DESC
-		
+
 	</select>
 
 	<select id="selectVolunteer" parameterType="String"
 		resultType="Volunteer">
 		SELECT volunteer.board_recruit_id as board_recruit_id,
 		board_recruit.title as board_recruit_title,
-		volunteer.individual_id as individual_id,
+		volunteer.individual_id as
+		individual_id,
 		volunteer.memo as memo,
 		volunteer.date as date,
 		volunteer.result as result,
@@ -52,12 +56,11 @@
 			enterprise.enterprise_id = recruit.enterprise_id
 			and
 			enterprise.enterprise_id = #{id}
-		</where> 
+		</where>
 		ORDER BY volunteer.volunteer_id DESC
 	</select>
 
-	<select id="selectRecruits" parameterType="String"
-		resultType="Recruit">
+	<select id="selectRecruits" parameterType="String" 	resultType="Recruit">
 		SELECT *
 		FROM recruit
 		<where>
@@ -65,10 +68,9 @@
 			AND delete_CHECK =1
 		</where>
 		ORDER BY recruit.recruit_id DESC
-		
+
 	</select>
-	<select id="selectRecruit" parameterType="int"
-		resultType="Recruit">
+	<select id="selectRecruit" parameterType="int" resultType="Recruit">
 		SELECT *
 		FROM recruit
 		<where>
@@ -77,7 +79,67 @@
 		</where>
 		ORDER BY recruit.recruit_id DESC
 	</select>
+	
+	
 
+	<select id="selectPayment" parameterType="String" resultType="Payment">
+		SELECT product.name  AS product_name, payment.date AS date, product.price as product_price
+		FROM payment,product  
+		<where>
+				payment.product_id = product.product_id
+		 	 AND enterprise_id  = #{id}
+		</where>
+		ORDER BY payment.payment_id DESC
+	</select>
+	
+	<select id="selectAdvertising" parameterType="String"	resultType="Advertising">
+		SELECT 
+				board_recruit.title AS board_recruit_title,
+				advertising.start_date AS start_date,
+				advertising.end_date AS end_date 
+				
+		FROM Advertising,board_recruit,payment
+		<where>
+			payment.enterprise_id= #{id}
+			and	Advertising.board_recruit_id=board_recruit.board_recruit_id
+			AND payment.payment_id = advertising.payment_id
+		</where>
+		ORDER BY advertising.advertising_id DESC
+	</select>
+	
+
+	<select id="selectpaymentHistoryResume" parameterType="String" resultType="PaymentHistoryResume">
+		SELECT 	board_resume.title  AS board_resume_title,
+			 	payment_history_resume.resume_phone AS resume_phone, 
+			   	payment_history_resume.date as date
+			   	
+		FROM 	payment_history_resume,board_resume 
+		
+		<where>	
+				payment_history_resume.board_resume_id = board_resume.board_resume_id
+		 	 	AND enterprise_id  = #{id}
+		</where>
+		 	 	
+		ORDER BY payment_history_resume.payment_history_resume_id DESC
+		
+	</select>
+	<select id="selectpaymentHistoryUp" parameterType="String"	resultType="PaymentHistoryUp">
+		SELECT 	board_recruit.title as board_recruit_title,
+				payment_history_up.date as date
+				
+		FROM 	payment_history_up,board_recruit
+		
+		<where>
+			board_recruit.board_recruit_id=payment_history_up.board_recruit_id
+			and enterprise_id='w'
+		</where>
+		ORDER BY payment_history_up.payment_history_up_id DESC
+	</select>
+	
+	
+	
+	
+	
 	<insert id="insertRecruit" parameterType="Recruit">
 		insert Into Recruit
 		(
@@ -113,13 +175,14 @@
 		#{education},
 		#{age},
 		#{people_count},
-		#{gender}	,
-		null	
+		#{gender} ,
+		null
 		)
 	</insert>
 
 	<insert id="insertScrap" parameterType="scrap_enterprise">
-		insert Into scrap_enterprise
+		insert Into
+		scrap_enterprise
 		(
 		scrap_enterprise_id,
 		board_resume_id,
@@ -130,16 +193,18 @@
 		null,
 		#{board_resume_id},
 		#{enterprise_id},
-		null	
+		null
 		)
 	</insert>
-	
+
 	<update id="updateAccount" parameterType="Enterprise">
 		update enterprise
 		set name = #{name},
-		business_number = #{business_number},
+		business_number =
+		#{business_number},
 		manager_name = #{manager_name},
-		manager_phone = #{manager_phone},
+		manager_phone =
+		#{manager_phone},
 		category = #{category}
 		<where>
 			enterprise_id = #{enterprise_id}
@@ -156,7 +221,8 @@
 
 	<delete id="deleteScrap" parameterType="int">
 
-		delete from Scrap_enterprise where scrap_enterprise_id = #{scrap_id}
+		delete from
+		Scrap_enterprise where scrap_enterprise_id = #{scrap_id}
 	</delete>
 
 	<update id="deleteRecruit" parameterType="int">
@@ -166,19 +232,57 @@
 			recruit_id = #{recruit_id}
 		</where>
 	</update>
-	
-		<select id = "selectVolunteerResume" parameterType="int" resultType="Resume">
+
+	<select id="selectVolunteerResume" parameterType="int"
+		resultType="Resume">
 		SELECT *
 		FROM resume, individual
 		<where>resume.individual_id = individual.individual_id
-				and resume.resume_id = #{resume_id}
+			and resume.resume_id = #{resume_id}
 		</where>
 	</select>
-		<select id = "selectVolunteerCareer" parameterType="int" resultType="Career">
+	<select id="selectVolunteerCareer" parameterType="int"
+		resultType="Career">
 		SELECT *
 		FROM career
 		<where>resume_id = #{resume_id}
 		</where>
 	</select>
-
+	
+	<update id = "updateResume_count" parameterType="String" >
+		update enterprise
+		set resume_count = resume_count - 1
+		<where>
+			enterprise_id = #{enterprise_id}
+		</where>
+	
+	</update>
+	<insert id = "insertPaymentHistoryResume" parameterType="PaymentHistoryResume">
+		insert into payment_history_resume
+		(
+			payment_history_resume_id,
+			enterprise_id,
+			board_resume_id,
+			resume_phone,
+			resume_count,
+			date		
+		)
+		values
+		(
+			null,
+			#{enterprise_id},
+			#{board_resume_id},
+			(
+			SELECT individual.phone 
+			FROM individual,resume , board_resume
+			WHERE individual.individual_id = resume.individual_id
+					AND resume.resume_id = board_resume.resume_id
+					AND board_resume.board_resume_id =#{board_resume_id}
+						
+			),
+			(select resume_count from enterprise where enterprise_id = #{enterprise_id}),
+			null
+		)
+	</insert>
+	
 </mapper>

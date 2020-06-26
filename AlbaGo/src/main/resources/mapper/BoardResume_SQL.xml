@@ -45,6 +45,15 @@
 		AND board_resume.board_resume_id = #{id}
 		AND board_resume.delete_check = 1
 	</select>
+	<select id = "selectCareers" resultType="Career" parameterType="int">
+SELECT career.name,career.task,career.start_date,career.end_date
+FROM board_resume,resume,career
+<where>
+			board_resume.resume_id = resume.resume_id 
+	AND   resume.resume_id = career.resume_id
+	AND 	board_resume.board_resume_id = 2
+		</where>
+	</select>
 	
 	<!-- 글삭제 -->
 	<delete id="deleteBoard" parameterType="int">
@@ -63,4 +72,13 @@
 		</where>
 	</update>
 	
+	
+	<select id="selectResume_count" parameterType="String" resultType="int">
+		select resume_count 
+		from enterprise
+		<where>
+		 enterprise_id = #{enterprise_id}
+		</where>
+	
+	</select>
 </mapper>

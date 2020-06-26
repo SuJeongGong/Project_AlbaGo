@@ -6,8 +6,9 @@ import lombok.Data;
 public class Advertising {
 	int payment_id;// 결제 id
 	int advertising_id;// 광고id
-	int announce_id;// 공고글id
-	String startDate;// 시작날짜
-	String endDate;// 끝날짜
+	int board_recruit_id;// 공고글id
+	String board_recruit_title;// 공고글 제목
+	String start_date;// 시작날짜
+	String end_date;// 끝날짜
 	String title;// 광고문구
 }
