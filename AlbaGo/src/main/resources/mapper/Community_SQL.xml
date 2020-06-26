@@ -55,4 +55,50 @@
 	</update>
 	
 	
+	
+	
+	
+	
+	
+	
+	<!-- 댓글 작성 -->
+	<insert id = "insertComment" parameterType="BoardCommunity">  
+		INSERT INTO comment
+		(comment_id,
+		community_id,
+		individual_id,
+		date,
+		contents
+		)
+			
+		VALUES
+		(null,
+		#{community_id},
+		#{individual_id},
+		null,
+		#{contents}
+		)
+	</insert>
+	
+	<!-- 댓글 리스트 -->
+	<select id = "selectComments" resultType="BoardComment">        
+		select* from comment	 where community_id =#{community_id}
+	</select>
+	
+	
+	<!-- 댓글 수정 -->
+	<update id="updateComment" parameterType="BoardCommunity">
+		update comment
+		    contents = #{contents}
+		<where>
+			comment_id = #{comment_id}
+		</where>
+	</update> 
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM comment WHERE comment_id = #{comment_id}
+	</delete>
+	
+	
 </mapper>

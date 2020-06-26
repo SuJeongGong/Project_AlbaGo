@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.CommunityDAO;
+import com.spring.ex.dto.BoardComment;
 import com.spring.ex.dto.BoardCommunity;
 
 @Service
@@ -35,6 +36,23 @@ public class CommunityService {
 	}
 	public int updateViews(int community_id) {
 		return communityDAO.updateViews(community_id);
+	}
+	
+	public int insertComment(BoardComment content) {
+		return communityDAO.insertComment(content);
+	}
+
+	public ArrayList<BoardComment> selectComments(int community_id) {
+		return communityDAO.selectComments(community_id);
+	}
+
+	
+	public int deleteComment(int comment_id) {
+		return communityDAO.deleteComment(comment_id);
+	}
+	
+	public int updateComment(BoardComment comment_id) {
+		return communityDAO.updateComment(comment_id);
 	}
 
 }

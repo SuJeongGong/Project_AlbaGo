@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.spring.ex.dto.BoardComment;
 import com.spring.ex.dto.BoardCommunity;
 
 public interface CommunityDAO {
@@ -19,4 +20,14 @@ public interface CommunityDAO {
 	int updateContent(BoardCommunity content);    //수정
 	
 	int updateViews(int community_id);//조회수 증가
+	
+	//insert, update, delete 는 성공하면 1이상의 값 , 아니면 0을 리턴 -> resultType을 XML에 적지 않아도 된다. selet는 적어주어야함
+	int insertComment(BoardComment content);//BoardCommunity = 필요한값 , 결과값의 형태는 int   //write
+	
+	ArrayList<BoardComment> selectComments(int community_id);   //글번호를 이용한 댓글 가져오기 
+	
+	
+	int deleteComment(int comment_id);    //삭제
+	
+	int updateComment(BoardComment content);    //수정
  }
