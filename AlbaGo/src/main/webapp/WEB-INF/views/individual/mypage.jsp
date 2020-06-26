@@ -42,11 +42,9 @@
                         <div class="single_wrap">
                             <p>안전한 정보보호를 위해 연락처 일부만 확인가능하며,<br/>수정화면에서 정확한 연락처 확인이 가능합니다.</p>
 
-                                <li>아이디 : <span><%=Iinfo.getIndividual_id()%></span></li>
                                 <li>이름 : <span><%=Iinfo.getName()%></span></li>
                                 <li>성별 : <span><%=Iinfo.getGender()%></span></li>
-                                <li>연락처 : <span><%=Iinfo.getPhone()%></span></li>
-                                <li>생년월일 : <span><%=Iinfo.getBirth()%></span></li>
+                                <li>생년월일 : <span><%=Iinfo.getBirth().split(" ")[0]%></span></li>
                                 <li>최종학력 : <span><%=Iinfo.getEducation()%></span></li>
                                 <li>가입날짜 : <span><%=Iinfo.getDate().split(" ")[0]%></span></li>
                         </div>

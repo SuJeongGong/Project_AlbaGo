@@ -49,13 +49,13 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 				// 모델에 담기
 				m.addAttribute("Einfo", enterpriseService.selectEnterprise(id));// 기업정보
 				m.addAttribute("scrap", enterpriseService.selectScrap(id));// 스크랩
-				m.addAttribute("recruit", enterpriseService.selectRecruits(id));//공고
-				m.addAttribute("volunteer", enterpriseService.selectVolunteer(id));//지원자
-				m.addAttribute("payment", enterpriseService.selectPayment(id));//결제 기록
-				m.addAttribute("advertising", enterpriseService.selectAdvertising(id));//광고 기록
-				m.addAttribute("payment_history_resume", enterpriseService.paymentHistoryResume(id));//광고 기록
-				m.addAttribute("payment_history_up", enterpriseService.paymentHistoryUp(id));//광고 기록
-				
+				m.addAttribute("recruit", enterpriseService.selectRecruits(id));// 공고
+				m.addAttribute("volunteer", enterpriseService.selectVolunteer(id));// 지원자
+				m.addAttribute("payment", enterpriseService.selectPayment(id));// 결제 기록
+				m.addAttribute("advertising", enterpriseService.selectAdvertising(id));// 광고 기록
+				m.addAttribute("payment_history_resume", enterpriseService.paymentHistoryResume(id));// 광고 기록
+				m.addAttribute("payment_history_up", enterpriseService.paymentHistoryUp(id));// 광고 기록
+
 				System.out.println("모델  후");
 
 				page = "/enterprise/mypage";
@@ -63,6 +63,66 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 				System.out.println("DB연결실패");
 			}
 
+		}
+		return page;
+	}
+
+	@RequestMapping("/payment") // 결제내역 자세히
+	public String payment(HttpServletRequest request, Model m) {
+		String page = "/enterprise/mypage";
+		HttpSession session = request.getSession();
+		if (!session.getAttribute("type").toString().equals("기업")) {
+			return "/join/logout";
+		} else {
+			String id = session.getAttribute("id").toString();
+			// 모델에 담기
+			m.addAttribute("payments", enterpriseService.selectPayment(id));// 기업정보
+			page = "/enterprise/payment";
+		}
+		return page;
+	}
+	
+	@RequestMapping("/advertising") // 광고 내역
+	public String advertising(HttpServletRequest request, Model m) {
+		String page = "/enterprise/mypage";
+		HttpSession session = request.getSession();
+		if (!session.getAttribute("type").toString().equals("기업")) {
+			return "/join/logout";
+		} else {
+			String id = session.getAttribute("id").toString();
+			// 모델에 담기
+			m.addAttribute("advertisings", enterpriseService.selectAdvertising(id));// 기업정보
+			page = "/enterprise/advertising";
+		}
+		return page;
+	}
+	
+	@RequestMapping("payment/resume") // 결제내역 자세히
+	public String paymentResume(HttpServletRequest request, Model m) {
+		String page = "/enterprise/mypage";
+		HttpSession session = request.getSession();
+		if (!session.getAttribute("type").toString().equals("기업")) {
+			return "/join/logout";
+		} else {
+			String id = session.getAttribute("id").toString();
+			// 모델에 담기
+			m.addAttribute("payment_history_resume", enterpriseService.paymentHistoryResume(id));// 기업정보
+			page = "/enterprise/payment_resume";
+		}
+		return page;
+	}
+	
+	@RequestMapping("payment/up") // 광고 내역
+	public String paymentUp(HttpServletRequest request, Model m) {
+		String page = "/enterprise/mypage";
+		HttpSession session = request.getSession();
+		if (!session.getAttribute("type").toString().equals("기업")) {
+			return "/join/logout";
+		} else {
+			String id = session.getAttribute("id").toString();
+			// 모델에 담기
+			m.addAttribute("payment_history_up", enterpriseService.paymentHistoryUp(id));// 기업정보
+			page = "/enterprise/payment_up";
 		}
 		return page;
 	}
@@ -218,10 +278,9 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 
 	// 아약스 처리
 
-	
 	@RequestMapping(value = "/volunteer/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int  updateResult(String result, int id) {
-	
+	public @ResponseBody int updateResult(String result, int id) {
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("volunteer_id", id);
 		map.put("result", result);
@@ -230,7 +289,7 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 	}
 
 	@RequestMapping(value = "/volunteer/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int  updateResults(@RequestParam(value = "result") String result,
+	public @ResponseBody int updateResults(@RequestParam(value = "result") String result,
 			@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -240,40 +299,34 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 		return enterpriseService.updateVolunteerResults(map);
 	}
 
-	
 	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int updateResult(int scrap_id) {
 		return enterpriseService.deleteScrap(scrap_id);
 	}
 
-	
 	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int updateResults(ArrayList<String> scrap_id) {
-	
+
 		return enterpriseService.deleteScraps(scrap_id);
 	}
 
-
 	@RequestMapping(value = "/recruit/deleteRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteRecruit(int recruit_id) {
-		
+
 		return enterpriseService.deleteRecruit(recruit_id);
 	}
 
-
 	@RequestMapping(value = "/recruit/deleteRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public  @ResponseBody int  deleteRecruits(ArrayList<String> recruit_id) {
-		
+	public @ResponseBody int deleteRecruits(ArrayList<String> recruit_id) {
+
 		return enterpriseService.deleteRecruits(recruit_id);
 	}
-	
-	
-	@RequestMapping(value = "/resume/use", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public  @ResponseBody int  resumeUse(@RequestParam(value = "enterprise_id") String enterprise_id,@RequestParam(value = "board_resume_id") int board_resume_id) {//기업 아이템 사용 목록에 insert , resume_count 사용한 내역
 
-		return enterpriseService.resumeUse(enterprise_id,board_resume_id);
+	@RequestMapping(value = "/resume/use", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int resumeUse(@RequestParam(value = "enterprise_id") String enterprise_id,
+			@RequestParam(value = "board_resume_id") int board_resume_id) {// 기업 아이템 사용 목록에 insert , resume_count 사용한 내역
+
+		return enterpriseService.resumeUse(enterprise_id, board_resume_id);
 	}
-	
-	
-	
+
 }
