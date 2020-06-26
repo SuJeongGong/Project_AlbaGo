@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,12 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.ex.dao.ProductDAO;
+import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
-import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
+import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Volunteer;
 import com.spring.ex.services.AdminService;
-import com.spring.ex.services.IndividualService;
 import com.spring.ex.services.ProductService;
 
 @Controller
@@ -29,10 +28,12 @@ public class AdminController {
 	ProductService productService;
 	@Autowired
 	AdminService adminService;
+	
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main() {
 		return "admin/main";
+		
 	}
 
 	@RequestMapping("/recruit") // 공고글 게시판 - 관리자ver
@@ -53,10 +54,19 @@ public class AdminController {
 	@RequestMapping("/individual_list") // 개인 리스트
 	public String individual_list(Model m) {
 		String page="/admin/individual_list";
-	 
+	   
 		ArrayList<Individual> individuals=adminService.selectlist();
 		m.addAttribute("individuals",individuals);
+		System.out.println(individuals);
 		return page;
+	}   
+	@RequestMapping("/individual_list/id") //  개인 검색
+	public String individual_id(Model m ,@RequestParam("category")String category,@RequestParam("search")String search) {
+		String page="/admin/individual_list";
+		ArrayList<Individual> individuals=adminService.selectId(category, search);
+		m.addAttribute("individuals",individuals); 
+	
+		return page; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
 	}
 
 	@RequestMapping("/enterprise_list") // 기업 리스트
@@ -65,14 +75,34 @@ public class AdminController {
 	}
 
 	@RequestMapping("/individual_detail") // 개인 - 디테일?
-	public String individual_detail() {
-		return "admin/individual_detail";
-	}
+	public String individual_detail(Model m,@RequestParam("individual_id") String individual_id) {
+		String page="/admin/individual_detail";
+		
+		//회원정보 상세보기
+		Individual individual = adminService.selectIndividualAccount(individual_id); 
+		m.addAttribute("individual", individual);
+		
+		//이력서 관리
+		ArrayList<Resume> resume=adminService.selectResume(individual_id);
+		m.addAttribute("resume",resume);
+	
+		//지원한알바
+		ArrayList<Volunteer> volunteer=adminService.selectApplypartjob(individual_id);
+		m.addAttribute("volunteers", volunteer);
+
+		//인재 게시판 작성글
+		ArrayList<BoardResume> resumewrite=adminService.selectResumeWrite(individual_id);
+		m.addAttribute("resumewrite",resumewrite);
+		
+		return page;  
+		
+		} 
+
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail() {
 		return "admin/enterprise_detail";
-	}
+	} 
 
 	@RequestMapping("/payment") // 결제관리
 	public String manager_payment() {
@@ -83,7 +113,7 @@ public class AdminController {
 	public String list(Model m, HttpServletRequest request) {
 		
 		ArrayList<Product> products = productService.selectList();
-		m.addAttribute("products", products);
+		m.addAttribute("products", products);  
 
 		return "/admin/product";
 	} 
@@ -117,7 +147,7 @@ public class AdminController {
 	public String delete(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
 		String page = "/admin/product_account";
-		
+		  
 		if (productService.delete_product(product) >= 1) {
 			page = "/admin/main";
 			System.out.println("DB연결성공");

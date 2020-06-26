@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class BoardResume { //인재
 	int board_resume_id;//인재글 id;
-	String title;// 제목
+	String board_resume_title;// 인재글제목
 	String place;// 장소
 	String memo;// 내용
 	String date;// 작성날짜
@@ -24,4 +24,5 @@ public class BoardResume { //인재
 	String term;			//몇개월
 	String time;			//시간
 	String day;				//월~금
+	String resume_title;//이력서
 }
