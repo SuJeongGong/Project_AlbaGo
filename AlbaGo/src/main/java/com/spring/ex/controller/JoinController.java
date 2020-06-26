@@ -41,10 +41,8 @@ public class JoinController {
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
-
 		session.invalidate();//세션초기화
-		
-		return "redirect:/main";
+		return "redirect:/main"; 
 	}
 	@RequestMapping("/login/enterprsie") // 로그인 - 기업
 	public String enterpriseLogin(HttpServletRequest request) {
