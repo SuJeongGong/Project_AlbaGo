@@ -10,27 +10,7 @@
     <meta charset="UTF-8">
     <title>개인검색</title>
 </head>
-<script>
 
-   // 생략	
-
-	$(document).on('click', '#btnSearch', function(e){
-
-		e.preventDefault();
-
-		var url = "${pageContext.request.contextPath}/board/getBoardList";
-
-		url = url + "?searchType=" + $('#searchType').val();
-
-		url = url + "&keyword=" + $('#keyword').val();
-
-		location.href = url;
-
-		console.log(url);
-
-	});	
-
-</script>
 
 <body>
 	<%

@@ -1,12 +1,10 @@
 package com.spring.ex.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,12 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spring.ex.dao.ProductDAO;
 import com.spring.ex.dto.Individual;
-import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
+import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Volunteer;
 import com.spring.ex.services.AdminService;
-import com.spring.ex.services.IndividualService;
 import com.spring.ex.services.ProductService;
 
 @Controller
@@ -30,6 +27,7 @@ public class AdminController {
 	ProductService productService;
 	@Autowired
 	AdminService adminService;
+	
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main() {
@@ -78,16 +76,26 @@ public class AdminController {
 	@RequestMapping("/individual_detail") // 개인 - 디테일?
 	public String individual_detail(Model m,@RequestParam("individual_id") String individual_id) {
 		String page="/admin/individual_detail";
-		Individual individual = adminService.selectIndividualAccount(individual_id);
+		//회원정보 상세보기
+		Individual individual = adminService.selectIndividualAccount(individual_id); 
 		m.addAttribute("individual", individual);
-		return page;
-	}  
+		//이력서 관리
+		ArrayList<Resume> resume=adminService.selectResume(individual_id);
+		m.addAttribute("resume",resume);
+	
+		//지원한알바
+		ArrayList<Volunteer> volunteer=adminService.selectApplypartjob(individual_id);
+		m.addAttribute("volunteers", volunteer);
+		
+		return page;  
+		
+		} 
 
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail() {
 		return "admin/enterprise_detail";
-	}
+	} 
 
 	@RequestMapping("/payment") // 결제관리
 	public String manager_payment() {
@@ -132,7 +140,7 @@ public class AdminController {
 	public String delete(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
 		String page = "/admin/product_account";
-		
+		  
 		if (productService.delete_product(product) >= 1) {
 			page = "/admin/main";
 			System.out.println("DB연결성공");
