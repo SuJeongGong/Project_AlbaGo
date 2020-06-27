@@ -50,6 +50,10 @@ public interface AdminDAO {
 		ArrayList<BoardRecruit> recruit_List_id(String category, String search);//선택검색
 		ArrayList<BoardRecruit> writer_search(String writer); //작성자검색
 		ArrayList<BoardRecruit> title_search(String title); //제목 검색
+		ArrayList<BoardRecruit> recruit_List_day(String day, String daysearch); //날짜검색(오늘, 일주일, 한달)
+		ArrayList<BoardRecruit> today_search_Rc(String today);
+		ArrayList<BoardRecruit> week_search_Rc(String week);
+		ArrayList<BoardRecruit> month_search_Rc(String month);
 	
 	/** 인재글관리 */
 		//전체 인재 갯수
@@ -74,5 +78,9 @@ public interface AdminDAO {
 		int deleteCommunities(int community_id); //커뮤니티글 삭제하기
 		int countComment(int comment_id); //댓글 확인
 		int deleteComment(int comment_id); //댓글 삭제
+		ArrayList<BoardCommunity> community_List_day(String day, String daysearch); //날짜검색(오늘, 일주일, 한달)
+		ArrayList<BoardCommunity> today_search_C(String today);
+		ArrayList<BoardCommunity> week_search_C(String week);
+		ArrayList<BoardCommunity> month_search_C(String month);
 	
 }

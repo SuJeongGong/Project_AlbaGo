@@ -30,7 +30,7 @@
 					</div>
 					<input type="hidden" name ="board_resume_id" value="<%=board_content.getBoard_resume_id()%>">
 					<label for="title">제목 </label>
-					<input type="text" class="form-control" id="title" name="title" value="<%=board_content.getTitle() %>">
+					<input type="text" class="form-control" id="title" name="title" value="<%=board_content.getBoard_resume_title() %>">
 					<label for="message">내용</label>
 					<textarea name="memo" id="memo" cols="30" rows="10" class="form-control"> <%=board_content.getMemo() %></textarea>
 					<br/>
@@ -41,7 +41,7 @@
 						ArrayList<BoardResume> resumes = (ArrayList)request.getAttribute("resume");
 							for(int i=0; i<resumes.size(); i++) {
 								BoardResume resume = resumes.get(i);
-								String title = resume.getTitle();
+								String title = resume.getBoard_resume_title();
 								int resume_id = resume.getResume_id(); %>
 							<option value="<%=resume_id%>"><%=title%></option>
 						<%

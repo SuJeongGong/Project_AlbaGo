@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -73,6 +74,15 @@ public class AdminController {
 		return page;
 	}
 	
+	@RequestMapping("/recruit/day") //공고글 날짜 검색 (오늘, 일주일, 한달)
+	public String boardrecruit_day(Model m, @RequestParam("day")String day, @RequestParam("daysearch")String daysearch) {
+		String page = "/admin/recruit";
+		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_day(day, daysearch);
+		m.addAttribute("boardrecruits", boardrecruits);
+		
+		return page;
+	}
+	
 	// ajax처리
 	@ResponseBody
 	@RequestMapping(value = "/deleteBoardRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -127,10 +137,19 @@ public class AdminController {
 		return "admin/community";
 	}
 	
-	@RequestMapping("/community/id") //공고글 검색
+	@RequestMapping("/community/id") //커뮤니티 검색
 	public String community_id(Model m, @RequestParam("category")String category, @RequestParam("search")String search) {
 		String page = "/admin/community";
 		ArrayList<BoardCommunity> boardcommunities = adminService.community_List_id(category, search);
+		m.addAttribute("boardcommunities", boardcommunities);
+		
+		return page;
+	}
+	
+	@RequestMapping("/community/day") //커뮤니티 날짜 검색 (오늘, 일주일, 한달)
+	public String community_day(Model m, @RequestParam("day")String day, @RequestParam("daysearch")String daysearch) {
+		String page = "/admin/community";
+		ArrayList<BoardCommunity> boardcommunities = adminService.community_List_day(day, daysearch);
 		m.addAttribute("boardcommunities", boardcommunities);
 		
 		return page;

@@ -50,11 +50,11 @@ public class BoardResumeController {
 		
 		int a = boardresume.getBoard_resume_id();
 		int b = boardresume.getResume_id();
-		//String c = boardresume.getTitle();
+		String c = boardresume.getBoard_resume_title();
 		String d = boardresume.getMemo();
 		System.out.println(a);
 		System.out.println(b);
-		//System.out.println(c);
+		System.out.println(c);
 		System.out.println(d);
 		
 		if(id==null) {

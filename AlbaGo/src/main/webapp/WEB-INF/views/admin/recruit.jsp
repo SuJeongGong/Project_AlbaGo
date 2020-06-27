@@ -85,7 +85,6 @@
                         <!-- Card Content - Collapse -->
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body">
-                            <form action="<%=request.getContextPath() %>/admin/recruit/id" method="get" name="keyword" id="keyword">
                                 <table>
                                     <th>업직종</th>
                                     <th>지역</th>
@@ -131,13 +130,18 @@
                                             </select>
                                         </td>
 
-                                        <td>
-                                            <input type="text" name="date" style="width: 150px;">&nbsp;&nbsp; ~ &nbsp;&nbsp;<input type="text"
-                                                name="date" style="width: 150px;">
-                                            <input type="submit" value="오늘" class="btn py-1 px-1 btn-primary">&nbsp;
-                                            <input type="submit" value="1주일" class="btn py-1 px-1 btn-primary">&nbsp;
-                                            <input type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
-                                        </td>
+                                        <form action="<%=request.getContextPath() %>/admin/recruit/day" method="get" name="keyword" id="keyword">
+                                    	<td>
+                                            <select name="day" style="width:150px;">
+                                            	<option value="">--선택하십시오--</option>
+                                            	<option value="today">오늘</option>
+                                            	<option value="week">일주일</option>
+                                            	<option value="month">1개월</option>
+                                            </select>
+                                            <input type="hidden" name="daysearch">
+                                    		<button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
+                                    	</td>
+                                    	</form>	
                                     </tr>
 
                                     <tr>
@@ -208,9 +212,11 @@
                                                 <option value="고등학교 졸업">고등학교 졸업</option>
                                                 <option value="2/3년제 졸업">2/3년제 졸업</option>
                                                 <option value="4년제 졸업">4년제 졸업</option>
-                                            </select> </td>
-                                            
-                                        <td><select id="category" name="category" style="width: 100px;">
+                                            </select> 
+                                        </td>
+                                        <form action="<%=request.getContextPath() %>/admin/recruit/id" method="get" name="keyword" id="keyword">    
+                                        <td>
+                                        	<select id="category" name="category" style="width: 100px;">
                                                 <option value="전체">전체</option>
                                                 <option value="writer" id="writer">작성자</option>
                                                 <option value="title" id="title">제목</option>
@@ -218,7 +224,7 @@
                                             <input type="text" name="search" style="width: 350px;">
                                             <button class="btn py-1 px-1 btn-primary" type ="submit" >검색</button>
                                         </td>
-                                        
+                                        </form>
                                     </tr>
 
                                 </table>

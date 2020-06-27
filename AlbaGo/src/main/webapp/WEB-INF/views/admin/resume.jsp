@@ -279,7 +279,7 @@
                                     	BoardResume list = boardresumes.get(i);
                                     	int boardresume_id = list.getBoard_resume_id();
                                     	String boardresume_date = list.getDate().split(" ")[0];
-                                    	String boardresume_title = list.getTitle();
+                                    	String boardresume_title = list.getBoard_resume_title();
                                     	String individual_id = list.getIndividual_id();
                                     	
                                     %>
