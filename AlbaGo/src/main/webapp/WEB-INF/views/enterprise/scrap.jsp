@@ -9,8 +9,9 @@
 <head>
 <meta charset="UTF-8">
 <title>스크랩 목록</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<%
+	ArrayList<Scrap_enterprise> scraps = (ArrayList) request.getAttribute("scraps");
+	%>
 <script>
 function deleteScrap(scrap_id) {
 	console.log(scrap_id);
@@ -21,10 +22,12 @@ function deleteScrap(scrap_id) {
 			scrap_id : scrap_id
 		},
 		success :function(res){
-			if(res=="성공"){
-				alert("삭제 성공");
+			if(res>=1){
+				alert("결과 저장 완료");
+
+				 $("#res").load(window.location.href + " #res");
 			}else{
-				alert("삭제 실패");
+				alert("사용실패")
 			}
 		}
 	});
@@ -45,10 +48,11 @@ function deleteScraps() {
 			scrap_ids: scrap_ids
 		},
 		success :function(res){
-			if(res=="성공"){
-				alert("삭제 성공");
+			if(res>=1){
+				alert("결과 저장 완료");
+				 $("#res").load(window.location.href + " #res");
 			}else{
-				alert("삭제 실패");
+				alert("사용실패")
 			}
 		}
 	});
@@ -76,7 +80,7 @@ function deleteScraps() {
 		</div>
 		<div class="row">
 			<div class="table-responsive">
-				<table class="table">
+				<table class="table" id ="res">
 					<thead>
 						<tr>
 							<button type="submit" class="btn btn-outline-danger" style="float: right;"   onclick="deleteScraps()" >선택삭제</button>
@@ -90,9 +94,9 @@ function deleteScraps() {
 							<th>삭제</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody >
 						<%
-							ArrayList<Scrap_enterprise> scraps = (ArrayList) request.getAttribute("scraps");
+
 							for (int i = 0; i < scraps.size(); i++) {
 								Scrap_enterprise scrap = scraps.get(i);
 								int scrap_id = scrap.getScrap_enterprise_id();
@@ -103,7 +107,7 @@ function deleteScraps() {
 						%>
 
 
-						<tr>
+						<tr >
 							<td><input type="checkbox" class="memberChk"	name = "scrap_id" value="<%=scrap_id %>"	></td>
 							<td><%=title%></td>
 							<td><%=individual_id%></td>
@@ -127,6 +131,8 @@ function deleteScraps() {
 
 
 	<%@ include file="../serve/footer.jsp"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
 		var selectAll = document.querySelector(".selectAllMembers");
 		selectAll.addEventListener('click', function() {

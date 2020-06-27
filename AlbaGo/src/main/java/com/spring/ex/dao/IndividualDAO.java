@@ -26,5 +26,6 @@ public interface IndividualDAO {
 	int insertScrap(Scrap_Individual scrap);
 	int insertVolunteer(Volunteer volunteer);
 	Resume selectResume(int resume_id);
+	int selectResumeCount(String id);
 	ArrayList<Career> selectCareer(int resume_id);
 }

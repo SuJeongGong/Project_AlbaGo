@@ -341,8 +341,33 @@ public class AdminController {
 	}
 
 	@RequestMapping("/approve") // 결제승인
-	public String approve() {
+	public String approve(Model m) {
+		ArrayList<Payment> payments= productService.selectPayments();
+		
+		m.addAttribute("payments",payments);
+		
 		return "admin/approve";
+	}	// 아약스 처리
+	@RequestMapping(value = "/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int updateResult(@RequestParam(value = "result") String result,@RequestParam(value = "id") int id) {
+
+		System.out.println("volunteer_ids" + id);
+		System.out.println("result" + result);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("payment_id", id);
+		map.put("result", result);
+
+		return productService.updatePaymentResult(map);
+	}
+	@RequestMapping(value = "/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int updateResults(@RequestParam(value = "result") String result,	@RequestParam(value = "payment_ids[]") ArrayList<String> payment_ids) {
+
+		System.out.println("payment_ids" + payment_ids);
+		System.out.println("result" + result);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("payment_ids", payment_ids);
+		map.put("result", result);
+		return productService.updatePaymentsResult(map);
 	}
 
 }

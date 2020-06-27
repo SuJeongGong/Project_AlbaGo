@@ -105,6 +105,9 @@ public class EnterpriseService {
 			result =1;
 		}
 		return result;
+	}	
+	public int selectResume_count(String enterprise_id) {
+		return enterpriseDAO.selectResume_count(enterprise_id);
 	}
 	public int deleteScrap(int scrap_id) {
 		return enterpriseDAO.deleteScrap(scrap_id);

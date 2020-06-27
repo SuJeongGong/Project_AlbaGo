@@ -110,6 +110,81 @@
 		null);
 	</insert>
 	
+	<select id="selectPayments" resultType="Payment">
+		select  payment.payment_id as payment_id, 
+				enterprise.name as enterprise_name, 
+				product.name as product_name,
+				payment.result as result, 
+				product.term as use_date,
+				payment.date as date,
+				product.type as product_type
+		from Payment, enterprise, product 
+		<where>
+			payment.enterprise_id = enterprise.enterprise_id
+			and payment.product_id = product.product_id
+		</where>
+		order by payment.payment_id DESC
+	</select>
+	
+	
+	<select id ="selectProductCount" parameterType="int" resultType="int">
+		select  product.amount  from product, payment
+		<where>
+			payment.product_id = product.product_id
+			and payment.payment_id = #{payment_id}
+		</where>
+	</select>
+	
+	<select id ="selectProductType" parameterType="int" resultType="String">
+		select  product.type  from product, payment
+		<where>
+			payment.product_id = product.product_id
+			and payment.payment_id = #{payment_id}
+		</where>
+	</select>
+	
+	<select id ="selectEnterprise_id" parameterType="int" resultType="String">
+	select enterprise_id from payment
+	<where>
+		payment_id = #{payment_id}
+	</where>
+	</select>
+	
+	<update id = "updateEnterpriseUpCount" parameterType="hashmap">
+		update enterprise
+		SET up_count = up_count + #{product_count}
+		<where>
+			enterprise_id =#{enterprise_id}
+		</where>
+	</update>
+	
+	<update id = "updateEnterpriseResumeCount" parameterType="hashmap">
+			update enterprise
+		SET resume_count =resume_count+#{product_count}
+		<where>
+			enterprise_id =#{enterprise_id}
+		</where>
+	</update>
+	
+	<update id = "updateEnterpriseBoardCount" parameterType="hashmap">
+				update enterprise
+		SET board_count =board_count+ #{product_count}
+		<where>
+			enterprise_id =#{enterprise_id}
+		</where>
+	
+	
+	
+	</update>
+	<update id = "updatePaymentResult" parameterType="hashmap">
+				update payment
+		SET result = #{result}
+		<where>
+			payment_id =#{payment_id}
+		</where>
+	
+	
+	</update>
 	
 
 </mapper>

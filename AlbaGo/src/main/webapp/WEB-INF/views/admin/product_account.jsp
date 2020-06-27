@@ -33,43 +33,53 @@
 					int amount=product.getAmount();
 					String explan=product.getExplan();
 					int delete_check=product.getDelete_check();
+					
 				%>
 				
 				<!-- main 본문  -->
-				<div class="container-fluid">
+				<div class="container-fluid ">
 					<!-- 요기다 작성  -->
-					<div class="container mb-5 mt-5">
-						<div class="pricing card-deck flex-column flex-md-row mb-3">
+					<div class="container mb-5 mt-5 card-center">
+						<div class="pricing card-deck flex-column flex-md-row mb-3 card-center" >
 
-							<div class="card card-pricing text-center px-3 mb-4">
-				<form action="<%=request.getContextPath() %>/admin/account/update" name="product" id  = "product" class="col-xl-11" >
+							<div class="card  center-block card-center card-pricing text-center px-3 mb-4  col-xl-8">
+				<form action="<%=request.getContextPath() %>/admin/account/update" name="product" id  = "product" class="col-xl-12" >
 	             			
-					
+						<div class="row form-group ">
 								<span
 									class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">
 								
-									<input type="text" name="product_id" id="product_id" value="<%=product_id%>">
-								<%=product_id%>
-									<input type="text" name="name" id="name" value="<%=name%>">
-								</span>
+									<input type="hidden" name="product_id" id="product_id"  value="<%=product_id%>">
+								
+								<%=product_id%><br>
+									<input type="text" class="col-sm-12 form-control "name="name" id="name" value="<%=name%>">
+								</span></div>
 								<div class="bg-transparent card-header pt-4 border-0">
-									<h1 class="h4 font-weight-normal text-primary text-center mb-0"
+									<h1 class="h4 font-weight-normal text-primary text-center mb-0 form-group "
 										data-pricing-value="15">
-										<input type="text" size="7" name="price" id="price" value="<%=price%>" />원 <br>
-										<input type="text" size="7" name="amount" id="amount"  value="<%=amount%>">개
+										<div class="row form-group ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"   class="col-sm-4 form-control "   name="price" id="price" value="<%=price%>" />&nbsp;원 &nbsp;&nbsp;&nbsp;&nbsp;
+										&nbsp;&nbsp;	<input type="text"   class="col-sm-4 form-control " name="amount" id="amount"  value="<%=amount%>">&nbsp;개</div>
 									</h1>
 								</div>
 								<div class="card-body pt-0">
-									<ul class="list-unstyled mb-4">
+									<ul class="list-unstyled mb-4 h4 font-weight-normal text-primary text-center" >
+									<%
+									if(term.equals("무제한")){//기간이 없는 상품
+									%>
+										기간 :<%=term%>									
+									<%
+									}else{%>
 										기간
 										<input type="text" cols=121 rows=5 class="form-control"
 											style="border-radius: 0px"  name="term" id="term" value="<%=term%>" />
+									<%}%>
 
 									</ul>
 									<ul class="list-unstyled mb-4">
-										설명
-										<input type="text" cols=121 rows=5 class="form-control"
-											style="border-radius: 0px" name="explan" id="explan" value="<%=explan%>" />
+									<div class="row form-group h4 font-weight-normal text-primary text-center">
+										설명&nbsp;
+										<input type="text" class="col-sm-10 form-control "
+											style="border-radius: 0px" name="explan" id="explan" value="<%=explan%>" /></div>
 
 									</ul>
 								<button class="btn btn-info edit" 

@@ -22,9 +22,7 @@
     <link rel="stylesheet" href="<c:url value="/css/gijgo.css" />">
     <link rel="stylesheet" href="<c:url value="/css/animate.min.css" />">
     <link rel="stylesheet" href="<c:url value="/css/slicknav.css" />">
-
     <link rel="stylesheet" href="<c:url value="/css/style.css" />">
-    <link rel="stylesheet" href="<c:url value="/css/responsive" />">
 <%
     String conPath = request.getContextPath();
 	

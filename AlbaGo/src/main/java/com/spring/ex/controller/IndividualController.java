@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.spring.ex.dto.Career;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.interceptor.Auth;
+import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.IndividualService;
 
+@Auth
 @Controller
 @RequestMapping("/individual")
 public class IndividualController {
@@ -27,133 +30,65 @@ public class IndividualController {
 	@Autowired
 	IndividualService individualSerive;
 
-	// 아이디 리턴해주는 메서드
-	public String sessionId(HttpSession session) {
-		return session.getAttribute("id").toString();
-	}
-
-	// 경로 리턴 , 세션 타입에 따라
-	public String sessionType(HttpSession session) {
-		if (session.getAttribute("type").toString() == "기업") {
-			return "/main";
-		}
-		return "";
-	}
-
 	@RequestMapping("/mypage") // 마이페이지 메인
-	public String mypage(HttpServletRequest request, Model m) {
-		String id = sessionId(request.getSession());
-		String page = sessionType(request.getSession());
-
-		if (individualSerive.selectIndividual(id) != null) {// DB 연결 오류 없음
-			// 모델에 담기
-			m.addAttribute("Iinfo", individualSerive.selectIndividual(id));// 기업정보
-			m.addAttribute("scraps", individualSerive.selectScrap(id));// 스크랩
-			m.addAttribute("resumes", individualSerive.selectResumes(id));// 스크랩
-			m.addAttribute("volunteers", individualSerive.selectVolunteer(id));// 스크랩
-
-			page = "/individual/mypage";
-		} else {
-			System.out.println("DB연결실패");
-		}
-
-		return page;
-
+	public String mypage(@AuthUser String id, Model m) {
+		// 모델에 담기
+		m.addAttribute("Iinfo", individualSerive.selectIndividual(id.split("/")[0]));// 기업정보
+		m.addAttribute("scraps", individualSerive.selectScrap(id.split("/")[0]));// 스크랩
+		m.addAttribute("resumes", individualSerive.selectResumes(id.split("/")[0]));// 스크랩
+		m.addAttribute("volunteers", individualSerive.selectVolunteer(id.split("/")[0]));// 스크랩
+		return "/individual/mypage";
 	}
 
 	@RequestMapping("/account") // 개인정보 수정 - 화면 보여주기
-	public String account(HttpServletRequest request, Model m) {
-		String id = sessionId(request.getSession());
-		String page = sessionType(request.getSession());
-		if (individualSerive.selectIndividual(id) != null) {
-			System.out.println("DB연결성공");
-
-			// 모델에 담기
-			m.addAttribute("Iinfo", individualSerive.selectIndividual(id));// 기업정보
-
-			page = "/individual/account";
-		} else {
-			System.out.println("DB연결실패");
-		}
-		return page;
+	public String account(@AuthUser String id, Model m) {
+		m.addAttribute("Iinfo", individualSerive.selectIndividual(id.split("/")[0]));// 기업정보
+		return "/individual/account";
 	}
 
 	@RequestMapping("/account/update") // 개인정보 수정 - 수정하기
-	public String account(HttpServletRequest request, @ModelAttribute("individual") Individual individual) {
-		// String id = sessionId(request.getSession());
-		String page = sessionType(request.getSession());
-
-		if (individualSerive.updateAccount(individual) == 1) {
-			System.out.println("DB연결성공");
-
-			page = "/main";
-		} else {
-			System.out.println("DB연결실패");
+	public String account( @ModelAttribute("individual") Individual individual) {
+		String page = "/individaul/account";
+		if (1 <= individualSerive.updateAccount(individual)) {
+			page = "redirect:/individaul/mypage";
 		}
-
 		return page;
 	}
 
 	@RequestMapping("/scrap") // 스크랩 공고- 리스트 보여주기
-	public String scrap(HttpServletRequest request, Model m) {
-		String id = sessionId(request.getSession());
-		String page = sessionType(request.getSession());
-		System.out.println(individualSerive.selectScrap(id));
-		m.addAttribute("scraps", individualSerive.selectScrap(id));
-		page = "/individual/scrap";
+	public String scrap(@AuthUser String id, Model m) {
+		m.addAttribute("scraps", individualSerive.selectScrap(id.split("/")[0]));
 
-		return page;
+		return "/individual/scrap";
 	}
-	
-	@RequestMapping("/scrap/save") //스크랩 저장하기
-	public String scrapSave(HttpServletRequest request,@RequestParam("board_recruit_id") int board_recruit_id) {
-		String id = sessionId(request.getSession());
-		String page = sessionType(request.getSession());
-		 if(1<=individualSerive.insertScrap(board_recruit_id,id)) {
-			 System.out.println("DB 연결 성공!");
-				page = "redirect:/recruit/list";
-		 }
-		
-		return page;
-	}
-	
+
+
+
 	@RequestMapping("/profile/list") // 이력서 - 리스트 보여주기
-	public String profileList(HttpServletRequest request, Model m) {
-		String id = sessionId(request.getSession());
-		String page = sessionType(request.getSession());
-		m.addAttribute("Resumes", individualSerive.selectResumes(id));// why salary는 안나오죠?
-		page = "/individual/profile_list";
-
-		return page;
+	public String profileList(@AuthUser String id, Model m) {
+		m.addAttribute("Resumes", individualSerive.selectResumes(id.split("/")[0]));// why salary는 안나오죠?
+		return "/individual/profile_list";
 	}
 
 	@RequestMapping("/profile/write") // 이력서 작성 - 화면보여주기
 	public String profileWrite() {
 		return "/individual/profile_write";
 	}
-	
+
 	@RequestMapping("/profile/content") // 이력서 상세보기
-	public String profileContent(@RequestParam("resume_id") int resume_id,Model m) {
-		String page =  "/individual/profile_list";
-		Resume resume = individualSerive.selectResume(resume_id);
-		if(resume!=null) {
-			m.addAttribute("resume", resume);
-			page= "individual/profile_content";
-		}
-		return page;
+	public String profileContent(@RequestParam("resume_id") int resume_id, Model m) {
+		m.addAttribute("resume", individualSerive.selectResume(resume_id));
+		return "individual/profile_content";
 	}
 
-
 	@RequestMapping("/profile/write/save") // 이력서 작성 - 저장하기
-	public String profileWriteSave(@ModelAttribute("profile") Resume resume, HttpServletRequest request) {
-		String page = "/profile/write/save";// 성공 안하면 
-
+	public String profileWriteSave(@AuthUser String id, @ModelAttribute("profile") Resume resume,
+			HttpServletRequest request) {
+		String page = "/profile/write/save";// 성공 안하면
 		ArrayList<Career> careers = new ArrayList<Career>();
-		
+		resume.setIndividual_id(id.split("/")[0]); // 세션에서 로그인 값 받아와서 이력서에 넣기
 
-		resume.setIndividual_id(request.getSession().getAttribute("id").toString()); //세션에서 로그인 값 받아와서 이력서에 넣기
-		
-		if (1 <= individualSerive.insertResume(resume)) {//이력서를 저장하는데에 성공했다면 
+		if (1 <= individualSerive.insertResume(resume)) {// 이력서를 저장하는데에 성공했다면
 			System.out.println("DB에 값 넣기 성공 ( 이력서 )");
 			int i = 0;
 			while (true) {
@@ -165,118 +100,87 @@ public class IndividualController {
 				career.setTask(request.getParameter("career_task" + i));
 				career.setStart_date(request.getParameter("career_start_date" + i));
 				career.setEnd_date(request.getParameter("career_end_date" + i));
-				career.setResume_id(resume.getResume_id());//저장 성공한 이력서의 key값으로 경력 넣기
+				career.setResume_id(resume.getResume_id());// 저장 성공한 이력서의 key값으로 경력 넣기
 				System.out.println(resume.getResume_id());
 				careers.add(career);
 				i = i + 1;
 			}
 		}
-
-		if (1 <= individualSerive.insertCareer(careers, resume.getResume_id())) {//경력 저장에 성공했다면
+		if (1 <= individualSerive.insertCareer(careers, resume.getResume_id())) {// 경력 저장에 성공했다면
 			System.out.println("DB에 값 넣기 성공 ( 경력 )");
 			page = "/main"; // 성공했을때 경로
-
 		}
 		return page;
-
 	}
 
 	@RequestMapping("/support") // 지원현황 - 리스트 보여주기
-	public String support(HttpServletRequest request, Model m) {
-		String id = sessionId(request.getSession());
-		String page = sessionType(request.getSession());
+	public String support(@AuthUser String id, Model m) {
 
-//			System.out.println(enterpriseService.selectVolunteer(id)); - 테스트 주석
+		m.addAttribute("volunteers", individualSerive.selectVolunteer(id.split("/")[0]));// why salary는 안나오죠?
 
-		m.addAttribute("volunteers", individualSerive.selectVolunteer(id));// why salary는 안나오죠?
-		page = "/individual/support";
-
-		return page;
-	}
-	@ResponseBody
-	@RequestMapping( value ="/support/save", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 지원하기
-	public void supportSave(HttpServletRequest request, @RequestParam("board_recruit_id")int board_recruit_id,@RequestParam("resume_id")int resume_id,@RequestParam("memo")String memo,Model m) {
-		String id = sessionId(request.getSession());
-		String page = sessionType(request.getSession());
-		System.out.println("board_recruit_id : "+board_recruit_id);
-		System.out.println("resume_id : "+resume_id);
-		m.addAttribute("volunteers", individualSerive.insertVolunteer(board_recruit_id,resume_id,id,memo));
-//		page = "redirect:/recruit/content?board_recruit_id?"+board_recruit_id;
-		
-		return ;
+		return "/individual/support";
 	}
 
-	@ResponseBody//이력서 삭제
+
+	// 이력서 삭제
 	@RequestMapping(value = "/profile/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteResuem(int resume_id) {
-		String result="";
-		System.out.println(resume_id);// jsp 에서 가져온값
-		if (1 <= individualSerive.deleteResume(resume_id)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public @ResponseBody int deleteResuem(int resume_id) {
+		return individualSerive.deleteResume(resume_id);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/profile/deleteResumes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteResuems(@RequestParam(value = "resume_ids[]") ArrayList<String> resume_ids) {
-		String result="";
-		System.out.println(resume_ids);
-		if (1 <= individualSerive.deleteResume(resume_ids)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public @ResponseBody int deleteResuems(@RequestParam(value = "resume_ids[]") ArrayList<String> resume_ids) {
+
+		return individualSerive.deleteResume(resume_ids);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteScrap(int scrap_id) {
-		String result="";
-		System.out.println(scrap_id);// jsp 에서 가져온값
-		if (1 <= individualSerive.deleteScrap(scrap_id)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public @ResponseBody int deleteScrap(int scrap_id) {
+
+		return individualSerive.deleteScrap(scrap_id);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteScraps(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_ids) {
-		String result="";
-		System.out.println(scrap_ids);
-		if (1 <= individualSerive.deleteScrap(scrap_ids)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public @ResponseBody int deleteScraps(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_ids) {
+
+		return individualSerive.deleteScrap(scrap_ids);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteVolunteer(int volunteer_id) {
-		String result="";
-		System.out.println("asdfsd");
-		System.out.println(volunteer_id);// jsp 에서 가져온값
-		if (1 <= individualSerive.deleteVolunteer(volunteer_id)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public @ResponseBody int deleteVolunteer(int volunteer_id) {
+
+		return individualSerive.deleteVolunteer(volunteer_id);
 	}
 
-	@ResponseBody
 	@RequestMapping(value = "/deleteVolunteers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteVolunteers(@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
-		String result="";
-		System.out.println(volunteer_ids);
-		if (1 <= individualSerive.deleteVolunteer(volunteer_ids)) {
-			System.out.println("DB연결 성공!");
-			result = "성공";
-		}
-		return result;
+	public @ResponseBody int deleteVolunteers(
+			@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
+		return individualSerive.deleteVolunteer(volunteer_ids);
 	}
+	@RequestMapping(value = "/scrap/save", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int scrapSave(@AuthUser String id, @RequestParam("board_recruit_id") int board_recruit_id) {
+		if((id.split("/")[0].toString()).equals("null")) {
+			return  -1;
+		}if(!id.split("/")[1].equals("개인")) {
+			return  -2;
+		}
+		return  individualSerive.insertScrap(board_recruit_id, (id.split("/")[0]));
+	}
+	@RequestMapping(value = "/support/save", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 지원하기
+	public @ResponseBody int supportSave(@AuthUser String id, @RequestParam("board_recruit_id") int board_recruit_id,
+			@RequestParam("resume_id") int resume_id, @RequestParam("memo") String memo) {
+	
+		return  individualSerive.insertVolunteer(board_recruit_id, resume_id, (id.split("/")[0]), memo);
+	}
+	@RequestMapping(value = "/check/id", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 지원하기
+	public @ResponseBody int checkid(@AuthUser String id) {
+		if((id.split("/")[0].toString()).equals("null")) {
+			return  -1;
+		}if(!id.split("/")[1].equals("개인")) {
+			return  -2;
+		}
+		return  individualSerive.selectResumeCount(id.split("/")[0]);
+	}
+
 
 }

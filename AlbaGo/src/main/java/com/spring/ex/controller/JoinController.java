@@ -41,10 +41,8 @@ public class JoinController {
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
-
 		session.invalidate();//세션초기화
-		
-		return "/main";
+		return "redirect:/main"; 
 	}
 	@RequestMapping("/login/enterprsie") // 로그인 - 기업
 	public String enterpriseLogin(HttpServletRequest request) {
@@ -65,9 +63,10 @@ public class JoinController {
 			session.setAttribute("type", "기업");// 세션에 기업인지, 개인인지 구분자 넣기
 			session.setMaxInactiveInterval(900);
 
-			page = "/main";// db값넣기 성공시 result페이지로
+			page = "redirect:/main";// db값넣기 성공시 result페이지로
 		} else {
 			System.out.println("login 실패");
+			page = "redirect:/join/login";
 		}
 		return page;// 로그인 성공시
 	}
@@ -89,9 +88,10 @@ public class JoinController {
 			session.setAttribute("id", id);// 세션에 아이디 넣기
 			session.setAttribute("type", "개인");// 세션에 기업인지, 개인인지 구분자 넣기
 
-			page = "/main";// db값넣기 성공시 result페이지로
+			page =  "redirect:/main";/// db값넣기 성공시 result페이지로
 		} else {
 			System.out.println("login 실패");
+			page = "redirect:/join/login";
 		}
 		return page;// 로그인 성공시
 	}

@@ -188,4 +188,7 @@
 	<select id = "selectCareer" parameterType="int" resultType="Career">
 		select * from Career where resume_id = #{resume_id}
 	</select>
+	<select id = "selectResumeCount" parameterType="String" resultType="int">
+		select count(*) from resume where individual_id= #{id}
+	</select>
 </mapper>
