@@ -52,7 +52,7 @@ function UseResume(){
                             <div class="jobs_left d-flex align-items-center">
                                 <div class="jobs_conetent">
                                     <a href="#">
-                                        <h4><%=board_content.getTitle() %></h4>
+                                        <h4><%=board_content.getBoard_resume_title() %></h4>
                                     </a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
