@@ -184,7 +184,7 @@
                             </div>
                             <div class="card-body">
                               <!-- 지원한 알바 form 시작 -->
-                            <form id="resume" action="">
+                            <form id="apply" action="">
                        
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -243,8 +243,8 @@
                             </h6>
                         </div>
                         <div class="card-body">
-                        <form>
-                            <table class="table table-striped">
+                        <form id="resumeWrite" action="">
+                               <table class="table table-striped">
                                 <thead>
                                 
                                     <tr class="text-center">
@@ -285,6 +285,7 @@
                                     %>
                                 </tbody>
                             </table>
+                            </form>
                         </div>
                     </div>
                     
@@ -296,9 +297,11 @@
                             </h6>
                         </div>
                         <div class="card-body">
-
+           				<form id="communityWrite" action="">
+             
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
+                                <tr>
                                     	<th>글제목</th>
                                         <th>작성자</th>
                                         <th>작성일</th>
@@ -330,6 +333,7 @@
                                     
                                 </tbody>
                             </table>
+                        </form>
                         </div>
                     </div>
                 </div>

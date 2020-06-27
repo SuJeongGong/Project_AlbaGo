@@ -44,6 +44,11 @@ public interface AdminDAO {
 	ArrayList<Enterprise> selectEnterprise_manager_name(String manager_name);	//담당자이름
 	ArrayList<Enterprise> selectEnterprise_manager_phone(String manager_phone);	//담당자 번호
 	
+	//<!--기업관리자 링크타고-->
+	//<!--기업 회원 정보-->
+	Enterprise selectEnterpriseAccount(String id);
+	
+	
 	
 	
 	

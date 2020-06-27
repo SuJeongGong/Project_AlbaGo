@@ -37,7 +37,7 @@
 	phone like CONCAT('%',#{phone},'%')
 	</where> 
 	</select>
-				<!-- ................................................. -->
+				
 	<!-- 개인관리자 링크타고 -->
 	<!-- 개인 회원 정보 -->
 	<select id="selectIndividualAccount" parameterType="String" resultType="Individual">
@@ -153,6 +153,14 @@
 	</where> 
 	</select>
 	
+	<!-- 기업 회원 정보 -->
+	<select id="selectEnterpriseAccount" parameterType="String" resultType="Enterprise">
+	SELECT * 
+	FROM Enterprise
+	<where>
+	enterprise_id=#{id}
+	</where>
+	</select>
 	
 	
 	<!-- #################  -->

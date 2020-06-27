@@ -80,6 +80,10 @@ public class AdminService {
 			
 			return null;
 		}
+	//기업회원정보 '상세정보'를 볼수있는 테이블
+	public Enterprise selectEnterpriseAccount(String id){
+		return adminDAO.selectEnterpriseAccount(id);	
+	}
 
 
 	

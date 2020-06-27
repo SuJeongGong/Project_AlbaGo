@@ -188,10 +188,10 @@ public class AdminController {
 	}
  
 	@RequestMapping("/individual_detail") // 개인 - 디테일?
-	public String individual_detail(Model m,@RequestParam("individual_id") String individual_id) {
+	public String individual_detail(Model m,@RequestParam("individual_id") String individual_id) { 
 		String page="/admin/individual_detail";
 		
-		//회원정보 상세보기
+		//개인 회원정보 상세보기
 		Individual individual = adminService.selectIndividualAccount(individual_id); 
 		m.addAttribute("individual", individual);
 		
@@ -218,8 +218,15 @@ public class AdminController {
 
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
-	public String enterprise_detail() {
-		return "admin/enterprise_detail";
+	public String enterprise_detail(Model m,@RequestParam("enterprise_id") String enterprise_id) {
+		String page="admin/enterprise_detail";
+		
+		//기업 회원정보 상세보기
+		Enterprise enterprise = adminService.selectEnterpriseAccount(enterprise_id); 
+		m.addAttribute("enterprise", enterprise);
+				
+		
+		return page;
 	} 
 
 	@RequestMapping("/payment") // 결제관리
