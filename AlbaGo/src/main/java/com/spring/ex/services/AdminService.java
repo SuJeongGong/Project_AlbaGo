@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.spring.ex.dao.AdminDAO;
 import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardResume;
+import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
@@ -51,6 +52,37 @@ public class AdminService {
 	//인재 게시판 작성글
 	public ArrayList<BoardResume> selectResumeWrite(String id) {
 		return adminDAO.selectResumeWrite(id);	
+	}
+	//커뮤니티 게시판 작성글
+	public ArrayList<BoardCommunity> selectCommunity(String id) {
+		return adminDAO.selectCommunity(id);	
+	}
+	
+	//기업회원정보 '리스트'전체를 보여주는 테이블
+	public ArrayList<Enterprise> selectEnterpriselist() {
+		return adminDAO.selectEnterpriselist();
+	}
+	//개인회원정보에서 카테고리를 선택해서 검색
+		public ArrayList<Enterprise> selectEnterpriselist(String category, String search) {
+			ArrayList<Enterprise> enterprises=null;
+			
+			if(category.equals("enterprise_id")) {
+				return adminDAO.selectEnterprise_id(search);				//아이디
+			}else if(category.equals("name")) {
+				return adminDAO.selectEnterprise_name(search);				//기업이름
+			}else if(category.equals("phone")) {
+				return adminDAO.selectEnterprise_phone(search);				//기업전화번호
+			}else if(category.equals("manager_name")) {
+				return adminDAO.selectEnterprise_manager_name(search);		//담당자이름
+			}else if(category.equals("manager_phone")) {
+				return adminDAO.selectEnterprise_manager_phone(search);		//담당자 번호
+			}
+			
+			return null;
+		}
+	//기업회원정보 '상세정보'를 볼수있는 테이블
+	public Enterprise selectEnterpriseAccount(String id){
+		return adminDAO.selectEnterpriseAccount(id);	
 	}
 
 	/*##################################################*/

@@ -54,6 +54,7 @@ function UseResume(){
                                     <a href="#">
                                         <h4><%=board_content.getBoard_resume_title() %></h4>
                                     </a>
+                                      
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
                                             <p> <i class="fa fa-map-marker"></i><%=board_content.getPlace() %></p>

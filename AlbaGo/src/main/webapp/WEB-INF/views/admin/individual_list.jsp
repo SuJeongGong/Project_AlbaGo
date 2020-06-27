@@ -50,9 +50,8 @@
                                             </select>
                                         <input type="text" class="form-control form-control-sm" name="search" > <!-- 검색내용입력 -->
                                         <span class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary" type ="submit" >검색</button>
-
-                                        </span>
+                                      	  <button class="btn btn-sm btn-primary" type ="submit" >검색</button>
+										</span>
                                     </div>
                                </form>
                             </div>
@@ -64,7 +63,6 @@
                                             <th>회원이름</th>
                                             <th>아이디</th>
                                             <th>비밀번호</th>
-                                         
                                             <th>연락처</th>
                                         </tr>
                                     </thead>

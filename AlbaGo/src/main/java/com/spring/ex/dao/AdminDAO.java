@@ -3,6 +3,7 @@ package com.spring.ex.dao;
 import java.util.ArrayList;
 
 import com.spring.ex.dto.BoardResume;
+import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
@@ -14,11 +15,13 @@ public interface AdminDAO {
 	//---이예슬---
 	//## 관리자페이지 ##
 	ArrayList<Individual> selectlist(); //개인회원정보 전체를 보여주는 테이블
+	
 	//개인회원정보에서 카테고리를 선택해서 검색
 	ArrayList<Individual> selectId(String category,String search);
 	ArrayList<Individual> selectIdIndividual_id(String individual_id);
 	ArrayList<Individual> selectIdName(String name);
 	ArrayList<Individual> selectIdPhone(String phone);
+	
 	//<!-- 개인관리자 링크타고 -->
 	//<!-- 개인 회원 정보 -->
 	Individual selectIndividualAccount(String id);
@@ -28,6 +31,26 @@ public interface AdminDAO {
 	ArrayList<Volunteer> selectApplypartjob(String id);
 	//<!--인재글 게시판-->
 	ArrayList<BoardResume> selectResumeWrite(String id);
+	//<!--커뮤니티 게시판 작성글-->
+	ArrayList<BoardCommunity> selectCommunity(String id);
+	
+	//기업회원 검색 전체를 보여주는 테이블
+	ArrayList<Enterprise> selectEnterpriselist();
+	//개인회원정보에서 카테고리를 선택해서 검색
+	ArrayList<Enterprise> selectEnterpriselist(String category,String search);
+	ArrayList<Enterprise> selectEnterprise_id(String enterprise_id); 			//아이디
+	ArrayList<Enterprise> selectEnterprise_name(String name);					//기업이름
+	ArrayList<Enterprise> selectEnterprise_phone(String business_number);		//기업전화번호
+	ArrayList<Enterprise> selectEnterprise_manager_name(String manager_name);	//담당자이름
+	ArrayList<Enterprise> selectEnterprise_manager_phone(String manager_phone);	//담당자 번호
+	
+	//<!--기업관리자 링크타고-->
+	//<!--기업 회원 정보-->
+	Enterprise selectEnterpriseAccount(String id);
+	
+	
+	
+	
 	
 	
 	/*############################*/

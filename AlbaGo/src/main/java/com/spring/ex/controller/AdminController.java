@@ -19,6 +19,7 @@ import com.spring.ex.dao.ProductDAO;
 import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
+import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Resume;
@@ -181,22 +182,34 @@ public class AdminController {
 	@RequestMapping("/individual_list/id") //  개인 검색
 	public String individual_id(Model m ,@RequestParam("category")String category,@RequestParam("search")String search) {
 		String page="/admin/individual_list";
-		ArrayList<Individual> individuals=adminService.selectId(category, search);
+		ArrayList<Individual> individuals=adminService.selectId(category, search); 
 		m.addAttribute("individuals",individuals); 
 	
-		return page; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
+		return page; // 
 	}
 
 	@RequestMapping("/enterprise_list") // 기업 리스트
-	public String enterprise_list() {
-		return "admin/enterprise_list";
+	public String enterprise_list(Model m) {
+	String page="admin/enterprise_list";
+		ArrayList<Enterprise> enterprises=adminService.selectEnterpriselist();
+		m.addAttribute("enterprises",enterprises);
+		
+			return page; 
 	}
-
+	@RequestMapping("/enterprise_list/id") //  기업 검색
+	public String enterprise_id(Model m ,@RequestParam("category")String category,@RequestParam("search")String search) {
+		String page="/admin/enterprise_list";
+		ArrayList<Enterprise> enterprises=adminService.selectEnterpriselist(category, search); 
+		m.addAttribute("enterprises",enterprises); 
+	
+		return page; // 
+	}
+ 
 	@RequestMapping("/individual_detail") // 개인 - 디테일?
-	public String individual_detail(Model m,@RequestParam("individual_id") String individual_id) {
+	public String individual_detail(Model m,@RequestParam("individual_id") String individual_id) { 
 		String page="/admin/individual_detail";
 		
-		//회원정보 상세보기
+		//개인 회원정보 상세보기
 		Individual individual = adminService.selectIndividualAccount(individual_id); 
 		m.addAttribute("individual", individual);
 		
@@ -210,7 +223,12 @@ public class AdminController {
 
 		//인재 게시판 작성글
 		ArrayList<BoardResume> resumewrite=adminService.selectResumeWrite(individual_id);
-		m.addAttribute("resumewrite",resumewrite);
+		m.addAttribute("resumewrite",resumewrite); 
+		
+		//커뮤니티 게시판 작성글
+		ArrayList<BoardCommunity> community=adminService.selectCommunity(individual_id);
+		m.addAttribute("communitys",community);  
+	
 		
 		return page;  
 		
@@ -218,8 +236,15 @@ public class AdminController {
 
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
-	public String enterprise_detail() {
-		return "admin/enterprise_detail";
+	public String enterprise_detail(Model m,@RequestParam("enterprise_id") String enterprise_id) {
+		String page="admin/enterprise_detail";
+		
+		//기업 회원정보 상세보기
+		Enterprise enterprise = adminService.selectEnterpriseAccount(enterprise_id); 
+		m.addAttribute("enterprise", enterprise);
+				
+		
+		return page;
 	} 
 
 	@RequestMapping("/payment") // 결제관리
@@ -264,7 +289,7 @@ public class AdminController {
 	@RequestMapping("/account/delete") // 상품삭제하기
 	public String delete(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
-		String page = "/admin/product_account";
+		String page = "/admin/product_account"; 
 		  
 		if (productService.delete_product(product) >= 1) {
 			page = "/admin/main";
