@@ -1,6 +1,7 @@
 package com.spring.ex.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +22,7 @@ import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
+import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Volunteer;
@@ -228,7 +230,7 @@ public class AdminController {
 		//커뮤니티 게시판 작성글
 		ArrayList<BoardCommunity> community=adminService.selectCommunity(individual_id);
 		m.addAttribute("communitys",community);  
-	
+	  
 		
 		return page;  
 		
