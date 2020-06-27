@@ -25,6 +25,7 @@ import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 import com.spring.ex.services.AdminService;
 import com.spring.ex.services.ProductService;
@@ -241,19 +242,30 @@ public class AdminController {
 	public String enterprise_detail(Model m,@RequestParam("enterprise_id") String enterprise_id) {
 		String page="admin/enterprise_detail";
 		
-		//기업 회원정보 상세보기
+		//기업 회원정보 상세보기 
 		Enterprise enterprise = adminService.selectEnterpriseAccount(enterprise_id); 
 		m.addAttribute("enterprise", enterprise);
-				
+		 
+		//공고글 관리
+		ArrayList<BoardRecruit> boardrecruit=adminService.selectRecruitWrite(enterprise_id);
+		m.addAttribute("boardrecruit", boardrecruit);
 		
-		return page;
+		//인재스크랩
+		ArrayList<Scrap_enterprise> scrap_enterprise=adminService.selectScrap(enterprise_id);
+		m.addAttribute("scrap_enterprise", scrap_enterprise);
+		
+		//결제내역
+		ArrayList<Payment> payment=adminService.selectPayment(enterprise_id);
+		m.addAttribute("payment", payment);
+	 
+		return page;  
 	} 
 
 	@RequestMapping("/payment") // 결제관리
 	public String manager_payment() {
 		return "admin/payment";
 	}
-
+ 
 	@RequestMapping("/product") // 상품보기
 	public String list(Model m, HttpServletRequest request) {
 		

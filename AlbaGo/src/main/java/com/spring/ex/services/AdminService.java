@@ -12,7 +12,9 @@ import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
+import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
  
 @Service
@@ -83,6 +85,18 @@ public class AdminService {
 	//기업회원정보 '상세정보'를 볼수있는 테이블
 	public Enterprise selectEnterpriseAccount(String id){
 		return adminDAO.selectEnterpriseAccount(id);	
+	}
+	//공고글 관리
+	public ArrayList<BoardRecruit> selectRecruitWrite(String id) {
+		return adminDAO.selectRecruitWrite(id);
+	}
+	//인재스크랩
+	public ArrayList<Scrap_enterprise> selectScrap(String id) {
+		return adminDAO.selectScrap(id);
+	}
+	//상품결제내역
+	public ArrayList<Payment> selectPayment(String id) {
+		return adminDAO.selectPayment(id);
 	}
 
 	/*##################################################*/

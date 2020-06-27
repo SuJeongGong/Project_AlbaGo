@@ -29,5 +29,6 @@ public class BoardRecruit { //공고
 	int views;//조회수
 	int recruit_id;//공고id
 	String category;// 업종
+	String recruit_title;//공고제목
 }
 

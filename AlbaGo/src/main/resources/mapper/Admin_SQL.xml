@@ -165,21 +165,60 @@
 	<!-- 공고글관리 -->
 	<select id="selectRecruitWrite"  parameterType="String" resultType="BoardRecruit">
 		SELECT 
-		board_recruit.title AS board_recruit_title ,
+		board_recruit.title,
 		recruit.title AS recruit_title,
 		board_recruit.memo,
 		board_recruit.date
 
 		FROM board_recruit ,recruit,enterprise
 
-		WHERE
+		<where>
 		board_recruit.recruit_id = recruit.recruit_id 
 		AND recruit.enterprise_id = enterprise.enterprise_id
 		AND enterprise.enterprise_id = #{id}
 		AND board_recruit.delete_check =1
+		</where>
 	</select>
 	
+	<!-- 인재스크랩 -->
+		<select id="selectScrap"  parameterType="String" resultType="Scrap_enterprise">
 	
+		SELECT 
+		board_resume.title AS board_resume_title,
+		resume.title as resume_title ,
+		resume.individual_id as individual_id,
+		individual.name,
+		board_resume.memo,
+		scrap_enterprise.date AS date
+		
+		From scrap_enterprise, board_resume ,resume,individual
+			
+		<where>
+		scrap_enterprise.board_resume_id =board_resume.board_resume_id
+		AND resume.resume_id = board_resume.resume_id
+		AND resume.individual_id=individual.individual_id
+		AND enterprise_id =#{id}
+		AND board_resume.delete_check =1
+			
+		</where>
+		</select>
+	
+	<!-- 상품 결제내역 -->
+		<select id="selectPayment"  parameterType="String" resultType="Payment">
+	
+		SELECT 
+		product.name AS name,
+		product.price AS product_price,
+		product.term AS term,
+		payment.date AS date
+		FROM payment , enterprise,product
+		<where> 
+		payment.enterprise_id=enterprise.enterprise_id
+		AND payment.product_id=product.product_id
+		AND enterprise.enterprise_id=#{id}
+		AND product.delete_check =1
+		</where>
+		</select>
 	<!-- #################  -->
 	<!-- 임승재  -->
 	

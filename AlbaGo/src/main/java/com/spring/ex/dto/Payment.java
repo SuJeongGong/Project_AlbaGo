@@ -15,5 +15,7 @@ public class Payment {
 	String use_date;
 	String date;//결제날짜
 	String product_type;//결제날짜
- 
+	String name; //product name 상품명
+	String term;//product term 상품기간
+	
 }
