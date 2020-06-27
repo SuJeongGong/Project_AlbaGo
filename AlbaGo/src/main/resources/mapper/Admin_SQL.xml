@@ -3,6 +3,7 @@
 
 <mapper namespace="com.spring.ex.dao.AdminDAO">
 	<!-- 이예슬 -->
+	<!-- 개인 -->
 	<select id = "selectlist" resultType="Individual">
 		SELECT *
 		FROM Individual
@@ -25,7 +26,7 @@
 	SELECT *
 	FROM Individual
 	<where>
-	name like CONCAT('%',#{individual_id},'%') 
+	name like CONCAT('%',#{name},'%') 
 	</where> 
 	</select>
 	
@@ -105,6 +106,54 @@
 		AND individual.individual_id=#{id}
 		</where>
 	</select>
+	
+	<!-- 기업회원 관리자 검색  -->
+	<select id = "selectEnterpriselist" resultType="Enterprise" parameterType="String">
+		SELECT *
+		FROM Enterprise
+	</select>
+
+	<select id="selectEnterprise_id" resultType="Enterprise" parameterType="String"> <!-- 기업아이디 -->
+	SELECT *
+	FROM Enterprise
+	<where>
+	enterprise_id like CONCAT('%',#{enterprise_id},'%') 
+	</where> 
+	</select>
+	
+	<select id="selectEnterprise_name" resultType="Enterprise" parameterType="String"> <!-- 기업이름 -->
+	SELECT *
+	FROM Enterprise
+	<where>
+	name like CONCAT('%',#{name},'%') 
+	</where> 
+	</select>
+	
+	<select id="selectEnterprise_phone" resultType="Enterprise" parameterType="String"> <!-- 기업전화번호 -->
+	SELECT *
+	FROM Enterprise
+	<where>
+	business_number like CONCAT('%',#{business_number},'%') 
+	</where> 
+	</select>
+	
+	<select id="selectEnterprise_manager_name" resultType="Enterprise" parameterType="String"> <!-- 담당자이름 -->
+	SELECT *
+	FROM Enterprise
+	<where>
+	manager_name like CONCAT('%',#{manager_name},'%') 
+	</where> 
+	</select>
+	
+	<select id="selectEnterprise_manager_phone" resultType="Enterprise" parameterType="String"> <!-- 담당자번호-->
+	SELECT *
+	FROM Enterprise
+	<where>
+	manager_phone like CONCAT('%',#{manager_phone},'%') 
+	</where> 
+	</select>
+	
+	
 	
 	<!-- #################  -->
 	<!-- 임승재  -->

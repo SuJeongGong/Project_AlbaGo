@@ -19,6 +19,7 @@ import com.spring.ex.dao.ProductDAO;
 import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
+import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Resume;
@@ -163,17 +164,29 @@ public class AdminController {
 	@RequestMapping("/individual_list/id") //  개인 검색
 	public String individual_id(Model m ,@RequestParam("category")String category,@RequestParam("search")String search) {
 		String page="/admin/individual_list";
-		ArrayList<Individual> individuals=adminService.selectId(category, search);
+		ArrayList<Individual> individuals=adminService.selectId(category, search); 
 		m.addAttribute("individuals",individuals); 
 	
 		return page; // 
 	}
 
 	@RequestMapping("/enterprise_list") // 기업 리스트
-	public String enterprise_list() {
-		return "admin/enterprise_list";
+	public String enterprise_list(Model m) {
+	String page="admin/enterprise_list";
+		ArrayList<Enterprise> enterprises=adminService.selectEnterpriselist();
+		m.addAttribute("enterprises",enterprises);
+		
+			return page; 
 	}
-
+	@RequestMapping("/enterprise_list/id") //  기업 검색
+	public String enterprise_id(Model m ,@RequestParam("category")String category,@RequestParam("search")String search) {
+		String page="/admin/enterprise_list";
+		ArrayList<Enterprise> enterprises=adminService.selectEnterpriselist(category, search); 
+		m.addAttribute("enterprises",enterprises); 
+	
+		return page; // 
+	}
+ 
 	@RequestMapping("/individual_detail") // 개인 - 디테일?
 	public String individual_detail(Model m,@RequestParam("individual_id") String individual_id) {
 		String page="/admin/individual_detail";

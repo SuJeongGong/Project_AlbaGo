@@ -109,7 +109,7 @@
 	               				<td><input type ="text" name ="date" id ="date" value="<%=date%>"></td>
 	               			</tr>
 	               			<tr>
-	               				<th></th>
+	               				<th>관리자</th>
 	               				<td>
                                     <a class='btn btn-info btn-xs' href="#">
                                     <span class="glyphicon glyphicon-edit"></span>정보 수정</a> 
