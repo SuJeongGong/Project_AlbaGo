@@ -88,6 +88,22 @@ public class AdminService {
 		return null;
 	}
 	
+	//커뮤니티 게시판 날짜 검색
+	public ArrayList<BoardRecruit> recruit_List_day(String day, String daysearch) {
+		ArrayList<BoardRecruit> boardrecruits = null;
+		
+		if(day.equals("today")) {
+			return adminDAO.today_search_Rc(daysearch);
+		}
+		else if(day.equals("week")) {
+			return adminDAO.week_search_Rc(daysearch);
+		}
+		else if(day.equals("month")) {
+			return adminDAO.month_search_Rc(daysearch);
+		}
+		return null;
+	}
+	
 	//공고 게시판 선택삭제
 	public int deleteBoardRecruits(ArrayList<String> ids) {
 		System.out.println(ids);

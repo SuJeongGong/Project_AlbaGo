@@ -159,6 +159,33 @@
 		where board_recruit_id = #{boardrecruit_id}
 	</update>
 	
+	<!-- 공고글 오늘 -->
+	<select id = "today_search_Rc" resultType="BoardRecruit" parameterType="String">
+		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		AND board_recruit.`date` >= CURDATE()
+	</select>
+	
+	<!-- 공고글 일주일 -->
+	<select id = "week_search_Rc" resultType="BoardRecruit" parameterType="String">
+		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)
+	</select>
+	
+	<!-- 공고글 1개월 -->
+	<select id = "month_search_Rc" resultType="BoardRecruit" parameterType="String">
+		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)
+	</select>
+	
 	
 	
 	<!-- 전체 인재 갯수 -->
@@ -250,20 +277,20 @@
 	<select id = "today_search_C" resultType="BoardCommunity" parameterType="String">
 		SELECT community_id, date, title, individual_id
 		FROM community
-		WHERE date = NOW()
+		WHERE date >= CURDATE()
 	</select>
 	
 	<!-- 커뮤니티 일주일 -->
 	<select id = "week_search_C" resultType="BoardCommunity" parameterType="String">
 		SELECT community_id, date, title, individual_id
 		FROM community
-		WHERE date = (NOW() - INTERVAL 7 DAY)
+		WHERE date > (NOW() - INTERVAL 7 DAY)
 	</select>
 	
-	<!-- 커뮤니티 일주일 -->
+	<!-- 커뮤니티 1개월 -->
 	<select id = "month_search_C" resultType="BoardCommunity" parameterType="String">
 		SELECT community_id, date, title, individual_id
 		FROM community
-		WHERE date = (NOW() - INTERVAL 1 MONTH)
+		WHERE date > (NOW() - INTERVAL 1 MONTH)
 	</select>
 </mapper>

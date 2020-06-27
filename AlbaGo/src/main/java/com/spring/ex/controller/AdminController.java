@@ -74,6 +74,15 @@ public class AdminController {
 		return page;
 	}
 	
+	@RequestMapping("/recruit/day") //공고글 날짜 검색 (오늘, 일주일, 한달)
+	public String boardrecruit_day(Model m, @RequestParam("day")String day, @RequestParam("daysearch")String daysearch) {
+		String page = "/admin/recruit";
+		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_day(day, daysearch);
+		m.addAttribute("boardrecruits", boardrecruits);
+		
+		return page;
+	}
+	
 	// ajax처리
 	@ResponseBody
 	@RequestMapping(value = "/deleteBoardRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
