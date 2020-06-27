@@ -162,6 +162,23 @@
 	</where>
 	</select>
 	
+	<!-- 공고글관리 -->
+	<select id="selectRecruitWrite"  parameterType="String" resultType="BoardRecruit">
+		SELECT 
+		board_recruit.title AS board_recruit_title ,
+		recruit.title AS recruit_title,
+		board_recruit.memo,
+		board_recruit.date
+
+		FROM board_recruit ,recruit,enterprise
+
+		WHERE
+		board_recruit.recruit_id = recruit.recruit_id 
+		AND recruit.enterprise_id = enterprise.enterprise_id
+		AND enterprise.enterprise_id = #{id}
+		AND board_recruit.delete_check =1
+	</select>
+	
 	
 	<!-- #################  -->
 	<!-- 임승재  -->

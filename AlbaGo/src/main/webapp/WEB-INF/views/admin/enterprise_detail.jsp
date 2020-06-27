@@ -123,7 +123,7 @@
               
                         <div class="card col-xl-12 shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">공고글 내역
+                                <h6 class="m-0 font-weight-bold text-primary">공고글 관리
                                 </h6>
                             </div>
                             <div class="card-body">
@@ -134,7 +134,7 @@
 
                                     <thead>
                                         <tr>
-                                             <th>공고 번호 작성일</th>
+                                            <th>공고 번호 작성일</th>
                                             <th>알바공고</th>
                                             <th>모집현황</th>
                                             <th>지원자관리</th>
