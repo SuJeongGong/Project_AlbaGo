@@ -1,6 +1,7 @@
 package com.spring.ex.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
@@ -22,5 +23,17 @@ public interface ProductDAO {
 	
 	
 	 ArrayList<Payment> selectPayments();
+	 int updateEnterpriseUpCount(HashMap<String, Object> map);
+	 int updateEnterpriseResumeCount(HashMap<String, Object> map);
+	 int updateEnterpriseBoardCount(HashMap<String, Object> map);
+	 int updatePaymentResult(HashMap<String, Object> map);
+	 
+	 
+	 
+	 
+	 int selectProductCount(int payment_id);
+	 String selectProductType(int payment_id);
+	 String selectEnterprise_id(int payment_id);
+		 
 	
 }

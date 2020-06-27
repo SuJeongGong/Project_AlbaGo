@@ -11,10 +11,65 @@
 
 <meta charset="UTF-8">
 <%
-                                        ArrayList<Payment> payments=(ArrayList)request.getAttribute("payments");
-                                        
-                                        
-                                        %>
+       ArrayList<Payment> payments=(ArrayList)request.getAttribute("payments");
+     %>
+     
+<script>
+  function updateResult(id,result) {
+                        	
+                        	$.ajax({
+                        		url : "./updateResult",
+                        		method : "GET",
+                        		data : {
+                        			result : result,
+                        			id:id
+                        		},
+                        		success :function(res){
+                        			if(res>=1){
+                        				alert("결과 저장 완료");
+                        				<% for(int i =0; i< payments.size()  ;i++){ %>
+
+                   					 $("#res<%=i%>").load(window.location.href + " #res<%=i%>");
+                        				<% } %>
+                        			}else{
+                        				alert("실패");
+                        			}
+                        		}
+                        	});
+                        }
+                        function updateResults(result) {
+                        	var payment_ids = [];
+                        	$("input[name='payment_id']:checked").each(function(){
+                        		if(this.checked){
+                        			payment_ids.push($(this).val());
+                        			console.log($(this).val());
+                        		}
+                        	})
+                        	
+                        	$.ajax({
+                        		url : "./updateResults",
+                        		method : "GET",
+                        		data : {
+                        			result : result,
+                        			payment_ids: payment_ids
+                        		},
+                        		success :function(res){
+                        			if(res>=1){
+                        				alert("결과 저장 완료");
+                        				<% for(int i =0; i< payments.size()  ;i++){ %>
+
+                   					 $("#res<%=i%>").load(window.location.href + " #res<%=i%>");
+                        				<% } %>
+                        			}else{
+                        				alert("실패");
+                        			}
+                        		}
+                        	});
+                        }
+
+                            
+                            
+                        </script>
 <title>결제승인</title>
 </head>
 
@@ -70,27 +125,32 @@
 										String useDate =payment.getUse_date();
 										String date = payment.getDate();
 										String result = payment.getResult();
+										String type = payment.getProduct_type();
 										%>
 										
-										<td><input type="checkbox" class="memberChk" name="" value=""></td>
+										<td><input type="checkbox" class="memberChk" name="payment_id" value="<%=payment_id%>"></td>
 										<td><%=payment_id %></td>
 										<td><%=enterprise_name %></td>
 										<td><%=product_name %></td>
 										<td><%=useDate %></td>
 										<td><%=date.split(" ")[0] %></td>
 										
+										<td >
+										<div id = "res<%=i %>">
+										
 										<%  if (result == null) {  %>
-											
-								<td>			
-								<button onclick="updateResult(<%=payment_id%>,'승락')" id='accept' class="btn btn-outline-primary">승락</button>
-								<button onclick="updateResult(<%=payment_id%>,'거절')" type="submit" id="reject" class="btn btn-outline-danger">거절</button>
-								</td>
+												
+								<button onclick="updateResult(<%=payment_id%>,'승락')" id='accept' class="btn btn-outline-primary">승인</button>
+								<button onclick="updateResult(<%=payment_id%>,'거절')" type="submit" id="reject" class="btn btn-outline-danger">거부</button>
+								
 											
 											<%  }else{  %>
 											
-											<td>		<%=result %></td>
+													<%=result %>
 														
 										<%}%>
+										</div>
+										</td>
 										</tr>
 											<%
 												}

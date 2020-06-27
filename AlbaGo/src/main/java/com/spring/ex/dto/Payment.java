@@ -14,5 +14,6 @@ public class Payment {
 	String enterprise_name;//기업회원 id
 	String use_date;
 	String date;//결제날짜
+	String product_type;//결제날짜
  
 }
