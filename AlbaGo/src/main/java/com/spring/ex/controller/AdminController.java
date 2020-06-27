@@ -19,6 +19,7 @@ import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
+import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Volunteer;
@@ -233,7 +234,7 @@ public class AdminController {
 		System.out.println(product);
 		String page = "/admin/product_account";
 		if (productService.update_product(product) >= 1) {
-			page = "/admin/main";
+			page = "redirect:/admin/product";
 			System.out.println("DB연결성공");
 		} else {
 			page = "/admin/product_account";
@@ -248,7 +249,7 @@ public class AdminController {
 		String page = "/admin/product_account";
 		  
 		if (productService.delete_product(product) >= 1) {
-			page = "/admin/main";
+			page = "redirect:/admin/product";
 			System.out.println("DB연결성공");
 		} else {
 			page = "/admin/product_account";
@@ -265,23 +266,22 @@ public class AdminController {
 	}
 
 	@RequestMapping("/add_product_term/result") // 상품추가 DB
-	public String add_product_term_result(HttpServletRequest request, @ModelAttribute("product") Product product,
-			BindingResult result) {
+	public String add_product_term_result(@ModelAttribute("product") Product product,BindingResult result) {
 
 		String page = "/admin/add_product_term/result";
 
 		if (productService.insertProduct_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
-			page = "/admin/main";
+			page = "redirect:/admin/main";
 		}
 
 		return page;
 	}
 
-	@RequestMapping("/add_product_no_term") // 기간이없는 상품추가 보여주는 폼
-	public String add_product_no_term() {
-		String page = "admin/add_product_no_term";
-		return page;
-	}
+//	@RequestMapping("/add_product_no_term") // 기간이없는 상품추가 보여주는 폼
+//	public String add_product_no_term() {
+//		String page = "admin/add_product_no_term";
+//		return page;
+//	}
 
 	@RequestMapping("/add_product_no_term/result") // 기간이없는 상품추가 DB
 	public String add_product_no_term_result(HttpServletRequest request, @ModelAttribute("product") Product product,
@@ -290,14 +290,18 @@ public class AdminController {
 		String page = "/admin/add_product_no_term/result";
 
 		if (productService.insertProduct_no_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
-			page = "/admin/main";
+			page = "redirect:/admin/main";
 		}
 
 		return page;
 	}
 
 	@RequestMapping("/approve") // 결제승인
-	public String approve() {
+	public String approve(Model m) {
+		ArrayList<Payment> payments= productService.selectPayments();
+		
+		m.addAttribute("payments",payments);
+		
 		return "admin/approve";
 	}
 

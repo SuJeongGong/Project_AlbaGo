@@ -109,7 +109,19 @@
 		#{enterprise_id},
 		null);
 	</insert>
-	
+	<select id="selectPayments" resultType="Payment">
+		select  payment.payment_id as payment_id, 
+				enterprise.name as enterprise_name, 
+				product.name as product_name,
+				payment.result as result, 
+				product.term as use_date,
+				payment.date as date
+		from Payment, enterprise, product 
+		<where>
+			payment.enterprise_id = enterprise.enterprise_id
+			and payment.product_id = product.product_id
+		</where>
+	</select>
 	
 
 </mapper>

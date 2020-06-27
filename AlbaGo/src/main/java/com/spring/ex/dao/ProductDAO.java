@@ -19,4 +19,8 @@ public interface ProductDAO {
 	Product enterprise_selectWrite(int product_id); //기업에서 상품 결제 하기전에 상세보기
 	int insertProduct_payment(Payment payment);//기업에서 결제 승인대기하기
 	
+	
+	
+	 ArrayList<Payment> selectPayments();
+	
 }

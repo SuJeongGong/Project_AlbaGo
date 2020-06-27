@@ -55,34 +55,29 @@
 
 							<span
 								class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">
-								<%=product_id%>
-								<input type="text" value="<%=name%>">
+								<%=product_id%><br/>
+								<%=name%>
 								</span>
 							<div class="bg-transparent card-header pt-4 border-0">
 								<h1 class="h4 font-weight-normal text-primary text-center mb-0"
 									data-pricing-value="15">
-									<input type="text" size="7" value="<%=price%>" />원 <br> <input
-										type="text" size="7" value="<%=amount%>">개
+								<%=price%>원 <br> <%=amount%>개
 								</h1>
 							</div>
 							<div class="card-body pt-0">
 								<ul class="list-unstyled mb-4">
-									기간
-									<input type="text" cols=121 rows=5 class="form-control"
-										style="border-radius: 0px" value="<%=term%>" />
+									기간:<%=term%>
 
 								</ul>
 								<ul class="list-unstyled mb-4">
-									설명
-									<input type="text" cols=121 rows=5 class="form-control"
-										style="border-radius: 0px" value="<%=explan%>" />
+									설명:<%=explan%>
 
 								</ul>
 
 
 
 								<a class="btn btn-info edit" href="<%=conPath%>/admin/product_account?product_id=<%=product_id%>"
-									aria-label="Settings"> 수정 </a>
+									aria-label="Settings"> 자세히</a>
 				       
 							</div>
 
@@ -105,8 +100,8 @@
 		</div>
 		<!-- 끝 main -->
 		<!-- footer -->
-		<%@ include file="../serve/manager_footer.jsp"%>
 	</div>
+		<%@ include file="../serve/manager_footer.jsp"%>
 	<!-- 끝 content wrapper -->
 
 	<!-- 끝  wrapper -->

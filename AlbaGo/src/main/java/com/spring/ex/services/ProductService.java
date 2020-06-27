@@ -48,5 +48,12 @@ public class ProductService {
 	public int insertProduct_payment(Payment payment) {
 		return productDAO.insertProduct_payment(payment);
 	}
+	
+	
+	
+	
+	public ArrayList<Payment> selectPayments() {
+		return productDAO.selectPayments();
+	}
 
 }
