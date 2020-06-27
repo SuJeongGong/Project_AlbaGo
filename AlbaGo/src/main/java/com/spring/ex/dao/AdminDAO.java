@@ -74,5 +74,9 @@ public interface AdminDAO {
 		int deleteCommunities(int community_id); //커뮤니티글 삭제하기
 		int countComment(int comment_id); //댓글 확인
 		int deleteComment(int comment_id); //댓글 삭제
+		ArrayList<BoardCommunity> community_List_day(String day, String daysearch); //날짜검색(오늘, 일주일, 한달)
+		ArrayList<BoardCommunity> today_search_C(String today);
+		ArrayList<BoardCommunity> week_search_C(String week);
+		ArrayList<BoardCommunity> month_search_C(String month);
 	
 }

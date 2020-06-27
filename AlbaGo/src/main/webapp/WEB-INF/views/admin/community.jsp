@@ -85,22 +85,33 @@
                         <!-- Card Content - Collapse -->
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body">
-                            <form action="<%=request.getContextPath() %>/admin/community/id" method="get" name="keyword" id="keyword">
                                 <table>
                                     <th style="width: 900px;">작성일자</th>
                                     <tr>
                                         <td><input type="text" name="date" style="width: 150px;">&nbsp;&nbsp; ~
-                                            &nbsp;&nbsp;<input type="text" name="date" style="width: 150px;"> <input type="submit" value="오늘"
-                                                class="btn py-1 px-1 btn-primary">&nbsp;
-                                            <input type="submit" value="1주일" class="btn py-1 px-1 btn-primary">&nbsp;
-                                            <input type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
+                                            &nbsp;&nbsp;<input type="text" name="date" style="width: 150px;">
+                                            <button type="submit" class="btn py-1 px-1 btn-primary">검색</button>
                                         </td>
                                     </tr>
-                                    
+                                    <tr>
+                                    <form action="<%=request.getContextPath() %>/admin/community/day" method="get" name="keyword" id="keyword">
+                                    	<td>
+                                            <select name="day" style="width:150px;">
+                                            	<option value="">--선택하십시오--</option>
+                                            	<option value="today">오늘</option>
+                                            	<option value="week">일주일</option>
+                                            	<option value="month">1개월</option>
+                                            </select>
+                                            <input type="hidden" name="daysearch">
+                                    		<button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
+                                    	</td>
+                                    </form>	
+                                    </tr>
                                     <tr>
                                         <th>검색 </th>
                                     </tr>
                                     <tr>
+                                    <form action="<%=request.getContextPath() %>/admin/community/id" method="get" name="keyword" id="keyword">
                                     	<td><select name="category" style="width: 100px;">
                                                 <option value="전체">전체</option>
                                                 <option value="writer">작성자</option>
@@ -109,9 +120,9 @@
                                             <input type="text" name="search" style="width: 350px;">
                                             <button type="submit" class="btn py-1 px-1 btn-primary">검색</button>
                                         </td>
+                                    </form>
                                     </tr>
                                 </table>
-                            </form>
                             </div>
                         </div>
 

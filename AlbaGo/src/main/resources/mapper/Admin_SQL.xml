@@ -245,4 +245,25 @@
 		delete from comment
 		where community_id = #{community_id}
 	</delete>
+	
+	<!-- 커뮤니티 오늘 -->
+	<select id = "today_search_C" resultType="BoardCommunity" parameterType="String">
+		SELECT community_id, date, title, individual_id
+		FROM community
+		WHERE date = NOW()
+	</select>
+	
+	<!-- 커뮤니티 일주일 -->
+	<select id = "week_search_C" resultType="BoardCommunity" parameterType="String">
+		SELECT community_id, date, title, individual_id
+		FROM community
+		WHERE date = (NOW() - INTERVAL 7 DAY)
+	</select>
+	
+	<!-- 커뮤니티 일주일 -->
+	<select id = "month_search_C" resultType="BoardCommunity" parameterType="String">
+		SELECT community_id, date, title, individual_id
+		FROM community
+		WHERE date = (NOW() - INTERVAL 1 MONTH)
+	</select>
 </mapper>

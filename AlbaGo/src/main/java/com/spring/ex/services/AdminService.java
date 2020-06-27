@@ -182,8 +182,9 @@ public class AdminService {
 
 		return forDeleteSQL(ids, "deleteBoardCommunity");
 	}
+	
 		
-	//공고 게시판 선택검색
+	//커뮤니티 게시판 선택검색
 	public ArrayList<BoardCommunity> community_List_id(String category, String search) {
 		ArrayList<BoardCommunity> boardcommunities = null;
 		
@@ -192,6 +193,22 @@ public class AdminService {
 		}
 		else if(category.equals("title")) {
 			return adminDAO.title_search_C(search);
+		}
+		return null;
+	}
+	
+	//커뮤니티 게시판 날짜 검색
+	public ArrayList<BoardCommunity> community_List_day(String day, String daysearch) {
+		ArrayList<BoardCommunity> boardcommunities = null;
+		
+		if(day.equals("today")) {
+			return adminDAO.today_search_C(daysearch);
+		}
+		else if(day.equals("week")) {
+			return adminDAO.week_search_C(daysearch);
+		}
+		else if(day.equals("month")) {
+			return adminDAO.month_search_C(daysearch);
 		}
 		return null;
 	}

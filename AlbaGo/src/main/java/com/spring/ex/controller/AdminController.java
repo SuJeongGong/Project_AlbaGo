@@ -128,10 +128,19 @@ public class AdminController {
 		return "admin/community";
 	}
 	
-	@RequestMapping("/community/id") //공고글 검색
+	@RequestMapping("/community/id") //커뮤니티 검색
 	public String community_id(Model m, @RequestParam("category")String category, @RequestParam("search")String search) {
 		String page = "/admin/community";
 		ArrayList<BoardCommunity> boardcommunities = adminService.community_List_id(category, search);
+		m.addAttribute("boardcommunities", boardcommunities);
+		
+		return page;
+	}
+	
+	@RequestMapping("/community/day") //커뮤니티 날짜 검색 (오늘, 일주일, 한달)
+	public String community_day(Model m, @RequestParam("day")String day, @RequestParam("daysearch")String daysearch) {
+		String page = "/admin/community";
+		ArrayList<BoardCommunity> boardcommunities = adminService.community_List_day(day, daysearch);
 		m.addAttribute("boardcommunities", boardcommunities);
 		
 		return page;
