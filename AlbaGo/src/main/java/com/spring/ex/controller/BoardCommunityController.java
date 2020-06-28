@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.ex.dao.CommunityDAO;
 import com.spring.ex.dto.BoardComment;
 import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
+import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.CommunityService;
 
 @Controller
@@ -63,10 +65,30 @@ public class BoardCommunityController {
 	}
 	
 	
+	@RequestMapping("comment/write")//작성
+	public @ResponseBody int writeComment(@AuthUser String id, @ModelAttribute("comment")String comment, @ModelAttribute("community")int community){
+		//아이디 가져오고  -(@AuthUser String id
+		//댓글 내용 가져오고  - @ModelAttribute("comment") BoardComment comments
+		//comments에 id 값 넣어주기
+		
+		BoardComment boardComment = new BoardComment();
+		System.out.println("id"+id.split("/")[0]);//회원 아이디 / 회원타입
+		System.out.println("comment"+comment);
+		System.out.println("community"+community);
+		boardComment.setIndividual_id(id.split("/")[0]);//아이디 넣기
+		boardComment.setContents(comment);//댓글 내용
+		boardComment.setCommunity_id(community);//글 번호
+
+		//DB 보내고
+	
+		return  communityService.insertComment(boardComment); // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
+
+	}
+	
 	
 	
 	@RequestMapping("/content")//읽기
-	public String content(Model m, HttpServletRequest request) {
+	public String content(Model m, HttpServletRequest request ) {
 
 		
 	//	String id = request.getSession().getAttribute("id").toString(); //로그인된 id 가져오기 
