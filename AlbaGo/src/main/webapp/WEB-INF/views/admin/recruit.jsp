@@ -86,9 +86,9 @@
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body">
                                 <table>
-                                    <th>업직종</th>
-                                    <th>지역</th>
-                                    <th style="width:1000px;">작성일자</th>
+                                     <th style="width: 700px;">업직종</th>
+                                    <th style="width: 400px;">지역</th>
+                                    <th style="width: 1200px;">성별&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;학력</th>
                                     <tr>
                                         <td>
                                             <select id="enterprise_category" name="enterprise_category">
@@ -129,7 +129,27 @@
                                                 <option value="제주">제주</option>
                                             </select>
                                         </td>
-
+                                        <td>
+                                        	<select id="gender" name="gender">
+                                                <option value="무관">무관</option>
+                                                <option value="남자">남자</option>
+                                                <option value="여자">여자</option>
+                                            </select>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <select id="education" name="education">
+                                                <option value="초등학교 졸업">초등학교 졸업</option>
+                                                <option value="중학교 졸업">중학교 졸업</option>
+                                                <option value="고등학교 졸업">고등학교 졸업</option>
+                                                <option value="2/3년제 졸업">2/3년제 졸업</option>
+                                                <option value="4년제 졸업">4년제 졸업</option>
+                                            </select> 
+                                        </td>
+                                    </tr>
+                                    
+                                    <th>작성일자</th>
+                                    <th></th>                                    
+                                    <th>검색</th>
+                                    <tr>
                                         <form action="<%=request.getContextPath() %>/admin/recruit/day" method="get" name="keyword" id="keyword">
                                     	<td>
                                             <select name="day" style="width:150px;">
@@ -141,79 +161,8 @@
                                             <input type="hidden" name="daysearch">
                                     		<button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
                                     	</td>
-                                    	</form>	
-                                    </tr>
-
-                                    <tr>
-                                        <th>근무기간 </th>
-                                        <th>근무요일</th>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:500px">
-                                            <label class="checkbox-inline2">
-                                                <input type="checkbox" id="term1" value="option1">1주일 이하
-                                            </label>
-                                            <label class="checkbox-inline2">
-                                                <input type="checkbox" id="term2" value="option2">1개월
-                                            </label>
-                                            <label class="checkbox-inline2">
-                                                <input type="checkbox" id="term3" value="option3">3개월~6개월
-                                            </label>
-                                            <label class="checkbox-inline2">
-                                                <input type="checkbox" id="term4" value="option4"> 1년 이상
-                                            </label>
-                                            <label class="checkbox-inline2">
-                                                <input type="checkbox" id="term5" value="option5"> 기간협의
-                                            </label>
-                                        </td>
-
-
-                                        <td style="width:500px">
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term1" value="option1">월
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term2" value="option2">화
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term3" value="option3">수
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term4" value="option4">목
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term5" value="option5">금
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term5" value="option5">토
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term5" value="option5">일
-                                            </label>
-                                        </td>
-                                    </tr>
-                                    
-                                    <th>성별</th>
-                                    <th>학력</th>
-                                    <th>검색</th>
-                                    <th></th>
-
-                                    <tr>
-                                        <td><select id="gender" name="gender">
-                                                <option value="무관">무관</option>
-                                                <option value="남자">남자</option>
-                                                <option value="여자">여자</option>
-                                            </select></td>
-
-
-                                        <td><select id="education" name="education">
-                                                <option value="초등학교 졸업">초등학교 졸업</option>
-                                                <option value="중학교 졸업">중학교 졸업</option>
-                                                <option value="고등학교 졸업">고등학교 졸업</option>
-                                                <option value="2/3년제 졸업">2/3년제 졸업</option>
-                                                <option value="4년제 졸업">4년제 졸업</option>
-                                            </select> 
-                                        </td>
+                                    	</form>
+                                    	<td></td>	
                                         <form action="<%=request.getContextPath() %>/admin/recruit/id" method="get" name="keyword" id="keyword">
                                     	<td><select name="category" style="width: 100px;">
                                                 <option value="전체">전체</option>
