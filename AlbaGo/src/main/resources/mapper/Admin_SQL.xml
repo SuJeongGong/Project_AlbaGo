@@ -197,7 +197,7 @@
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
 		and board_recruit.delete_check = 1
-		and recruit.enterprise_id like '%'+#{recruit.enterprise_id}+'%'
+		and recruit.enterprise_id like CONCAT('%',#{recruit.enterprise_id},'%')
 	</select>
 	
 	<!-- 제목으로 검색 -->
@@ -206,7 +206,7 @@
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
 		and board_recruit.delete_check = 1
-		and board_recruit.title like '%'+#{board_recruit.title}+'%'
+		and board_recruit.title like CONCAT('%',#{board_recruit.title},'%')
 	</select>
 	
 	<!-- 전체 공고 갯수 -->
@@ -309,7 +309,7 @@
 	
 	<!-- 예슬이가 아에 감싸는 거라고 설명해줌(인재) -->
 	<select id = "resume_List_id" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.enterprise_id
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
 		FROM board_resume, resume
 		WHERE board_resume.resume_id = resume.resume_id
 		and board_resume.delete_check = 1
@@ -321,16 +321,16 @@
 		FROM board_resume, resume
 		WHERE board_resume.resume_id = resume.resume_id
 		and board_resume.delete_check = 1
-		and resume.individual_id like '%'+#{resume.individual_id}+'%'
+		and resume.individual_id like CONCAT('%',#{resume.individual_id},'%')
 	</select>
 	
 	<!-- 제목으로 검색 -->
 	<select id = "title_search_R" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.enterprise_id
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
 		FROM board_resume, resume
 		WHERE board_resume.resume_id = resume.resume_id
 		and board_resume.delete_check = 1
-		and board_resume.title like '%'+#{board_resume.title}+'%'
+		and board_resume.title like CONCAT('%',#{board_resume.title},'%')
 	</select>
 	
 	<!-- 인재글 삭제 -->
@@ -375,10 +375,8 @@
 	
 	<!-- 예슬이가 아에 감싸는 거라고 설명해줌 -->
 	<select id = "community_List_id" resultType="BoardCommunity" parameterType="String">
-		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
-		FROM board_recruit, recruit
-		WHERE board_recruit.recruit_id = recruit.recruit_id
-		and board_recruit.delete_check = 1
+		SELECT community.community_id, community.`date`, community.title, community.individual_id
+		FROM community
 	</select>
 	
 	<!-- 작성자로 검색 -->

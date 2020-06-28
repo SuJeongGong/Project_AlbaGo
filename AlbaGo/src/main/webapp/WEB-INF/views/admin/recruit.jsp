@@ -214,17 +214,16 @@
                                                 <option value="4년제 졸업">4년제 졸업</option>
                                             </select> 
                                         </td>
-                                        <form action="<%=request.getContextPath() %>/admin/recruit/id" method="get" name="keyword" id="keyword">    
-                                        <td>
-                                        	<select name="category" style="width: 100px;">
+                                        <form action="<%=request.getContextPath() %>/admin/recruit/id" method="get" name="keyword" id="keyword">
+                                    	<td><select name="category" style="width: 100px;">
                                                 <option value="전체">전체</option>
                                                 <option value="writer">작성자</option>
                                                 <option value="title">제목</option>
                                             </select>
                                             <input type="text" name="search" style="width: 350px;">
-                                            <button class="btn py-1 px-1 btn-primary" type ="submit" >검색</button>
+                                            <button type="submit" class="btn py-1 px-1 btn-primary">검색</button>
                                         </td>
-                                        </form>
+                                    </form>
                                     </tr>
 
                                 </table>
