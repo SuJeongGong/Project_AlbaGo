@@ -192,7 +192,7 @@
 	</select>
 	
 	<!-- 작성자로 검색 -->
-	<select id = "writer_search" resultType="BoardRecruit" parameterType="String">
+	<select id = "writer_search_Rc" resultType="BoardRecruit" parameterType="String">
 		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
@@ -201,7 +201,7 @@
 	</select>
 	
 	<!-- 제목으로 검색 -->
-	<select id = "title_search" resultType="BoardRecruit" parameterType="String">
+	<select id = "title_search_Rc" resultType="BoardRecruit" parameterType="String">
 		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
@@ -307,12 +307,65 @@
 		and board_resume.delete_check = 1
 	</select>
 	
+	<!-- 예슬이가 아에 감싸는 거라고 설명해줌(인재) -->
+	<select id = "resume_List_id" resultType="BoardResume" parameterType="String">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.enterprise_id
+		FROM board_resume, resume
+		WHERE board_resume.resume_id = resume.resume_id
+		and board_resume.delete_check = 1
+	</select>
+	
+	<!-- 작성자로 검색 -->
+	<select id = "writer_search_R" resultType="BoardResume" parameterType="String">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
+		FROM board_resume, resume
+		WHERE board_resume.resume_id = resume.resume_id
+		and board_resume.delete_check = 1
+		and resume.individual_id like '%'+#{resume.individual_id}+'%'
+	</select>
+	
+	<!-- 제목으로 검색 -->
+	<select id = "title_search_R" resultType="BoardResume" parameterType="String">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.enterprise_id
+		FROM board_resume, resume
+		WHERE board_resume.resume_id = resume.resume_id
+		and board_resume.delete_check = 1
+		and board_resume.title like '%'+#{board_resume.title}+'%'
+	</select>
+	
 	<!-- 인재글 삭제 -->
 	<update id="deleteBoardResumes" parameterType="int">
 		update board_resume
 		set delete_check = 0
 		where board_resume_id = #{boardresume_id}
 	</update>
+	
+	<!-- 인재글 오늘 -->
+	<select id = "today_search_Rs" resultType="BoardResume" parameterType="String">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
+		FROM board_resume, resume
+		WHERE board_resume.resume_id = resume.resume_id
+		and board_resume.delete_check = 1
+		AND board_resume.`date` >= CURDATE()
+	</select>
+	
+	<!-- 인재글 일주일 -->
+	<select id = "week_search_Rs" resultType="BoardResume" parameterType="String">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
+		FROM board_resume, resume
+		WHERE board_resume.resume_id = resume.resume_id
+		and board_resume.delete_check = 1
+		AND board_resume.`date` > (NOW() - INTERVAL 7 DAY)
+	</select>
+	
+	<!-- 인재글 1개월 -->
+	<select id = "month_search_Rs" resultType="BoardResume" parameterType="String">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
+		FROM board_resume, resume
+		WHERE board_resume.resume_id = resume.resume_id
+		and board_resume.delete_check = 1
+		AND board_resume.`date` > (NOW() - INTERVAL 1 MONTH)
+	</select>
 	
 	<!-- 커뮤니티 게시판 -->
 	<select id = "community_List" resultType = "BoardCommunity">

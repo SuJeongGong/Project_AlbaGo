@@ -92,7 +92,7 @@
                                     <tr>
                                         <td>
                                             <select id="enterprise_category" name="enterprise_category">
-                                                <option value="전체">전체</option>
+                                                <option value="">전체</option>
                                                 <option value="외식/음료">외식/음료</option>
                                                 <option value="유통/판매">유통/판매</option>
                                                 <option value="문화/여가/생활">문화/여가/생활</option>
@@ -110,7 +110,7 @@
 
                                         <td>
                                             <select id="local_category" name="local_category">
-                                                <option value="전국">전국</option>
+                                                <option value="">전국</option>
                                                 <option value="서울">서울</option>
                                                 <option value="경기">경기</option>
                                                 <option value="인천">인천</option>
@@ -216,10 +216,10 @@
                                         </td>
                                         <form action="<%=request.getContextPath() %>/admin/recruit/id" method="get" name="keyword" id="keyword">    
                                         <td>
-                                        	<select id="category" name="category" style="width: 100px;">
+                                        	<select name="category" style="width: 100px;">
                                                 <option value="전체">전체</option>
-                                                <option value="writer" id="writer">작성자</option>
-                                                <option value="title" id="title">제목</option>
+                                                <option value="writer">작성자</option>
+                                                <option value="title">제목</option>
                                             </select>
                                             <input type="text" name="search" style="width: 350px;">
                                             <button class="btn py-1 px-1 btn-primary" type ="submit" >검색</button>
@@ -228,7 +228,6 @@
                                     </tr>
 
                                 </table>
-							</form>
                             </div>
                         </div>
                         <div class="card shadow mb-3">

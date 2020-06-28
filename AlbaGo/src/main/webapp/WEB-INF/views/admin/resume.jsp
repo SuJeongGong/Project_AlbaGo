@@ -127,12 +127,18 @@
                                                 <option value="13">제주</option>
                                             </select></td>
 
-                                        <td><input type="text" name="date" style="width: 150px;">&nbsp;&nbsp; ~
-                                            &nbsp;&nbsp;<input type="text" name="date" style="width: 150px;"> 
-                                            <input type="submit" value="오늘" class="btn py-1 px-1 btn-primary">&nbsp;
-                                            <input type="submit" value="1주일" class="btn py-1 px-1 btn-primary">&nbsp;
-                                            <input type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
-                                        </td>
+                                        <form action="<%=request.getContextPath() %>/admin/resume/day" method="get" name="keyword" id="keyword">
+                                    	<td>
+                                            <select name="day" style="width:150px;">
+                                            	<option value="">--선택하십시오--</option>
+                                            	<option value="today">오늘</option>
+                                            	<option value="week">일주일</option>
+                                            	<option value="month">1개월</option>
+                                            </select>
+                                            <input type="hidden" name="daysearch">
+                                    		<button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
+                                    	</td>
+                                    	</form>	
                                     </tr>
                                     
                                     <tr>
@@ -205,14 +211,16 @@
                                                 <option value="4">대학교(4년) 졸업</option>
                                             </select> </td>
                                             
-                                        <td><select name="" style="width: 100px;">
-                                                <option value="0">전체</option>
-                                                <option value="1">작성자</option>
-                                                <option value="2">제목</option>
+                                        <form action="<%=request.getContextPath() %>/admin/resume/id" method="get" name="keyword" id="keyword">
+                                    	<td><select name="category" style="width: 100px;">
+                                                <option value="전체">전체</option>
+                                                <option value="writer">작성자</option>
+                                                <option value="title">제목</option>
                                             </select>
-                                            <input type="text" name="time" style="width: 350px;">
-                                            <input type="submit" value="검색" class="btn py-1 px-1 btn-primary">
+                                            <input type="text" name="search" style="width: 350px;">
+                                            <button type="submit" class="btn py-1 px-1 btn-primary">검색</button>
                                         </td>
+                                    	</form>
                                         
                                     </tr>
                                 </table>

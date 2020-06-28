@@ -77,6 +77,7 @@ public class AdminController {
 		return page;
 	}
 	
+	
 	@RequestMapping("/recruit/day") //공고글 날짜 검색 (오늘, 일주일, 한달)
 	public String boardrecruit_day(Model m, @RequestParam("day")String day, @RequestParam("daysearch")String daysearch) {
 		String page = "/admin/recruit";
@@ -117,6 +118,24 @@ public class AdminController {
 		ArrayList<BoardResume> boardresumes=adminService.resume_List();
 		m.addAttribute("boardresumes",boardresumes);
 		return "/admin/resume";
+	}
+	
+	@RequestMapping("/resume/id") //인재글 검색
+	public String boardresume_id(Model m, @RequestParam("category")String category, @RequestParam("search")String search) {
+		String page = "/admin/resume";
+		ArrayList<BoardResume> boardresumes = adminService.resume_List_id(category, search);
+		m.addAttribute("boardresumes", boardresumes);
+		
+		return page;
+	}
+	
+	@RequestMapping("/resume/day") //인재글 날짜 검색 (오늘, 일주일, 한달)
+	public String boardresume_day(Model m, @RequestParam("day")String day, @RequestParam("daysearch")String daysearch) {
+		String page = "/admin/resume";
+		ArrayList<BoardResume> boardresumes = adminService.resume_List_day(day, daysearch);
+		m.addAttribute("boardresumes", boardresumes);
+		
+		return page;
 	}
 	
 	// ajax처리
