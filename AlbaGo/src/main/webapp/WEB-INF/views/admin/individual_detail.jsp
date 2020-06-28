@@ -152,15 +152,15 @@
 					                     Resume list = resume.get(i);
 					                     String title =list.getTitle();
 					                     String resume_date=list.getDate();
+					                     int resume_id=list.getResume_id();
 					                  %>  
 										<tr>
                                         <td class="text-center"><%=title%></td>
                                         <td class="text-center"><%=resume_date%></td>
                                         <td class="text-center">   
-                                        	<a  href="#" class="btn btn-secondary btn-xs"> <span class="glyphicon glyphicon-edit"></span> 상세보기</a> 
+                                        <a  href="<%=request.getContextPath()%>/individual/profile/content?resume_id=<%=resume_id%>" class="btn btn-secondary btn-xs"> <span class="glyphicon glyphicon-edit"></span> 상세보기</a> 
                                     	</td>
                                         <td class="text-center">
-                                        <a  href="#" class="btn btn-info btn-xs"> <span class="glyphicon glyphicon-edit"></span> 수정</a> 
                                         <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 삭제</a>
                                         </td>
                                     </tr>
@@ -209,15 +209,18 @@
 			             		
 			                        		int volunteer_id = volunteer.getVolunteer_id();
 											String title = volunteer.getBoard_recruit_title();
-											String enterprise_id=volunteer.getEnterprise_id();
+											String enterprise_name=volunteer.getEnterprise_name();
 											String resume_title = volunteer.getResume_title();
 											String volunteer_date = volunteer.getDate().split(" ")[0];
 											String result = volunteer.getResult();
+											int board_recruit_id=volunteer.getBoard_recruit_id();
 											
 										%>  
 										<tr>
-                                            <td class="text-center"><a href="#"><%= title %></td>
-                                            <td class="text-center"><%= enterprise_id %></td>
+                                    
+                                            <td class="text-center"><a href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=board_recruit_id%>"><%= title %></td>
+                                    
+                                            <td class="text-center"><%= enterprise_name %></td>
                                             <td class="text-center"><%= resume_title %></td>
                                             <td class="text-center"><%= volunteer_date %></td>
                                             <td class="text-center"><%= result %></td>
@@ -269,11 +272,12 @@
 											String resume_title = list.getResume_title();
 											String memo = list.getMemo();
 											String resume_date=list.getDate().split(" ")[0];
+											int board_resume_id=list.getBoard_resume_id();
 											
 										%>  
                                     <tr class="text-center">
-                                        <td><%=title %></td>
-                                        <td><a href="#"><%=resume_title %></a></td>
+                                        <td><a href="<%=request.getContextPath()%>/resume/content?board_resume_id=<%=board_resume_id%>"><%=title %></a></td>
+                                        <td><%=resume_title %></td>
                                         <td><%=memo %></td>
                                         <td><%=resume_date %></td>
                                         <td>   
@@ -319,10 +323,11 @@
 											String title = community.getTitle();
 											String community_name = community.getName();
 											String community_date=community.getDate().split(" ")[0];
-											
+											int community_id=community.getCommunity_id();
+													
 										%>  
                                     <tr class="text-center">
-                                    	<td style="width:30%"><a href="#"><%=title %></td>
+                                    	<td style="width:30%"><a href="<%=request.getContextPath()%>/community/content?community_id=<%=community_id%>"><%=title %></td>
                                         <td style="width:20%"><%=community_name%></td> 
                                         <td style="width:20%"><%=community_date%></td>
                                         <td style="width:10%"> 

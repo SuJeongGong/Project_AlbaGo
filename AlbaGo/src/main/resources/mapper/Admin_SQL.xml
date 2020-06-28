@@ -49,7 +49,7 @@
 	</select>	
 	<!-- 이력서관리 -->
 	<select id="selectResume" parameterType="String" resultType="Resume">
-	SELECT title,date 
+	SELECT title,date ,resume_id
 	FROM RESUME 
 	<where>
 	individual_id=#{id}
@@ -59,10 +59,11 @@
 	<select id="selectApplypartjob" parameterType="String" resultType="Volunteer">
 	Select
 		board_recruit.title as board_recruit_title,
-		enterprise.name AS NAME,
+		enterprise.name AS enterprise_name,
 		resume.title as resume_title,
 		volunteer.date as date,
-		volunteer.result as result
+		volunteer.result as result,
+		volunteer.board_recruit_id as board_recruit_id
 				
 		FROM resume,volunteer,board_recruit,enterprise,recruit
 	<where>
@@ -82,7 +83,8 @@
 		board_resume.title AS board_resume_title ,
 		resume.title AS resume_title,
 		board_resume.memo,
-		board_resume.date
+		board_resume.date,
+		board_resume.board_resume_id
 
 		FROM board_resume ,resume,individual
 
@@ -96,9 +98,11 @@
 
 	<!--커뮤니티 게시판 작성글  -->
 	<select id="selectCommunity" parameterType="String" resultType="BoardCommunity">
-	SELECT community.date AS date,
+	SELECT 
+		community.date AS date,
 		 title,
-		 individual.name AS name
+		 individual.name AS name,
+		community.community_id
 		
 		FROM community,individual
 		
@@ -169,6 +173,7 @@
 		recruit.title AS recruit_title,
 		board_recruit.memo,
 		board_recruit.date
+		
 
 		FROM board_recruit ,recruit,enterprise
 

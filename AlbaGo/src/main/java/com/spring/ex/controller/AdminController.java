@@ -45,7 +45,7 @@ public class AdminController {
 		return "admin/main";
 		
 	}
-
+ 
 	@RequestMapping("/recruit") // 공고글 게시판 - 관리자ver
 	public String recruit(Model m) {
 		
@@ -218,17 +218,17 @@ public class AdminController {
 		
 		//이력서 관리
 		ArrayList<Resume> resume=adminService.selectResume(individual_id);
-		m.addAttribute("resume",resume);
+		m.addAttribute("resume",resume);  
 	
 		//지원한알바
 		ArrayList<Volunteer> volunteer=adminService.selectApplypartjob(individual_id);
 		m.addAttribute("volunteers", volunteer);
-
-		//인재 게시판 작성글
+ 
+		//인재 게시판 작성글  
 		ArrayList<BoardResume> resumewrite=adminService.selectResumeWrite(individual_id);
-		m.addAttribute("resumewrite",resumewrite); 
+		m.addAttribute("resumewrite",resumewrite);  
 		
-		//커뮤니티 게시판 작성글
+		//커뮤니티 게시판 작성글   
 		ArrayList<BoardCommunity> community=adminService.selectCommunity(individual_id);
 		m.addAttribute("communitys",community);  
 	  
@@ -246,10 +246,10 @@ public class AdminController {
 		Enterprise enterprise = adminService.selectEnterpriseAccount(enterprise_id); 
 		m.addAttribute("enterprise", enterprise);
 		 
-		//공고글 관리
+		//공고글 관리  
 		ArrayList<BoardRecruit> boardrecruit=adminService.selectRecruitWrite(enterprise_id);
 		m.addAttribute("boardrecruit", boardrecruit);
-		
+		 
 		//인재스크랩
 		ArrayList<Scrap_enterprise> scrap_enterprise=adminService.selectScrap(enterprise_id);
 		m.addAttribute("scrap_enterprise", scrap_enterprise);
