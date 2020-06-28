@@ -71,8 +71,8 @@ public interface AdminDAO {
 		ArrayList<BoardRecruit> recruit_List();
 		int deleteBoardRecruits(int boardrecruit_id);//공고 삭제하기
 		ArrayList<BoardRecruit> recruit_List_id(String category, String search);//선택검색
-		ArrayList<BoardRecruit> writer_search(String writer); //작성자검색
-		ArrayList<BoardRecruit> title_search(String title); //제목 검색
+		ArrayList<BoardRecruit> writer_search_Rc(String writer); //작성자검색
+		ArrayList<BoardRecruit> title_search_Rc(String title); //제목 검색
 		ArrayList<BoardRecruit> recruit_List_day(String day, String daysearch); //날짜검색(오늘, 일주일, 한달)
 		ArrayList<BoardRecruit> today_search_Rc(String today);
 		ArrayList<BoardRecruit> week_search_Rc(String week);
@@ -91,6 +91,14 @@ public interface AdminDAO {
 		//인제 게시판
 		ArrayList<BoardResume> resume_List();
 		int deleteBoardResumes(int boardresume_id); //인재글 삭제하기
+		
+		ArrayList<BoardResume> resume_List_id(String category, String search);//선택검색
+		ArrayList<BoardResume> writer_search_R(String writer); //작성자검색
+		ArrayList<BoardResume> title_search_R(String title); //제목 검색
+		ArrayList<BoardResume> resume_List_day(String day, String daysearch); //날짜검색(오늘, 일주일, 한달)
+		ArrayList<BoardResume> today_search_Rs(String today);
+		ArrayList<BoardResume> week_search_Rs(String week);
+		ArrayList<BoardResume> month_search_Rs(String month);
 		
 	/** 커뮤니티 관리 */
 		//공고 게시판
