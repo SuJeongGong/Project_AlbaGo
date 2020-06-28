@@ -112,15 +112,16 @@ public class AdminService {
 		ArrayList<BoardRecruit> boardrecruits = null;
 		
 		if(category.equals("writer")) {
-			return adminDAO.writer_search(search);
+			return adminDAO.writer_search_Rc(search);
 		}
 		else if(category.equals("title")) {
-			return adminDAO.title_search(search);
+			return adminDAO.title_search_Rc(search);
 		}
 		return null;
 	}
 	
-	//커뮤니티 게시판 날짜 검색
+	
+	//공고 게시판 날짜 검색
 	public ArrayList<BoardRecruit> recruit_List_day(String day, String daysearch) {
 		ArrayList<BoardRecruit> boardrecruits = null;
 		
@@ -202,10 +203,40 @@ public class AdminService {
 		return adminDAO.yesterday_Count_resume();
 	}
 	
-	//공고 게시판
+	//인재 게시판
 	public ArrayList<BoardResume> resume_List() {
 		return adminDAO.resume_List();
 	}
+	
+	//인재 게시판 선택검색
+	public ArrayList<BoardResume> resume_List_id(String category, String search) {
+		ArrayList<BoardResume> boardresumes = null;
+		
+		if(category.equals("writer")) {
+			return adminDAO.writer_search_R(search);
+		}
+		else if(category.equals("title")) {
+			return adminDAO.title_search_R(search);
+		}
+		return null;
+	}
+	
+	//인재 게시판 날짜 검색
+	public ArrayList<BoardResume> resume_List_day(String day, String daysearch) {
+		ArrayList<BoardResume> boardresumes = null;
+		
+		if(day.equals("today")) {
+			return adminDAO.today_search_Rs(daysearch);
+		}
+		else if(day.equals("week")) {
+			return adminDAO.week_search_Rs(daysearch);
+		}
+		else if(day.equals("month")) {
+			return adminDAO.month_search_Rs(daysearch);
+		}
+		return null;
+	}
+		
 	
 	//인재 게시판 선택삭제
 	public int deleteBoardResumes(ArrayList<String> ids) {

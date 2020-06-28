@@ -86,134 +86,95 @@
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body">
                                 <table>
-                                    <th style="width: 200px;">업직종</th>
+                                    <th style="width: 700px;">업직종</th>
                                     <th style="width: 400px;">지역</th>
-                                    <th style="width: 900px;">작성일자</th>
+                                    <th style="width: 1200px;">성별&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;학력</th>
                                     <tr>
+                                    	<form action="<%=request.getContextPath() %>/admin/resume/all" method="get" name="keyword" id="keyword">
                                         <td><select name="enterprise_category">
-                                                <option value="0">전체</option>
-                                                <option value="1">외식/음료</option>
-                                                <option value="2">외식/음료</option>
-                                                <option value="3">유통/판매</option>
-                                                <option value="4">문화/여가/생활</option>
-                                                <option value="5">서비스</option>
-                                                <option value="6">사무직</option>
-                                                <option value="7">고객상담/리서치</option>
-                                                <option value="8">생산/건설/노무</option>
-                                                <option value="9">교육/강사</option>
-                                                <option value="10">디자인</option>
-                                                <option value="12">운전/배달</option>
-                                                <option value="13">병원/간호/연구</option>
-                                                <option value="14">IT/컴퓨터</option>
+                                                <option value="">전체</option>
+                                                <option value="외식/음료">외식/음료</option>
+                                                <option value="유통/판매">유통/판매</option>
+                                                <option value="문화/여가/생활">문화/여가/생활</option>
+                                                <option value="서비스">서비스</option>
+                                                <option value="사무직">사무직</option>
+                                                <option value="고객상담/리서치">고객상담/리서치</option>
+                                                <option value="생산/건설/노무">생산/건설/노무</option>
+                                                <option value="교육/강사">교육/강사</option>
+                                                <option value="디자인">디자인</option>
+                                                <option value="운전/배달">운전/배달</option>
+                                                <option value="병원/간호/연구">병원/간호/연구</option>
+                                                <option value="IT/컴퓨터">IT/컴퓨터</option>
                                             </select></td>
 
                                         <td><select name="local_category">
-                                                <option value="0">전국</option>
-                                                <option value="1">서울</option>
-                                                <option value="2">경기</option>
-                                                <option value="3">인천</option>
-                                                <option value="4">부산</option>
-                                                <option value="5">대구</option>
-                                                <option value="6">대전</option>
-                                                <option value="7">경남</option>
-                                                <option value="8">전남</option>
-                                                <option value="9">충남</option>
-                                                <option value="10">광주</option>
-                                                <option value="11">울산</option>
-                                                <option value="12">경북</option>
-                                                <option value="13">전북</option>
-                                                <option value="13">충북</option>
-                                                <option value="13">강원</option>
-                                                <option value="13">제주</option>
+                                                <option value="">전국</option>
+                                                <option value="서울">서울</option>
+                                                <option value="경기">경기</option>
+                                                <option value="인천">인천</option>
+                                                <option value="부산">부산</option>
+                                                <option value="대구">대구</option>
+                                                <option value="대전">대전</option>
+                                                <option value="경남">경남</option>
+                                                <option value="전남">전남</option>
+                                                <option value="충남">충남</option>
+                                                <option value="광주">광주</option>
+                                                <option value="울산">울산</option>
+                                                <option value="경북">경북</option>
+                                                <option value="전북">전북</option>
+                                                <option value="충북">충북</option>
+                                                <option value="강원">강원</option>
+                                                <option value="제주">제주</option>
                                             </select></td>
-
-                                        <td><input type="text" name="date" style="width: 150px;">&nbsp;&nbsp; ~
-                                            &nbsp;&nbsp;<input type="text" name="date" style="width: 150px;"> 
-                                            <input type="submit" value="오늘" class="btn py-1 px-1 btn-primary">&nbsp;
-                                            <input type="submit" value="1주일" class="btn py-1 px-1 btn-primary">&nbsp;
-                                            <input type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <th>근무기간 </th>
-                                        <th>근무요일</th>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:500px">
-                                            <label class="checkbox-inline2">
-                                                <input type="checkbox" id="term1" value="option1">1주일 이하
-                                            </label>
-                                            <label class="checkbox-inline2">
-                                                <input type="checkbox" id="term2" value="option2">1개월
-                                            </label>
-                                            <label class="checkbox-inline2">
-                                                <input type="checkbox" id="term3" value="option3">3개월~6개월
-                                            </label>
-                                            <label class="checkbox-inline2">
-                                                <input type="checkbox" id="term4" value="option4"> 1년 이상
-                                            </label>
-                                            <label class="checkbox-inline2">
-                                                <input type="checkbox" id="term5" value="option5"> 기간협의
-                                            </label>
-                                        </td>
-
-
-                                        <td style="width:500px">
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term1" value="option1">월
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term2" value="option2">화
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term3" value="option3">수
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term4" value="option4">목
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term5" value="option5">금
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term5" value="option5">토
-                                            </label>
-                                            <label class="checkbox-inline3">
-                                                <input type="checkbox" id="term5" value="option5">일
-                                            </label>
-                                        </td>
-                                    </tr>
-                                    
-                                    <th>성별</th>
-                                    <th>학력</th>
-                                    <th>검색</th>
-                                    <th></th>
-
-                                    <tr>
-                                        <td><select name="">
-                                                <option value="0">무관</option>
-                                                <option value="1">남자</option>
-                                                <option value="2">여자</option>
-                                            </select></td>
-
-
-                                        <td><select name="">
-                                                <option value="0">초등학교 졸업</option>
-                                                <option value="1">중학교 졸업</option>
-                                                <option value="2">고등학교 졸업</option>
-                                                <option value="3">대학교(2, 3년) 졸업</option>
-                                                <option value="4">대학교(4년) 졸업</option>
-                                            </select> </td>
-                                            
-                                        <td><select name="" style="width: 100px;">
-                                                <option value="0">전체</option>
-                                                <option value="1">작성자</option>
-                                                <option value="2">제목</option>
+										<td>
+                                        	<select name="gender_category">
+                                                <option value="">무관</option>
+                                                <option value="남자">남자</option>
+                                                <option value="여자">여자</option>
                                             </select>
-                                            <input type="text" name="time" style="width: 350px;">
-                                            <input type="submit" value="검색" class="btn py-1 px-1 btn-primary">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <select name="">
+                                                <option value="">--선택하십시오--</option>
+                                                <option value="초등학교 졸업">초등학교 졸업</option>
+                                                <option value="중학교 졸업">중학교 졸업</option>
+                                                <option value="고등학교 졸업">고등학교 졸업</option>
+                                                <option value="2/3년제 졸업">대학교(2, 3년) 졸업</option>
+                                                <option value="4년제 졸업">대학교(4년) 졸업</option>
+                                            </select>
+                                            <input type="hidden" name="daysearch">
+                                            <button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
                                         </td>
-                                        
+                                        </form>
+                                    </tr>
+                                    
+                                    <th>작성일자</th>
+                                    <th></th>                                    
+                                    <th>검색</th>
+
+                                    <tr>
+                                        <form action="<%=request.getContextPath() %>/admin/resume/day" method="get" name="keyword" id="keyword">
+                                    	<td>
+                                            <select name="day" style="width:150px;">
+                                            	<option value="">--선택하십시오--</option>
+                                            	<option value="today">오늘</option>
+                                            	<option value="week">일주일</option>
+                                            	<option value="month">1개월</option>
+                                            </select>
+                                            <input type="hidden" name="daysearch">
+                                    		<button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
+                                    	</td>
+                                    	</form>	
+                                    	<td></td>
+                                    	<form action="<%=request.getContextPath() %>/admin/resume/id" method="get" name="keyword" id="keyword">
+                                    	<td><select name="category" style="width: 100px;">
+                                                <option value="전체">전체</option>
+                                                <option value="writer">작성자</option>
+                                                <option value="title">제목</option>
+                                            </select>
+                                            <input type="text" name="search" style="width: 350px;">
+                                            <button type="submit" class="btn py-1 px-1 btn-primary">검색</button>
+                                        </td>
+                                    	</form>
                                     </tr>
                                 </table>
                             </div>
