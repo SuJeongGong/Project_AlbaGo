@@ -1,6 +1,7 @@
 package com.spring.ex.services;
   
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,15 @@ public class AdminService {
 	public ArrayList<Resume> selectResume(String id) {
 		return adminDAO.selectResume(id);	
 	}
+	//이력서 삭제 ajax
+	public int deleteResume(String individual_id,int resume_id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("individual_id", individual_id);
+		map.put("resume_id", resume_id);
+		return adminDAO.deleteResume(map);	
+	}
+	
+	
 	//지원한 알바
 	public ArrayList<Volunteer> selectApplypartjob(String id){
 		return adminDAO.selectApplypartjob(id);

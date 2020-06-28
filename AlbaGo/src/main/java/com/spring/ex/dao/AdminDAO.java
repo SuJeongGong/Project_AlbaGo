@@ -1,6 +1,7 @@
 package com.spring.ex.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
@@ -29,6 +30,8 @@ public interface AdminDAO {
 	Individual selectIndividualAccount(String id);
 	//<!-- 이력서 관리 -->
 	ArrayList<Resume> selectResume(String id);
+	//이력서 삭제하기
+	int deleteResume(HashMap<String, Object> map);//ajax 삭제하기
 	//<!-- 지원한 알바-->
 	ArrayList<Volunteer> selectApplypartjob(String id);
 	//<!--인재글 게시판-->

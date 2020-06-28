@@ -125,6 +125,29 @@
 			<!-- ################################# -->     
 			                   
 						<!-- 이력서 관리 -->
+						<script>
+						function deleteResume(individual_id,resume_id) {
+							console.log(individual_id,resume_id);//a,2
+							$.ajax({
+								url : "./deleteResume",
+								method : "GET",
+								data : {
+									individual_id : individual_id,
+									resume_id : resume_id
+								
+								},
+								success :function(res){
+									if(res>=1){
+										alert("삭제완료");
+
+										 $("#res").load(window.location.href + " #res");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
                         <div class="card col-xl-12 shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">
@@ -133,8 +156,8 @@
                             </div>
                             <div class="card-body">
                             <!-- 이력서 관리 form 시작 -->
-                            <form id="resume" action="">
-                                <table class="table table-striped custab">
+                            <form >
+                                <table class="table table-striped custab" id="res">
                                     <thead>
                                         <!-- 제목 -->
 				
@@ -145,7 +168,7 @@
                                             <th class="text-center">관리</th>
                                         </tr>
                                     </thead>
-									<tbody>
+									<tbody >
                                    <%
 									ArrayList<Resume> resume = (ArrayList) request.getAttribute("resume");
 					                  for (int i = 0; i < resume.size(); i++) {
@@ -153,15 +176,16 @@
 					                     String title =list.getTitle();
 					                     String resume_date=list.getDate();
 					                     int resume_id=list.getResume_id();
+					                     String individual_id=list.getIndividual_id();
 					                  %>  
-										<tr>
+										<tr >
                                         <td class="text-center"><%=title%></td>
                                         <td class="text-center"><%=resume_date%></td>
                                         <td class="text-center">   
                                         <a  href="<%=request.getContextPath()%>/individual/profile/content?resume_id=<%=resume_id%>" class="btn btn-secondary btn-xs"> <span class="glyphicon glyphicon-edit"></span> 상세보기</a> 
                                     	</td>
                                         <td class="text-center">
-                                        <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> 삭제</a>
+                                        <button type="button" class="btn btn-outline-danger" onclick="deleteResume('<%=id%>',<%=resume_id%>)">삭제</button>
                                         </td>
                                     </tr>
                                     <%} %>
@@ -214,6 +238,11 @@
 											String volunteer_date = volunteer.getDate().split(" ")[0];
 											String result = volunteer.getResult();
 											int board_recruit_id=volunteer.getBoard_recruit_id();
+											
+											
+											if(result==null){
+												result="결과 없음";
+											}
 											
 										%>  
 										<tr>

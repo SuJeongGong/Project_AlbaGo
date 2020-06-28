@@ -52,9 +52,21 @@
 	SELECT title,date ,resume_id
 	FROM RESUME 
 	<where>
-	individual_id=#{id}
+	individual_id=#{id} 
+	AND	RESUME.delete_check =1
 	</where> 	
 	</select>
+	
+	<!-- 이력서관리삭제 ajax -->
+	<update id="deleteResume" parameterType="hashmap">
+	update resume
+	set delete_check = 0
+	<where> 
+	resume_id=#{resume_id}
+	AND individual_id=#{individual_id}
+	</where>
+	</update>
+	
 	<!-- 지원한 알바 -->
 	<select id="selectApplypartjob" parameterType="String" resultType="Volunteer">
 	Select

@@ -3,6 +3,7 @@ package com.spring.ex.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -236,6 +237,19 @@ public class AdminController {
 		return page;  
 		
 		} 
+	
+	//ajax 이력서삭제
+
+	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteResume(@RequestParam("individual_id") String individual_id,@RequestParam("resume_id")  int resume_id) {
+		
+	 System.out.println(individual_id);
+	 System.out.println(resume_id);
+		return adminService.deleteResume(individual_id,resume_id);
+	}  
+	
+	   
+
 
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
