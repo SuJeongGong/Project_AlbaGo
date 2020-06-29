@@ -1,6 +1,7 @@
 package com.spring.ex.services;
   
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,9 @@ import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
+import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
  
 @Service
@@ -45,6 +48,15 @@ public class AdminService {
 	public ArrayList<Resume> selectResume(String id) {
 		return adminDAO.selectResume(id);	
 	}
+	//이력서 삭제 ajax
+	public int deleteResume(String individual_id,int resume_id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("individual_id", individual_id);
+		map.put("resume_id", resume_id);
+		return adminDAO.deleteResume(map);	
+	}
+	
+	
 	//지원한 알바
 	public ArrayList<Volunteer> selectApplypartjob(String id){
 		return adminDAO.selectApplypartjob(id);
@@ -83,6 +95,18 @@ public class AdminService {
 	//기업회원정보 '상세정보'를 볼수있는 테이블
 	public Enterprise selectEnterpriseAccount(String id){
 		return adminDAO.selectEnterpriseAccount(id);	
+	}
+	//공고글 관리
+	public ArrayList<BoardRecruit> selectRecruitWrite(String id) {
+		return adminDAO.selectRecruitWrite(id);
+	}
+	//인재스크랩
+	public ArrayList<Scrap_enterprise> selectScrap(String id) {
+		return adminDAO.selectScrap(id);
+	}
+	//상품결제내역
+	public ArrayList<Payment> selectPayment(String id) {
+		return adminDAO.selectPayment(id);
 	}
 
 	/*##################################################*/

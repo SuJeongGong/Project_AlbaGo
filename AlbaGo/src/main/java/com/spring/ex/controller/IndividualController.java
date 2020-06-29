@@ -22,7 +22,7 @@ import com.spring.ex.interceptor.Auth;
 import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.IndividualService;
 
-@Auth
+@Auth//로그인 안한사람은 못하는거 
 @Controller
 @RequestMapping("/individual")
 public class IndividualController {
@@ -31,7 +31,7 @@ public class IndividualController {
 	IndividualService individualSerive;
 
 	@RequestMapping("/mypage") // 마이페이지 메인
-	public String mypage(@AuthUser String id, Model m) {
+	public String mypage(@AuthUser String id, Model m) {//    실제 아이디 값 / 그 아이디의 타입  -> asdf/개인   -> id.split("/")[1]
 		// 모델에 담기
 		m.addAttribute("Iinfo", individualSerive.selectIndividual(id.split("/")[0]));// 기업정보
 		m.addAttribute("scraps", individualSerive.selectScrap(id.split("/")[0]));// 스크랩

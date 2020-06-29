@@ -15,5 +15,6 @@ public class Volunteer {
 	String title;//지원한 공고글의 제목
 	String memo;//메모
 	String result;//결과
+	String enterprise_name;//기업이름
 	
 }
