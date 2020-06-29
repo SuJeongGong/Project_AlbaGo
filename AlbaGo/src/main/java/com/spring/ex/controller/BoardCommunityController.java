@@ -65,7 +65,7 @@ public class BoardCommunityController {
 	}
 	
 	
-	@RequestMapping("comment/write")//작성
+	@RequestMapping("comment/write")//댓글작성
 	public @ResponseBody int writeComment(@AuthUser String id, @ModelAttribute("comment")String comment, @ModelAttribute("community")int community){
 		//아이디 가져오고  -(@AuthUser String id
 		//댓글 내용 가져오고  - @ModelAttribute("comment") BoardComment comments
@@ -169,6 +169,20 @@ public class BoardCommunityController {
 		if(1 <= communityService.deleteContent(community_id)) {
 			System.out.println("DB연결 성공!");
 			page = "redirect:/community/list";
+		}
+		else {
+			System.out.println("DB연결 실패!");
+		}
+		return page;
+	}
+	
+	@RequestMapping(value = "comment/delete", method = RequestMethod.GET)//댓글삭제
+	public String commentdelete(int comment_id) {
+		String page = "/community/content";
+		System.out.println(comment_id);
+		if(1 <= communityService.deleteComment(comment_id)) {
+			System.out.println("DB연결 성공!");
+			page = "redirect:/community/list";   //댓글 삭제후 위치 조정 해야됨 까먹지 말것
 		}
 		else {
 			System.out.println("DB연결 실패!");
