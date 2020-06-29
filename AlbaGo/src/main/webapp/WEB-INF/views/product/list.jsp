@@ -22,7 +22,7 @@
 				<div class="row">
 
 
-					<div class="col-md-6 col-lg-5">
+					
 						<%
 							ArrayList<Product> products = (ArrayList) request.getAttribute("products");
 						for (int i = 0; i < products.size(); i++) {
@@ -33,25 +33,25 @@
 							int price = list.getPrice();
 							String explan = list.getExplan();
 							int amount = list.getAmount();
-						%>
-						<div class="single_candidates text-center">
-							<div class="thumb">
-								<input type="text"  name="Product_id"  placeholder=<%=product_id %> value="<%=product_id %>"  />
-								<h2 name="name"> 
-							<%=name%></h2>
-								<h3 name="amount"><%=amount%></h3>
-								<p name="product_explan"><%=explan%></p>
+						%><div class="col-md-12 col-lg-4">
+						<div class="single_candidates">
+							<div class=" text-center">
+								<input type="hidden"  name="Product_id"  placeholder=<%=product_id %> value="<%=product_id %>"  />
+								<h2 class="row" name="name"> <%=name%></h2>
+								<h3 class="row" name="amount"><%=amount%>개</h3>
+								<p class="row" name="product_explan">설명 : <%=explan%></p>
+							<br> 
 							</div>
-							<br> <br> <br><br><br><br>
+							<br> 
 				
 							
 							<a href="<%=request.getContextPath()%>/product/payment?product_id=<%=product_id %>" name = "product_id">결제</a>
 
 						</div>
+					</div>
 						<%
 							}
 						%>
-					</div>
 				</div>
 	
 

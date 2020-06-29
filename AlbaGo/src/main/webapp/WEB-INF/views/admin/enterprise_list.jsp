@@ -14,9 +14,7 @@
 
 
 <body>
-	<%
-		String conPath = request.getContextPath();
-	%>
+
     <div id="wrapper">
         <!-- 사이드 바 -->
         <%@ include file="../serve/manager_sidebar.jsp" %>

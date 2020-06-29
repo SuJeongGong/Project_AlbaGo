@@ -22,13 +22,15 @@
 </head>
 
 <body id="page-top">
-
+<%
+String conPath = request.getContextPath();
+%>
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%=conPath %>/admin/main">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -59,13 +61,13 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="individual_list">
+        <a class="nav-link" href="<%=conPath%>/admin/individual_list">
           <i class="fas fa-fw fa-table"></i>
           <span>개인</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="enterprise_list">
+        <a class="nav-link"  href="<%=conPath%>/admin/enterprise_list" >
           <i class="fas fa-fw fa-table"></i>
           <span>기업</span></a>
       </li>
@@ -89,9 +91,9 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">notice board:</h6>
-            <a class="collapse-item" href="recruit">공고글</a>
-            <a class="collapse-item" href="resume">인재글</a>
-            <a class="collapse-item" href="community">커뮤니티</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/recruit">공고글</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/resume">인재글</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/community">커뮤니티</a>
           </div>
         </div>
       </li>
@@ -105,9 +107,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Management:</h6>
-            <a class="collapse-item" href="approve">승인관리</a>
-            <a class="collapse-item" href="product">상품관리</a>
-            <a class="collapse-item" href="payment">매출</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/approve">승인관리</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/product">상품관리</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/payment">매출</a>
           </div>
         </div>
       </li>

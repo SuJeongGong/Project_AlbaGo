@@ -24,9 +24,9 @@
 					
 					<div class="col-md-6 col-lg-5">
 			<h1>승인 대기 중 입니다</h1>
-							<button class="btn btn-info edit" href = "<%=request.getContextPath() %>/product/list">
+							<a class="btn btn-info edit" href = "<%=request.getContextPath() %>/product/list">
 								<i class="fa fa-pencil-square-o" aria-hidden="true">확인</i>
-							</button>
+							</a>
 
 						</div>
 			

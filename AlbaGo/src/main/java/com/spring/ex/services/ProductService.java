@@ -21,7 +21,7 @@ public class ProductService {
 		return productDAO.selectList();
 	}
 
-	public int insertProduct_term(Product product) {
+	public int insertProduct(Product product) {
 		return productDAO.insertProduct(product);
 	}
 
@@ -79,7 +79,9 @@ public class ProductService {
 				// 기업의 아이디를 알아야함
 
 				String type = productDAO.selectProductType(Integer.parseInt(ids.get(i)));// 상품의 타입 가져오기
+				System.out.println("type"+type);
 				if (type.equals("up")) {// up버튼
+						System.out.println("insertMap"+insertMap);
 					res = productDAO.updateEnterpriseUpCount(insertMap);// up버튼 갯수 올려주기
 				} else if (type.equals("resume")) {// 이력서 보기 횟ㅅ
 					res = productDAO.updateEnterpriseResumeCount(insertMap);// resume갯수 올려주기
@@ -102,10 +104,11 @@ public class ProductService {
 		String result = map.get("result").toString();
 		int payment_id = (int) map.get("payment_id");
 		int res = -1;
-		ArrayList<String> ids = (ArrayList<String>) map.get("payment_ids");
+		System.out.println("result 2"+result);
 
 		if (result.equals("승인")) {
-
+			System.out.println("result 1"+result);
+			
 			String enterprise_id = productDAO.selectEnterprise_id(payment_id);
 			int product_count = productDAO.selectProductCount(payment_id);
 
@@ -113,14 +116,19 @@ public class ProductService {
 			insertMap.put("enterprise_id", enterprise_id);
 			insertMap.put("product_count", product_count);
 
+			System.out.println("insertMap 1"+insertMap);
 			// 기업의 아이디를 알아야함
 
 			String type = productDAO.selectProductType(payment_id);// 상품의 타입 가져오기
+			System.out.println("type"+type);
 			if (type.equals("up")) {// up버튼
+				System.out.println("insertMap 2"+insertMap);
 				res = productDAO.updateEnterpriseUpCount(insertMap);// up버튼 갯수 올려주기
 			} else if (type.equals("resume")) {// 이력서 보기 횟ㅅ
+				System.out.println("insertMap 2"+insertMap);
 				res = productDAO.updateEnterpriseResumeCount(insertMap);// resume갯수 올려주기
 			} else if (type.equals("board")) {// 게시글 제한 횟수
+				System.out.println("insertMap 2"+insertMap);
 				res = productDAO.updateEnterpriseBoardCount(insertMap);// board 갯수 올려주기
 			}
 

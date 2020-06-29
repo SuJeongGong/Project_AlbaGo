@@ -11,10 +11,6 @@
 <title>상품관리</title>
 </head>
 <body>
-
-	<%
-		String conPath = request.getContextPath();
-	%>
 	<div id="wrapper">
 		<!-- 사이드 바 -->
 		<%@ include file="../serve/manager_sidebar.jsp"%>
@@ -65,10 +61,6 @@
 								</h1>
 							</div>
 							<div class="card-body pt-0">
-								<ul class="list-unstyled mb-4">
-									기간:<%=term%>
-
-								</ul>
 								<ul class="list-unstyled mb-4">
 									설명:<%=explan%>
 

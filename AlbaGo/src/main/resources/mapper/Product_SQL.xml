@@ -49,7 +49,7 @@
 	
 	<update id="update_product" parameterType="Product"> <!-- 상품 수정입니다! -->
 	   UPDATE product 
-	   SET name=#{name},term=#{term},price=#{price}, explan=#{explan},amount=#{amount}
+	   SET name=#{name},term=#{term},price=#{price}, explan=#{explan},amount=#{amount},type=#{type}
 	   <where>
 		product_id =#{product_id}
 		and			
@@ -96,12 +96,14 @@
 		(payment_id,
 		product_id,
 		enterprise_id,
-		date)
+		date,
+		result)
 		VALUES
 
 		(null,
 		#{product_id},
 		#{enterprise_id},
+		null,
 		null);
 	</insert>
 	
@@ -163,7 +165,7 @@
 	
 	<update id = "updateEnterpriseBoardCount" parameterType="hashmap">
 				update enterprise
-		SET board_count =board_count+ #{product_count}
+		SET board_recruit_count =board_recruit_count + #{product_count}
 		<where>
 			enterprise_id =#{enterprise_id}
 		</where>

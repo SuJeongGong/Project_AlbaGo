@@ -324,7 +324,7 @@ public class AdminController {
 		System.out.println(product);
 		String page = "/admin/product_account";
 		if (productService.update_product(product) >= 1) {
-			page = "/admin/main";
+			page = "redirect:/admin/product";
 			System.out.println("DB연결성공");
 		} else {
 			page = "/admin/product_account";
@@ -339,7 +339,7 @@ public class AdminController {
 		String page = "/admin/product_account"; 
 		  
 		if (productService.delete_product(product) >= 1) {
-			page = "/admin/main";
+			page = "redirect:/admin/product";
 			System.out.println("DB연결성공");
 		} else {
 			page = "/admin/product_account";
@@ -349,40 +349,21 @@ public class AdminController {
 	}
 
 	
-	@RequestMapping("/add_product_term") // 기간있는 상품추가 보여주는 폼
+	@RequestMapping("/add_product_term") // 상품추가 보여주는 폼
 	public String add_product_term() {
 		String page = "/admin/add_product_term";
 		return page;
 	}
 
-	@RequestMapping("/add_product_term/result") // 상품추가 DB
+	@RequestMapping("/add_product/result") // 상품추가 DB
 	public String add_product_term_result(HttpServletRequest request, @ModelAttribute("product") Product product,
 			BindingResult result) {
 
-		String page = "/admin/add_product_term/result";
+		String page = "/admin/add_product/result";
 System.out.println(product);
-		if (productService.insertProduct_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
+		if (productService.insertProduct(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
 			page = "/admin/main";
 		}
-
-		return page;
-	}
-
-	@RequestMapping("/add_product_no_term") // 기간이없는 상품추가 보여주는 폼
-	public String add_product_no_term() {
-		String page = "admin/add_product_no_term";
-		
-		
-		return page;
-	}
-
-	@RequestMapping("/add_product_no_term/result") // 기간이없는 상품추가 DB
-	public String add_product_no_term_result(HttpServletRequest request, @ModelAttribute("product") Product product,
-			BindingResult result) {
-
-		String page = "/admin/add_product_no_term/result";
-
-	
 
 		return page;
 	}
