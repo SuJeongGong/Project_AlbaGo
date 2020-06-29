@@ -78,7 +78,7 @@
                                                     올라온 공고글</div>
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col-auto">
-                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">500
+                                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="todaycount"><%=request.getAttribute("todaycount")%>
                                                         </div>
                                                     </div>
                                                     <div class="col">
@@ -106,7 +106,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                     오늘 올라온 인재글</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">180</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="todaycount_resume"><%=request.getAttribute("todaycount_resume")%></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-comments fa-2x text-gray-300"></i>

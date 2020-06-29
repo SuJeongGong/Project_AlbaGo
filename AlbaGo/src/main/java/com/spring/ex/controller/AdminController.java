@@ -42,7 +42,13 @@ public class AdminController {
 	
 
 	@RequestMapping("/main") // 관리자 메인
-	public String main() {
+	public String main(Model m) {
+		// 오늘 공고 갯수
+		int todaycount = adminService.today_Count();
+		m.addAttribute("todaycount", todaycount);
+		// 오늘 인재 갯수
+		int todaycount_resume = adminService.today_Count_resume();
+		m.addAttribute("todaycount_resume", todaycount_resume);
 		return "admin/main";
 		
 	}
@@ -117,7 +123,7 @@ public class AdminController {
 		int todaycount_resume = adminService.today_Count_resume();
 		m.addAttribute("todaycount_resume", todaycount_resume);
 		
-		// 오늘 인재 갯수
+		// 어제 인재 갯수
 		int yesterdaycount_resume = adminService.yesterday_Count_resume();
 		m.addAttribute("yesterdaycount_resume", yesterdaycount_resume);
 				

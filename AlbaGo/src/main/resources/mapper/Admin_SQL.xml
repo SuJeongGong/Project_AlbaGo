@@ -239,6 +239,18 @@
 	<!-- #################  -->
 	<!-- 임승재  -->
 	
+	<!-- 관리자 메인 오늘 회원가입한 총원 -->
+<!-- 	<select id="select_TI_join" resultType="int">
+		select COUNT(*) AS '개인'
+		FROM individual
+		WHERE DATE >= CURDATE()
+	</select>
+	<select id="selet_TE_join" resultType="int">
+		select COUNT(*) AS '개인'
+		FROM enterprise
+		WHERE DATE >= CURDATE()	
+	</select> -->
+	
 	<!-- 예슬이가 아에 감싸는 거라고 설명해줌 -->
 	<select id = "recruit_List_id" resultType="BoardRecruit" parameterType="String">
 		SELECT 
@@ -296,7 +308,7 @@
 	<select id = "yesterday_Count" resultType="int">
 		select count(*)
 		from board_recruit
-		where date > DATE_SUB(NOW(), INTERVAL 1 DAY)
+		where DATE = CURDATE() - INTERVAL 1 DAY
 		and board_recruit.delete_check = 1
 	</select>
 	
@@ -381,7 +393,7 @@
 	<select id = "yesterday_Count_resume" resultType="int">
 		select count(*)
 		from board_resume
-		where date > DATE_SUB(NOW(), INTERVAL 1 DAY)
+		where board_resume.date = CURDATE() - INTERVAL 1 DAY
 		and board_resume.delete_check = 1
 	</select>
 	
