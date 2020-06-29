@@ -12,5 +12,6 @@ public class Product {
 	int amount;//상품 수량
 	String explan; //상품설명
 	int delete_check;//삭제 조건 있으면 1 없으면 0 
+	String type;
 	
 }

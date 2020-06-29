@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
+import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.ProductService;
 
 @Controller
@@ -42,13 +43,12 @@ public class ProductController {
 	}
 
 	@RequestMapping("/payment/result")//결제 여기서 이뤄짐
-	public String approval_result(HttpServletRequest request ) {
+	public String approval_result(@AuthUser String id ,@RequestParam("product_id") int product_id ) {
 		String page ="/payment/result";
 		
-		int product_id = Integer.parseInt(request.getParameter("product_id"));
 		Payment payment = new Payment();//payment 객체 생성 - product_id 와 enterprise_id 한번에보내기위해서
 		payment.setProduct_id(product_id);//거기다가 product_id 값 넣기
-		payment.setEnterprise_id(request.getSession().getAttribute("id").toString());//거기다가 enterprise_id 값 넣기
+		payment.setEnterprise_id(id.split("/")[0]);//거기다가 enterprise_id 값 넣기
 		System.out.println(payment);
 		if (productService.insertProduct_payment(payment)>= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
 			page ="/product/result";
