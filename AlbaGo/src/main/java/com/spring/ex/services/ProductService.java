@@ -22,12 +22,12 @@ public class ProductService {
 	}
 
 	public int insertProduct_term(Product product) {
-		return productDAO.insertProduct_term(product);
+		return productDAO.insertProduct(product);
 	}
 
-	public int insertProduct_no_term(Product product) {
-		return productDAO.insertProduct_no_term(product);
-	}
+//	public int insertProduct_no_term(Product product) {
+//		return productDAO.insertProduct_no_term(product);
+//	}
 
 	public Product product_account(int product_id) {
 		return productDAO.product_account(product_id); // 수정상세

@@ -315,7 +315,7 @@ public class AdminController {
 			BindingResult result) {
 
 		String page = "/admin/add_product_term/result";
-
+System.out.println(product);
 		if (productService.insertProduct_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
 			page = "/admin/main";
 		}
@@ -326,6 +326,8 @@ public class AdminController {
 	@RequestMapping("/add_product_no_term") // 기간이없는 상품추가 보여주는 폼
 	public String add_product_no_term() {
 		String page = "admin/add_product_no_term";
+		
+		
 		return page;
 	}
 
@@ -335,9 +337,7 @@ public class AdminController {
 
 		String page = "/admin/add_product_no_term/result";
 
-		if (productService.insertProduct_no_term(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
-			page = "/admin/main";
-		}
+	
 
 		return page;
 	}
@@ -353,7 +353,7 @@ public class AdminController {
 	@RequestMapping(value = "/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int updateResult(@RequestParam(value = "result") String result,@RequestParam(value = "id") int id) {
 
-		System.out.println("volunteer_ids" + id);
+		System.out.println("payment_id" + id);
 		System.out.println("result" + result);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("payment_id", id);
