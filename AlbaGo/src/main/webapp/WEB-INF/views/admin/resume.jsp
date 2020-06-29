@@ -89,11 +89,11 @@
                             <div class="card-body">
                                 <table>
                                     <th style="width: 700px;">업직종</th>
-                                    <th style="width: 400px;">지역</th>
+                                    <th style="width: 400px;">희망지역</th>
                                     <th style="width: 1200px;">성별&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;학력</th>
                                     <tr>
-                                    	<form action="<%=request.getContextPath() %>/admin/resume/all" method="get" name="keyword" id="keyword">
-                                        <td><select name="enterprise_category">
+                                    	<form action="<%=request.getContextPath() %>/admin/resume/total" method="get" name="keyword" id="keyword">
+                                        <td><select name="individual_category">
                                                 <option value="">전체</option>
                                                 <option value="외식/음료">외식/음료</option>
                                                 <option value="유통/판매">유통/판매</option>
@@ -129,13 +129,13 @@
                                                 <option value="제주">제주</option>
                                             </select></td>
 										<td>
-                                        	<select name="gender_category">
+                                        	<select name="gender">
                                                 <option value="">무관</option>
                                                 <option value="남자">남자</option>
                                                 <option value="여자">여자</option>
                                             </select>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <select name="">
+                                            <select name="education">
                                                 <option value="">--선택하십시오--</option>
                                                 <option value="초등학교 졸업">초등학교 졸업</option>
                                                 <option value="중학교 졸업">중학교 졸업</option>
@@ -143,7 +143,6 @@
                                                 <option value="2/3년제 졸업">대학교(2, 3년) 졸업</option>
                                                 <option value="4년제 졸업">대학교(4년) 졸업</option>
                                             </select>
-                                            <input type="hidden" name="daysearch">
                                             <button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
                                         </td>
                                         </form>
@@ -169,7 +168,7 @@
                                     	<td></td>
                                     	<form action="<%=request.getContextPath() %>/admin/resume/id" method="get" name="keyword" id="keyword">
                                     	<td><select name="category" style="width: 100px;">
-                                                <option value="전체">전체</option>
+                                                <option value="">전체</option>
                                                 <option value="writer">작성자</option>
                                                 <option value="title">제목</option>
                                             </select>
@@ -231,8 +230,10 @@
                                             <th>작성일</th>
                                             <th>인재글 제목</th>
                                             <th>작성자</th>
-                                            <th>경력</th>
+                                            <th>업직종</th>                                            
                                             <th>희망지역</th>
+                                            <th>성별</th>
+                                            <th>학력</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -244,6 +245,10 @@
                                     	String boardresume_date = list.getDate().split(" ")[0];
                                     	String boardresume_title = list.getBoard_resume_title();
                                     	String individual_id = list.getIndividual_id();
+                                    	String category = list.getCategory();
+                                    	String place = list.getPlace();
+                                    	String gender = list.getGender();
+                                    	String education = list.getEducation();
                                     	
                                     %>
                                         <tr>
@@ -254,8 +259,10 @@
                                             <td><%=boardresume_date %></td>
                                             <td><a href="<%=request.getContextPath() %>/resume/list?board_resume_id=<%=boardresume_id%>"><%=boardresume_title%></a></td>
                                             <td><%=individual_id %></td>
-                                            <td>신입</td>
-                                            <td>전국</td>
+                                            <td><%=category %></td>
+                                            <td><%=place %></td>
+                                            <td><%=gender %></td>
+                                            <td><%=education %></td>
                                         </tr>
                                     <%} %>
                                     </tbody>

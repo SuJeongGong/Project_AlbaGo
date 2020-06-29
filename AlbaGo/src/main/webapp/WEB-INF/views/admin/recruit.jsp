@@ -92,6 +92,7 @@
                                     <th style="width: 400px;">지역</th>
                                     <th style="width: 1200px;">성별&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;학력</th>
                                     <tr>
+                                    <form action="<%=request.getContextPath() %>/admin/recruit/total" method="get" name="keyword" id="keyword">
                                         <td>
                                             <select id="enterprise_category" name="enterprise_category">
                                                 <option value="">전체</option>
@@ -133,19 +134,22 @@
                                         </td>
                                         <td>
                                         	<select id="gender" name="gender">
-                                                <option value="무관">무관</option>
+                                                <option value="">무관</option>
                                                 <option value="남자">남자</option>
                                                 <option value="여자">여자</option>
                                             </select>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <select id="education" name="education">
+                                            	<option value="">--선택하십시오--</option>
                                                 <option value="초등학교 졸업">초등학교 졸업</option>
                                                 <option value="중학교 졸업">중학교 졸업</option>
                                                 <option value="고등학교 졸업">고등학교 졸업</option>
                                                 <option value="2/3년제 졸업">2/3년제 졸업</option>
                                                 <option value="4년제 졸업">4년제 졸업</option>
                                             </select> 
+                                            <button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
                                         </td>
+                                    </form>
                                     </tr>
                                     
                                     <th>작성일자</th>
@@ -167,7 +171,7 @@
                                     	<td></td>	
                                         <form action="<%=request.getContextPath() %>/admin/recruit/id" method="get" name="keyword" id="keyword">
                                     	<td><select name="category" style="width: 100px;">
-                                                <option value="전체">전체</option>
+                                                <option value="">전체</option>
                                                 <option value="writer">작성자</option>
                                                 <option value="title">제목</option>
                                             </select>
@@ -230,7 +234,10 @@
                                             <th>공고 제목</th>
                                             <th>기업 아이디</th>
                                             <th>지원자 관리</th>
-                                            <th>베너 사용</th>
+                                            <th>업직종</th>
+                                            <th>지역</th>
+                                            <th>성별</th>
+                                            <th>학력</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -242,6 +249,10 @@
                                     	String boardrecruit_date = list.getDate().split(" ")[0];
                                     	String boardrecruit_title = list.getTitle();
                                     	String enterprise_id = list.getEnterprise_id();
+                                    	String category = list.getCategory();
+                                    	String place = list.getPlace();
+                                    	String gender = list.getGender();
+                                    	String education = list.getEducation();
                                     	
                                     %>
                                         <tr>
@@ -253,7 +264,10 @@
                                             <td><a href="<%=request.getContextPath() %>/recruit/list?board_recruit_id=<%=boardrecruit_id%>"><%=boardrecruit_title%></a></td>
                                             <td><%=enterprise_id %></td>
                                             <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
-                                            <td>Table cell</td>
+                                            <td><%=category %></td>
+                                            <td><%=place %></td>
+                                            <td><%=gender %></td>
+                                            <td><%=education %></td>
                                         </tr>
                                     <%} %>
                                     </tbody>

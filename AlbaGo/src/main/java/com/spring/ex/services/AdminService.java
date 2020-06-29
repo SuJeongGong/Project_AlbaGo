@@ -2,6 +2,7 @@ package com.spring.ex.services;
   
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -161,6 +162,18 @@ public class AdminService {
 		return null;
 	}
 	
+	//공고 게시판 총검색
+	public ArrayList<BoardRecruit> total_List_Rc(String category, String place, String gender, String education) {
+		ArrayList<BoardRecruit> boardrecruits = null;
+		
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("category",category);
+		map.put("place",place);
+		map.put("gender",gender);
+		map.put("education",education);
+		return adminDAO.total_List_Rc(map);
+	}
+	
 	//공고 게시판 선택삭제
 	public int deleteBoardRecruits(ArrayList<String> ids) {
 		System.out.println(ids);
@@ -168,6 +181,9 @@ public class AdminService {
 		
 		return forDeleteSQL(ids, "deleteBoardRecruit");
 	}
+	
+	
+
 	
 	// 게시글 삭제
 	public int forDeleteSQL(ArrayList<String> ids, String methodName) {
@@ -259,6 +275,19 @@ public class AdminService {
 			return adminDAO.month_search_Rs(daysearch);
 		}
 		return null;
+	}
+	
+	
+	//인재 게시판 총검색
+	public ArrayList<BoardResume> total_List_Rs(String category, String place, String gender, String education) {
+		ArrayList<BoardResume> boardresumes = null;
+		
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("category",category);
+		map.put("place",place);
+		map.put("gender",gender);
+		map.put("education",education);
+		return adminDAO.total_List_Rs(map);
 	}
 		
 	

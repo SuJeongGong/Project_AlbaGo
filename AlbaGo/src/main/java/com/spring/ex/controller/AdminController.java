@@ -64,6 +64,7 @@ public class AdminController {
 		
 		//공고글 리스트
 		ArrayList<BoardRecruit> boardrecruits=adminService.recruit_List();
+		System.out.println(boardrecruits);
 		m.addAttribute("boardrecruits",boardrecruits);
 		
 		return "/admin/recruit";
@@ -79,11 +80,19 @@ public class AdminController {
 		return page;
 	}
 	
-	
 	@RequestMapping("/recruit/day") //공고글 날짜 검색 (오늘, 일주일, 한달)
 	public String boardrecruit_day(Model m, @RequestParam("day")String day, @RequestParam("daysearch")String daysearch) {
 		String page = "/admin/recruit";
 		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_day(day, daysearch);
+		m.addAttribute("boardrecruits", boardrecruits);
+		
+		return page;
+	}
+	
+	@RequestMapping("/recruit/total") //공고글 검색
+	public String boardrecruit_t(Model m, @RequestParam("enterprise_category")String enterprise_category, @RequestParam("local_category")String local_category, @RequestParam("gender")String gender, @RequestParam("education")String education) {
+		String page = "/admin/recruit";
+		ArrayList<BoardRecruit> boardrecruits = adminService.total_List_Rc(enterprise_category, local_category, gender, education);
 		m.addAttribute("boardrecruits", boardrecruits);
 		
 		return page;
@@ -131,6 +140,15 @@ public class AdminController {
 	public String boardresume_day(Model m, @RequestParam("day")String day, @RequestParam("daysearch")String daysearch) {
 		String page = "/admin/resume";
 		ArrayList<BoardResume> boardresumes = adminService.resume_List_day(day, daysearch);
+		m.addAttribute("boardresumes", boardresumes);
+		
+		return page;
+	}
+	
+	@RequestMapping("/resume/total") //인재글 검색
+	public String boardresume_t(Model m, @RequestParam("individual_category")String individual_category, @RequestParam("local_category")String local_category, @RequestParam("gender")String gender, @RequestParam("education")String education) {
+		String page = "/admin/resume";
+		ArrayList<BoardResume> boardresumes = adminService.total_List_Rs(individual_category, local_category, gender, education);
 		m.addAttribute("boardresumes", boardresumes);
 		
 		return page;

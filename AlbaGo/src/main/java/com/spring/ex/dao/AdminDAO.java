@@ -2,6 +2,7 @@ package com.spring.ex.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
@@ -84,6 +85,7 @@ public interface AdminDAO {
 		ArrayList<BoardRecruit> today_search_Rc(String today);
 		ArrayList<BoardRecruit> week_search_Rc(String week);
 		ArrayList<BoardRecruit> month_search_Rc(String month);
+		ArrayList<BoardRecruit> total_List_Rc(Map<String, Object> map);
 	
 	/** 인재글관리 */
 		//전체 인재 갯수
@@ -106,6 +108,7 @@ public interface AdminDAO {
 		ArrayList<BoardResume> today_search_Rs(String today);
 		ArrayList<BoardResume> week_search_Rs(String week);
 		ArrayList<BoardResume> month_search_Rs(String month);
+		ArrayList<BoardResume> total_List_Rs(Map<String, Object> map);
 		
 	/** 커뮤니티 관리 */
 		//공고 게시판
