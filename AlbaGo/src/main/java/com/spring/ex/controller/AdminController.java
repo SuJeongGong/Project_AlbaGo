@@ -42,7 +42,12 @@ public class AdminController {
 	
 
 	@RequestMapping("/main") // 관리자 메인
-	public String main() {
+	public String main(Model m) {
+		ArrayList<HashMap<String, Object>> sales = adminService.selectRecentSales();
+		m.addAttribute("Recent_sales", sales);
+		
+		
+		
 		return "admin/main";
 		
 	}
