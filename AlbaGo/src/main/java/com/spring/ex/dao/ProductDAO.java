@@ -9,8 +9,7 @@ import com.spring.ex.dto.Product;
 public interface ProductDAO {
 //관리자
 	ArrayList<Product> selectList();//관리자에서 상품보기
-	int insertProduct_term(Product product);	 //기간있는 상품추가
-	int insertProduct_no_term(Product product); //기간없는 상품추가
+	int insertProduct(Product product);	 //기간있는 상품추가
 	Product product_account(int product_id); //관리자에서 상품 수정 하기전에 상세보기
 	int update_product(Product product); //관리자-수정
 	int delete_product(Product product);//관리자- 삭제

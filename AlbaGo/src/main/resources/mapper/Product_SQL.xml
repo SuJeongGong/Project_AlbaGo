@@ -10,37 +10,32 @@
 		</where>
 	</select>
 
-	<insert id="insertProduct_term" parameterType="product"> <!-- 관리자에서 기간있는 상품추가 -->
-		INSERT INTO
-		product
-		VALUES
-		(NULL,
-		#{name},
-		#{term},
-		#{price},
-		#{amount},
-		#{explan},
-		1
-		)
-
-	</insert>
-	<insert id="insertProduct_no_term" parameterType="product"> <!-- 관리자에서 기간없는 상품추가 -->
+	<insert id="insertProduct" parameterType="product"> <!-- 관리자에서 기간있는 상품추가 -->
 		INSERT INTO
 		product
 		(product_id,
 		name,
+		type,
+		term,
 		price,
+		amount,
 		explan,
-		amount)
+		delete_check
+		)
+		
 		VALUES
 		(NULL,
 		#{name},
+		#{type},
+		#{term},
 		#{price},
 		#{explan},
 		#{amount},
-		#{delete_check}
+		1
 		)
+
 	</insert>
+
 	
 	<select id="product_account" resultType="Product" parameterType ="int"><!-- 수정에서 수정상세보기 -->
 		SELECT * FROM product 
