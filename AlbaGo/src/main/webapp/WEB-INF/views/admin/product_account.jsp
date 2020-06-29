@@ -46,7 +46,7 @@
 						<div class="pricing card-deck flex-column flex-md-row mb-3 card-center" >
 
 							<div class="card  center-block card-center card-pricing text-center px-3 mb-4  col-xl-8">
-				<form action="<%=request.getContextPath() %>/admin/account/update" name="product" id  = "product" class="col-xl-12" >
+				<form action="<%=request.getContextPath() %>/admin/account/product/update" name="product" id  = "product" class="col-xl-12" >
 	             			
 						<div class="row form-group ">
 								<span

@@ -1,3 +1,5 @@
+<%@page import="com.spring.ex.dto.BoardRecruit"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.spring.ex.dto.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -11,7 +13,8 @@
 	<%@ include file="../serve/header.jsp"%>
 	<%
 		Product product = (Product) request.getAttribute("product");//여기 ""안에 m.addAttribute() 안에 적어준 이름이랑 같게 해야해
-		
+
+		ArrayList<BoardRecruit> board_recuits = (ArrayList<BoardRecruit>) request.getAttribute("board_recuit");
 	%>
 
 	<div class="job_details_area">
@@ -40,22 +43,46 @@
 								기간 :
 								<%=product.getTerm()%></h4>
 						</div>
-						<div class="single_wrap">
-							<h4></h4>
+						<div class="row single_wrap">
+							<h4>설명</h4>
 							<p><%=product.getExplan()%></p>
 						</div>
-						<form action="#">
+						<form name = "advertising" action="<%=request.getContextPath()%>/product/payment/result">
+						<div class="row single_wrap">
+							<h4>적용할 공고글</h4>
+									<select name = "board_recruit_id">
+							<%
+							if(board_recuits!=null){
+							
+							for(int i =0; i <board_recuits.size();i++){
+								BoardRecruit board_recuit = board_recuits.get(i);
+								%>
+						
+								<option value="<%=board_recuit.getBoard_recruit_id()%>"><%=board_recuit.getBoard_recruit_id()%><%=board_recuit.getTitle() %></option>
+								
+								
+											
+								<%											
+							}	
+							}
+							
+							%>
+							</select>
+							
+							<input type="hidden" value="<%=product.getProduct_id() %>" name ="product_id"/><br>
+							
+							<input type="text" name ="title"/><br>
+							<input type="text" name ="start_date"/>
+						</div>
 							<div class="row">
 								<div class="col-md-6"> 
-									<div class="submit_btn">
-									<a href="<%=request.getContextPath()%>/product/payment/result?product_id=<%=product.getProduct_id()%>"
-											>결제하기</a> 
-											</div>
+									<button type="submit" class="btn btn-outline-primary">결제하기</button> 
+
 								</div> 
 								<div class="col-md-6">
-									<div class="submit_btn">
-										<a href="<%=request.getContextPath() %>/product/list">목록으로</a>
-								</div>
+										<a  class="btn btn-outline-primary"href="<%=request.getContextPath() %>/product/list">목록으로</a>
+	
+							</div>
 							</div>
 						</form>
 					</div>

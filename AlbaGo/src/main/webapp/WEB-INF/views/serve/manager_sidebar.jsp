@@ -78,7 +78,7 @@ String conPath = request.getContextPath();
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Others
+        Board
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -90,7 +90,7 @@ String conPath = request.getContextPath();
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">notice board:</h6>
+            <h6 class="collapse-header">board:</h6>
             <a class="collapse-item" href="<%=conPath %>/admin/recruit">공고글</a>
             <a class="collapse-item" href="<%=conPath %>/admin/resume">인재글</a>
             <a class="collapse-item" href="<%=conPath %>/admin/community">커뮤니티</a>
@@ -98,6 +98,12 @@ String conPath = request.getContextPath();
         </div>
       </li>
 
+      <hr class="sidebar-divider" >
+
+	<div class="sidebar-heading">
+        Management
+      </div>
+      
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -107,11 +113,25 @@ String conPath = request.getContextPath();
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Management:</h6>
-            <a class="collapse-item" href="<%=conPath %>/admin/approve">승인관리</a>
-            <a class="collapse-item" href="<%=conPath %>/admin/product">상품관리</a>
-            <a class="collapse-item" href="<%=conPath %>/admin/payment">매출</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/product/approve">상품 승인</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/product/product">상품 관리</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/advertising/approve">광고 승인</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/advertising/product">광고 관리</a>
           </div>
         </div>
+      </li>
+
+      <hr class="sidebar-divider ">
+		<div class="sidebar-heading">
+        	Sales
+      </div>
+      
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="<%=conPath %>/admin/payment" >
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>매출</span>
+        </a>
       </li>
 
       
@@ -128,7 +148,9 @@ String conPath = request.getContextPath();
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
       </button>
-
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
 
     </ul>
     <!-- End of Sidebar -->
@@ -138,13 +160,10 @@ String conPath = request.getContextPath();
 
   <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
+  <!-- 
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+Scroll to Top Button-->
 </body>
-
-
-
 </html>

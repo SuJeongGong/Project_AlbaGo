@@ -299,16 +299,16 @@ public class AdminController {
 		return "admin/payment";
 	}
  
-	@RequestMapping("/product") // 상품보기
+	@RequestMapping("/product/product") // 상품보기
 	public String list(Model m, HttpServletRequest request) {
 		
-		ArrayList<Product> products = productService.selectList();
+		ArrayList<Product> products = productService.selectProductList();
 		m.addAttribute("products", products);  
 
-		return "/admin/product";
+		return "/admin/product_product";
 	} 
 
-	@RequestMapping("/product_account") // 상품상세보기
+	@RequestMapping("/product/product_account") // 상품상세보기
 	public String update_account(HttpServletRequest request, Model m, @RequestParam("product_id") int product_id) {
 		String page = "/admin/product_account";
 		Product product = productService.product_account(product_id);
@@ -316,19 +316,58 @@ public class AdminController {
 
 		return page;
 	} 
-  
+	@RequestMapping("/advertising/product") // 광고 보기
+	public String advertisingㅣist(Model m, HttpServletRequest request) {
+		
+		ArrayList<Product> products = productService.selectAdvertisingList();
+		m.addAttribute("products", products);  
+		
+		return "/admin/advertising_product";
+	} 
+	
+	@RequestMapping("/advertising/product_account") // 광고상세보기
+	public String advertisingㅕpdate_account( Model m, @RequestParam("product_id") int product_id) {
+		String page = "/admin/advertising_account";
+		Product product = productService.product_account(product_id);
+		m.addAttribute("product", product);
+		
+		return page;
+	} 
+
+	@RequestMapping("/advertising/approve") // 결제승인
+	public String advertisingApprove(Model m) {
+		ArrayList<Payment> payments= productService.selectAdvertisingPayments();
+		
+		m.addAttribute("payments",payments);
+		
+		return "admin/advertising_approve";
+	}
  
-	@RequestMapping("/account/update") // 상품수정하기
-	public String update(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
+	@RequestMapping("/account/product/update") // 상품수정하기
+	public String productUpdate(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
 		System.out.println(product);
 		String page = "/admin/product_account";
 		if (productService.update_product(product) >= 1) {
-			page = "redirect:/admin/product";
+			page = "redirect:/admin/product/product";
 			System.out.println("DB연결성공");
 		} else {
-			page = "/admin/product_account";
+			page = "/admin/product/product_account";
 		System.out.println("실패라고요");
+		}
+		return page;
+	}
+	@RequestMapping("/account/advertising/update") // 상품수정하기
+	public String advertisingUpdate(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
+		
+		System.out.println(product);
+		String page = "/admin/product_account";
+		if (productService.update_product(product) >= 1) {
+			page = "redirect:/admin/advertising/product";
+			System.out.println("DB연결성공");
+		} else {
+			page = "/admin/advertising/product_account";
+			System.out.println("실패라고요");
 		}
 		return page;
 	}
@@ -368,13 +407,13 @@ System.out.println(product);
 		return page;
 	}
 
-	@RequestMapping("/approve") // 결제승인
+	@RequestMapping("/product/approve") // 결제승인
 	public String approve(Model m) {
-		ArrayList<Payment> payments= productService.selectPayments();
+		ArrayList<Payment> payments= productService.selectProductPayments();
 		
 		m.addAttribute("payments",payments);
 		
-		return "admin/approve";
+		return "admin/product_approve";
 	}	// 아약스 처리
 	@RequestMapping(value = "/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int updateResult(@RequestParam(value = "result") String result,@RequestParam(value = "id") int id) {
@@ -396,6 +435,29 @@ System.out.println(product);
 		map.put("payment_ids", payment_ids);
 		map.put("result", result);
 		return productService.updatePaymentsResult(map);
+	}
+	
+	
+	@RequestMapping(value = "/advertising/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int advertisingUpdateResult(@RequestParam(value = "result") String result,@RequestParam(value = "id") int id) {
+		
+		System.out.println("payment_id" + id);
+		System.out.println("result" + result);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("payment_id", id);
+		map.put("result", result);
+		
+		return productService.advertisingUpdatePaymentResult(map);
+	}
+	@RequestMapping(value = "/advertising/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int advertisingUpdateResults(@RequestParam(value = "result") String result,	@RequestParam(value = "payment_ids[]") ArrayList<String> payment_ids) {
+		
+		System.out.println("payment_ids" + payment_ids);
+		System.out.println("result" + result);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("payment_ids", payment_ids);
+		map.put("result", result);
+		return productService.advertisingUpdatePaymentsResult(map);
 	}
 
 }
