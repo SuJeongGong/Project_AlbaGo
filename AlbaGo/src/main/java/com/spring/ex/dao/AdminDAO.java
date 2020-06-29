@@ -1,6 +1,7 @@
 package com.spring.ex.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
@@ -8,7 +9,9 @@ import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
+import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 
 public interface AdminDAO {
@@ -27,6 +30,8 @@ public interface AdminDAO {
 	Individual selectIndividualAccount(String id);
 	//<!-- 이력서 관리 -->
 	ArrayList<Resume> selectResume(String id);
+	//이력서 삭제하기
+	int deleteResume(HashMap<String, Object> map);//ajax 삭제하기
 	//<!-- 지원한 알바-->
 	ArrayList<Volunteer> selectApplypartjob(String id);
 	//<!--인재글 게시판-->
@@ -47,10 +52,12 @@ public interface AdminDAO {
 	//<!--기업관리자 링크타고-->
 	//<!--기업 회원 정보-->
 	Enterprise selectEnterpriseAccount(String id);
-	
-	
-	
-	
+	//<!-- 공고글관리 -->
+	ArrayList<BoardRecruit> selectRecruitWrite(String id);
+	//<!--인재스크랩-->	
+	ArrayList<Scrap_enterprise> selectScrap(String id);
+	//<!--상품결제내역-->
+	ArrayList<Payment> selectPayment(String id);
 	
 	
 	/*############################*/

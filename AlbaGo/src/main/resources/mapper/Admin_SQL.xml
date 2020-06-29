@@ -49,20 +49,33 @@
 	</select>	
 	<!-- 이력서관리 -->
 	<select id="selectResume" parameterType="String" resultType="Resume">
-	SELECT title,date 
+	SELECT title,date ,resume_id
 	FROM RESUME 
 	<where>
-	individual_id=#{id}
+	individual_id=#{id} 
+	AND	RESUME.delete_check =1
 	</where> 	
 	</select>
+	
+	<!-- 이력서관리삭제 ajax -->
+	<update id="deleteResume" parameterType="hashmap">
+	update resume
+	set delete_check = 0
+	<where> 
+	resume_id=#{resume_id}
+	AND individual_id=#{individual_id}
+	</where>
+	</update>
+	
 	<!-- 지원한 알바 -->
 	<select id="selectApplypartjob" parameterType="String" resultType="Volunteer">
 	Select
 		board_recruit.title as board_recruit_title,
-		enterprise.name AS NAME,
+		enterprise.name AS enterprise_name,
 		resume.title as resume_title,
 		volunteer.date as date,
-		volunteer.result as result
+		volunteer.result as result,
+		volunteer.board_recruit_id as board_recruit_id
 				
 		FROM resume,volunteer,board_recruit,enterprise,recruit
 	<where>
@@ -82,7 +95,8 @@
 		board_resume.title AS board_resume_title ,
 		resume.title AS resume_title,
 		board_resume.memo,
-		board_resume.date
+		board_resume.date,
+		board_resume.board_resume_id
 
 		FROM board_resume ,resume,individual
 
@@ -96,9 +110,11 @@
 
 	<!--커뮤니티 게시판 작성글  -->
 	<select id="selectCommunity" parameterType="String" resultType="BoardCommunity">
-	SELECT community.date AS date,
+	SELECT 
+		community.date AS date,
 		 title,
-		 individual.name AS name
+		 individual.name AS name,
+		community.community_id
 		
 		FROM community,individual
 		
@@ -165,21 +181,61 @@
 	<!-- 공고글관리 -->
 	<select id="selectRecruitWrite"  parameterType="String" resultType="BoardRecruit">
 		SELECT 
-		board_recruit.title AS board_recruit_title ,
+		board_recruit.title,
 		recruit.title AS recruit_title,
 		board_recruit.memo,
 		board_recruit.date
+		
 
 		FROM board_recruit ,recruit,enterprise
 
-		WHERE
+		<where>
 		board_recruit.recruit_id = recruit.recruit_id 
 		AND recruit.enterprise_id = enterprise.enterprise_id
 		AND enterprise.enterprise_id = #{id}
 		AND board_recruit.delete_check =1
+		</where>
 	</select>
 	
+	<!-- 인재스크랩 -->
+		<select id="selectScrap"  parameterType="String" resultType="Scrap_enterprise">
 	
+		SELECT 
+		board_resume.title AS board_resume_title,
+		resume.title as resume_title ,
+		resume.individual_id as individual_id,
+		individual.name,
+		board_resume.memo,
+		scrap_enterprise.date AS date
+		
+		From scrap_enterprise, board_resume ,resume,individual
+			
+		<where>
+		scrap_enterprise.board_resume_id =board_resume.board_resume_id
+		AND resume.resume_id = board_resume.resume_id
+		AND resume.individual_id=individual.individual_id
+		AND enterprise_id =#{id}
+		AND board_resume.delete_check =1
+			
+		</where>
+		</select>
+	
+	<!-- 상품 결제내역 -->
+		<select id="selectPayment"  parameterType="String" resultType="Payment">
+	
+		SELECT 
+		product.name AS name,
+		product.price AS product_price,
+		product.term AS term,
+		payment.date AS date
+		FROM payment , enterprise,product
+		<where> 
+		payment.enterprise_id=enterprise.enterprise_id
+		AND payment.product_id=product.product_id
+		AND enterprise.enterprise_id=#{id}
+		AND product.delete_check =1
+		</where>
+		</select>
 	<!-- #################  -->
 	<!-- 임승재  -->
 	
