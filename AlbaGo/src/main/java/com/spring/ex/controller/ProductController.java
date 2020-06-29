@@ -17,13 +17,12 @@ import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.ProductService;
 
 @Controller
-@RequestMapping("/product")
 public class ProductController {
 
 	@Autowired
 	ProductService productService; 
 
-	@RequestMapping("/payment") // 상세보기
+	@RequestMapping("/product/payment") // 상세보기
 	public String payment(HttpServletRequest request, Model m,@RequestParam("product_id")int product_id) {
 		String page="/product/payment";
 		Product product=productService.enterprise_selectWrite(product_id);
@@ -31,7 +30,7 @@ public class ProductController {
 		return page; 
 	}  
 
-	@RequestMapping("/list") // 기업이 상품리스트 보는화면
+	@RequestMapping("/product/list") // 기업이 상품리스트 보는화면
 	public String list(Model m, HttpServletRequest request) {
 		String page="/product/list";
 
@@ -42,7 +41,7 @@ public class ProductController {
 		return page;
 	}
 
-	@RequestMapping("/payment/result")//결제 여기서 이뤄짐
+	@RequestMapping("/product/payment/result")//결제 여기서 이뤄짐
 	public String approval_result(@AuthUser String id ,@RequestParam("product_id") int product_id ) {
 		String page ="/payment/result";
 		
@@ -56,4 +55,22 @@ public class ProductController {
 		return page;
 	}
 
+	@RequestMapping("/advertising/payment") // 상세보기
+	public String advertising(HttpServletRequest request, Model m,@RequestParam("product_id")int product_id) {
+		Product product=productService.enterprise_selectWrite(product_id);
+		System.out.println(product);
+		System.out.println(product_id);
+		m.addAttribute("product", product);
+		return "/advertising/payment";
+	}
+	@RequestMapping("/advertising/list") // 기업이 상품리스트 보는화면
+	public String productList(Model m, HttpServletRequest request) {
+
+		ArrayList<Product> products = productService.enterprise_selectAdList(); 
+
+		m.addAttribute("products", products);
+
+		return "/advertising/list";
+	}
+	
 }

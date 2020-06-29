@@ -25,10 +25,6 @@ public class ProductService {
 		return productDAO.insertProduct(product);
 	}
 
-//	public int insertProduct_no_term(Product product) {
-//		return productDAO.insertProduct_no_term(product);
-//	}
-
 	public Product product_account(int product_id) {
 		return productDAO.product_account(product_id); // 수정상세
 	}
@@ -45,10 +41,14 @@ public class ProductService {
 	public ArrayList<Product> enterprise_selectList() {
 		return productDAO.enterprise_selectList();
 	}
+	public ArrayList<Product> enterprise_selectAdList() {
+		return productDAO.enterprise_selectAdList();
+	}
 
 	public Product enterprise_selectWrite(int product_id) {
 		return productDAO.enterprise_selectWrite(product_id);
 	}
+
 
 	public int insertProduct_payment(Payment payment) {
 		return productDAO.insertProduct_payment(payment);

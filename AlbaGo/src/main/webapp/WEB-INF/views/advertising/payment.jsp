@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 자세히 보기</title>
+<title>광고 자세히 보기</title>
 </head>
 <body>
 	<%@ include file="../serve/header.jsp"%>
@@ -22,11 +22,9 @@
 						<div class="single_jobs white-bg d-flex justify-content-between">
 							<div class="jobs_left d-flex align-items-center">
 								<div class="jobs_conetent">
-									<a href="#">
 										<h4>
 											<%=product.getName()%>
-											</h4>
-									</a>
+										</h4>
 								</div>
 							</div>
 						</div>
@@ -34,12 +32,13 @@
 					<div class="descript_wrap white-bg">
 						<div class="single_wrap">
 							<h4>
-								갯수 :<%=product.getAmount()%></h4>
+								가격 :
+								<%=product.getPrice()%></h4>
 						</div>
 						<div class="single_wrap">
 							<h4>
-								가격 :
-								<%=product.getPrice()%></h4>
+								기간 :
+								<%=product.getTerm()%></h4>
 						</div>
 						<div class="single_wrap">
 							<h4></h4>
