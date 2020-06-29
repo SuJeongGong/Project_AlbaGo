@@ -1,3 +1,7 @@
+<%@page import="com.spring.ex.dto.Payment"%>
+<%@page import="com.spring.ex.dto.Scrap_enterprise"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.spring.ex.dto.BoardRecruit"%>
 <%@page import="com.spring.ex.dto.Enterprise"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -46,7 +50,10 @@
 						String manager_name = enterprise.getManager_name();
 						String manager_phone = enterprise.getManager_phone();
 						String category = enterprise.getCategory();
-						String date = enterprise.getDate().split(" ")[0];;//가입날짜
+						String date = enterprise.getDate().split(" ")[0];//가입날짜
+						String address=enterprise.getAddress(); //주소
+						int up_count=enterprise.getUp_count(); 
+						int resume_count=enterprise.getResume_count();
 						
 					%>
 
@@ -93,6 +100,12 @@
                                         <td><input type="text" class="form-control" id="manager_phone" value="<%=manager_phone%>">
                                         </td>
                                     </tr>
+                                    	<tr>
+                                        <th>주소</th>
+                                        <td><input type="text" class="form-control" id="category" value="<%=address%>">
+                                        </td>
+                                    </tr>
+                                     <tr>
                                  	<tr>
                                         <th>카테고리</th>
                                         <td><input type="text" class="form-control" id="category" value="<%=category%>">
@@ -100,9 +113,20 @@
                                     </tr>
                                      <tr>
                                         <th>가입날짜</th>
-                                        <td><input type="text" class="form-control" id="date" value="<%=manager_name%>">
+                                        <td><input type="text" class="form-control" id="date" value="<%=date%>">
                                         </td>
                                     </tr>
+                                      <tr>
+                                        <th>up횟수</th>
+                                        <td><input type="text" class="form-control" id="date" value="<%=up_count%>">
+                                        </td>
+                                    </tr>
+                                      <tr>
+                                        <th>resume횟수</th>
+                                        <td><input type="text" class="form-control" id="date" value="<%=resume_count%>">
+                                        </td>
+                                    </tr>
+                                    
     
                                     
                                     <tr>
@@ -122,7 +146,7 @@
                         
               
                         <div class="card col-xl-12 shadow mb-4">
-                            <div class="card-header py-3">
+                            <div class="card-header py-3"> 
                                 <h6 class="m-0 font-weight-bold text-primary">공고글 관리
                                 </h6>
                             </div>
@@ -134,25 +158,31 @@
 
                                     <thead>
                                         <tr>
-                                            <th>공고 번호 작성일</th>
-                                            <th>알바공고</th>
-                                            <th>모집현황</th>
-                                            <th>지원자관리</th>
-                                            <th>유료서비스</th>
+                                            <th>공고 제목</th>
+                                            <th>사용한 공고글 제목</th>
+                                            <th>메모</th>
+                                            <th>작성날짜</th>
                                             <th>관리</th>
-
-
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+									ArrayList<BoardRecruit> boardrecruit = (ArrayList) request.getAttribute("boardrecruit");
+					                  for (int i = 0; i < boardrecruit.size(); i++) {
+					                	  BoardRecruit list = boardrecruit.get(i);
+					                     String board_recruit_title =list.getTitle();
+					                     String recruit_title=list.getRecruit_title();
+					                     String memo=list.getMemo();
+					                     String board_recruit_date=list.getDate().split(" ")[0];
+					                  %>  
                                         <tr>
-                                            <td>2020-05-30</td>
-                                            <td>맥도날드</td>
-                                            <td>데이터3</td>
-                                            <td>무료</td>
-                                            <td>데이터5</td>
+                                            <td><%=board_recruit_title%></td>
+                                            <td><%=recruit_title%></td>
+                                            <td><%=memo%></td>
+                                            <td><%=board_recruit_date%></td>
                                             <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
                                         </tr>
+                                        <%} %>
                                     </tbody>
                                 </table>
                                </form>
@@ -174,23 +204,38 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>이름</th>
+                                        	<th>인재아이디</th>
+                                        	<th>인재이름</th>
+                                            <th>인재제목</th>
                                             <th>이력서제목</th>
-                                            <th>경력,자격증</th>
-                                            <th>희망지역</th>
-                                            <th>조회수</th>
+                                            <th>메모</th>
+                                            <th>스크랩한 날짜</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <%
+									ArrayList<Scrap_enterprise> scrap_enterprise = (ArrayList) request.getAttribute("scrap_enterprise");
+					                  for (int i = 0; i < scrap_enterprise.size(); i++) {
+					                	 Scrap_enterprise list = scrap_enterprise.get(i);
+					                	 
+					                     String individual_id =list.getIndividual_id(); //인재아이디
+					                     String individual_name=list.getName();			//인재이름
+					                     String board_resume_title=list.getBoard_resume_title(); //인재제목
+					                     String resume_title=list.getResume_title();	//이력서제목
+					                     String memo=list.getMemo();					//메모
+					                     String scrap_date=list.getDate().split(" ")[0];//스크랩한 날짜
+					                  %>  
                                         <tr>
                                             <td>
-                                                임OO<small>(남/24세)</small>
+                                              	  <%=individual_id%>
                                             </td>
-                                            <td>밝은 미소와 긍정적 마인드를 가진 인재입니다.</td>
-                                            <td>경력 : 신입</td>
-                                            <td>경기 고양시</td>
-                                            <td>12</td>
+                                            <td><%=individual_name%></td>
+                                            <td><%=board_resume_title%></td>
+                                            <td><%=resume_title%></td>
+                                            <td><%=memo%></td>
+                                            <td><%=scrap_date%></td>
                                         </tr>
+                                        <%} %>
                                         
                                     </tbody>
                                 </table>
@@ -200,15 +245,15 @@
                         
                         <div class="card col-xl-12 shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">결제내역
+                                <h6 class="m-0 font-weight-bold text-primary">상품 결제내역
                                 </h6>
                             </div>
                             <!-- 결제내역 form 시작 -->
                             <form id="payment" action="" >
                        
                             <div class="card-body">
-                                <h6 class="m-0 font-weight-bold text-primary" align="right">총계 : &nbsp; <input
-                                        type="text" name="revenue">원</h6>
+                                <h6 class="m-0 font-weight-bold text-primary" align="right">총계 : &nbsp; 
+                                <input   type="text" name="revenue">원</h6>
                                 <br />
                                 
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -218,14 +263,29 @@
                                             <th>결제일</th>
                                             <th>사용기간</th>
                                             <th>가격</th>
+                                     
                                         </tr>
                                     </thead>
+                                    <tbody>
+                                    <%
+									ArrayList<Payment> payment = (ArrayList) request.getAttribute("payment");
+					                  for (int i = 0; i < payment.size(); i++) {
+					                	  Payment list = payment.get(i);
+					                	
+					                	 String product_name=list.getName();
+					                	 String payment_date=list.getDate();
+					                	 String term=list.getTerm();
+					                	 int price=list.getProduct_price();
+					                	 
+					                  %>  
                                     <tr>
-                                        <td>플래티넘</td>
-                                        <td>2020-06-16</td>
-                                        <td>시작일무료 + & </td>
-                                        <td>198,000</td>
+                                        <td><%=product_name%></td>
+                                        <td><%=payment_date%></td>
+                                        <td><%=term%></td>
+                                        <td><%=price%></td>
                                     </tr>
+                                    <%} %>
+                                    </tbody>
                                 </table>
                             </div>
                             </form>

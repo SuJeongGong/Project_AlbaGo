@@ -3,6 +3,7 @@ package com.spring.ex.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 import com.spring.ex.services.AdminService;
 import com.spring.ex.services.ProductService;
@@ -44,7 +46,7 @@ public class AdminController {
 		return "admin/main";
 		
 	}
-
+ 
 	@RequestMapping("/recruit") // 공고글 게시판 - 관리자ver
 	public String recruit(Model m) {
 		
@@ -236,17 +238,17 @@ public class AdminController {
 		
 		//이력서 관리
 		ArrayList<Resume> resume=adminService.selectResume(individual_id);
-		m.addAttribute("resume",resume);
+		m.addAttribute("resume",resume);  
 	
 		//지원한알바
 		ArrayList<Volunteer> volunteer=adminService.selectApplypartjob(individual_id);
 		m.addAttribute("volunteers", volunteer);
-
-		//인재 게시판 작성글
+ 
+		//인재 게시판 작성글  
 		ArrayList<BoardResume> resumewrite=adminService.selectResumeWrite(individual_id);
-		m.addAttribute("resumewrite",resumewrite); 
+		m.addAttribute("resumewrite",resumewrite);  
 		
-		//커뮤니티 게시판 작성글
+		//커뮤니티 게시판 작성글   
 		ArrayList<BoardCommunity> community=adminService.selectCommunity(individual_id);
 		m.addAttribute("communitys",community);  
 	  
@@ -254,25 +256,49 @@ public class AdminController {
 		return page;  
 		
 		} 
+	
+	//ajax 이력서삭제
+
+	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteResume(@RequestParam("individual_id") String individual_id,@RequestParam("resume_id")  int resume_id) {
+		
+	 System.out.println(individual_id);
+	 System.out.println(resume_id);
+		return adminService.deleteResume(individual_id,resume_id);
+	}  
+	
+	   
+
 
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail(Model m,@RequestParam("enterprise_id") String enterprise_id) {
 		String page="admin/enterprise_detail";
 		
-		//기업 회원정보 상세보기
+		//기업 회원정보 상세보기 
 		Enterprise enterprise = adminService.selectEnterpriseAccount(enterprise_id); 
 		m.addAttribute("enterprise", enterprise);
-				
+		 
+		//공고글 관리  
+		ArrayList<BoardRecruit> boardrecruit=adminService.selectRecruitWrite(enterprise_id);
+		m.addAttribute("boardrecruit", boardrecruit);
+		 
+		//인재스크랩
+		ArrayList<Scrap_enterprise> scrap_enterprise=adminService.selectScrap(enterprise_id);
+		m.addAttribute("scrap_enterprise", scrap_enterprise);
 		
-		return page;
+		//결제내역
+		ArrayList<Payment> payment=adminService.selectPayment(enterprise_id);
+		m.addAttribute("payment", payment);
+	 
+		return page;  
 	} 
 
 	@RequestMapping("/payment") // 결제관리
 	public String manager_payment() {
 		return "admin/payment";
 	}
-
+ 
 	@RequestMapping("/product") // 상품보기
 	public String list(Model m, HttpServletRequest request) {
 		
