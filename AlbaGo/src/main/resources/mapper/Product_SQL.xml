@@ -268,6 +268,22 @@
 		null);
 	</insert>
 
-
+	<update id = "updateAdvertisingResult" parameterType="hashmap">
+		update advertising
+		SET result = #{result} , 
+		end_date = DATE_ADD(start_date, INTERVAL 
+		
+		(SELECT term FROM product, payment 
+		WHERE payment.product_id = product.product_id
+		AND payment.payment_id = #{payment_id}
+		)
+		
+		 DAY)
+		<where>
+			payment_id =#{payment_id}
+		</where>
+	
+	
+	</update>
 
 </mapper>

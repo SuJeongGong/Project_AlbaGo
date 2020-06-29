@@ -34,6 +34,7 @@ public interface ProductDAO {
 	 int updateEnterpriseResumeCount(HashMap<String, Object> map);
 	 int updateEnterpriseBoardCount(HashMap<String, Object> map);
 	 int updatePaymentResult(HashMap<String, Object> map);
+	 int updateAdvertisingResult(HashMap<String, Object> map);
 	 
 	 
 	 

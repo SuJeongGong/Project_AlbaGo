@@ -449,6 +449,8 @@ System.out.println(product);
 		
 		return productService.advertisingUpdatePaymentResult(map);
 	}
+	
+	
 	@RequestMapping(value = "/advertising/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int advertisingUpdateResults(@RequestParam(value = "result") String result,	@RequestParam(value = "payment_ids[]") ArrayList<String> payment_ids) {
 		
