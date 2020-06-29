@@ -7,6 +7,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript">
+function insertComment(community) {
+	var comment = 	$("#comment").val();
+	console.log(comment);
+	$.ajax({
+		url : "./comment/write",
+		method : "GET",
+		data : {
+			community : community,
+			comment: comment
+		},
+		success :function(res){
+			if(res>=1){
+				//alert("결과 저장 완료");
+				$("#res").load(window.location.href + " #res");
+			
+			}else{
+				alert("실패");
+			}
+		}
+	});
+}
+
+function updateResults(result) {
+	var volunteer_ids = [];
+	$("input[name='volunteer_id']:checked").each(function(){
+		if(this.checked){
+			volunteer_ids.push($(this).val());
+			console.log($(this).val());
+		}
+	})
+	
+
+}
+
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -43,7 +79,7 @@
                         <li><i class="fa fa-user"></i><%=id %></li>
                         <li><i class="fa fa-comments"></i> 댓글 갯수</li>
                         <li><i class="fa fa-views"></i>조회수 <%=views %></li>
-                            <li><i class="fa fa-comments"></i><%=date.split(":")[0] %>:<%=date.split(":")[1] %></li>
+                            <li><i class="fa fa-clock-o"></i><%=date.split(":")[0] %>:<%=date.split(":")[1] %></li>
                      </ul>
                      <p class="excert">
                         <%=content %>
@@ -59,6 +95,14 @@
                                    } %>			
                   </div>
                </div>
+               <br/>
+               <br/>
+               <hr>
+               <h4>댓글</h4>
+               <br/>
+                    
+			 
+               <div id ="res" >
                     <%
    
 		
@@ -80,49 +124,40 @@
 			
 			%>
 			
-			
-               <div class="comments-area">
-                  <h4>댓글</h4>
-                  <div class="comment-list">
-                     <div class="single-comment justify-content-between d-flex">
+                 
+                  <div class="comment-list" >
+                     <div class="single-comment justify-content-between d-flex" >
                         <div class="user justify-content-between d-flex">
                            <div class="thumb">
                               <img src="img/comment/comment_3.png" alt="">
                            </div>
                            <div class="desc">
-                              <p class="comment">
-                                             
-                      	<%=cm_contents %>
-                              </p>
                               <div class="d-flex justify-content-between">
                                  <div class="d-flex align-items-center">
-                                    <h5>
-                                       	<%=cm_community_id %>아이디
-                                    </h5>
-                                    <p class="date"><%= cm_date%></p>
-                                 </div>
+                                 	<ul class="blog-info-link mt-3 mb-4">
+                                    <li><i class="fa fa-user"></i><%=cm_id %></li>
+                                    <li><i class="fa fa-clock-o"></i><%=cm_date.split(":")[0] %>:<%=date.split(":")[1] %></li>
+                                    </ul>
+                                 </div>    
                               </div>
+                              <p class="comment"><%=cm_contents %></p>
                            </div>
                         </div>
                      </div>
                   </div>
-               </div>
-			
-			
-			
-			
-			
-			
+            
+				
 			<%
 
 			   }
 		}
+				
      %>
-           
+              </div>
                
                <div class="comment-form">
                   <h4>댓글달기</h4>
-                  <form class="form-contact comment_form" action="#" id="commentForm">
+                  <form class="form-contact comment_form" action="#" id="commentForm"  >
                      <div class="row">
                         <div class="col-12">
                            <div class="form-group">
@@ -132,7 +167,7 @@
                         </div>
                      </div>
                      <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">댓글달기</button>
+                        <button type="button" class="button button-contactForm btn_1 boxed-btn" onclick ="insertComment(<%=community_id %>)">댓글달기</button>
                      </div>
                   </form>
                </div>
