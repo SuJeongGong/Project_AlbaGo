@@ -240,7 +240,7 @@
 	<!-- 임승재  -->
 	
 	<!-- 관리자 메인 오늘 회원가입한 총원 -->
-<!-- 	<select id="select_TI_join" resultType="int">
+ 	<select id="select_TI_join" resultType="int">
 		select COUNT(*) AS '개인'
 		FROM individual
 		WHERE DATE >= CURDATE()
@@ -249,7 +249,7 @@
 		select COUNT(*) AS '개인'
 		FROM enterprise
 		WHERE DATE >= CURDATE()	
-	</select> -->
+	</select> 
 	
 	<!-- 예슬이가 아에 감싸는 거라고 설명해줌 -->
 	<select id = "recruit_List_id" resultType="BoardRecruit" parameterType="String">
@@ -308,8 +308,10 @@
 	<select id = "yesterday_Count" resultType="int">
 		select count(*)
 		from board_recruit
-		where DATE = CURDATE() - INTERVAL 1 DAY
+		<![CDATA[
+		where date >= DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND DATE < CURDATE()
 		and board_recruit.delete_check = 1
+		]]>
 	</select>
 	
 	<!-- 공고글 게시판 -->
@@ -391,10 +393,12 @@
 	
 	<!-- 어제 인재 갯수 -->
 	<select id = "yesterday_Count_resume" resultType="int">
-		select count(*)
+		select COUNT(*)
 		from board_resume
-		where board_resume.date = CURDATE() - INTERVAL 1 DAY
+		<![CDATA[
+		where date >= DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND DATE < CURDATE()
 		and board_resume.delete_check = 1
+		]]>
 	</select>
 	
 	<!-- 인재글 게시판 -->

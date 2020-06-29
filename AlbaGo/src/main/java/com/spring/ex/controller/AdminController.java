@@ -43,6 +43,14 @@ public class AdminController {
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main(Model m) {
+		//오늘 가입한 개인회원수
+		int todayindividual = adminService.select_TI_join();
+		m.addAttribute("todayindividual", todayindividual);
+		
+		//오늘 가입한 기업회원수
+		int todayenterprise = adminService.selet_TE_join();
+		m.addAttribute("todayenterprise", todayenterprise);
+		
 		// 오늘 공고 갯수
 		int todaycount = adminService.today_Count();
 		m.addAttribute("todaycount", todaycount);

@@ -112,6 +112,15 @@ public class AdminService {
 
 	/*##################################################*/
 	//임승재
+	//오늘 가입한 개인회원수
+	public int select_TI_join() {
+		return adminDAO.select_TI_join();
+	}
+	//기업회원수
+	public int selet_TE_join() {
+		return adminDAO.selet_TE_join();
+	}
+	
 	//전체 인재 갯수
 	public int all_Count() {
 		return adminDAO.all_Count();

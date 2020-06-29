@@ -63,7 +63,11 @@ public interface AdminDAO {
 	
 	/*############################*/
 	//---임승재---
-	
+	/** 오늘 가입한 기업,개인 개수 */
+		//개인 
+		int select_TI_join();
+		//기업
+		int selet_TE_join();
 	
 	/** 공고글 관리 */
 		//전체 공고 갯수
