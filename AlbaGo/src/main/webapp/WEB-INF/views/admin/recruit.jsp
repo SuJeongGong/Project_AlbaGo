@@ -32,8 +32,10 @@
     			boardrecruit_ids: boardrecruit_ids
     		},
     		success :function(res){
-    			if(res=="성공"){
+    			if(res>=1){
     				alert("삭제 성공");
+
+  					 $("#res").load(window.location.href + " #res");
     			}else{
     				alert("삭제 실패");
     			}
@@ -85,7 +87,7 @@
                         <!-- Card Content - Collapse -->
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body">
-                                <table>
+                                <table ">
                                      <th style="width: 700px;">업직종</th>
                                     <th style="width: 400px;">지역</th>
                                     <th style="width: 1200px;">성별&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;학력</th>
@@ -215,7 +217,7 @@
 
                             <br />
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table" id = "res">
                                     <thead>
                                         <button type="submit" onclick="deleteRecruits()" class="btn py-1 px-1 btn-danger"
                                             style="float: right;">삭제</button>

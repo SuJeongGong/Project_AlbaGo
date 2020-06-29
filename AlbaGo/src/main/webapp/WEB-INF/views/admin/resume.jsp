@@ -32,8 +32,10 @@
     			boardresume_ids: boardresume_ids
     		},
     		success :function(res){
-    			if(res=="성공"){
+    			if(res>=1){
     				alert("삭제 성공");
+
+  					 $("#res").load(window.location.href + " #res");
     			}else{
     				alert("삭제 실패");
     			}
@@ -217,7 +219,7 @@
 
                             <br />
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table" id = "res">
                                     <thead>
                                         <button type="submit" onclick="deleteResumes()" class="btn py-1 px-1 btn-danger"
                                             style="float: right;">삭제</button>

@@ -90,16 +90,12 @@ public class AdminController {
 	}
 	
 	// ajax처리
-	@ResponseBody
 	@RequestMapping(value = "/deleteBoardRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteBoardRecruits(@RequestParam(value = "boardrecruit_ids[]") ArrayList<String> boardrecruit_id) {
-		String res = "";
+	public @ResponseBody int deleteBoardRecruits(@RequestParam(value = "boardrecruit_ids[]") ArrayList<String> boardrecruit_id) {
+	
 		System.out.println(boardrecruit_id);
-		if (1 <= adminService.deleteBoardRecruits(boardrecruit_id)) {
-			System.out.println("DB연결 성공");
-			res = "성공";
-		}
-		return res;
+		
+		return adminService.deleteBoardRecruits(boardrecruit_id);
 	}
 
 	@RequestMapping("/resume") // 인재글 게시판 - 관리자 ver
@@ -141,16 +137,10 @@ public class AdminController {
 	}
 	
 	// ajax처리
-	@ResponseBody
 	@RequestMapping(value = "/deleteBoardResumes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteBoardResumes(@RequestParam(value = "boardresume_ids[]") ArrayList<String> boardresume_id) {
-		String res = "";
+	public @ResponseBody int deleteBoardResumes(@RequestParam(value = "boardresume_ids[]") ArrayList<String> boardresume_id) {
 		System.out.println(boardresume_id);
-		if (1 <= adminService.deleteBoardResumes(boardresume_id)) {
-			System.out.println("DB연결 성공");
-			res = "성공";
-		}
-		return res;
+		return adminService.deleteBoardResumes(boardresume_id);
 	}
 
 	@RequestMapping("/community") // 커뮤니티 게시판 -관리자 ver
@@ -180,16 +170,10 @@ public class AdminController {
 	}
 	
 	// ajax처리
-	@ResponseBody
 	@RequestMapping(value = "/deleteBoardCommunities", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String deleteBoardCommunities(@RequestParam(value = "boardcommunity_ids[]") ArrayList<String> boardcommunity_id) {
-		String res = "";
+	public @ResponseBody int deleteBoardCommunities(@RequestParam(value = "boardcommunity_ids[]") ArrayList<String> boardcommunity_id) {
 		System.out.println(boardcommunity_id);
-		if (1 <= adminService.deleteBoardCommunities(boardcommunity_id)) {
-			System.out.println("DB연결 성공");
-			res = "성공";
-		}
-		return res;
+		return adminService.deleteBoardCommunities(boardcommunity_id);
 	}
 	
 

@@ -357,7 +357,7 @@
 	
 	<!-- 인재글 게시판 -->
 	<select id = "resume_List" resultType="BoardResume">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title, resume.individual_id
 		FROM board_resume, resume
 		WHERE board_resume.resume_id = resume.resume_id
 		and board_resume.delete_check = 1
