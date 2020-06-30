@@ -12,8 +12,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dao.BoardResumeDAO;
+import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Career;
 import com.spring.ex.dto.Resume;
@@ -38,6 +40,17 @@ public class BoardResumeController {
 		m.addAttribute("resumes", resumes);
 		
 		return "/resume/list";
+	}
+	
+	@RequestMapping("/list/total") //검색
+	public String list_total(Model m, @RequestParam("individual_category") String individual_category,
+			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
+			@RequestParam("education") String education, @RequestParam("term") String term, @RequestParam("title") String title) {
+		String page = "/resume/list";
+		ArrayList<BoardResume> boardresumes = boardResumeService.total_List(individual_category, local_category, gender, education, term, title);
+		m.addAttribute("resumes", boardresumes);
+		System.out.println(boardresumes +"boardrecruits");
+		return page;
 	}
 	
 	@RequestMapping("/write/save") //저장하기
