@@ -134,6 +134,84 @@
       volunteer_id=#{volunteer_id}
       </where>
    </delete>
+	<!-- 개인 회원 정보 보기 -->
+	<select id="selectIndividualAccount" parameterType="String" resultType="Individual">
+	SELECT * 
+	FROM Individual
+	<where>
+	individual_id=#{id}
+	</where>
+	</select>	
+	<!-- 개인 회원 정보 수정 -->
+	
+	<update id="updateIndividualAccount" parameterType="int">
+		update individual 
+		set 
+			password=#{password},
+			name = #{name},
+			gender = #{gender},
+			birth = #{birth},
+			phone = #{phone},
+			education = #{education}
+		<where>
+			individual_id = #{individual_id}
+		</where>
+	</update>
+	
+	<!-- 이력서관리 -->
+	<select id="selectResume" parameterType="String" resultType="Resume">
+	SELECT title,date ,resume_id,individual_id
+	FROM RESUME 
+	<where>
+	individual_id=#{id} 
+	AND	RESUME.delete_check =1
+	</where> 	
+	</select>
+	
+	<!-- 이력서관리삭제 ajax -->
+	<update id="deleteResume" parameterType="hashmap">
+	update resume
+	set delete_check = 0
+	<where> 
+	resume_id=#{resume_id}
+	AND individual_id=#{individual_id}
+	</where>
+	</update>
+	
+	<!-- 지원한 알바 -->
+	<select id="selectApplypartjob" parameterType="String" resultType="Volunteer">
+	Select
+		board_recruit.title as board_recruit_title,
+		enterprise.name AS enterprise_name,
+		resume.title as resume_title,
+		volunteer.date as date,
+		volunteer.result as result,
+		volunteer.board_recruit_id as board_recruit_id,
+		volunteer.individual_id AS individual_id,
+		volunteer.volunteer_id,
+		board_recruit.delete_check ,
+		resume.delete_check 
+		FROM resume,volunteer,board_recruit,enterprise,recruit
+	<where>
+	resume.resume_id =volunteer.resume_id
+	AND volunteer.board_recruit_id = board_recruit.board_recruit_id
+	AND recruit.recruit_id = board_recruit.recruit_id
+	AND enterprise.enterprise_id = recruit.enterprise_id
+	AND volunteer.individual_id =#{id}
+	AND board_recruit.delete_check =1
+	AND resume.delete_check=1
+	</where>
+	ORDER BY volunteer.volunteer_id DESC
+	</select>
+	
+	<!-- 지원한 알바  취소 AJAX -->
+		<delete id="deleteVolunteer" parameterType="int">
+		delete from volunteer
+		<where>
+		volunteer_id=#{volunteer_id}
+		</where>
+	</delete>
+
 	<!-- 인재 게시판 작성글 -->
 	<select id="selectResumeWrite" parameterType="String" resultType="BoardResume">
 	SELECT 

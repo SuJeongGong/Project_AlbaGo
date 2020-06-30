@@ -50,6 +50,10 @@ public class AdminService {
 	public Individual selectIndividualAccount(String id){
 		return adminDAO.selectIndividualAccount(id);	
 	}
+	//개인회원정보 '수정' ajax
+	public int updateIndividualAccount(Individual individual) {
+		return adminDAO.updateIndividualAccount(individual);	
+	}
 	//이력서 관리를 할 수 있는 테이블
 	public ArrayList<Resume> selectResume(String id) {
 		return adminDAO.selectResume(id);	
@@ -67,10 +71,13 @@ public class AdminService {
 	public ArrayList<Volunteer> selectApplypartjob(String id){
 		return adminDAO.selectApplypartjob(id);
 	}
+
+
 	// 지원 취소 ajax
-	   public int deleteVolunteer(int volounteer_id) {
-		      return adminDAO.deleteVolunteer(volounteer_id);   
+	public int deleteVolunteer(int volounteer_id) {
+		return adminDAO.deleteVolunteer(volounteer_id);	
 	}
+
 	//인재 게시판 작성글
 	public ArrayList<BoardResume> selectResumeWrite(String id) {
 		return adminDAO.selectResumeWrite(id);	

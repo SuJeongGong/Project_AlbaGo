@@ -68,11 +68,11 @@
                             </div>
                             <div class="card-body">
                             <!-- 회원정보 form 시작 -->
-                            <form id="info" action="" >
+                         	<form action="<%=request.getContextPath() %>/admin/individual_detail/update?<%=individual_id%>"name="individual"  class="col-xl-12" >
                                 <table class="table table-bordered ">
 	               			<tr>
 	               				<th>아이디</th>
-	               				<td><input type="text" name ="id" id ="id" value="<%=id%>" ></td>
+	               				<td><input type="hidden" name ="individual_id" value="<%=individual_id%>" ><%=individual_id%></td>
 	               			</tr>
 	               			<tr>
 	               				<th>비밀번호</th>
@@ -105,8 +105,8 @@
 	               			<tr>
 	               				<th>관리자</th>
 	               				<td>
-                                    <a class='btn btn-info btn-xs' href="#">
-                                    <span class="glyphicon glyphicon-edit"></span>정보 수정</a> 
+	               					<button class="btn btn-info edit" type="submit" aria-label="ASettings"> 정보 수정</button> 
+					
                                     <a href="#" class="btn btn-danger btn-xs">
                                     <span class="glyphicon glyphicon-remove"></span>계정 삭제</a>
                                 </td>
@@ -130,11 +130,11 @@
 									resume_id : resume_id
 								
 								},
-								success :function(res){
+								success :function(resa){
 									if(res>=1){
 										alert("삭제완료");
 
-										 $("#res").load(window.location.href + " #res");
+										 $("#resa").load(window.location.href + " #resa");
 									}else{
 										alert("실패")
 									}
@@ -151,7 +151,7 @@
                             <div class="card-body">
                             <!-- 이력서 관리 form 시작 -->
                             <form >
-                                <table class="table table-striped custab" id="res">
+                                <table class="table table-striped custab" id="resa">
                                     <thead>
                                         <!-- 제목 -->
 				
@@ -170,7 +170,7 @@
 					                     String title =list.getTitle();
 					                     String resume_date=list.getDate();
 					                     int resume_id=list.getResume_id();
-					                     String individual_id=list.getIndividual_id();
+					                     String id=list.getIndividual_id();
 					                  %>  
 										<tr >
                                         <td class="text-center"><%=title%></td>
@@ -190,30 +190,30 @@
                             </div>
                         </div>
                     </div>
-	<!-- ################################# -->     
-                  <script>
-               function deleteVolunteer(individual_id,volunteer_id) {
-               console.log(individual_id,volunteer_id);
-               $.ajax({
-                     url : "./deleteVolunteer",
-                     method : "GET",
-                     data : {
-                        volunteer_id:volunteer_id
-                     },
-                     success :function(res1){
-                        if(res1>=1){
-                           alert("결과 저장 완료");
-               
-                            $("#res1").load(window.location.href + " #res1");
-                        }else{
-                           alert("사용실패")
-                        }
-                     }
-                  });
-               }          
-               
-               </script>
-               <!-- 지원한 알바 -->
+			<!-- ################################# -->     
+			         <script>
+					function deleteVolunteer(individual_id,volunteer_id) {
+					console.log(individual_id,volunteer_id);
+					$.ajax({
+							url : "./deleteVolunteer",
+							method : "GET",
+							data : {
+								volunteer_id:volunteer_id
+							},
+							success :function(res){
+								if(res>=1){
+									alert("결과 저장 완료");
+					
+									 $("#res").load(window.location.href + " #res");
+								}else{
+									alert("사용실패")
+								}
+							}
+						});
+					}          
+					
+					</script>
+					<!-- 지원한 알바 -->
                     <div class="row">
                         <div class="card col-xl-12 shadow mb-4">
                             <div class="card-header py-3">
@@ -225,7 +225,7 @@
                               <!-- 지원한 알바 form 시작 -->
                             <form>
                        
-                                <table class="table table-bordered" id="res1" width="100%" cellspacing="0">
+                               <table class="table table-bordered" id="res" width="100%" cellspacing="0">
                                     <thead>
                                         <!-- 제목 -->
                                         <tr>
