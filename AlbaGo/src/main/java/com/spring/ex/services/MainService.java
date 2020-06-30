@@ -18,5 +18,12 @@ public class MainService {
 		return mainDAO.selectAdvertising();
 	}
 	
+	public ArrayList<HashMap<String, Object>> selectProduct(){
+		return mainDAO.selectProduct();
+	}
+	public ArrayList<HashMap<String, Object>> selectCommunity(){
+		return mainDAO.selectCommunity();
+	}
+	
 	
 }

@@ -16,6 +16,8 @@ public class MainController {
 	@RequestMapping("main")
 	public String main(Model m) {
 		m.addAttribute("Advertising",mainService.selectAdvertising());
+		m.addAttribute("product",mainService.selectProduct());
+		m.addAttribute("community",mainService.selectCommunity());
 		return "/main";
 	}
 	@RequestMapping("landing")

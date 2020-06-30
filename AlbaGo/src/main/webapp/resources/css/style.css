@@ -914,7 +914,7 @@ h3 {
 .header-area .main-header-area {
   background: #fff;
   background: transparent;
-  padding: 0px 150px;
+  padding: 0px 30px;
 }
 
 /* line 20, ../../Arafath/CL/December/235. Job board/HTML/scss/_header.scss */
@@ -1734,7 +1734,7 @@ h3 {
 
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_testmonial.scss */
 .testimonial_area {
-  padding: 100px 0;
+  padding: 40px 0;
 }
 
 @media (max-width: 767px) {
@@ -2230,8 +2230,8 @@ h3 {
 
 /* line 10, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
 .footer .footer_top {
-  padding-top: 145px;
-  padding-bottom: 129px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 @media (max-width: 767px) {
@@ -2624,7 +2624,7 @@ h3 {
 
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_category.scss */
 .catagory_area {
-  padding: 100px 0;
+  padding: 10px 0;
 }
 
 @media (max-width: 767px) {
@@ -2819,7 +2819,6 @@ h3 {
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_popular_catagory.scss */
 .popular_catagory_area {
   background: #F5F7FA;
-  padding: 100px 0;
 }
 
 /* line 4, ../../Arafath/CL/December/235. Job board/HTML/scss/_popular_catagory.scss */
@@ -3554,7 +3553,7 @@ h3 {
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_candidates.scss */
 .featured_candidates_area {
   background: #F5F7FA;
-  padding-bottom: 100px;
+  padding-bottom: 20px;
 }
 
 /* line 4, ../../Arafath/CL/December/235. Job board/HTML/scss/_candidates.scss */
@@ -3720,7 +3719,7 @@ h3 {
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_compani.scss */
 .top_companies_area {
   background: #F5F7FA;
-  padding-bottom: 70px;
+  padding-bottom: 5px;
 }
 
 @media (max-width: 767px) {

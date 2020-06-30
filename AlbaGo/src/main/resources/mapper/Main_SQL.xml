@@ -11,7 +11,8 @@
 		advertising , board_recruit,recruit
 		<where>
 			advertising.board_recruit_id = board_recruit.board_recruit_id
-			AND board_recruit.recruit_id = recruit.recruit_id
+			AND
+			board_recruit.recruit_id = recruit.recruit_id
 			AND
 		<![CDATA[advertising.start_date <= NOW()
 		AND advertising.end_date>= NOW()]]>
@@ -19,6 +20,21 @@
 			advertising.result ="승인"
 		</where>
 
+	</select>
+	<select id="selectProduct" resultType="hashmap">
+		SELECT product_id, NAME AS productName, explan
+		FROM product
+		<where>
+			delete_check =1
+		</where>
+		order by product_id desc limit 8
+	</select>
+	<select id="selectCommunity" resultType="hashmap">
+
+		SELECT community_id , title, individual_id
+		FROM community
+		ORDER BY views DESC
+		LIMIT 3
 	</select>
 
 </mapper>
