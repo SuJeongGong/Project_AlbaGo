@@ -23,7 +23,12 @@ import com.spring.ex.dto.Volunteer;
 public class AdminService {
 	@Autowired
 	AdminDAO adminDAO;
-	
+	public ArrayList<HashMap<String, Object>> selectRecentSales() {
+		return adminDAO.selectRecentSales();
+	}
+	public ArrayList<HashMap<String, Object>> selectItems() {
+		return adminDAO.selectItems();
+	}
 	//개인회원정보 '리스트'전체를 보여주는 테이블
 	public ArrayList<Individual> selectlist() {
 		return adminDAO.selectlist();

@@ -11,10 +11,6 @@
 <title>상품관리</title>
 </head>
 <body>
-
-	<%
-		String conPath = request.getContextPath();
-	%>
 	<div id="wrapper">
 		<!-- 사이드 바 -->
 		<%@ include file="../serve/manager_sidebar.jsp"%>
@@ -61,14 +57,10 @@
 							<div class="bg-transparent card-header pt-4 border-0">
 								<h1 class="h4 font-weight-normal text-primary text-center mb-0"
 									data-pricing-value="15">
-								<%=price%>원 <br> <%=amount%>개
+								<%=price%>원 <br> 기간 : <%=term%>
 								</h1>
 							</div>
 							<div class="card-body pt-0">
-								<ul class="list-unstyled mb-4">
-									기간:<%=term%>
-
-								</ul>
 								<ul class="list-unstyled mb-4">
 									설명:<%=explan%>
 
@@ -76,7 +68,7 @@
 
 
 
-								<a class="btn btn-info edit" href="<%=conPath%>/admin/product_account?product_id=<%=product_id%>"
+								<a class="btn btn-info edit" href="<%=conPath%>/admin/advertising/product_account?product_id=<%=product_id%>"
 									aria-label="Settings"> 자세히</a>
 				       
 							</div>

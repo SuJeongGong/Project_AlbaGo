@@ -29,6 +29,7 @@
 	String recruitPath=conPath+"/recruit/list";
 	String resumePath=conPath+"/resume/list";
 	String productPath=conPath+"/product/list";
+	String adPath=conPath+"/advertising/list";
 	String communityPath=conPath+"/community/list";
 	
 	String joinLoginPath=conPath+"/join/login";
@@ -138,9 +139,12 @@
                                                 </ul>
                                             </li>
                                             <li><a href="<%=communityPath %>">커뮤니티</a></li>
-                                            <li><a href="<%=productPath %>">상품</a></li>
-
-
+                                            <li><a href="<%=productPath %>">광고/상품</a>
+												<ul class="submenu">
+                                                    <li><a href="<%=adPath%>">광고</a></li>
+                                                    <li><a href="<%=productPath%>">상품</a></li>
+                                                </ul>
+                                                </li>
                                         </ul>
                                     </nav>
                                 </div>

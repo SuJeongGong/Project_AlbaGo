@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>광고 목록</title>
 </head>
 <body>
 	<%@ include file="../serve/header.jsp"%>
@@ -36,16 +36,16 @@
 						%><div class="col-md-12 col-lg-4">
 						<div class="single_candidates">
 							<div class=" text-center">
-								<input type="hidden"  name="Product_id"  placeholder=<%=product_id %> value="<%=product_id %>"  />
+								<input type="hidden"  name="Product_id value="<%=product_id %>"  />
 								<h2 class="row" name="name"> <%=name%></h2>
-								<h3 class="row" name="amount"><%=amount%>개</h3>
+								<input type="hidden"  name="amount" value="<%=amount %>"  />
 								<p class="row" name="product_explan">설명 : <%=explan%></p>
 							<br> 
 							</div>
 							<br> 
 				
 							
-							<a href="<%=request.getContextPath()%>/product/payment?product_id=<%=product_id %>" name = "product_id">결제</a>
+							<a href="<%=request.getContextPath()%>/advertising/payment?product_id=<%=product_id %>"  >결제</a>
 
 						</div>
 					</div>

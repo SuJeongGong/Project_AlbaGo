@@ -17,7 +17,9 @@ import com.spring.ex.dto.Volunteer;
 
 public interface AdminDAO {
 	//---이예슬---
-	//## 관리자페이지 ##
+	//## 관리자페이지 ##.
+	ArrayList<HashMap<String, Object>> selectRecentSales() ;
+	ArrayList<HashMap<String, Object>> selectItems() ;
 	ArrayList<Individual> selectlist(); //개인회원정보 전체를 보여주는 테이블
 	
 	//개인회원정보에서 카테고리를 선택해서 검색

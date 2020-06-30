@@ -43,6 +43,15 @@ public class AdminController {
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main(Model m) {
+			ArrayList<HashMap<String, Object>> sales = adminService.selectRecentSales();
+			m.addAttribute("Recent_sales", sales);
+
+			ArrayList<HashMap<String, Object>> items = adminService.selectItems();
+			m.addAttribute("items", items);
+			
+			
+		
+		
 		//오늘 가입한 개인회원수
 		int todayindividual = adminService.select_TI_join();
 		

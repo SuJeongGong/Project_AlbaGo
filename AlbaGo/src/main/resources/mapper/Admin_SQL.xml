@@ -4,7 +4,25 @@
 <mapper namespace="com.spring.ex.dao.AdminDAO">
 	<!-- 이예슬 -->
 	<!-- 개인 -->
-	<select id = "selectlist" resultType="Individual">
+	<select id="selectRecentSales" resultType="HashMap">
+		SELECT DATE_FORMAT(payment.DATE , "%Y/%m %d") as date, SUM(price) as
+		price
+		FROM product, payment
+		<where>product.product_id
+			= payment.product_id
+			AND	<![CDATA[	 DATE_FORMAT(payment.DATE , "%Y%m%d") > date_add(now(),interval -7 DAY) ]]>
+
+		</where>
+		GROUP BY DATE_FORMAT(payment.DATE , "%Y/%m/%d")
+	</select>
+
+	<select id="selectItems" resultType="HashMap">
+		SELECT COUNT(*) as count, product.type as type FROM payment,product
+		<where> product.product_id = payment.product_id</where>
+		group by product.type
+	</select>
+
+	<select id="selectlist" resultType="Individual">
 		SELECT *
 		FROM Individual
 	</select>

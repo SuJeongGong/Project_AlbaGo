@@ -140,8 +140,8 @@
 										
 										<%  if (result == null) {  %>
 												
-								<button onclick="updateResult(<%=payment_id%>,'승락')" id='accept' class="btn btn-outline-primary">승인</button>
-								<button onclick="updateResult(<%=payment_id%>,'거절')" type="submit" id="reject" class="btn btn-outline-danger">거부</button>
+								<button onclick="updateResult(<%=payment_id%>,'승인')" id='accept' class="btn btn-outline-primary">승인</button>
+								<button onclick="updateResult(<%=payment_id%>,'거부')" type="submit" id="reject" class="btn btn-outline-danger">거부</button>
 								
 											
 											<%  }else{  %>
