@@ -1,6 +1,7 @@
 package com.spring.ex.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,12 +59,16 @@ public class CommunityService {
 		return communityDAO.deleteComment(comment_id);
 	}
 	
-	public int updateComment(BoardComment comment_id) {
-		return communityDAO.updateComment(comment_id);
-	}
+//	public int updateComment(BoardComment comment_id) {
+//		return communityDAO.updateComment(comment_id);
+//	}
 	
 	public int CommentsCount(int community_id) {
 		return communityDAO.CommentsCount(community_id);
+	}
+	
+	public int updateComment(HashMap<String , Object> map) {
+		return communityDAO.updateComment(map);
 	}
 
 }

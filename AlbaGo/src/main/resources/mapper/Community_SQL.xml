@@ -94,14 +94,14 @@
 	</select>
 	
 	
-	<!-- 댓글 수정 -->
+	<!-- 댓글 수정 
 	<update id="updateComment" parameterType="BoardCommunity">
 		update comment
 		    contents = #{contents}
 		<where>
 			comment_id = #{comment_id}
 		</where>
-	</update> 
+	</update> -->
 	
 	<!-- 댓글 삭제 -->
 	<delete id="deleteComment" parameterType="int">
@@ -112,4 +112,13 @@
 	<select id = "CommentsCount" parameterType="int" resultType ="int">
 	SELECT COUNT(*) as count FROM `comment` <where>community_id = #{community_id}</where> 
 	</select>
+	
+	<update id ="updateComment" parameterType="hashmap"  >
+		update comment 
+		set contents = #{content}
+		<where>
+			comment_id = #{comment_id}
+		</where>
+	
+	</update>
 </mapper>
