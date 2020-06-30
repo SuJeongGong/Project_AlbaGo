@@ -296,8 +296,8 @@ h3 {
 
 /* line 211, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
 .section-padding {
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 40px;
+  padding-bottom: 30px;
 }
 
 /* line 215, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
@@ -6315,7 +6315,7 @@ h6 {
 @media (min-width: 768px) {
   /* line 529, ../../Arafath/CL/December/235. Job board/HTML/scss/_blog.scss */
   .blog_details {
-    padding: 60px 30px 35px 35px;
+    padding: 20px 20px 20px 20px;
   }
 }
 
