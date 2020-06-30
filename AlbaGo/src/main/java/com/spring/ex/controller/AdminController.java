@@ -1,5 +1,7 @@
 package com.spring.ex.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,6 +30,7 @@ import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
+import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.AdminService;
 import com.spring.ex.services.ProductService;
 
@@ -253,12 +256,25 @@ public class AdminController {
 		m.addAttribute("communitys",community);  
 	  
 		
-		return page;  
+		return page;   
 		
 		} 
+
+ 
+	@RequestMapping("/individual_detail/update") // 개인정보 수정 - 수정하기
+	public String individual_detail( @ModelAttribute("individual") Individual individual) {
+		String page = "/admin/individual_detail"; 
+		if (1 <= adminService.updateIndividualAccount(individual)) {
+			System.out.println(individual); 
+			System.out.println("수정");
+			page = "/admin/main";
+
+		} 
+		return page;
+	}
+
 	
 	//ajax 이력서삭제
-
 	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteResume(@RequestParam("individual_id") String individual_id,@RequestParam("resume_id")  int resume_id) {
 		
@@ -266,11 +282,17 @@ public class AdminController {
 	 System.out.println(resume_id);
 		return adminService.deleteResume(individual_id,resume_id);
 	}  
+
+	//지원한 알바 지원취소
+	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteVolunteer(@RequestParam("volunteer_id") int volunteer_id) {
+System.out.println("volunteer_id"+volunteer_id);
+		return adminService.deleteVolunteer(volunteer_id);  
+	}
 	
-	   
-
-
-
+	
+	
+	
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail(Model m,@RequestParam("enterprise_id") String enterprise_id) {
 		String page="admin/enterprise_detail";
@@ -316,7 +338,7 @@ public class AdminController {
 
 		return page;
 	} 
-  
+   
  
 	@RequestMapping("/account/update") // 상품수정하기
 	public String update(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
@@ -381,8 +403,6 @@ System.out.println(product);
 			BindingResult result) {
 
 		String page = "/admin/add_product_no_term/result";
-
-	
 
 		return page;
 	}
