@@ -2,6 +2,7 @@ package com.spring.ex.services;
   
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,10 @@ public class AdminService {
 	public Individual selectIndividualAccount(String id){
 		return adminDAO.selectIndividualAccount(id);	
 	}
+	//개인회원정보 '수정' ajax
+	public int updateIndividualAccount(Individual individual) {
+		return adminDAO.updateIndividualAccount(individual);	
+	}
 	//이력서 관리를 할 수 있는 테이블
 	public ArrayList<Resume> selectResume(String id) {
 		return adminDAO.selectResume(id);	
@@ -66,6 +71,13 @@ public class AdminService {
 	public ArrayList<Volunteer> selectApplypartjob(String id){
 		return adminDAO.selectApplypartjob(id);
 	}
+
+
+	// 지원 취소 ajax
+	public int deleteVolunteer(int volounteer_id) {
+		return adminDAO.deleteVolunteer(volounteer_id);	
+	}
+
 	//인재 게시판 작성글
 	public ArrayList<BoardResume> selectResumeWrite(String id) {
 		return adminDAO.selectResumeWrite(id);	
@@ -116,6 +128,21 @@ public class AdminService {
 
 	/*##################################################*/
 	//임승재
+	//오늘 가입한 개인회원수
+	public int select_TI_join() {
+		return adminDAO.select_TI_join();
+	}
+	
+	//기업회원수
+	public int selet_TE_join() {
+		return adminDAO.selet_TE_join();
+	}
+	
+	//오늘 매출액
+	public HashMap<String,Object> total_M() {
+		return adminDAO.total_M();
+	}
+	
 	//전체 인재 갯수
 	public int all_Count() {
 		return adminDAO.all_Count();
@@ -166,6 +193,18 @@ public class AdminService {
 		return null;
 	}
 	
+	//공고 게시판 총검색
+	public ArrayList<BoardRecruit> total_List_Rc(String category, String place, String gender, String education) {
+		ArrayList<BoardRecruit> boardrecruits = null;
+		
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("category",category);
+		map.put("place",place);
+		map.put("gender",gender);
+		map.put("education",education);
+		return adminDAO.total_List_Rc(map);
+	}
+	
 	//공고 게시판 선택삭제
 	public int deleteBoardRecruits(ArrayList<String> ids) {
 		System.out.println(ids);
@@ -173,6 +212,9 @@ public class AdminService {
 		
 		return forDeleteSQL(ids, "deleteBoardRecruit");
 	}
+	
+	
+
 	
 	// 게시글 삭제
 	public int forDeleteSQL(ArrayList<String> ids, String methodName) {
@@ -264,6 +306,19 @@ public class AdminService {
 			return adminDAO.month_search_Rs(daysearch);
 		}
 		return null;
+	}
+	
+	
+	//인재 게시판 총검색
+	public ArrayList<BoardResume> total_List_Rs(String category, String place, String gender, String education) {
+		ArrayList<BoardResume> boardresumes = null;
+		
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("category",category);
+		map.put("place",place);
+		map.put("gender",gender);
+		map.put("education",education);
+		return adminDAO.total_List_Rs(map);
 	}
 		
 	

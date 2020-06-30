@@ -2,6 +2,7 @@ package com.spring.ex.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
@@ -30,12 +31,16 @@ public interface AdminDAO {
 	//<!-- 개인관리자 링크타고 -->
 	//<!-- 개인 회원 정보 -->
 	Individual selectIndividualAccount(String id);
+	//<!-- 개인 회원 정보 수정-->
+	int updateIndividualAccount(Individual individual);
 	//<!-- 이력서 관리 -->
 	ArrayList<Resume> selectResume(String id);
 	//이력서 삭제하기
 	int deleteResume(HashMap<String, Object> map);//ajax 삭제하기
 	//<!-- 지원한 알바-->
 	ArrayList<Volunteer> selectApplypartjob(String id);
+	//<!--지원알바 취소-->
+	   int deleteVolunteer(int volounteer_id);////ajax 취소하기	
 	//<!--인재글 게시판-->
 	ArrayList<BoardResume> selectResumeWrite(String id);
 	//<!--커뮤니티 게시판 작성글-->
@@ -64,7 +69,13 @@ public interface AdminDAO {
 	
 	/*############################*/
 	//---임승재---
-	
+	/** 오늘 가입한 기업,개인 개수 */
+		//개인 
+		int select_TI_join();
+		//기업
+		int selet_TE_join();
+		//오늘 매출액
+		HashMap<String,Object> total_M();
 	
 	/** 공고글 관리 */
 		//전체 공고 갯수
@@ -86,6 +97,7 @@ public interface AdminDAO {
 		ArrayList<BoardRecruit> today_search_Rc(String today);
 		ArrayList<BoardRecruit> week_search_Rc(String week);
 		ArrayList<BoardRecruit> month_search_Rc(String month);
+		ArrayList<BoardRecruit> total_List_Rc(Map<String, Object> map);
 	
 	/** 인재글관리 */
 		//전체 인재 갯수
@@ -108,6 +120,7 @@ public interface AdminDAO {
 		ArrayList<BoardResume> today_search_Rs(String today);
 		ArrayList<BoardResume> week_search_Rs(String week);
 		ArrayList<BoardResume> month_search_Rs(String month);
+		ArrayList<BoardResume> total_List_Rs(Map<String, Object> map);
 		
 	/** 커뮤니티 관리 */
 		//공고 게시판

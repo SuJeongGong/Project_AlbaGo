@@ -31,8 +31,6 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 	
 	@RequestMapping("/mypage") // 마이페이지
 	public String mypage(@AuthUser String id , Model m) {
-		System.out.println(id.split("/")[0]);
-
 		// 모델에 담기
 		m.addAttribute("Einfo", enterpriseService.selectEnterprise(id.split("/")[0]));// 기업정보
 		m.addAttribute("scrap", enterpriseService.selectScrap(id.split("/")[0]));// 스크랩
@@ -42,8 +40,9 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 		m.addAttribute("advertising", enterpriseService.selectAdvertising(id.split("/")[0]));// 광고 기록
 		m.addAttribute("payment_history_resume", enterpriseService.paymentHistoryResume(id.split("/")[0]));// 광고 기록
 		m.addAttribute("payment_history_up", enterpriseService.paymentHistoryUp(id.split("/")[0]));// 광고 기록
+		System.out.println("enterpriseService.paymentHistoryResume(id.split(\"/\")[0])"+enterpriseService.paymentHistoryResume(id.split("/")[0]));
+		
 
-		System.out.println("모델  후");
 
 		return "/enterprise/mypage";
 	}

@@ -3,7 +3,7 @@
 <mapper namespace="com.spring.ex.dao.ResumeDAO">
 	<!-- 글쓸때 인재 가져오기 -->
 	<select id="selectResume" resultType="BoardResume" parameterType="String">
-		select title, resume_id
+		select title as resume_title, resume_id
 		from resume
 		where individual_id = #{individual_id}
 	</select>
