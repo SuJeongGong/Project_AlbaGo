@@ -76,7 +76,7 @@
 	               			</tr>
 	               			<tr>
 	               				<th>비밀번호</th>
-	               				<td><input type="text" class="form-control" name ="password" id ="password" value="<%=password%>" ></td>
+	               				<td><input type="text" name ="password" id ="password" value="<%=password%>" ></td>
 	               			</tr>
 	               			<tr>
 	               				<th>이름</th>
@@ -100,7 +100,7 @@
 	               			</tr>
 	               			<tr>
 	               				<th>가입날짜</th>
-	               				<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date%></td>
+	               				<td><input type ="text" name ="date" id ="date" value="<%=date%>"></td>
 	               			</tr>
 	               			<tr>
 	               				<th>관리자</th>
@@ -192,8 +192,8 @@
                     </div>
 			<!-- ################################# -->     
 			         <script>
-					function deleteVolunteer(individual_id,volunteer_id) {
-					console.log(individual_id,volunteer_id);
+					function deleteVolunteer(volunteer_id) {
+					console.log(volunteer_id);
 					$.ajax({
 							url : "./deleteVolunteer",
 							method : "GET",
@@ -252,23 +252,34 @@
                                  String result = volunteer.getResult();
                                  int board_recruit_id=volunteer.getBoard_recruit_id();
                                  String individual_id_volunteer=volunteer.getIndividual_id();
-                                 
-                                 if(result==null){
-                                    result="결과 없음";
-                                 }
-                        
-                                    
                               %>  
-                              <tr>
-                                            <td class="text-center"><a href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=board_recruit_id%>"><%= title %></td>
+                              <tr class="text-center">
+                                            <td><a href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=board_recruit_id%>"><%= title %></td>
                                     
-                                            <td class="text-center"><%= enterprise_name %></td>
-                                            <td class="text-center"><%= resume_title %></td>
-                                            <td class="text-center"><%= volunteer_date %></td>
-                                            <td class="text-center"><%= result %></td>
-                                            <td class="text-center"><button type="button" class="btn btn-sm btn-primary btn-cancel" onclick="deleteVolunteer('<%=individual_id_volunteer %>',<%=volunteer_id%>)">지원취소</button></td>
-                                        </tr>
-                                        <%} %>
+                                            <td><%= enterprise_name %></td>
+                                            <td><%= resume_title %></td>
+                                            <td><%= volunteer_date %></td>
+                                           
+                                         	<%
+								if (result == null) {
+							%>
+                                            
+                                            <td>미정</td>
+                                            <td class="text-center"><button type="button" class="btn btn-sm btn-primary btn-cancel" onclick="deleteVolunteer(<%=volunteer_id%>)">지원취소</button></td>
+                                   
+                                   <%
+								} else {
+							%>
+							<td><%=result%></td>
+							<td>취소 불가</td>
+							<%
+								}
+							%>
+
+						</tr>
+						<%
+							}
+						%>
 
                                       
                                     </tbody>
