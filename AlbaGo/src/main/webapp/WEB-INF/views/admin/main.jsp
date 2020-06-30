@@ -16,6 +16,36 @@
 			+ (long)Integer.valueOf(items.get(1).get("count").toString())   
 			+ (long)Integer.valueOf(items.get(2).get("count").toString()) 
 			+ (long)Integer.valueOf(items.get(3).get("count").toString()) ;
+
+
+	ArrayList<HashMap<String,Object>> upCount =(ArrayList<HashMap<String,Object>>) request.getAttribute("upCount");
+	double totalUpCount=Integer.valueOf(upCount.get(0).get("count").toString()) +
+			Integer.valueOf(upCount.get(1).get("count").toString())+
+			Integer.valueOf(upCount.get(2).get("count").toString())+
+			Integer.valueOf(upCount.get(3).get("count").toString())+
+			Integer.valueOf(upCount.get(4).get("count").toString());	
+			
+	
+	ArrayList<HashMap<String,Object>> resumeCount =(ArrayList<HashMap<String,Object>>) request.getAttribute("resumeCount");
+	double totalResumeCount=Integer.valueOf(resumeCount.get(0).get("count").toString()) +
+			Integer.valueOf(resumeCount.get(1).get("count").toString())+
+			Integer.valueOf(resumeCount.get(2).get("count").toString())+
+			Integer.valueOf(resumeCount.get(3).get("count").toString())+
+			Integer.valueOf(resumeCount.get(4).get("count").toString());
+	
+	ArrayList<HashMap<String,Object>> boardCount =(ArrayList<HashMap<String,Object>>) request.getAttribute("boardCount");
+	double totalBoardCount=Integer.valueOf(boardCount.get(0).get("count").toString()) +
+			Integer.valueOf(boardCount.get(1).get("count").toString())+
+			Integer.valueOf(boardCount.get(2).get("count").toString())+
+			Integer.valueOf(boardCount.get(3).get("count").toString())+
+			Integer.valueOf(boardCount.get(4).get("count").toString());
+	
+	ArrayList<HashMap<String,Object>> adCount =(ArrayList<HashMap<String,Object>>) request.getAttribute("adCount");
+	double totalAdCount=Integer.valueOf(adCount.get(0).get("count").toString()) +
+			Integer.valueOf(adCount.get(1).get("count").toString())+
+			Integer.valueOf(adCount.get(2).get("count").toString())+
+			Integer.valueOf(adCount.get(3).get("count").toString())+
+			Integer.valueOf(adCount.get(4).get("count").toString());
 %> 
 </head>
 
@@ -157,22 +187,27 @@ HashMap<String, Object> totalM =(HashMap)request.getAttribute("totalM");
 										</div>
 										<div class="mt-4 text-center small">
 											<span class="mr-2"> <i
-												class="fas fa-circle text-primary"></i> 글 갯수 늘리기
+												class="fas fa-circle text-primary"></i>  AD
 											</span> 
 											<span class="mr-2"> <i
-												class="fas fa-circle text-success"></i> 이력서 확인
+												class="fas fa-circle text-success"></i> Board
 											</span> 
 											<span class="mr-2"> <i
-												class="fas fa-circle text-info"></i> UP
+												class="fas fa-circle text-info"></i>  Resume
 											</span>
 											<span class="mr-2"> <i
-												class="fas fa-circle text"></i> AD
+												class="fas fa-circle text"></i> UP
 											</span>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+
+
+
+
+
 
 							<!-- Content Column -->
 
@@ -185,34 +220,34 @@ HashMap<String, Object> totalM =(HashMap)request.getAttribute("totalM");
 										<h6 class="m-0 font-weight-bold text-primary">아이템(UP)</h6>
 									</div>
 									<div class="card-body">
-										<h4 class="small font-weight-bold">기업1</h4>
+										<h4 class="small font-weight-bold"><%=upCount.get(0).get("enterprise_id") %></h4>
 										<div class="progress mb-4">
 											<div class="progress-bar bg-danger" role="progressbar"
-												style="width: 40%" aria-valuenow="4" aria-valuemin="0"
+												style="width: <%=(Double.parseDouble(upCount.get(0).get("count").toString())/totalUpCount)*100%>%" aria-valuenow="4" aria-valuemin="0"
 												aria-valuemax="10"></div>
 										</div>
-										<h4 class="small font-weight-bold">기업2</h4>
+										<h4 class="small font-weight-bold"><%=upCount.get(1).get("enterprise_id") %></h4>
 										<div class="progress mb-4">
 											<div class="progress-bar bg-warning" role="progressbar"
-												style="width: 50%" aria-valuenow="5" aria-valuemin="0"
+												style="width: <%=(Double.parseDouble(upCount.get(1).get("count").toString())/totalUpCount)*100%>%" aria-valuenow="5" aria-valuemin="0"
 												aria-valuemax="10"></div>
 										</div>
-										<h4 class="small font-weight-bold">기업3</h4>
+										<h4 class="small font-weight-bold"><%=upCount.get(2).get("enterprise_id") %></h4>
 										<div class="progress mb-4">
 											<div class="progress-bar" role="progressbar"
-												style="width: 20%" aria-valuenow="2" aria-valuemin="0"
+												style="width: <%=(Double.parseDouble(upCount.get(2).get("count").toString())/totalUpCount)*100%>%" aria-valuenow="2" aria-valuemin="0"
 												aria-valuemax="10"></div>
 										</div>
-										<h4 class="small font-weight-bold">기업4</h4>
+										<h4 class="small font-weight-bold"><%=upCount.get(3).get("enterprise_id") %></h4>
 										<div class="progress mb-4">
 											<div class="progress-bar bg-info" role="progressbar"
-												style="width: 100%" aria-valuenow="10" aria-valuemin="0"
+												style="width: <%=(Double.parseDouble(upCount.get(3).get("count").toString())/totalUpCount)*100%>%" aria-valuenow="10" aria-valuemin="0"
 												aria-valuemax="10"></div>
 										</div>
-										<h4 class="small font-weight-bold">기업5</h4>
+										<h4 class="small font-weight-bold"><%=upCount.get(4).get("enterprise_id") %></h4>
 										<div class="progress">
 											<div class="progress-bar bg-success" role="progressbar"
-												style="width: 80%" aria-valuenow="8" aria-valuemin="0"
+												style="width: <%=(Double.parseDouble(upCount.get(4).get("count").toString())/totalUpCount)*100%>%" aria-valuenow="8" aria-valuemin="0"
 												aria-valuemax="10"></div>
 										</div>
 									</div>
@@ -225,37 +260,37 @@ HashMap<String, Object> totalM =(HashMap)request.getAttribute("totalM");
 								<!-- Project Card Example -->
 								<div class="card shadow mb-4">
 									<div class="card-header py-3">
-										<h6 class="m-0 font-weight-bold text-primary">게시글작성갯수</h6>
+										<h6 class="m-0 font-weight-bold text-primary">이력서 열람</h6>
 									</div>
 									<div class="card-body">
-										<h4 class="small font-weight-bold">기업1</h4>
+										<h4 class="small font-weight-bold"><%=resumeCount.get(0).get("enterprise_id") %></h4>
 										<div class="progress mb-4">
 											<div class="progress-bar bg-danger" role="progressbar"
-												style="width: 40%" aria-valuenow="4" aria-valuemin="0"
+												style="width: <%=(Double.parseDouble(resumeCount.get(0).get("count").toString())/totalResumeCount)*100%>%" aria-valuenow="4" aria-valuemin="0"
 												aria-valuemax="10"></div>
 										</div>
-										<h4 class="small font-weight-bold">기업2</h4>
+										<h4 class="small font-weight-bold"><%=resumeCount.get(1).get("enterprise_id") %></h4>
 										<div class="progress mb-4">
 											<div class="progress-bar bg-warning" role="progressbar"
-												style="width: 50%" aria-valuenow="5" aria-valuemin="0"
+												style="width: <%=(Double.parseDouble(resumeCount.get(1).get("count").toString())/totalResumeCount)*100%>%" aria-valuenow="5" aria-valuemin="0"
 												aria-valuemax="10"></div>
 										</div>
-										<h4 class="small font-weight-bold">기업3</h4>
+										<h4 class="small font-weight-bold"><%=resumeCount.get(2).get("enterprise_id") %></h4>
 										<div class="progress mb-4">
 											<div class="progress-bar" role="progressbar"
-												style="width: 20%" aria-valuenow="2" aria-valuemin="0"
+												style="width: <%=(Double.parseDouble(resumeCount.get(2).get("count").toString())/totalResumeCount)*100%>%" aria-valuenow="2" aria-valuemin="0"
 												aria-valuemax="10"></div>
 										</div>
-										<h4 class="small font-weight-bold">기업4</h4>
+										<h4 class="small font-weight-bold"><%=resumeCount.get(3).get("enterprise_id") %></h4>
 										<div class="progress mb-4">
 											<div class="progress-bar bg-info" role="progressbar"
-												style="width: 100%" aria-valuenow="10" aria-valuemin="0"
+												style="width: <%=(Double.parseDouble(resumeCount.get(3).get("count").toString())/totalResumeCount)*100%>%" aria-valuenow="10" aria-valuemin="0"
 												aria-valuemax="10"></div>
 										</div>
-										<h4 class="small font-weight-bold">기업5</h4>
+										<h4 class="small font-weight-bold"><%=resumeCount.get(4).get("enterprise_id") %></h4>
 										<div class="progress">
 											<div class="progress-bar bg-success" role="progressbar"
-												style="width: 80%" aria-valuenow="8" aria-valuemin="0"
+												style="width: <%=(Double.parseDouble(resumeCount.get(4).get("count").toString())/totalResumeCount)*100%>%" aria-valuenow="8" aria-valuemin="0"
 												aria-valuemax="10"></div>
 										</div>
 									</div>
@@ -271,29 +306,30 @@ HashMap<String, Object> totalM =(HashMap)request.getAttribute("totalM");
                                         <h6 class="m-0 font-weight-bold text-primary">게시글작성갯수</h6>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="small font-weight-bold">기업1</h4>
+                                        <h4 class="small font-weight-bold"><%=boardCount.get(0).get("enterprise_id") %></h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 40%"
+                                            <div class="progress-bar bg-danger" role="progressbar" 
+                                            style="width: <%=(Double.parseDouble(boardCount.get(0).get("count").toString())/totalBoardCount)*100%>%"
                                                 aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"></div>
                                         </div>
-                                        <h4 class="small font-weight-bold">기업2</h4>
+                                        <h4 class="small font-weight-bold"><%=boardCount.get(1).get("enterprise_id") %></h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%"
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: <%=(Double.parseDouble(boardCount.get(1).get("count").toString())/totalBoardCount)*100%>%"
                                                 aria-valuenow="5" aria-valuemin="0" aria-valuemax="10"></div>
                                         </div>
-                                        <h4 class="small font-weight-bold">기업3</h4>
+                                        <h4 class="small font-weight-bold"><%=boardCount.get(2).get("enterprise_id") %></h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar" role="progressbar" style="width: 20%"
+                                            <div class="progress-bar" role="progressbar" style="width: <%=(Double.parseDouble(boardCount.get(2).get("count").toString())/totalBoardCount)*100%>%"
                                                 aria-valuenow="2" aria-valuemin="0" aria-valuemax="10"></div>
                                         </div>
-                                        <h4 class="small font-weight-bold">기업4</h4>
+                                        <h4 class="small font-weight-bold"><%=boardCount.get(3).get("enterprise_id") %></h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 100%"
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: <%=(Double.parseDouble(boardCount.get(3).get("count").toString())/totalBoardCount)*100%>%"
                                                 aria-valuenow="10" aria-valuemin="0" aria-valuemax="10"></div>
                                         </div>
-                                        <h4 class="small font-weight-bold">기업5</h4>
+                                        <h4 class="small font-weight-bold"><%=boardCount.get(4).get("enterprise_id") %></h4>
                                         <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%"
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: <%=(Double.parseDouble(boardCount.get(4).get("count").toString())/totalBoardCount)*100%>%"
                                                 aria-valuenow="8" aria-valuemin="0" aria-valuemax="10"></div>
                                         </div>
                                     </div>
@@ -305,32 +341,32 @@ HashMap<String, Object> totalM =(HashMap)request.getAttribute("totalM");
                                 <!-- Project Card Example -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">이력서열람</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary">광고</h6>
                                     </div>
                                     <div class="card-body">
-                                        <h4 class="small font-weight-bold">기업1</h4>
+                                        <h4 class="small font-weight-bold"><%=adCount.get(0).get("enterprise_id") %></h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 40%"
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: <%=(Double.parseDouble(adCount.get(0).get("count").toString())/totalAdCount)*100%>%"
                                                 aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"></div>
                                         </div>
-                                        <h4 class="small font-weight-bold">기업2</h4>
+                                        <h4 class="small font-weight-bold"><%=adCount.get(1).get("enterprise_id") %></h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%"
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: <%=(Double.parseDouble(adCount.get(1).get("count").toString())/totalAdCount)*100%>%"
                                                 aria-valuenow="5" aria-valuemin="0" aria-valuemax="10"></div>
                                         </div>
-                                        <h4 class="small font-weight-bold">기업3</h4>
+                                        <h4 class="small font-weight-bold"><%=adCount.get(2).get("enterprise_id") %></h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar" role="progressbar" style="width: 20%"
+                                            <div class="progress-bar" role="progressbar" style="width: <%=(Double.parseDouble(adCount.get(2).get("count").toString())/totalAdCount)*100%>%"
                                                 aria-valuenow="2" aria-valuemin="0" aria-valuemax="10"></div>
                                         </div>
-                                        <h4 class="small font-weight-bold">기업4</h4>
+                                        <h4 class="small font-weight-bold"><%=adCount.get(3).get("enterprise_id") %></h4>
                                         <div class="progress mb-4">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 100%"
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: <%=(Double.parseDouble(adCount.get(3).get("count").toString())/totalAdCount)*100%>%"
                                                 aria-valuenow="10" aria-valuemin="0" aria-valuemax="10"></div>
                                         </div>
-                                        <h4 class="small font-weight-bold">기업5</h4>
+                                        <h4 class="small font-weight-bold"><%=adCount.get(4).get("enterprise_id") %></h4>
                                         <div class="progress">
-                                            <div class="progress-bar bg-success" role="progressbar" style="width: 80%"
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: <%=(Double.parseDouble(adCount.get(4).get("count").toString())/totalAdCount)*100%>%"
                                                 aria-valuenow="8" aria-valuemin="0" aria-valuemax="10"></div>
                                         </div>
                                     </div>
@@ -353,12 +389,12 @@ HashMap<String, Object> totalM =(HashMap)request.getAttribute("totalM");
 			var myPieChart = new Chart(ctx, {
 				type : 'doughnut',
 				data : {
-					labels :["board","resume","up","AD"],
+					labels :["<%=items.get(0).get("type")%>","<%=items.get(1).get("type")%>","<%=items.get(2).get("type")%>","<%=items.get(3).get("type")%>"],
 						datasets : [ {
-						data : [ (<%=totalCount%>/<%=(long)items.get(0).get("count")%>).toFixed(1), 
-								(<%=totalCount%>/<%=(long)items.get(1).get("count")%>).toFixed(1), 
-								(<%=totalCount%>/<%=(long)items.get(2).get("count")%>).toFixed(1),
-								(<%=totalCount%>/<%=(long)items.get(3).get("count")%>).toFixed(1) ],
+						data : [ (<%=(long)items.get(0).get("count")%>/<%=totalCount%>).toFixed(1)*100, 
+								(<%=(long)items.get(1).get("count")%>/<%=totalCount%>).toFixed(1)*100, 
+								(<%=(long)items.get(2).get("count")%>/<%=totalCount%>).toFixed(1)*100,
+								(<%=(long)items.get(3).get("count")%>/<%=totalCount%>).toFixed(1) *100],
 						backgroundColor : [ '#4e73df', '#1cc88a', '#36b9cc' ],
 						hoverBackgroundColor : [ '#2e59d9', '#17a673',
 								'#2c9faf' ],

@@ -375,5 +375,11 @@ public class AdminService {
 		}
 		return null;
 	}
+	
+	//공수정
+	//아이템별로 기업결제 횟수 알려주는거 
+	public ArrayList<HashMap<String ,Object>> selectCountItem_Enterprise(String item){
+		return adminDAO.selectCountItem_Enterprise(item);
+	}
 }
 
