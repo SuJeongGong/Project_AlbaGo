@@ -100,6 +100,8 @@ public class BoardCommunityController {
 		//DB에서 글 하나 가져오기
 		BoardCommunity community = communityService.selectContent(community_id);
 		//DB에서 글 하나 가져온 것을 다음 화면에 보여주기 위해서 m에다가 담음
+		
+		int counts = communityService.CommentsCount(community_id);
 
 		ArrayList<BoardComment> comments =communityService.selectComments(community_id);
 		System.out.println(community);
@@ -109,6 +111,7 @@ public class BoardCommunityController {
 			System.out.println("조회수 증가 DB연결 성공");
 			m.addAttribute("community_content",community );
 			m.addAttribute("comments", comments);
+			m.addAttribute("counts", counts);
 		}		
 		return "/community/content";
 	}
@@ -163,8 +166,8 @@ public class BoardCommunityController {
 	
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)//삭제
-	public String delete(int community_id) {
-		String page = "/community/content";
+	public String delete(@RequestParam ("community_id") int community_id) {
+		String page = "/community/content";//성공 안했을 때의 페이지 
 		System.out.println(community_id);
 		if(1 <= communityService.deleteContent(community_id)) {
 			System.out.println("DB연결 성공!");

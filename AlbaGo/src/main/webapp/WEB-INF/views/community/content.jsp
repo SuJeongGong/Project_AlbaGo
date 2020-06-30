@@ -57,6 +57,7 @@ function updateResults(result) {
 		String date = community.getDate();
 		String content = community.getContents();
 		int views = community.getViews();
+		int commentcount = community.getCount();
      %>
 
     
@@ -77,7 +78,7 @@ function updateResults(result) {
                     
                      <ul class="blog-info-link mt-3 mb-4">
                         <li><i class="fa fa-user"></i><%=id %></li>
-                        <li><i class="fa fa-comments"></i> 댓글 갯수</li>
+                        <li><i class="fa fa-comments"></i><%= request.getAttribute("counts") %></li>
                         <li><i class="fa fa-views"></i>조회수 <%=views %></li>
                             <li><i class="fa fa-clock-o"></i><%=date.split(":")[0] %>:<%=date.split(":")[1] %></li>
                      </ul>
@@ -131,7 +132,7 @@ function updateResults(result) {
                            <div class="thumb">
                               <img src="img/comment/comment_3.png" alt="">
                            </div>
-                           <div class="asc" style="width: 1000px;">
+                           <div class="desc" style="width: 1000px;">
                               <div class="d-flex justify-content-between">
                                  <div class="d-flex align-items-center">
                                  	<ul class="blog-info-link mt-3 mb-4">
