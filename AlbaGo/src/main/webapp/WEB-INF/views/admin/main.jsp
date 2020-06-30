@@ -11,6 +11,11 @@
 <title>관리자메인</title>
 <%
 	ArrayList<HashMap<String,Object>> sales =(ArrayList<HashMap<String,Object>>) request.getAttribute("Recent_sales");
+	ArrayList<HashMap<String,Object>> items =(ArrayList<HashMap<String,Object>>) request.getAttribute("items");
+	long  totalCount = (long)Integer.valueOf(items.get(0).get("count").toString()) 
+			+ (long)Integer.valueOf(items.get(1).get("count").toString())   
+			+ (long)Integer.valueOf(items.get(2).get("count").toString()) 
+			+ (long)Integer.valueOf(items.get(3).get("count").toString()) ;
 %> 
 </head>
 
@@ -159,10 +164,15 @@
 										<div class="mt-4 text-center small">
 											<span class="mr-2"> <i
 												class="fas fa-circle text-primary"></i> 글 갯수 늘리기
-											</span> <span class="mr-2"> <i
+											</span> 
+											<span class="mr-2"> <i
 												class="fas fa-circle text-success"></i> 이력서 확인
-											</span> <span class="mr-2"> <i
+											</span> 
+											<span class="mr-2"> <i
 												class="fas fa-circle text-info"></i> UP
+											</span>
+											<span class="mr-2"> <i
+												class="fas fa-circle text"></i> AD
 											</span>
 										</div>
 									</div>
@@ -364,9 +374,12 @@
 			var myPieChart = new Chart(ctx, {
 				type : 'doughnut',
 				data : {
-					labels :["","",""],
+					labels :["board","resume","up","AD"],
 						datasets : [ {
-						data : [ 55, 30, 15 ],
+						data : [ (<%=totalCount%>/<%=(long)items.get(0).get("count")%>).toFixed(1), 
+								(<%=totalCount%>/<%=(long)items.get(1).get("count")%>).toFixed(1), 
+								(<%=totalCount%>/<%=(long)items.get(2).get("count")%>).toFixed(1),
+								(<%=totalCount%>/<%=(long)items.get(3).get("count")%>).toFixed(1) ],
 						backgroundColor : [ '#4e73df', '#1cc88a', '#36b9cc' ],
 						hoverBackgroundColor : [ '#2e59d9', '#17a673',
 								'#2c9faf' ],
@@ -427,7 +440,7 @@
 								"<%=sales.get(3).get("date")%>", "<%=sales.get(4).get("date")%>", "<%=sales.get(5).get("date")%>",
 								"<%=sales.get(6).get("date")%>" ],
 							datasets : [ {
-								label : "Revenue",
+								label : "매출액",
 								backgroundColor : "#4e73df",
 								hoverBackgroundColor : "#2e59d9",
 								borderColor : "#4e73df",

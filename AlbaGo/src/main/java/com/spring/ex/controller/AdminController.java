@@ -45,7 +45,9 @@ public class AdminController {
 	public String main(Model m) {
 		ArrayList<HashMap<String, Object>> sales = adminService.selectRecentSales();
 		m.addAttribute("Recent_sales", sales);
-		
+
+		ArrayList<HashMap<String, Object>> items = adminService.selectItems();
+		m.addAttribute("items", items);
 		
 		
 		return "admin/main";

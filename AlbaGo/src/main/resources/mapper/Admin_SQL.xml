@@ -5,7 +5,7 @@
 	<!-- 이예슬 -->
 	<!-- 개인 -->
 	<select id="selectRecentSales" resultType="HashMap">
-		SELECT DATE_FORMAT(payment.DATE , "%Y%m%d") as date, SUM(price) as
+		SELECT DATE_FORMAT(payment.DATE , "%Y/%m %d") as date, SUM(price) as
 		price
 		FROM product, payment
 		<where>product.product_id
@@ -14,6 +14,12 @@
 
 		</where>
 		GROUP BY DATE_FORMAT(payment.DATE , "%Y/%m/%d")
+	</select>
+
+	<select id="selectItems" resultType="HashMap">
+		SELECT COUNT(*) as count, product.type as type FROM payment,product
+		<where> product.product_id = payment.product_id</where>
+		group by product.type
 	</select>
 
 	<select id="selectlist" resultType="Individual">
@@ -101,10 +107,14 @@
 		FROM resume,volunteer,board_recruit,enterprise,recruit
 		<where>
 			resume.resume_id =volunteer.resume_id
-			AND volunteer.board_recruit_id = board_recruit.board_recruit_id
-			AND recruit.recruit_id = board_recruit.recruit_id
-			AND enterprise.enterprise_id = recruit.enterprise_id
-			AND volunteer.individual_id =#{id}
+			AND
+			volunteer.board_recruit_id = board_recruit.board_recruit_id
+			AND
+			recruit.recruit_id = board_recruit.recruit_id
+			AND
+			enterprise.enterprise_id = recruit.enterprise_id
+			AND
+			volunteer.individual_id =#{id}
 			AND board_recruit.delete_check =1
 		</where>
 		ORDER BY volunteer.volunteer_id DESC
@@ -115,7 +125,8 @@
 		resultType="BoardResume">
 		SELECT
 		board_resume.title AS board_resume_title ,
-		resume.title AS resume_title,
+		resume.title AS
+		resume_title,
 		board_resume.memo,
 		board_resume.date,
 		board_resume.board_resume_id
@@ -125,8 +136,10 @@
 
 		<where>
 			board_resume.resume_id = resume.resume_id
-			AND resume.individual_id = individual.individual_id
-			AND individual.individual_id = #{id}
+			AND
+			resume.individual_id = individual.individual_id
+			AND
+			individual.individual_id = #{id}
 			AND board_resume.delete_check =1
 		</where>
 	</select>
@@ -143,7 +156,8 @@
 		FROM community,individual
 
 		<where> community.individual_id=individual.individual_id
-			AND individual.individual_id=#{id}
+			AND
+			individual.individual_id=#{id}
 		</where>
 	</select>
 
@@ -219,12 +233,15 @@
 		board_recruit.date
 
 
-		FROM board_recruit ,recruit,enterprise
+		FROM board_recruit
+		,recruit,enterprise
 
 		<where>
 			board_recruit.recruit_id = recruit.recruit_id
-			AND recruit.enterprise_id = enterprise.enterprise_id
-			AND enterprise.enterprise_id = #{id}
+			AND
+			recruit.enterprise_id = enterprise.enterprise_id
+			AND
+			enterprise.enterprise_id = #{id}
 			AND board_recruit.delete_check =1
 		</where>
 	</select>
@@ -235,18 +252,21 @@
 
 		SELECT
 		board_resume.title AS board_resume_title,
-		resume.title as resume_title ,
+		resume.title as
+		resume_title ,
 		resume.individual_id as individual_id,
 		individual.name,
 		board_resume.memo,
 		scrap_enterprise.date AS date
 
-		From scrap_enterprise, board_resume ,resume,individual
+		From scrap_enterprise,
+		board_resume ,resume,individual
 
 		<where>
 			scrap_enterprise.board_resume_id =board_resume.board_resume_id
 			AND resume.resume_id = board_resume.resume_id
-			AND resume.individual_id=individual.individual_id
+			AND
+			resume.individual_id=individual.individual_id
 			AND enterprise_id =#{id}
 			AND board_resume.delete_check =1
 
@@ -262,11 +282,14 @@
 		product.price AS product_price,
 		product.term AS term,
 		payment.date AS date
-		FROM payment , enterprise,product
+		FROM payment ,
+		enterprise,product
 		<where>
 			payment.enterprise_id=enterprise.enterprise_id
-			AND payment.product_id=product.product_id
-			AND enterprise.enterprise_id=#{id}
+			AND
+			payment.product_id=product.product_id
+			AND
+			enterprise.enterprise_id=#{id}
 			AND product.delete_check =1
 		</where>
 	</select>
