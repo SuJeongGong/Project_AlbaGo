@@ -133,14 +133,7 @@
       volunteer_id=#{volunteer_id}
       </where>
    </delete>
-	<!-- 개인 회원 정보 보기 -->
-	<!-- 개인 회원 정보 수정 -->
-
 	
-
-	
-	
-
 	<!-- 인재 게시판 작성글 -->
 	<select id="selectResumeWrite" parameterType="String" resultType="BoardResume">
 	SELECT 
@@ -149,8 +142,9 @@
 		board_resume.memo,
 		board_resume.date,
 		board_resume.board_resume_id
-
-		FROM board_resume ,resume,individual
+		
+	FROM 
+		board_resume,resume,individual
 
 		<where> 
 		board_resume.resume_id = resume.resume_id 
@@ -159,6 +153,15 @@
 		AND board_resume.delete_check =1
 		</where>
 	</select>
+	
+	<!-- 인재 게시판 취소 AJAX -->
+	<update id="deletBoardResume" parameterType="int">
+   	update board_resume
+   	set delete_check = 0
+   	<where> 
+   	board_resume_id=#{board_resume_id}
+   	</where>
+   	</update>
 
 	<!--커뮤니티 게시판 작성글  -->
 	<select id="selectCommunity" parameterType="String" resultType="BoardCommunity">
@@ -175,6 +178,19 @@
 		</where>
 	</select>
 	
+	<!--커뮤니티 게시판 삭제 AJAX -->
+	
+	<!-- 커뮤니티글 댓글삭제 -->
+	<delete id="deleteComments" parameterType="int">
+		DELETE FROM `comment` WHERE `comment`.community_id =#{comment_id}
+	</delete>
+	
+	<!-- 커뮤니티글 글삭제 --> 
+	<delete id="deleteCommunity" parameterType="int">
+		DELETE FROM community WHERE community_id = #{community_id}
+	</delete>
+	
+
 	<!-- 기업회원 관리자 검색  -->
 	<select id = "selectEnterpriselist" resultType="Enterprise" parameterType="String">
 		SELECT *

@@ -70,9 +70,10 @@ public class AdminService {
 		return adminDAO.selectApplypartjob(id);
 	}
 
-
 	// 지원 취소 ajax
 	public int deleteVolunteer(int volounteer_id) {
+		
+		System.out.println(adminDAO.deleteVolunteer(volounteer_id));
 		return adminDAO.deleteVolunteer(volounteer_id);	
 	}
 
@@ -80,9 +81,29 @@ public class AdminService {
 	public ArrayList<BoardResume> selectResumeWrite(String id) {
 		return adminDAO.selectResumeWrite(id);	
 	}
+	
+	//인재 게시판 삭제 ajax
+	public int deletBoardResume(int board_resume_id) {
+		System.out.println(board_resume_id);
+		System.out.println(adminDAO.deletBoardResume(board_resume_id));
+		return adminDAO.deletBoardResume(board_resume_id);	
+	}
+	
 	//커뮤니티 게시판 작성글
 	public ArrayList<BoardCommunity> selectCommunity(String id) {
 		return adminDAO.selectCommunity(id);	
+	}
+	
+	//커뮤니티 게시판 삭제 ajax
+	public int deleteCommunity(int community_id) {
+		int res = -1;
+		
+		if(adminDAO.deleteComments(community_id)>=1) {//댓글부터 삭제 
+			if(adminDAO.deleteCommunity(community_id)>=1) {
+				res = 1;
+			}
+		}
+		return res;
 	}
 	
 	//기업회원정보 '리스트'전체를 보여주는 테이블

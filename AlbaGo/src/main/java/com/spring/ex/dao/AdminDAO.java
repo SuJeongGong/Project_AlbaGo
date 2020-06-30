@@ -35,16 +35,21 @@ public interface AdminDAO {
 	int updateIndividualAccount(Individual individual);
 	//<!-- 이력서 관리 -->
 	ArrayList<Resume> selectResume(String id);
-	//이력서 삭제하기
-	int deleteResume(int resume_id);//ajax 삭제하기
+	//<!--이력서 삭제 AJAX -->
+	int deleteResume(int resume_id);
 	//<!-- 지원한 알바-->
 	ArrayList<Volunteer> selectApplypartjob(String id);
-	//<!--지원알바 취소-->
-	   int deleteVolunteer(int volounteer_id);////ajax 취소하기	
+	//<!--지원알바 취소 AJAX-->
+	   int deleteVolunteer(int volounteer_id);
 	//<!--인재글 게시판-->
 	ArrayList<BoardResume> selectResumeWrite(String id);
+	//<!-- 인재 게시판 취소 AJAX -->
+	int deletBoardResume(int board_resume_id);
 	//<!--커뮤니티 게시판 작성글-->
 	ArrayList<BoardCommunity> selectCommunity(String id);
+	//<!--커뮤니티 게시판 삭제 AJAX -->
+	int deleteCommunity(int comment_id);    //댓글삭제  -댓글번호로 삭제  -> 1개만 지워지고
+	int deleteComments(int comment_id);    //댓글삭제  -글 번호로 삭제  -> 몇개가 있던
 	
 	//기업회원 검색 전체를 보여주는 테이블
 	ArrayList<Enterprise> selectEnterpriselist();

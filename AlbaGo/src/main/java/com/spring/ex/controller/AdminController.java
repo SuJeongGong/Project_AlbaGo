@@ -309,20 +309,33 @@ public class AdminController {
 	      } 
 	      return page;
 	   }
-	// ajax 이력서삭제
-
+	//ajax
+	//이력서삭제 AJAX
 	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteResume(@RequestParam("resume_id") int resume_id) {
 		return adminService.deleteResume(resume_id);
 	}
-	
-	//지원한 알바 지원취소
+	//지원한 알바 지원취소 AJAX
 	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteVolunteer(@RequestParam("volunteer_id") int volunteer_id) {
-System.out.println("volunteer_id"+volunteer_id);
+		System.out.println("volunteer_id"+volunteer_id);
 		return adminService.deleteVolunteer(volunteer_id);  
 	}
+	//인재 게시판 취소 AJAX
+	@RequestMapping(value = "/deletBoardResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deletBoardResume(@RequestParam("board_resume_id") int board_resume_id) {
+		System.out.println("board_resume_id"+board_resume_id);
+		return adminService.deletBoardResume(board_resume_id);
+	}
 	
+	//커뮤니티 게시판 삭제 AJAX
+	@RequestMapping(value = "/deleteCommunity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)//삭제
+	public @ResponseBody int delete(@RequestParam ("community_id") int community_id) {
+		System.out.println("community_id :"+community_id);
+		return adminService.deleteCommunity(community_id);
+	} //글삭제
+	
+
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {
 		String page = "admin/enterprise_detail";

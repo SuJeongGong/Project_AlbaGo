@@ -76,7 +76,7 @@
 	               			</tr>
 	               			<tr>
 	               				<th>비밀번호</th>
-	               				<td><input type="text" name ="password" id ="password" value="<%=password%>" ></td>
+	               				<td><input type="text" class="form-control" name ="password" id ="password" value="<%=password%>" ></td>
 	               			</tr>
 	               			<tr>
 	               				<th>이름</th>
@@ -100,15 +100,14 @@
 	               			</tr>
 	               			<tr>
 	               				<th>가입날짜</th>
-	               				<td><input type ="text" name ="date" id ="date" value="<%=date%>"></td>
+	               				<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date%></td>
 	               			</tr>
 	               			<tr>
 	               				<th>관리자</th>
 	               				<td>
 	               					<button class="btn btn-info edit" type="submit" aria-label="ASettings"> 정보 수정</button> 
 					
-                                    <a href="#" class="btn btn-danger btn-xs">
-                                    <span class="glyphicon glyphicon-remove"></span>계정 삭제</a>
+                                    <button type="button" class="btn btn-outline-danger" onclick="">계정정지</button>
                                 </td>
 	               			</tr>
 	               		</table>
@@ -265,7 +264,10 @@
 							%>
                                             
                                             <td>미정</td>
-                                            <td class="text-center"><button type="button" class="btn btn-sm btn-primary btn-cancel" onclick="deleteVolunteer(<%=volunteer_id%>)">지원취소</button></td>
+                                            <td class="text-center">
+                                            	<button type="button" class="btn btn-sm btn-primary btn-cancel" onclick="deleteVolunteer(<%=volunteer_id%>)">지원취소
+                                            	</button>
+                                            </td>
                                    
                                    <%
 								} else {
@@ -288,9 +290,30 @@
                         </div>
                 </div>
                 
-
                 	<!-- ################################# -->     
-			                   
+			            <script>
+					function deletBoardResume(board_resume_id) {
+					console.log(board_resume_id);
+					$.ajax({
+							url : "./deletBoardResume",
+							method : "GET",
+							data : {
+								board_resume_id:board_resume_id
+							},
+							success :function(res1){
+								console.log(res1);
+								if(res1>=1){
+									alert("결과 저장 완료");
+					
+									 $("#res1").load(window.location.href + " #res1");
+								}else{
+									alert("사용실패")
+								}
+							}
+						});
+					}          
+					
+					</script>
 					<!-- 인재 게시판 작성글 알바 -->
                 <div class="row">
                     <div class="card col-xl-12 shadow mb-4">
@@ -300,8 +323,9 @@
                             </h6>
                         </div>
                         <div class="card-body">
-                        <form id="resumeWrite" action="">
-                               <table class="table table-striped">
+                        <form id="resumeWrite">
+                               <table class="table table-striped" id="res1">
+                               
                                 <thead>
                                 
                                     <tr class="text-center">
@@ -335,7 +359,7 @@
                                         <td><%=memo %></td>
                                         <td><%=resume_date %></td>
                                         <td>   
-                                        <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger">
+                                        <button type="button" class="btn py-1 px-1 btn-danger" onclick="deletBoardResume(<%=board_resume_id%>)">삭제</button>
                                       	</td>
                                     </tr>
                                         <%
@@ -347,7 +371,30 @@
                         </div>
                     </div>
                     
-                   <!-- ################################# -->     
+                   <!-- ################################# --> 
+				   <script>
+
+				    function deleteCommunity(community_id) {
+				    	console.log(community_id);
+				    	$.ajax({
+				    		url : "./deleteCommunity",
+				    		method : "GET",
+				    		data : {
+				    			community_id: community_id
+				    		},
+				    		success :function(res3){
+				    			console.log(res3);
+				    			if(res3>=1){
+				    				alert("삭제 성공");
+				
+				  					 $("#res3").load(window.location.href + " #res3");
+				    			}else{
+				    				alert("삭제 실패");
+				    			}
+				    		}
+				    	});
+				    }
+				    </script>
 					<!-- 커뮤니티 게시판 작성글 -->
                     <div class="card col-xl-12 shadow mb-4">
                         <div class="card-header py-3">
@@ -355,9 +402,9 @@
                             </h6>
                         </div>
                         <div class="card-body">
-           				<form id="communityWrite" action="">
+           				<form id="communityWrite">
              
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table id="res3" class="table table-bordered"  width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
                                     	<th>글제목</th>
@@ -385,8 +432,10 @@
                                         <td style="width:20%"><%=community_name%></td> 
                                         <td style="width:20%"><%=community_date%></td>
                                         <td style="width:10%"> 
-                                            <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger">
-                                        </td>
+                                            <button type="button" class="btn py-1 px-1 btn-danger" onclick="deleteCommunity(<%=community_id%>)"
+                                            style="float: right;">삭제
+                                            </button>   
+                                         </td>
                                     </tr>
 									<%} %>
                                     
