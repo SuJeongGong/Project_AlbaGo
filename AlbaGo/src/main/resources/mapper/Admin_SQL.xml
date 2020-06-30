@@ -251,6 +251,17 @@
 		WHERE DATE >= CURDATE()	
 	</select> 
 	
+	<!-- 오늘 매출액 -->
+	<select id = "total_M" resultType="hashmap" >
+		SELECT DATE_FORMAT(payment.DATE , "%Y/%m/%d") as date, SUM(price) as price
+		FROM product, payment
+		<![CDATA[
+		where product.product_id= payment.product_id
+		AND DATE_FORMAT(payment.DATE , "%Y%m%d") >= CURDATE()
+		GROUP BY DATE_FORMAT(payment.DATE , "%Y/%m/%d")
+		]]>
+	</select>
+	
 	<!-- 예슬이가 아에 감싸는 거라고 설명해줌 -->
 	<select id = "recruit_List_id" resultType="BoardRecruit" parameterType="String">
 		SELECT 

@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,6 +11,10 @@
 </head>
 
 <body>
+
+<%
+HashMap<String, Object> totalM =(HashMap)request.getAttribute("totalM");
+%>
     <div id="wrapper">
         <!-- 사이드 바 -->
         <%@ include file="../serve/manager_sidebar.jsp" %>
@@ -40,7 +45,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                     오늘 가입자 수 </div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">4,500명</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800"id="todaytotal"><%=request.getAttribute("todaytotal")%></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -58,7 +63,7 @@
                                             <div class="col mr-2">
                                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                     오늘 매출액</div>
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
+                                                <div class="h5 mb-0 font-weight-bold text-gray-800" id="totalM"><%=totalM.get("price")%></div>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -79,13 +84,6 @@
                                                 <div class="row no-gutters align-items-center">
                                                     <div class="col-auto">
                                                         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="todaycount"><%=request.getAttribute("todaycount")%>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="progress progress-sm mr-2">
-                                                            <div class="progress-bar bg-info" role="progressbar"
-                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                                aria-valuemax="100"></div>
                                                         </div>
                                                     </div>
                                                 </div>

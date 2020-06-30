@@ -116,9 +116,15 @@ public class AdminService {
 	public int select_TI_join() {
 		return adminDAO.select_TI_join();
 	}
+	
 	//기업회원수
 	public int selet_TE_join() {
 		return adminDAO.selet_TE_join();
+	}
+	
+	//오늘 매출액
+	public HashMap<String,Object> total_M() {
+		return adminDAO.total_M();
 	}
 	
 	//전체 인재 갯수

@@ -68,6 +68,8 @@ public interface AdminDAO {
 		int select_TI_join();
 		//기업
 		int selet_TE_join();
+		//오늘 매출액
+		HashMap<String,Object> total_M();
 	
 	/** 공고글 관리 */
 		//전체 공고 갯수
