@@ -33,7 +33,7 @@ import com.spring.ex.services.ProductService;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController { 
 
 	@Autowired
 	ProductService productService;
