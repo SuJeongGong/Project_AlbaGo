@@ -42,7 +42,7 @@
 					<%
 						Individual individual = (Individual)request.getAttribute("individual");
 					
-						String id = individual.getIndividual_id();
+						String individual_id = individual.getIndividual_id();
 				    	String password=individual.getPassword();
 						String name = individual.getName();
 						String birth = individual.getBirth().split(" ")[0];;
