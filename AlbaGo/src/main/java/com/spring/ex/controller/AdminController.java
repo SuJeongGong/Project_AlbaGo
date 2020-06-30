@@ -372,7 +372,24 @@ System.out.println("volunteer_id"+volunteer_id);
 
 		return page;
 	}
+	@RequestMapping("/advertising/product") // 광고 보기
+	public String advertisingㅣist(Model m, HttpServletRequest request) {
 
+		ArrayList<Product> products = productService.selectAdvertisingList();
+		m.addAttribute("products", products);  
+
+		return "/admin/advertising_product";
+	} 
+
+	@RequestMapping("/advertising/product_account") // 광고상세보기
+	public String advertisingㅕpdate_account( Model m, @RequestParam("product_id") int product_id) {
+		String page = "/admin/advertising_account";
+		Product product = productService.product_account(product_id);
+		m.addAttribute("product", product);
+
+		return page;
+	} 
+	
 	@RequestMapping("/account/update") // 상품수정하기
 	public String update(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
@@ -387,7 +404,20 @@ System.out.println("volunteer_id"+volunteer_id);
 		}
 		return page;
 	}
+	@RequestMapping("/account/advertising/update") // 상품수정하기
+	public String advertisingUpdate(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
+		System.out.println(product);
+		String page = "/admin/product_account";
+		if (productService.update_product(product) >= 1) {
+			page = "redirect:/admin/advertising/product";
+			System.out.println("DB연결성공");
+		} else {
+			page = "/admin/advertising/product_account";
+			System.out.println("실패라고요");
+		}
+		return page;
+	}
 	@RequestMapping("/account/delete") // 상품삭제하기
 	public String delete(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
@@ -401,6 +431,14 @@ System.out.println("volunteer_id"+volunteer_id);
 			System.out.println("실패라고요");
 		}
 		return page;
+	}	
+	@RequestMapping("/product/approve") // 결제승인
+	public String approve(Model m) {
+		ArrayList<Payment> payments= productService.selectProductPayments();
+
+		m.addAttribute("payments",payments);
+
+		return "admin/product_approve";
 	}
 
 	@RequestMapping("/add_product_term") // 기간있는 상품추가 보여주는 폼
@@ -446,10 +484,8 @@ System.out.println("volunteer_id"+volunteer_id);
 		
 		return "admin/advertising_approve";
 	} // 아약스 처리
-
-	@RequestMapping(value = "/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int updateResult(@RequestParam(value = "result") String result,
-			@RequestParam(value = "id") int id) {
+	@RequestMapping(value = "/product/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int updateResult(@RequestParam(value = "result") String result,@RequestParam(value = "id") int id) {
 
 		System.out.println("payment_id" + id);
 		System.out.println("result" + result);
@@ -460,7 +496,7 @@ System.out.println("volunteer_id"+volunteer_id);
 		return productService.updatePaymentResult(map);
 	}
 
-	@RequestMapping(value = "/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/product/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int updateResults(@RequestParam(value = "result") String result,
 			@RequestParam(value = "payment_ids[]") ArrayList<String> payment_ids) {
 
@@ -470,6 +506,29 @@ System.out.println("volunteer_id"+volunteer_id);
 		map.put("payment_ids", payment_ids);
 		map.put("result", result);
 		return productService.updatePaymentsResult(map);
+	}
+	@RequestMapping(value = "/advertising/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int advertisingUpdateResult(@RequestParam(value = "result") String result,
+			@RequestParam(value = "id") int id) {
+
+		System.out.println("payment_id" + id);
+		System.out.println("result" + result);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("payment_id", id);
+		map.put("result", result);
+ 
+		return productService.advertisingUpdatePaymentResult(map);
+	}
+
+	@RequestMapping(value = "/advertising/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int advertisingUpdateResults(@RequestParam(value = "result") String result,	@RequestParam(value = "payment_ids[]") ArrayList<String> payment_ids) {
+
+		System.out.println("payment_ids" + payment_ids);
+		System.out.println("result" + result);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("payment_ids", payment_ids);
+		map.put("result", result);
+		return productService.advertisingUpdatePaymentsResult(map);
 	}
 
 }
