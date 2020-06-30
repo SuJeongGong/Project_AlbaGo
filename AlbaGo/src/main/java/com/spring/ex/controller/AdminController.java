@@ -298,7 +298,17 @@ public class AdminController {
 		return page;
 
 	}
+	@RequestMapping("/individual_detail/update") // 개인정보 수정 - 수정하기
+	   public String individual_detail( @ModelAttribute("individual") Individual individual) {
+	      String page = "/admin/individual_detail"; 
+	      if (1 <= adminService.updateIndividualAccount(individual)) {
+	         System.out.println(individual); 
+	         System.out.println("수정");
+	         page = "redirect:/admin/main";
 
+	      } 
+	      return page;
+	   }
 	// ajax 이력서삭제
 
 	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
