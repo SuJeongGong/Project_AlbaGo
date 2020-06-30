@@ -31,12 +31,16 @@ public interface AdminDAO {
 	//<!-- 개인관리자 링크타고 -->
 	//<!-- 개인 회원 정보 -->
 	Individual selectIndividualAccount(String id);
+	//<!-- 개인 회원 정보 수정-->
+	int updateIndividualAccount(Individual individual);
 	//<!-- 이력서 관리 -->
 	ArrayList<Resume> selectResume(String id);
 	//이력서 삭제하기
 	int deleteResume(HashMap<String, Object> map);//ajax 삭제하기
 	//<!-- 지원한 알바-->
 	ArrayList<Volunteer> selectApplypartjob(String id);
+	//<!--지원알바 취소-->
+	int deleteVolunteer(int volounteer_id);////ajax 취소하기
 	//<!--인재글 게시판-->
 	ArrayList<BoardResume> selectResumeWrite(String id);
 	//<!--커뮤니티 게시판 작성글-->

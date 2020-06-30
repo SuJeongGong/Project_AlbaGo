@@ -62,7 +62,7 @@
 		ORDER BY resume.resume_id DESC
 	</select>
 
-	<update id="updateAccount" parameterType="Individual">
+	<update id="updateAccount" parameterType="int">
 		update individual 
 		set name = #{name},
 			gender = #{gender},
@@ -70,9 +70,10 @@
 			phone = #{phone},
 			education = #{education}
 		<where>
-			individual_id = #{individual_id}
+			individual_id = #{id}
 		</where>
 	</update>
+	
 	<delete id="deleteVolunteer" parameterType="int">
 		delete from volunteer
 		<where>
