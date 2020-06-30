@@ -309,6 +309,15 @@ public class AdminController {
 		System.out.println(resume_id);
 		return adminService.deleteResume(individual_id, resume_id);
 	}
+	
+	
+	//지원한 알바 지원취소
+	   @RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	   public @ResponseBody int deleteVolunteer(@RequestParam("volunteer_id") int volunteer_id) {
+	System.out.println("volunteer_id"+volunteer_id);
+	      return adminService.deleteVolunteer(volunteer_id);  
+	   }
+	
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {

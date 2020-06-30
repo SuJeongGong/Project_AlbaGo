@@ -463,17 +463,19 @@ int end = 0;
 								</tr>
 								<%
 									ArrayList<PaymentHistoryUp> paymentHistoriessUp = (ArrayList) request.getAttribute("payment_history_up");
-				
-
-									if (paymentHistoriessUp.size() > 5) {
-										end = 5;
-									} else {
-										end = paymentHistoriessUp.size();
-									}
-									for (int i = 0; i < end; i++) {
-										PaymentHistoryUp paymentHistoryUp = paymentHistoriessUp.get(i);
-										String title = paymentHistoryUp.getBoard_recruit_title();
-										String date = paymentHistoryUp.getDate().split(" ")[0];
+								end=0;
+									if(paymentHistoriessUp !=null){
+										if (paymentHistoriessUp.size() > 5) {
+											end = 5;
+											 System.out.println("end"+end);
+										} else {
+											end = paymentHistoriessUp.size();
+											 System.out.println("end"+end);
+										}
+										for (int i = 0; i < end; i++) {
+											PaymentHistoryUp paymentHistoryUp = paymentHistoriessUp.get(i);
+											String title = paymentHistoryUp.getBoard_recruit_title();
+											String date = paymentHistoryUp.getDate().split(" ")[0];
 								%>
 								<tr>
 									<td><%=title%></td>
@@ -481,6 +483,7 @@ int end = 0;
 								</tr>
 								<%
 									}
+										}
 								%>
 
 							</table>

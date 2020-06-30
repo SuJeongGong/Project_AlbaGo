@@ -67,6 +67,10 @@ public class AdminService {
 	public ArrayList<Volunteer> selectApplypartjob(String id){
 		return adminDAO.selectApplypartjob(id);
 	}
+	// 지원 취소 ajax
+	   public int deleteVolunteer(int volounteer_id) {
+		      return adminDAO.deleteVolunteer(volounteer_id);   
+	}
 	//인재 게시판 작성글
 	public ArrayList<BoardResume> selectResumeWrite(String id) {
 		return adminDAO.selectResumeWrite(id);	

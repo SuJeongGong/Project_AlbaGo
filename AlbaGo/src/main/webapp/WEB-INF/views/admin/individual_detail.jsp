@@ -19,16 +19,10 @@
     <meta name="author" content="">
     <title>개인상세페이지</title>
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   
 </head>
 
@@ -196,21 +190,42 @@
                             </div>
                         </div>
                     </div>
-			<!-- ################################# -->     
-			                   
-					<!-- 지원한 알바 -->
+	<!-- ################################# -->     
+                  <script>
+               function deleteVolunteer(individual_id,volunteer_id) {
+               console.log(individual_id,volunteer_id);
+               $.ajax({
+                     url : "./deleteVolunteer",
+                     method : "GET",
+                     data : {
+                        volunteer_id:volunteer_id
+                     },
+                     success :function(res1){
+                        if(res1>=1){
+                           alert("결과 저장 완료");
+               
+                            $("#res1").load(window.location.href + " #res1");
+                        }else{
+                           alert("사용실패")
+                        }
+                     }
+                  });
+               }          
+               
+               </script>
+               <!-- 지원한 알바 -->
                     <div class="row">
                         <div class="card col-xl-12 shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">
-                                	지원한 알바
+                                   지원한 알바
                                 </h6>
                             </div>
                             <div class="card-body">
                               <!-- 지원한 알바 form 시작 -->
-                            <form id="apply" action="">
+                            <form>
                        
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="res1" width="100%" cellspacing="0">
                                     <thead>
                                         <!-- 제목 -->
                                         <tr>
@@ -224,36 +239,34 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                      					                    
                                          <%
-										ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers");
-										for (int i = 0; i < volunteers.size(); i++) {
-											Volunteer volunteer = volunteers.get(i);
-			             		
-			                        		int volunteer_id = volunteer.getVolunteer_id();
-											String title = volunteer.getBoard_recruit_title();
-											String enterprise_name=volunteer.getEnterprise_name();
-											String resume_title = volunteer.getResume_title();
-											String volunteer_date = volunteer.getDate().split(" ")[0];
-											String result = volunteer.getResult();
-											int board_recruit_id=volunteer.getBoard_recruit_id();
-											
-											
-											if(result==null){
-												result="결과 없음";
-											}
-											
-										%>  
-										<tr>
+                              ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers");
+                              for (int i = 0; i < volunteers.size(); i++) {
+                                 Volunteer volunteer = volunteers.get(i);
+                            
+                                       int volunteer_id = volunteer.getVolunteer_id();
+                                 String title = volunteer.getBoard_recruit_title();
+                                 String enterprise_name=volunteer.getEnterprise_name();
+                                 String resume_title = volunteer.getResume_title();
+                                 String volunteer_date = volunteer.getDate().split(" ")[0];
+                                 String result = volunteer.getResult();
+                                 int board_recruit_id=volunteer.getBoard_recruit_id();
+                                 String individual_id_volunteer=volunteer.getIndividual_id();
+                                 
+                                 if(result==null){
+                                    result="결과 없음";
+                                 }
+                        
                                     
+                              %>  
+                              <tr>
                                             <td class="text-center"><a href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=board_recruit_id%>"><%= title %></td>
                                     
                                             <td class="text-center"><%= enterprise_name %></td>
                                             <td class="text-center"><%= resume_title %></td>
                                             <td class="text-center"><%= volunteer_date %></td>
                                             <td class="text-center"><%= result %></td>
-                                            <td class="text-center"><button type="submit" class="btn btn-sm btn-primary btn-cancel">지원취소</button></td>
+                                            <td class="text-center"><button type="button" class="btn btn-sm btn-primary btn-cancel" onclick="deleteVolunteer('<%=individual_id_volunteer %>',<%=volunteer_id%>)">지원취소</button></td>
                                         </tr>
                                         <%} %>
 
@@ -264,6 +277,7 @@
                         </div>
                 </div>
                 
+
                 	<!-- ################################# -->     
 			                   
 					<!-- 인재 게시판 작성글 알바 -->
@@ -381,19 +395,6 @@
         </a>
 
 
-
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="js/demo/datatables-demo.js"></script>
 
 
 

@@ -125,12 +125,58 @@ HashMap<String, Object> totalM =(HashMap)request.getAttribute("totalM");
                         </div>
 
 						<!-- Content Row -->
+
+
 						<div class="row">
+							<!-- Area Chart -->
+							<div class="col-xl-8 col-lg-8 ">
+								<div class="card shadow mb-4">
+									<div class="card-header py-3">
+										<h6 class="m-0 font-weight-bold text-primary">일주일 매출액</h6>
+									</div>
+									<div class="card-body">
+										<div class="chart-bar">
+											<canvas id="myBarChart"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
 
-
+							<!-- Pie Chart -->
+							<div class="col-xl-4 col-lg-4">
+								<div class="card shadow mb-4">
+									<!-- Card Header - Dropdown -->
+									<div
+										class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+										<h6 class="m-0 font-weight-bold text-primary">결제</h6>
+									</div>
+									<!-- Card Body -->
+									<div class="card-body">
+										<div class="chart-pie pt-4 pb-2">
+											<canvas id="myPieChart"></canvas>
+										</div>
+										<div class="mt-4 text-center small">
+											<span class="mr-2"> <i
+												class="fas fa-circle text-primary"></i> 글 갯수 늘리기
+											</span> 
+											<span class="mr-2"> <i
+												class="fas fa-circle text-success"></i> 이력서 확인
+											</span> 
+											<span class="mr-2"> <i
+												class="fas fa-circle text-info"></i> UP
+											</span>
+											<span class="mr-2"> <i
+												class="fas fa-circle text"></i> AD
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
 							<!-- Content Column -->
 
+						<div class="row">
 							<div class="col-lg-6 mb-4">
 
 								<!-- Project Card Example -->
