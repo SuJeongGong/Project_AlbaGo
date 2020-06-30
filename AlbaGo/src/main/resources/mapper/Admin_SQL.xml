@@ -92,12 +92,11 @@
    </select>
    
    <!-- 이력서관리삭제 ajax -->
-   <update id="deleteResume" parameterType="hashmap">
+   <update id="deleteResume" parameterType="int">
    update resume
    set delete_check = 0
    <where> 
    resume_id=#{resume_id}
-   AND individual_id=#{individual_id}
    </where>
    </update>
    

@@ -76,7 +76,7 @@
 	               			</tr>
 	               			<tr>
 	               				<th>비밀번호</th>
-	               				<td><input type="text" name ="password" id ="password" value="<%=password%>" ></td>
+	               				<td><input type="text" class="form-control" name ="password" id ="password" value="<%=password%>" ></td>
 	               			</tr>
 	               			<tr>
 	               				<th>이름</th>
@@ -100,7 +100,7 @@
 	               			</tr>
 	               			<tr>
 	               				<th>가입날짜</th>
-	               				<td><input type ="text" name ="date" id ="date" value="<%=date%>"></td>
+	               				<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date%></td>
 	               			</tr>
 	               			<tr>
 	               				<th>관리자</th>
@@ -120,18 +120,18 @@
 			                   
 						<!-- 이력서 관리 -->
 						<script>
-						function deleteResume(individual_id,resume_id) {
-							console.log(individual_id,resume_id);//a,2
+						function deleteResume(resume_id) {
+							console.log(resume_id);//a,2
 							$.ajax({
 								url : "./deleteResume",
 								method : "GET",
 								data : {
-									individual_id : individual_id,
+									
 									resume_id : resume_id
 								
 								},
 								success :function(resa){
-									if(res>=1){
+									if(resa>=1){
 										alert("삭제완료");
 
 										 $("#resa").load(window.location.href + " #resa");
@@ -179,7 +179,7 @@
                                         <a  href="<%=request.getContextPath()%>/individual/profile/content?resume_id=<%=resume_id%>" class="btn btn-secondary btn-xs"> <span class="glyphicon glyphicon-edit"></span> 상세보기</a> 
                                     	</td>
                                         <td class="text-center">
-                                        <button type="button" class="btn btn-outline-danger" onclick="deleteResume('<%=id%>',<%=resume_id%>)">삭제</button>
+                                        <button type="button" class="btn btn-outline-danger" onclick="deleteResume(<%=resume_id%>)">삭제</button>
                                         </td>
                                     </tr>
                                     <%} %>

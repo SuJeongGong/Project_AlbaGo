@@ -59,11 +59,9 @@ public class AdminService {
 		return adminDAO.selectResume(id);	
 	}
 	//이력서 삭제 ajax
-	public int deleteResume(String individual_id,int resume_id) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("individual_id", individual_id);
-		map.put("resume_id", resume_id);
-		return adminDAO.deleteResume(map);	
+	public int deleteResume(int resume_id) {
+
+		return adminDAO.deleteResume(resume_id);	
 	}
 	
 	

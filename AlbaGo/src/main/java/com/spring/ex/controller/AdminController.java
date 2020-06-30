@@ -312,12 +312,8 @@ public class AdminController {
 	// ajax 이력서삭제
 
 	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteResume(@RequestParam("individual_id") String individual_id,
-			@RequestParam("resume_id") int resume_id) {
-
-		System.out.println(individual_id);
-		System.out.println(resume_id);
-		return adminService.deleteResume(individual_id, resume_id);
+	public @ResponseBody int deleteResume(@RequestParam("resume_id") int resume_id) {
+		return adminService.deleteResume(resume_id);
 	}
 	
 	//지원한 알바 지원취소

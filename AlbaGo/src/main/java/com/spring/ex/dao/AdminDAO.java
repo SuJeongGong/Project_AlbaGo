@@ -36,7 +36,7 @@ public interface AdminDAO {
 	//<!-- 이력서 관리 -->
 	ArrayList<Resume> selectResume(String id);
 	//이력서 삭제하기
-	int deleteResume(HashMap<String, Object> map);//ajax 삭제하기
+	int deleteResume(int resume_id);//ajax 삭제하기
 	//<!-- 지원한 알바-->
 	ArrayList<Volunteer> selectApplypartjob(String id);
 	//<!--지원알바 취소-->
