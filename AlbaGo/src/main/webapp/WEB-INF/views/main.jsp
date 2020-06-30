@@ -1,3 +1,5 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="true"%>
 <!DOCTYPE html>
 <html>
@@ -136,15 +138,15 @@
                 <div class="col-lg-3 col-xl-3 col-md-3">
                     <div class="single_company">
                     <ul style="display: table; margin: auto; padding:0;">
-                        <li><p class="titleSub"><h3>테마 알바</h3></p>
+                        <li><p class="titleSub"><h3>기간별 알바</h3></p>
                         <br />
-							<p>
-								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>단기알바</a> &emsp;
-								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>3~6개월</a> &emsp; <br/>
-								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>6~12개월</a> &nbsp;&nbsp;
-								<a href="#"><i class="fas fa-moon fa-2x"></i>12개월</a><br /><br />
-								<a href="#"><i class="fas fa-male fa-2x"></i>남성 전용</a> &emsp;&nbsp;
-								<a href="#"><i class="fas fa-female fa-2x"></i>여성 전용</a> &emsp; <br/>
+							<p><br/>
+								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>하루</a> &nbsp;&nbsp;&nbsp;&emsp;&nbsp;
+								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>일주일</a> &emsp;<br/><br/>
+								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>1개월</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>3~6개월</a> <br/><br/>
+								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>6~12개월</a>
+								<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>1년이상</a>
 							</p>
 							</li>
 						</ul>
@@ -155,16 +157,14 @@
                     <div class="single_company">
                     <ul style="display: table; margin: auto; padding:0;">
                         <li><p class="titleSub"><h3>최종학력</h3></p>
-                        <br />
-                       
 							<p>		
+								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>초등학교 졸업</a> <br/>
 								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>중학교 졸업</a> <br/>
 								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>고등학교 졸업</a> <br/>
 								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>대학교(2,3년) 졸업</a> <br/>
 								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>대학교(4년) 졸업</a><br />
+								<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>대학원 졸업 이상</a><br />
 							</p>
-							 <br />
-							 <br />
 							</li>
 						</ul>
                     </div>
@@ -175,8 +175,47 @@
     </div>
     <!-- 아이콘메뉴_end  -->
 
+<!--광고자리  -->
+    <div class="featured_candidates_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title text-center mb-40">
+                        <h3>추천 알바</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="candidate_active owl-carousel">
+                    
+                    
+                    <%
+                    	ArrayList<HashMap<String,Object>> AdList = (ArrayList<HashMap<String,Object>>)request.getAttribute("Advertising");
+                    	for(int i =0; i < AdList.size();i++){
+                    		%>
+                    	<div class="single_candidates text-center">
+                            <a href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%= AdList.get(i).get("board_recruit_id") %>"><h4><%=AdList.get(i).get("adTitle") %></h4></a>
+                            <p><%=AdList.get(i).get("title") %></p>
+                        </div>
+                    		
+                    		<%
+                    	}
+                    	
+                    %>
+                    
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- featured_candidates_area_end  -->
+    
+   
 
-    <!-- 광고_start  -->
+ 
+ <!-- 광고_start  -->
     <div class="popular_catagory_area">
         <div class="container">
             <div class="row">
@@ -251,6 +290,13 @@
     </div>
     <!-- 광고_end  -->
 
+	
+	
+	
+	
+	 
+    
+   
    
     <!-- 커뮤니티_area  -->
     <div class="testimonial_area  ">
@@ -317,123 +363,6 @@
         </div>
     </div>
     <!-- 커뮤니티_area  -->
-
- <!-- featured_candidates_area_start  -->
-    <div class="featured_candidates_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section_title text-center mb-40">
-                        <h3>Featured Candidates</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="candidate_active owl-carousel">
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/1.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/2.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/3.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/4.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/5.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/6.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/7.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/8.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/9.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/9.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/10.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/3.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                        <div class="single_candidates text-center">
-                            <div class="thumb">
-                                <img src="img/candiateds/4.png" alt="">
-                            </div>
-                            <a href="#"><h4>Markary Jondon</h4></a>
-                            <p>Software Engineer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- featured_candidates_area_end  -->
-
-	
-	
-	
-	
-	
 	
 	
 	
