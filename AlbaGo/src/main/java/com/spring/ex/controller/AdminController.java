@@ -310,6 +310,12 @@ public class AdminController {
 	      return page;
 	   }
 	//ajax
+	////계정정지 AJAX
+	@RequestMapping(value = "/changestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int changestate(@RequestParam("individual_id") String individual_id) {
+		return adminService.changestate(individual_id);
+	}
+	 
 	//이력서삭제 AJAX
 	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteResume(@RequestParam("resume_id") int resume_id) {

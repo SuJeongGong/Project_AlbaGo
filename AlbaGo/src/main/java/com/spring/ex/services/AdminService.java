@@ -50,6 +50,10 @@ public class AdminService {
 	public Individual selectIndividualAccount(String id){
 		return adminDAO.selectIndividualAccount(id);	
 	}
+	// 
+	public int changestate(String individual_id) {
+		return adminDAO.changestate(individual_id);
+	}
 	//개인회원정보 '수정' ajax
 	public int updateIndividualAccount(Individual individual) {
 		return adminDAO.updateIndividualAccount(individual);	

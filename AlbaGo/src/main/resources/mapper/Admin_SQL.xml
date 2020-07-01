@@ -80,6 +80,14 @@
          individual_id = #{individual_id}
       </where>
    </update>
+   <!-- 계정정지 -->
+   <update id="changestate" parameterType="String">
+    update individual 
+      set state=0
+      <where>
+         individual_id = #{individual_id}
+      </where>
+   </update>
    
    <!-- 이력서관리 -->
    <select id="selectResume" parameterType="String" resultType="Resume">

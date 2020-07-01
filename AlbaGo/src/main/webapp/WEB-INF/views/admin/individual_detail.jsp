@@ -36,6 +36,30 @@
         <!-- content wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- main -->
+            <!-- 계정정지 -->
+						<script>
+						function changestate(individual_id) {
+							console.log(individual_id);//a,2
+							$.ajax({
+								url : "./changestate",
+								method : "GET",
+								data : {
+									
+									individual_id : individual_id
+								
+								},
+								success :function(res5){
+									if(res5>=1){
+										alert("삭제완료");
+
+										 $("#res5").load(window.location.href + " #res5");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
             <div id="content">
                 <!-- Topbar -->
                 <%@ include file="../serve/manager_topbar.jsp" %>
@@ -50,6 +74,7 @@
 						String date = individual.getDate().split(" ")[0];;//가입날짜
 						String education = individual.getEducation();
 						String phone = individual.getPhone();
+						int state= individual.getState();
 						
 					%>
                 <!-- main 본문  -->
@@ -69,7 +94,7 @@
                             <div class="card-body">
                             <!-- 회원정보 form 시작 -->
                          	<form action="<%=request.getContextPath() %>/admin/individual_detail/update?<%=individual_id%>"name="individual"  class="col-xl-12" >
-                                <table class="table table-bordered ">
+                                <table id="res5" class="table table-bordered ">
 	               			<tr>
 	               				<th>아이디</th>
 	               				<td><input type="hidden" name ="individual_id" value="<%=individual_id%>" ><%=individual_id%></td>
@@ -103,11 +128,23 @@
 	               				<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date%></td>
 	               			</tr>
 	               			<tr>
+                              <th>계정상태</th>
+                              <%if(state==1){ %>
+                              <td><input type ="hidden" name ="state" id ="state" value="<%=state%>">정상</td>
+                              <%} 
+                              else{
+                     %>
+                              <td><input type ="hidden" name ="state" id ="state" value="<%=state%>">정지</td>
+                     <%
+                        }
+                     %>
+                           </tr>
+	               			<tr>
 	               				<th>관리자</th>
 	               				<td>
 	               					<button class="btn btn-info edit" type="submit" aria-label="ASettings"> 정보 수정</button> 
 					
-                                    <button type="button" class="btn btn-outline-danger" onclick="">계정정지</button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="changestate('<%=individual_id%>')">계정정지</button>
                                 </td>
 	               			</tr>
 	               		</table>
