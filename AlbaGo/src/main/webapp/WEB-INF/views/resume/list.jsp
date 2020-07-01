@@ -23,111 +23,99 @@
                     <div class="job_filter white-bg">
                         <div class="form_inner white-bg">
                             <h3>검색필터</h3>
-                            <form action="#">
+                            <form action="<%=request.getContextPath() %>/resume/list/total" method="get" name="keyword" id="keyword">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="single_field">
-                                            <select class="wide">
-                                                <option data-display="지역">지역</option>
-                            <option value="1">서울</option>
-                            <option value="1">경기</option>
-                            <option value="1">인천</option>
-                            <option value="1">부산</option>
-                            <option value="1">대구</option>
-                            <option value="1">대전</option>
-                            <option value="1">경남</option>
-                            <option value="1">전남</option>
-                            <option value="1">충남</option>
-                            <option value="1">광주</option>
-                            <option value="1">울산</option>
-                            <option value="1">경북</option>
-                            <option value="1">전북</option>
-                            <option value="1">충북</option>
-                            <option value="1">강원</option>
-                            <option value="1">제주</option>
-                            <option value="1">전국</option>
+                                            <select class="wide" id="local_category" name="local_category">
+                            					<option data-display="" value="">지역</option>
+                            					<option value="">전국</option>
+                                                <option value="서울">서울</option>
+                                                <option value="경기">경기</option>
+                                                <option value="인천">인천</option>
+                                                <option value="부산">부산</option>
+                                                <option value="대구">대구</option>
+                                                <option value="대전">대전</option>
+                                                <option value="경남">경남</option>
+                                                <option value="전남">전남</option>
+                                                <option value="충남">충남</option>
+                                                <option value="광주">광주</option>
+                                                <option value="울산">울산</option>
+                                                <option value="경북">경북</option>
+                                                <option value="전북">전북</option>
+                                                <option value="충북">충북</option>
+                                                <option value="강원">강원</option>
+                                                <option value="제주">제주</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="single_field">
-                                            <select class="wide">
-                                                <option data-display="카테고리">카테고리</option>
-                            <option value="1">외식/음료</option>
-                            <option value="2">유통/판매</option>
-                            <option value="4">문화/여가/생활</option>
-                            <option value="1">서비스</option>
-                            <option value="2">사무직</option>
-                            <option value="4">고객상담/리서치</option>
-                            <option value="1">생산/건설/노무</option>
-                            <option value="2">교육/강사</option>
-                            <option value="4">디자인</option>
-                            <option value="1">미디어</option>
-                            <option value="2">운전/배달</option>
-                            <option value="4">병원/간호/연구</option>
-                            <option value="1">IT/컴퓨터</option>
+                                            <select class="wide" id="enterprise_category" name="enterprise_category">
+                                                <option data-display="" value="">카테고리</option>
+                                                <option value="">전체</option>
+                                                <option value="외식/음료">외식/음료</option>
+                                                <option value="유통/판매">유통/판매</option>
+                                                <option value="문화/여가/생활">문화/여가/생활</option>
+                                                <option value="서비스">서비스</option>
+                                                <option value="사무직">사무직</option>
+                                                <option value="고객상담/리서치">고객상담/리서치</option>
+                                                <option value="생산/건설/노무">생산/건설/노무</option>
+                                                <option value="교육/강사">교육/강사</option>
+                                                <option value="디자인">디자인</option>
+                                                <option value="운전/배달">운전/배달</option>
+                                                <option value="병원/간호/연구">병원/간호/연구</option>
+                                                <option value="IT/컴퓨터">IT/컴퓨터</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="single_field">
-                                            <select class="wide">
-                                                <option data-display="테마">테마</option>
-                                                <option value="1">대학생</option>
-                                                <option value="1">주부</option>
-                                                <option value="1">청소년</option>
-                                                <option value="1">외국인</option>
-                                                <option value="1">장년</option>
+                                            <select class="wide" id="gender" name="gender">
+                                                <option data-display="" value="">성별</option>
+                                                <option value="">무관</option>
+                                                <option value="남자">남자</option>
+                                                <option value="여자">여자</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="single_field">
-                                            <select class="wide">
-                                                <option data-display="성별">성별</option>
-                                                <option value="1">여자</option>
-                                                <option value="2">남자</option>
+                                            <select class="wide" id="education" name="education">
+                                                <option data-display="" value="">최종학력</option>
+                                                <option value="초등학교 졸업">초등학교 졸업</option>
+                                                <option value="중학교 졸업">중학교 졸업</option>
+                                                <option value="고등학교 졸업">고등학교 졸업</option>
+                                                <option value="2/3년제 졸업">2/3년제 졸업</option>
+                                                <option value="4년제 졸업">4년제 졸업</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="single_field">
-                                            <select class="wide">
-                                                <option data-display="최종학력">최종학력</option>
-                                                <option value="1">중학교 졸업</option>
-                                                <option value="2">고등학교 졸업</option>
-                                                <option value="1">대학교(2,3년제) 졸업</option>
-                                                <option value="2">대학교(4년제) 졸업</option>
+                                            <select class="wide" id="term" name="term">
+                                                <option data-display="" value="">근무기간</option>
+                                                <option value="하루">하루</option>
+                                                <option value="주일">1주일 이하</option>
+                                                <option value="개월">1개월</option>
+                                                <option value="3개월~6개월">3개월~6개월</option>
+                                                <option value="6개월~1년">6개월~1년</option>
+                                                <option value="1년이상">1년이상</option>
+                                                <option value="기간협의">기간협의</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="single_field">
-                                            <select class="wide">
-                                                <option data-display="근무기간">근무기간</option>
-                                                <option value="1">단기알바</option>
-                                                <option value="2">3~6개월</option>
-                                                <option value="2">6~12개월</option>
-                                                <option value="2">12개월 이상</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="single_field">
-                                            <input type="text" placeholder="검색어">
+                                            <input type="text" placeholder="검색어" name="title" id="title">
                                         </div>
                                     </div>
                                 </div>
+	                            <div class="reset_btn">
+	                                <button  class="boxed-btn3 w-100" type="submit">초기화</button>&nbsp
+	                                <button class="boxed-btn3 w-100" type="submit">검&nbsp &nbsp 색</button>
+	                            </div>
                             </form>
-                        </div>
-                        <div class="row">
-                            &nbsp 
-                            <div class="reset_btn">
-                                <button  class="boxed-btn3 w-100" type="submit">초기화</button>
-                            </div>&nbsp
-                            <div class="reset_btn">
-                                <button  class="boxed-btn3 w-100" type="submit">검&nbsp &nbsp 색</button>
-                            </div>
                         </div>
 
                     </div>
@@ -159,6 +147,7 @@
 							
 							<%
 								ArrayList<BoardResume> resumes = (ArrayList<BoardResume>)request.getAttribute("resumes");
+							System.out.println("js"+resumes);
 								for(int i=0; i<resumes.size(); i++) {
 									BoardResume resume = resumes.get(i);
 									String title = resume.getBoard_resume_title();

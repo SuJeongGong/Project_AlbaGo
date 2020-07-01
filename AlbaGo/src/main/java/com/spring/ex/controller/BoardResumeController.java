@@ -12,8 +12,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dao.BoardResumeDAO;
+import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Career;
 import com.spring.ex.dto.Resume;
@@ -38,6 +40,17 @@ public class BoardResumeController {
 		m.addAttribute("resumes", resumes);
 		
 		return "/resume/list";
+	}
+	
+	@RequestMapping("/list/total") //검색
+	public String list_total(Model m, @RequestParam("enterprise_category") String enterprise_category,
+			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
+			@RequestParam("education") String education, @RequestParam("term") String term, @RequestParam("title") String title) {
+		String page = "/resume/list";
+		ArrayList<BoardResume> boardresumes = boardResumeService.total_List(enterprise_category, local_category, gender, education, term, title);
+		m.addAttribute("resumes", boardresumes);
+		System.out.println(boardresumes +"boardrecruits");
+		return page;
 	}
 	
 	@RequestMapping("/write/save") //저장하기
@@ -100,11 +113,18 @@ public class BoardResumeController {
 		
 		System.out.println("될꺼야");
 		
+		int counts = boardResumeService.updateViews(board_resume_id);//1번
+		
 		BoardResume board_content = boardResumeService.selectView(board_resume_id);
 		board_content.setBoard_resume_id(board_resume_id);
 		ArrayList<Career> careers = boardResumeService.selectCareers(board_resume_id);
 		m.addAttribute("board_content", board_content);
 		m.addAttribute("careers", careers);
+		
+		if(1<=counts) {//2번
+			System.out.println("조회수 증가 성공");
+			m.addAttribute("counts", counts);
+		}
 		
 		return "/resume/content";
 	}

@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Recruit"%>
 <%@page import="com.spring.ex.dto.Payment"%>
 <%@page import="com.spring.ex.dto.Scrap_enterprise"%>
 <%@page import="java.util.ArrayList"%>
@@ -39,6 +40,30 @@
             <!-- main -->
             <div id="content">
                 <!-- Topbar -->
+					<script>
+						function changeEnterprisestate(enterprise_id,result) {
+							console.log(enterprise_id);
+							$.ajax({
+								url : "./changeEnterprisestate",
+								method : "GET",
+								data : {
+									
+									enterprise_id : enterprise_id,
+									result : result
+								
+								},
+								success :function(res1){
+									if(res1>=1){
+										alert("계정상태바꾸기");
+
+										 $("#res1").load(window.location.href + " #res1");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
                 <%@ include file="../serve/manager_topbar.jsp" %>
                 <%
              	  	 Enterprise enterprise = (Enterprise)request.getAttribute("enterprise");
@@ -49,12 +74,13 @@
 						String business_number = enterprise.getBusiness_number();
 						String manager_name = enterprise.getManager_name();
 						String manager_phone = enterprise.getManager_phone();
+						String address=enterprise.getAddress(); //주소
 						String category = enterprise.getCategory();
 						String date = enterprise.getDate().split(" ")[0];//가입날짜
-						String address=enterprise.getAddress(); //주소
 						int up_count=enterprise.getUp_count(); 
 						int resume_count=enterprise.getResume_count();
-						
+						int board_recruit_count=enterprise.getBoard_recruit_count();
+						int state=enterprise.getState();
 					%>
 
                 <!-- main 본문  -->
@@ -73,88 +99,195 @@
                             <div class="card-body">
 
 						     <!-- 기업 회원정보 form 시작 -->
-                            <form id="info" action="" >
-                                  <table class="table table-bordered ">
+                           	<form action="<%=request.getContextPath() %>/admin/enterprise_detail/update" name="enterprise"  class="col-xl-12" >
+                                  <table id="res1" class="table table-bordered ">
                                     <tr>
                                         <th>기업아이디</th>
-                                        <td><input type="text" class="form-control" id="enterprise_id" value="<%=enterprise_id%>"></td>
+                                        <td><input type="hidden" class="form-control" name="enterprise_id" value="<%=enterprise_id%>"> <%=enterprise_id%></td>
                                     </tr>
                                     <tr>
                                         <th>비밀번호</th>
-                                        <td><input type="text" class="form-control" id="password" value="<%=password%>"></td>
+                                        <td><input type="text" class="form-control" name="password" value="<%=password%>"></td>
                                     </tr>
                                     <tr>
                                         <th>기업이름</th>
-                                        <td><input type="email" class="form-control" id="name" value="<%=name%>"></td>
+                                        <td><input type="text" class="form-control" name="name" value="<%=name%>"></td>
                                     </tr>
                                     <tr>
                                         <th>기업전화번호</th>
-                                        <td><input type="text" class="form-control" id="business_number" value="<%=business_number%>"></td>
+                                        <td><input type="text" class="form-control" name="business_number" value="<%=business_number%>"></td>
                                     </tr>
                                     <tr>
                                         <th>담당자 이름</th>
-                                        <td><input type="text" class="form-control" id="manager_name" value="<%=manager_name%>"></td>
+                                        <td><input type="text" class="form-control" name="manager_name" value="<%=manager_name%>"></td>
                                     </tr>
                                     <tr>
                                         <th>담당자 연락처</th>
-                                        <td><input type="text" class="form-control" id="manager_phone" value="<%=manager_phone%>">
+                                        <td><input type="text" class="form-control" name="manager_phone" value="<%=manager_phone%>">
                                         </td>
                                     </tr>
                                     	<tr>
                                         <th>주소</th>
-                                        <td><input type="text" class="form-control" id="category" value="<%=address%>">
+                                        <td><input type="text" class="form-control" name="address" value="<%=address%>">
                                         </td>
                                     </tr>
                                      <tr>
                                  	<tr>
                                         <th>카테고리</th>
-                                        <td><input type="text" class="form-control" id="category" value="<%=category%>">
+                                        <td><input type="text" class="form-control" name="category" value="<%=category%>">
                                         </td>
                                     </tr>
                                      <tr>
                                         <th>가입날짜</th>
-                                        <td><input type="text" class="form-control" id="date" value="<%=date%>">
+                                        <td><input type="hidden" class="form-control" name="date" value="<%=date%>"><%=date%>
                                         </td>
                                     </tr>
                                       <tr>
                                         <th>up횟수</th>
-                                        <td><input type="text" class="form-control" id="date" value="<%=up_count%>">
+                                        <td><input type="text" class="form-control" name="up_count" value="<%=up_count%>">
                                         </td>
                                     </tr>
                                       <tr>
                                         <th>resume횟수</th>
-                                        <td><input type="text" class="form-control" id="date" value="<%=resume_count%>">
+                                        <td><input type="text" class="form-control" name="resume_count" value="<%=resume_count%>">
                                         </td>
                                     </tr>
-                                    
+                                       <tr>
+                                        <th>board_recruit횟수</th>
+                                        <td><input type="text" class="form-control" name="board_recruit_count" value="<%=board_recruit_count%>">
+                                        </td>
+                                    </tr>
+                                    	<tr>
+                              <th>계정상태</th>
+                              <%if(state==1){ %>
+                              <td><input type ="hidden" name ="state" id ="state" value="<%=state%>">정상</td>
+                              <%} 
+                              else{
+                     %>
+                              <td><input type ="hidden" name ="state" id ="state" value="<%=state%>">정지</td>
+                     <%
+                        }
+                     %>
+                           </tr>
     
                                     
                                     <tr>
                                         <th>관리자</th>
                                         <td>
-                                            <a class='btn btn-info btn-xs' href="#"><span
-                                                    class="glyphicon glyphicon-edit"></span>정보 수정</a> 
-                                             <a href="#"
-                                                class="btn btn-danger btn-xs"><span
-                                                    class="glyphicon glyphicon-remove"></span>계정 삭제</a>
-                                        </td>
+                                          	<button class="btn btn-info edit" type="submit" aria-label="ASettings"> 정보 수정</button> 
+										   <button type="button" class="btn btn-danger" onclick="changeEnterprisestate('<%=enterprise_id%>',0)">계정정지</button>
+										   <button type="button" class="btn btn-outline-danger" onclick="changeEnterprisestate('<%=enterprise_id%>',1)">계정정지해제</button>
+                                       </td>
                                     </tr>
                                 </table>
                                 </form>
                             </div>
                         </div>
-                        
-              
+                        </div>
+                     
                         <div class="card col-xl-12 shadow mb-4">
                             <div class="card-header py-3"> 
-                                <h6 class="m-0 font-weight-bold text-primary">공고글 관리
+                                <h6 class="m-0 font-weight-bold text-primary">공고 관리
                                 </h6>
                             </div>
                             <div class="card-body">
 
+   							  <!-- 공고 form 시작 -->
+                     <script>
+						function deleteEnterpriseRecruit(recruit_id) {
+							console.log(recruit_id);
+							$.ajax({
+								url : "./deleteEnterpriseRecruit",
+								method : "GET",
+								data : {
+									
+									recruit_id : recruit_id
+								
+								},
+								success :function(res2){
+									if(res2>=1){
+										alert("삭제완료");
+
+										 $("#res2").load(window.location.href + " #res2");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
+                                <table id="res2" class="table  table-bordered ">
+
+                                    <thead>
+                                        <tr>
+                                            <th>공고 제목</th>           
+                                            <th>장소</th>
+                                            <th>상세보기</th>
+                                            <th>작성날짜</th>
+                                            <th>관리</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <%
+									ArrayList<Recruit> recruit = (ArrayList) request.getAttribute("recruit");
+					                  for (int i = 0; i < recruit.size(); i++) {
+					                	  Recruit list = recruit.get(i);
+					                	  String recruit_title = list.getTitle();
+					                	  String recruit_place = list.getPlace();
+					                	  String recruit_date = list.getDate().split(" ")[0];
+					                	  int recruit_id = list.getRecruit_id();
+					                	  %>  
+                                        <tr>
+                                            <td><%=recruit_title %></td>
+                                            <td><%=recruit_place %></td>
+                                    	<td>  
+                                    	   <a  href="<%=request.getContextPath()%>/enterprise/recruit/content?recruit_id=<%=recruit_id%>" class="btn btn-secondary btn-xs"> <span class="glyphicon glyphicon-edit"></span> 상세보기</a> 
+                                    
+                                            <td><%=recruit_date %></td>
+                                            <td> <button type="button" class="btn btn-outline-danger" onclick="deleteEnterpriseRecruit(<%=recruit_id%>)">삭제</button>
+                                      
+                                        </tr>
+                                        <%} %>
+                                    </tbody>
+                                </table>
+                    
+                            </div>
+                        </div>
+                    
+          
+              
+                        <div class="card col-xl-12 shadow mb-4">
+                            <div class="card-header py-3"> 
+                                <h6 class="m-0 font-weight-bold text-primary">공고게시판 작성글
+                                </h6>
+                            </div>
+                            <div class="card-body">
+ 						<script>
+						function deleteEnterpriseBoardRecruit(board_recruit_id) {
+							console.log(board_recruit_id);
+							$.ajax({
+								url : "./deleteEnterpriseBoardRecruit",
+								method : "GET",
+								data : {
+									
+									board_recruit_id : board_recruit_id
+								
+								},
+								success :function(res3){
+									if(res3>=1){
+										alert("삭제완료");
+
+										 $("#res3").load(window.location.href + " #res3");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
    							  <!-- 공고글 form 시작 -->
-                            <form id="recruit" action="" >
-                                <table class="table  table-bordered ">
+                
+                                <table id="res3" class="table  table-bordered ">
 
                                     <thead>
                                         <tr>
@@ -174,18 +307,19 @@
 					                     String recruit_title=list.getRecruit_title();
 					                     String memo=list.getMemo();
 					                     String board_recruit_date=list.getDate().split(" ")[0];
+					                     int board_recruit_id = list.getBoard_recruit_id();
 					                  %>  
                                         <tr>
                                             <td><%=board_recruit_title%></td>
                                             <td><%=recruit_title%></td>
                                             <td><%=memo%></td>
                                             <td><%=board_recruit_date%></td>
-                                            <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                                        </tr>
+                                          <td> <button type="button" class="btn btn-outline-danger" onclick="deleteEnterpriseBoardRecruit(<%=board_recruit_id%>)">삭제</button>
+                                               </tr>
                                         <%} %>
                                     </tbody>
                                 </table>
-                               </form>
+                          
                             </div>
                         </div>
                     </div>
@@ -197,19 +331,41 @@
                                 </h6>
                             </div>
                             <div class="card-body">
+					<script>
+						function deleteScrap(scrap_id) {
+							console.log(scrap_id);
+							$.ajax({
+								url : "./deleteScrap",
+								method : "GET",
+								data : {
+									
+									scrap_id : scrap_id
+								
+								},
+								success :function(res4){
+									if(res4>=1){
+										alert("삭제완료");
 
+										 $("#res4").load(window.location.href + " #res4");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
      						<!-- 인재스크랩 form 시작 -->
-                            <form id="scrap" action="" >
+ 
                          
-                                <table class="table table-striped">
+                                <table id="res4" class="table table-striped">
                                     <thead>
                                         <tr>
+                                            <th>인재제목</th>
                                         	<th>인재아이디</th>
                                         	<th>인재이름</th>
-                                            <th>인재제목</th>
                                             <th>이력서제목</th>
-                                            <th>메모</th>
                                             <th>스크랩한 날짜</th>
+                                            <th>스크랩취소</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -222,27 +378,30 @@
 					                     String individual_name=list.getName();			//인재이름
 					                     String board_resume_title=list.getBoard_resume_title(); //인재제목
 					                     String resume_title=list.getResume_title();	//이력서제목
-					                     String memo=list.getMemo();					//메모
 					                     String scrap_date=list.getDate().split(" ")[0];//스크랩한 날짜
+					                     int scrap_id=list.getScrap_enterprise_id();
 					                  %>  
                                         <tr>
+                                            <td><%=board_resume_title%></td>
                                             <td>
                                               	  <%=individual_id%>
                                             </td>
                                             <td><%=individual_name%></td>
-                                            <td><%=board_resume_title%></td>
                                             <td><%=resume_title%></td>
-                                            <td><%=memo%></td>
+                                           
                                             <td><%=scrap_date%></td>
+                                            <td>
+                                            <button type="button" class="btn btn-danger" onclick="deleteScrap(<%=scrap_id%>)">취소</button>
+											</td>
                                         </tr>
                                         <%} %>
                                         
                                     </tbody>
                                 </table>
-                                </form>
+                         
                             </div>
                         </div>
-                        
+                        </div>
                         <div class="card col-xl-12 shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">상품 결제내역
@@ -273,7 +432,7 @@
 					                	  Payment list = payment.get(i);
 					                	
 					                	 String product_name=list.getName();
-					                	 String payment_date=list.getDate();
+					                	 String payment_date=list.getDate().split(" ")[0];
 					                	 String term=list.getTerm();
 					                	 int price=list.getProduct_price();
 					                	 

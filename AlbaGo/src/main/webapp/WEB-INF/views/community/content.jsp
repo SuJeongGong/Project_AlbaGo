@@ -9,6 +9,12 @@
 <meta charset="UTF-8">
 <script type="text/javascript">
 function insertComment(community) {
+	if(null==<%=request.getSession().getAttribute("id")%>){
+		alert("로그인을 해주세요");
+		return ; 
+	}
+		
+	
 	var comment = 	$("#comment").val();
 	console.log(comment);
 	$.ajax({
@@ -86,6 +92,7 @@ function updateResults(result) {
                         <%=content %>
                      </p>
                      			<%
+                                if(request.getSession().getAttribute("id")!=null){
                                  String session_id = request.getSession().getAttribute("id").toString();
                                  
                                  System.out.println(session_id + "세션에서 가져온");
@@ -93,7 +100,7 @@ function updateResults(result) {
                                    if(session_id.equals(community.getIndividual_id())) { 
                                       %>  <a class="btn btn-info edit w-10" href="<%=request.getContextPath()%>/community/update?community_id=<%=community.getCommunity_id()%>">수정하기</a> 
                                          <a class="btn btn-outline-danger w-10" href="<%=request.getContextPath()%>/community/delete?community_id=<%=community.getCommunity_id()%>">삭제하기</a> <%
-                                   } %>			
+                                   } }%>			
                   </div>
                </div>
                <br/>
@@ -144,6 +151,8 @@ function updateResults(result) {
                               <p class="comment"><%=cm_contents %></p>
                               <div style="text-align: right;">
                               <%
+                              
+                              if(request.getSession().getAttribute("id")!=null){
                                  String session_id2 = request.getSession().getAttribute("id").toString();
                                  
                                  System.out.println(session_id2 + "세션에서 가져온");
@@ -151,7 +160,7 @@ function updateResults(result) {
                                    if(session_id2.equals(comment.getIndividual_id())) {                       	   
                                       %>  <a class="btn btn-info edit w-10"   href="<%=request.getContextPath()%>/community/comment/update?comment_id=<%=comment.getComment_id()%>">댓글수정</a> 
                                          <a class="btn btn-outline-danger w-10"  href="<%=request.getContextPath()%>/community/comment/delete?comment_id=<%=comment.getComment_id()%>">댓글삭제</a> <%
-                                   } %>
+                                   }} %>
        					        </div>		
                            </div>
                         </div>

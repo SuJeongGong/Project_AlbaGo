@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.spring.ex.dto.Advertising;
+import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.Career;
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Payment;
@@ -25,6 +26,7 @@ public interface EnterpriseDAO {
 	ArrayList<Advertising> selectAdvertising(String id);//광고/배너 기록
 	ArrayList<PaymentHistoryResume> selectpaymentHistoryResume(String id);//이력서 보기 사용기록
 	ArrayList<PaymentHistoryUp> selectpaymentHistoryUp(String id);//up버튼 id 사용기록
+	ArrayList<BoardRecruit> boardRecruits(String id) ;
 	int updateAccount(Enterprise enterprise);//회원정보 수정
 	int updateVolunteerResult(HashMap<String, Object> map);//지원결과 저장하기
 	int deleteScrap(int scrap_id);//스크랩 삭제하기
@@ -40,4 +42,9 @@ public interface EnterpriseDAO {
 	int insertPaymentHistoryResume(PaymentHistoryResume paymentHistory);//board_resume에서 연락처 뽑아오기
 	//기업회원의 resume_count 가져오기
 	int selectResume_count(String enterprise_id);
+	
+	int selectUpCount(String enterprise_id);
+	int useUpdateCount(String enterprise_id);
+	int boardRecruitUp(int board_recruit_id);
+	int insertPaymentHistoryUp(PaymentHistoryUp paymentHistoryUp);
 }

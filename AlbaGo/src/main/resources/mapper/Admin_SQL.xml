@@ -2,6 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.ex.dao.AdminDAO">
+<!-- 공수정 / 메인화면 -->
+
+<!-- 아이템별 기업마다 결제한 횟수-->
+<select id="selectCountItem_Enterprise" parameterType= "string" resultType= "hashmap">
+	SELECT COUNT(*) AS count, payment.enterprise_id FROM payment,product 
+	<where> product.product_id = payment.product_id
+	AND  product.`type` = #{item}
+	</where>
+	group by payment.enterprise_id 
+	order BY count DESC
+	LIMIT 5
+</select>
+
+
+
+
+
+
+
+
+
+
+
 	<!-- 이예슬 -->
 	<!-- 개인 -->
 	<select id="selectRecentSales" resultType="HashMap">
@@ -80,6 +103,14 @@
          individual_id = #{individual_id}
       </where>
    </update>
+   <!-- 개인계정정지 -->
+   <update id="changestate" parameterType="hashmap">
+    update individual 
+      set state=#{result}
+      <where>
+         individual_id = #{individual_id}
+      </where>
+   </update>
    
    <!-- 이력서관리 -->
    <select id="selectResume" parameterType="String" resultType="Resume">
@@ -92,12 +123,11 @@
    </select>
    
    <!-- 이력서관리삭제 ajax -->
-   <update id="deleteResume" parameterType="hashmap">
+   <update id="deleteResume" parameterType="int">
    update resume
    set delete_check = 0
    <where> 
    resume_id=#{resume_id}
-   AND individual_id=#{individual_id}
    </where>
    </update>
    
@@ -134,14 +164,7 @@
       volunteer_id=#{volunteer_id}
       </where>
    </delete>
-	<!-- 개인 회원 정보 보기 -->
-	<!-- 개인 회원 정보 수정 -->
-
 	
-
-	
-	
-
 	<!-- 인재 게시판 작성글 -->
 	<select id="selectResumeWrite" parameterType="String" resultType="BoardResume">
 	SELECT 
@@ -150,8 +173,9 @@
 		board_resume.memo,
 		board_resume.date,
 		board_resume.board_resume_id
-
-		FROM board_resume ,resume,individual
+		
+	FROM 
+		board_resume,resume,individual
 
 		<where> 
 		board_resume.resume_id = resume.resume_id 
@@ -160,6 +184,15 @@
 		AND board_resume.delete_check =1
 		</where>
 	</select>
+	
+	<!-- 인재 게시판 취소 AJAX -->
+	<update id="deletBoardResume" parameterType="int">
+   	update board_resume
+   	set delete_check = 0
+   	<where> 
+   	board_resume_id=#{board_resume_id}
+   	</where>
+   	</update>
 
 	<!--커뮤니티 게시판 작성글  -->
 	<select id="selectCommunity" parameterType="String" resultType="BoardCommunity">
@@ -176,6 +209,19 @@
 		</where>
 	</select>
 	
+	<!--커뮤니티 게시판 삭제 AJAX -->
+	
+	<!-- 커뮤니티글 댓글삭제 -->
+	<delete id="deleteComments" parameterType="int">
+		DELETE FROM `comment` WHERE `comment`.community_id =#{comment_id}
+	</delete>
+	
+	<!-- 커뮤니티글 글삭제 --> 
+	<delete id="deleteCommunity" parameterType="int">
+		DELETE FROM community WHERE community_id = #{community_id}
+	</delete>
+	
+
 	<!-- 기업회원 관리자 검색  -->
 	<select id = "selectEnterpriselist" resultType="Enterprise" parameterType="String">
 		SELECT *
@@ -230,14 +276,62 @@
 	enterprise_id=#{id}
 	</where>
 	</select>
+	<!-- 기업회원정보수정 -->
+	 <update id="updateEnterpriseAccount" parameterType="int">
+      update enterprise 
+      set 
+         password=#{password},
+         name = #{name},
+         business_number = #{business_number},
+         manager_name = #{manager_name},
+         manager_phone = #{manager_phone},
+         address = #{address},
+         category = #{category},
+         up_count = #{up_count},
+         resume_count = #{resume_count},
+         board_recruit_count = #{board_recruit_count}
+      <where>
+         enterprise_id = #{enterprise_id}
+      </where>
+   </update>
+   
+   <!-- 기업 계정정지 -->
+   <update id="changeEnterprisestate" parameterType="hashmap">
+    update enterprise 
+      set state=#{result}
+      <where>
+         enterprise_id = #{enterprise_id}
+      </where>
+   </update>
+   
+	<!-- 공고관리 -->
+   <select id="selectRecruit"  parameterType="String" resultType="Recruit">
+		SELECT title,date,place,recruit_id
+		FROM Recruit
+		<where>
+
+		enterprise_id = #{id}
+		AND recruit.delete_check =1
+		</where>
+	</select>
 	
-	<!-- 공고글관리 -->
+	<!-- 공고관리삭제 ajax -->
+   <update id="deleteEnterpriseRecruit" parameterType="int">
+   update recruit
+ 	set delete_check = 0
+   <where> 
+   recruit_id=#{recruit_id}
+   </where>
+   </update>
+   
+	
+	<!-- 공고게시판 작성글 -->
 	<select id="selectRecruitWrite"  parameterType="String" resultType="BoardRecruit">
 		SELECT 
 		board_recruit.title,
 		recruit.title AS recruit_title,
 		board_recruit.memo,
-		board_recruit.date
+		board_recruit.date,board_recruit_id
 		
 
 		FROM board_recruit ,recruit,enterprise
@@ -250,6 +344,18 @@
 		</where>
 	</select>
 	
+
+   <!-- 공고글 관리 삭제 ajax -->
+   	<update id="deleteEnterpriseBoardRecruit" parameterType="int">
+	update board_recruit
+	set delete_check = 0
+	<where>
+	board_recruit_id = #{board_recruit_id}
+	</where>
+	</update>
+
+
+	
 	<!-- 인재스크랩 -->
 		<select id="selectScrap"  parameterType="String" resultType="Scrap_enterprise">
 	
@@ -257,6 +363,7 @@
 		board_resume.title AS board_resume_title,
 		resume.title as resume_title ,
 		resume.individual_id as individual_id,
+		scrap_enterprise_id,
 		individual.name,
 		board_resume.memo,
 		scrap_enterprise.date AS date
@@ -269,10 +376,15 @@
 		AND resume.individual_id=individual.individual_id
 		AND enterprise_id =#{id}
 		AND board_resume.delete_check =1
-			
 		</where>
+		ORDER BY scrap_enterprise.date DESC
+		
 		</select>
-	
+	<!-- 인재스크랩 취소  -->
+	<delete id="deleteScrap" parameterType="int">
+		delete from
+		Scrap_enterprise where scrap_enterprise_id = #{scrap_id}
+	</delete>
 	<!-- 상품 결제내역 -->
 		<select id="selectPayment"  parameterType="String" resultType="Payment">
 	

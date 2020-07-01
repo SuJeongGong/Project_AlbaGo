@@ -12,8 +12,6 @@ public class Individual {
 	String birth;//생년월일 
 	String education;//최종학력
 	String date;//가입날짜
-	
-	
-	
-	
+	int state;//계정상태
+
 }
