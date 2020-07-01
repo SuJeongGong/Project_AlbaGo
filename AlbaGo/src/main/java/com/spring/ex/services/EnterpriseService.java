@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.EnterpriseDAO;
 import com.spring.ex.dto.Advertising;
+import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.PaymentHistoryResume;
@@ -53,6 +54,9 @@ public class EnterpriseService {
 	
 	public ArrayList<PaymentHistoryUp> paymentHistoryUp(String id) {//up버튼 사용기록
 		return enterpriseDAO.selectpaymentHistoryUp(id);
+	}
+	public ArrayList<BoardRecruit> boardRecruits(String id) {//up버튼 사용기록
+		return enterpriseDAO.boardRecruits(id);
 	}
 	public Resume selectVolunteerResume(int resume_id) {
 		Resume resume = enterpriseDAO.selectVolunteerResume(resume_id);
@@ -141,6 +145,28 @@ public class EnterpriseService {
 			else if(methodName.equals("deleteScrap")) {
 				if (1 <= enterpriseDAO.deleteScrap(Integer.parseInt(ids.get(i)))) {
 					res = 1;
+				}
+			}
+		}
+		return res;
+	}
+	public int useUpcount(int board_recruit_id,String enterprise_id) {
+		int res = -1;// 갯수가 1 미만일때
+		// 아이디에서 up 카운트 있는지 확인, 있으면 차감후 사용 , 없으면 없다고 alert창 띄우기
+		int up_count =enterpriseDAO.selectUpCount(enterprise_id);
+		if (up_count>=1) {// 갯수 확인 : 1 이상이면
+			res = 0;
+			if (enterpriseDAO.useUpdateCount(enterprise_id)>=1) {// up횟수 사용이 성공이면
+				res = 1;
+				if (enterpriseDAO.boardRecruitUp(board_recruit_id)>=1) {// 글에 up 적용하기
+					res = 2; // up 적용 완료시 결과
+					PaymentHistoryUp paymentHistoryUp = new PaymentHistoryUp();
+					paymentHistoryUp.setEnterprise_id(enterprise_id);
+					paymentHistoryUp.setUp_count(up_count-1);
+					paymentHistoryUp.setBoard_recruit_id(board_recruit_id);
+					if(enterpriseDAO.insertPaymentHistoryUp(paymentHistoryUp)>=1) {
+						res=3;//history에 저장완료 한 후에 결과
+					}
 				}
 			}
 		}
