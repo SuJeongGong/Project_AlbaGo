@@ -38,19 +38,20 @@
             <!-- main -->
             <!-- 계정정지 -->
 						<script>
-						function changestate(individual_id) {
+						function changestate(individual_id,result) {
 							console.log(individual_id);
 							$.ajax({
 								url : "./changestate",
 								method : "GET",
 								data : {
 									
-									individual_id : individual_id
+									individual_id : individual_id,
+									result : result
 								
 								},
 								success :function(res5){
 									if(res5>=1){
-										alert("삭제완료");
+										alert("계정상태바꾸기");
 
 										 $("#res5").load(window.location.href + " #res5");
 									}else{
@@ -143,8 +144,9 @@
 	               				<th>관리자</th>
 	               				<td>
 	               					<button class="btn btn-info edit" type="submit" aria-label="ASettings"> 정보 수정</button> 
-					
-                                    <button type="button" class="btn btn-outline-danger" onclick="changestate('<%=individual_id%>')">계정정지</button>
+						 			<button type="button" class="btn btn-danger" onclick="changestate('<%=individual_id%>',0)">계정정지</button>
+									<button type="button" class="btn btn-outline-danger" onclick="changestate('<%=individual_id%>',1)">계정정지해제</button>
+                                    
                                 </td>
 	               			</tr>
 	               		</table>

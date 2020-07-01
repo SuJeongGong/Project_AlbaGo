@@ -33,7 +33,7 @@ public interface AdminDAO {
 	//<!-- 개인 회원 정보 -->
 	Individual selectIndividualAccount(String id);
 	//<!--개인 계정정지-->
-	int changestate(String individual_id);
+	int changestate(HashMap<String, Object> map);
 	//<!-- 개인 회원 정보 수정-->
 	int updateIndividualAccount(Individual individual);
 	//<!-- 이력서 관리 -->

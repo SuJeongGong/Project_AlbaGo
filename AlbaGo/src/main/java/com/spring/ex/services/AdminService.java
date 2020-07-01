@@ -52,8 +52,13 @@ public class AdminService {
 		return adminDAO.selectIndividualAccount(id);	
 	}
 	//개인 계정정지
-	public int changestate(String individual_id) {
-		return adminDAO.changestate(individual_id);
+	public int changestate(String individual_id,int result) {
+		
+		HashMap<String, Object> map= new HashMap<String, Object>();
+		
+		map.put("individual_id", individual_id);
+		map.put("result", result);
+		return adminDAO.changestate(map);
 	}
 	//개인회원정보 '수정' ajax
 	public int updateIndividualAccount(Individual individual) {

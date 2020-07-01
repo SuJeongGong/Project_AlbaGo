@@ -81,9 +81,9 @@
       </where>
    </update>
    <!-- 개인계정정지 -->
-   <update id="changestate" parameterType="String">
+   <update id="changestate" parameterType="hashmap">
     update individual 
-      set state=0
+      set state=#{result}
       <where>
          individual_id = #{individual_id}
       </where>

@@ -315,8 +315,8 @@ public class AdminController {
 	// ajax
 	//// 계정정지 AJAX
 	@RequestMapping(value = "/changestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int changestate(@RequestParam("individual_id") String individual_id) {
-		return adminService.changestate(individual_id);
+	public @ResponseBody int changestate(@RequestParam("individual_id") String individual_id,@RequestParam("result") int result) {
+		return adminService.changestate(individual_id,result);
 	}
 
 	// 이력서삭제 AJAX
