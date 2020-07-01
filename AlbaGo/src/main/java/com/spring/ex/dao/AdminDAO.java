@@ -11,6 +11,7 @@ import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
+import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
@@ -86,7 +87,8 @@ public interface AdminDAO {
 	int deleteScrap(int scrap_id);
 	//<!--상품결제내역-->
 	ArrayList<Payment> selectPayment(String id);
-	
+	//<!--상품 총계-->
+	Product sumPayment(String id);
 	
 	/*############################*/
 	//---임승재---

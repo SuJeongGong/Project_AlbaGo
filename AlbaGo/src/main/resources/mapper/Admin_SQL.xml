@@ -14,17 +14,6 @@
 	order BY count DESC
 	LIMIT 5
 </select>
-
-
-
-
-
-
-
-
-
-
-
 	<!-- 이예슬 -->
 	<!-- 개인 -->
 	<select id="selectRecentSales" resultType="HashMap">
@@ -401,6 +390,20 @@
 		AND product.delete_check =1
 		</where>
 		</select>
+		
+		<select id="sumPayment" parameterType="String" resultType="product">
+		SELECT  SUM(price) AS sum_price 
+		FROM product,payment,enterprise
+
+		<where>  
+		product.product_id =payment.product_id 
+		AND payment.enterprise_id=enterprise.enterprise_id	
+		AND enterprise.enterprise_id=#{id}
+		AND product.delete_check=1
+		AND payment.result="승인"
+		</where>
+		</select>	
+	
 	<!-- #################  -->
 	<!-- 임승재  -->
 	

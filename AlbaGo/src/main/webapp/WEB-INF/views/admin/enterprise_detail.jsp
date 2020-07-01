@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Product"%>
 <%@page import="com.spring.ex.dto.Recruit"%>
 <%@page import="com.spring.ex.dto.Payment"%>
 <%@page import="com.spring.ex.dto.Scrap_enterprise"%>
@@ -408,11 +409,15 @@
                                 </h6>
                             </div>
                             <!-- 결제내역 form 시작 -->
-                            <form id="payment" action="" >
+                            <% 
+                            Product product = (Product)request.getAttribute("product");
+    						int sumPrice = product.getSum_price();
+                            %>
+				
                        
                             <div class="card-body">
                                 <h6 class="m-0 font-weight-bold text-primary" align="right">총계 : &nbsp; 
-                                <input   type="text" name="revenue">원</h6>
+                                <input   type="hidden" name="product" value="<%=sumPrice%>"><%=sumPrice%>원</h6>
                                 <br />
                                 
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -432,7 +437,7 @@
 					                	  Payment list = payment.get(i);
 					                	
 					                	 String product_name=list.getName();
-					                	 String payment_date=list.getDate().split(" ")[0];
+					                	 String payment_date=list.getDate();
 					                	 String term=list.getTerm();
 					                	 int price=list.getProduct_price();
 					                	 
@@ -447,7 +452,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            </form>
                         </div>
                     </div>
 

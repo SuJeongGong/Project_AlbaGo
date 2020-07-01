@@ -471,8 +471,7 @@
                                         <td style="width:20%"><%=community_name%></td> 
                                         <td style="width:20%"><%=community_date%></td>
                                         <td style="width:10%"> 
-                                            <button type="button" class="btn py-1 px-1 btn-danger" onclick="deleteCommunity(<%=community_id%>)"
-                                            style="float: right;">삭제
+                                            <button type="button" class="btn py-1 px-1 btn-danger" onclick="deleteCommunity(<%=community_id%>)">삭제
                                             </button>   
                                          </td>
                                     </tr>

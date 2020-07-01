@@ -15,6 +15,7 @@ import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
+import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
@@ -184,6 +185,10 @@ public class AdminService {
 	//상품결제내역
 	public ArrayList<Payment> selectPayment(String id) {
 		return adminDAO.selectPayment(id);
+	}
+	//상품 총계
+	public Product sumPayment(String id) {
+		return adminDAO.sumPayment(id);
 	}
 
 	/*##################################################*/
