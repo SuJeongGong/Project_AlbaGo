@@ -10,9 +10,6 @@
 <title>상품추가</title>
 </head>
 
-	<%
-		String conPath = request.getContextPath();
-	%>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script>
@@ -76,7 +73,7 @@ function checkterm(){
 		 				 </div>
                
                         
-						<form action="<%=request.getContextPath()%>/admin/add_product_term/result" name="product">
+						<form action="<%=request.getContextPath()%>/admin/add_product/result" name="product">
 						
 						<div class="pricing card-deck flex-column flex-md-row mb-3">
 							<div class="card card-pricing text-center px-3 mb-4">

@@ -4,7 +4,25 @@
 <mapper namespace="com.spring.ex.dao.AdminDAO">
 	<!-- 이예슬 -->
 	<!-- 개인 -->
-	<select id = "selectlist" resultType="Individual">
+	<select id="selectRecentSales" resultType="HashMap">
+		SELECT DATE_FORMAT(payment.DATE , "%Y/%m %d") as date, SUM(price) as
+		price
+		FROM product, payment
+		<where>product.product_id
+			= payment.product_id
+			AND	<![CDATA[	 DATE_FORMAT(payment.DATE , "%Y%m%d") > date_add(now(),interval -7 DAY) ]]>
+
+		</where>
+		GROUP BY DATE_FORMAT(payment.DATE , "%Y/%m/%d")
+	</select>
+
+	<select id="selectItems" resultType="HashMap">
+		SELECT COUNT(*) as count, product.type as type FROM payment,product
+		<where> product.product_id = payment.product_id</where>
+		group by product.type
+	</select>
+
+	<select id="selectlist" resultType="Individual">
 		SELECT *
 		FROM Individual
 	</select>
@@ -39,55 +57,90 @@
 	</select>
 				
 	<!-- 개인관리자 링크타고 -->
-	<!-- 개인 회원 정보 -->
-	<select id="selectIndividualAccount" parameterType="String" resultType="Individual">
-	SELECT * 
-	FROM Individual
-	<where>
-	individual_id=#{id}
-	</where>
-	</select>	
-	<!-- 이력서관리 -->
-	<select id="selectResume" parameterType="String" resultType="Resume">
-	SELECT title,date ,resume_id
-	FROM RESUME 
-	<where>
-	individual_id=#{id} 
-	AND	RESUME.delete_check =1
-	</where> 	
-	</select>
+   <!-- 개인 회원 정보 보기 -->
+   <select id="selectIndividualAccount" parameterType="String" resultType="Individual">
+   SELECT * 
+   FROM Individual
+   <where>
+   individual_id=#{id}
+   </where>
+   </select>   
+   <!-- 개인 회원 정보 수정 -->
+   
+   <update id="updateIndividualAccount" parameterType="int">
+      update individual 
+      set 
+         password=#{password},
+         name = #{name},
+         gender = #{gender},
+         birth = #{birth},
+         phone = #{phone},
+         education = #{education}
+      <where>
+         individual_id = #{individual_id}
+      </where>
+   </update>
+   
+   <!-- 이력서관리 -->
+   <select id="selectResume" parameterType="String" resultType="Resume">
+   SELECT title,date ,resume_id,individual_id
+   FROM RESUME 
+   <where>
+   individual_id=#{id} 
+   AND   RESUME.delete_check =1
+   </where>    
+   </select>
+   
+   <!-- 이력서관리삭제 ajax -->
+   <update id="deleteResume" parameterType="hashmap">
+   update resume
+   set delete_check = 0
+   <where> 
+   resume_id=#{resume_id}
+   AND individual_id=#{individual_id}
+   </where>
+   </update>
+   
+   <!-- 지원한 알바 -->
+   <select id="selectApplypartjob" parameterType="String" resultType="Volunteer">
+   Select
+      board_recruit.title as board_recruit_title,
+      enterprise.name AS enterprise_name,
+      resume.title as resume_title,
+      volunteer.date as date,
+      volunteer.result as result,
+      volunteer.board_recruit_id as board_recruit_id,
+      volunteer.individual_id AS individual_id,
+      volunteer.volunteer_id,
+      board_recruit.delete_check ,
+      resume.delete_check 
+      FROM resume,volunteer,board_recruit,enterprise,recruit
+   <where>
+   resume.resume_id =volunteer.resume_id
+   AND volunteer.board_recruit_id = board_recruit.board_recruit_id
+   AND recruit.recruit_id = board_recruit.recruit_id
+   AND enterprise.enterprise_id = recruit.enterprise_id
+   AND volunteer.individual_id =#{id}
+   AND board_recruit.delete_check =1
+   AND resume.delete_check=1
+   </where>
+   ORDER BY volunteer.volunteer_id DESC
+   </select>
+   
+   <!-- 지원한 알바  취소 AJAX -->
+      <delete id="deleteVolunteer" parameterType="int">
+      delete from volunteer
+      <where>
+      volunteer_id=#{volunteer_id}
+      </where>
+   </delete>
+	<!-- 개인 회원 정보 보기 -->
+	<!-- 개인 회원 정보 수정 -->
+
 	
-	<!-- 이력서관리삭제 ajax -->
-	<update id="deleteResume" parameterType="hashmap">
-	update resume
-	set delete_check = 0
-	<where> 
-	resume_id=#{resume_id}
-	AND individual_id=#{individual_id}
-	</where>
-	</update>
+
 	
-	<!-- 지원한 알바 -->
-	<select id="selectApplypartjob" parameterType="String" resultType="Volunteer">
-	Select
-		board_recruit.title as board_recruit_title,
-		enterprise.name AS enterprise_name,
-		resume.title as resume_title,
-		volunteer.date as date,
-		volunteer.result as result,
-		volunteer.board_recruit_id as board_recruit_id
-				
-		FROM resume,volunteer,board_recruit,enterprise,recruit
-	<where>
-	resume.resume_id =volunteer.resume_id
-	AND volunteer.board_recruit_id = board_recruit.board_recruit_id
-	AND recruit.recruit_id = board_recruit.recruit_id
-	AND enterprise.enterprise_id = recruit.enterprise_id
-	AND volunteer.individual_id =#{id}
-	AND board_recruit.delete_check =1
-	</where>
-	ORDER BY volunteer.volunteer_id DESC
-	</select>
+	
 
 	<!-- 인재 게시판 작성글 -->
 	<select id="selectResumeWrite" parameterType="String" resultType="BoardResume">
@@ -239,9 +292,42 @@
 	<!-- #################  -->
 	<!-- 임승재  -->
 	
+	<!-- 관리자 메인 오늘 회원가입한 총원 -->
+ 	<select id="select_TI_join" resultType="int">
+		select COUNT(*) AS '개인'
+		FROM individual
+		WHERE DATE >= CURDATE()
+	</select>
+	<select id="selet_TE_join" resultType="int">
+		select COUNT(*) AS '개인'
+		FROM enterprise
+		WHERE DATE >= CURDATE()	
+	</select> 
+	
+	<!-- 오늘 매출액 -->
+	<select id = "total_M" resultType="hashmap" >
+		SELECT DATE_FORMAT(payment.DATE , "%Y/%m/%d") as date, SUM(price) as price
+		FROM product, payment
+		<![CDATA[
+		where product.product_id= payment.product_id
+		AND DATE_FORMAT(payment.DATE , "%Y%m%d") >= CURDATE()
+		GROUP BY DATE_FORMAT(payment.DATE , "%Y/%m/%d")
+		]]>
+	</select>
+	
 	<!-- 예슬이가 아에 감싸는 거라고 설명해줌 -->
 	<select id = "recruit_List_id" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		SELECT 
+		board_recruit.board_recruit_id AS board_recruit_id, 
+		board_recruit.`date` AS date , 
+		board_recruit.title AS title,
+		 recruit.enterprise_id AS enterprise_id, 
+		 recruit.place AS place, 
+		 recruit.category AS category, 
+		 recruit.gender AS gender, 
+		 recruit.education AS education
+		 
+		 
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
 		and board_recruit.delete_check = 1
@@ -249,7 +335,8 @@
 	
 	<!-- 작성자로 검색 -->
 	<select id = "writer_search_Rc" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
+		 recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
 		and board_recruit.delete_check = 1
@@ -258,7 +345,8 @@
 	
 	<!-- 제목으로 검색 -->
 	<select id = "title_search_Rc" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
+		 recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
 		and board_recruit.delete_check = 1
@@ -284,17 +372,34 @@
 	<select id = "yesterday_Count" resultType="int">
 		select count(*)
 		from board_recruit
-		where date > DATE_SUB(NOW(), INTERVAL 1 DAY)
+		<![CDATA[
+		where date >= DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND DATE < CURDATE()
 		and board_recruit.delete_check = 1
+		]]>
 	</select>
 	
 	<!-- 공고글 게시판 -->
 	<select id = "recruit_List" resultType="BoardRecruit">
-		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
+		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
 		and board_recruit.delete_check = 1
 	</select>
+	
+	<!-- 공고글 전체 검색 -->
+	<select id = "total_List_Rc" resultType="BoardRecruit" parameterType="hashmap">
+		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
+		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		and recruit.category like CONCAT('%',#{category},'%')
+		and recruit.place like CONCAT('%',#{place},'%')
+		and recruit.gender like CONCAT('%',#{gender},'%')
+		and recruit.education like CONCAT('%',#{education},'%')
+	</select>
+	
 	
 	<!-- 공고글 삭제 -->
 	<update id="deleteBoardRecruits" parameterType="int">
@@ -305,7 +410,8 @@
 	
 	<!-- 공고글 오늘 -->
 	<select id = "today_search_Rc" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
+		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
 		and board_recruit.delete_check = 1
@@ -314,7 +420,8 @@
 	
 	<!-- 공고글 일주일 -->
 	<select id = "week_search_Rc" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
+		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
 		and board_recruit.delete_check = 1
@@ -323,7 +430,8 @@
 	
 	<!-- 공고글 1개월 -->
 	<select id = "month_search_Rc" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id, board_recruit.`date`, board_recruit.title, recruit.enterprise_id
+		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
+		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
 		FROM board_recruit, recruit
 		WHERE board_recruit.recruit_id = recruit.recruit_id
 		and board_recruit.delete_check = 1
@@ -349,42 +457,71 @@
 	
 	<!-- 어제 인재 갯수 -->
 	<select id = "yesterday_Count_resume" resultType="int">
-		select count(*)
+		select COUNT(*)
 		from board_resume
-		where date > DATE_SUB(NOW(), INTERVAL 1 DAY)
+		<![CDATA[
+		where date >= DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND DATE < CURDATE()
 		and board_resume.delete_check = 1
+		]]>
 	</select>
 	
 	<!-- 인재글 게시판 -->
 	<select id = "resume_List" resultType="BoardResume">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
-		FROM board_resume, resume
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
 		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
 		and board_resume.delete_check = 1
+	</select>
+	
+	<!-- 인재글 전체 검색 -->
+	<select id = "total_List_Rs" resultType="BoardResume" parameterType="hashmap">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
+		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
+		and board_resume.delete_check = 1
+		and resume.category like CONCAT('%',#{category},'%')
+		and resume.place like CONCAT('%',#{place},'%')
+		and individual.gender like CONCAT('%',#{gender},'%')
+		and individual.education like CONCAT('%',#{education},'%')
 	</select>
 	
 	<!-- 예슬이가 아에 감싸는 거라고 설명해줌(인재) -->
 	<select id = "resume_List_id" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
-		FROM board_resume, resume
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
 		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
 		and board_resume.delete_check = 1
 	</select>
 	
 	<!-- 작성자로 검색 -->
 	<select id = "writer_search_R" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
-		FROM board_resume, resume
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
 		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
 		and board_resume.delete_check = 1
 		and resume.individual_id like CONCAT('%',#{resume.individual_id},'%')
 	</select>
 	
 	<!-- 제목으로 검색 -->
 	<select id = "title_search_R" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
-		FROM board_resume, resume
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
 		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
 		and board_resume.delete_check = 1
 		and board_resume.title like CONCAT('%',#{board_resume.title},'%')
 	</select>
@@ -398,27 +535,36 @@
 	
 	<!-- 인재글 오늘 -->
 	<select id = "today_search_Rs" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
-		FROM board_resume, resume
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
 		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
 		and board_resume.delete_check = 1
 		AND board_resume.`date` >= CURDATE()
 	</select>
 	
 	<!-- 인재글 일주일 -->
 	<select id = "week_search_Rs" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
-		FROM board_resume, resume
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
 		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
 		and board_resume.delete_check = 1
 		AND board_resume.`date` > (NOW() - INTERVAL 7 DAY)
 	</select>
 	
 	<!-- 인재글 1개월 -->
 	<select id = "month_search_Rs" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title, resume.individual_id
-		FROM board_resume, resume
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
 		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
 		and board_resume.delete_check = 1
 		AND board_resume.`date` > (NOW() - INTERVAL 1 MONTH)
 	</select>

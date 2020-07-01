@@ -9,6 +9,8 @@
 
 <head>
 <meta charset="UTF-8">
+
+
 <title>상세보기</title>
 </head>
 <body>
@@ -32,6 +34,7 @@
 					int price=product.getPrice();
 					int amount=product.getAmount();
 					String explan=product.getExplan();
+					String type=product.getType();
 					int delete_check=product.getDelete_check();
 					
 				%>
@@ -43,7 +46,7 @@
 						<div class="pricing card-deck flex-column flex-md-row mb-3 card-center" >
 
 							<div class="card  center-block card-center card-pricing text-center px-3 mb-4  col-xl-8">
-				<form action="<%=request.getContextPath() %>/admin/account/update" name="product" id  = "product" class="col-xl-12" >
+				<form action="<%=request.getContextPath() %>/admin/account/product/update" name="product" id  = "product" class="col-xl-12" >
 	             			
 						<div class="row form-group ">
 								<span
@@ -63,16 +66,19 @@
 								</div>
 								<div class="card-body pt-0">
 									<ul class="list-unstyled mb-4 h4 font-weight-normal text-primary text-center" >
-									<%
-									if(term.equals("무제한")){//기간이 없는 상품
-									%>
-										기간 :<%=term%>									
-									<%
-									}else{%>
-										기간
-										<input type="text" cols=121 rows=5 class="form-control"
-											style="border-radius: 0px"  name="term" id="term" value="<%=term%>" />
-									<%}%>
+							
+									<input type="hidden" cols=121 rows=5 class="form-control"
+											style="border-radius: 0px"  name="term" id="term" value="<%=term%>" />								
+							
+								 <label class="radio-inline" name = "type"> 
+		                     <input type="radio" id = "up" value="up"  name="type"> UP
+		                     </label> 
+		                     <label class="radio-inline" name = "type"> 
+		                     <input type="radio"  value="resume" name="type"> Resume
+		                     </label>
+		                     <label class="radio-inline" name = "type"> 
+		                     <input type="radio"    value="board" name="type" > Board
+		                     </label>
 
 									</ul>
 									<ul class="list-unstyled mb-4">
@@ -112,6 +118,15 @@
 		<!-- 끝 content wrapper -->
 
 		<!-- 끝  wrapper -->
+			<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<script>
+$(document).ready(function(){
+		  $('input[name="type"][value="ad"]').hide();
+		  $('input:radio[name="type"][value="<%=type%>"]').prop('checked', true);
+	
+});
+</script>
 </body>
 
 </html>

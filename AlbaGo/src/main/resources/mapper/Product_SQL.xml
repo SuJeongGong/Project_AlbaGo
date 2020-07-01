@@ -3,10 +3,18 @@
 <mapper namespace="com.spring.ex.dao.ProductDAO">
 
 	<!-- 관리자 상품입니다 -->
-	<select id="selectList" resultType="Product"> <!-- 관리자에서 상품보기 -->
+	<select id="selectProductList" resultType="Product"> <!-- 관리자에서 상품보기 -->
 		SELECT * FROM product
 		<where>
 		delete_check =1
+		and TYPE !="ad" 
+		</where>
+	</select>
+	<select id="selectAdvertisingList" resultType="Product"> <!-- 관리자에서 상품보기 -->
+		SELECT * FROM product
+		<where>
+		delete_check =1
+		and TYPE ="ad" 
 		</where>
 	</select>
 
@@ -49,7 +57,7 @@
 	
 	<update id="update_product" parameterType="Product"> <!-- 상품 수정입니다! -->
 	   UPDATE product 
-	   SET name=#{name},term=#{term},price=#{price}, explan=#{explan},amount=#{amount}
+	   SET name=#{name},term=#{term},price=#{price}, explan=#{explan},amount=#{amount},type=#{type}
 	   <where>
 		product_id =#{product_id}
 		and			
@@ -76,6 +84,7 @@
 		SELECT * FROM product
 		<where>
 		delete_check =1
+				and TYPE !="ad" 
 		</where>
 	</select>
 	
@@ -96,16 +105,18 @@
 		(payment_id,
 		product_id,
 		enterprise_id,
-		date)
+		date,
+		result)
 		VALUES
 
 		(null,
 		#{product_id},
 		#{enterprise_id},
+		null,
 		null);
 	</insert>
 	
-	<select id="selectPayments" resultType="Payment">
+	<select id="selectProductPayments" resultType="Payment">
 		select  payment.payment_id as payment_id, 
 				enterprise.name as enterprise_name, 
 				product.name as product_name,
@@ -117,6 +128,24 @@
 		<where>
 			payment.enterprise_id = enterprise.enterprise_id
 			and payment.product_id = product.product_id
+			and product.type != "ad"
+		</where>
+		order by payment.payment_id DESC
+	</select>
+
+	<select id="selectAdvertisingPayments" resultType="Payment">
+		select  payment.payment_id as payment_id, 
+				enterprise.name as enterprise_name, 
+				product.name as product_name,
+				payment.result as result, 
+				product.term as use_date,
+				payment.date as date,
+				product.type as product_type
+		from Payment, enterprise, product 
+		<where>
+			payment.enterprise_id = enterprise.enterprise_id
+			and payment.product_id = product.product_id
+			and product.type = "ad"
 		</where>
 		order by payment.payment_id DESC
 	</select>
@@ -163,7 +192,7 @@
 	
 	<update id = "updateEnterpriseBoardCount" parameterType="hashmap">
 				update enterprise
-		SET board_count =board_count+ #{product_count}
+		SET board_recruit_count =board_recruit_count + #{product_count}
 		<where>
 			enterprise_id =#{enterprise_id}
 		</where>
@@ -181,5 +210,80 @@
 	
 	</update>
 	
+		<!-- 기업입니다 // 광고-->
+	<select id="enterprise_selectAdList" resultType="Product"><!-- 기업에서 상품보기 -->
+		SELECT * FROM product
+		<where>
+		delete_check =1
+		and TYPE ="ad" 
+		</where>
+	</select>
+	
+	<select id="enterpriseBoardRecruit" resultType="BoardRecruit" parameterType="String"><!-- 기업에서 상품보기 -->
+		SELECT board_recruit.board_recruit_id ,board_recruit.title FROM board_recruit,recruit
+		<where>
+		board_recruit.delete_check =1
+		and board_recruit.recruit_id = recruit.recruit_id
+		and recruit.enterprise_id = #{enterprise_id}
+		</where>
+	</select>
+	
+	
+	<insert id="insertAdvertising" useGeneratedKeys="true" keyProperty="payment_id"   parameterType="Advertising"> <!-- 기업에서 결제승인하기 -->
+
+		INSERT INTO payment
+
+		(payment_id,
+		product_id,
+		enterprise_id,
+		date,
+		result)
+		VALUES
+
+		(null,
+		#{product_id},
+		#{enterprise_id},
+		null,
+		null);
+	</insert>
+	<insert id="insertAd_payment"  parameterType="Advertising"> <!-- 기업에서 결제승인하기 -->
+
+		INSERT INTO advertising
+
+		(advertising_id,
+		payment_id,
+		board_recruit_id,
+		title,
+		start_date,
+		end_date,
+		result)
+		VALUES
+
+		(null,
+		#{payment_id},
+		#{board_recruit_id},
+		#{title},
+		#{start_date},
+		null,
+		null);
+	</insert>
+
+	<update id = "updateAdvertisingResult" parameterType="hashmap">
+		update advertising
+		SET result = #{result} , 
+		end_date = DATE_ADD(start_date, INTERVAL 
+		
+		(SELECT term FROM product, payment 
+		WHERE payment.product_id = product.product_id
+		AND payment.payment_id = #{payment_id}
+		)
+		
+		 DAY)
+		<where>
+			payment_id =#{payment_id}
+		</where>
+	
+	
+	</update>
 
 </mapper>

@@ -26,7 +26,7 @@
 	<!-- 커뮤니티글 리스트 -->
 	<select id = "selectList" resultType="BoardCommunity">        
 		select* from community	
-		order by community_id DESC
+		ORDER by community_id desc 
 	</select>
 	
 	<!-- 커뮤니티글 보기 -->
@@ -43,6 +43,11 @@
 			community_id = #{community_id}
 		</where>
 	</update> 
+	
+	<!-- 커뮤니티글 삭제 -->
+	<delete id="deleteComments" parameterType="int">
+		DELETE FROM `comment` WHERE `comment`.community_id =#{comment_id}
+	</delete>
 	
 	<!-- 커뮤니티글 삭제 -->
 	<delete id="deleteContent" parameterType="int">
@@ -85,7 +90,7 @@
 	<select id = "selectComments" resultType="BoardComment">        
 		select* from comment	 where community_id =#{community_id}
 		
-		order by comment_id DESC
+		order by comment_id 
 	</select>
 	
 	
@@ -103,5 +108,8 @@
 		DELETE FROM comment WHERE comment_id = #{comment_id}
 	</delete>
 	
-	
+	<!-- 댓글 갯수 -->
+	<select id = "CommentsCount" parameterType="int" resultType ="int">
+	SELECT COUNT(*) as count FROM `comment` <where>community_id = #{community_id}</where> 
+	</select>
 </mapper>

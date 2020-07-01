@@ -28,7 +28,14 @@ public class CommunityService {
 	}
 	
 	public int deleteContent(int community_id) {
-		return communityDAO.deleteContent(community_id);
+		int res = -1;
+		
+		if(communityDAO.deleteComments(community_id)>=1) {//댓글부터 삭제 
+			if(communityDAO.deleteContent(community_id)>=1) {
+				res = 1;
+			}
+		}
+		return res;
 	}
 	
 	public int updateContent(BoardCommunity content) {
@@ -53,6 +60,10 @@ public class CommunityService {
 	
 	public int updateComment(BoardComment comment_id) {
 		return communityDAO.updateComment(comment_id);
+	}
+	
+	public int CommentsCount(int community_id) {
+		return communityDAO.CommentsCount(community_id);
 	}
 
 }

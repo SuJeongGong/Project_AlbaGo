@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 자세히 보기</title>
 </head>
 <body>
 	<%@ include file="../serve/header.jsp"%>
@@ -25,13 +25,17 @@
 									<a href="#">
 										<h4>
 											<%=product.getName()%>
-											<%=product.getAmount()%></h4>
+											</h4>
 									</a>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="descript_wrap white-bg">
+						<div class="single_wrap">
+							<h4>
+								갯수 :<%=product.getAmount()%></h4>
+						</div>
 						<div class="single_wrap">
 							<h4>
 								가격 :

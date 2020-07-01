@@ -22,13 +22,15 @@
 </head>
 
 <body id="page-top">
-
+<%
+String conPath = request.getContextPath();
+%>
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="main">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%=conPath %>/admin/main">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -59,13 +61,13 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="individual_list">
+        <a class="nav-link" href="<%=conPath%>/admin/individual_list">
           <i class="fas fa-fw fa-table"></i>
           <span>개인</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="enterprise_list">
+        <a class="nav-link"  href="<%=conPath%>/admin/enterprise_list" >
           <i class="fas fa-fw fa-table"></i>
           <span>기업</span></a>
       </li>
@@ -76,7 +78,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Others
+        Board
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -88,14 +90,20 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">notice board:</h6>
-            <a class="collapse-item" href="recruit">공고글</a>
-            <a class="collapse-item" href="resume">인재글</a>
-            <a class="collapse-item" href="community">커뮤니티</a>
+            <h6 class="collapse-header">board:</h6>
+            <a class="collapse-item" href="<%=conPath %>/admin/recruit">공고글</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/resume">인재글</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/community">커뮤니티</a>
           </div>
         </div>
       </li>
 
+      <hr class="sidebar-divider" >
+
+	<div class="sidebar-heading">
+        Management
+      </div>
+      
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -105,11 +113,25 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Management:</h6>
-            <a class="collapse-item" href="approve">승인관리</a>
-            <a class="collapse-item" href="product">상품관리</a>
-            <a class="collapse-item" href="payment">매출</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/product/approve">상품 승인</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/product/product">상품 관리</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/advertising/approve">광고 승인</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/advertising/product">광고 관리</a>
           </div>
         </div>
+      </li>
+
+      <hr class="sidebar-divider ">
+		<div class="sidebar-heading">
+        	Sales
+      </div>
+      
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="<%=conPath %>/admin/payment" >
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>매출</span>
+        </a>
       </li>
 
       
@@ -126,7 +148,9 @@
       <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
       </button>
-
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
 
     </ul>
     <!-- End of Sidebar -->
@@ -136,13 +160,10 @@
 
   <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
+  <!-- 
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+Scroll to Top Button-->
 </body>
-
-
-
 </html>

@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.ex.dao.IndividualDAO">
-	<select id="selectIndividual" parameterType="String"
-		resultType="Individual">
+	<select id="selectIndividual" parameterType="String" resultType="Individual">
 		select *
 		from individual
 		<where>
@@ -63,7 +62,7 @@
 		ORDER BY resume.resume_id DESC
 	</select>
 
-	<update id="updateAccount" parameterType="Individual">
+	<update id="updateAccount" parameterType="int">
 		update individual 
 		set name = #{name},
 			gender = #{gender},
@@ -71,9 +70,10 @@
 			phone = #{phone},
 			education = #{education}
 		<where>
-			individual_id = #{individual_id}
+			individual_id = #{id}
 		</where>
 	</update>
+	
 	<delete id="deleteVolunteer" parameterType="int">
 		delete from volunteer
 		<where>

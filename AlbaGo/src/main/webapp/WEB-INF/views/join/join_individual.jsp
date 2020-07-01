@@ -111,7 +111,7 @@ pageEncoding="UTF-8"%>
                 <input type="radio" name="gender" id="man" class="a-input" value="남자" checked>남자
               </div>&nbsp;&nbsp;&nbsp;&nbsp;
               <div class="custom-control custom-radio">
-                <input type="radio" name="gender" id="woman" class="a-input" value="여자" checked>여자
+                <input type="radio" name="gender" id="woman" class="a-input" value="여자">여자
               </div>
             </div>
             <hr>

@@ -27,7 +27,11 @@ public interface CommunityDAO {
 	ArrayList<BoardComment> selectComments(int community_id);   //글번호를 이용한 댓글 가져오기 
 	
 	
-	int deleteComment(int comment_id);    //삭제
+	int deleteComment(int comment_id);    //댓글삭제  -댓글번호로 삭제  -> 1개만 지워지고
+	int deleteComments(int comment_id);    //댓글삭제  -글 번호로 삭제  -> 몇개가 있던
+	
 	
 	int updateComment(BoardComment content);    //수정
+	
+	int CommentsCount(int community_id); //댓글 갯수
  }
