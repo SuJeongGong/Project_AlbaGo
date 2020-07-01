@@ -127,7 +127,7 @@ public class BoardRecruitController {
 			System.out.println("if문 밖ㅇ에 :"+resume);
 		}
 		
-		if(1<=boardRecruitService.updateViews(board_recruit_id)) {
+		if(1<=counts) {
 			System.out.println("조회수 증가 성공");
 			m.addAttribute("counts", counts);
 		}

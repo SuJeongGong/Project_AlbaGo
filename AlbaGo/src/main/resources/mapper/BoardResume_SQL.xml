@@ -96,4 +96,14 @@ FROM board_resume,resume,career
 		and board_resume.title like CONCAT('%',#{title},'%')
 		</where>
 	</select>
+	
+	<!-- 최신글순 -->
+	<select id = "time_List" resultType="BoardResume" parameterType="hashmap">
+		SELECT board_resume.board_resume_id, board_resume.title as board_resume_title, board_resume.date, board_resume.views, resume.place 
+		FROM board_resume, resume, individual 
+		<where> board_resume.resume_id = resume.resume_id
+		and resume.individual_id = individual.individual_id
+		and board_resume.delete_check = 1
+		</where>
+	</select>
 </mapper>

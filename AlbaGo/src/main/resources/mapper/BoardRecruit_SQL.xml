@@ -8,6 +8,7 @@
 		from recruit, board_recruit
 		where recruit.recruit_id = board_recruit.recruit_id
 		AND board_recruit.delete_check = 1
+		ORDER BY board_recruit.date DESC
 	</select>
 	
 	<!-- 게시글작성 -->
@@ -98,4 +99,6 @@
 		and board_recruit.title like CONCAT('%',#{title},'%')
 		</where>
 	</select>
+	
+	<!--  -->
 </mapper>

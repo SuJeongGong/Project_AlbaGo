@@ -113,11 +113,18 @@ public class BoardResumeController {
 		
 		System.out.println("될꺼야");
 		
+		int counts = boardResumeService.updateViews(board_resume_id);//1번
+		
 		BoardResume board_content = boardResumeService.selectView(board_resume_id);
 		board_content.setBoard_resume_id(board_resume_id);
 		ArrayList<Career> careers = boardResumeService.selectCareers(board_resume_id);
 		m.addAttribute("board_content", board_content);
 		m.addAttribute("careers", careers);
+		
+		if(1<=counts) {//2번
+			System.out.println("조회수 증가 성공");
+			m.addAttribute("counts", counts);
+		}
 		
 		return "/resume/content";
 	}
