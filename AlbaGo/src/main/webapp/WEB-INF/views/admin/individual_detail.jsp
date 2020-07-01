@@ -36,6 +36,31 @@
         <!-- content wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- main -->
+            <!-- 계정정지 -->
+						<script>
+						function changestate(individual_id,result) {
+							console.log(individual_id);
+							$.ajax({
+								url : "./changestate",
+								method : "GET",
+								data : {
+									
+									individual_id : individual_id,
+									result : result
+								
+								},
+								success :function(res5){
+									if(res5>=1){
+										alert("계정상태바꾸기");
+
+										 $("#res5").load(window.location.href + " #res5");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
             <div id="content">
                 <!-- Topbar -->
                 <%@ include file="../serve/manager_topbar.jsp" %>
@@ -50,6 +75,7 @@
 						String date = individual.getDate().split(" ")[0];;//가입날짜
 						String education = individual.getEducation();
 						String phone = individual.getPhone();
+						int state= individual.getState();
 						
 					%>
                 <!-- main 본문  -->
@@ -68,15 +94,15 @@
                             </div>
                             <div class="card-body">
                             <!-- 회원정보 form 시작 -->
-                         	<form action="<%=request.getContextPath() %>/admin/individual_detail/update?<%=individual_id%>"name="individual"  class="col-xl-12" >
-                                <table class="table table-bordered ">
+                         	<form action="<%=request.getContextPath() %>/admin/individual_detail/update"name="individual"  class="col-xl-12" >
+                                <table id="res5" class="table table-bordered ">
 	               			<tr>
 	               				<th>아이디</th>
 	               				<td><input type="hidden" name ="individual_id" value="<%=individual_id%>" ><%=individual_id%></td>
 	               			</tr>
 	               			<tr>
 	               				<th>비밀번호</th>
-	               				<td><input type="text" name ="password" id ="password" value="<%=password%>" ></td>
+	               				<td><input type="text" class="form-control" name ="password" id ="password" value="<%=password%>" ></td>
 	               			</tr>
 	               			<tr>
 	               				<th>이름</th>
@@ -100,15 +126,27 @@
 	               			</tr>
 	               			<tr>
 	               				<th>가입날짜</th>
-	               				<td><input type ="text" name ="date" id ="date" value="<%=date%>"></td>
+	               				<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date%></td>
 	               			</tr>
+	               			<tr>
+                              <th>계정상태</th>
+                              <%if(state==1){ %>
+                              <td><input type ="hidden" name ="state" id ="state" value="<%=state%>">정상</td>
+                              <%} 
+                              else{
+                     %>
+                              <td><input type ="hidden" name ="state" id ="state" value="<%=state%>">정지</td>
+                     <%
+                        }
+                     %>
+                           </tr>
 	               			<tr>
 	               				<th>관리자</th>
 	               				<td>
 	               					<button class="btn btn-info edit" type="submit" aria-label="ASettings"> 정보 수정</button> 
-					
-                                    <a href="#" class="btn btn-danger btn-xs">
-                                    <span class="glyphicon glyphicon-remove"></span>계정 삭제</a>
+						 			<button type="button" class="btn btn-danger" onclick="changestate('<%=individual_id%>',0)">계정정지</button>
+									<button type="button" class="btn btn-outline-danger" onclick="changestate('<%=individual_id%>',1)">계정정지해제</button>
+                                    
                                 </td>
 	               			</tr>
 	               		</table>
@@ -120,18 +158,18 @@
 			                   
 						<!-- 이력서 관리 -->
 						<script>
-						function deleteResume(individual_id,resume_id) {
-							console.log(individual_id,resume_id);//a,2
+						function deleteResume(resume_id) {
+							console.log(resume_id);//a,2
 							$.ajax({
 								url : "./deleteResume",
 								method : "GET",
 								data : {
-									individual_id : individual_id,
+									
 									resume_id : resume_id
 								
 								},
 								success :function(resa){
-									if(res>=1){
+									if(resa>=1){
 										alert("삭제완료");
 
 										 $("#resa").load(window.location.href + " #resa");
@@ -179,7 +217,7 @@
                                         <a  href="<%=request.getContextPath()%>/individual/profile/content?resume_id=<%=resume_id%>" class="btn btn-secondary btn-xs"> <span class="glyphicon glyphicon-edit"></span> 상세보기</a> 
                                     	</td>
                                         <td class="text-center">
-                                        <button type="button" class="btn btn-outline-danger" onclick="deleteResume('<%=id%>',<%=resume_id%>)">삭제</button>
+                                        <button type="button" class="btn btn-outline-danger" onclick="deleteResume(<%=resume_id%>)">삭제</button>
                                         </td>
                                     </tr>
                                     <%} %>
@@ -192,8 +230,8 @@
                     </div>
 			<!-- ################################# -->     
 			         <script>
-					function deleteVolunteer(individual_id,volunteer_id) {
-					console.log(individual_id,volunteer_id);
+					function deleteVolunteer(volunteer_id) {
+					console.log(volunteer_id);
 					$.ajax({
 							url : "./deleteVolunteer",
 							method : "GET",
@@ -252,23 +290,37 @@
                                  String result = volunteer.getResult();
                                  int board_recruit_id=volunteer.getBoard_recruit_id();
                                  String individual_id_volunteer=volunteer.getIndividual_id();
-                                 
-                                 if(result==null){
-                                    result="결과 없음";
-                                 }
-                        
-                                    
                               %>  
-                              <tr>
-                                            <td class="text-center"><a href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=board_recruit_id%>"><%= title %></td>
+                              <tr class="text-center">
+                                            <td><a href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=board_recruit_id%>"><%= title %></td>
                                     
-                                            <td class="text-center"><%= enterprise_name %></td>
-                                            <td class="text-center"><%= resume_title %></td>
-                                            <td class="text-center"><%= volunteer_date %></td>
-                                            <td class="text-center"><%= result %></td>
-                                            <td class="text-center"><button type="button" class="btn btn-sm btn-primary btn-cancel" onclick="deleteVolunteer('<%=individual_id_volunteer %>',<%=volunteer_id%>)">지원취소</button></td>
-                                        </tr>
-                                        <%} %>
+                                            <td><%= enterprise_name %></td>
+                                            <td><%= resume_title %></td>
+                                            <td><%= volunteer_date %></td>
+                                           
+                                         	<%
+								if (result == null) {
+							%>
+                                            
+                                            <td>미정</td>
+                                            <td class="text-center">
+                                            	<button type="button" class="btn btn-sm btn-primary btn-cancel" onclick="deleteVolunteer(<%=volunteer_id%>)">지원취소
+                                            	</button>
+                                            </td>
+                                   
+                                   <%
+								} else {
+							%>
+							<td><%=result%></td>
+							<td>취소 불가</td>
+							<%
+								}
+							%>
+
+						</tr>
+						<%
+							}
+						%>
 
                                       
                                     </tbody>
@@ -277,9 +329,30 @@
                         </div>
                 </div>
                 
-
                 	<!-- ################################# -->     
-			                   
+			            <script>
+					function deletBoardResume(board_resume_id) {
+					console.log(board_resume_id);
+					$.ajax({
+							url : "./deletBoardResume",
+							method : "GET",
+							data : {
+								board_resume_id:board_resume_id
+							},
+							success :function(res1){
+								console.log(res1);
+								if(res1>=1){
+									alert("결과 저장 완료");
+					
+									 $("#res1").load(window.location.href + " #res1");
+								}else{
+									alert("사용실패")
+								}
+							}
+						});
+					}          
+					
+					</script>
 					<!-- 인재 게시판 작성글 알바 -->
                 <div class="row">
                     <div class="card col-xl-12 shadow mb-4">
@@ -289,8 +362,9 @@
                             </h6>
                         </div>
                         <div class="card-body">
-                        <form id="resumeWrite" action="">
-                               <table class="table table-striped">
+                        <form id="resumeWrite">
+                               <table class="table table-striped" id="res1">
+                               
                                 <thead>
                                 
                                     <tr class="text-center">
@@ -324,7 +398,7 @@
                                         <td><%=memo %></td>
                                         <td><%=resume_date %></td>
                                         <td>   
-                                        <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger">
+                                        <button type="button" class="btn py-1 px-1 btn-danger" onclick="deletBoardResume(<%=board_resume_id%>)">삭제</button>
                                       	</td>
                                     </tr>
                                         <%
@@ -336,7 +410,30 @@
                         </div>
                     </div>
                     
-                   <!-- ################################# -->     
+                   <!-- ################################# --> 
+				   <script>
+
+				    function deleteCommunity(community_id) {
+				    	console.log(community_id);
+				    	$.ajax({
+				    		url : "./deleteCommunity",
+				    		method : "GET",
+				    		data : {
+				    			community_id: community_id
+				    		},
+				    		success :function(res3){
+				    			console.log(res3);
+				    			if(res3>=1){
+				    				alert("삭제 성공");
+				
+				  					 $("#res3").load(window.location.href + " #res3");
+				    			}else{
+				    				alert("삭제 실패");
+				    			}
+				    		}
+				    	});
+				    }
+				    </script>
 					<!-- 커뮤니티 게시판 작성글 -->
                     <div class="card col-xl-12 shadow mb-4">
                         <div class="card-header py-3">
@@ -344,9 +441,9 @@
                             </h6>
                         </div>
                         <div class="card-body">
-           				<form id="communityWrite" action="">
+           				<form id="communityWrite">
              
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table id="res3" class="table table-bordered"  width="100%" cellspacing="0">
                                 <thead>
                                 <tr>
                                     	<th>글제목</th>
@@ -374,8 +471,10 @@
                                         <td style="width:20%"><%=community_name%></td> 
                                         <td style="width:20%"><%=community_date%></td>
                                         <td style="width:10%"> 
-                                            <input type="submit" value="삭제" class="btn py-1 px-1 btn-danger">
-                                        </td>
+                                            <button type="button" class="btn py-1 px-1 btn-danger" onclick="deleteCommunity(<%=community_id%>)"
+                                            style="float: right;">삭제
+                                            </button>   
+                                         </td>
                                     </tr>
 									<%} %>
                                     

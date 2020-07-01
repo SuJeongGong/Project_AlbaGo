@@ -16,6 +16,8 @@ public class Enterprise {
 	int resume_count;//이력서보는 횟수
 	int up_count;//up 횟수
 	String date;//가입날짜
+	int state;//계정상태
+	int board_recruit_count;//공고글 횟수
 	
 	
 }

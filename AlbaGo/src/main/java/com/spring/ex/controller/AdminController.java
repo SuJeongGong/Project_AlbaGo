@@ -25,6 +25,7 @@ import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
+import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
@@ -308,35 +309,53 @@ public class AdminController {
 		return page;
 
 	}
+
 	@RequestMapping("/individual_detail/update") // 개인정보 수정 - 수정하기
-	   public String individual_detail( @ModelAttribute("individual") Individual individual) {
-	      String page = "/admin/individual_detail"; 
-	      if (1 <= adminService.updateIndividualAccount(individual)) {
-	         System.out.println(individual); 
-	         System.out.println("수정");
-	         page = "redirect:/admin/main";
+	public String individual_detail(@ModelAttribute("individual") Individual individual) {
+		String page = "/admin/individual_detail";
+		if (1 <= adminService.updateIndividualAccount(individual)) {
+			System.out.println(individual);
+			System.out.println("수정");
+			page = "redirect:/admin/individual_list";
 
-	      } 
-	      return page;
-	   }
-	// ajax 이력서삭제
-
-	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteResume(@RequestParam("individual_id") String individual_id,
-			@RequestParam("resume_id") int resume_id) {
-
-		System.out.println(individual_id);
-		System.out.println(resume_id);
-		return adminService.deleteResume(individual_id, resume_id);
+		}
+		return page;
 	}
-	
-	//지원한 알바 지원취소
+
+	// ajax
+	//// 계정정지 AJAX
+	@RequestMapping(value = "/changestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int changestate(@RequestParam("individual_id") String individual_id,@RequestParam("result") int result) {
+		return adminService.changestate(individual_id,result);
+	}
+
+	// 이력서삭제 AJAX
+	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteResume(@RequestParam("resume_id") int resume_id) {
+		return adminService.deleteResume(resume_id);
+	}
+
+	// 지원한 알바 지원취소 AJAX
 	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteVolunteer(@RequestParam("volunteer_id") int volunteer_id) {
-System.out.println("volunteer_id"+volunteer_id);
-		return adminService.deleteVolunteer(volunteer_id);  
+		System.out.println("volunteer_id" + volunteer_id);
+		return adminService.deleteVolunteer(volunteer_id);
 	}
-	
+
+	// 인재 게시판 취소 AJAX
+	@RequestMapping(value = "/deletBoardResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deletBoardResume(@RequestParam("board_resume_id") int board_resume_id) {
+		System.out.println("board_resume_id" + board_resume_id);
+		return adminService.deletBoardResume(board_resume_id);
+	}
+
+	// 커뮤니티 게시판 삭제 AJAX
+	@RequestMapping(value = "/deleteCommunity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 삭제
+	public @ResponseBody int delete(@RequestParam("community_id") int community_id) {
+		System.out.println("community_id :" + community_id);
+		return adminService.deleteCommunity(community_id);
+	} // 글삭제
+
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {
 		String page = "admin/enterprise_detail";
@@ -344,7 +363,11 @@ System.out.println("volunteer_id"+volunteer_id);
 		// 기업 회원정보 상세보기
 		Enterprise enterprise = adminService.selectEnterpriseAccount(enterprise_id);
 		m.addAttribute("enterprise", enterprise);
-
+		
+		//공고관리
+		ArrayList<Recruit> recruit = adminService.selectRecruit(enterprise_id);
+		m.addAttribute("recruit", recruit);
+		
 		// 공고글 관리
 		ArrayList<BoardRecruit> boardrecruit = adminService.selectRecruitWrite(enterprise_id);
 		m.addAttribute("boardrecruit", boardrecruit);
@@ -360,19 +383,60 @@ System.out.println("volunteer_id"+volunteer_id);
 		return page;
 	}
 
+	@RequestMapping("/enterprise_detail/update") // 기업정보 수정 - 수정하기
+	public String enterprise_detail(@ModelAttribute("enterprise") Enterprise enterprise) {
+		String page = "/admin/enterprise_detail";
+		System.out.println();
+
+		System.out.println("컨트롤러 if전" + enterprise);
+		if (1 <= adminService.updateEnterpriseAccount(enterprise)) {
+ 
+			System.out.println(enterprise);
+			System.out.println("수정");
+			page = "redirect:/admin/enterprise_list";
+
+		}
+ 
+		return page;
+	}
+	//관리자
+	//기업 계정정지 AJAX
+	@RequestMapping(value = "/changeEnterprisestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int changeEnterprisestate(@RequestParam("enterprise_id") String enterprise_id,@RequestParam("result") int result) {
+		return adminService.changeEnterprisestate(enterprise_id,result);
+	}
 	@RequestMapping("/payment") // 결제관리
 	public String manager_payment() {
 		return "admin/payment";
 	}
-
+	// 공고삭제 AJAX
+	@RequestMapping(value = "/deleteEnterpriseRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteEnterpriseRecruit(@RequestParam("recruit_id") int recruit_id) {
+		return adminService.deleteEnterpriseRecruit(recruit_id);
+	}
+	//공고글 삭제 AJAX
+	@RequestMapping(value = "/deleteEnterpriseBoardRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteEnterpriseBoardRecruit(@RequestParam("board_recruit_id") int board_recruit_id) {
+		return adminService.deleteEnterpriseBoardRecruit(board_recruit_id);
+	}
+	//인재글 삭제 AJAX
+	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteScrap(@RequestParam("scrap_id") int scrap_id) {
+		return adminService.deleteScrap(scrap_id);
+	}
+	
+	
+	//--------------------------------
+	
+	
 	@RequestMapping("/product/product") // 상품보기
 	public String list(Model m, HttpServletRequest request) {
-		
+
 		ArrayList<Product> products = productService.selectProductList();
-		m.addAttribute("products", products);  
+		m.addAttribute("products", products);
 
 		return "/admin/product_product";
-	} 
+	}
 
 	@RequestMapping("/product_account") // 상품상세보기
 	public String update_account(HttpServletRequest request, Model m, @RequestParam("product_id") int product_id) {
@@ -382,24 +446,25 @@ System.out.println("volunteer_id"+volunteer_id);
 
 		return page;
 	}
+
 	@RequestMapping("/advertising/product") // 광고 보기
 	public String advertisingㅣist(Model m, HttpServletRequest request) {
 
 		ArrayList<Product> products = productService.selectAdvertisingList();
-		m.addAttribute("products", products);  
+		m.addAttribute("products", products);
 
 		return "/admin/advertising_product";
-	} 
+	}
 
 	@RequestMapping("/advertising/product_account") // 광고상세보기
-	public String advertisingㅕpdate_account( Model m, @RequestParam("product_id") int product_id) {
+	public String advertisingㅕpdate_account(Model m, @RequestParam("product_id") int product_id) {
 		String page = "/admin/advertising_account";
 		Product product = productService.product_account(product_id);
 		m.addAttribute("product", product);
 
 		return page;
-	} 
-	
+	}
+
 	@RequestMapping("/account/update") // 상품수정하기
 	public String update(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
@@ -414,6 +479,7 @@ System.out.println("volunteer_id"+volunteer_id);
 		}
 		return page;
 	}
+
 	@RequestMapping("/account/advertising/update") // 상품수정하기
 	public String advertisingUpdate(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
@@ -428,6 +494,7 @@ System.out.println("volunteer_id"+volunteer_id);
 		}
 		return page;
 	}
+
 	@RequestMapping("/account/delete") // 상품삭제하기
 	public String delete(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
@@ -441,12 +508,13 @@ System.out.println("volunteer_id"+volunteer_id);
 			System.out.println("실패라고요");
 		}
 		return page;
-	}	
+	}
+
 	@RequestMapping("/product/approve") // 결제승인
 	public String approve(Model m) {
-		ArrayList<Payment> payments= productService.selectProductPayments();
+		ArrayList<Payment> payments = productService.selectProductPayments();
 
-		m.addAttribute("payments",payments);
+		m.addAttribute("payments", payments);
 
 		return "admin/product_approve";
 	}
@@ -488,14 +556,16 @@ System.out.println("volunteer_id"+volunteer_id);
 
 	@RequestMapping("/advertising/approve") // 결제승인
 	public String advertisingApprove(Model m) {
-		ArrayList<Payment> payments= productService.selectAdvertisingPayments();
-		
-		m.addAttribute("payments",payments);
-		
+		ArrayList<Payment> payments = productService.selectAdvertisingPayments();
+
+		m.addAttribute("payments", payments);
+
 		return "admin/advertising_approve";
 	} // 아약스 처리
+
 	@RequestMapping(value = "/product/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int updateResult(@RequestParam(value = "result") String result,@RequestParam(value = "id") int id) {
+	public @ResponseBody int updateResult(@RequestParam(value = "result") String result,
+			@RequestParam(value = "id") int id) {
 
 		System.out.println("payment_id" + id);
 		System.out.println("result" + result);
@@ -517,6 +587,7 @@ System.out.println("volunteer_id"+volunteer_id);
 		map.put("result", result);
 		return productService.updatePaymentsResult(map);
 	}
+
 	@RequestMapping(value = "/advertising/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int advertisingUpdateResult(@RequestParam(value = "result") String result,
 			@RequestParam(value = "id") int id) {
@@ -526,12 +597,13 @@ System.out.println("volunteer_id"+volunteer_id);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("payment_id", id);
 		map.put("result", result);
- 
+
 		return productService.advertisingUpdatePaymentResult(map);
 	}
 
 	@RequestMapping(value = "/advertising/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int advertisingUpdateResults(@RequestParam(value = "result") String result,	@RequestParam(value = "payment_ids[]") ArrayList<String> payment_ids) {
+	public @ResponseBody int advertisingUpdateResults(@RequestParam(value = "result") String result,
+			@RequestParam(value = "payment_ids[]") ArrayList<String> payment_ids) {
 
 		System.out.println("payment_ids" + payment_ids);
 		System.out.println("result" + result);
