@@ -125,7 +125,7 @@ public class AdminController {
 		return page;
 	}
 
-	@RequestMapping("/recruit/total") // 공고글 검색
+	@RequestMapping("/recruit/total") // 총 공고글 검색
 	public String boardrecruit_t(Model m, @RequestParam("enterprise_category") String enterprise_category,
 			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
 			@RequestParam("education") String education) {

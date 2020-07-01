@@ -1,7 +1,9 @@
 package com.spring.ex.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
+import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Career;
 
@@ -22,5 +24,9 @@ public interface BoardResumeDAO {
 	//수정
 	int updateBoard(BoardResume boardresume);
 	
-
+	//검색
+	ArrayList<BoardResume> total_List(Map<String, Object> map);
+	
+	//조회수
+	int updateViews(int board_resume_id);
 }
