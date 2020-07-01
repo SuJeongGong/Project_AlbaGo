@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Scrap_Individual"%>
 <%@page import="com.spring.ex.dto.BoardCommunity"%>
 <%@page import="sun.reflect.ReflectionFactory.GetReflectionFactoryAction"%>
 <%@page import="com.spring.ex.dto.BoardResume"%>
@@ -217,7 +218,7 @@
                                         <a  href="<%=request.getContextPath()%>/individual/profile/content?resume_id=<%=resume_id%>" class="btn btn-secondary btn-xs"> <span class="glyphicon glyphicon-edit"></span> 상세보기</a> 
                                     	</td>
                                         <td class="text-center">
-                                        <button type="button" class="btn btn-outline-danger" onclick="deleteResume(<%=resume_id%>)">삭제</button>
+                                        <button type="button" class="btn btn-danger" onclick="deleteResume(<%=resume_id%>)">삭제</button>
                                         </td>
                                     </tr>
                                     <%} %>
@@ -398,7 +399,7 @@
                                         <td><%=memo %></td>
                                         <td><%=resume_date %></td>
                                         <td>   
-                                        <button type="button" class="btn py-1 px-1 btn-danger" onclick="deletBoardResume(<%=board_resume_id%>)">삭제</button>
+                                        <button type="button" class="btn btn-danger" onclick="deletBoardResume(<%=board_resume_id%>)">삭제</button>
                                       	</td>
                                     </tr>
                                         <%
@@ -482,6 +483,90 @@
                         </form>
                         </div>
                     </div>
+                    
+                    
+                        <div class="card col-xl-12 shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">기업 스크랩
+                                </h6>
+                            </div>
+                            <div class="card-body">
+					<script>
+			
+					function deleteEnterpriseScrap(scrap_individual_id) {
+						console.log(scrap_individual_id);
+						$.ajax({
+							url : "./deleteEnterpriseScrap",
+							method : "GET",
+							data : {
+								
+								scrap_individual_id : scrap_individual_id
+							
+							},
+							success :function(res4){
+								if(res4>=1){
+									alert("삭제완료");
+
+									 $("#res4").load(window.location.href + " #res4");
+								}else{
+									alert("실패")
+								}
+							}
+						});
+					}
+			
+						</script>
+     						<!-- 인재스크랩 form 시작 -->
+ 
+                         
+                                <table id="res4" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>공고글제목</th>
+                                            <th>공고제목</th>
+                                        	<th>기업아이디</th>
+                                        	<th>기업이름</th>
+                                            <th>스크랩한 날짜</th>
+                                            <th>스크랩취소</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <%
+										ArrayList<Scrap_Individual> scrap_individual = (ArrayList) request.getAttribute("scrap_individual");
+										for (int i = 0; i < scrap_individual.size(); i++) {
+											Scrap_Individual list = scrap_individual.get(i);
+										  
+											String enterprise_id =list.getEnterprise_id(); //기업아이디
+						                     String enterprise_name=list.getName();			//기업
+						                     String board_recruit_title=list.getBoard_recruit_title(); //기업공고글
+						                     String recruit_title=list.getRecruit_title();	//공고
+						                     String scrap_date=list.getDate().split(" ")[0];//스크랩한 날짜
+						                     int scrap_individual_id=list.getScrap_individual_id();
+						                   
+						   
+										%>  
+                                  
+                                        <tr>
+                                            <td><%=board_recruit_title%></td>
+                                            <td><%=recruit_title%></td>
+                                            <td><%=enterprise_id%></td>
+                                            <td><%=enterprise_name%></td>
+                                            <td><%=scrap_date%></td>
+                                          
+                                            
+                                            <td>
+                                            <button type="button" class="btn btn-danger" onclick="deleteEnterpriseScrap(<%=scrap_individual_id%>)">취소</button>
+											</td>
+                                        </tr>
+                                        <%} %>
+                                        
+                                    </tbody>
+                                </table>
+                         
+                            </div>
+                        </div>
+                        </div>
+                    
                 </div>
             </div><!-- 끝 main 본문  -->
         </div>

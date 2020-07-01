@@ -27,6 +27,7 @@ import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 import com.spring.ex.services.AdminService;
@@ -282,7 +283,7 @@ public class AdminController {
 		return page; //
 	}
 
-	@RequestMapping("/individual_detail") // 개인 - 디테일?
+	@RequestMapping("/individual_detail") // 개인 - 디테일? 
 	public String individual_detail(Model m, @RequestParam("individual_id") String individual_id) {
 		String page = "/admin/individual_detail";
 
@@ -305,7 +306,10 @@ public class AdminController {
 		// 커뮤니티 게시판 작성글
 		ArrayList<BoardCommunity> community = adminService.selectCommunity(individual_id);
 		m.addAttribute("communitys", community);
-
+		
+		// 기업스크랩
+		ArrayList<Scrap_Individual> scrap_individual = adminService.selectEnterpriseScrap(individual_id);
+		m.addAttribute("scrap_individual", scrap_individual);
 		return page;
 
 	}
@@ -355,7 +359,13 @@ public class AdminController {
 		System.out.println("community_id :" + community_id);
 		return adminService.deleteCommunity(community_id);
 	} // 글삭제
-
+	
+	//기업스크랩 삭제 AJAX 
+	@RequestMapping(value = "/deleteEnterpriseScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteEnterpriseScrap(@RequestParam("scrap_individual_id") int scrap_individual_id) {
+		return adminService.deleteEnterpriseScrap(scrap_individual_id);
+	}
+	
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {
 		String page = "admin/enterprise_detail";
@@ -421,7 +431,7 @@ public class AdminController {
 	public @ResponseBody int deleteEnterpriseBoardRecruit(@RequestParam("board_recruit_id") int board_recruit_id) {
 		return adminService.deleteEnterpriseBoardRecruit(board_recruit_id);
 	}
-	//인재글 삭제 AJAX
+	//인재스크랩삭제 AJAX
 	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteScrap(@RequestParam("scrap_id") int scrap_id) {
 		return adminService.deleteScrap(scrap_id);

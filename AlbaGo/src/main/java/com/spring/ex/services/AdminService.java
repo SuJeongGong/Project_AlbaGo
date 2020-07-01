@@ -18,6 +18,7 @@ import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
  
@@ -115,6 +116,14 @@ public class AdminService {
 			}
 		}
 		return res;
+	}
+	//기업스크랩
+	public ArrayList<Scrap_Individual> selectEnterpriseScrap(String id) {
+		return adminDAO.selectEnterpriseScrap(id);
+	}
+	//기업스크랩 삭제 
+	public int deleteEnterpriseScrap(int scrap_individual_id) {
+		return adminDAO.deleteEnterpriseScrap(scrap_individual_id);
 	}
 	
 	//기업회원정보 '리스트'전체를 보여주는 테이블

@@ -14,6 +14,7 @@ import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 
@@ -54,6 +55,10 @@ public interface AdminDAO {
 	//<!--커뮤니티 게시판 삭제 AJAX -->
 	int deleteCommunity(int comment_id);    //댓글삭제  -댓글번호로 삭제  -> 1개만 지워지고
 	int deleteComments(int comment_id);    //댓글삭제  -글 번호로 삭제  -> 몇개가 있던
+	//<!--기업스크랩-->	
+	ArrayList<Scrap_Individual> selectEnterpriseScrap(String id);
+	//<!--기업스크랩삭제-->
+	int deleteEnterpriseScrap(int scrap_individual_id);
 	
 	//기업회원 검색 전체를 보여주는 테이블
 	ArrayList<Enterprise> selectEnterpriselist();

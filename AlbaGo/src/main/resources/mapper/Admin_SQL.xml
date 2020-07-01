@@ -210,7 +210,38 @@
 		DELETE FROM community WHERE community_id = #{community_id}
 	</delete>
 	
+	<!-- 기업스크랩 -->
+		<select id="selectEnterpriseScrap"  parameterType="String" resultType="Scrap_individual">
+		SELECT 
+		board_recruit.title AS board_recruit_title,
+		recruit.title as recruit_title ,
+		recruit.enterprise_id as enterprise_id,
+		scrap_individual_id,
+		enterprise.name,
+		board_recruit.memo,
+		scrap_individual.date AS date
+		
+		From scrap_individual, board_recruit ,recruit,enterprise
+			
+		<where>
+		scrap_individual.board_recruit_id =board_recruit.board_recruit_id
+		AND recruit.recruit_id = board_recruit.recruit_id
+		AND recruit.enterprise_id=enterprise.enterprise_id
+		AND individual_id =#{id}
+		AND board_recruit.delete_check =1
+		</where>
+		ORDER BY scrap_individual.date DESC
+		
+		</select>
 
+		<!-- 기업스크랩 취소  -->
+	<delete id="deleteEnterpriseScrap" parameterType="int">
+		delete from
+		Scrap_individual where scrap_individual_id = #{scrap_individual_id}
+	</delete>
+	
+	
+<!-- ###################################################################### -->
 	<!-- 기업회원 관리자 검색  -->
 	<select id = "selectEnterpriselist" resultType="Enterprise" parameterType="String">
 		SELECT *
