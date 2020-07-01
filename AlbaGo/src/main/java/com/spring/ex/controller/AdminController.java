@@ -612,5 +612,17 @@ public class AdminController {
 		map.put("result", result);
 		return productService.advertisingUpdatePaymentsResult(map);
 	}
+	
+	@RequestMapping("/payment") // 매출 리스트
+	public String payment(Model m) {
+		String page = "/admin/payment";
+
+		ArrayList<Payment> payment = adminService.selectPaymentList();
+		m.addAttribute("payment", payment);
+		System.out.println(payment);
+		return page;
+	}
+	
+	
 
 }

@@ -6,8 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
+
+$(document).ready(function(){
+	$("div[name='hide']").hide();
+})
+
+
+
 function insertComment(community) {
 	if(null==<%=request.getSession().getAttribute("id")%>){
 		alert("로그인을 해주세요");
@@ -136,9 +143,7 @@ function updateResults(result) {
                   <div class="comment-list" >
                      <div class="single-comment justify-content-between d-flex" >
                         <div class="user justify-content-between d-flex">
-                           <div class="thumb">
-                              <img src="img/comment/comment_3.png" alt="">
-                           </div>
+
                            <div class="desc" style="width: 1000px;">
                               <div class="d-flex justify-content-between">
                                  <div class="d-flex align-items-center">
@@ -148,7 +153,25 @@ function updateResults(result) {
                                     </ul>
                                  </div>    
                               </div>
-                              <p class="comment"><%=cm_contents %></p>
+                              <p class="comment" ><%=cm_contents %></p>
+                              <div id ="commentUpdate<%=i%>" name= "hide">
+                              	<textarea class="form-control" name="commentsUpdate" id ="commentUpdateContent<%=i%>" cols="30" rows="3" ><%=cm_contents %></textarea>
+                              	<button class="btn btn-info edit w-10"  onclick="update(<%=comment.getComment_id()%>,)"> 수정 저장</button> 
+                              </div>
+                              					<script type="text/javascript">
+				
+					function commentUpdate(i){	
+						$("#commentUpdate"+i).show();
+					}
+					
+					function update(comment_id) {
+						var content = 	$("#commentUpdateContent<%=i%>").val();
+						console.log("content"+content);
+						updateComment(content,comment_id)
+					}
+					
+
+					</script>
                               <div style="text-align: right;">
                               <%
                               
@@ -158,7 +181,7 @@ function updateResults(result) {
                                  System.out.println(session_id2 + "세션에서 가져온");
                                    System.out.println(comment.getIndividual_id() +"디비에서 가져온");
                                    if(session_id2.equals(comment.getIndividual_id())) {                       	   
-                                      %>  <a class="btn btn-info edit w-10"   href="<%=request.getContextPath()%>/community/comment/update?comment_id=<%=comment.getComment_id()%>">댓글수정</a> 
+                                      %>  <button class="btn btn-info edit w-10"  onclick="commentUpdate(<%=i%>)">댓글수정</button> 
                                          <a class="btn btn-outline-danger w-10"  href="<%=request.getContextPath()%>/community/comment/delete?comment_id=<%=comment.getComment_id()%>">댓글삭제</a> <%
                                    }} %>
        					        </div>		
@@ -166,7 +189,8 @@ function updateResults(result) {
                         </div>
                      </div>
                   </div>
-            
+             
+
 				
 			<%
 
@@ -197,9 +221,31 @@ function updateResults(result) {
       </div>
    </section>
    <!--================ Blog Area end =================-->
- 
+
+	<script type="text/javascript">
+	function updateComment(content,comment_id) {
+		console.log(content);
+		console.log(comment_id);
+		$.ajax({
+			url : "./comment/update",
+			method : "GET",
+			data : {
+				content : content,
+				comment_id: comment_id
+			},
+			success :function(res){
+				if(res>=1){
+					//alert("결과 저장 완료");
+					$("#res").load(window.location.href + " #res");
+				
+				}else{
+					alert("실패");
+				}
+			}
+		});
+	}
 	
-	
+	</script>
 	
 	
 	

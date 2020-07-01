@@ -1,6 +1,7 @@
 package com.spring.ex.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -191,6 +192,19 @@ public class BoardCommunityController {
 			System.out.println("DB연결 실패!");
 		}
 		return page;
+	}
+	
+	@RequestMapping(value = "comment/update", method = RequestMethod.GET)//댓글삭제
+	public @ResponseBody int commentUpdate(@RequestParam("content") String content,@RequestParam("comment_id") int comment_id) {
+		String page = "/community/content";
+		System.out.println("content"+content);
+		System.out.println("comment_id"+comment_id);
+		
+		HashMap<String , Object> map = new HashMap<String, Object>();
+		map.put("content", content);
+		map.put("comment_id", comment_id);
+	
+		return  communityService.updateComment(map);
 	}
 	
 	

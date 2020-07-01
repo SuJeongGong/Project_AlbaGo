@@ -441,5 +441,13 @@ public class AdminService {
 	public ArrayList<HashMap<String ,Object>> selectCountItem_Enterprise(String item){
 		return adminDAO.selectCountItem_Enterprise(item);
 	}
+	
+	/*##################################################*/
+	//송원준
+	
+	//매출 게시판
+		public ArrayList<Payment> selectPaymentList() {
+			return adminDAO.selectPaymentList();
+		}
 }
 

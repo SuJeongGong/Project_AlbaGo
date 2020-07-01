@@ -31,7 +31,8 @@ public interface CommunityDAO {
 	int deleteComments(int comment_id);    //댓글삭제  -글 번호로 삭제  -> 몇개가 있던
 	
 	
-	int updateComment(BoardComment content);    //수정
+	//int updateComment(BoardComment content);    //수정
 	
 	int CommentsCount(int community_id); //댓글 갯수
+	int  updateComment(HashMap<String , Object> map);
  }
