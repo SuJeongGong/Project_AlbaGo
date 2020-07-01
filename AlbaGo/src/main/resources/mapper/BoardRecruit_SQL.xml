@@ -99,6 +99,4 @@
 		and board_recruit.title like CONCAT('%',#{title},'%')
 		</where>
 	</select>
-	
-	<!--  -->
 </mapper>

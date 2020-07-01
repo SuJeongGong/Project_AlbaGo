@@ -61,4 +61,13 @@ public class BoardRecruitService {
 		return boardRecruitDAO.updateViews(board_recruit_id);
 	}
 	
+	//메인 검색
+//	public ArrayList<BoardRecruit> main_List(String category, String place, String title) {
+//		Map<String, Object> map=new HashMap<String,Object>();
+//		map.put("category",category);
+//		map.put("place",place);
+//		map.put("title",title);
+//		System.out.println(boardRecruitDAO.main_List(map)+"맵");
+//		return boardRecruitDAO.main_List(map);
+//	}
 }

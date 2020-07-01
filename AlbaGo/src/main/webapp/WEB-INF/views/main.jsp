@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="true"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -13,54 +14,53 @@
 <!-- 검색바_area -->
     <div class="catagory_area slider_bg_1">
         <div class="container">
-            <div class="row cat_search">
+            	<form action="<%=request.getContextPath()%>/main/search" name="keyword" id="keyword" method="get" class="row cat_search">
                     <div class="single_input col-lg-3 col-md-3">
-                        <select class="wide">
-                            <option data-display="지역">지역</option>
-                            <option value="1">서울</option>
-                            <option value="1">경기</option>
-                            <option value="1">인천</option>
-                            <option value="1">부산</option>
-                            <option value="1">대구</option>
-                            <option value="1">대전</option>
-                            <option value="1">경남</option>
-                            <option value="1">전남</option>
-                            <option value="1">충남</option>
-                            <option value="1">광주</option>
-                            <option value="1">울산</option>
-                            <option value="1">경북</option>
-                            <option value="1">전북</option>
-                            <option value="1">충북</option>
-                            <option value="1">강원</option>
-                            <option value="1">제주</option>
-                            <option value="1">전국</option>
+                        <select class="wide" name="local_category">
+                            <option data-display="" value="">지역</option>
+                            <option value="">전국</option>
+                            <option value="서울">서울</option>
+                            <option value="경기">경기</option>
+                            <option value="인천">인천</option>
+                            <option value="부산">부산</option>
+                            <option value="대구">대구</option>
+                            <option value="대전">대전</option>
+                            <option value="경남">경남</option>
+                            <option value="전남">전남</option>
+                            <option value="충남">충남</option>
+                            <option value="광주">광주</option>
+                            <option value="울산">울산</option>
+                            <option value="경북">경북</option>
+                            <option value="전북">전북</option>
+                            <option value="충북">충북</option>
+                            <option value="강원">강원</option>
+                            <option value="제주">제주</option>
                         </select>
                     </div>
                     <div class="single_input col-lg-3 col-md-3">
-                        <select class="wide">
-                            <option data-display="카테고리">카테고리</option>
-                            <option value="1">외식/음료</option>
-                            <option value="2">유통/판매</option>
-                            <option value="4">문화/여가/생활</option>
-                            <option value="1">서비스</option>
-                            <option value="2">사무직</option>
-                            <option value="4">고객상담/리서치</option>
-                            <option value="1">생산/건설/노무</option>
-                            <option value="2">교육/강사</option>
-                            <option value="4">디자인</option>
-                            <option value="1">미디어</option>
-                            <option value="2">운전/배달</option>
-                            <option value="4">병원/간호/연구</option>
-                            <option value="1">IT/컴퓨터</option>
+                        <select class="wide" name="enterprise_category">
+                            <option value="">전체</option>
+                            <option value="외식/음료">외식/음료</option>
+                            <option value="유통/판매">유통/판매</option>
+                            <option value="문화/여가/생활">문화/여가/생활</option>
+                            <option value="서비스">서비스</option>
+                            <option value="사무직">사무직</option>
+                            <option value="고객상담/리서치">고객상담/리서치</option>
+                            <option value="생산/건설/노무">생산/건설/노무</option>
+                            <option value="교육/강사">교육/강사</option>
+                            <option value="디자인">디자인</option>
+                            <option value="운전/배달">운전/배달</option>
+                            <option value="병원/간호/연구">병원/간호/연구</option>
+                            <option value="IT/컴퓨터">IT/컴퓨터</option>
                         </select>
                     </div>
                     <div class="single_input col-lg-3 col-md-3">
-                        <input type="text" placeholder="검색할 단어">
+                        <input type="text" placeholder="검색할 단어" name="title">
                     </div>
                     <div class="job_btn col-lg-3 col-md-3">
-                        <a href="#" class="boxed-btn3">검색</a>
-                    </div>
-            </div>
+						<button type="submit" class="boxed-btn3">검색</button>
+					</div>
+            	</form>
 
         </div>
     </div>

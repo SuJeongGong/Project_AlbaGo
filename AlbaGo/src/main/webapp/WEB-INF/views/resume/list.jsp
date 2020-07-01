@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="single_field">
-                                            <select class="wide" id="individual_category" name="individual_category">
+                                            <select class="wide" id="enterprise_category" name="enterprise_category">
                                                 <option data-display="" value="">카테고리</option>
                                                 <option value="">전체</option>
                                                 <option value="외식/음료">외식/음료</option>

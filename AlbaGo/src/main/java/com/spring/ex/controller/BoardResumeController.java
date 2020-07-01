@@ -43,11 +43,11 @@ public class BoardResumeController {
 	}
 	
 	@RequestMapping("/list/total") //검색
-	public String list_total(Model m, @RequestParam("individual_category") String individual_category,
+	public String list_total(Model m, @RequestParam("enterprise_category") String enterprise_category,
 			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
 			@RequestParam("education") String education, @RequestParam("term") String term, @RequestParam("title") String title) {
 		String page = "/resume/list";
-		ArrayList<BoardResume> boardresumes = boardResumeService.total_List(individual_category, local_category, gender, education, term, title);
+		ArrayList<BoardResume> boardresumes = boardResumeService.total_List(enterprise_category, local_category, gender, education, term, title);
 		m.addAttribute("resumes", boardresumes);
 		System.out.println(boardresumes +"boardrecruits");
 		return page;

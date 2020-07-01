@@ -1,5 +1,8 @@
 package com.spring.ex.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +49,30 @@ public class BoardRecruitController {
 			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
 			@RequestParam("education") String education, @RequestParam("term") String term, @RequestParam("title") String title) {
 		String page = "/recruit/list";
+		
+		try {
+			local_category = URLDecoder.decode(local_category, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			enterprise_category = URLDecoder.decode(enterprise_category, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			title = URLDecoder.decode(title, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("local_category"+local_category);
 		ArrayList<BoardRecruit> boardrecruits = boardRecruitService.total_List(enterprise_category, local_category, gender, education, term, title);
+		System.out.println(boardrecruits +"컨트롤러");
+		
 		m.addAttribute("recruits", boardrecruits);
 		System.out.println(boardrecruits +"boardrecruits");
 		return page;
