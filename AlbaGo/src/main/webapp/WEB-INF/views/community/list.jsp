@@ -18,6 +18,7 @@
 	<!--================Blog Area =================-->
 	<section class="blog_area section-padding">
 		<div class="container">
+		<h1>커뮤니티</h1>
 			<div class="row">
 				<div class="col-lg-12 mb-5 mb-lg-0">
 					<div class="blog_left_sidebar">
@@ -38,14 +39,10 @@
 						<article class="blog_item">
 							<div class="blog_details">
 								<div class="row">
-									<p class="col-lg-6"><%=id%></p>
-									<div class="col-lg-6">
-										<i class="fa fa-clock-o "></i><%=date%></div>
+									<div class="col-lg-5"><i class="fa fa-clock-o "></i><%=date.split(" ")[0]%></div>
+									<p class="col-lg-4"><%=id%></p>
+										<p class ="col-lg-2">조회수</p><p class ="col-lg-1"><%=views%></p>
 								</div>
-								<div class = "row">
-								<p class ="col-lg-6"></p>&emsp;<p class ="col-lg-1.5">조회수</p><p class ="col-lg-2"><%=views%></p>
-								</div>
-								<br />
 								<a class="d-inline-block" href="<%=request.getContextPath()%>/community/content?community_id=<%=c_id%>">
 									<h2><%=title%></h2>
 								</a>
