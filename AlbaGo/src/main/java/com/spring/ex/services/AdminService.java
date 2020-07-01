@@ -159,7 +159,11 @@ public class AdminService {
 	public int deleteEnterpriseRecruit(int recruit_id) {
 		return adminDAO.deleteEnterpriseRecruit(recruit_id);
 	}
-	
+	//공고글 삭제
+	public int deleteEnterpriseBoardRecruit(int board_recruit_id) {
+		System.out.println("공고글삭제"+board_recruit_id);
+		return adminDAO.deleteEnterpriseBoardRecruit(board_recruit_id);
+	}
 	//공고글 관리
 	public ArrayList<BoardRecruit> selectRecruitWrite(String id) {
 		return adminDAO.selectRecruitWrite(id);
@@ -167,6 +171,10 @@ public class AdminService {
 	//인재스크랩
 	public ArrayList<Scrap_enterprise> selectScrap(String id) {
 		return adminDAO.selectScrap(id);
+	}
+	//인재스크랩 삭제
+	public int deleteScrap(int scrap_id) {
+		return adminDAO.deleteScrap(scrap_id);
 	}
 	//상품결제내역
 	public ArrayList<Payment> selectPayment(String id) {

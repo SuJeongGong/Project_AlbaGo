@@ -258,14 +258,36 @@
               
                         <div class="card col-xl-12 shadow mb-4">
                             <div class="card-header py-3"> 
-                                <h6 class="m-0 font-weight-bold text-primary">공고글 관리
+                                <h6 class="m-0 font-weight-bold text-primary">공고게시판 작성글
                                 </h6>
                             </div>
                             <div class="card-body">
+ 						<script>
+						function deleteEnterpriseBoardRecruit(board_recruit_id) {
+							console.log(board_recruit_id);
+							$.ajax({
+								url : "./deleteEnterpriseBoardRecruit",
+								method : "GET",
+								data : {
+									
+									board_recruit_id : board_recruit_id
+								
+								},
+								success :function(res3){
+									if(res3>=1){
+										alert("삭제완료");
 
+										 $("#res3").load(window.location.href + " #res3");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
    							  <!-- 공고글 form 시작 -->
-                            <form id="recruit" action="" >
-                                <table class="table  table-bordered ">
+                
+                                <table id="res3" class="table  table-bordered ">
 
                                     <thead>
                                         <tr>
@@ -285,18 +307,19 @@
 					                     String recruit_title=list.getRecruit_title();
 					                     String memo=list.getMemo();
 					                     String board_recruit_date=list.getDate().split(" ")[0];
+					                     int board_recruit_id = list.getBoard_recruit_id();
 					                  %>  
                                         <tr>
                                             <td><%=board_recruit_title%></td>
                                             <td><%=recruit_title%></td>
                                             <td><%=memo%></td>
                                             <td><%=board_recruit_date%></td>
-                                            <td><input type="submit" value="삭제" class="btn py-1 px-1 btn-danger"></td>
-                                        </tr>
+                                          <td> <button type="button" class="btn btn-outline-danger" onclick="deleteEnterpriseBoardRecruit(<%=board_recruit_id%>)">삭제</button>
+                                               </tr>
                                         <%} %>
                                     </tbody>
                                 </table>
-                               </form>
+                          
                             </div>
                         </div>
                     </div>
@@ -308,19 +331,41 @@
                                 </h6>
                             </div>
                             <div class="card-body">
+					<script>
+						function deleteScrap(scrap_id) {
+							console.log(scrap_id);
+							$.ajax({
+								url : "./deleteScrap",
+								method : "GET",
+								data : {
+									
+									scrap_id : scrap_id
+								
+								},
+								success :function(res4){
+									if(res4>=1){
+										alert("삭제완료");
 
+										 $("#res4").load(window.location.href + " #res4");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
      						<!-- 인재스크랩 form 시작 -->
-                            <form id="scrap" action="" >
+ 
                          
-                                <table class="table table-striped">
+                                <table id="res4" class="table table-striped">
                                     <thead>
                                         <tr>
+                                            <th>인재제목</th>
                                         	<th>인재아이디</th>
                                         	<th>인재이름</th>
-                                            <th>인재제목</th>
                                             <th>이력서제목</th>
-                                            <th>메모</th>
                                             <th>스크랩한 날짜</th>
+                                            <th>스크랩취소</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -333,24 +378,27 @@
 					                     String individual_name=list.getName();			//인재이름
 					                     String board_resume_title=list.getBoard_resume_title(); //인재제목
 					                     String resume_title=list.getResume_title();	//이력서제목
-					                     String memo=list.getMemo();					//메모
 					                     String scrap_date=list.getDate().split(" ")[0];//스크랩한 날짜
+					                     int scrap_id=list.getScrap_enterprise_id();
 					                  %>  
                                         <tr>
+                                            <td><%=board_resume_title%></td>
                                             <td>
                                               	  <%=individual_id%>
                                             </td>
                                             <td><%=individual_name%></td>
-                                            <td><%=board_resume_title%></td>
                                             <td><%=resume_title%></td>
-                                            <td><%=memo%></td>
+                                           
                                             <td><%=scrap_date%></td>
+                                            <td>
+                                            <button type="button" class="btn btn-danger" onclick="deleteScrap(<%=scrap_id%>)">취소</button>
+											</td>
                                         </tr>
                                         <%} %>
                                         
                                     </tbody>
                                 </table>
-                                </form>
+                         
                             </div>
                         </div>
                         </div>
@@ -384,7 +432,7 @@
 					                	  Payment list = payment.get(i);
 					                	
 					                	 String product_name=list.getName();
-					                	 String payment_date=list.getDate();
+					                	 String payment_date=list.getDate().split(" ")[0];
 					                	 String term=list.getTerm();
 					                	 int price=list.getProduct_price();
 					                	 

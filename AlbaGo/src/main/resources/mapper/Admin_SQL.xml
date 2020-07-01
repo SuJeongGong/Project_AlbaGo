@@ -300,15 +300,15 @@
    recruit_id=#{recruit_id}
    </where>
    </update>
-
+   
 	
-	<!-- 공고글관리 -->
+	<!-- 공고게시판 작성글 -->
 	<select id="selectRecruitWrite"  parameterType="String" resultType="BoardRecruit">
 		SELECT 
 		board_recruit.title,
 		recruit.title AS recruit_title,
 		board_recruit.memo,
-		board_recruit.date
+		board_recruit.date,board_recruit_id
 		
 
 		FROM board_recruit ,recruit,enterprise
@@ -321,6 +321,18 @@
 		</where>
 	</select>
 	
+
+   <!-- 공고글 관리 삭제 ajax -->
+   	<update id="deleteEnterpriseBoardRecruit" parameterType="int">
+	update board_recruit
+	set delete_check = 0
+	<where>
+	board_recruit_id = #{board_recruit_id}
+	</where>
+	</update>
+
+
+	
 	<!-- 인재스크랩 -->
 		<select id="selectScrap"  parameterType="String" resultType="Scrap_enterprise">
 	
@@ -328,6 +340,7 @@
 		board_resume.title AS board_resume_title,
 		resume.title as resume_title ,
 		resume.individual_id as individual_id,
+		scrap_enterprise_id,
 		individual.name,
 		board_resume.memo,
 		scrap_enterprise.date AS date
@@ -340,10 +353,15 @@
 		AND resume.individual_id=individual.individual_id
 		AND enterprise_id =#{id}
 		AND board_resume.delete_check =1
-			
 		</where>
+		ORDER BY scrap_enterprise.date DESC
+		
 		</select>
-	
+	<!-- 인재스크랩 취소  -->
+	<delete id="deleteScrap" parameterType="int">
+		delete from
+		Scrap_enterprise where scrap_enterprise_id = #{scrap_id}
+	</delete>
 	<!-- 상품 결제내역 -->
 		<select id="selectPayment"  parameterType="String" resultType="Payment">
 	

@@ -75,10 +75,15 @@ public interface AdminDAO {
 	ArrayList<Recruit> selectRecruit(String id);
 	//<!--공고삭제-->
 	int deleteEnterpriseRecruit(int recruit_id);
+	//<!--공고글 삭제-->
+	int deleteEnterpriseBoardRecruit(int board_recruit_id);
+
 	//<!-- 공고글관리 -->
 	ArrayList<BoardRecruit> selectRecruitWrite(String id);
 	//<!--인재스크랩-->	
 	ArrayList<Scrap_enterprise> selectScrap(String id);
+	//<!--인재스크랩 삭제-->
+	int deleteScrap(int scrap_id);
 	//<!--상품결제내역-->
 	ArrayList<Payment> selectPayment(String id);
 	

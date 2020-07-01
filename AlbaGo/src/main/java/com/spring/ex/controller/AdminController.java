@@ -404,6 +404,16 @@ public class AdminController {
 	public @ResponseBody int deleteEnterpriseRecruit(@RequestParam("recruit_id") int recruit_id) {
 		return adminService.deleteEnterpriseRecruit(recruit_id);
 	}
+	//공고글 삭제 AJAX
+	@RequestMapping(value = "/deleteEnterpriseBoardRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteEnterpriseBoardRecruit(@RequestParam("board_recruit_id") int board_recruit_id) {
+		return adminService.deleteEnterpriseBoardRecruit(board_recruit_id);
+	}
+	//인재글 삭제 AJAX
+	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteScrap(@RequestParam("scrap_id") int scrap_id) {
+		return adminService.deleteScrap(scrap_id);
+	}
 	
 	
 	//--------------------------------
