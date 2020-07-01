@@ -39,7 +39,30 @@
             <!-- main -->
             <div id="content">
                 <!-- Topbar -->
+	<script>
+						function changeEnterprisestate(enterprise_id,result) {
+							console.log(enterprise_id);
+							$.ajax({
+								url : "./changeEnterprisestate",
+								method : "GET",
+								data : {
+									
+									enterprise_id : enterprise_id,
+									result : result
+								
+								},
+								success :function(res1){
+									if(res1>=1){
+										alert("계정상태바꾸기");
 
+										 $("#res1").load(window.location.href + " #res1");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
                 <%@ include file="../serve/manager_topbar.jsp" %>
                 <%
              	  	 Enterprise enterprise = (Enterprise)request.getAttribute("enterprise");
@@ -76,10 +99,10 @@
 
 						     <!-- 기업 회원정보 form 시작 -->
                            	<form action="<%=request.getContextPath() %>/admin/enterprise_detail/update" name="enterprise"  class="col-xl-12" >
-                                  <table class="table table-bordered ">
+                                  <table id="res1" class="table table-bordered ">
                                     <tr>
                                         <th>기업아이디</th>
-                                        <td><input type="text" class="form-control" name="enterprise_id" value="<%=enterprise_id%>"></td>
+                                        <td><input type="hidden" class="form-control" name="enterprise_id" value="<%=enterprise_id%>"> <%=enterprise_id%></td>
                                     </tr>
                                     <tr>
                                         <th>비밀번호</th>
@@ -115,7 +138,7 @@
                                     </tr>
                                      <tr>
                                         <th>가입날짜</th>
-                                        <td><input type="text" class="form-control" name="date" value="<%=date%>">
+                                        <td><input type="hidden" class="form-control" name="date" value="<%=date%>"><%=date%>
                                         </td>
                                     </tr>
                                       <tr>
@@ -133,22 +156,27 @@
                                         <td><input type="text" class="form-control" name="board_recruit_count" value="<%=board_recruit_count%>">
                                         </td>
                                     </tr>
-                                     <tr>
-                                        <th>계정상태</th>
-                                        <td><input type="text" class="form-control" name="state" value="<%=state%>">
-                                        </td>
-                                    </tr>
-                                    
+                                    	<tr>
+                              <th>계정상태</th>
+                              <%if(state==1){ %>
+                              <td><input type ="hidden" name ="state" id ="state" value="<%=state%>">정상</td>
+                              <%} 
+                              else{
+                     %>
+                              <td><input type ="hidden" name ="state" id ="state" value="<%=state%>">정지</td>
+                     <%
+                        }
+                     %>
+                           </tr>
     
                                     
                                     <tr>
                                         <th>관리자</th>
                                         <td>
                                           	<button class="btn btn-info edit" type="submit" aria-label="ASettings"> 정보 수정</button> 
-										   <a href="#"
-                                                class="btn btn-danger btn-xs"><span
-                                                    class="glyphicon glyphicon-remove"></span>계정 삭제</a>
-                                        </td>
+										   <button type="button" class="btn btn-danger" onclick="changeEnterprisestate('<%=enterprise_id%>',0)">계정정지</button>
+										   <button type="button" class="btn btn-outline-danger" onclick="changeEnterprisestate('<%=enterprise_id%>',1)">계정정지해제</button>
+                                       </td>
                                     </tr>
                                 </table>
                                 </form>

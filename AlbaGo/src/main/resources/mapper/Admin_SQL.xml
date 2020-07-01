@@ -80,7 +80,7 @@
          individual_id = #{individual_id}
       </where>
    </update>
-   <!-- 계정정지 -->
+   <!-- 개인계정정지 -->
    <update id="changestate" parameterType="String">
     update individual 
       set state=0
@@ -267,6 +267,15 @@
          up_count = #{up_count},
          resume_count = #{resume_count},
          board_recruit_count = #{board_recruit_count}
+      <where>
+         enterprise_id = #{enterprise_id}
+      </where>
+   </update>
+   
+   <!-- 기업 계정정지 -->
+   <update id="changeEnterprisestate" parameterType="hashmap">
+    update enterprise 
+      set state=#{result}
       <where>
          enterprise_id = #{enterprise_id}
       </where>

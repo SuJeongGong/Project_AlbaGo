@@ -50,7 +50,7 @@ public class AdminService {
 	public Individual selectIndividualAccount(String id){
 		return adminDAO.selectIndividualAccount(id);	
 	}
-	// 
+	//개인 계정정지
 	public int changestate(String individual_id) {
 		return adminDAO.changestate(individual_id);
 	}
@@ -141,6 +141,16 @@ public class AdminService {
 		System.out.println(enterprise);
 		return adminDAO.updateEnterpriseAccount(enterprise);	
 	}
+	//기업 계정정지
+	public int changeEnterprisestate(String enterprise_id,int result) {
+		
+		HashMap<String, Object> map= new HashMap<String, Object>();
+		
+		map.put("enterprise_id", enterprise_id);
+		map.put("result", result);
+		return adminDAO.changeEnterprisestate(map);
+	}
+	
 	//공고글 관리
 	public ArrayList<BoardRecruit> selectRecruitWrite(String id) {
 		return adminDAO.selectRecruitWrite(id);

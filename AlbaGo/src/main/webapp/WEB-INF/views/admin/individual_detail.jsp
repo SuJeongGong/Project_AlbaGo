@@ -39,7 +39,7 @@
             <!-- 계정정지 -->
 						<script>
 						function changestate(individual_id) {
-							console.log(individual_id);//a,2
+							console.log(individual_id);
 							$.ajax({
 								url : "./changestate",
 								method : "GET",

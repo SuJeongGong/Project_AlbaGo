@@ -31,7 +31,7 @@ public interface AdminDAO {
 	//<!-- 개인관리자 링크타고 -->
 	//<!-- 개인 회원 정보 -->
 	Individual selectIndividualAccount(String id);
-	//<!--계정정지-->
+	//<!--개인 계정정지-->
 	int changestate(String individual_id);
 	//<!-- 개인 회원 정보 수정-->
 	int updateIndividualAccount(Individual individual);
@@ -68,7 +68,9 @@ public interface AdminDAO {
 	Enterprise selectEnterpriseAccount(String id);
 	//<!-- 기업 회원 정보 수정-->
 	int updateEnterpriseAccount(Enterprise enterprise);
-
+	//<!--기업 계정상태바꾸기-->
+	int changeEnterprisestate(HashMap<String, Object> map);
+	
 	//<!-- 공고글관리 -->
 	ArrayList<BoardRecruit> selectRecruitWrite(String id);
 	//<!--인재스크랩-->	
