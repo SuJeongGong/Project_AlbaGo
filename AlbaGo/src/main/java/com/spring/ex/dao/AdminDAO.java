@@ -11,6 +11,7 @@ import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
+import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
@@ -70,7 +71,10 @@ public interface AdminDAO {
 	int updateEnterpriseAccount(Enterprise enterprise);
 	//<!--기업 계정상태바꾸기-->
 	int changeEnterprisestate(HashMap<String, Object> map);
-	
+	//<!--공고관리-->
+	ArrayList<Recruit> selectRecruit(String id);
+	//<!--공고삭제-->
+	int deleteEnterpriseRecruit(int recruit_id);
 	//<!-- 공고글관리 -->
 	ArrayList<BoardRecruit> selectRecruitWrite(String id);
 	//<!--인재스크랩-->	

@@ -15,6 +15,7 @@ import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
+import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
@@ -149,6 +150,14 @@ public class AdminService {
 		map.put("enterprise_id", enterprise_id);
 		map.put("result", result);
 		return adminDAO.changeEnterprisestate(map);
+	}
+	//공고 관리
+	public ArrayList<Recruit> selectRecruit(String id) {
+		return adminDAO.selectRecruit(id);
+	}
+	//공고 삭제 
+	public int deleteEnterpriseRecruit(int recruit_id) {
+		return adminDAO.deleteEnterpriseRecruit(recruit_id);
 	}
 	
 	//공고글 관리

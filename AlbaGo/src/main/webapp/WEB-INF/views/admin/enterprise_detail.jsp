@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Recruit"%>
 <%@page import="com.spring.ex.dto.Payment"%>
 <%@page import="com.spring.ex.dto.Scrap_enterprise"%>
 <%@page import="java.util.ArrayList"%>
@@ -39,7 +40,7 @@
             <!-- main -->
             <div id="content">
                 <!-- Topbar -->
-	<script>
+					<script>
 						function changeEnterprisestate(enterprise_id,result) {
 							console.log(enterprise_id);
 							$.ajax({
@@ -182,7 +183,78 @@
                                 </form>
                             </div>
                         </div>
-                        
+                        </div>
+                     
+                        <div class="card col-xl-12 shadow mb-4">
+                            <div class="card-header py-3"> 
+                                <h6 class="m-0 font-weight-bold text-primary">공고 관리
+                                </h6>
+                            </div>
+                            <div class="card-body">
+
+   							  <!-- 공고 form 시작 -->
+                     <script>
+						function deleteEnterpriseRecruit(recruit_id) {
+							console.log(recruit_id);
+							$.ajax({
+								url : "./deleteEnterpriseRecruit",
+								method : "GET",
+								data : {
+									
+									recruit_id : recruit_id
+								
+								},
+								success :function(res2){
+									if(res2>=1){
+										alert("삭제완료");
+
+										 $("#res2").load(window.location.href + " #res2");
+									}else{
+										alert("실패")
+									}
+								}
+							});
+						}
+						</script>
+                                <table id="res2" class="table  table-bordered ">
+
+                                    <thead>
+                                        <tr>
+                                            <th>공고 제목</th>           
+                                            <th>장소</th>
+                                            <th>상세보기</th>
+                                            <th>작성날짜</th>
+                                            <th>관리</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <%
+									ArrayList<Recruit> recruit = (ArrayList) request.getAttribute("recruit");
+					                  for (int i = 0; i < recruit.size(); i++) {
+					                	  Recruit list = recruit.get(i);
+					                	  String recruit_title = list.getTitle();
+					                	  String recruit_place = list.getPlace();
+					                	  String recruit_date = list.getDate().split(" ")[0];
+					                	  int recruit_id = list.getRecruit_id();
+					                	  %>  
+                                        <tr>
+                                            <td><%=recruit_title %></td>
+                                            <td><%=recruit_place %></td>
+                                    	<td>  
+                                    	   <a  href="<%=request.getContextPath()%>/enterprise/recruit/content?recruit_id=<%=recruit_id%>" class="btn btn-secondary btn-xs"> <span class="glyphicon glyphicon-edit"></span> 상세보기</a> 
+                                    
+                                            <td><%=recruit_date %></td>
+                                            <td> <button type="button" class="btn btn-outline-danger" onclick="deleteEnterpriseRecruit(<%=recruit_id%>)">삭제</button>
+                                      
+                                        </tr>
+                                        <%} %>
+                                    </tbody>
+                                </table>
+                    
+                            </div>
+                        </div>
+                    
+          
               
                         <div class="card col-xl-12 shadow mb-4">
                             <div class="card-header py-3"> 
@@ -281,7 +353,7 @@
                                 </form>
                             </div>
                         </div>
-                        
+                        </div>
                         <div class="card col-xl-12 shadow mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">상품 결제내역

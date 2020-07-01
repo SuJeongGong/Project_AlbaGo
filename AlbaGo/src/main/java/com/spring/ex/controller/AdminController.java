@@ -25,6 +25,7 @@ import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
+import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
@@ -352,7 +353,11 @@ public class AdminController {
 		// 기업 회원정보 상세보기
 		Enterprise enterprise = adminService.selectEnterpriseAccount(enterprise_id);
 		m.addAttribute("enterprise", enterprise);
-
+		
+		//공고관리
+		ArrayList<Recruit> recruit = adminService.selectRecruit(enterprise_id);
+		m.addAttribute("recruit", recruit);
+		
 		// 공고글 관리
 		ArrayList<BoardRecruit> boardrecruit = adminService.selectRecruitWrite(enterprise_id);
 		m.addAttribute("boardrecruit", boardrecruit);
@@ -375,15 +380,16 @@ public class AdminController {
 
 		System.out.println("컨트롤러 if전" + enterprise);
 		if (1 <= adminService.updateEnterpriseAccount(enterprise)) {
-
+ 
 			System.out.println(enterprise);
 			System.out.println("수정");
 			page = "redirect:/admin/enterprise_list";
 
 		}
-
+ 
 		return page;
 	}
+	//관리자
 	//기업 계정정지 AJAX
 	@RequestMapping(value = "/changeEnterprisestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int changeEnterprisestate(@RequestParam("enterprise_id") String enterprise_id,@RequestParam("result") int result) {
@@ -393,7 +399,16 @@ public class AdminController {
 	public String manager_payment() {
 		return "admin/payment";
 	}
-
+	// 공고삭제 AJAX
+	@RequestMapping(value = "/deleteEnterpriseRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteEnterpriseRecruit(@RequestParam("recruit_id") int recruit_id) {
+		return adminService.deleteEnterpriseRecruit(recruit_id);
+	}
+	
+	
+	//--------------------------------
+	
+	
 	@RequestMapping("/product/product") // 상품보기
 	public String list(Model m, HttpServletRequest request) {
 

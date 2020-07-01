@@ -280,6 +280,27 @@
          enterprise_id = #{enterprise_id}
       </where>
    </update>
+   
+	<!-- 공고관리 -->
+   <select id="selectRecruit"  parameterType="String" resultType="Recruit">
+		SELECT title,date,place,recruit_id
+		FROM Recruit
+		<where>
+
+		enterprise_id = #{id}
+		AND recruit.delete_check =1
+		</where>
+	</select>
+	
+	<!-- 공고관리삭제 ajax -->
+   <update id="deleteEnterpriseRecruit" parameterType="int">
+   update recruit
+ 	set delete_check = 0
+   <where> 
+   recruit_id=#{recruit_id}
+   </where>
+   </update>
+
 	
 	<!-- 공고글관리 -->
 	<select id="selectRecruitWrite"  parameterType="String" resultType="BoardRecruit">
