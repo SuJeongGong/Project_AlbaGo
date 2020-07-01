@@ -136,4 +136,12 @@ public interface AdminDAO {
 		ArrayList<BoardCommunity> week_search_C(String week);
 		ArrayList<BoardCommunity> month_search_C(String month);
 	
+		
+		
+		
+		
+		
+		
+		//공수정 - 관리자 메인 화면
+		ArrayList<HashMap<String ,Object>> selectCountItem_Enterprise(String item);
 }

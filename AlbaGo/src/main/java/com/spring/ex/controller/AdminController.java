@@ -47,6 +47,16 @@ public class AdminController {
 
 		ArrayList<HashMap<String, Object>> items = adminService.selectItems();
 		m.addAttribute("items", items);
+		
+		ArrayList<HashMap<String, Object>> upCount =adminService.selectCountItem_Enterprise("up");
+		m.addAttribute("upCount", upCount);
+		ArrayList<HashMap<String, Object>> resumeCount =adminService.selectCountItem_Enterprise("resume");
+		m.addAttribute("resumeCount", resumeCount);
+		ArrayList<HashMap<String, Object>> adCount =adminService.selectCountItem_Enterprise("ad");
+		m.addAttribute("adCount", adCount);
+		ArrayList<HashMap<String, Object>> boardCount =adminService.selectCountItem_Enterprise("board");
+		m.addAttribute("boardCount", boardCount);
+		
 
 		// 오늘 가입한 개인회원수
 		int todayindividual = adminService.select_TI_join();
@@ -115,7 +125,7 @@ public class AdminController {
 		return page;
 	}
 
-	@RequestMapping("/recruit/total") // 공고글 검색
+	@RequestMapping("/recruit/total") // 총 공고글 검색
 	public String boardrecruit_t(Model m, @RequestParam("enterprise_category") String enterprise_category,
 			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
 			@RequestParam("education") String education) {

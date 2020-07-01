@@ -1,5 +1,8 @@
 package com.spring.ex.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.ex.dao.BoardRecruitDAO;
 import com.spring.ex.dto.BoardRecruit;
@@ -38,6 +42,40 @@ public class BoardRecruitController {
 		m.addAttribute("recruits", recruits);
 		
 		return "/recruit/list";
+	}
+	
+	@RequestMapping("/list/total")
+	public String list_total(Model m, @RequestParam("enterprise_category") String enterprise_category,
+			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
+			@RequestParam("education") String education, @RequestParam("term") String term, @RequestParam("title") String title) {
+		String page = "/recruit/list";
+		
+		try {
+			local_category = URLDecoder.decode(local_category, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			enterprise_category = URLDecoder.decode(enterprise_category, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			title = URLDecoder.decode(title, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("local_category"+local_category);
+		ArrayList<BoardRecruit> boardrecruits = boardRecruitService.total_List(enterprise_category, local_category, gender, education, term, title);
+		System.out.println(boardrecruits +"컨트롤러");
+		
+		m.addAttribute("recruits", boardrecruits);
+		System.out.println(boardrecruits +"boardrecruits");
+		return page;
 	}
 	
 	@RequestMapping("/write/save")//저장하기
@@ -104,6 +142,7 @@ public class BoardRecruitController {
 		
 		System.out.println(board_content);
 		
+		int counts = boardRecruitService.updateViews(board_recruit_id);
 		
 		if(request.getSession().getAttribute("id")!=null) {
 			ArrayList<Resume> resume = boardRecruitService.selectResumes(request.getSession().getAttribute("id").toString());
@@ -113,6 +152,12 @@ public class BoardRecruitController {
 			}
 			System.out.println("if문 밖ㅇ에 :"+resume);
 		}
+		
+		if(1<=counts) {
+			System.out.println("조회수 증가 성공");
+			m.addAttribute("counts", counts);
+		}
+		
 		m.addAttribute("board_content", board_content);//여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
 		return "/recruit/content";
 	}

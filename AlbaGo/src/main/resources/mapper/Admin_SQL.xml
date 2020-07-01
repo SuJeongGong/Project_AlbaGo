@@ -2,6 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.ex.dao.AdminDAO">
+<!-- 공수정 / 메인화면 -->
+
+<!-- 아이템별 기업마다 결제한 횟수-->
+<select id="selectCountItem_Enterprise" parameterType= "string" resultType= "hashmap">
+	SELECT COUNT(*) AS count, payment.enterprise_id FROM payment,product 
+	<where> product.product_id = payment.product_id
+	AND  product.`type` = #{item}
+	</where>
+	group by payment.enterprise_id 
+	order BY count DESC
+	LIMIT 5
+</select>
+
+
+
+
+
+
+
+
+
+
+
 	<!-- 이예슬 -->
 	<!-- 개인 -->
 	<select id="selectRecentSales" resultType="HashMap">

@@ -8,6 +8,7 @@
 		from recruit, board_recruit
 		where recruit.recruit_id = board_recruit.recruit_id
 		AND board_recruit.delete_check = 1
+		ORDER BY board_recruit.date DESC
 	</select>
 	
 	<!-- 게시글작성 -->
@@ -47,6 +48,15 @@
 		AND board_recruit.delete_check = 1
 	</select>
 	
+	<!-- 조회수 -->
+	<update id="updateViews" parameterType="int">
+	update board_recruit
+	set views = views +1 
+	<where>
+		board_recruit_id = #{board_recruit_id}
+	</where>
+	</update>
+	
 	<!-- 글삭제 -->
 	<delete id="deleteBoard" parameterType="int">
 		UPDATE board_recruit
@@ -73,5 +83,20 @@
 			and delete_check =1
 		</where>
 	
+	</select>
+	
+	<!-- 리스트 사이드바 -->
+	<select id = "total_List" resultType="BoardRecruit" parameterType="hashmap">
+		SELECT board_recruit.board_recruit_id, board_recruit.title, board_recruit.date, board_recruit.views, recruit.place
+		FROM board_recruit, recruit
+		<where> board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		and recruit.category like CONCAT('%',#{category},'%')
+		and recruit.place like CONCAT('%',#{place},'%')
+		and recruit.gender like CONCAT('%',#{gender},'%')
+		and recruit.education like CONCAT('%',#{education},'%')
+		and recruit.term like CONCAT('%',#{term},'%')
+		and board_recruit.title like CONCAT('%',#{title},'%')
+		</where>
 	</select>
 </mapper>
