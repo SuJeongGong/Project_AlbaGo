@@ -350,11 +350,6 @@ System.out.println("volunteer_id"+volunteer_id);
 		return page;
 	}
 
-	@RequestMapping("/payment") // 결제관리
-	public String manager_payment() {
-		return "admin/payment";
-	}
-
 	@RequestMapping("/product/product") // 상품보기
 	public String list(Model m, HttpServletRequest request) {
 		
@@ -530,5 +525,17 @@ System.out.println("volunteer_id"+volunteer_id);
 		map.put("result", result);
 		return productService.advertisingUpdatePaymentsResult(map);
 	}
+	
+	@RequestMapping("/payment") // 매출 리스트
+	public String payment(Model m) {
+		String page = "/admin/payment";
+
+		ArrayList<Payment> payment = adminService.selectPaymentList();
+		m.addAttribute("payment", payment);
+		System.out.println(payment);
+		return page;
+	}
+	
+	
 
 }

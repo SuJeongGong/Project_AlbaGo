@@ -634,4 +634,16 @@
 		FROM community
 		WHERE date > (NOW() - INTERVAL 1 MONTH)
 	</select>
+	
+	<!-- 매출 게시판-->
+	<select id= "selectPaymentList"  parameterType="String" resultType="Payment">
+	SELECT product.price as product_price,
+	payment.enterprise_id as enterprise_id,
+	payment.date as date,
+	product.name as product_name
+	
+	 FROM payment, product where payment.product_id = product.product_id
+	 ORDER BY date DESC
+	</select>
+	
 </mapper>

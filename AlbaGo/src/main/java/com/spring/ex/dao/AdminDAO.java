@@ -135,5 +135,9 @@ public interface AdminDAO {
 		ArrayList<BoardCommunity> today_search_C(String today);
 		ArrayList<BoardCommunity> week_search_C(String week);
 		ArrayList<BoardCommunity> month_search_C(String month);
+		
+	/** 매출 관리 */
+		//---송원준---
+		ArrayList<Payment> selectPaymentList(); //매출 리스트
 	
 }

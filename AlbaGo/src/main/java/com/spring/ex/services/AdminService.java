@@ -375,5 +375,13 @@ public class AdminService {
 		}
 		return null;
 	}
+	
+	/*##################################################*/
+	//송원준
+	
+	//매출 게시판
+		public ArrayList<Payment> selectPaymentList() {
+			return adminDAO.selectPaymentList();
+		}
 }
 
