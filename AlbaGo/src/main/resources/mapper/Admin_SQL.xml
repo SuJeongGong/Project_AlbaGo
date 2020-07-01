@@ -253,6 +253,24 @@
 	enterprise_id=#{id}
 	</where>
 	</select>
+	<!-- 기업회원정보수정 -->
+	 <update id="updateEnterpriseAccount" parameterType="int">
+      update enterprise 
+      set 
+         password=#{password},
+         name = #{name},
+         business_number = #{business_number},
+         manager_name = #{manager_name},
+         manager_phone = #{manager_phone},
+         address = #{address},
+         category = #{category},
+         up_count = #{up_count},
+         resume_count = #{resume_count},
+         board_recruit_count = #{board_recruit_count}
+      <where>
+         enterprise_id = #{enterprise_id}
+      </where>
+   </update>
 	
 	<!-- 공고글관리 -->
 	<select id="selectRecruitWrite"  parameterType="String" resultType="BoardRecruit">

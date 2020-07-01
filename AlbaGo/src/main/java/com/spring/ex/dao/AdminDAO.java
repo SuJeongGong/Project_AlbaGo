@@ -66,6 +66,9 @@ public interface AdminDAO {
 	//<!--기업관리자 링크타고-->
 	//<!--기업 회원 정보-->
 	Enterprise selectEnterpriseAccount(String id);
+	//<!-- 기업 회원 정보 수정-->
+	int updateEnterpriseAccount(Enterprise enterprise);
+
 	//<!-- 공고글관리 -->
 	ArrayList<BoardRecruit> selectRecruitWrite(String id);
 	//<!--인재스크랩-->	

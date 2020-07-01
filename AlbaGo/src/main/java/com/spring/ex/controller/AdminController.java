@@ -33,7 +33,7 @@ import com.spring.ex.services.ProductService;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminController { 
+public class AdminController {
 
 	@Autowired
 	ProductService productService;
@@ -298,49 +298,52 @@ public class AdminController {
 		return page;
 
 	}
-	@RequestMapping("/individual_detail/update") // 개인정보 수정 - 수정하기
-	   public String individual_detail( @ModelAttribute("individual") Individual individual) {
-	      String page = "/admin/individual_detail"; 
-	      if (1 <= adminService.updateIndividualAccount(individual)) {
-	         System.out.println(individual); 
-	         System.out.println("수정");
-	         page = "redirect:/admin/main";
 
-	      } 
-	      return page;
-	   }
-	//ajax
-	////계정정지 AJAX
+	@RequestMapping("/individual_detail/update") // 개인정보 수정 - 수정하기
+	public String individual_detail(@ModelAttribute("individual") Individual individual) {
+		String page = "/admin/individual_detail";
+		if (1 <= adminService.updateIndividualAccount(individual)) {
+			System.out.println(individual);
+			System.out.println("수정");
+			page = "redirect:/admin/individual_list";
+
+		}
+		return page;
+	}
+
+	// ajax
+	//// 계정정지 AJAX
 	@RequestMapping(value = "/changestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int changestate(@RequestParam("individual_id") String individual_id) {
 		return adminService.changestate(individual_id);
 	}
-	 
-	//이력서삭제 AJAX
+
+	// 이력서삭제 AJAX
 	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteResume(@RequestParam("resume_id") int resume_id) {
 		return adminService.deleteResume(resume_id);
 	}
-	//지원한 알바 지원취소 AJAX
+
+	// 지원한 알바 지원취소 AJAX
 	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteVolunteer(@RequestParam("volunteer_id") int volunteer_id) {
-		System.out.println("volunteer_id"+volunteer_id);
-		return adminService.deleteVolunteer(volunteer_id);  
+		System.out.println("volunteer_id" + volunteer_id);
+		return adminService.deleteVolunteer(volunteer_id);
 	}
-	//인재 게시판 취소 AJAX
+
+	// 인재 게시판 취소 AJAX
 	@RequestMapping(value = "/deletBoardResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deletBoardResume(@RequestParam("board_resume_id") int board_resume_id) {
-		System.out.println("board_resume_id"+board_resume_id);
+		System.out.println("board_resume_id" + board_resume_id);
 		return adminService.deletBoardResume(board_resume_id);
 	}
-	
-	//커뮤니티 게시판 삭제 AJAX
-	@RequestMapping(value = "/deleteCommunity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)//삭제
-	public @ResponseBody int delete(@RequestParam ("community_id") int community_id) {
-		System.out.println("community_id :"+community_id);
+
+	// 커뮤니티 게시판 삭제 AJAX
+	@RequestMapping(value = "/deleteCommunity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 삭제
+	public @ResponseBody int delete(@RequestParam("community_id") int community_id) {
+		System.out.println("community_id :" + community_id);
 		return adminService.deleteCommunity(community_id);
-	} //글삭제
-	
+	} // 글삭제
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {
@@ -365,6 +368,23 @@ public class AdminController {
 		return page;
 	}
 
+	@RequestMapping("/enterprise_detail/update") // 기업정보 수정 - 수정하기
+	public String enterprise_detail(@ModelAttribute("enterprise") Enterprise enterprise) {
+		String page = "/admin/enterprise_detail";
+		System.out.println();
+
+		System.out.println("컨트롤러 if전" + enterprise);
+		if (1 <= adminService.updateEnterpriseAccount(enterprise)) {
+
+			System.out.println(enterprise);
+			System.out.println("수정");
+			page = "redirect:/admin/enterprise_list";
+
+		}
+
+		return page;
+	}
+
 	@RequestMapping("/payment") // 결제관리
 	public String manager_payment() {
 		return "admin/payment";
@@ -372,12 +392,12 @@ public class AdminController {
 
 	@RequestMapping("/product/product") // 상품보기
 	public String list(Model m, HttpServletRequest request) {
-		
+
 		ArrayList<Product> products = productService.selectProductList();
-		m.addAttribute("products", products);  
+		m.addAttribute("products", products);
 
 		return "/admin/product_product";
-	} 
+	}
 
 	@RequestMapping("/product_account") // 상품상세보기
 	public String update_account(HttpServletRequest request, Model m, @RequestParam("product_id") int product_id) {
@@ -387,24 +407,25 @@ public class AdminController {
 
 		return page;
 	}
+
 	@RequestMapping("/advertising/product") // 광고 보기
 	public String advertisingㅣist(Model m, HttpServletRequest request) {
 
 		ArrayList<Product> products = productService.selectAdvertisingList();
-		m.addAttribute("products", products);  
+		m.addAttribute("products", products);
 
 		return "/admin/advertising_product";
-	} 
+	}
 
 	@RequestMapping("/advertising/product_account") // 광고상세보기
-	public String advertisingㅕpdate_account( Model m, @RequestParam("product_id") int product_id) {
+	public String advertisingㅕpdate_account(Model m, @RequestParam("product_id") int product_id) {
 		String page = "/admin/advertising_account";
 		Product product = productService.product_account(product_id);
 		m.addAttribute("product", product);
 
 		return page;
-	} 
-	
+	}
+
 	@RequestMapping("/account/update") // 상품수정하기
 	public String update(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
@@ -419,6 +440,7 @@ public class AdminController {
 		}
 		return page;
 	}
+
 	@RequestMapping("/account/advertising/update") // 상품수정하기
 	public String advertisingUpdate(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
@@ -433,6 +455,7 @@ public class AdminController {
 		}
 		return page;
 	}
+
 	@RequestMapping("/account/delete") // 상품삭제하기
 	public String delete(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
 
@@ -446,12 +469,13 @@ public class AdminController {
 			System.out.println("실패라고요");
 		}
 		return page;
-	}	
+	}
+
 	@RequestMapping("/product/approve") // 결제승인
 	public String approve(Model m) {
-		ArrayList<Payment> payments= productService.selectProductPayments();
+		ArrayList<Payment> payments = productService.selectProductPayments();
 
-		m.addAttribute("payments",payments);
+		m.addAttribute("payments", payments);
 
 		return "admin/product_approve";
 	}
@@ -493,14 +517,16 @@ public class AdminController {
 
 	@RequestMapping("/advertising/approve") // 결제승인
 	public String advertisingApprove(Model m) {
-		ArrayList<Payment> payments= productService.selectAdvertisingPayments();
-		
-		m.addAttribute("payments",payments);
-		
+		ArrayList<Payment> payments = productService.selectAdvertisingPayments();
+
+		m.addAttribute("payments", payments);
+
 		return "admin/advertising_approve";
 	} // 아약스 처리
+
 	@RequestMapping(value = "/product/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int updateResult(@RequestParam(value = "result") String result,@RequestParam(value = "id") int id) {
+	public @ResponseBody int updateResult(@RequestParam(value = "result") String result,
+			@RequestParam(value = "id") int id) {
 
 		System.out.println("payment_id" + id);
 		System.out.println("result" + result);
@@ -522,6 +548,7 @@ public class AdminController {
 		map.put("result", result);
 		return productService.updatePaymentsResult(map);
 	}
+
 	@RequestMapping(value = "/advertising/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int advertisingUpdateResult(@RequestParam(value = "result") String result,
 			@RequestParam(value = "id") int id) {
@@ -531,12 +558,13 @@ public class AdminController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("payment_id", id);
 		map.put("result", result);
- 
+
 		return productService.advertisingUpdatePaymentResult(map);
 	}
 
 	@RequestMapping(value = "/advertising/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int advertisingUpdateResults(@RequestParam(value = "result") String result,	@RequestParam(value = "payment_ids[]") ArrayList<String> payment_ids) {
+	public @ResponseBody int advertisingUpdateResults(@RequestParam(value = "result") String result,
+			@RequestParam(value = "payment_ids[]") ArrayList<String> payment_ids) {
 
 		System.out.println("payment_ids" + payment_ids);
 		System.out.println("result" + result);

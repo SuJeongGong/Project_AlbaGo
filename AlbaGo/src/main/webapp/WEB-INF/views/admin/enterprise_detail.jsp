@@ -39,6 +39,7 @@
             <!-- main -->
             <div id="content">
                 <!-- Topbar -->
+
                 <%@ include file="../serve/manager_topbar.jsp" %>
                 <%
              	  	 Enterprise enterprise = (Enterprise)request.getAttribute("enterprise");
@@ -49,12 +50,13 @@
 						String business_number = enterprise.getBusiness_number();
 						String manager_name = enterprise.getManager_name();
 						String manager_phone = enterprise.getManager_phone();
+						String address=enterprise.getAddress(); //주소
 						String category = enterprise.getCategory();
 						String date = enterprise.getDate().split(" ")[0];//가입날짜
-						String address=enterprise.getAddress(); //주소
 						int up_count=enterprise.getUp_count(); 
 						int resume_count=enterprise.getResume_count();
-						
+						int board_recruit_count=enterprise.getBoard_recruit_count();
+						int state=enterprise.getState();
 					%>
 
                 <!-- main 본문  -->
@@ -73,57 +75,67 @@
                             <div class="card-body">
 
 						     <!-- 기업 회원정보 form 시작 -->
-                            <form id="info" action="" >
+                           	<form action="<%=request.getContextPath() %>/admin/enterprise_detail/update" name="enterprise"  class="col-xl-12" >
                                   <table class="table table-bordered ">
                                     <tr>
                                         <th>기업아이디</th>
-                                        <td><input type="text" class="form-control" id="enterprise_id" value="<%=enterprise_id%>"></td>
+                                        <td><input type="text" class="form-control" name="enterprise_id" value="<%=enterprise_id%>"></td>
                                     </tr>
                                     <tr>
                                         <th>비밀번호</th>
-                                        <td><input type="text" class="form-control" id="password" value="<%=password%>"></td>
+                                        <td><input type="text" class="form-control" name="password" value="<%=password%>"></td>
                                     </tr>
                                     <tr>
                                         <th>기업이름</th>
-                                        <td><input type="email" class="form-control" id="name" value="<%=name%>"></td>
+                                        <td><input type="text" class="form-control" name="name" value="<%=name%>"></td>
                                     </tr>
                                     <tr>
                                         <th>기업전화번호</th>
-                                        <td><input type="text" class="form-control" id="business_number" value="<%=business_number%>"></td>
+                                        <td><input type="text" class="form-control" name="business_number" value="<%=business_number%>"></td>
                                     </tr>
                                     <tr>
                                         <th>담당자 이름</th>
-                                        <td><input type="text" class="form-control" id="manager_name" value="<%=manager_name%>"></td>
+                                        <td><input type="text" class="form-control" name="manager_name" value="<%=manager_name%>"></td>
                                     </tr>
                                     <tr>
                                         <th>담당자 연락처</th>
-                                        <td><input type="text" class="form-control" id="manager_phone" value="<%=manager_phone%>">
+                                        <td><input type="text" class="form-control" name="manager_phone" value="<%=manager_phone%>">
                                         </td>
                                     </tr>
                                     	<tr>
                                         <th>주소</th>
-                                        <td><input type="text" class="form-control" id="category" value="<%=address%>">
+                                        <td><input type="text" class="form-control" name="address" value="<%=address%>">
                                         </td>
                                     </tr>
                                      <tr>
                                  	<tr>
                                         <th>카테고리</th>
-                                        <td><input type="text" class="form-control" id="category" value="<%=category%>">
+                                        <td><input type="text" class="form-control" name="category" value="<%=category%>">
                                         </td>
                                     </tr>
                                      <tr>
                                         <th>가입날짜</th>
-                                        <td><input type="text" class="form-control" id="date" value="<%=date%>">
+                                        <td><input type="text" class="form-control" name="date" value="<%=date%>">
                                         </td>
                                     </tr>
                                       <tr>
                                         <th>up횟수</th>
-                                        <td><input type="text" class="form-control" id="date" value="<%=up_count%>">
+                                        <td><input type="text" class="form-control" name="up_count" value="<%=up_count%>">
                                         </td>
                                     </tr>
                                       <tr>
                                         <th>resume횟수</th>
-                                        <td><input type="text" class="form-control" id="date" value="<%=resume_count%>">
+                                        <td><input type="text" class="form-control" name="resume_count" value="<%=resume_count%>">
+                                        </td>
+                                    </tr>
+                                       <tr>
+                                        <th>board_recruit횟수</th>
+                                        <td><input type="text" class="form-control" name="board_recruit_count" value="<%=board_recruit_count%>">
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <th>계정상태</th>
+                                        <td><input type="text" class="form-control" name="state" value="<%=state%>">
                                         </td>
                                     </tr>
                                     
@@ -132,9 +144,8 @@
                                     <tr>
                                         <th>관리자</th>
                                         <td>
-                                            <a class='btn btn-info btn-xs' href="#"><span
-                                                    class="glyphicon glyphicon-edit"></span>정보 수정</a> 
-                                             <a href="#"
+                                          	<button class="btn btn-info edit" type="submit" aria-label="ASettings"> 정보 수정</button> 
+										   <a href="#"
                                                 class="btn btn-danger btn-xs"><span
                                                     class="glyphicon glyphicon-remove"></span>계정 삭제</a>
                                         </td>

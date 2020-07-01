@@ -136,6 +136,11 @@ public class AdminService {
 	public Enterprise selectEnterpriseAccount(String id){
 		return adminDAO.selectEnterpriseAccount(id);	
 	}
+	//기업회원정보수정할수있는 
+	public int updateEnterpriseAccount(Enterprise enterprise){
+		System.out.println(enterprise);
+		return adminDAO.updateEnterpriseAccount(enterprise);	
+	}
 	//공고글 관리
 	public ArrayList<BoardRecruit> selectRecruitWrite(String id) {
 		return adminDAO.selectRecruitWrite(id);
