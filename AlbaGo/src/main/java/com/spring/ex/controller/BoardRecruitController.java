@@ -35,19 +35,25 @@ public class BoardRecruitController {
 	@Autowired
 	EnterpriseService enterpriseService;
 	
-	@RequestMapping("/list")//리스트
-	public String list(Model m) { //enterprise_id 가져오고
-		ArrayList<BoardRecruit> recruits = boardRecruitService.selectList();
-		
-		m.addAttribute("recruits", recruits);
-		
-		return "/recruit/list";
-	}
+//	@RequestMapping("/list")//리스트
+//	public String list(Model m) { //enterprise_id 가져오고
+//		ArrayList<BoardRecruit> recruits = boardRecruitService.selectList();
+//		
+//		m.addAttribute("recruits", recruits);
+//		
+//		return "/recruit/list";
+//	}
+
 	
-	@RequestMapping("/list/total")
-	public String list_total(Model m, @RequestParam("enterprise_category") String enterprise_category,
-			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
-			@RequestParam("education") String education, @RequestParam("term") String term, @RequestParam("title") String title) {
+	@RequestMapping("/list")
+	public String list_total(Model m, 
+			@RequestParam(value = "enterprise_category", defaultValue ="") String enterprise_category,
+			@RequestParam(value ="local_category", defaultValue ="") String local_category, 
+			@RequestParam(value="gender", defaultValue ="") String gender,
+			@RequestParam(value="education", defaultValue ="") String education, 
+			@RequestParam(value= "term", defaultValue ="") String term, 
+			@RequestParam(value="title", defaultValue ="") String title,
+			@RequestParam(value ="curPage",defaultValue="1" ) int curPage) {
 		String page = "/recruit/list";
 		
 		try {
@@ -68,12 +74,19 @@ public class BoardRecruitController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		System.out.println("local_category"+local_category);
-		ArrayList<BoardRecruit> boardrecruits = boardRecruitService.total_List(enterprise_category, local_category, gender, education, term, title);
+		int pageNum = 1 ;
+		ArrayList<BoardRecruit> boardrecruits = boardRecruitService.total_List(enterprise_category, local_category, gender, education, term, title,pageNum);
+		int count = boardRecruitService.selectListCount();
+		System.out.println("count"+count/10+1);
+		System.out.println("local_category"+local_category);
 		System.out.println(boardrecruits +"컨트롤러");
 		
-		m.addAttribute("recruits", boardrecruits);
+		
+		
+		m.addAttribute("boardrecruits", boardrecruits);
+		m.addAttribute("pageNum", pageNum);
+		m.addAttribute("count", count);
 		System.out.println(boardrecruits +"boardrecruits");
 		return page;
 	}

@@ -16,7 +16,8 @@
 	<div class="featured_candidates_area candidate_page_padding">
 
 		<div class="container">
-
+		<h1>상품</h1>
+		<br>
 			<!-- 시작 -->
 		
 				<div class="row">

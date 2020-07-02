@@ -12,7 +12,7 @@ public interface BoardRecruitDAO {
 	int insertBoard_recruit(BoardRecruit boardrecruit); //공고글작성
 	
 	//공고글 리스트
-	ArrayList<BoardRecruit> selectList();
+	//ArrayList<BoardRecruit> selectList();
 	
 	//공고글 보여주기
 	BoardRecruit selectView(int id);
@@ -30,5 +30,5 @@ public interface BoardRecruitDAO {
 	
 	//조회수
 	int updateViews(int board_recruit_id);
-	
+	int selectListCount();
 }

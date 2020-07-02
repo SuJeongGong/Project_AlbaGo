@@ -16,6 +16,7 @@ public class BoardResume { //인재
 	String name;			//개인 이름
 	String gender;			//성별
 	String birth;			//나이
+	String age;				//나이
 	String phone;			//폰번호
 	String education;		//최종학력
 	String salary_type;		//주급

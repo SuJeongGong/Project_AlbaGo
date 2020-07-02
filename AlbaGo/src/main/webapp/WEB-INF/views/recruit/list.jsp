@@ -24,7 +24,7 @@
                     <div class="job_filter white-bg">
                         <div class="form_inner white-bg">
                             <h3>검색필터</h3>
-                            <form action="<%=request.getContextPath() %>/recruit/list/total" method="get" name="keyword" id="keyword">
+                            <form action="<%=request.getContextPath() %>/recruit/list" method="get" name="keyword" id="keyword">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="single_field">
@@ -147,9 +147,9 @@
                         <div class="row">
                         
                         <%
-                        	ArrayList<BoardRecruit> recruits = (ArrayList<BoardRecruit>)request.getAttribute("recruits");
-                        	for(int i=0; i<recruits.size(); i++) {
-                        		BoardRecruit recruit = recruits.get(i);
+                        	ArrayList<BoardRecruit> boardrecruits = (ArrayList<BoardRecruit>)request.getAttribute("boardrecruits");
+                        	for(int i=0; i<boardrecruits.size(); i++) {
+                        		BoardRecruit recruit = boardrecruits.get(i);
                         		String title = recruit.getTitle();
                         		String date = recruit.getDate();
                         		String place = recruit.getPlace();
@@ -162,13 +162,13 @@
                                 <div class="single_jobs white-bg d-flex justify-content-between">
                                     <div class="jobs_left d-flex align-items-center">
                                         <div class="jobs_conetent">
-                                            <a href="job_details.html"><h4><%=title %> </h4></a>
+                                            <a href="<%=request.getContextPath() %>/recruit/content?board_recruit_id=<%=board_recruit_id %>"><h4><%=title %> </h4></a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
                                                     <p> <i class="fa fa-map-marker"></i><%=place %></p>
                                                 </div>
                                                 <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i><%=date %></p>
+                                                    <p> <i class="fa fa-clock-o"></i><%=date.split(":")[0] %>:<%=date.split(":")[1] %></p>
                                                 </div>
                                                 <div class="location">
                                                 	<p> 조회수 : <%=views %></p>
@@ -193,10 +193,32 @@
                             <div class="col-lg-12">
                                 <div class="pagination_wrap">
                                     <ul>
-                                        <li><a href="#"> <i class="ti-angle-left"></i> </a></li>
-                                        <li><a href="#"><span>01</span></a></li>
-                                        <li><a href="#"><span>02</span></a></li>
-                                        <li><a href="#"> <i class="ti-angle-right"></i> </a></li>
+                                <%
+                                	int pageNum = (int)request.getAttribute("pageNum");
+                              		int count = (int)request.getAttribute("count");
+                                System.out.println(pageNum);
+                                System.out.println(count);
+                                	if(pageNum>1){
+                                		%>
+                                        <li><a href="?page=<%= pageNum -1%>"> <i class="ti-angle-left"></i> </a></li>
+                                		
+                                		<%                             		                                		
+                                	}
+                                	for (int i =1; i<=count ; i++){
+                                		%>
+                                		
+                                        <li><a href="?page=<%=i %>"><span><%=i %></span></a></li>
+                                		
+                                		<%
+                                	}	
+                                	if(pageNum<count){
+                                		%>
+                                        <li><a href="?page=<%=pageNum+1 %>"> <i class="ti-angle-right"></i> </a></li>
+                                		
+                                		<%                             		                                		
+                                	}
+                                
+                                %>
                                     </ul>
                                 </div>
                             </div>

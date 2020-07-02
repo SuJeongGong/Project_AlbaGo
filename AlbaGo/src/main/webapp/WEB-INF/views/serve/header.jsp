@@ -62,80 +62,78 @@
                                             <li  class="submenu">알바</i>
                                             <li><a href="<%=recruitPath%>">지역 </a>
                                                 <ul class="submenu">
-                                                    <li><a href="<%=recruitPath%>">서울</a></li>
-                                                    <li><a href="<%=recruitPath%>">경기</a></li>
-                                                    <li><a href="<%=recruitPath%>">인천</a></li>
-                                                    <li><a href="<%=recruitPath%>">부산</a></li>
-                                                    <li><a href="<%=recruitPath%>">대구</a></li>
-                                                    <li><a href="<%=recruitPath%>">대전</a></li>
-                                                    <li><a href="<%=recruitPath%>">경남</a></li>
-                                                    <li><a href="<%=recruitPath%>">전남</a></li>
-                                                    <li><a href="<%=recruitPath%>">충남</a></li>
-                                                    <li><a href="<%=recruitPath%>">광주</a></li>
-                                                    <li><a href="<%=recruitPath%>">울산</a></li>
-                                                    <li><a href="<%=recruitPath%>">경북</a></li>
-                                                    <li><a href="<%=recruitPath%>">전북</a></li>
-                                                    <li><a href="<%=recruitPath%>">충북</a></li>
-                                                    <li><a href="<%=recruitPath%>">강원</a></li>
-                                                    <li><a href="<%=recruitPath%>">제주</a></li>
-                                                    <li><a href="<%=recruitPath%>">전국</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=서울">서울</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=경기">경기</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=인천">인천</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=부산">부산</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=대구">대구</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=대전">대전</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=경남">경남</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=전남">전남</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=충남">충남</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=광주">광주</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=울산">울산</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=경북">경북</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=전북">전북</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=충북">충북</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=강원">강원</a></li>
+                                                    <li><a href="<%=recruitPath%>?local_category=제주">제주</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="<%=recruitPath%>">카테고리 </a>
                                                 <ul class="submenu">
-                                                    <li><a href="<%=recruitPath%>">외식/음료</a></li>
-                                                    <li><a href="<%=recruitPath%>">유통/판매</a></li>
-                                                    <li><a href="<%=recruitPath%>">문화/여가/생활</a></li>
-                                                    <li><a href="<%=recruitPath%>">서비스</a></li>
-                                                    <li><a href="<%=recruitPath%>">사무직</a></li>
-                                                    <li><a href="<%=recruitPath%>">고객상담/리서치</a></li>
-                                                    <li><a href="<%=recruitPath%>">생산/건설/노무</a></li>
-                                                    <li><a href="<%=recruitPath%>">교육/강사</a></li>
-                                                    <li><a href="<%=recruitPath%>">디자인</a></li>
-                                                    <li><a href="<%=recruitPath%>">미디어</a></li>
-                                                    <li><a href="<%=recruitPath%>">운전/배달</a></li>
-                                                    <li><a href="<%=recruitPath%>">병원/간호/연구</a></li>
-                                                    <li><a href="<%=recruitPath%>">IT/컴퓨터</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=외식/음료">외식/음료</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=유통/판매">유통/판매</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=문화/여가/생활">문화/여가/생활</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=서비스">서비스</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=사무직">사무직</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=고객상담/리서치">고객상담/리서치</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=생산/건설/노무">생산/건설/노무</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=교육/강사">교육/강사</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=디자인">디자인</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=미디어">미디어</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=운전/배달">운전/배달</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=병원/간호/연구">병원/간호/연구</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=IT/컴퓨터">IT/컴퓨터</a></li>
                                                 </ul>
                                             </li>
                                             <span>|</span>
                                             <li  class="submenu">인재</i>
                                             <li><a href="<%=resumePath%>">지역 </a>
                                                 <ul class="submenu">
-                                                    <li><a href="<%=resumePath%>">서울</a></li>
-                                                    <li><a href="<%=resumePath%>">경기</a></li>
-                                                    <li><a href="<%=resumePath%>">인천</a></li>
-                                                    <li><a href="<%=resumePath%>">부산</a></li>
-                                                    <li><a href="<%=resumePath%>">대구</a></li>
-                                                    <li><a href="<%=resumePath%>">대전</a></li>
-                                                    <li><a href="<%=resumePath%>">경남</a></li>
-                                                    <li><a href="<%=resumePath%>">전남</a></li>
-                                                    <li><a href="<%=resumePath%>">충남</a></li>
-                                                    <li><a href="<%=resumePath%>">광주</a></li>
-                                                    <li><a href="<%=resumePath%>">울산</a></li>
-                                                    <li><a href="<%=resumePath%>">경북</a></li>
-                                                    <li><a href="<%=resumePath%>">전북</a></li>
-                                                    <li><a href="<%=resumePath%>">충북</a></li>
-                                                    <li><a href="<%=resumePath%>">강원</a></li>
-                                                    <li><a href="<%=resumePath%>">제주</a></li>
-                                                    <li><a href="<%=resumePath%>">전국</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=서울">서울</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=경기">경기</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=인천">인천</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=부산">부산</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=대구">대구</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=대전">대전</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=경남">경남</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=전남">전남</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=충남">충남</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=광주">광주</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=울산">울산</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=경북">경북</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=전북">전북</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=충북">충북</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=강원">강원</a></li>
+                                                    <li><a href="<%=resumePath%>?local_category=제주">제주</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="<%=resumePath%>">카테고리 </a>
                                                 <ul class="submenu">
-                                                    <li><a href="<%=resumePath%>">외식/음료</a></li>
-                                                    <li><a href="<%=resumePath%>">유통/판매</a></li>
-                                                    <li><a href="<%=resumePath%>">문화/여가/생활</a></li>
-                                                    <li><a href="<%=resumePath%>">서비스</a></li>
-                                                    <li><a href="<%=resumePath%>">사무직</a></li>
-                                                    <li><a href="<%=resumePath%>">고객상담/리서치</a></li>
-                                                    <li><a href="<%=resumePath%>">생산/건설/노무</a></li>
-                                                    <li><a href="<%=resumePath%>">교육/강사</a></li>
-                                                    <li><a href="<%=resumePath%>">디자인</a></li>
-                                                    <li><a href="<%=resumePath%>">미디어</a></li>
-                                                    <li><a href="<%=resumePath%>">운전/배달</a></li>
-                                                    <li><a href="<%=resumePath%>">병원/간호/연구</a></li>
-                                                    <li><a href="<%=resumePath%>">IT/컴퓨터</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=외식/음료">외식/음료</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=유통/판매">유통/판매</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=문화/여가/생활">문화/여가/생활</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=서비스">서비스</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=사무직">사무직</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=고객상담/리서치">고객상담/리서치</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=생산/건설/노무">생산/건설/노무</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=교육/강사">교육/강사</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=디자인">디자인</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=미디어">미디어</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=운전/배달">운전/배달</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=병원/간호/연구">병원/간호/연구</a></li>
+                                                    <li><a href="<%=resumePath%>?enterprise_category=IT/컴퓨터">IT/컴퓨터</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="<%=communityPath %>">커뮤니티</a></li>

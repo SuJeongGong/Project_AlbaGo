@@ -155,12 +155,6 @@ pageEncoding="UTF-8"%>
                 <input type="text" class="form-control form-control-user" name="phone" value="${individual.phone}" id="phone" placeholder="'-빼고 적어주세요'">
               </div>
             </div>
-            <span class="box">주소</span><br><br>
-            <div class="form-group row">
-              <div class="col-sm-12 mb-3 mb-sm-0">
-                <input type="text" class="form-control form-control-user" id="adress" placeholder="서울특별시 강북구 홍길동 (자세히 적어주세요)">
-              </div>
-            </div>
             <span class="box">최종학력</span><br><br>
             
             <div class="form-group row">
@@ -183,6 +177,10 @@ pageEncoding="UTF-8"%>
               <div class="a custom-radio">
                 <input type="radio" name="education" id="collage4" class="a-input" value="4년제 졸업" checked>
                 4년제 졸업
+              </div>&nbsp;&nbsp;&nbsp;&nbsp;&ensp;&ensp;&ensp;<br>
+              <div class="a custom-radio">
+                <input type="radio" name="education" id="collage5" class="a-input" value="대학원 졸업 이상" checked>
+                대학원 졸업 이상
               </div>
             </div>
             <br>

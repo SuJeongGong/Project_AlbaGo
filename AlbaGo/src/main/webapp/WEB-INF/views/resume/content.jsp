@@ -100,7 +100,7 @@ function UseResume(){
                                             <p> <i class="fa fa-map-marker"></i><%=board_content.getPlace() %></p>
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i><%=board_content.getDate()%></p>
+                                            <p> <i class="fa fa-clock-o"></i><%=board_content.getDate().split(":")[0]%>:<%=board_content.getDate().split(":")[1]%></p>
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +126,7 @@ function UseResume(){
                                 <li>급여 : <span><%=board_content.getSalary_type() %> : <%=board_content.getSalary_amount() %>원</span></li>
                                 <li>근무 기간 : <span><%=board_content.getTerm() %></span></li>
                                 <li>근무 요일 : <span><%=board_content.getDay() %></span></li>
-                                <li>근무 시간 : <span><%=board_content.getTime() %></span></li>
+                                <li>근무 시간 : <span><%=board_content.getTime() %>시간</span></li>
                                 <li>업직종 : <span><%=board_content.getCategory() %></span></li>
                             </ul>
                         </div>
@@ -171,7 +171,7 @@ function UseResume(){
                             <ul>
                                 <li>이름 : <span><%=board_content.getName() %></span></li>
                                 <li>성별 : <span><%=board_content.getGender() %></span></li>
-                                <li>연령 : <span><%=board_content.getBirth().split(" ")[0] %></span></li>
+                                <li>나이 : <span>만) <%=board_content.getAge() %>세</span></li>
                                 <li>최종학력 : <span><%=board_content.getEducation() %></span></li>
                                 <li>연락처 : <span>010-****-****</span></li>
                             </ul>
