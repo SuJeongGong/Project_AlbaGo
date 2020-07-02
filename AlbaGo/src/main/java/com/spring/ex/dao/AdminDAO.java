@@ -24,6 +24,8 @@ public interface AdminDAO {
 	ArrayList<HashMap<String, Object>> selectRecentSales() ;
 	ArrayList<HashMap<String, Object>> selectItems() ;
 	ArrayList<Individual> selectlist(); //개인회원정보 전체를 보여주는 테이블
+	//일주일 매출액Product sumPayment(String id);
+	int selectWeekTotal();
 	
 	//개인회원정보에서 카테고리를 선택해서 검색
 	ArrayList<Individual> selectId(String category,String search);

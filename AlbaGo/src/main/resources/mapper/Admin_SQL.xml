@@ -15,6 +15,18 @@
 	LIMIT 5
 </select>
 	<!-- 이예슬 -->
+	<!-- 메인일주일매출액  -->
+	<select id="selectWeekTotal" resultType="int">
+		SELECT  SUM(price) AS sum_price 
+		FROM product,payment
+
+		<where>
+		product.product_id =payment.product_id 
+		AND product.delete_check=1
+		AND payment.result="승인"
+		AND payment.`date` > (NOW() - INTERVAL 7 DAY)
+		</where>
+	</select>
 	<!-- 개인 -->
 	<select id="selectRecentSales" resultType="HashMap">
 		SELECT DATE_FORMAT(payment.DATE , "%Y/%m %d") as date, SUM(price) as

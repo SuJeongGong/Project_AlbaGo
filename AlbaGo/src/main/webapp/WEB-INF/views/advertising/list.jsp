@@ -16,7 +16,8 @@
 	<div class="featured_candidates_area candidate_page_padding">
 
 		<div class="container">
-
+						<h1>광고리스트</h1>
+						<hr>
 			<!-- 시작 -->
 		
 				<div class="row">
@@ -45,7 +46,7 @@
 							<br> 
 				
 							
-							<a href="<%=request.getContextPath()%>/advertising/payment?product_id=<%=product_id %>"  >결제</a>
+							<a class="btn btn-outline-primary" href="<%=request.getContextPath()%>/advertising/payment?product_id=<%=product_id %>"  >결제</a>
 
 						</div>
 					</div>

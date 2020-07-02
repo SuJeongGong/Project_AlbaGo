@@ -32,6 +32,10 @@ public class AdminService {
 	public ArrayList<HashMap<String, Object>> selectItems() {
 		return adminDAO.selectItems();
 	}
+	//일주일 매출액 
+	public int  selectWeekTotal() {
+		return adminDAO.selectWeekTotal();
+	}
 	//개인회원정보 '리스트'전체를 보여주는 테이블
 	public ArrayList<Individual> selectlist() {
 		return adminDAO.selectlist();

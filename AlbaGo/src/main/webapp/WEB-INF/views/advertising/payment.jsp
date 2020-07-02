@@ -42,15 +42,16 @@
 							<h4>
 								기간 :
 								<%=product.getTerm()%></h4>
-						</div>
-						<div class="row single_wrap">
-							<h4>설명</h4>
-							<p><%=product.getExplan()%></p>
-						</div>
+						
+				
+							<h4>설명:
+							<%=product.getExplan()%></h4>
+					
 						<form name = "advertising" action="<%=request.getContextPath()%>/product/payment/result">
-						<div class="row single_wrap">
-							<h4>적용할 공고글</h4>
-									<select name = "board_recruit_id">
+						
+						<div class="row">
+						&emsp;	<h4>적용할 공고글</h4> &emsp;
+							<select name = "board_recruit_id">
 							<%
 							if(board_recuits!=null){
 							
@@ -58,38 +59,36 @@
 								BoardRecruit board_recuit = board_recuits.get(i);
 								%>
 						
-								<option value="<%=board_recuit.getBoard_recruit_id()%>"><%=board_recuit.getBoard_recruit_id()%><%=board_recuit.getTitle() %></option>
-								
-								
-											
-								<%											
-							}	
-							}
-							
-							%>
+								<option value="<%=board_recuit.getBoard_recruit_id()%>"><%=board_recuit.getTitle() %></option>
+										<%											
+									}	
+									}
+									
+									%>
 							</select>
-							
-							<input type="hidden" value="<%=product.getProduct_id() %>" name ="product_id"/><br>
-							
-							<input type="text" name ="title"/><br>
-							<input type="text" name ="start_date"/>
+							<input type="hidden" value="<%=product.getProduct_id() %>"  name ="product_id"/>&nbsp;
+							<input type="text" height="100" class="col-sm-3 form-control" placeholder="광고문구" name ="title"/>&nbsp;&nbsp;
+							<input type="text" height="100"  class="col-sm-3 form-control" placeholder="시작날짜  2020-01-01"name ="start_date"/>
+						
 						</div>
-							<div class="row">
+						</form>
+						</div>
+						<div class="row">
 								<div class="col-md-6"> 
 									<button type="submit" class="btn btn-outline-primary">결제하기</button> 
-
 								</div> 
 								<div class="col-md-6">
-										<a  class="btn btn-outline-primary"href="<%=request.getContextPath() %>/product/list">목록으로</a>
+										<a  class="btn btn-outline-primary" href="<%=request.getContextPath() %>/product/list">목록으로</a>
 	
+							</div>	
 							</div>
+							</div>	
 							</div>
-						</form>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+	
+
 
 
 
