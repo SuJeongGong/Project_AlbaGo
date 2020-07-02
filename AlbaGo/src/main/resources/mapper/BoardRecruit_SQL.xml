@@ -2,13 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.ex.dao.BoardRecruitDAO">
+ 
 	<!-- 공고글 리스트 -->
-	<select id = "selectList" resultType="BoardRecruit">
-		select board_recruit.board_recruit_id, board_recruit.title, board_recruit.date, board_recruit.views, recruit.place 
-		from recruit, board_recruit
-		where recruit.recruit_id = board_recruit.recruit_id
-		AND board_recruit.delete_check = 1
-		ORDER BY board_recruit.date DESC
+		<select id = "selectList" resultType="BoardRecruit" parameterType="int">
+			select board_recruit.board_recruit_id, board_recruit.title, board_recruit.date, board_recruit.views, recruit.place 
+			from recruit, board_recruit
+			where recruit.recruit_id = board_recruit.recruit_id
+			AND board_recruit.delete_check = 1
+			ORDER BY board_recruit.date DESC
+			LIMIT #{start},10
+		</select> 
+	
+	<select id = "selectListCount" resultType="int" >
+			select count(*)
+			from recruit, board_recruit
+			where recruit.recruit_id = board_recruit.recruit_id
+			AND board_recruit.delete_check = 1
+			ORDER BY board_recruit.date DESC
 	</select>
 	
 	<!-- 게시글작성 -->

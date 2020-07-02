@@ -43,6 +43,7 @@ public class BoardRecruitController {
 //		
 //		return "/recruit/list";
 //	}
+
 	
 	@RequestMapping("/list")
 	public String list_total(Model m, 
@@ -51,7 +52,8 @@ public class BoardRecruitController {
 			@RequestParam(value="gender", defaultValue ="") String gender,
 			@RequestParam(value="education", defaultValue ="") String education, 
 			@RequestParam(value= "term", defaultValue ="") String term, 
-			@RequestParam(value="title", defaultValue ="") String title) {
+			@RequestParam(value="title", defaultValue ="") String title,
+			@RequestParam(value ="curPage",defaultValue="1" ) int curPage) {
 		String page = "/recruit/list";
 		
 		try {
@@ -72,12 +74,19 @@ public class BoardRecruitController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		System.out.println("local_category"+local_category);
-		ArrayList<BoardRecruit> boardrecruits = boardRecruitService.total_List(enterprise_category, local_category, gender, education, term, title);
+		int pageNum = 1 ;
+		ArrayList<BoardRecruit> boardrecruits = boardRecruitService.total_List(enterprise_category, local_category, gender, education, term, title,pageNum);
+		int count = boardRecruitService.selectListCount();
+		System.out.println("count"+count/10+1);
+		System.out.println("local_category"+local_category);
 		System.out.println(boardrecruits +"컨트롤러");
 		
+		
+		
 		m.addAttribute("boardrecruits", boardrecruits);
+		m.addAttribute("pageNum", pageNum);
+		m.addAttribute("count", count);
 		System.out.println(boardrecruits +"boardrecruits");
 		return page;
 	}
