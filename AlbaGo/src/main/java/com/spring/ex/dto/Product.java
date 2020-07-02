@@ -13,6 +13,7 @@ public class Product {
 	String explan; //상품설명
 	int delete_check;//삭제 조건 있으면 1 없으면 0 
 	String type;
-	int sum_price;
+	int sum_price;//총매출
+	int todaysales; //오늘 매출
 	
 }

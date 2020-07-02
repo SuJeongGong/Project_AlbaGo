@@ -168,10 +168,19 @@ public interface AdminDAO {
 		
 	/** 매출 관리 */
 		//---송원준---
-		ArrayList<Payment> selectPaymentList(); //매출 리스트
+		//매출 리스트
+		ArrayList<Payment> selectPaymentList(); 
 	
-		
-		
+		//전체 매출
+		int all_totalsales();
+				
+	
+	    //오늘 매출 
+		int todaysales();
+	 
+	    //주간 매출 
+		int weeklysales();
+	 
 		
 		
 		

@@ -635,13 +635,28 @@ public class AdminController {
 		return productService.advertisingUpdatePaymentsResult(map);
 	}
 	
-	@RequestMapping("/payment") // 매출 리스트
+	@RequestMapping("/payment") 
 	public String payment(Model m) {
 		String page = "/admin/payment";
 
-		ArrayList<Payment> payment = adminService.selectPaymentList();
+		// 전체 매출
+		int all_totalsales = adminService.all_totalsales();
+		m.addAttribute("all_totalsales", all_totalsales);
+
+		
+		// 오늘 매출 
+		int todaysales = adminService.todaysales();
+		m.addAttribute("todaysales", todaysales);
+		  
+		// 주간 매출 
+		int weeklysales = adminService.weeklysales();
+		m.addAttribute("weeklysales", weeklysales);
+		
+		// 매출 리스트		
+		ArrayList<Payment> payment = adminService.selectPaymentList(); 
 		m.addAttribute("payment", payment);
 		System.out.println(payment);
+		
 		return page;
 	}
 	
