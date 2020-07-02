@@ -22,9 +22,9 @@ public class BoardResumeService {
 		return boardResumeDAO.insertBoard_resume(boardresume);
 	}
 	
-	public ArrayList<BoardResume> selectList(){
-		return boardResumeDAO.selectList();
-	}
+//	public ArrayList<BoardResume> selectList(){
+//		return boardResumeDAO.selectList();
+//	}
 	
 	public BoardResume selectView(int id){
 		return boardResumeDAO.selectView(id);

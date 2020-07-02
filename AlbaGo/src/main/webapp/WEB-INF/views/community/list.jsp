@@ -39,7 +39,7 @@
 						<article class="blog_item">
 							<div class="blog_details">
 								<div class="row">
-									<div class="col-lg-5"><i class="fa fa-clock-o "></i><%=date.split(" ")[0]%></div>
+									<div class="col-lg-5"><i class="fa fa-clock-o "></i><%=date.split(":")[0]%>:<%=date.split(":")[1]%></div>
 									<p class="col-lg-4"><%=id%></p>
 										<p class ="col-lg-2">조회수</p><p class ="col-lg-1"><%=views%></p>
 								</div>

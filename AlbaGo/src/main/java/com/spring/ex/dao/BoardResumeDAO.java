@@ -12,7 +12,7 @@ public interface BoardResumeDAO {
 	int insertBoard_resume(BoardResume boardresume);
 
 	//인재글 리스트
-	ArrayList<BoardResume> selectList();
+	//ArrayList<BoardResume> selectList();
 	
 	//인재글 보여주기
 	BoardResume selectView(int id);

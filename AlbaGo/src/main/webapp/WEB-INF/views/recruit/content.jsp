@@ -113,7 +113,7 @@ function insertVolunteer(board_recruit_id) {
                                             <p> <i class="fa fa-map-marker"></i><%=board_content.getPlace() %></p> <!-- 장소 -->
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i><%=board_content.getDate().split(" ")[0] %></p><!-- 시간 -->
+                                            <p> <i class="fa fa-clock-o"></i><%=board_content.getDate().split(":")[0] %>:<%=board_content.getDate().split(":")[1] %></p><!-- 시간 -->
                                         </div>
                                     </div>
                                 </div>
@@ -137,9 +137,9 @@ function insertVolunteer(board_recruit_id) {
                             <h4>근무조건</h4>  
                             <ul>
                                 <li>급여 : <span><%=board_content.getSalary_type() %> : <%=board_content.getSalary_amount() %></span></li>
-                                <li>근무 기간 : <span><%=board_content.getDate() %></span></li>
+                                <li>근무 기간 : <span><%=board_content.getTerm() %></span></li>
                                 <li>근무 요일 : <span><%=board_content.getDay() %></span></li>
-                                <li>근무 시간 : <span><%=board_content.getTime() %></span></li>
+                                <li>근무 시간 : <span><%=board_content.getTime() %>시간</span></li>
                                 <li>업직종 : <span><%=board_content.getRecruit_category() %></span></li>
                             </ul>
                         </div>
@@ -156,9 +156,9 @@ function insertVolunteer(board_recruit_id) {
                         </div>
                         <div class="job_content">
                             <ul>
-                                <li>채용인원 : <span><%=board_content.getPeople_count() %></span></li>
+                                <li>채용인원 : <span><%=board_content.getPeople_count() %>명</span></li>
                                 <li>성별 : <span><%=board_content.getGender() %></span></li>
-                                <li>연령 : <span><%=board_content.getAge() %></span></li>
+                                <li>연령 : <span><%=board_content.getAge().split(",")[0] %>세 ~ <%=board_content.getAge().split(",")[1] %>세</span></li>
                                 <li>최종학력 : <span><%=board_content.getEducation() %></span></li>
                             </ul>
                         </div>
@@ -224,7 +224,7 @@ function insertVolunteer(board_recruit_id) {
        	</select>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소 </button>
         <button type="button" onclick="insertVolunteer(<%=board_content.getBoard_recruit_id() %>)" class="btn btn-primary" >지원하기</button>
       </div>
     </div>
