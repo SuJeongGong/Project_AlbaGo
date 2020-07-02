@@ -405,10 +405,7 @@ public class AdminController {
 	public @ResponseBody int changeEnterprisestate(@RequestParam("enterprise_id") String enterprise_id,@RequestParam("result") int result) {
 		return adminService.changeEnterprisestate(enterprise_id,result);
 	}
-	@RequestMapping("/payment") // 결제관리
-	public String manager_payment() {
-		return "admin/payment";
-	}
+
 	// 공고삭제 AJAX
 	@RequestMapping(value = "/deleteEnterpriseRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteEnterpriseRecruit(@RequestParam("recruit_id") int recruit_id) {
@@ -613,13 +610,28 @@ public class AdminController {
 		return productService.advertisingUpdatePaymentsResult(map);
 	}
 	
-	@RequestMapping("/payment") // 매출 리스트
+	@RequestMapping("/payment") 
 	public String payment(Model m) {
 		String page = "/admin/payment";
 
-		ArrayList<Payment> payment = adminService.selectPaymentList();
+		// 전체 매출
+		int all_totalsales = adminService.all_totalsales();
+		m.addAttribute("all_totalsales", all_totalsales);
+
+		
+		// 오늘 매출 
+		int todaysales = adminService.todaysales();
+		m.addAttribute("todaysales", todaysales);
+		  
+		// 주간 매출 
+		int weeklysales = adminService.weeklysales();
+		m.addAttribute("weeklysales", weeklysales);
+		
+		// 매출 리스트		
+		ArrayList<Payment> payment = adminService.selectPaymentList(); 
 		m.addAttribute("payment", payment);
 		System.out.println(payment);
+		
 		return page;
 	}
 	

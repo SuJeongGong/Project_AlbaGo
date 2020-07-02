@@ -758,4 +758,39 @@
 	 ORDER BY date DESC
 	</select>
 	
+	<!-- 전체 매출 -->
+	<select id = "all_totalsales" resultType="int" >
+	  SELECT  SUM(price) AS sum_price 
+      FROM product,payment
+
+      where
+      product.product_id =payment.product_id 
+      AND product.delete_check=1
+      AND payment.result="승인"
+	</select>
+	
+	<!-- 오늘 매출 -->
+	<select id = "todaysales" resultType="int">
+	  SELECT  SUM(price) AS sum_price 
+      FROM product,payment
+
+      where
+      product.product_id =payment.product_id
+	  AND `date` >= CURDATE()
+      AND product.delete_check=1
+      AND payment.result="승인"
+	</select>
+	
+	<!-- 주간 매출 -->
+	<select id = "weeklysales" resultType="int">
+	SELECT  SUM(price) AS sum_price 
+      FROM product,payment
+
+      where
+      product.product_id =payment.product_id
+	  AND `date` > (NOW() - INTERVAL 7 DAY)
+      AND product.delete_check=1
+      AND payment.result="승인"
+	</select>
+	
 </mapper>

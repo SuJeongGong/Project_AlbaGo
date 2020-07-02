@@ -15,6 +15,7 @@ import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
+import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_enterprise;
@@ -449,5 +450,22 @@ public class AdminService {
 		public ArrayList<Payment> selectPaymentList() {
 			return adminDAO.selectPaymentList();
 		}
+		
+		//젠체 매출
+		public int all_totalsales() {
+			return adminDAO.all_totalsales();
+		}
+		
+	
+	    //오늘 매출 
+		public int todaysales() { 
+			return adminDAO.todaysales(); 
+		}
+	  
+	    //주간 매출 
+		public int weeklysales() { 
+			return adminDAO.weeklysales(); 
+		}
+	 
 }
 

@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.spring.ex.dto.Payment"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -63,31 +64,34 @@
 								<table>
 									<th style="width: 900px;">기간</th>
 									<tr>
-
-										<td><input type="text" name="date">&nbsp;&nbsp; ~
-											&nbsp;&nbsp;<input type="text" name="date"> <input
-											type="submit" value="오늘" class="btn py-1 px-1 btn-primary">&nbsp;
-											<input type="submit" value="1주일"
-											class="btn py-1 px-1 btn-primary">&nbsp; <input
-											type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
+										<td><input type="text" name="date" style="width: 150px;">&nbsp;&nbsp; ~ &nbsp;&nbsp;			
+										    <input type="text" name="date" style="width: 150px;"> 
+											<input type="submit" value="오늘" class="btn py-1 px-1 btn-primary">&nbsp;
+											<input type="submit" value="1주일" class="btn py-1 px-1 btn-primary">&nbsp; 
+											<input type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
 										</td>
 									</tr>
-
-
-									<th>기업명검색</th>
+									<th>상품명 검색</th>
 									<tr>
-										<td><select name="" style="width: 100px;">
-												<option value="0">플래티넘</option>
-												<option value="1">골드</option>
-
-										</select> <input type="text" name="time" style="width: 430px;">
-
-											<input type="submit" value="검색"
-											class="btn py-1 px-1 btn-primary"></td>
+										<td>
+                                            <select name="day" style="width:150px;">
+                                            	<option value="">--선택하십시오--</option>
+                                            	<option value="ad">전체</option>
+                                            	<option value="ad">광고</option>
+                                            	<option value="up">up</option>
+                                            	<option value="resume">resume</option>
+                                            	<option value="board">board</option>
+                                            </select>
+                                            <input type="hidden" name="daysearch">
+                                    		<button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
+                                    	</td>
 									</tr>
 								</table>
 							</div>
 						</div>
+						
+					
+						
 
 						<div class="card shadow mb-3">
 							<div>
@@ -97,8 +101,8 @@
 										<div class="card-icon">
 											<i class="material-icons">전체 매출</i>
 										</div>
-										<h3 class="card-title">
-											1,000,000,000<small>원</small>
+										<h3 class="card-title" id="all_totalsales" name="all_totalsales">
+											<%=request.getAttribute("all_totalsales") %><small>원</small>
 										</h3>
 									</div>
 
@@ -109,8 +113,8 @@
 										<div class="card-icon">
 											<i class="material-icons">오늘 매출</i>
 										</div>
-										<h3 class="card-title">
-											100<small>원</small>
+										<h3 class="card-title" id="todaysales" name="todaysales">
+											<%=request.getAttribute("todaysales") %><small>원</small>
 										</h3>
 									</div>
 
@@ -119,15 +123,16 @@
 									style="float: left; width: 33%; padding: 10px;">
 									<div class="card-header card-header-warning card-header-icon">
 										<div class="card-icon">
-											<i class="material-icons">주간 매출</i>
+											<i class="material-icons">최근 일주일 매출</i>
 										</div>
-										<h3 class="card-title">
-											100<small>원</small>
+										<h3 class="card-title" id="weeklysales" name="weeklysales">
+											<%=request.getAttribute("weeklysales") %><small>원</small>
 										</h3>
 									</div>
 								</div>
 							</div>
 						</div>
+						
 
 						<div class="card-body">
 
@@ -195,53 +200,50 @@
 						</div>
 					</div>
 				</div>
+				</div>
 
-			</div>
-			<!-- /.container-fluid -->
+			 </div>
+    <!-- /.container-fluid -->
 
-		</div>
-		<!-- End of Main Content -->
-
-
-
-	</div>
-	<!-- End of Content Wrapper -->
-
-	</div>
-	<!-- End of Page Wrapper -->
-
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
+    </div>
+    <!-- End of Main Content -->
 
 
 
-	<!-- Core plugin JavaScript-->
-	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    </div>
+    <!-- End of Content Wrapper -->
 
-	<!-- Custom scripts for all pages-->
-	<script src="js/sb-admin-2.min.js"></script>
+    </div>
+    <!-- End of Page Wrapper -->
 
-	<!-- Page level plugins -->
-	<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-	<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="js/demo/datatables-demo.js"></script>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
 
 
-	</div>
-	<!-- 끝 main 본문  -->
-	</div>
-	<!-- 끝 main -->
-	<!-- footer -->
-	<%@ include file="../serve/footer.jsp"%>
-	</div>
-	<!-- 끝 content wrapper -->
-	</div>
-	<!-- 끝  wrapper -->
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
+
+
+
+    </div><!-- 끝 main 본문  -->
+    </div><!-- 끝 main -->
+    <!-- footer -->
+    <%@ include file="../serve/manager_footer.jsp" %>
+    </div><!-- 끝 content wrapper -->
+    </div><!-- 끝  wrapper -->
 </body>
 
 </html>
