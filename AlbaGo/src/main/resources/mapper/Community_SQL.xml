@@ -24,9 +24,14 @@
 	</insert>
 	
 	<!-- 커뮤니티글 리스트 -->
-	<select id = "selectList" resultType="BoardCommunity">        
+	<select id = "selectListCount" resultType="int">        
+		select count(*) from community	
+		ORDER by community_id desc 
+	</select>
+	<select id = "selectList" resultType="BoardCommunity" parameterType="int">        
 		select* from community	
 		ORDER by community_id desc 
+		LIMIT #{start},10
 	</select>
 	
 	<!-- 커뮤니티글 보기 -->

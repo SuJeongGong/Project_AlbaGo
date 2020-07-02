@@ -31,11 +31,15 @@ public class BoardCommunityController {
 	 CommunityService   communityService;
 	
 	@RequestMapping("/list")//리스트
-	public String list(Model m) {
+	public String list(Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		
-		ArrayList<BoardCommunity> communitys =communityService.selectList();
-		
+		ArrayList<BoardCommunity> communitys =communityService.selectList((pageNum-1) * 10);
+		int count = communityService.selectListCount();
 		m.addAttribute("communitys", communitys);
+
+		m.addAttribute("pageNum", pageNum);
+		m.addAttribute("count",  count / 10 + 1);
 		
 		return "/community/list";
 	}
@@ -152,14 +156,13 @@ public class BoardCommunityController {
 		} else {
 			String id = session.getAttribute("id").toString();//로그인 된 아이디
 			int community_id = Integer.parseInt(request.getParameter("community_id"));//파라미터로 들어온 값 , 글번호 
-			ArrayList<BoardCommunity> communitys =communityService.selectList();
-			m.addAttribute("communitys", communitys);
+
 				
 				BoardCommunity boardCommunity = communityService.selectContent(community_id);
 				boardCommunity.setCommunity_id(community_id);
 				System.out.println("수정 화면 보여주는 컨트롤러 "+boardCommunity);
 				m.addAttribute("board_Community", boardCommunity); // 여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
-				page = "/community/update";//redirect:/community/list
+				page = "redirect:/community/list";//redirect:/community/list
 		
 		}
 		return page;
