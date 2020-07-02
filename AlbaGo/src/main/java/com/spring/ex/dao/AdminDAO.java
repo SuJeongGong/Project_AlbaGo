@@ -131,6 +131,8 @@ public interface AdminDAO {
 		ArrayList<BoardRecruit> total_List_Rc_T(Map<String, Object> map);
 		ArrayList<BoardRecruit> total_List_Rc_W(Map<String, Object> map);
 		ArrayList<BoardRecruit> total_List_Rc_M(Map<String, Object> map);
+		ArrayList<Volunteer> selectVolunteer(String id);//지원자 목록 가져오기
+
 	
 	/** 인재글관리 */
 		//전체 인재 갯수

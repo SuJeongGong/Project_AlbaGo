@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.AdminDAO;
+import com.spring.ex.dao.EnterpriseDAO;
 import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
@@ -298,6 +299,11 @@ public class AdminService {
 		}
 	}
 	
+	//공고 게시판에서 지원자보기
+	public ArrayList<Volunteer> selectVolunteer(String id) {
+		return adminDAO.selectVolunteer(id);
+	}
+	
 	//공고 게시판 선택삭제
 	public int deleteBoardRecruits(ArrayList<String> ids) {
 		System.out.println(ids);
@@ -305,9 +311,6 @@ public class AdminService {
 		
 		return forDeleteSQL(ids, "deleteBoardRecruit");
 	}
-	
-	
-
 	
 	// 게시글 삭제
 	public int forDeleteSQL(ArrayList<String> ids, String methodName) {

@@ -30,7 +30,9 @@ import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
+import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.AdminService;
+import com.spring.ex.services.EnterpriseService;
 import com.spring.ex.services.ProductService;
 
 @Controller
@@ -41,6 +43,8 @@ public class AdminController {
 	ProductService productService;
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	EnterpriseService enterpriseService;
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main(Model m) {
@@ -671,7 +675,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/volunteerlist")
-	public String volunteer_list() {
+	public String volunteer_list(@AuthUser String id, Model m) {
+		m.addAttribute("volunteers", enterpriseService.selectVolunteer(id.split("/")[0]));// why salary는 안나오죠?
 		return "/admin/volunteerlist";
 	}
 	

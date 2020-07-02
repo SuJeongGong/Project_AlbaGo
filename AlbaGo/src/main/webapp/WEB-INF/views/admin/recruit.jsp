@@ -251,7 +251,7 @@
                                             <td><%=boardrecruit_date %></td>
                                             <td><a href="<%=request.getContextPath() %>/recruit/content?board_recruit_id=<%=boardrecruit_id%>"><%=boardrecruit_title%></a></td>
                                             <td><%=enterprise_id %></td>
-                                            <td><a href="#" class="btn py-1 px-1 btn-primary">지원자보기</a>
+                                            <td><a href="<%=request.getContextPath()%>/admin/volunteerlist" class="btn py-1 px-1 btn-primary">지원자보기</a>
                                             <td><%=category %></td>
                                             <td><%=place %></td>
                                             <td><%=gender %></td>
