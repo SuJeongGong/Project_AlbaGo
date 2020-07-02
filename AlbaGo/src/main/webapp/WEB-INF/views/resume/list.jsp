@@ -163,13 +163,13 @@
                                     <div class="jobs_left d-flex align-items-center">
 
                                         <div class="jobs_conetent">
-                                            <a href="job_details.html"><h4><%=title %> </h4></a>
+                                            <a href="<%=request.getContextPath() %>/resume/content?board_resume_id=<%=board_resume_id %>"><h4><%=title %> </h4></a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
                                                     <p> <i class="fa fa-map-marker"></i><%=place %></p>
                                                 </div>
                                                 <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i><%=date %></p>
+                                                    <p> <i class="fa fa-clock-o"></i><%=date.split(":")[0] %>:<%=date.split(":")[1] %></p>
                                                 </div>
                                                 <div class="location">
                                                 	<p> 조회수 : <%=views %></p>

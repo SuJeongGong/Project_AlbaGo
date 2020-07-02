@@ -108,7 +108,7 @@ public class IndividualController {
 		}
 		if (1 <= individualSerive.insertCareer(careers, resume.getResume_id())) {// 경력 저장에 성공했다면
 			System.out.println("DB에 값 넣기 성공 ( 경력 )");
-			page = "/main"; // 성공했을때 경로
+			page = "redirect:/individual/profile/list"; // 성공했을때 경로
 		}
 		return page;
 	}

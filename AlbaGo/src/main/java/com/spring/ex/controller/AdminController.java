@@ -405,10 +405,6 @@ public class AdminController {
 	public @ResponseBody int changeEnterprisestate(@RequestParam("enterprise_id") String enterprise_id,@RequestParam("result") int result) {
 		return adminService.changeEnterprisestate(enterprise_id,result);
 	}
-	@RequestMapping("/payment") // 결제관리
-	public String manager_payment() {
-		return "admin/payment";
-	}
 	// 공고삭제 AJAX
 	@RequestMapping(value = "/deleteEnterpriseRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteEnterpriseRecruit(@RequestParam("recruit_id") int recruit_id) {

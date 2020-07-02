@@ -257,7 +257,7 @@
                                             </td>
                                             <td><%=boardresume_id %></td>
                                             <td><%=boardresume_date %></td>
-                                            <td><a href="<%=request.getContextPath() %>/resume/list?board_resume_id=<%=boardresume_id%>"><%=boardresume_title%></a></td>
+                                            <td><a href="<%=request.getContextPath() %>/resume/content?board_resume_id=<%=boardresume_id%>"><%=boardresume_title%></a></td>
                                             <td><%=individual_id %></td>
                                             <td><%=category %></td>
                                             <td><%=place %></td>
