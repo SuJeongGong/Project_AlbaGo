@@ -498,26 +498,6 @@
 		and board_recruit.delete_check = 1
 	</select>
 	
-	<!-- 작성자로 검색 -->
-	<select id = "writer_search_Rc" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
-		 recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
-		FROM board_recruit, recruit
-		WHERE board_recruit.recruit_id = recruit.recruit_id
-		and board_recruit.delete_check = 1
-		and recruit.enterprise_id like CONCAT('%',#{recruit.enterprise_id},'%')
-	</select>
-	
-	<!-- 제목으로 검색 -->
-	<select id = "title_search_Rc" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
-		 recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
-		FROM board_recruit, recruit
-		WHERE board_recruit.recruit_id = recruit.recruit_id
-		and board_recruit.delete_check = 1
-		and board_recruit.title like CONCAT('%',#{board_recruit.title},'%')
-	</select>
-	
 	<!-- 전체 공고 갯수 -->
 	<select id = "all_Count" resultType="int">
 		select count(*)
@@ -563,6 +543,55 @@
 		and recruit.place like CONCAT('%',#{place},'%')
 		and recruit.gender like CONCAT('%',#{gender},'%')
 		and recruit.education like CONCAT('%',#{education},'%')
+		and (board_recruit.title like CONCAT('%',#{search},'%')
+		OR recruit.enterprise_id like CONCAT('%',#{search},'%'))
+	</select>
+	<!-- 공고글 전체 검색 오늘포함 -->
+	<select id = "total_List_Rc_T" resultType="BoardRecruit" parameterType="hashmap">
+		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
+		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		and recruit.category like CONCAT('%',#{category},'%')
+		and recruit.place like CONCAT('%',#{place},'%')
+		and recruit.gender like CONCAT('%',#{gender},'%')
+		and recruit.education like CONCAT('%',#{education},'%')
+		and board_recruit.date like CONCAT('%',#{day},'%')
+		and (board_recruit.title like CONCAT('%',#{search},'%')
+		OR recruit.enterprise_id like CONCAT('%',#{search},'%'))
+		AND board_recruit.`date` >= CURDATE()
+	</select>
+	<!-- 공고글 전체 검색 일주일포함 -->
+	<select id = "total_List_Rc_W" resultType="BoardRecruit" parameterType="hashmap">
+		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
+		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		and recruit.category like CONCAT('%',#{category},'%')
+		and recruit.place like CONCAT('%',#{place},'%')
+		and recruit.gender like CONCAT('%',#{gender},'%')
+		and recruit.education like CONCAT('%',#{education},'%')
+		and (board_recruit.title like CONCAT('%',#{search},'%')
+		OR recruit.enterprise_id like CONCAT('%',#{search},'%'))
+		AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)
+	</select>
+	<!-- 공고글 전체 검색 일개월포함-->
+	<select id = "total_List_Rc_M" resultType="BoardRecruit" parameterType="hashmap">
+		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
+		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
+		FROM board_recruit, recruit
+		WHERE board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		and recruit.category like CONCAT('%',#{category},'%')
+		and recruit.place like CONCAT('%',#{place},'%')
+		and recruit.gender like CONCAT('%',#{gender},'%')
+		and recruit.education like CONCAT('%',#{education},'%')
+		and (board_recruit.title like CONCAT('%',#{search},'%')
+		OR recruit.enterprise_id like CONCAT('%',#{search},'%'))
+		AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)
+		
 	</select>
 	
 	
@@ -572,37 +601,6 @@
 		set delete_check = 0
 		where board_recruit_id = #{boardrecruit_id}
 	</update>
-	
-	<!-- 공고글 오늘 -->
-	<select id = "today_search_Rc" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
-		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
-		FROM board_recruit, recruit
-		WHERE board_recruit.recruit_id = recruit.recruit_id
-		and board_recruit.delete_check = 1
-		AND board_recruit.`date` >= CURDATE()
-	</select>
-	
-	<!-- 공고글 일주일 -->
-	<select id = "week_search_Rc" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
-		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
-		FROM board_recruit, recruit
-		WHERE board_recruit.recruit_id = recruit.recruit_id
-		and board_recruit.delete_check = 1
-		AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)
-	</select>
-	
-	<!-- 공고글 1개월 -->
-	<select id = "month_search_Rc" resultType="BoardRecruit" parameterType="String">
-		SELECT board_recruit.board_recruit_id AS board_recruit_id, board_recruit.`date` AS date , board_recruit.title AS title,
-		recruit.enterprise_id AS enterprise_id, recruit.place AS place, recruit.category AS category, recruit.gender AS gender, recruit.education AS education
-		FROM board_recruit, recruit
-		WHERE board_recruit.recruit_id = recruit.recruit_id
-		and board_recruit.delete_check = 1
-		AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)
-	</select>
-	
 	
 	
 	<!-- 전체 인재 갯수 -->
@@ -654,6 +652,59 @@
 		and resume.place like CONCAT('%',#{place},'%')
 		and individual.gender like CONCAT('%',#{gender},'%')
 		and individual.education like CONCAT('%',#{education},'%')
+		and (board_resume.title like CONCAT('%',#{search},'%')
+		OR resume.individual_id like CONCAT('%',#{search},'%'))
+	</select>
+	<!-- 인재글 전체 검색 오늘포함 -->
+	<select id = "total_List_Rs_T" resultType="BoardResume" parameterType="hashmap">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
+		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
+		and board_resume.delete_check = 1
+		and resume.category like CONCAT('%',#{category},'%')
+		and resume.place like CONCAT('%',#{place},'%')
+		and individual.gender like CONCAT('%',#{gender},'%')
+		and individual.education like CONCAT('%',#{education},'%')
+		and (board_resume.title like CONCAT('%',#{search},'%')
+		OR resume.individual_id like CONCAT('%',#{search},'%'))
+		AND board_resume.`date` >= CURDATE()
+	</select>
+	<!-- 인재글 전체 검색 일주일포함 -->
+	<select id = "total_List_Rs_W" resultType="BoardResume" parameterType="hashmap">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
+		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
+		and board_resume.delete_check = 1
+		and resume.category like CONCAT('%',#{category},'%')
+		and resume.place like CONCAT('%',#{place},'%')
+		and individual.gender like CONCAT('%',#{gender},'%')
+		and individual.education like CONCAT('%',#{education},'%')
+		and (board_resume.title like CONCAT('%',#{search},'%')
+		OR resume.individual_id like CONCAT('%',#{search},'%'))
+		AND board_resume.`date` > (NOW() - INTERVAL 7 DAY)
+	</select>
+	<!-- 인재글 전체 검색 1개월포함 -->
+	<select id = "total_List_Rs_M" resultType="BoardResume" parameterType="hashmap">
+		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
+		 resume.individual_id, resume.category, resume.place,
+		 individual.gender, individual.education 
+		FROM board_resume, resume, individual
+		WHERE board_resume.resume_id = resume.resume_id
+		AND resume.individual_id = individual.individual_id
+		and board_resume.delete_check = 1
+		and resume.category like CONCAT('%',#{category},'%')
+		and resume.place like CONCAT('%',#{place},'%')
+		and individual.gender like CONCAT('%',#{gender},'%')
+		and individual.education like CONCAT('%',#{education},'%')
+		and (board_resume.title like CONCAT('%',#{search},'%')
+		OR resume.individual_id like CONCAT('%',#{search},'%'))
+		AND board_resume.`date` > (NOW() - INTERVAL 1 MONTH)
 	</select>
 	
 	<!-- 예슬이가 아에 감싸는 거라고 설명해줌(인재) -->
@@ -667,30 +718,6 @@
 		and board_resume.delete_check = 1
 	</select>
 	
-	<!-- 작성자로 검색 -->
-	<select id = "writer_search_R" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
-		 resume.individual_id, resume.category, resume.place,
-		 individual.gender, individual.education 
-		FROM board_resume, resume, individual
-		WHERE board_resume.resume_id = resume.resume_id
-		AND resume.individual_id = individual.individual_id
-		and board_resume.delete_check = 1
-		and resume.individual_id like CONCAT('%',#{resume.individual_id},'%')
-	</select>
-	
-	<!-- 제목으로 검색 -->
-	<select id = "title_search_R" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
-		 resume.individual_id, resume.category, resume.place,
-		 individual.gender, individual.education 
-		FROM board_resume, resume, individual
-		WHERE board_resume.resume_id = resume.resume_id
-		AND resume.individual_id = individual.individual_id
-		and board_resume.delete_check = 1
-		and board_resume.title like CONCAT('%',#{board_resume.title},'%')
-	</select>
-	
 	<!-- 인재글 삭제 -->
 	<update id="deleteBoardResumes" parameterType="int">
 		update board_resume
@@ -698,41 +725,6 @@
 		where board_resume_id = #{boardresume_id}
 	</update>
 	
-	<!-- 인재글 오늘 -->
-	<select id = "today_search_Rs" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
-		 resume.individual_id, resume.category, resume.place,
-		 individual.gender, individual.education 
-		FROM board_resume, resume, individual
-		WHERE board_resume.resume_id = resume.resume_id
-		AND resume.individual_id = individual.individual_id
-		and board_resume.delete_check = 1
-		AND board_resume.`date` >= CURDATE()
-	</select>
-	
-	<!-- 인재글 일주일 -->
-	<select id = "week_search_Rs" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
-		 resume.individual_id, resume.category, resume.place,
-		 individual.gender, individual.education 
-		FROM board_resume, resume, individual
-		WHERE board_resume.resume_id = resume.resume_id
-		AND resume.individual_id = individual.individual_id
-		and board_resume.delete_check = 1
-		AND board_resume.`date` > (NOW() - INTERVAL 7 DAY)
-	</select>
-	
-	<!-- 인재글 1개월 -->
-	<select id = "month_search_Rs" resultType="BoardResume" parameterType="String">
-		SELECT board_resume.board_resume_id, board_resume.`date`, board_resume.title as board_resume_title,
-		 resume.individual_id, resume.category, resume.place,
-		 individual.gender, individual.education 
-		FROM board_resume, resume, individual
-		WHERE board_resume.resume_id = resume.resume_id
-		AND resume.individual_id = individual.individual_id
-		and board_resume.delete_check = 1
-		AND board_resume.`date` > (NOW() - INTERVAL 1 MONTH)
-	</select>
 	
 	<!-- 커뮤니티 게시판 -->
 	<select id = "community_List" resultType = "BoardCommunity">
@@ -746,18 +738,13 @@
 		FROM community
 	</select>
 	
-	<!-- 작성자로 검색 -->
-	<select id = "writer_search_C" resultType="BoardCommunity" parameterType="String">
+	<!-- 커뮤니티 전체 검색 -->
+	<select id ="community_total_search" resultType="BoardCommunity" parameterType="hashmap">
 		SELECT community.community_id, community.`date`, community.title, community.individual_id
 		FROM community
-		WHERE individual_id like CONCAT('%',#{individual_id},'%')
-	</select>
-	
-	<!-- 제목으로 검색 -->
-	<select id = "title_search_C" resultType="BoardCommunity" parameterType="String">
-		SELECT community.community_id, community.`date`, community.title, community.individual_id
-		FROM community
-		WHERE title like CONCAT('%',#{title},'%')
+		WHERE (community.title like CONCAT('%',#{search},'%')
+		OR community.individual_id like CONCAT('%',#{search},'%'))
+		and `date` BETWEEN #{start} AND #{end}
 	</select>
 	
 	<!-- 커뮤니티 게시글 삭제 -->

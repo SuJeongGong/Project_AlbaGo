@@ -274,7 +274,7 @@ public class AdminService {
 	}
 	
 	//공고 게시판 총검색
-	public ArrayList<BoardRecruit> total_List_Rc(String category, String place, String gender, String education) {
+	public ArrayList<BoardRecruit> total_List_Rc(String category, String place, String gender, String education, String day, String search) {
 		ArrayList<BoardRecruit> boardrecruits = null;
 		
 		Map<String, Object> map=new HashMap<String,Object>();
@@ -282,7 +282,20 @@ public class AdminService {
 		map.put("place",place);
 		map.put("gender",gender);
 		map.put("education",education);
-		return adminDAO.total_List_Rc(map);
+		map.put("day",day);
+		map.put("search",search);
+		if(day.equals("today")) {
+			return adminDAO.total_List_Rc_T(map);
+		}
+		else if(day.equals("week")) {
+			return adminDAO.total_List_Rc_W(map);
+		}
+		else if(day.equals("month")) {
+			return adminDAO.total_List_Rc_M(map);
+		}
+		else {
+			return adminDAO.total_List_Rc(map);
+		}
 	}
 	
 	//공고 게시판 선택삭제
@@ -390,7 +403,7 @@ public class AdminService {
 	
 	
 	//인재 게시판 총검색
-	public ArrayList<BoardResume> total_List_Rs(String category, String place, String gender, String education) {
+	public ArrayList<BoardResume> total_List_Rs(String category, String place, String gender, String education, String day, String search) {
 		ArrayList<BoardResume> boardresumes = null;
 		
 		Map<String, Object> map=new HashMap<String,Object>();
@@ -398,7 +411,20 @@ public class AdminService {
 		map.put("place",place);
 		map.put("gender",gender);
 		map.put("education",education);
-		return adminDAO.total_List_Rs(map);
+		map.put("day",day);
+		map.put("search",search);
+		if(day.equals("today")) {
+			return adminDAO.total_List_Rs_T(map);
+		}
+		else if(day.equals("week")) {
+			return adminDAO.total_List_Rs_W(map);
+		}
+		else if(day.equals("month")) {
+			return adminDAO.total_List_Rs_M(map);
+		}
+		else {
+			return adminDAO.total_List_Rs(map);
+		}
 	}
 		
 	
@@ -426,34 +452,15 @@ public class AdminService {
 		return forDeleteSQL(ids, "deleteBoardCommunity");
 	}
 	
-		
-	//커뮤니티 게시판 선택검색
-	public ArrayList<BoardCommunity> community_List_id(String category, String search) {
+	//커뮤니티 게시판 총 검색
+	public ArrayList<BoardCommunity> community_total_search(String start, String end, String search) {
 		ArrayList<BoardCommunity> boardcommunities = null;
 		
-		if(category.equals("writer")) {
-			return adminDAO.writer_search_C(search);
-		}
-		else if(category.equals("title")) {
-			return adminDAO.title_search_C(search);
-		}
-		return null;
-	}
-	
-	//커뮤니티 게시판 날짜 검색
-	public ArrayList<BoardCommunity> community_List_day(String day, String daysearch) {
-		ArrayList<BoardCommunity> boardcommunities = null;
-		
-		if(day.equals("today")) {
-			return adminDAO.today_search_C(daysearch);
-		}
-		else if(day.equals("week")) {
-			return adminDAO.week_search_C(daysearch);
-		}
-		else if(day.equals("month")) {
-			return adminDAO.month_search_C(daysearch);
-		}
-		return null;
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		map.put("search",search);
+		return adminDAO.community_total_search(map);
 	}
 	
 	//공수정
