@@ -163,7 +163,7 @@
                                             </td>
                                             <td><%=community_id %></td>
                                             <td><%=community_date %></td>
-                                            <td><a href="<%=request.getContextPath() %>/community/list?community_id=<%=community_id%>"><%=community_title%></a></td>
+                                            <td><a href="<%=request.getContextPath() %>/community/content?community_id=<%=community_id%>"><%=community_title%></a></td>
                                             <td><%=individual_id %></td>
                                         </tr>
                                     <%} %>

@@ -23,7 +23,7 @@
                     <div class="job_filter white-bg">
                         <div class="form_inner white-bg">
                             <h3>검색필터</h3>
-                            <form action="<%=request.getContextPath() %>/resume/list/total" method="get" name="keyword" id="keyword">
+                            <form action="<%=request.getContextPath() %>/resume/list" method="get" name="keyword" id="keyword">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="single_field">
@@ -146,10 +146,10 @@
                         <div class="row">
 							
 							<%
-								ArrayList<BoardResume> resumes = (ArrayList<BoardResume>)request.getAttribute("resumes");
-							System.out.println("js"+resumes);
-								for(int i=0; i<resumes.size(); i++) {
-									BoardResume resume = resumes.get(i);
+								ArrayList<BoardResume> boardrecruits = (ArrayList<BoardResume>)request.getAttribute("boardrecruits");
+							System.out.println("js"+boardrecruits);
+								for(int i=0; i<boardrecruits.size(); i++) {
+									BoardResume resume = boardrecruits.get(i);
 									String title = resume.getBoard_resume_title();
 									String date = resume.getDate();
 									String place = resume.getPlace();
@@ -163,13 +163,13 @@
                                     <div class="jobs_left d-flex align-items-center">
 
                                         <div class="jobs_conetent">
-                                            <a href="job_details.html"><h4><%=title %> </h4></a>
+                                            <a href="<%=request.getContextPath() %>/resume/content?board_resume_id=<%=board_resume_id %>"><h4><%=title %> </h4></a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
                                                     <p> <i class="fa fa-map-marker"></i><%=place %></p>
                                                 </div>
                                                 <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i><%=date %></p>
+                                                    <p> <i class="fa fa-clock-o"></i><%=date.split(":")[0] %>:<%=date.split(":")[1] %></p>
                                                 </div>
                                                 <div class="location">
                                                 	<p> 조회수 : <%=views %></p>

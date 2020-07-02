@@ -21,9 +21,9 @@ public class BoardRecruitService {
 		return boardRecruitDAO.insertBoard_recruit(boardrecruit);
 	}
 
-	public ArrayList<BoardRecruit> selectList() {
-		return boardRecruitDAO.selectList();
-	}
+//	public ArrayList<BoardRecruit> selectList() {
+//		return boardRecruitDAO.selectList();
+//	}
 
 	public BoardRecruit selectView(int id) {
 		return boardRecruitDAO.selectView(id);

@@ -91,10 +91,10 @@ public class MainController {
 		
 		
 		if(id.split("/")[1].toString().equals("기업")) {
-			page="redirect:/resume/list/total?local_category="+local_category+"&enterprise_category="+enterprise_category+"&gender=&education=&term=&title="+title;
+			page="redirect:/resume/list?local_category="+local_category+"&enterprise_category="+enterprise_category+"&gender=&education=&term=&title="+title;
 			return page;
 		}else {
-			page="redirect:/recruit/list/total?local_category="+local_category+"&enterprise_category="+enterprise_category+"&gender=&education=&term=&title="+title;
+			page="redirect:/recruit/list?local_category="+local_category+"&enterprise_category="+enterprise_category+"&gender=&education=&term=&title="+title;
 			System.out.println(page);
 			return page;
 		}
