@@ -21,8 +21,8 @@ public class BoardRecruitService {
 		return boardRecruitDAO.insertBoard_recruit(boardrecruit);
 	}
 
-	public ArrayList<BoardRecruit> selectList() {
-		return boardRecruitDAO.selectList();
+	public ArrayList<BoardRecruit> selectList(int page) {
+		return boardRecruitDAO.selectList((page-1)*10);
 	}
 
 	public BoardRecruit selectView(int id) {
@@ -40,9 +40,11 @@ public class BoardRecruitService {
 	public ArrayList<Resume> selectResumes(String individual_id) {
 		return boardRecruitDAO.selectResumes(individual_id);
 	}
-	
+	public int selectListCount(){
+		return boardRecruitDAO.selectListCount();
+	}
 	//게시판 검색
-	public ArrayList<BoardRecruit> total_List(String category, String place, String gender, String education, String term, String title) {
+	public ArrayList<BoardRecruit> total_List(String category, String place, String gender, String education, String term, String title , int page) {
 		ArrayList<BoardRecruit> boardrecruits = null;
 		
 		Map<String, Object> map=new HashMap<String,Object>();
@@ -52,6 +54,7 @@ public class BoardRecruitService {
 		map.put("education",education);
 		map.put("term",term);
 		map.put("title",title);
+		map.put("start",(page-1) * 10 );
 		System.out.println(boardRecruitDAO.total_List(map)+"맵");
 		return boardRecruitDAO.total_List(map);
 	}
