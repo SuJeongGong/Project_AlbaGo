@@ -72,6 +72,10 @@ public class AdminController {
 		// 오늘 매출액
 		HashMap<String, Object> totalM = adminService.total_M();
 		m.addAttribute("totalM", totalM);
+		
+		//일주일 매출액 
+		int selectWeekTotal=adminService.selectWeekTotal();
+		m.addAttribute("selectweek", selectWeekTotal);
 
 		// 오늘 공고 갯수
 		int todaycount = adminService.today_Count();
