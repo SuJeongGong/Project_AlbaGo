@@ -1,6 +1,8 @@
 package com.spring.ex.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,16 +34,7 @@ public class BoardResumeController {
 	ResumeService resumeService;
 	@Autowired
 	IndividualService individualService;
-	
-//	@RequestMapping("/list")//리스트
-//	public String list(Model m) {
-//		ArrayList<BoardResume> resumes = boardResumeService.selectList();
-//		
-//		m.addAttribute("resumes", resumes);
-//		
-//		return "/resume/list";
-//	}
-	
+
 	@RequestMapping("/list") //검색
 	public String list_total(Model m, 
 			@RequestParam(value = "enterprise_category", defaultValue = "") String enterprise_category,
@@ -49,10 +42,26 @@ public class BoardResumeController {
 			@RequestParam(value = "gender", defaultValue = "") String gender,
 			@RequestParam(value = "education", defaultValue = "") String education, 
 			@RequestParam(value = "term", defaultValue = "") String term, 
-			@RequestParam(value = "title", defaultValue = "") String title) {
+			@RequestParam(value = "title", defaultValue = "") String title,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "/resume/list";
-		ArrayList<BoardResume> boardresumes = boardResumeService.total_List(enterprise_category, local_category, gender, education, term, title);
+		
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("category",enterprise_category);
+		map.put("place",local_category);
+		map.put("gender",gender);
+		map.put("education",education);
+		map.put("term",term);
+		map.put("title",title);
+		map.put("start",(pageNum-1) * 10);
+		
+		
+		ArrayList<BoardResume> boardresumes = boardResumeService.total_List(map);
+		int count = boardResumeService.selectListCount(map);
 		m.addAttribute("boardrecruits", boardresumes);
+		m.addAttribute("pageNum", pageNum);
+		m.addAttribute("count",  count / 10 + 1);
+		m.addAttribute("map",  map);
 		System.out.println(boardresumes +"boardrecruits");
 		return page;
 	}

@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.spring.ex.dao.EnterpriseDAO">
-	<select id="selectEnterprise" parameterType="String"
-		resultType="Enterprise">
+	<select id="selectEnterprise" parameterType="String"  resultType="Enterprise">
 		select *
 		from enterprise
 		<where>
@@ -11,8 +10,7 @@
 		</where>
 	</select>
 
-	<select id="selectScrap" parameterType="String"
-		resultType="Scrap_enterprise">
+	<select id="selectScrap" parameterType="String" resultType="Scrap_enterprise">
 		SELECT board_resume.title AS title,
 		scrap_enterprise.date AS DATE,
 		board_resume.date AS resume_date,
@@ -25,12 +23,22 @@
 		<where>
 			scrap_enterprise.board_resume_id =board_resume.board_resume_id
 			AND resume.resume_id = board_resume.resume_id
-			and enterprise_id =
-			#{id}
+			and enterprise_id =#{id}
 		</where>
 		ORDER BY scrap_enterprise.scrap_enterprise_id DESC
-
 	</select>
+	<select id ="selectScrapCount" resultType="int"  parameterType="String">
+		SELECT count(*)
+		from
+		scrap_enterprise, board_resume , resume
+		<where>
+			scrap_enterprise.board_resume_id =board_resume.board_resume_id
+			AND resume.resume_id = board_resume.resume_id
+			and enterprise_id = #{id}
+		</where>
+		ORDER BY scrap_enterprise.scrap_enterprise_id DESC
+	</select>
+	
 
 	<select id="selectVolunteer" parameterType="String"
 		resultType="Volunteer">

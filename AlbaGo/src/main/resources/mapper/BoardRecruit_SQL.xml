@@ -4,23 +4,43 @@
 <mapper namespace="com.spring.ex.dao.BoardRecruitDAO">
  
 	<!-- 공고글 리스트 -->
-		<select id = "selectList" resultType="BoardRecruit" parameterType="int">
+	<select id = "selectList" resultType="BoardRecruit" parameterType="int">
 			select board_recruit.board_recruit_id, board_recruit.title, board_recruit.date, board_recruit.views, recruit.place 
 			from recruit, board_recruit
 			where recruit.recruit_id = board_recruit.recruit_id
 			AND board_recruit.delete_check = 1
 			ORDER BY board_recruit.date DESC
-			LIMIT #{start},10
-		</select> 
+	LIMIT #{start},10
+	</select> 
 	
-	<select id = "selectListCount" resultType="int" >
-			select count(*)
-			from recruit, board_recruit
-			where recruit.recruit_id = board_recruit.recruit_id
-			AND board_recruit.delete_check = 1
-			ORDER BY board_recruit.date DESC
+	<select id = "selectListCount" resultType="int" parameterType="hashmap">
+				SELECT count(*)
+		FROM board_recruit, recruit
+		<where> board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		and recruit.category like CONCAT('%',#{category},'%')
+		and recruit.place like CONCAT('%',#{place},'%')
+		and recruit.gender like CONCAT('%',#{gender},'%')
+		and recruit.education like CONCAT('%',#{education},'%')
+		and recruit.term like CONCAT('%',#{term},'%')
+		and board_recruit.title like CONCAT('%',#{title},'%')
+			ORDER BY board_recruit.up_date DESC
+			</where>
 	</select>
-	
+		<!-- 리스트 사이드바 -->
+	<select id = "total_List" resultType="BoardRecruit" parameterType="hashmap">
+		SELECT board_recruit.board_recruit_id, board_recruit.title, board_recruit.date, board_recruit.views, recruit.place
+		FROM board_recruit, recruit
+		<where> board_recruit.recruit_id = recruit.recruit_id
+		and board_recruit.delete_check = 1
+		and recruit.category like CONCAT('%',#{category},'%')
+		and recruit.place like CONCAT('%',#{place},'%')
+		and recruit.gender like CONCAT('%',#{gender},'%')
+		and recruit.education like CONCAT('%',#{education},'%')
+		and recruit.term like CONCAT('%',#{term},'%')
+		and board_recruit.title like CONCAT('%',#{title},'%')
+		</where>
+	</select>
 	<!-- 게시글작성 -->
 	<insert id = "insertBoard_recruit" parameterType="BoardRecruit">
 		insert into board_recruit
@@ -95,18 +115,5 @@
 	
 	</select>
 	
-	<!-- 리스트 사이드바 -->
-	<select id = "total_List" resultType="BoardRecruit" parameterType="hashmap">
-		SELECT board_recruit.board_recruit_id, board_recruit.title, board_recruit.date, board_recruit.views, recruit.place
-		FROM board_recruit, recruit
-		<where> board_recruit.recruit_id = recruit.recruit_id
-		and board_recruit.delete_check = 1
-		and recruit.category like CONCAT('%',#{category},'%')
-		and recruit.place like CONCAT('%',#{place},'%')
-		and recruit.gender like CONCAT('%',#{gender},'%')
-		and recruit.education like CONCAT('%',#{education},'%')
-		and recruit.term like CONCAT('%',#{term},'%')
-		and board_recruit.title like CONCAT('%',#{title},'%')
-		</where>
-	</select>
+
 </mapper>
