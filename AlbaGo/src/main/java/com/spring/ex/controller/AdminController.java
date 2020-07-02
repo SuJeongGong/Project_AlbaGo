@@ -45,7 +45,7 @@ public class AdminController {
 	@RequestMapping("/main") // 관리자 메인
 	public String main(Model m) {
 		ArrayList<HashMap<String, Object>> sales = adminService.selectRecentSales();
-		m.addAttribute("Recent_sales", sales);
+		m.addAttribute("sales", sales);
 
 		ArrayList<HashMap<String, Object>> items = adminService.selectItems();
 		m.addAttribute("items", items);
@@ -455,7 +455,7 @@ public class AdminController {
 	//--------------------------------
 	
 	
-	@RequestMapping("/product/product") // 상품보기
+	@RequestMapping("/product/product") // 상품보기 리스트 
 	public String list(Model m, HttpServletRequest request) {
 
 		ArrayList<Product> products = productService.selectProductList();
@@ -464,7 +464,7 @@ public class AdminController {
 		return "/admin/product_product";
 	}
 
-	@RequestMapping("/product_account") // 상품상세보기
+	@RequestMapping("/product/product_account") // 상품상세보기
 	public String update_account(HttpServletRequest request, Model m, @RequestParam("product_id") int product_id) {
 		String page = "/admin/product_account";
 		Product product = productService.product_account(product_id);
@@ -473,7 +473,7 @@ public class AdminController {
 		return page;
 	}
 
-	@RequestMapping("/advertising/product") // 광고 보기
+	@RequestMapping("/advertising/product") // 광고 보기 - 리스트 
 	public String advertisingㅣist(Model m, HttpServletRequest request) {
 
 		ArrayList<Product> products = productService.selectAdvertisingList();
@@ -491,13 +491,13 @@ public class AdminController {
 		return page;
 	}
 
-	@RequestMapping("/account/update") // 상품수정하기
-	public String update(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
+	@RequestMapping("/account/product/update") // 상품수정하기
+	public String update( @ModelAttribute("product") Product product) {
 
 		System.out.println(product);
 		String page = "/admin/product_account";
 		if (productService.update_product(product) >= 1) {
-			page = "/admin/main";
+			page = "redirect:/admin/product/product";
 			System.out.println("DB연결성공");
 		} else {
 			page = "/admin/product_account";
@@ -542,12 +542,17 @@ public class AdminController {
 
 		m.addAttribute("payments", payments);
 
-		return "admin/product_approve";
+		return "admin/product_approve"; 
 	}
 
 	@RequestMapping("/add_product_term") // 기간있는 상품추가 보여주는 폼
 	public String add_product_term() {
 		String page = "/admin/add_product_term";
+		return page;
+	}
+	@RequestMapping("/add_advertising") // 광고상품추가 보여주는 폼
+	public String add_advertising() {
+		String page = "/admin/add_advertising";
 		return page;
 	}
 
@@ -558,27 +563,13 @@ public class AdminController {
 		String page = "/admin/add_product/result";
 		System.out.println(product);
 		if (productService.insertProduct(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
-			page = "/admin/main";
+			page = "redirect:/admin/product/product";
 		}
 
 		return page;
 	}
 
-	@RequestMapping("/add_product_no_term") // 기간이없는 상품추가 보여주는 폼
-	public String add_product_no_term() {
-		String page = "admin/add_product_no_term";
 
-		return page;
-	}
-
-	@RequestMapping("/add_product_no_term/result") // 기간이없는 상품추가 DB
-	public String add_product_no_term_result(HttpServletRequest request, @ModelAttribute("product") Product product,
-			BindingResult result) {
-
-		String page = "/admin/add_product_no_term/result";
-
-		return page;
-	}
 
 	@RequestMapping("/advertising/approve") // 결제승인
 	public String advertisingApprove(Model m) {

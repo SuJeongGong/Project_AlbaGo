@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>관리자메인</title>
 <%
-	ArrayList<HashMap<String,Object>> sales =(ArrayList<HashMap<String,Object>>) request.getAttribute("Recent_sales");
+	ArrayList<HashMap<String,Object>> sales =(ArrayList<HashMap<String,Object>>) request.getAttribute("sales");
 	ArrayList<HashMap<String,Object>> items =(ArrayList<HashMap<String,Object>>) request.getAttribute("items");
 	long  totalCount = (long)Integer.valueOf(items.get(0).get("count").toString()) 
 			+ (long)Integer.valueOf(items.get(1).get("count").toString())   
