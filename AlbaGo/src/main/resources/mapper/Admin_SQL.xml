@@ -846,4 +846,19 @@
       AND payment.result="승인"
 	</select>
 	
+	<!-- 매출관리 전체 검색 -->
+	<select id = "PaymentSearch" resultType="Payment" parameterType="hashmap">
+		SELECT product.price as product_price,
+		payment.enterprise_id as enterprise_id,
+		payment.date as date,
+		product.name as product_name
+		FROM product,payment
+		WHERE payment.product_id = product.product_id
+		AND 
+		and board_resume.delete_check = 1
+		and resume.category like CONCAT('%',#{category},'%')
+		and resume.place like CONCAT('%',#{place},'%')
+		and individual.gender like CONCAT('%',#{gender},'%')
+		and individual.education like CONCAT('%',#{education},'%')
+	</select>
 </mapper>

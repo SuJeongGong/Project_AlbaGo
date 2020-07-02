@@ -181,10 +181,11 @@ public interface AdminDAO {
 	    //주간 매출 
 		int weeklysales();
 	 
-		
-		
+		ArrayList<Payment> PaymentSearch(String payment_date, String product_type); //날짜검색(오늘, 일주일, 한달)
+		ArrayList<Payment> PaymentSearch(Map<String, Object> map);
 		
 		
 		//공수정 - 관리자 메인 화면
 		ArrayList<HashMap<String ,Object>> selectCountItem_Enterprise(String item);
+		
 }

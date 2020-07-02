@@ -635,6 +635,8 @@ public class AdminController {
 		return productService.advertisingUpdatePaymentsResult(map);
 	}
 	
+	//---------------------------------------------
+	
 	@RequestMapping("/payment") 
 	public String payment(Model m) {
 		String page = "/admin/payment";
@@ -659,6 +661,16 @@ public class AdminController {
 		
 		return page;
 	}
+	
+	@RequestMapping("/payment/total") // 매출관리 검색
+	public String payment(Model m, @RequestParam("payment_date") String payment_date,
+			@RequestParam("product_type") String product_type) {
+		String page = "/admin/payment";
+		ArrayList<Payment> payment = adminService.PaymentSearch(payment_date, product_type);
+		m.addAttribute("payment", payment);
+		return page;
+	}
+	
 	
 	@RequestMapping("/volunteerlist")
 	public String volunteer_list() {
