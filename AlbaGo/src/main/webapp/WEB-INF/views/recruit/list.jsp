@@ -24,7 +24,7 @@
                     <div class="job_filter white-bg">
                         <div class="form_inner white-bg">
                             <h3>검색필터</h3>
-                            <form action="<%=request.getContextPath() %>/recruit/list/total" method="get" name="keyword" id="keyword">
+                            <form action="<%=request.getContextPath() %>/recruit/list" method="get" name="keyword" id="keyword">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="single_field">
@@ -147,9 +147,9 @@
                         <div class="row">
                         
                         <%
-                        	ArrayList<BoardRecruit> recruits = (ArrayList<BoardRecruit>)request.getAttribute("recruits");
-                        	for(int i=0; i<recruits.size(); i++) {
-                        		BoardRecruit recruit = recruits.get(i);
+                        	ArrayList<BoardRecruit> boardrecruits = (ArrayList<BoardRecruit>)request.getAttribute("boardrecruits");
+                        	for(int i=0; i<boardrecruits.size(); i++) {
+                        		BoardRecruit recruit = boardrecruits.get(i);
                         		String title = recruit.getTitle();
                         		String date = recruit.getDate();
                         		String place = recruit.getPlace();

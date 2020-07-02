@@ -35,19 +35,23 @@ public class BoardRecruitController {
 	@Autowired
 	EnterpriseService enterpriseService;
 	
-	@RequestMapping("/list")//리스트
-	public String list(Model m) { //enterprise_id 가져오고
-		ArrayList<BoardRecruit> recruits = boardRecruitService.selectList();
-		
-		m.addAttribute("recruits", recruits);
-		
-		return "/recruit/list";
-	}
+//	@RequestMapping("/list")//리스트
+//	public String list(Model m) { //enterprise_id 가져오고
+//		ArrayList<BoardRecruit> recruits = boardRecruitService.selectList();
+//		
+//		m.addAttribute("recruits", recruits);
+//		
+//		return "/recruit/list";
+//	}
 	
-	@RequestMapping("/list/total")
-	public String list_total(Model m, @RequestParam("enterprise_category") String enterprise_category,
-			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
-			@RequestParam("education") String education, @RequestParam("term") String term, @RequestParam("title") String title) {
+	@RequestMapping("/list")
+	public String list_total(Model m, 
+			@RequestParam(value = "enterprise_category", defaultValue ="") String enterprise_category,
+			@RequestParam(value ="local_category", defaultValue ="") String local_category, 
+			@RequestParam(value="gender", defaultValue ="") String gender,
+			@RequestParam(value="education", defaultValue ="") String education, 
+			@RequestParam(value= "term", defaultValue ="") String term, 
+			@RequestParam(value="title", defaultValue ="") String title) {
 		String page = "/recruit/list";
 		
 		try {
@@ -73,7 +77,7 @@ public class BoardRecruitController {
 		ArrayList<BoardRecruit> boardrecruits = boardRecruitService.total_List(enterprise_category, local_category, gender, education, term, title);
 		System.out.println(boardrecruits +"컨트롤러");
 		
-		m.addAttribute("recruits", boardrecruits);
+		m.addAttribute("boardrecruits", boardrecruits);
 		System.out.println(boardrecruits +"boardrecruits");
 		return page;
 	}

@@ -23,7 +23,7 @@
                     <div class="job_filter white-bg">
                         <div class="form_inner white-bg">
                             <h3>검색필터</h3>
-                            <form action="<%=request.getContextPath() %>/resume/list/total" method="get" name="keyword" id="keyword">
+                            <form action="<%=request.getContextPath() %>/resume/list" method="get" name="keyword" id="keyword">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="single_field">
@@ -146,10 +146,10 @@
                         <div class="row">
 							
 							<%
-								ArrayList<BoardResume> resumes = (ArrayList<BoardResume>)request.getAttribute("resumes");
-							System.out.println("js"+resumes);
-								for(int i=0; i<resumes.size(); i++) {
-									BoardResume resume = resumes.get(i);
+								ArrayList<BoardResume> boardrecruits = (ArrayList<BoardResume>)request.getAttribute("boardrecruits");
+							System.out.println("js"+boardrecruits);
+								for(int i=0; i<boardrecruits.size(); i++) {
+									BoardResume resume = boardrecruits.get(i);
 									String title = resume.getBoard_resume_title();
 									String date = resume.getDate();
 									String place = resume.getPlace();

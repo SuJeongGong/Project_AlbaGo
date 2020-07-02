@@ -33,22 +33,26 @@ public class BoardResumeController {
 	@Autowired
 	IndividualService individualService;
 	
-	@RequestMapping("/list")//리스트
-	public String list(Model m) {
-		ArrayList<BoardResume> resumes = boardResumeService.selectList();
-		
-		m.addAttribute("resumes", resumes);
-		
-		return "/resume/list";
-	}
+//	@RequestMapping("/list")//리스트
+//	public String list(Model m) {
+//		ArrayList<BoardResume> resumes = boardResumeService.selectList();
+//		
+//		m.addAttribute("resumes", resumes);
+//		
+//		return "/resume/list";
+//	}
 	
-	@RequestMapping("/list/total") //검색
-	public String list_total(Model m, @RequestParam("enterprise_category") String enterprise_category,
-			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
-			@RequestParam("education") String education, @RequestParam("term") String term, @RequestParam("title") String title) {
+	@RequestMapping("/list") //검색
+	public String list_total(Model m, 
+			@RequestParam(value = "enterprise_category", defaultValue = "") String enterprise_category,
+			@RequestParam(value = "local_category", defaultValue = "") String local_category, 
+			@RequestParam(value = "gender", defaultValue = "") String gender,
+			@RequestParam(value = "education", defaultValue = "") String education, 
+			@RequestParam(value = "term", defaultValue = "") String term, 
+			@RequestParam(value = "title", defaultValue = "") String title) {
 		String page = "/resume/list";
 		ArrayList<BoardResume> boardresumes = boardResumeService.total_List(enterprise_category, local_category, gender, education, term, title);
-		m.addAttribute("resumes", boardresumes);
+		m.addAttribute("boardrecruits", boardresumes);
 		System.out.println(boardresumes +"boardrecruits");
 		return page;
 	}
