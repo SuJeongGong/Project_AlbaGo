@@ -109,11 +109,13 @@ public class AdminService {
 	//커뮤니티 게시판 삭제 ajax
 	public int deleteCommunity(int community_id) {
 		int res = -1;
-		
+
 		if(adminDAO.deleteComments(community_id)>=1) {//댓글부터 삭제 
 			if(adminDAO.deleteCommunity(community_id)>=1) {
 				res = 1;
 			}
+		}else {//댓글이 없는경우, 댓글 삭제를 못한경우 
+			res = adminDAO.deleteCommunity(community_id);
 		}
 		return res;
 	}

@@ -438,14 +438,15 @@
 					                	  Payment list = payment.get(i);
 					                	
 					                	 String product_name=list.getName();
-					                	 String payment_date=list.getDate();
+					                	 String payment_date=list.getDate().split(":")[0];
+					                	 String payment_date2=list.getDate().split(":")[1];
 					                	 String term=list.getTerm();
 					                	 int price=list.getProduct_price();
 					                	 
 					                  %>  
                                     <tr>
                                         <td><%=product_name%></td>
-                                        <td><%=payment_date%></td>
+                                        <td><%=payment_date%>:<%=payment_date2%></td>
                                         <td><%=term%></td>
                                         <td><%=price%></td>
                                     </tr>

@@ -542,19 +542,18 @@
 						                     String recruit_title=list.getRecruit_title();	//공고
 						                     String scrap_date=list.getDate().split(" ")[0];//스크랩한 날짜
 						                     int scrap_individual_id=list.getScrap_individual_id();
+						                     int board_recruit_id=list.getBoard_recruit_id();
 						                   
 						   
 										%>  
                                   
                                         <tr>
-                                            <td><%=board_recruit_title%></td>
+                                            <td><a  href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=board_recruit_id%>"><%=board_recruit_title%></a></td>
                                             <td><%=recruit_title%></td>
                                             <td><%=enterprise_id%></td>
                                             <td><%=enterprise_name%></td>
                                             <td><%=scrap_date%></td>
-                                          
-                                            
-                                            <td>
+                                           <td>
                                             <button type="button" class="btn btn-danger" onclick="deleteEnterpriseScrap(<%=scrap_individual_id%>)">취소</button>
 											</td>
                                         </tr>

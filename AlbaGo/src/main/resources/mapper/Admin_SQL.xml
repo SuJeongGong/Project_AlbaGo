@@ -219,7 +219,8 @@
 		scrap_individual_id,
 		enterprise.name,
 		board_recruit.memo,
-		scrap_individual.date AS date
+		scrap_individual.date AS date,
+		board_recruit.board_recruit_id
 		
 		From scrap_individual, board_recruit ,recruit,enterprise
 			
@@ -332,7 +333,7 @@
 		Recruit.recruit_id=board_recruit.recruit_id 
 		AND 
 		enterprise_id = #{id}
-		AND recruit.delete_check =1
+	
 		AND board_recruit.delete_check=1
 		</where>
 	</select>
@@ -363,7 +364,7 @@
 		board_recruit.recruit_id = recruit.recruit_id 
 		AND recruit.enterprise_id = enterprise.enterprise_id
 		AND enterprise.enterprise_id = #{id}
-		AND recruit.delete_check=1
+		
 		AND board_recruit.delete_check =1
 		</where>
 	</select>
