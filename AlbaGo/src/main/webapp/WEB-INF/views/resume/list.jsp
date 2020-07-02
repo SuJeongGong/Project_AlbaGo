@@ -96,12 +96,11 @@
                                             <select class="wide" id="term" name="term">
                                                 <option data-display="" value="">근무기간</option>
                                                 <option value="하루">하루</option>
-                                                <option value="주일">1주일 이하</option>
-                                                <option value="개월">1개월</option>
+                                                <option value="일주일">일주일</option>
+                                                <option value="1개월">1개월</option>
                                                 <option value="3개월~6개월">3개월~6개월</option>
-                                                <option value="6개월~1년">6개월~1년</option>
+                                                <option value="6개월~12개월">6개월~12개월</option>
                                                 <option value="1년이상">1년이상</option>
-                                                <option value="기간협의">기간협의</option>
                                             </select>
                                         </div>
                                     </div>
