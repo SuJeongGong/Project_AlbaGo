@@ -20,4 +20,5 @@ public class Recruit {
 	String age;				//나이
 	String people_count;	//인원
 	String gender;			//성별
+	int board_recruit_id;
 }

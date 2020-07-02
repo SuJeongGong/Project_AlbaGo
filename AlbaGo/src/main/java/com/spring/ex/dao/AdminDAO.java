@@ -11,8 +11,10 @@ import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
+import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 
@@ -22,6 +24,8 @@ public interface AdminDAO {
 	ArrayList<HashMap<String, Object>> selectRecentSales() ;
 	ArrayList<HashMap<String, Object>> selectItems() ;
 	ArrayList<Individual> selectlist(); //개인회원정보 전체를 보여주는 테이블
+	//일주일 매출액Product sumPayment(String id);
+	int selectWeekTotal();
 	
 	//개인회원정보에서 카테고리를 선택해서 검색
 	ArrayList<Individual> selectId(String category,String search);
@@ -53,6 +57,10 @@ public interface AdminDAO {
 	//<!--커뮤니티 게시판 삭제 AJAX -->
 	int deleteCommunity(int comment_id);    //댓글삭제  -댓글번호로 삭제  -> 1개만 지워지고
 	int deleteComments(int comment_id);    //댓글삭제  -글 번호로 삭제  -> 몇개가 있던
+	//<!--기업스크랩-->	
+	ArrayList<Scrap_Individual> selectEnterpriseScrap(String id);
+	//<!--기업스크랩삭제-->
+	int deleteEnterpriseScrap(int scrap_individual_id);
 	
 	//기업회원 검색 전체를 보여주는 테이블
 	ArrayList<Enterprise> selectEnterpriselist();
@@ -86,7 +94,8 @@ public interface AdminDAO {
 	int deleteScrap(int scrap_id);
 	//<!--상품결제내역-->
 	ArrayList<Payment> selectPayment(String id);
-	
+	//<!--상품 총계-->
+	Product sumPayment(String id);
 	
 	/*############################*/
 	//---임승재---

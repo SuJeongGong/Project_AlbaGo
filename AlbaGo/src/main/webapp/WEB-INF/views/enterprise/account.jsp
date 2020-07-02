@@ -71,19 +71,15 @@
 	               				<td><input type ="hidden" name ="up_count" id ="up_count" value="<%=up_count%>"><%=up_count%></td>
 	               			</tr>
 	               		</table>
-	               		<input type ="submit" class ="btn btn-primary " value="수정" >
-	               		<a class="btn btn-primary" href="<%=request.getContextPath()%>/enterprise/mypage">뒤로가기 </a>
-	               		<a class="btn btn-primary" href="<%=request.getContextPath()%>/main">메인으로 </a>
-	               	</form>
+	               		<div class="row">
+	               		<div class="col-xl-11"></div>
+	               			<input type ="submit" style="width:7%;" class ="btn btn-primary " value="수정" >
+	               		</div>
+		           	</form>
             	</div>
 			<br>
 			</div><!-- 끝 main 본문  -->
  
-	
-	
-	
-	
-	
 	<%@ include file="../serve/footer.jsp"%>
 
 </body>

@@ -42,20 +42,20 @@
 								<%=product.getPrice()%></h4>
 						</div>
 						<div class="single_wrap">
-							<h4></h4>
-							<p><%=product.getExplan()%></p>
+							<h4>
+							<p><%=product.getExplan()%></p></h4>
 						</div>
 						<form action="#">
 							<div class="row">
 								<div class="col-md-6"> 
 									<div class="submit_btn">
-									<a href="<%=request.getContextPath()%>/product/payment/result?product_id=<%=product.getProduct_id()%>"
+									<a class="btn btn-outline-primary" href="<%=request.getContextPath()%>/product/payment/result?product_id=<%=product.getProduct_id()%>"
 											>결제하기</a> 
 											</div>
 								</div> 
 								<div class="col-md-6">
 									<div class="submit_btn">
-										<a href="<%=request.getContextPath() %>/product/list">목록으로</a>
+										<a class="btn btn-outline-primary" href="<%=request.getContextPath() %>/product/list">목록으로</a>
 								</div>
 							</div>
 						</form>

@@ -16,8 +16,8 @@
 	<div class="featured_candidates_area candidate_page_padding">
 
 		<div class="container">
-		<h1>광고</h1>
-		<br>
+					<h1>광고리스트</h1>
+						<hr>
 			<!-- 시작 -->
 		
 				<div class="row">

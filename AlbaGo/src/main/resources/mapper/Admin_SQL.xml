@@ -14,18 +14,19 @@
 	order BY count DESC
 	LIMIT 5
 </select>
-
-
-
-
-
-
-
-
-
-
-
 	<!-- 이예슬 -->
+	<!-- 메인일주일매출액  -->
+	<select id="selectWeekTotal" resultType="int">
+		SELECT  SUM(price) AS sum_price 
+		FROM product,payment
+
+		<where>
+		product.product_id =payment.product_id 
+		AND product.delete_check=1
+		AND payment.result="승인"
+		AND payment.`date` > (NOW() - INTERVAL 7 DAY)
+		</where>
+	</select>
 	<!-- 개인 -->
 	<select id="selectRecentSales" resultType="HashMap">
 		SELECT DATE_FORMAT(payment.DATE , "%Y/%m %d") as date, SUM(price) as
@@ -221,7 +222,39 @@
 		DELETE FROM community WHERE community_id = #{community_id}
 	</delete>
 	
+	<!-- 기업스크랩 -->
+		<select id="selectEnterpriseScrap"  parameterType="String" resultType="Scrap_individual">
+		SELECT 
+		board_recruit.title AS board_recruit_title,
+		recruit.title as recruit_title ,
+		recruit.enterprise_id as enterprise_id,
+		scrap_individual_id,
+		enterprise.name,
+		board_recruit.memo,
+		scrap_individual.date AS date,
+		board_recruit.board_recruit_id
+		
+		From scrap_individual, board_recruit ,recruit,enterprise
+			
+		<where>
+		scrap_individual.board_recruit_id =board_recruit.board_recruit_id
+		AND recruit.recruit_id = board_recruit.recruit_id
+		AND recruit.enterprise_id=enterprise.enterprise_id
+		AND individual_id =#{id}
+		AND board_recruit.delete_check =1
+		</where>
+		ORDER BY scrap_individual.date DESC
+		
+		</select>
 
+		<!-- 기업스크랩 취소  -->
+	<delete id="deleteEnterpriseScrap" parameterType="int">
+		delete from
+		Scrap_individual where scrap_individual_id = #{scrap_individual_id}
+	</delete>
+	
+	
+<!-- ###################################################################### -->
 	<!-- 기업회원 관리자 검색  -->
 	<select id = "selectEnterpriselist" resultType="Enterprise" parameterType="String">
 		SELECT *
@@ -306,12 +339,14 @@
    
 	<!-- 공고관리 -->
    <select id="selectRecruit"  parameterType="String" resultType="Recruit">
-		SELECT title,date,place,recruit_id
-		FROM Recruit
+	 	SELECT recruit.title,recruit.date,recruit.place,recruit.recruit_id,board_recruit.board_recruit_id
+		FROM Recruit,board_recruit
 		<where>
-
+		Recruit.recruit_id=board_recruit.recruit_id 
+		AND 
 		enterprise_id = #{id}
-		AND recruit.delete_check =1
+	
+		AND board_recruit.delete_check=1
 		</where>
 	</select>
 	
@@ -331,7 +366,8 @@
 		board_recruit.title,
 		recruit.title AS recruit_title,
 		board_recruit.memo,
-		board_recruit.date,board_recruit_id
+		board_recruit.date,board_recruit_id,
+		recruit.recruit_id
 		
 
 		FROM board_recruit ,recruit,enterprise
@@ -340,6 +376,7 @@
 		board_recruit.recruit_id = recruit.recruit_id 
 		AND recruit.enterprise_id = enterprise.enterprise_id
 		AND enterprise.enterprise_id = #{id}
+		
 		AND board_recruit.delete_check =1
 		</where>
 	</select>
@@ -366,6 +403,8 @@
 		scrap_enterprise_id,
 		individual.name,
 		board_resume.memo,
+		resume.resume_id,
+		board_resume.board_resume_id,
 		scrap_enterprise.date AS date
 		
 		From scrap_enterprise, board_resume ,resume,individual
@@ -401,6 +440,20 @@
 		AND product.delete_check =1
 		</where>
 		</select>
+		
+		<select id="sumPayment" parameterType="String" resultType="product">
+		SELECT  SUM(price) AS sum_price 
+		FROM product,payment,enterprise
+
+		<where>  
+		product.product_id =payment.product_id 
+		AND payment.enterprise_id=enterprise.enterprise_id	
+		AND enterprise.enterprise_id=#{id}
+		AND product.delete_check=1
+		AND payment.result="승인"
+		</where>
+		</select>	
+	
 	<!-- #################  -->
 	<!-- 임승재  -->
 	

@@ -1,3 +1,4 @@
+<%@page import="com.spring.ex.dto.Product"%>
 <%@page import="com.spring.ex.dto.Recruit"%>
 <%@page import="com.spring.ex.dto.Payment"%>
 <%@page import="com.spring.ex.dto.Scrap_enterprise"%>
@@ -220,9 +221,9 @@
 
                                     <thead>
                                         <tr>
-                                            <th>공고 제목</th>           
+                                            <th>공고글 제목</th>           
                                             <th>장소</th>
-                                            <th>상세보기</th>
+                                            <th>공고보기</th>
                                             <th>작성날짜</th>
                                             <th>관리</th>
                                         </tr>
@@ -236,9 +237,10 @@
 					                	  String recruit_place = list.getPlace();
 					                	  String recruit_date = list.getDate().split(" ")[0];
 					                	  int recruit_id = list.getRecruit_id();
+					                	  int board_recruit_id=list.getBoard_recruit_id();
 					                	  %>  
                                         <tr>
-                                            <td><%=recruit_title %></td>
+                                            <td><a  href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=board_recruit_id%>"><%=recruit_title %></a></td>
                                             <td><%=recruit_place %></td>
                                     	<td>  
                                     	   <a  href="<%=request.getContextPath()%>/enterprise/recruit/content?recruit_id=<%=recruit_id%>" class="btn btn-secondary btn-xs"> <span class="glyphicon glyphicon-edit"></span> 상세보기</a> 
@@ -308,10 +310,11 @@
 					                     String memo=list.getMemo();
 					                     String board_recruit_date=list.getDate().split(" ")[0];
 					                     int board_recruit_id = list.getBoard_recruit_id();
+					                     int recruit_id = list.getRecruit_id();
 					                  %>  
                                         <tr>
-                                            <td><%=board_recruit_title%></td>
-                                            <td><%=recruit_title%></td>
+                                            <td><a  href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=board_recruit_id%>"><%=board_recruit_title%></td>
+                                            <td><a  href="<%=request.getContextPath()%>/enterprise/recruit/content?recruit_id=<%=recruit_id%>"><%=recruit_title%></a></td>
                                             <td><%=memo%></td>
                                             <td><%=board_recruit_date%></td>
                                           <td> <button type="button" class="btn btn-outline-danger" onclick="deleteEnterpriseBoardRecruit(<%=board_recruit_id%>)">삭제</button>
@@ -361,9 +364,9 @@
                                     <thead>
                                         <tr>
                                             <th>인재제목</th>
+                                            <th>이력서제목</th>
                                         	<th>인재아이디</th>
                                         	<th>인재이름</th>
-                                            <th>이력서제목</th>
                                             <th>스크랩한 날짜</th>
                                             <th>스크랩취소</th>
                                         </tr>
@@ -380,15 +383,14 @@
 					                     String resume_title=list.getResume_title();	//이력서제목
 					                     String scrap_date=list.getDate().split(" ")[0];//스크랩한 날짜
 					                     int scrap_id=list.getScrap_enterprise_id();
+					                     int resume_id=list.getResume_id();
+					                     int board_resume_id=list.getBoard_resume_id();
 					                  %>  
                                         <tr>
-                                            <td><%=board_resume_title%></td>
-                                            <td>
-                                              	  <%=individual_id%>
-                                            </td>
+                                     <td><a  href="<%=request.getContextPath()%>/resume/content?board_resume_id=<%=board_resume_id%>"><%=board_resume_title%></a></td>
+                                            <td><a  href="<%=request.getContextPath()%>/individual/profile/content?resume_id=<%=resume_id%>"><%=resume_title%></a></td>
+                                            <td>   	  <%=individual_id%> </td>
                                             <td><%=individual_name%></td>
-                                            <td><%=resume_title%></td>
-                                           
                                             <td><%=scrap_date%></td>
                                             <td>
                                             <button type="button" class="btn btn-danger" onclick="deleteScrap(<%=scrap_id%>)">취소</button>
@@ -408,11 +410,15 @@
                                 </h6>
                             </div>
                             <!-- 결제내역 form 시작 -->
-                            <form id="payment" action="" >
+                            <% 
+                            Product product = (Product)request.getAttribute("product");
+    						int sumPrice = product.getSum_price();
+                            %>
+				
                        
                             <div class="card-body">
                                 <h6 class="m-0 font-weight-bold text-primary" align="right">총계 : &nbsp; 
-                                <input   type="text" name="revenue">원</h6>
+                                <input   type="hidden" name="product" value="<%=sumPrice%>"><%=sumPrice%>원</h6>
                                 <br />
                                 
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -432,14 +438,15 @@
 					                	  Payment list = payment.get(i);
 					                	
 					                	 String product_name=list.getName();
-					                	 String payment_date=list.getDate().split(" ")[0];
+					                	 String payment_date=list.getDate().split(":")[0];
+					                	 String payment_date2=list.getDate().split(":")[1];
 					                	 String term=list.getTerm();
 					                	 int price=list.getProduct_price();
 					                	 
 					                  %>  
                                     <tr>
                                         <td><%=product_name%></td>
-                                        <td><%=payment_date%></td>
+                                        <td><%=payment_date%>:<%=payment_date2%></td>
                                         <td><%=term%></td>
                                         <td><%=price%></td>
                                     </tr>
@@ -447,7 +454,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            </form>
                         </div>
                     </div>
 

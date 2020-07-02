@@ -125,6 +125,7 @@ function deleteResumes() {
 					</tbody>
 				</table>
 			</div>
+			     		
 		</div>
 	</div>
 	<%@ include file="../serve/footer.jsp"%>

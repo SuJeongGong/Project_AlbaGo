@@ -15,8 +15,10 @@ import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
+import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
  
@@ -29,6 +31,10 @@ public class AdminService {
 	}
 	public ArrayList<HashMap<String, Object>> selectItems() {
 		return adminDAO.selectItems();
+	}
+	//일주일 매출액 
+	public int  selectWeekTotal() {
+		return adminDAO.selectWeekTotal();
 	}
 	//개인회원정보 '리스트'전체를 보여주는 테이블
 	public ArrayList<Individual> selectlist() {
@@ -107,13 +113,23 @@ public class AdminService {
 	//커뮤니티 게시판 삭제 ajax
 	public int deleteCommunity(int community_id) {
 		int res = -1;
-		
+
 		if(adminDAO.deleteComments(community_id)>=1) {//댓글부터 삭제 
 			if(adminDAO.deleteCommunity(community_id)>=1) {
 				res = 1;
 			}
+		}else {//댓글이 없는경우, 댓글 삭제를 못한경우 
+			res = adminDAO.deleteCommunity(community_id);
 		}
 		return res;
+	}
+	//기업스크랩
+	public ArrayList<Scrap_Individual> selectEnterpriseScrap(String id) {
+		return adminDAO.selectEnterpriseScrap(id);
+	}
+	//기업스크랩 삭제 
+	public int deleteEnterpriseScrap(int scrap_individual_id) {
+		return adminDAO.deleteEnterpriseScrap(scrap_individual_id);
 	}
 	
 	//기업회원정보 '리스트'전체를 보여주는 테이블
@@ -184,6 +200,10 @@ public class AdminService {
 	//상품결제내역
 	public ArrayList<Payment> selectPayment(String id) {
 		return adminDAO.selectPayment(id);
+	}
+	//상품 총계
+	public Product sumPayment(String id) {
+		return adminDAO.sumPayment(id);
 	}
 
 	/*##################################################*/

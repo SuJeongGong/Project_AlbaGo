@@ -155,14 +155,22 @@ HashMap<String, Object> totalM =(HashMap)request.getAttribute("totalM");
                         </div>
 
 						<!-- Content Row -->
-
-
 						<div class="row">
 							<!-- Area Chart -->
 							<div class="col-xl-8 col-lg-8 ">
 								<div class="card shadow mb-4">
 									<div class="card-header py-3">
+									<div class="row">
 										<h6 class="m-0 font-weight-bold text-primary">일주일 매출액</h6>
+										&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+										&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+										&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+										&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+										&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+										&emsp;&emsp;
+										<h6 class="text-primary" id="selectweek"><%=request.getAttribute("selectweek")%>원</h6>
+										</div>
+										
 									</div>
 									<div class="card-body">
 										<div class="chart-bar">

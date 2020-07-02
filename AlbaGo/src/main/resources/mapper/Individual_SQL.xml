@@ -6,7 +6,7 @@
 		select *
 		from individual
 		<where>
-			individual_id = #{id}
+			individual_id = #{individual_id}
 		</where>
 	</select>
 
@@ -62,7 +62,7 @@
 		ORDER BY resume.resume_id DESC
 	</select>
 
-	<update id="updateAccount" parameterType="int">
+	<update id="updateAccount" parameterType="Individual">
 		update individual 
 		set name = #{name},
 			gender = #{gender},
@@ -70,7 +70,7 @@
 			phone = #{phone},
 			education = #{education}
 		<where>
-			individual_id = #{id}
+			individual_id = #{individual_id}
 		</where>
 	</update>
 	

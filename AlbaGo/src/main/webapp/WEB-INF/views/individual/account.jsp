@@ -27,14 +27,14 @@
 			<br>
 				<div class="d-sm-flex align-items-center justify-content-between mb-4">
             		<h1 class="h3 mb-0 text-gray-800">기업 회원 정보</h1>
-          		</div>
+            				</div>
 				<!-- main 본문을 한 줄로 묶기 -->
 				<div class="row" >
-					<form action="<%=request.getContextPath() %>/individual/account/update" name = "individual" id  = "individual" class="col-xl-11" >
+					<form action="<%=request.getContextPath() %>/individual/account/update" name = "individual_id" id  = "individual" class="col-xl-12" >
 	               		<table class="table table-bordered ">
 	               			<tr>
 	               				<th>아이디</th>
-	               				<td><input type="text" name ="individual_id" id ="individual_id" value="<%=id%>" ></td>
+	               				<td><input type="hidden" name ="individual_id" id ="individual_id" value="<%=id%>" ><%=id%></td>
 	               			</tr>
 	               			<tr>
 	               				<th>이름</th>
@@ -58,12 +58,14 @@
 	               			</tr>
 	               			<tr>
 	               				<th>가입날짜</th>
-	               				<td><input type ="text" name ="date" id ="date" value="<%=date%>"><%=date%></td>
+	               		 		<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date%></td>
 	               			</tr>
 	               		</table>
-	               		<input type ="submit" class ="btn btn-primary " value="수정" >
-	               		<a class="btn btn-primary" href="<%=request.getContextPath()%>/individual/mypage">뒤로가기 </a>
-	               		<a class="btn btn-primary" href="<%=request.getContextPath()%>/main">메인으로 </a>
+	               		<div class="row">
+	               		<div class="col-xl-11"></div>
+	               			<input type ="submit" style="width:7%;" class ="btn btn-primary " value="수정" >
+	               		</div>
+						
 	               	</form>
             	</div>
 			<br>

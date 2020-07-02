@@ -97,7 +97,7 @@ function deleteScraps() {
 							ArrayList<Scrap_Individual> scraps = (ArrayList) request.getAttribute("scraps");
 							for (int i = 0; i < scraps.size(); i++) {
 								Scrap_Individual scrap = scraps.get(i);
-								int scrap_id= scrap.getScrap_id();
+								int scrap_id= scrap.getScrap_individual_id();
 								String title = scrap.getTitle();
 								String name = scrap.getName();
 								String board_date = scrap.getRecruit_date();
@@ -126,6 +126,8 @@ function deleteScraps() {
 					</tbody>
 				</table>
 			</div>
+			<div class="row">
+		   </div>
 		</div>
 	</div>
 
@@ -156,6 +158,8 @@ function deleteScraps() {
 				selectAll.checked = true;
 			}, false);
 		}
+		
+
 	</script>
 </body>
 </html>

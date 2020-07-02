@@ -48,9 +48,9 @@ public class IndividualController {
 
 	@RequestMapping("/account/update") // 개인정보 수정 - 수정하기
 	public String account( @ModelAttribute("individual") Individual individual) {
-		String page = "/individaul/account";
+		String page = "/individual/account";
 		if (1 <= individualSerive.updateAccount(individual)) {
-			page = "redirect:/individaul/mypage";
+			page = "redirect:/individual/mypage";
 		}
 		return page;
 	}
