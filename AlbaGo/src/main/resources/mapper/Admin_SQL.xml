@@ -326,12 +326,14 @@
    
 	<!-- 공고관리 -->
    <select id="selectRecruit"  parameterType="String" resultType="Recruit">
-		SELECT title,date,place,recruit_id
-		FROM Recruit
+	 	SELECT recruit.title,recruit.date,recruit.place,recruit.recruit_id,board_recruit.board_recruit_id
+		FROM Recruit,board_recruit
 		<where>
-
+		Recruit.recruit_id=board_recruit.recruit_id 
+		AND 
 		enterprise_id = #{id}
 		AND recruit.delete_check =1
+		AND board_recruit.delete_check=1
 		</where>
 	</select>
 	
@@ -351,7 +353,8 @@
 		board_recruit.title,
 		recruit.title AS recruit_title,
 		board_recruit.memo,
-		board_recruit.date,board_recruit_id
+		board_recruit.date,board_recruit_id,
+		recruit.recruit_id
 		
 
 		FROM board_recruit ,recruit,enterprise
@@ -360,6 +363,7 @@
 		board_recruit.recruit_id = recruit.recruit_id 
 		AND recruit.enterprise_id = enterprise.enterprise_id
 		AND enterprise.enterprise_id = #{id}
+		AND recruit.delete_check=1
 		AND board_recruit.delete_check =1
 		</where>
 	</select>
@@ -386,6 +390,8 @@
 		scrap_enterprise_id,
 		individual.name,
 		board_resume.memo,
+		resume.resume_id,
+		board_resume.board_resume_id,
 		scrap_enterprise.date AS date
 		
 		From scrap_enterprise, board_resume ,resume,individual

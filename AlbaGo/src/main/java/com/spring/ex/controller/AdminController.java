@@ -36,7 +36,7 @@ import com.spring.ex.services.ProductService;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
+    
 	@Autowired
 	ProductService productService;
 	@Autowired
@@ -59,7 +59,7 @@ public class AdminController {
 		ArrayList<HashMap<String, Object>> boardCount =adminService.selectCountItem_Enterprise("board");
 		m.addAttribute("boardCount", boardCount);
 		
-
+   
 		// 오늘 가입한 개인회원수
 		int todayindividual = adminService.select_TI_join();
 
