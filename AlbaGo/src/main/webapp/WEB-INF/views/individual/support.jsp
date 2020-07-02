@@ -88,6 +88,7 @@ function deleteVolunteers() {
 						<tr>
 							<th><input type="checkbox" class="selectAllMembers" onclick='OnOffMemberAllClickBtn()'/></th>
 							<th>공고글 제목</th>
+							<th>기업이름</th>
 							<th>이력서 제목</th>
 							<th>지원 이력서</th>
 							<th>메모</th>
@@ -109,6 +110,7 @@ function deleteVolunteers() {
 								String memo = volunteer.getMemo();
 								String date = volunteer.getDate().split(" ")[0];
 								String result = volunteer.getResult();
+								String enterprise_name=volunteer.getEnterprise_name();
 								
 								
 						%>
@@ -116,7 +118,9 @@ function deleteVolunteers() {
 						<tr>
 							<td><input type="checkbox" class="memberChk" name = "volunteer_id" value="<%=volunteer_id%>"
 								></td>
+								
 							<td><a href ="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=volunteer.getBoard_recruit_id() %>"><%=title%></a></td>
+							<td><%=enterprise_name%></td>
 							<td><a href="<%=request.getContextPath()%>/individual/profile/content?resume_id=<%=volunteer.getResume_id()%>"><%=resume_title%></a></td>
 							<td><a class="btn btn-outline-primary" href="<%=request.getContextPath()%>/individual/profile/content?resume_id=<%=volunteer.getResume_id()%>">보기</a></td>
 							<td><%=memo%></td>
