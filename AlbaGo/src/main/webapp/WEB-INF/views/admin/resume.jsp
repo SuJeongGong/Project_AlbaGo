@@ -72,8 +72,6 @@
                 <div class="container-fluid">
                     <!-- 요기다 작성  -->
 
-
-
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">인재글 관리</h1>
 
@@ -180,7 +178,6 @@
                                 </table>
                             </div>
                         </div>
-
 
                         <div class="card shadow mb-3">
                             <div>

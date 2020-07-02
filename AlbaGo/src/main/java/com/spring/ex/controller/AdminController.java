@@ -134,6 +134,18 @@ public class AdminController {
 		ArrayList<BoardRecruit> boardrecruits = adminService.total_List_Rc(enterprise_category, local_category, gender,
 				education);
 		m.addAttribute("boardrecruits", boardrecruits);
+		
+		// 전체 공고 갯수
+		int allcount = adminService.all_Count();
+		m.addAttribute("allcount", allcount);
+
+		// 오늘 공고 갯수
+		int todaycount = adminService.today_Count();
+		m.addAttribute("todaycount", todaycount);
+
+		// 오늘 공고 갯수
+		int yesterdaycount = adminService.yesterday_Count();
+		m.addAttribute("yesterdaycount", yesterdaycount);
 
 		return page;
 	}
@@ -196,6 +208,18 @@ public class AdminController {
 		ArrayList<BoardResume> boardresumes = adminService.total_List_Rs(individual_category, local_category, gender,
 				education);
 		m.addAttribute("boardresumes", boardresumes);
+		
+		// 전체 인재 갯수
+		int allcount_resume = adminService.all_Count_resume();
+		m.addAttribute("allcount_resume", allcount_resume);
+
+		// 오늘 인재 갯수
+		int todaycount_resume = adminService.today_Count_resume();
+		m.addAttribute("todaycount_resume", todaycount_resume);
+
+		// 어제 인재 갯수
+		int yesterdaycount_resume = adminService.yesterday_Count_resume();
+		m.addAttribute("yesterdaycount_resume", yesterdaycount_resume);
 
 		return page;
 	}
@@ -617,6 +641,11 @@ public class AdminController {
 		m.addAttribute("payment", payment);
 		System.out.println(payment);
 		return page;
+	}
+	
+	@RequestMapping("/volunteerlist")
+	public String volunteer_list() {
+		return "/admin/volunteerlist";
 	}
 	
 	

@@ -13,7 +13,7 @@
   <%
 ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers");
 %>
-  <script>
+  <%-- <script>
     function updateResult(id, result) {
 
       $.ajax({
@@ -26,16 +26,15 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
         success: function (res) {
           if (res >= 1) {
             alert("결과 저장 완료");
-                        				<% for (int i = 0; i < volunteers.size()  ; i++){ %>
-
-        $("#res<%=i%>").load(window.location.href + " #res<%=i%>");
-                        				<% } %>
-                        			}else {
-      alert("실패");
+            <% for (int i = 0; i < volunteers.size()  ; i++){ %>
+				$("#res<%=i%>").load(window.location.href + " #res<%=i%>");
+            <% } %>
+          } else {
+      		alert("실패");
+   		  }
+        }
+      });
     }
-                        		}
-                        	});
-                        }
     function updateResults(result) {
       var volunteer_ids = [];
       $("input[name='volunteer_id']:checked").each(function () {
@@ -55,16 +54,15 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
         success: function (res) {
           if (res >= 1) {
             alert("결과 저장 완료");
-                        				<% for (int i = 0; i < volunteers.size()  ; i++){ %>
-
-        $("#res<%=i%>").load(window.location.href + " #res<%=i%>");
-                        				<% } %>
-                        			}else {
-      alert("실패");
+    		<% for (int i = 0; i < volunteers.size()  ; i++){ %>
+				$("#res<%=i%>").load(window.location.href + " #res<%=i%>");
+            <% } %>
+          } else {
+      		alert("실패");
+    	  }
+        }
+      });
     }
-                        		}
-                        	});
-                        }
 
 
 
@@ -92,7 +90,7 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
       }, false);
     }
 
-  </script>
+  </script> --%>
 
 </head>
 
