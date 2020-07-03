@@ -45,9 +45,29 @@ public class AdminController {
 	AdminService adminService;
 	@Autowired
 	EnterpriseService enterpriseService;
+	
+	@RequestMapping("/manager_topbar")
+	public String manager_topbar(Model m, @RequestParam("search") String search) {
+		String page = null;
+		System.out.println(search);
+		ArrayList<BoardResume> boardresumes = adminService.total_I(search);
+		ArrayList<BoardRecruit> boardrecruits = adminService.total_E(search);
+		m.addAttribute("boardresumes", boardresumes);
+		m.addAttribute("boardrecruits", boardrecruits);
+		System.out.println(boardresumes);
+		System.out.println(boardrecruits);
+		
+		return page;
+	}
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main(Model m) {
+		//개인검색
+		
+		//기업검색
+		
+		//두개 더한거
+		
 		ArrayList<HashMap<String, Object>> sales = adminService.selectRecentSales();
 		m.addAttribute("Recent_sales", sales);
 
@@ -674,11 +694,36 @@ public class AdminController {
 		return page;
 	}
 	
-	@RequestMapping("/volunteerlist")
-	public String volunteer_list(@AuthUser String id, Model m) {
-		m.addAttribute("volunteers", enterpriseService.selectVolunteer(id.split("/")[0]));// why salary는 안나오죠?
+	@RequestMapping("/volunteerlist") //지원자보기
+	public String volunteer_list(Model m, @RequestParam(value = "board_recruit_id") String board_recruit_id) {
+		System.out.println(board_recruit_id);
+		
+		ArrayList<Volunteer> volunteers = adminService.board_list(board_recruit_id);
+		System.out.println(volunteers);
+		m.addAttribute("volunteers", volunteers);
 		return "/admin/volunteerlist";
 	}
+	 
+	// 아약스 처리 지원자 보기
+	@RequestMapping(value = "/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int updateResultB(String result, int id) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("volunteer_id", id);
+		map.put("result", result);
+		return enterpriseService.updateVolunteerResult(map);
+	}
+
+	@RequestMapping(value = "/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int updateResultsB(@RequestParam(value = "result") String result,
+		@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("volunteer_ids", volunteer_ids);
+		map.put("result", result);
+		return enterpriseService.updateVolunteerResults(map);
+	}
+	
 	
 	
 

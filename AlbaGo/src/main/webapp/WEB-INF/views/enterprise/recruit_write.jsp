@@ -145,8 +145,8 @@
                             <option value="초등학교 졸업">초등학교 졸업</option>
                             <option value="중학교 졸업">중학교 졸업</option>
                             <option value="고등학교 졸업">고등학교 졸업</option>
-                            <option value="대학(2,3년제) 졸업">대학(2,3년제) 졸업</option>
-                            <option value="대학(4년제) 졸업">대학(4년제) 졸업</option>
+                            <option value="대학교(2,3년) 졸업">대학(2,3년제) 졸업</option>
+                            <option value="대학교(4년) 졸업">대학(4년제) 졸업</option>
                             <option value="대학원 졸업 이상">대학원 졸업이상</option>
                         </select>
                 </div>

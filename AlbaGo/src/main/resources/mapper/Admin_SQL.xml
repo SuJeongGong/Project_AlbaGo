@@ -457,6 +457,20 @@
 	<!-- #################  -->
 	<!-- 임승재  -->
 	
+	<!-- 총검색  -->
+	<select id="total_I" resultType="BoardResume" parameterType="hashmap">
+		SELECT *
+		FROM individual
+		WHERE (individual_id LIKE CONCAT('%',#{search},'%')
+		OR name LIKE CONCAT('%',#{search},'%'))
+	</select>
+	<select id="total_E" resultType="BoardRecruit" parameterType="hashmap">
+		SELECT *
+		FROM enterprise
+		WHERE (enterprise_id LIKE CONCAT('%',#{search},'%')
+		OR `NAME` LIKE CONCAT('%',#{search},'%'))
+	</select>
+	
 	<!-- 관리자 메인 오늘 회원가입한 총원 -->
  	<select id="select_TI_join" resultType="int">
 		select COUNT(*) AS '개인'
@@ -597,7 +611,7 @@
 	</select>
 	
 	<!-- 공고글에서 지원자보기 -->
-	<select id="selectVolunteer" parameterType="String" resultType="Volunteer">
+	<select id="board_list" parameterType="String" resultType="Volunteer">
 		SELECT volunteer.board_recruit_id as board_recruit_id,
 				volunteer.individual_id as individual_id,
 				individual.name AS NAME,

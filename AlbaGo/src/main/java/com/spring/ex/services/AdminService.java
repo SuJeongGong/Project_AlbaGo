@@ -223,6 +223,19 @@ public class AdminService {
 	public HashMap<String,Object> total_M() {
 		return adminDAO.total_M();
 	}
+	//총검색
+	public ArrayList<BoardResume> total_I(String search) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("search",search);
+		
+		return adminDAO.total_I(map);
+	}
+	public ArrayList<BoardRecruit> total_E(String search) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("search",search);
+		
+		return adminDAO.total_E(map);
+	}
 	
 	//전체 인재 갯수
 	public int all_Count() {
@@ -300,8 +313,8 @@ public class AdminService {
 	}
 	
 	//공고 게시판에서 지원자보기
-	public ArrayList<Volunteer> selectVolunteer(String id) {
-		return adminDAO.selectVolunteer(id);
+	public ArrayList<Volunteer> board_list(String id) {
+		return adminDAO.board_list(id);
 	}
 	
 	//공고 게시판 선택삭제
@@ -495,6 +508,8 @@ public class AdminService {
 		public int weeklysales() { 
 			return adminDAO.weeklysales(); 
 		}
+		
+		
 	 
 }
 

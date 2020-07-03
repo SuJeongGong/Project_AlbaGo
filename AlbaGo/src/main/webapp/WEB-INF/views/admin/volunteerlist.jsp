@@ -96,6 +96,7 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
 
 <body>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script> 
   <div id="wrapper">
     <!-- 사이드 바 -->
     <%@ include file="../serve/manager_sidebar.jsp" %>
@@ -191,7 +192,31 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
                   </tbody>
                 </table>
               </div>
+				
+			  <script>
+                            var selectAll = document.querySelector(".selectAllMembers");
+                            selectAll.addEventListener('click', function () {
+                                var objs = document.querySelectorAll(".memberChk");
+                                for (var i = 0; i < objs.length; i++) {
+                                    objs[i].checked = selectAll.checked;
+                                };
+                            }, false);
 
+                            var objs = document.querySelectorAll(".memberChk");
+                            for (var i = 0; i < objs.length; i++) {
+                                objs[i].addEventListener('click', function () {
+                                    var selectAll = document.querySelector(".selectAllMembers");
+                                    for (var j = 0; j < objs.length; j++) {
+                                        if (objs[j].checked === false) {
+                                            selectAll.checked = false;
+                                            return;
+                                        };
+                                    };
+                                    selectAll.checked = true;
+                                }, false);
+                            } 
+                        </script>
+				
               <div class="text-center" style="float: left;">
                 <ul class="pagination">
                   <li class="page-item disabled">

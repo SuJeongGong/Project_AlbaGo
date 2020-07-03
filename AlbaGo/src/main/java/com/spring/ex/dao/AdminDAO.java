@@ -106,6 +106,9 @@ public interface AdminDAO {
 		int selet_TE_join();
 		//오늘 매출액
 		HashMap<String,Object> total_M();
+		//총검색
+		ArrayList<BoardResume> total_I(Map<String, Object> map);
+		ArrayList<BoardRecruit> total_E(Map<String, Object> map);
 	
 	/** 공고글 관리 */
 		//전체 공고 갯수
@@ -131,7 +134,7 @@ public interface AdminDAO {
 		ArrayList<BoardRecruit> total_List_Rc_T(Map<String, Object> map);
 		ArrayList<BoardRecruit> total_List_Rc_W(Map<String, Object> map);
 		ArrayList<BoardRecruit> total_List_Rc_M(Map<String, Object> map);
-		ArrayList<Volunteer> selectVolunteer(String id);//지원자 목록 가져오기
+		ArrayList<Volunteer> board_list(String id);//지원자 목록 가져오기
 
 	
 	/** 인재글관리 */
