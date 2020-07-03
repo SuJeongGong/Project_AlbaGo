@@ -9,8 +9,12 @@
 			enterprise_id = #{id}
 		</where>
 	</select>
-
-	<select id="selectScrap" parameterType="String" resultType="Scrap_enterprise">
+	
+	
+	<!-- 마이페이지 시작 -->
+	
+	<!-- 스크랩 보기 -->
+	<select id="selectScrap" parameterType="hashmap" resultType="Scrap_enterprise">
 		SELECT board_resume.title AS title,
 		scrap_enterprise.date AS DATE,
 		board_resume.date AS resume_date,
@@ -26,8 +30,9 @@
 			and enterprise_id =#{id}
 		</where>
 		ORDER BY scrap_enterprise.scrap_enterprise_id DESC
+		LIMIT #{start},10
 	</select>
-	<select id ="selectScrapCount" resultType="int"  parameterType="String">
+	<select id ="selectScrapCount" resultType="int"  parameterType="hashmap">
 		SELECT count(*)
 		from
 		scrap_enterprise, board_resume , resume
@@ -39,9 +44,8 @@
 		ORDER BY scrap_enterprise.scrap_enterprise_id DESC
 	</select>
 	
-
-	<select id="selectVolunteer" parameterType="String"
-		resultType="Volunteer">
+	<!-- 지원자 -->
+	<select id="selectVolunteer" parameterType="hashmap" resultType="Volunteer">
 		SELECT volunteer.board_recruit_id as board_recruit_id,
 		board_recruit.title as board_recruit_title,
 		volunteer.individual_id as
@@ -66,44 +70,39 @@
 			enterprise.enterprise_id = #{id}
 		</where>
 		ORDER BY volunteer.volunteer_id DESC
+		LIMIT #{start},10
 	</select>
+	<select id="selectVolunteerCount" parameterType="hashmap" resultType="int">
+		SELECT count(*)
 
-	<select id="selectRecruits" parameterType="String"	resultType="Recruit">
-		SELECT *
-		FROM recruit
+		FROM resume,volunteer,board_recruit,enterprise,recruit
 		<where>
-			enterprise_id = #{id}
-			AND delete_CHECK =1
+			resume.resume_id =volunteer.resume_id
+			AND
+			volunteer.board_recruit_id = board_recruit.board_recruit_id
+			AND
+			recruit.recruit_id = board_recruit.recruit_id
+			AND
+			enterprise.enterprise_id = recruit.enterprise_id
+			and
+			enterprise.enterprise_id = #{id}
 		</where>
-		ORDER BY recruit.recruit_id DESC
-
+		ORDER BY volunteer.volunteer_id DESC
 	</select>
-	<select id="boardRecruits" parameterType="String" resultType="BoardRecruit">
-		SELECT board_recruit.board_recruit_id AS board_recruit_id,
-		board_recruit.title AS title
-		FROM board_recruit,recruit
-		<where> board_recruit.recruit_id = recruit.recruit_id
-		AND recruit.enterprise_id =#{enterprise_id}
-		</where>
 
-	</select>
-	<select id="selectRecruit" parameterType="int"
-		resultType="Recruit">
-		SELECT *
-		FROM recruit
+	<!-- 결제 이력 -->
+	<select id="selectPayment" parameterType="hashmap" resultType="Payment">
+		SELECT product.name AS product_name, payment.date AS date, product.price as product_price
+		FROM payment,product
 		<where>
-			recruit_id=#{recruit_id}
-			AND delete_CHECK =1
+			payment.product_id = product.product_id
+			AND enterprise_id = #{id}
 		</where>
-		ORDER BY recruit.recruit_id DESC
+		ORDER BY payment.payment_id DESC
+		LIMIT #{start},10
 	</select>
-
-
-
-	<select id="selectPayment" parameterType="String"
-		resultType="Payment">
-		SELECT product.name AS product_name, payment.date AS date,
-		product.price as product_price
+	<select id="selectPaymentCount" parameterType="hashmap" resultType="int">
+		SELECT count(*)
 		FROM payment,product
 		<where>
 			payment.product_id = product.product_id
@@ -111,9 +110,10 @@
 		</where>
 		ORDER BY payment.payment_id DESC
 	</select>
-
-	<select id="selectAdvertising" parameterType="String"
-		resultType="Advertising">
+	
+	
+	<!-- 광고 이력 -->
+	<select id="selectAdvertising" parameterType="hashmap" resultType="Advertising">
 		SELECT
 		board_recruit.title AS board_recruit_title,
 		advertising.start_date AS start_date,
@@ -128,11 +128,24 @@
 			payment.payment_id = advertising.payment_id
 		</where>
 		ORDER BY advertising.advertising_id DESC
+		LIMIT #{start},10
+	</select>
+	<select id="selectAdvertisingCount" parameterType="hashmap" resultType="int">
+		SELECT count(*)
+		FROM Advertising,board_recruit,payment
+		<where>
+			payment.enterprise_id= #{id}
+			and
+			Advertising.board_recruit_id=board_recruit.board_recruit_id
+			AND
+			payment.payment_id = advertising.payment_id
+		</where>
+		ORDER BY advertising.advertising_id DESC
 	</select>
 
 
-	<select id="selectpaymentHistoryResume" parameterType="String"
-		resultType="PaymentHistoryResume">
+	<!-- 이력서 이력 조회  -->
+	<select id="selectpaymentHistoryResume" parameterType="hashmap" resultType="PaymentHistoryResume">
 		SELECT board_resume.title AS board_resume_title,
 		payment_history_resume.resume_phone AS resume_phone,
 		payment_history_resume.date as date
@@ -145,10 +158,24 @@
 		</where>
 
 		ORDER BY payment_history_resume.payment_history_resume_id DESC
+		LIMIT #{start},10
 
 	</select>
-	<select id="selectpaymentHistoryUp" parameterType="String"
-		resultType="PaymentHistoryUp">
+	<select id="selectpaymentHistoryResumeCount" parameterType="hashmap" resultType="int">
+		SELECT  count(*)
+		FROM payment_history_resume,board_resume
+
+		<where>
+			payment_history_resume.board_resume_id = board_resume.board_resume_id
+			AND enterprise_id = #{id}
+		</where>
+
+		ORDER BY payment_history_resume.payment_history_resume_id DESC
+
+	</select>
+	
+	<!-- up 이력 조회  -->
+	<select id="selectpaymentHistoryUp" parameterType="hashmap" resultType="PaymentHistoryUp">
 		SELECT board_recruit.title as board_recruit_title,
 		payment_history_up.date as date,
 		payment_history_up.up_count as up_count
@@ -160,11 +187,52 @@
 			and enterprise_id=#{id}
 		</where>
 		ORDER BY payment_history_up.payment_history_up_id DESC
+		LIMIT #{start},10
+	</select>
+	<select id="selectpaymentHistoryUpCount" parameterType="hashmap" resultType="int">
+		SELECT  count(*)
+		FROM payment_history_up,board_recruit
+
+		<where>
+			board_recruit.board_recruit_id=payment_history_up.board_recruit_id
+			and enterprise_id=#{id}
+		</where>
+		ORDER BY payment_history_up.payment_history_up_id DESC
+	</select>
+	
+	<!-- 공고 리스트-->
+	<select id="selectRecruits" parameterType="hashmap"	resultType="Recruit">
+		SELECT *
+		FROM recruit
+		<where>
+			enterprise_id = #{id}
+			AND delete_CHECK =1
+		</where>
+		ORDER BY recruit.recruit_id DESC
+		LIMIT #{start},10
+
+	</select>
+	<select id="selectRecruitsCount" parameterType="hashmap"	resultType="int">
+		SELECT count(*)
+		FROM recruit
+		<where>
+			enterprise_id = #{id}
+			AND delete_CHECK =1
+		</where>
+		ORDER BY recruit.recruit_id DESC
+
 	</select>
 
 
+	<select id="boardRecruits" parameterType="String" resultType="BoardRecruit">
+		SELECT board_recruit.board_recruit_id AS board_recruit_id,
+		board_recruit.title AS title
+		FROM board_recruit,recruit
+		<where> board_recruit.recruit_id = recruit.recruit_id
+		AND recruit.enterprise_id =#{enterprise_id}
+		</where>
 
-
+	</select>
 
 	<insert id="insertRecruit" parameterType="Recruit">
 		insert Into Recruit

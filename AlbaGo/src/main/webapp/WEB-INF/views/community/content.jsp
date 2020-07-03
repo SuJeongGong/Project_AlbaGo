@@ -15,15 +15,11 @@ $(document).ready(function(){
 	$("div[name='hide']").hide();
 })
 
-
-
 function insertComment(community) {
 	if("<%=request.getSession().getAttribute("id")%>"==null){
 		alert("로그인을 해주세요");
 		return ; 
 	}
-		
-	
 	var comment = 	$("#comment").val();
 	console.log(comment);
 	$.ajax({
@@ -37,6 +33,8 @@ function insertComment(community) {
 			if(res>=1){
 				//alert("결과 저장 완료");
 				$("#res").load(window.location.href + " #res");
+				$("#comment").val("");
+				$("div[name='hide']").hide();
 			
 			}else{
 				alert("실패");
@@ -140,7 +138,7 @@ function updateResults(result) {
 						%>
 
 
-						<div class="comment-list">
+						<div class="comment-list" id="res">
 							<div class="single-comment justify-content-between d-flex">
 								<div class="user justify-content-between d-flex">
 									<div  id="res<%=i%>">
@@ -159,8 +157,7 @@ function updateResults(result) {
 										<div id="commentUpdate<%=i%>" name="hide">
 											<textarea class="form-control" name="commentsUpdate"
 												id="commentUpdateContent<%=i%>" cols="30" rows="3"><%=cm_contents%></textarea>
-											<button class="btn btn-info edit w-10"
-												onclick="update(<%=comment.getComment_id()%>,<%=i%>)">수정 저장</button>
+											<button class="btn btn-info edit w-10" onclick="update(<%=comment.getComment_id()%>,<%=i%>)">수정 저장</button>
 										</div>
 										<div style="text-align: right;">
 											<%
@@ -171,8 +168,7 @@ function updateResults(result) {
 															System.out.println(comment.getIndividual_id() + "디비에서 가져온");
 															if (session_id2.equals(comment.getIndividual_id())) {
 											%>
-											<button class="btn btn-info edit w-10"
-												onclick="commentUpdate(<%=i%>)">댓글수정</button>
+											<button class="btn btn-info edit w-10" 	 	onclick="commentUpdate(<%=i%>)">댓글수정</button>
 											<a class="btn btn-outline-danger w-10"
 												href="<%=request.getContextPath()%>/community/comment/delete?comment_id=<%=comment.getComment_id()%>">댓글삭제</a>
 											<%
@@ -207,8 +203,7 @@ function updateResults(result) {
 							</div>
 							<div class="form-group">
 								<button type="button"
-									class="button button-contactForm btn_1 boxed-btn"
-									onclick="insertComment(<%=community_id%>)">댓글달기</button>
+									class="button button-contactForm btn_1 boxed-btn" onclick="insertComment(<%=community_id%>)">댓글달기</button>
 							</div>
 						</form>
 					</div>
@@ -233,6 +228,7 @@ function updateResults(result) {
 				if(res>=1){
 					//alert("결과 저장 완료");
 					$("#res"+i).load(window.location.href + " #res"+i);
+					$("#res"+i).hide();
 				}else{
 					alert("실패");
 				}

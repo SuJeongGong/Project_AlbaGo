@@ -30,51 +30,83 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 	EnterpriseService enterpriseService;
 
 	@RequestMapping("/mypage") // 마이페이지
-	public String mypage(@AuthUser String id, Model m) {
+	public String mypage(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pageNum-1)*10);
+		map.put("id", id.split("/")[0]);
 		// 모델에 담기
 		m.addAttribute("Einfo", enterpriseService.selectEnterprise(id.split("/")[0]));// 기업정보
-		m.addAttribute("scrap", enterpriseService.selectScrap(id.split("/")[0]));// 스크랩
-		m.addAttribute("recruit", enterpriseService.selectRecruits(id.split("/")[0]));// 공고
-		m.addAttribute("volunteer", enterpriseService.selectVolunteer(id.split("/")[0]));// 지원자
-		m.addAttribute("payment", enterpriseService.selectPayment(id.split("/")[0]));// 결제 기록
-		m.addAttribute("advertising", enterpriseService.selectAdvertising(id.split("/")[0]));// 광고 기록
-		m.addAttribute("payment_history_resume", enterpriseService.paymentHistoryResume(id.split("/")[0]));// 광고 기록
-		m.addAttribute("payment_history_up", enterpriseService.paymentHistoryUp(id.split("/")[0]));// 광고 기록
-		System.out.println("enterpriseService.paymentHistoryResume(id.split(\"/\")[0])"
-				+ enterpriseService.paymentHistoryResume(id.split("/")[0]));
+		m.addAttribute("scrap", enterpriseService.selectScrap(map));// 스크랩
+		m.addAttribute("recruit", enterpriseService.selectRecruits(map));// 공고
+		m.addAttribute("volunteer", enterpriseService.selectVolunteer(map));// 지원자
+		m.addAttribute("payment", enterpriseService.selectPayment(map));// 결제 기록
+		m.addAttribute("advertising", enterpriseService.selectAdvertising(map));// 광고 기록
+		m.addAttribute("payment_history_resume", enterpriseService.paymentHistoryResume(map));// 광고 기록
+		m.addAttribute("payment_history_up", enterpriseService.paymentHistoryUp(map));// 광고 기록
+		System.out.println("enterpriseService"+enterpriseService.paymentHistoryResume(map));
 
 		return "/enterprise/mypage";
 	}
 
 	@RequestMapping("/payment") // 결제내역 자세히
-	public String payment(@AuthUser String id, Model m) {
+	public String payment(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pageNum-1)*10);
+		map.put("id", id.split("/")[0]);
+		
 		// 모델에 담기
-		m.addAttribute("payments", enterpriseService.selectPayment(id.split("/")[0]));// 기업정보
+		m.addAttribute("payments", enterpriseService.selectPayment(map));// 기업정보
+		m.addAttribute("count", enterpriseService.selectPaymentCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 
 		return "/enterprise/payment";
 	}
 
 	@RequestMapping("/advertising") // 광고 내역
-	public String advertising(@AuthUser String id, Model m) {
+	public String advertising(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pageNum-1)*10);
+		map.put("id", id.split("/")[0]);
 		// 모델에 담기
-		m.addAttribute("advertisings", enterpriseService.selectAdvertising(id.split("/")[0]));// 기업정보
+		m.addAttribute("advertisings", enterpriseService.selectAdvertising(map));// 기업정보
+		m.addAttribute("count", enterpriseService.selectAdvertisingCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 
 		return "/enterprise/advertising";
 	}
 
 	@RequestMapping("payment/resume") // 결제내역 자세히
-	public String paymentResume(@AuthUser String id, Model m) {
+	public String paymentResume(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pageNum-1)*10);
+		map.put("id", id.split("/")[0]);
 		// 모델에 담기
-		m.addAttribute("payment_history_resume", enterpriseService.paymentHistoryResume(id.split("/")[0]));// 기업정보
+		m.addAttribute("payment_history_resume", enterpriseService.paymentHistoryResume(map));// 기업정보
+		m.addAttribute("count", enterpriseService.selectpaymentHistoryResumeCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 
 		return "/enterprise/payment_resume";
 	}
 
 	@RequestMapping("payment/up") // 광고 내역
-	public String paymentUp(@AuthUser String id, Model m) {
+	public String paymentUp(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pageNum-1)*10);
+		map.put("id", id.split("/")[0]);
 
 		m.addAttribute("board_recruits", enterpriseService.boardRecruits(id.split("/")[0]));// 기업정보
-		m.addAttribute("payment_history_up", enterpriseService.paymentHistoryUp(id.split("/")[0]));// 기업정보
+		m.addAttribute("payment_history_up", enterpriseService.paymentHistoryUp(map));// 기업정보
+		m.addAttribute("count", enterpriseService.paymentHistoryUpCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 
 		return "/enterprise/payment_up";
 	}
@@ -101,16 +133,30 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 	}
 
 	@RequestMapping("/scrap") // 스크랩 인재
-	public String scrap(@AuthUser String id, Model m) {
-		System.out.println(enterpriseService.selectScrap(id.split("/")[0]));
-		m.addAttribute("scraps", enterpriseService.selectScrap(id.split("/")[0]));
+	public String scrap(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pageNum-1)*10);
+		map.put("id", id.split("/")[0]);
+		System.out.println(enterpriseService.selectScrap(map));
+		m.addAttribute("scraps", enterpriseService.selectScrap(map));
+		m.addAttribute("count", enterpriseService.selectScrapCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 
 		return "/enterprise/scrap";
 	}
 
 	@RequestMapping("/recruit/list") // 공고 리스트
-	public String recruitList(@AuthUser String id, Model m) {
-		m.addAttribute("Recruits", enterpriseService.selectRecruits(id.split("/")[0]));// why salary는 안나오죠?
+	public String recruitList(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pageNum-1)*10);
+		map.put("id", id.split("/")[0]);
+		m.addAttribute("Recruits", enterpriseService.selectRecruits(map));// why salary는 안나오죠?
+		m.addAttribute("count", enterpriseService.selectRecruitsCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 
 		return "/enterprise/recruit_list";
 	}
@@ -143,10 +189,16 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 	}
 
 	@RequestMapping("/volunteer/list") // 지원한 인재
-	public String volunteerList(@AuthUser String id, Model m) {
+	public String volunteerList(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 
-		m.addAttribute("volunteers", enterpriseService.selectVolunteer(id.split("/")[0]));// why salary는 안나오죠?
 
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pageNum-1)*10);
+		map.put("id", id.split("/")[0]);
+		m.addAttribute("volunteers", enterpriseService.selectVolunteer(map));// why salary는 안나오죠?
+		m.addAttribute("count", enterpriseService.selectVolunteerCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 		return "/enterprise/volunteer_list";
 	}
 

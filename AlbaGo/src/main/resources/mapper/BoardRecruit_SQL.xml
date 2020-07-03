@@ -10,7 +10,7 @@
 			where recruit.recruit_id = board_recruit.recruit_id
 			AND board_recruit.delete_check = 1
 			ORDER BY board_recruit.date DESC
-	LIMIT #{start},10
+			LIMIT #{start},10
 	</select> 
 	
 	<select id = "selectListCount" resultType="int" parameterType="hashmap">
@@ -40,6 +40,8 @@
 		and recruit.term like CONCAT('%',#{term},'%')
 		and board_recruit.title like CONCAT('%',#{title},'%')
 		</where>
+			ORDER BY board_recruit.date DESC
+			LIMIT #{start},10
 	</select>
 	<!-- 게시글작성 -->
 	<insert id = "insertBoard_recruit" parameterType="BoardRecruit">

@@ -28,34 +28,59 @@ public class EnterpriseService {
 		return enterpriseDAO.selectEnterprise(id);
 	}
 
-	public ArrayList<Scrap_enterprise> selectScrap(String id) {
-		return enterpriseDAO.selectScrap(id);
+	public ArrayList<Scrap_enterprise> selectScrap(HashMap<String, Object> map) {
+		return enterpriseDAO.selectScrap(map);
+	}
+	
+	public int selectScrapCount(HashMap<String, Object> map) {
+		return enterpriseDAO.selectScrapCount(map);
 	}
 
-	public ArrayList<Recruit> selectRecruits(String id) {
-		return enterpriseDAO.selectRecruits(id);
+	public ArrayList<Recruit> selectRecruits(HashMap<String, Object> map) {
+		return enterpriseDAO.selectRecruits(map);
+	}
+	public int selectRecruitsCount(HashMap<String, Object> map) {
+		return enterpriseDAO.selectRecruitsCount(map);
 	}
 
-	public ArrayList<Volunteer> selectVolunteer(String id) {
-		return enterpriseDAO.selectVolunteer(id);
+	public ArrayList<Volunteer> selectVolunteer(HashMap<String, Object> map) {
+		return enterpriseDAO.selectVolunteer(map);
 	}
 	
-	public ArrayList<Payment> selectPayment(String id) {//결제기록
-		return enterpriseDAO.selectPayment(id);
+	public int selectVolunteerCount(HashMap<String, Object> map) {
+		return enterpriseDAO.selectVolunteerCount(map);
 	}
 	
-	public ArrayList<Advertising> selectAdvertising(String id) {//광고/배던
-		return enterpriseDAO.selectAdvertising(id);
+	public ArrayList<Payment> selectPayment(HashMap<String, Object> map) {//결제기록
+		return enterpriseDAO.selectPayment(map);
 	}
 	
-	public ArrayList<PaymentHistoryResume> paymentHistoryResume(String id) {//이력서보기 사용기록
-		return enterpriseDAO.selectpaymentHistoryResume(id);
+	public int selectPaymentCount(HashMap<String, Object> map) {//결제기록
+		return enterpriseDAO.selectPaymentCount(map);
 	}
 	
-	public ArrayList<PaymentHistoryUp> paymentHistoryUp(String id) {//up버튼 사용기록
-		return enterpriseDAO.selectpaymentHistoryUp(id);
+	public ArrayList<Advertising> selectAdvertising(HashMap<String, Object> map) {//광고/배던
+		return enterpriseDAO.selectAdvertising(map);
 	}
-	public ArrayList<BoardRecruit> boardRecruits(String id) {//up버튼 사용기록
+	public int selectAdvertisingCount(HashMap<String, Object> map) {//광고/배던
+		return enterpriseDAO.selectAdvertisingCount(map);
+	}
+	
+	public ArrayList<PaymentHistoryResume> paymentHistoryResume(HashMap<String, Object> map) {//이력서보기 사용기록
+		return enterpriseDAO.selectpaymentHistoryResume(map);
+	}
+	
+	public int selectpaymentHistoryResumeCount(HashMap<String, Object> map) {//이력서보기 사용기록
+		return enterpriseDAO.selectpaymentHistoryResumeCount(map);
+	}
+	
+	public ArrayList<PaymentHistoryUp> paymentHistoryUp(HashMap<String, Object> map) {//up버튼 사용기록
+		return enterpriseDAO.selectpaymentHistoryUp(map);
+	}
+	public int paymentHistoryUpCount(HashMap<String, Object> map) {//up버튼 사용기록
+		return enterpriseDAO.selectpaymentHistoryUpCount(map);
+	}
+	public ArrayList<BoardRecruit> boardRecruits(String id) {//이력서 버튼 사용기록
 		return enterpriseDAO.boardRecruits(id);
 	}
 	public Resume selectVolunteerResume(int resume_id) {
