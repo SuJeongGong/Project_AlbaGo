@@ -18,4 +18,5 @@ public class Scrap_enterprise {
 	int resume_id;//이력서
 	String individual_name;
 	
+	
 }
