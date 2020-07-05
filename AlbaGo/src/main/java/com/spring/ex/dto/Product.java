@@ -15,5 +15,6 @@ public class Product {
 	String type;
 	int sum_price;//총매출
 	int todaysales; //오늘 매출
+
 	
 }

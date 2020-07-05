@@ -44,16 +44,33 @@ public class ProductController {
 		m.addAttribute("products", products);
 
 		return page;
-	}
+	}	
+	@RequestMapping("/product/payment/result") // 상세보기
+	public String payment(@AuthUser String id ,@RequestParam("product_id")int product_id) {
+		
+		
+		String page="/product/payment";
+		Payment payment = new Payment();
+		payment.setProduct_id(product_id);
+		payment.setEnterprise_id(id.split("/")[0]);
+		
+		
+		if(productService.insertProduct_payment(payment)>=1) {
+			page = "/product/result";
+		}
+		return page; 
+	}  
+	
+	
 	@Auth
-	@RequestMapping("/product/payment/result")//결제 여기서 이뤄짐OB
+	@RequestMapping("/advertising/payment/result")//광고 결제 넣어주는 맵핑
 	public String approval_result(@AuthUser String id ,@ModelAttribute("advertising") Advertising advertising) {
 		String page ="/payment/result";
 		
 		advertising.setEnterprise_id(id.split("/")[0]);//거기다가 enterprise_id 값 넣기
 		System.out.println("advertising :          "+advertising);
 		if (productService.insertAdpayment(advertising)>= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
-			page ="redirect:/advertising/list;";
+			page ="/product/result";
 		}
 		return page;
 	}
