@@ -44,7 +44,7 @@ String conPath = request.getContextPath();
      
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="main">
+        <a class="nav-link" href="<%=conPath %>/admin/main">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>메인페이지</span></a>
       </li>
@@ -91,9 +91,9 @@ String conPath = request.getContextPath();
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">board:</h6>
-            <a class="collapse-item" href="<%=conPath %>/admin/recruit">공고글</a>
-            <a class="collapse-item" href="<%=conPath %>/admin/resume">인재글</a>
-            <a class="collapse-item" href="<%=conPath %>/admin/community">커뮤니티</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/board/recruit">공고글</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/board/resume">인재글</a>
+            <a class="collapse-item" href="<%=conPath %>/admin/board/community">커뮤니티</a>
           </div>
         </div>
       </li>

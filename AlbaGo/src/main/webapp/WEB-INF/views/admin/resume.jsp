@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="com.spring.ex.dto.BoardResume"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -57,6 +58,44 @@
 </head>
 
 <body>
+
+	<%
+		HashMap<String, Object> map = (HashMap<String, Object>) request.getAttribute("map");//검색 조건
+
+		String individual_category = (String) map.get("individual_category");
+		String local_category = (String) map.get("local_category");
+		String gen = (String) map.get("gender");
+		String edu = (String) map.get("education");
+		String day = (String) map.get("day");
+		String search = (String) map.get("search");
+		if (individual_category == null) {
+			individual_category = "";
+		}
+		if (local_category == null) {
+			local_category = "";
+		}
+		if (gen == null) {
+			gen = "";
+		}
+		if (edu == null) {
+			edu = "";
+		}
+		if (day == null) {
+			day = "";
+		}
+		if (search == null) {
+			search = "";
+		}
+	%>
+	<script type="text/javascript">
+		function page(page){
+			var page = page;
+			location.href
+			="?page="+page+"&individual_category=<%=individual_category%>&local_category=<%=local_category%>&gender=<%=gen%>&edu=<%=edu%>&day=<%=day%>&search=<%=search%>";
+
+		}
+	</script>
+
     <div id="wrapper">
         <!-- 사이드 바 -->
         <%@ include file="../serve/manager_sidebar.jsp" %>
@@ -91,7 +130,7 @@
                                     <th style="width: 400px;">성별&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;학력</th>
                                     <th>작성일자</th>
                                     <tr>
-                                    	<form action="<%=request.getContextPath() %>/admin/resume/total" method="get" name="keyword" id="keyword">
+                                    	<form action="<%=request.getContextPath() %>/admin/board/resume" method="get" name="keyword" id="keyword">
                                         <td><select name="individual_category">
                                                 <option value="">전체</option>
                                                 <option value="외식/음료">외식/음료</option>
@@ -285,23 +324,38 @@
                 </div>
 
 
-                <div class="text-center" style="float: left;">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="##">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="###">3</a></li>
-                        <li class="page-item"><a class="page-link" href="####">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#####">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </div>
+
+
+							<div class="text-center" style="float: left;">
+								<ul class="pagination">
+									<%
+										int pageNum = (int) request.getAttribute("pageNum");
+										int count = (int) request.getAttribute("count");
+										System.out.println(pageNum);
+										System.out.println(count);
+										if (pageNum > 1) {//<
+									%>
+									<li class="page-item disabled"><a class="page-link"
+										href="javascript:page(<%=pageNum + 1%>)">Previous</a></li>
+									<%
+										}
+										for (int i = 1; i <= count; i++) {//각각 번호
+									%>
+
+									<li class="page-item"><a class="page-link"
+										href="javascript:page(<%=i%>)"><%=i%> </a></li>
+									<%
+										}
+										if (pageNum < count) {//>
+									%>
+
+									<li class="page-item"><a class="page-link"
+										href="javascript:page(<%=pageNum + 1%>)">Next</a></li>
+									<%
+										}
+									%>
+								</ul>
+							</div>
 
 
             </div>

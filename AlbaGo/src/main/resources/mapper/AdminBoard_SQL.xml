@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.ex.dao.AdminBoardDAO">
+
+	<!-- 임승재 -->
+	<!-- 전체 공고 갯수 -->
+	<select id="all_Count" resultType="int">
+		select count(*)
+		from
+		board_recruit
+		where board_recruit.delete_check = 1
+	</select>
+	<!-- 오늘 공고 갯수 -->
+	<select id="today_Count" resultType="int">
+		select count(*)
+		from
+		board_recruit
+		where date >= CURDATE()
+		and board_recruit.delete_check = 1
+	</select>
+	<!-- 어제 공고 갯수 -->
+	<select id="yesterday_Count" resultType="int">
+		select count(*)
+		from board_recruit
+		<![CDATA[
+		where date >= DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND DATE < CURDATE()
+		and board_recruit.delete_check = 1
+		]]>
+	</select>
+
+	<!-- 공고글 전체 검색 -->
+	<select id="selectRecruit" resultType="BoardRecruit"
+		parameterType="hashmap">
+		SELECT board_recruit.board_recruit_id AS board_recruit_id,
+		board_recruit.`date` AS date , board_recruit.title AS title,
+		recruit.enterprise_id AS enterprise_id, recruit.place AS place,
+		recruit.category AS category, recruit.gender AS gender,
+		recruit.education AS education
+		FROM board_recruit, recruit
+		<where>
+			board_recruit.recruit_id = recruit.recruit_id
+			and
+			board_recruit.delete_check = 1
+			<if test="category != null">
+				and recruit.category like CONCAT('%',#{category},'%')
+			</if>
+			<if test="place != null">
+				and recruit.place like CONCAT('%',#{place},'%')
+			</if>
+			<if test="gender != null">
+				and recruit.gender like CONCAT('%',#{gender},'%')
+			</if>
+			<if test="education != null">
+				and recruit.education like CONCAT('%',#{education},'%')
+			</if>
+			<if test="search != null">
+				and (board_recruit.title like CONCAT('%',#{search},'%')
+				OR recruit.enterprise_id like CONCAT('%',#{search},'%'))
+			</if>
+			<if test="day != null and day.equals('today')">
+				AND board_recruit.`date` >= CURDATE()
+			</if>
+			<if test="day != null and day.equals('week')">
+				AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)
+			</if>
+			<if test="day != null and day.equals('month')">
+				AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)
+			</if>
+		</where>
+		LIMIT #{page},10
+	</select>
+	<select id="selectRecruitCount" resultType="int"
+		parameterType="hashmap">
+		SELECT Count(*)
+		FROM board_recruit, recruit
+		<where>
+			board_recruit.recruit_id = recruit.recruit_id
+			and
+			board_recruit.delete_check = 1
+			<if test="category != null">
+				and recruit.category like CONCAT('%',#{category},'%')
+			</if>
+			<if test="place != null">
+				and recruit.place like CONCAT('%',#{place},'%')
+			</if>
+			<if test="gender != null">
+				and recruit.gender like CONCAT('%',#{gender},'%')
+			</if>
+			<if test="education != null">
+				and recruit.education like CONCAT('%',#{education},'%')
+			</if>
+			<if test="search != null">
+				and (board_recruit.title like CONCAT('%',#{search},'%')
+				OR recruit.enterprise_id like CONCAT('%',#{search},'%'))
+			</if>
+			<if test="day != null and day.equals('today')">
+				AND board_recruit.`date` >= CURDATE()
+			</if>
+			<if test="day != null and day.equals('week')">
+				AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)
+			</if>
+			<if test="day != null and day.equals('month')">
+				AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)
+			</if>
+		</where>
+	</select>
+
+
+	<!-- 공고글에서 지원자보기 -->
+	<select id="board_list" parameterType="String"
+		resultType="Volunteer">
+		SELECT volunteer.board_recruit_id as board_recruit_id,
+		volunteer.individual_id as individual_id,
+		individual.name AS NAME,
+		volunteer.memo as memo,
+		volunteer.date as date,
+		volunteer.result as
+		result,
+		volunteer.resume_id as resume_id,
+		volunteer.volunteer_id as
+		volunteer_id
+		FROM individual , board_recruit ,volunteer
+		WHERE
+		individual.individual_id = volunteer.individual_id
+		AND
+		volunteer.board_recruit_id = board_recruit.board_recruit_id
+		AND
+		volunteer.board_recruit_id = #{id}
+	</select>
+
+	<!-- 공고글 삭제 -->
+	<update id="deleteBoardRecruits" parameterType="int">
+		update
+		board_recruit
+		set delete_check = 0
+		where board_recruit_id =
+		#{boardrecruit_id}
+	</update>
+
+
+
+
+
+
+	<!-- 전체 인재 갯수 -->
+	<select id="all_Count_resume" resultType="int">
+		select count(*)
+		from
+		board_resume
+		where board_resume.delete_check = 1
+	</select>
+
+	<!-- 오늘 인재 갯수 -->
+	<select id="today_Count_resume" resultType="int">
+		select count(*)
+		from
+		board_resume
+		where date >= CURDATE()
+		and board_resume.delete_check = 1
+	</select>
+
+	<!-- 어제 인재 갯수 -->
+	<select id="yesterday_Count_resume" resultType="int">
+		select COUNT(*)
+		from board_resume
+		<![CDATA[
+		where date >= DATE_SUB(CURDATE(), INTERVAL 1 DAY) AND DATE < CURDATE()
+		and board_resume.delete_check = 1
+		]]>
+	</select>
+
+
+	<!-- 인재글 전체 검색 오늘포함 -->
+	<select id="selectResume" resultType="BoardResume"
+		parameterType="hashmap">
+		SELECT board_resume.board_resume_id,
+		board_resume.`date`,
+		board_resume.title as board_resume_title,
+		resume.individual_id,
+		resume.category, resume.place,
+		individual.gender, individual.education
+		FROM board_resume, resume, individual
+		<where>
+			board_resume.resume_id =
+			resume.resume_id
+			AND resume.individual_id =
+			individual.individual_id
+			and board_resume.delete_check = 1
+			<if test="category != null">
+				and resume.category like CONCAT('%',#{category},'%')
+			</if>
+			<if test="place != null">
+				and resume.place like CONCAT('%',#{place},'%')
+			</if>
+			<if test="gender != null">
+				and individual.gender like CONCAT('%',#{gender},'%')
+			</if>
+			<if test="education != null">
+				and individual.education like CONCAT('%',#{education},'%')
+			</if>
+			<if test="search != null">
+				and (board_resume.title like CONCAT('%',#{search},'%')
+				OR resume.individual_id like CONCAT('%',#{search},'%'))
+			</if>
+			<if test="day != null and day.equals('today')">
+				AND board_resume.`date` >= CURDATE()
+			</if>
+			<if test="day != null and day.equals('week')">
+				AND board_resume.`date` > (NOW() - INTERVAL 7 DAY)
+			</if>
+			<if test="day != null and day.equals('month')">
+				AND board_resume.`date` > (NOW() - INTERVAL 1 MONTH)
+			</if>
+		LIMIT #{page},10
+
+		</where>
+	</select>
+	<!-- 인재글 전체 검색 오늘포함 -->
+	<select id="selectResumeCount" resultType="int"
+		parameterType="hashmap">
+		SELECT Count(*)
+		FROM board_resume, resume, individual
+		<where>
+			board_resume.resume_id =
+			resume.resume_id
+			AND resume.individual_id =
+			individual.individual_id
+			and board_resume.delete_check = 1
+			<if test="category != null">
+				and resume.category like CONCAT('%',#{category},'%')
+			</if>
+			<if test="place != null">
+				and resume.place like CONCAT('%',#{place},'%')
+			</if>
+			<if test="gender != null">
+				and individual.gender like CONCAT('%',#{gender},'%')
+			</if>
+			<if test="education != null">
+				and individual.education like CONCAT('%',#{education},'%')
+			</if>
+			<if test="search != null">
+				and (board_resume.title like CONCAT('%',#{search},'%')
+				OR resume.individual_id like CONCAT('%',#{search},'%'))
+			</if>
+			<if test="day != null and day.equals('today')">
+				AND board_resume.`date` >= CURDATE()
+			</if>
+			<if test="day != null and day.equals('week')">
+				AND board_resume.`date` > (NOW() - INTERVAL 7 DAY)
+			</if>
+			<if test="day != null and day.equals('month')">
+				AND board_resume.`date` > (NOW() - INTERVAL 1 MONTH)
+			</if>
+
+		</where>
+	</select>
+
+	<!-- 인재글 삭제 -->
+	<update id="deleteBoardResumes" parameterType="int">
+		update
+		board_resume
+		set delete_check = 0
+		where board_resume_id =
+		#{boardresume_id}
+	</update>
+
+
+	<!-- 커뮤니티 전체 검색 -->
+	<select id="selectCommunity" resultType="BoardCommunity"
+		parameterType="hashmap">
+		SELECT community.community_id, community.`date`,
+		community.title,
+		community.individual_id
+		FROM community
+		<where>
+		(community.title like CONCAT('%',#{search},'%')
+		OR
+		community.individual_id like CONCAT('%',#{search},'%'))
+		and `date` BETWEEN #{start} AND #{end}
+		</where>
+		LIMIT #{page},10
+	</select>
+	<select id="selectCommunityCount" resultType="int"
+		parameterType="hashmap">
+		SELECT Count(*)
+		FROM community
+		<where>
+		(community.title like CONCAT('%',#{search},'%')
+		OR
+		community.individual_id like CONCAT('%',#{search},'%'))
+		and `date` BETWEEN #{start} AND #{end}
+		</where>
+	</select>
+
+	<!-- 커뮤니티 게시글 삭제 -->
+	<delete id="deleteCommunities" parameterType="int">
+		delete from
+		community
+		where community_id = #{community_id}
+	</delete>
+
+	<!-- 커뮤니티 댓글 확인 -->
+	<select id="countComment" resultType="int">
+		select count(*)
+		from comment
+		where community_id = #{community_id}
+	</select>
+
+	<!-- 커뮤니티 댓글이 있다면 -->
+	<delete id="deleteComment" parameterType="int">
+		delete from comment
+		where community_id = #{community_id}
+	</delete>
+
+	<!-- 커뮤니티 오늘 -->
+	<select id="today_search_C" resultType="BoardCommunity"
+		parameterType="String">
+		SELECT community_id, date, title, individual_id
+		FROM
+		community
+		WHERE date >= CURDATE()
+	</select>
+
+	<!-- 커뮤니티 일주일 -->
+	<select id="week_search_C" resultType="BoardCommunity"
+		parameterType="String">
+		SELECT community_id, date, title, individual_id
+		FROM
+		community
+		WHERE date > (NOW() - INTERVAL 7 DAY)
+	</select>
+
+	<!-- 커뮤니티 1개월 -->
+	<select id="month_search_C" resultType="BoardCommunity"
+		parameterType="String">
+		SELECT community_id, date, title, individual_id
+		FROM
+		community
+		WHERE date > (NOW() - INTERVAL 1 MONTH)
+	</select>
+
+</mapper>

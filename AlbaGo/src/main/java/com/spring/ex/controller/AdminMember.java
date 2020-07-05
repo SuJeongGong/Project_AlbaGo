@@ -49,8 +49,8 @@ public class AdminMember {
 		ArrayList<Individual> individuals = adminMemberService.selectIndividual(category, search,(pageNum - 1) * 10);
 		System.out.println(individuals);
 		System.out.println(map);
-		m.addAttribute("map", map);
 		m.addAttribute("individuals", individuals);
+		m.addAttribute("map", map);
 		m.addAttribute("count", adminMemberService.selectIndividualCount(category, search) / 10 + 1);// 기업정보
 		m.addAttribute("pageNum", pageNum);// 기업정보
 

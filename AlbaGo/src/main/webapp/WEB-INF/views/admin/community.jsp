@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="com.spring.ex.dto.BoardCommunity"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -57,6 +58,31 @@
 </head>
 
 <body>
+
+	<%
+		HashMap<String, Object> map = (HashMap<String, Object>) request.getAttribute("map");//검색 조건
+		String search =(String) map.get("search");
+		String start = (String) map.get("start");
+		String end = (String) map.get("end");
+		if (start == null) {
+			start = "";
+		}
+		if (end == null) {
+			end = "";
+		}
+		if (search == null) {
+			search = "";
+		}
+	%>
+	<script type="text/javascript">
+		function page(page){
+			var page = page;
+			location.href
+			="?page="+page+"&start=<%=start%>&end=<%=end%>&search=<%=search%>";
+
+		}
+	</script>
+
     <div id="wrapper">
         <!-- 사이드 바 -->
         <%@ include file="../serve/manager_sidebar.jsp" %>
@@ -88,7 +114,7 @@
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body">
                                 <table>
-                                    <form action="<%=request.getContextPath() %>/admin/community/total" method="get" name="keyword" id="keyword">
+                                    <form action="<%=request.getContextPath() %>/admin/board/community" method="get" name="keyword" id="keyword">
                                     <th style="width: 900px;">작성일자</th>
                                     <tr>
                                         <td><input type="text" name="start" style="width: 150px;">&nbsp;&nbsp; ~
@@ -183,41 +209,45 @@
                 </div>
 
 
-                <div class="text-center" style="float: left;">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="##">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="###">3</a></li>
-                        <li class="page-item"><a class="page-link" href="####">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#####">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </div>
+
+
+							<div class="text-center" style="float: left;">
+								<ul class="pagination">
+									<%
+										int pageNum = (int) request.getAttribute("pageNum");
+										int count = (int) request.getAttribute("count");
+										System.out.println(pageNum);
+										System.out.println(count);
+										if (pageNum > 1) {//<
+									%>
+									<li class="page-item disabled"><a class="page-link"
+										href="javascript:page(<%=pageNum + 1%>)">Previous</a></li>
+									<%
+										}
+										for (int i = 1; i <= count; i++) {//각각 번호
+									%>
+
+									<li class="page-item"><a class="page-link"
+										href="javascript:page(<%=i%>)"><%=i%> </a></li>
+									<%
+										}
+										if (pageNum < count) {//>
+									%>
+
+									<li class="page-item"><a class="page-link"
+										href="javascript:page(<%=pageNum + 1%>)">Next</a></li>
+									<%
+										}
+									%>
+								</ul>
+							</div>
 
 
             </div>
         </div>
     </div>
 
-    </div>
-    <!-- /.container-fluid -->
 
-    </div>
-    <!-- End of Main Content -->
-
-
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-    </div>
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
@@ -241,13 +271,9 @@
     <script src="js/demo/datatables-demo.js"></script>
 
 
-
-    </div><!-- 끝 main 본문  -->
-    </div><!-- 끝 main -->
     <!-- footer -->
     <%@ include file="../serve/manager_footer.jsp" %>
-    </div><!-- 끝 content wrapper -->
-    </div><!-- 끝  wrapper -->
+
 </body>
 
 </html>

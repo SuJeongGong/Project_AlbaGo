@@ -106,403 +106,232 @@ public class AdminController {
 
 	}
 
-	@RequestMapping("/recruit") // 공고글 게시판 - 관리자ver
-	public String recruit(Model m) {
-
-		// 전체 공고 갯수
-		int allcount = adminService.all_Count();
-		m.addAttribute("allcount", allcount);
-
-		// 오늘 공고 갯수
-		int todaycount = adminService.today_Count();
-		m.addAttribute("todaycount", todaycount);
-
-		// 오늘 공고 갯수
-		int yesterdaycount = adminService.yesterday_Count();
-		m.addAttribute("yesterdaycount", yesterdaycount);
-
-		// 공고글 리스트
-		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List();
-		System.out.println(boardrecruits);
-		m.addAttribute("boardrecruits", boardrecruits);
-
-		return "/admin/recruit";
-
-	}
-
-//	@RequestMapping("/recruit/id") // 공고글 검색
-//	public String boardrecruit_id(Model m, @RequestParam("category") String category,
-//			@RequestParam("search") String search) {
+//	@RequestMapping("/recruit") // 공고글 게시판 - 관리자ver
+//	public String recruit(Model m) {
+//
+//		// 전체 공고 갯수
+//		int allcount = adminService.all_Count();
+//		m.addAttribute("allcount", allcount);
+//
+//		// 오늘 공고 갯수
+//		int todaycount = adminService.today_Count();
+//		m.addAttribute("todaycount", todaycount);
+//
+//		// 오늘 공고 갯수
+//		int yesterdaycount = adminService.yesterday_Count();
+//		m.addAttribute("yesterdaycount", yesterdaycount);
+//
+//		// 공고글 리스트
+//		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List();
+//		System.out.println(boardrecruits);
+//		m.addAttribute("boardrecruits", boardrecruits);
+//
+//		return "/admin/recruit";
+//
+//	}
+//
+////	@RequestMapping("/recruit/id") // 공고글 검색
+////	public String boardrecruit_id(Model m, @RequestParam("category") String category,
+////			@RequestParam("search") String search) {
+////		String page = "/admin/recruit";
+////		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_id(category, search);
+////		m.addAttribute("boardrecruits", boardrecruits);
+////
+////		return page;
+////	}
+//
+//	@RequestMapping("/recruit/day") // 공고글 날짜 검색 (오늘, 일주일, 한달)
+//	public String boardrecruit_day(Model m, @RequestParam("day") String day,
+//			@RequestParam("daysearch") String daysearch) {
 //		String page = "/admin/recruit";
-//		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_id(category, search);
+//		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_day(day, daysearch);
 //		m.addAttribute("boardrecruits", boardrecruits);
 //
 //		return page;
 //	}
-
-	@RequestMapping("/recruit/day") // 공고글 날짜 검색 (오늘, 일주일, 한달)
-	public String boardrecruit_day(Model m, @RequestParam("day") String day,
-			@RequestParam("daysearch") String daysearch) {
-		String page = "/admin/recruit";
-		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_day(day, daysearch);
-		m.addAttribute("boardrecruits", boardrecruits);
-
-		return page;
-	}
-
-	@RequestMapping("/recruit/total") // 총 공고글 검색
-	public String boardrecruit_t(Model m, @RequestParam("enterprise_category") String enterprise_category,
-			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
-			@RequestParam("education") String education,
-			@RequestParam("day") String day,
-			@RequestParam("search") String search
-			) {
-		String page = "/admin/recruit";
-		System.out.println(day);
-		System.out.println(search);
-		ArrayList<BoardRecruit> boardrecruits = adminService.total_List_Rc(enterprise_category, local_category, gender,
-				education, day, search);
-		m.addAttribute("boardrecruits", boardrecruits);
-		
-		// 전체 공고 갯수
-		int allcount = adminService.all_Count();
-		m.addAttribute("allcount", allcount);
-
-		// 오늘 공고 갯수
-		int todaycount = adminService.today_Count();
-		m.addAttribute("todaycount", todaycount);
-
-		// 오늘 공고 갯수
-		int yesterdaycount = adminService.yesterday_Count();
-		m.addAttribute("yesterdaycount", yesterdaycount);
-
-		return page;
-	}
-
-	// ajax처리
-	@RequestMapping(value = "/deleteBoardRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteBoardRecruits(
-			@RequestParam(value = "boardrecruit_ids[]") ArrayList<String> boardrecruit_id) {
-
-		System.out.println(boardrecruit_id);
-
-		return adminService.deleteBoardRecruits(boardrecruit_id);
-	}
-
-	@RequestMapping("/resume") // 인재글 게시판 - 관리자 ver
-	public String resume(Model m) {
-		// 전체 인재 갯수
-		int allcount_resume = adminService.all_Count_resume();
-		m.addAttribute("allcount_resume", allcount_resume);
-
-		// 오늘 인재 갯수
-		int todaycount_resume = adminService.today_Count_resume();
-		m.addAttribute("todaycount_resume", todaycount_resume);
-
-		// 어제 인재 갯수
-		int yesterdaycount_resume = adminService.yesterday_Count_resume();
-		m.addAttribute("yesterdaycount_resume", yesterdaycount_resume);
-
-		// 인재글 리스트
-		ArrayList<BoardResume> boardresumes = adminService.resume_List();
-		m.addAttribute("boardresumes", boardresumes);
-		return "/admin/resume";
-	}
-
-	@RequestMapping("/resume/id") // 인재글 검색
-	public String boardresume_id(Model m, @RequestParam("category") String category,
-			@RequestParam("search") String search) {
-		String page = "/admin/resume";
-		ArrayList<BoardResume> boardresumes = adminService.resume_List_id(category, search);
-		m.addAttribute("boardresumes", boardresumes);
-
-		return page;
-	}
-
-	@RequestMapping("/resume/day") // 인재글 날짜 검색 (오늘, 일주일, 한달)
-	public String boardresume_day(Model m, @RequestParam("day") String day,
-			@RequestParam("daysearch") String daysearch) {
-		String page = "/admin/resume";
-		ArrayList<BoardResume> boardresumes = adminService.resume_List_day(day, daysearch);
-		m.addAttribute("boardresumes", boardresumes);
-
-		return page;
-	}
-
-	@RequestMapping("/resume/total") // 인재글 검색
-	public String boardresume_t(Model m, @RequestParam("individual_category") String individual_category,
-			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
-			@RequestParam("education") String education,
-			@RequestParam("day") String day,
-			@RequestParam("search") String search) {
-		String page = "/admin/resume";
-		ArrayList<BoardResume> boardresumes = adminService.total_List_Rs(individual_category, local_category, gender,
-				education, day, search);
-		m.addAttribute("boardresumes", boardresumes);
-		
-		// 전체 인재 갯수
-		int allcount_resume = adminService.all_Count_resume();
-		m.addAttribute("allcount_resume", allcount_resume);
-
-		// 오늘 인재 갯수
-		int todaycount_resume = adminService.today_Count_resume();
-		m.addAttribute("todaycount_resume", todaycount_resume);
-
-		// 어제 인재 갯수
-		int yesterdaycount_resume = adminService.yesterday_Count_resume();
-		m.addAttribute("yesterdaycount_resume", yesterdaycount_resume);
-
-		return page;
-	}
-
-	// ajax처리
-	@RequestMapping(value = "/deleteBoardResumes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteBoardResumes(
-			@RequestParam(value = "boardresume_ids[]") ArrayList<String> boardresume_id) {
-		System.out.println(boardresume_id);
-		return adminService.deleteBoardResumes(boardresume_id);
-	}
-	 
-	@RequestMapping("/community") // 커뮤니티 게시판 -관리자 ver
-	public String community(Model m) {
-		// 커뮤니티 리스트
-		ArrayList<BoardCommunity> boardcommunities = adminService.community_List();
-		m.addAttribute("boardcommunities", boardcommunities);
-		return "admin/community";
-	}
-
-	@RequestMapping("/community/total") // 커뮤니티 날짜 검색 (오늘, 일주일, 한달)
-	public String community_day(Model m, 
-			@RequestParam(value = "start", defaultValue ="0000-00-00") String start, 
-			@RequestParam(value = "end", defaultValue ="9999-12-31") String end,
-			@RequestParam("search") String search) {
-		String page = "/admin/community";
-		if(start.equals(null)) {
-			start="0000-00-00"; 
-		}
-		if(end.equals(null)) {
-			end="9999-12-31";
-		}
-		String endd = end+" 23:59:59";
-		System.out.println(start);
-		System.out.println(end);
-		System.out.println(search);
-		ArrayList<BoardCommunity> boardcommunities = adminService.community_total_search(start, endd, search);
-		System.out.println(boardcommunities);
-		m.addAttribute("boardcommunities", boardcommunities);
-
-		return page;
-	}
-
-	// ajax처리
-	@RequestMapping(value = "/deleteBoardCommunities", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteBoardCommunities(
-			@RequestParam(value = "boardcommunity_ids[]") ArrayList<String> boardcommunity_id) {
-		System.out.println(boardcommunity_id);
-		return adminService.deleteBoardCommunities(boardcommunity_id);
-	}
-
-	@RequestMapping("/individual_list") // 개인 리스트
-	public String individual_list(Model m) {
-		String page = "/admin/individual_list";
-
-		ArrayList<Individual> individuals = adminService.selectlist();
-		m.addAttribute("individuals", individuals);
-		System.out.println(individuals);
-		return page;
-	}
-
-	@RequestMapping("/individual_list/id") // 개인 검색
-	public String individual_id(Model m, @RequestParam("category") String category,
-			@RequestParam("search") String search) {
-		String page = "/admin/individual_list";
-		ArrayList<Individual> individuals = adminService.selectId(category, search);
-		m.addAttribute("individuals", individuals);
-
-		return page; //
-	}
-
-	@RequestMapping("/enterprise_list") // 기업 리스트
-	public String enterprise_list(Model m) {
-		String page = "admin/enterprise_list";
-		ArrayList<Enterprise> enterprises = adminService.selectEnterpriselist();
-		m.addAttribute("enterprises", enterprises);
-
-		return page;
-	}
-
-//	@RequestMapping("/enterprise_list/id") // 기업 검색
-//	public String enterprise_id(Model m, @RequestParam("category") String category,
+//
+//	@RequestMapping("/recruit/total") // 총 공고글 검색
+//	public String boardrecruit_t(Model m, @RequestParam("enterprise_category") String enterprise_category,
+//			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
+//			@RequestParam("education") String education,
+//			@RequestParam("day") String day,
+//			@RequestParam("search") String search
+//			) {
+//		String page = "/admin/recruit";
+//		System.out.println(day);
+//		System.out.println(search);
+//		ArrayList<BoardRecruit> boardrecruits = adminService.total_List_Rc(enterprise_category, local_category, gender,
+//				education, day, search);
+//		m.addAttribute("boardrecruits", boardrecruits);
+//		
+//		// 전체 공고 갯수
+//		int allcount = adminService.all_Count();
+//		m.addAttribute("allcount", allcount);
+//
+//		// 오늘 공고 갯수
+//		int todaycount = adminService.today_Count();
+//		m.addAttribute("todaycount", todaycount);
+//
+//		// 오늘 공고 갯수
+//		int yesterdaycount = adminService.yesterday_Count();
+//		m.addAttribute("yesterdaycount", yesterdaycount);
+//
+//		return page;
+//	}
+//
+//	// ajax처리
+//	@RequestMapping(value = "/deleteBoardRecruits", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int deleteBoardRecruits(
+//			@RequestParam(value = "boardrecruit_ids[]") ArrayList<String> boardrecruit_id) {
+//
+//		System.out.println(boardrecruit_id);
+//
+//		return adminService.deleteBoardRecruits(boardrecruit_id);
+//	}
+//
+//	@RequestMapping("/resume") // 인재글 게시판 - 관리자 ver
+//	public String resume(Model m) {
+//		// 전체 인재 갯수
+//		int allcount_resume = adminService.all_Count_resume();
+//		m.addAttribute("allcount_resume", allcount_resume);
+//
+//		// 오늘 인재 갯수
+//		int todaycount_resume = adminService.today_Count_resume();
+//		m.addAttribute("todaycount_resume", todaycount_resume);
+//
+//		// 어제 인재 갯수
+//		int yesterdaycount_resume = adminService.yesterday_Count_resume();
+//		m.addAttribute("yesterdaycount_resume", yesterdaycount_resume);
+//
+//		// 인재글 리스트
+//		ArrayList<BoardResume> boardresumes = adminService.resume_List();
+//		m.addAttribute("boardresumes", boardresumes);
+//		return "/admin/resume";
+//	}
+//
+//	@RequestMapping("/resume/id") // 인재글 검색
+//	public String boardresume_id(Model m, @RequestParam("category") String category,
 //			@RequestParam("search") String search) {
-//		String page = "/admin/enterprise_list";
-//		ArrayList<Enterprise> enterprises = adminService.selectEnterpriselist(category, search);
-//		m.addAttribute("enterprises", enterprises);
+//		String page = "/admin/resume";
+//		ArrayList<BoardResume> boardresumes = adminService.resume_List_id(category, search);
+//		m.addAttribute("boardresumes", boardresumes);
+//
+//		return page;
+//	}
+//
+//	@RequestMapping("/resume/day") // 인재글 날짜 검색 (오늘, 일주일, 한달)
+//	public String boardresume_day(Model m, @RequestParam("day") String day,
+//			@RequestParam("daysearch") String daysearch) {
+//		String page = "/admin/resume";
+//		ArrayList<BoardResume> boardresumes = adminService.resume_List_day(day, daysearch);
+//		m.addAttribute("boardresumes", boardresumes);
+//
+//		return page;
+//	}
+//
+//	@RequestMapping("/resume/total") // 인재글 검색
+//	public String boardresume_t(Model m, @RequestParam("individual_category") String individual_category,
+//			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
+//			@RequestParam("education") String education,
+//			@RequestParam("day") String day,
+//			@RequestParam("search") String search) {
+//		String page = "/admin/resume";
+//		ArrayList<BoardResume> boardresumes = adminService.total_List_Rs(individual_category, local_category, gender,
+//				education, day, search);
+//		m.addAttribute("boardresumes", boardresumes);
+//		
+//		// 전체 인재 갯수
+//		int allcount_resume = adminService.all_Count_resume();
+//		m.addAttribute("allcount_resume", allcount_resume);
+//
+//		// 오늘 인재 갯수
+//		int todaycount_resume = adminService.today_Count_resume();
+//		m.addAttribute("todaycount_resume", todaycount_resume);
+//
+//		// 어제 인재 갯수
+//		int yesterdaycount_resume = adminService.yesterday_Count_resume();
+//		m.addAttribute("yesterdaycount_resume", yesterdaycount_resume);
+//
+//		return page;
+//	}
+//
+//	// ajax처리
+//	@RequestMapping(value = "/deleteBoardResumes", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int deleteBoardResumes(
+//			@RequestParam(value = "boardresume_ids[]") ArrayList<String> boardresume_id) {
+//		System.out.println(boardresume_id);
+//		return adminService.deleteBoardResumes(boardresume_id);
+//	}
+//	 
+//	@RequestMapping("/community") // 커뮤니티 게시판 -관리자 ver
+//	public String community(Model m) {
+//		// 커뮤니티 리스트
+//		ArrayList<BoardCommunity> boardcommunities = adminService.community_List();
+//		m.addAttribute("boardcommunities", boardcommunities);
+//		return "admin/community";
+//	}
+//
+//	@RequestMapping("/community/total") // 커뮤니티 날짜 검색 (오늘, 일주일, 한달)
+//	public String community_day(Model m, 
+//			@RequestParam(value = "start", defaultValue ="0000-00-00") String start, 
+//			@RequestParam(value = "end", defaultValue ="9999-12-31") String end,
+//			@RequestParam("search") String search) {
+//		String page = "/admin/community";
+//		if(start.equals(null)) {
+//			start="0000-00-00"; 
+//		}
+//		if(end.equals(null)) {
+//			end="9999-12-31";
+//		}
+//		String endd = end+" 23:59:59";
+//		System.out.println(start);
+//		System.out.println(end);
+//		System.out.println(search);
+//		ArrayList<BoardCommunity> boardcommunities = adminService.community_total_search(start, endd, search);
+//		System.out.println(boardcommunities);
+//		m.addAttribute("boardcommunities", boardcommunities);
+//
+//		return page;
+//	}
+//
+//	// ajax처리
+//	@RequestMapping(value = "/deleteBoardCommunities", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int deleteBoardCommunities(
+//			@RequestParam(value = "boardcommunity_ids[]") ArrayList<String> boardcommunity_id) {
+//		System.out.println(boardcommunity_id);
+//		return adminService.deleteBoardCommunities(boardcommunity_id);
+//	}
+//
+//	@RequestMapping("/individual_list") // 개인 리스트
+//	public String individual_list(Model m) {
+//		String page = "/admin/individual_list";
+//
+//		ArrayList<Individual> individuals = adminService.selectlist();
+//		m.addAttribute("individuals", individuals);
+//		System.out.println(individuals);
+//		return page;
+//	}
+//
+//	@RequestMapping("/individual_list/id") // 개인 검색
+//	public String individual_id(Model m, @RequestParam("category") String category,
+//			@RequestParam("search") String search) {
+//		String page = "/admin/individual_list";
+//		ArrayList<Individual> individuals = adminService.selectId(category, search);
+//		m.addAttribute("individuals", individuals);
 //
 //		return page; //
 //	}
 //
-//	@RequestMapping("/individual_detail") // 개인 - 디테일?
-//	public String individual_detail(Model m, @RequestParam("individual_id") String individual_id) {
-//		String page = "/admin/individual_detail";
-//
-//		// 개인 회원정보 상세보기
-//		Individual individual = adminService.selectIndividualAccount(individual_id);
-//		m.addAttribute("individual", individual);
-//
-//		// 이력서 관리
-//		ArrayList<Resume> resume = adminService.selectResume(individual_id);
-//		m.addAttribute("resume", resume);
-//
-//		// 지원한알바
-//		ArrayList<Volunteer> volunteer = adminService.selectApplypartjob(individual_id);
-//		m.addAttribute("volunteers", volunteer);
-//
-//		// 인재 게시판 작성글
-//		ArrayList<BoardResume> resumewrite = adminService.selectResumeWrite(individual_id);
-//		m.addAttribute("resumewrite", resumewrite);
-//
-//		// 커뮤니티 게시판 작성글
-//		ArrayList<BoardCommunity> community = adminService.selectCommunity(individual_id);
-//		m.addAttribute("communitys", community);
-//		
-//		//기업스크랩
-//		ArrayList<Scrap_Individual> scrap_individual= adminService.selectEnterpriseScrap(individual_id);
-//		m.addAttribute("scrap_individual", scrap_individual);
-//		
-//
-//		
-//		
+//	@RequestMapping("/enterprise_list") // 기업 리스트
+//	public String enterprise_list(Model m) {
+//		String page = "admin/enterprise_list";
+//		ArrayList<Enterprise> enterprises = adminService.selectEnterpriselist();
+//		m.addAttribute("enterprises", enterprises);
 //
 //		return page;
-//
 //	}
-//
-//	@RequestMapping("/individual_detail/update") // 개인정보 수정 - 수정하기
-//	public String individual_detail(@ModelAttribute("individual") Individual individual) {
-//		String page = "/admin/individual_detail";
-//		if (1 <= adminService.updateIndividualAccount(individual)) {
-//			System.out.println(individual);
-//			System.out.println("수정");
-//			page = "redirect:/admin/individual_list";
-//
-//		}
-//		return page;
-//	}
-//
-//	// ajax
-//	//// 계정정지 AJAX
-//	@RequestMapping(value = "/changestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody int changestate(@RequestParam("individual_id") String individual_id,@RequestParam("result") int result) {
-//		return adminService.changestate(individual_id,result);
-//	}
-//
-//	// 이력서삭제 AJAX
-//	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody int deleteResume(@RequestParam("resume_id") int resume_id) {
-//		return adminService.deleteResume(resume_id);
-//	}
-//
-//	// 지원한 알바 지원취소 AJAX
-//	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody int deleteVolunteer(@RequestParam("volunteer_id") int volunteer_id) {
-//		System.out.println("volunteer_id" + volunteer_id);
-//		return adminService.deleteVolunteer(volunteer_id);
-//	}
-//
-//	// 인재 게시판 취소 AJAX
-//	@RequestMapping(value = "/deletBoardResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody int deletBoardResume(@RequestParam("board_resume_id") int board_resume_id) {
-//		System.out.println("board_resume_id" + board_resume_id);
-//		return adminService.deletBoardResume(board_resume_id);
-//	}
-//
-//	// 커뮤니티 게시판 삭제 AJAX
-//	@RequestMapping(value = "/deleteCommunity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 삭제
-//	public @ResponseBody int delete(@RequestParam("community_id") int community_id) {
-//		System.out.println("community_id :" + community_id);
-//		return adminService.deleteCommunity(community_id);
-//	} // 글삭제
-//
-//	
-//	//기업스크랩 삭제 AJAX
-//	@RequestMapping(value = "/deleteEnterpriseScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody int deleteEnterpriseScrap(@RequestParam("scrap_individual_id") int scrap_individual_id) {
-//		return adminService.deleteEnterpriseScrap(scrap_individual_id);
-//	}
-//	
-//	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
-//	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {
-//		String page = "admin/enterprise_detail";
-//
-//		// 기업 회원정보 상세보기
-//		Enterprise enterprise = adminService.selectEnterpriseAccount(enterprise_id);
-//		m.addAttribute("enterprise", enterprise);
-//		
-//		//공고관리
-//		ArrayList<Recruit> recruit = adminService.selectRecruit(enterprise_id);
-//		m.addAttribute("recruit", recruit); 
-//		
-//		// 공고글 관리
-//		ArrayList<BoardRecruit> boardrecruit = adminService.selectRecruitWrite(enterprise_id);
-//		m.addAttribute("boardrecruit", boardrecruit);
-//
-//		// 인재스크랩
-//		ArrayList<Scrap_enterprise> scrap_enterprise = adminService.selectScrap(enterprise_id);
-//		m.addAttribute("scrap_enterprise", scrap_enterprise);
-//
-//		// 결제내역
-//		ArrayList<Payment> payment = adminService.selectPayment(enterprise_id);
-//		m.addAttribute("payment", payment);
-//		
-//		//총매출
-//		Product product = adminService.sumPayment(enterprise_id);
-//		m.addAttribute("product", product);
-//		 
-//		return page;
-//	}
-//
-//	@RequestMapping("/enterprise_detail/update") // 기업정보 수정 - 수정하기
-//	public String enterprise_detail(@ModelAttribute("enterprise") Enterprise enterprise) {
-//		String page = "/admin/enterprise_detail";
-//		System.out.println();
-//
-//		System.out.println("컨트롤러 if전" + enterprise);
-//		if (1 <= adminService.updateEnterpriseAccount(enterprise)) {
-// 
-//			System.out.println(enterprise);
-//			System.out.println("수정");
-//			page = "redirect:/admin/enterprise_list";
-//
-//		}
-// 
-//		return page;
-//	}
-//	//관리자
-//	//기업 계정정지 AJAX
-//	@RequestMapping(value = "/changeEnterprisestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody int changeEnterprisestate(@RequestParam("enterprise_id") String enterprise_id,@RequestParam("result") int result) {
-//		return adminService.changeEnterprisestate(enterprise_id,result);
-//	}
-//
-//	// 공고삭제 AJAX
-//	@RequestMapping(value = "/deleteEnterpriseRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody int deleteEnterpriseRecruit(@RequestParam("recruit_id") int recruit_id) {
-//		return adminService.deleteEnterpriseRecruit(recruit_id);
-//	}
-//	//공고글 삭제 AJAX
-//	@RequestMapping(value = "/deleteEnterpriseBoardRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody int deleteEnterpriseBoardRecruit(@RequestParam("board_recruit_id") int board_recruit_id) {
-//		return adminService.deleteEnterpriseBoardRecruit(board_recruit_id);
-//	}
-//	//스크랩글 삭제 AJAX
-//	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody int deleteScrap(@RequestParam("scrap_id") int scrap_id) {
-//		return adminService.deleteScrap(scrap_id);
-//	}
-//	
-//	
-	
-	//--------------------------------
+
+//--------------------------------
 	
 	
 	@RequestMapping("/product/product") // 상품보기 리스트 
@@ -746,35 +575,35 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping("/volunteerlist") //지원자보기
-	public String volunteer_list(Model m, @RequestParam(value = "board_recruit_id") String board_recruit_id) {
-		System.out.println(board_recruit_id);
-		
-		ArrayList<Volunteer> volunteers = adminService.board_list(board_recruit_id);
-		System.out.println(volunteers);
-		m.addAttribute("volunteers", volunteers);
-		return "/admin/volunteerlist";
-	}
-	 
-	// 아약스 처리 지원자 보기
-	@RequestMapping(value = "/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int updateResultB(String result, int id) {
-
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("volunteer_id", id);
-		map.put("result", result);
-		return enterpriseService.updateVolunteerResult(map);
-	}
-
-	@RequestMapping(value = "/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int updateResultsB(@RequestParam(value = "result") String result,
-		@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
-
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("volunteer_ids", volunteer_ids);
-		map.put("result", result);
-		return enterpriseService.updateVolunteerResults(map);
-	}
+//	@RequestMapping("/volunteerlist") //지원자보기
+//	public String volunteer_list(Model m, @RequestParam(value = "board_recruit_id") String board_recruit_id) {
+//		System.out.println(board_recruit_id);
+//		
+//		ArrayList<Volunteer> volunteers = adminService.board_list(board_recruit_id);
+//		System.out.println(volunteers);
+//		m.addAttribute("volunteers", volunteers);
+//		return "/admin/volunteerlist";
+//	}
+//	 
+//	// 아약스 처리 지원자 보기
+//	@RequestMapping(value = "/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int updateResultB(String result, int id) {
+//
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("volunteer_id", id);
+//		map.put("result", result);
+//		return enterpriseService.updateVolunteerResult(map);
+//	}
+//
+//	@RequestMapping(value = "/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int updateResultsB(@RequestParam(value = "result") String result,
+//		@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
+//
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		map.put("volunteer_ids", volunteer_ids);
+//		map.put("result", result);
+//		return enterpriseService.updateVolunteerResults(map);
+//	}
 	
 	
 	

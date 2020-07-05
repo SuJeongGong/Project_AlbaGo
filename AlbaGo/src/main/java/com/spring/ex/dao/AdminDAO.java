@@ -112,69 +112,69 @@ public interface AdminDAO {
 		ArrayList<BoardResume> total_I(Map<String, Object> map);
 		ArrayList<BoardRecruit> total_E(Map<String, Object> map);
 	
-	/** 공고글 관리 */
-		//전체 공고 갯수
-		int all_Count();
-		
-		//오늘 공고 갯수
-		int today_Count();
-		
-		//어제 공고 갯수
-		int yesterday_Count();
-		
-		//공고 게시판
-		ArrayList<BoardRecruit> recruit_List();
-		int deleteBoardRecruits(int boardrecruit_id);//공고 삭제하기
-		ArrayList<BoardRecruit> recruit_List_id(String category, String search);//선택검색
-		ArrayList<BoardRecruit> writer_search_Rc(String writer); //작성자검색
-		ArrayList<BoardRecruit> title_search_Rc(String title); //제목 검색
-		ArrayList<BoardRecruit> recruit_List_day(String day, String daysearch); //날짜검색(오늘, 일주일, 한달)
-		ArrayList<BoardRecruit> today_search_Rc(String today);
-		ArrayList<BoardRecruit> week_search_Rc(String week);
-		ArrayList<BoardRecruit> month_search_Rc(String month);
-		ArrayList<BoardRecruit> total_List_Rc(Map<String, Object> map);
-		ArrayList<BoardRecruit> total_List_Rc_T(Map<String, Object> map);
-		ArrayList<BoardRecruit> total_List_Rc_W(Map<String, Object> map);
-		ArrayList<BoardRecruit> total_List_Rc_M(Map<String, Object> map);
-		ArrayList<Volunteer> board_list(String id);//지원자 목록 가져오기
-
-	
-	/** 인재글관리 */
-		//전체 인재 갯수
-		int all_Count_resume();
-		
-		//오늘 인재 갯수
+//	/** 공고글 관리 */
+//		//전체 공고 갯수
+//		int all_Count();
+//		
+//		//오늘 공고 갯수
+	int today_Count();
+//		
+//		//어제 공고 갯수
+//		int yesterday_Count();
+//		
+//		//공고 게시판
+//		ArrayList<BoardRecruit> recruit_List();
+//		int deleteBoardRecruits(int boardrecruit_id);//공고 삭제하기
+//		ArrayList<BoardRecruit> recruit_List_id(String category, String search);//선택검색
+//		ArrayList<BoardRecruit> writer_search_Rc(String writer); //작성자검색
+//		ArrayList<BoardRecruit> title_search_Rc(String title); //제목 검색
+//		ArrayList<BoardRecruit> recruit_List_day(String day, String daysearch); //날짜검색(오늘, 일주일, 한달)
+//		ArrayList<BoardRecruit> today_search_Rc(String today);
+//		ArrayList<BoardRecruit> week_search_Rc(String week);
+//		ArrayList<BoardRecruit> month_search_Rc(String month);
+//		ArrayList<BoardRecruit> total_List_Rc(Map<String, Object> map);
+//		ArrayList<BoardRecruit> total_List_Rc_T(Map<String, Object> map);
+//		ArrayList<BoardRecruit> total_List_Rc_W(Map<String, Object> map);
+//		ArrayList<BoardRecruit> total_List_Rc_M(Map<String, Object> map);
+//		ArrayList<Volunteer> board_list(String id);//지원자 목록 가져오기
+//
+//	
+//	/** 인재글관리 */
+//		//전체 인재 갯수
+//		int all_Count_resume();
+//		
+//		//오늘 인재 갯수
 		int today_Count_resume();
-		
-		//어제 인재 갯수
-		int yesterday_Count_resume();
-		
-		//인제 게시판
-		ArrayList<BoardResume> resume_List();
-		int deleteBoardResumes(int boardresume_id); //인재글 삭제하기
-		
-		ArrayList<BoardResume> resume_List_id(String category, String search);//선택검색
-		ArrayList<BoardResume> writer_search_R(String writer); //작성자검색
-		ArrayList<BoardResume> title_search_R(String title); //제목 검색
-		ArrayList<BoardResume> resume_List_day(String day, String daysearch); //날짜검색(오늘, 일주일, 한달)
-		ArrayList<BoardResume> today_search_Rs(String today);
-		ArrayList<BoardResume> week_search_Rs(String week);
-		ArrayList<BoardResume> month_search_Rs(String month);
-		ArrayList<BoardResume> total_List_Rs(Map<String, Object> map);
-		ArrayList<BoardResume> total_List_Rs_T(Map<String, Object> map);
-		ArrayList<BoardResume> total_List_Rs_W(Map<String, Object> map);
-		ArrayList<BoardResume> total_List_Rs_M(Map<String, Object> map);
-		
-	/** 커뮤니티 관리 */
-		//공고 게시판
-		ArrayList<BoardCommunity> community_List();
-		ArrayList<BoardCommunity> community_List_id(String category, String search);//선택검색
-		ArrayList<BoardCommunity> writer_search_C(String writer); //작성자검색
-		ArrayList<BoardCommunity> title_search_C(String title); //제목 검색
-		int deleteCommunities(int community_id); //커뮤니티글 삭제하기
-		int countComment(int comment_id); //댓글 확인
-		int deleteComment(int comment_id); //댓글 삭제
-		ArrayList<BoardCommunity> community_total_search(Map<String, Object> map);
+//		
+//		//어제 인재 갯수
+//		int yesterday_Count_resume();
+//		
+//		//인제 게시판
+//		ArrayList<BoardResume> resume_List();
+//		int deleteBoardResumes(int boardresume_id); //인재글 삭제하기
+//		
+//		ArrayList<BoardResume> resume_List_id(String category, String search);//선택검색
+//		ArrayList<BoardResume> writer_search_R(String writer); //작성자검색
+//		ArrayList<BoardResume> title_search_R(String title); //제목 검색
+//		ArrayList<BoardResume> resume_List_day(String day, String daysearch); //날짜검색(오늘, 일주일, 한달)
+//		ArrayList<BoardResume> today_search_Rs(String today);
+//		ArrayList<BoardResume> week_search_Rs(String week);
+//		ArrayList<BoardResume> month_search_Rs(String month);
+//		ArrayList<BoardResume> total_List_Rs(Map<String, Object> map);
+//		ArrayList<BoardResume> total_List_Rs_T(Map<String, Object> map);
+//		ArrayList<BoardResume> total_List_Rs_W(Map<String, Object> map);
+//		ArrayList<BoardResume> total_List_Rs_M(Map<String, Object> map);
+//		
+//	/** 커뮤니티 관리 */
+//		//공고 게시판
+//		ArrayList<BoardCommunity> community_List();
+//		ArrayList<BoardCommunity> community_List_id(String category, String search);//선택검색
+//		ArrayList<BoardCommunity> writer_search_C(String writer); //작성자검색
+//		ArrayList<BoardCommunity> title_search_C(String title); //제목 검색
+//		int deleteCommunities(int community_id); //커뮤니티글 삭제하기
+//		int countComment(int comment_id); //댓글 확인
+//		int deleteComment(int comment_id); //댓글 삭제
+//		ArrayList<BoardCommunity> community_total_search(Map<String, Object> map);
 		
 	/** 매출 관리 */
 		//---송원준---
