@@ -824,7 +824,7 @@
 	
 	<!-- 오늘 매출 -->
 	<select id = "todaysales" resultType="int">
-	  SELECT  SUM(price) AS sum_price 
+	  SELECT  IFNULL(SUM(price),0) AS sum_price 
       FROM product,payment
 
       where
@@ -836,7 +836,7 @@
 	
 	<!-- 주간 매출 -->
 	<select id = "weeklysales" resultType="int">
-	SELECT  SUM(price) AS sum_price 
+	SELECT  IFNULL(SUM(price),0) AS sum_price 
       FROM product,payment
 
       where
@@ -849,16 +849,18 @@
 	<!-- 매출관리 전체 검색 -->
 	<select id = "PaymentSearch" resultType="Payment" parameterType="hashmap">
 		SELECT product.price as product_price,
+		product.name as product_name,
 		payment.enterprise_id as enterprise_id,
-		payment.date as date,
-		product.name as product_name
-		FROM product,payment
+		payment.date as date
+		FROM product,payment 
 		WHERE payment.product_id = product.product_id
-		AND 
-		and board_resume.delete_check = 1
-		and resume.category like CONCAT('%',#{category},'%')
-		and resume.place like CONCAT('%',#{place},'%')
-		and individual.gender like CONCAT('%',#{gender},'%')
-		and individual.education like CONCAT('%',#{education},'%')
+		and product.type like CONCAT('%',#{product_type},'%')
+		and (product.name like CONCAT('%',#{search},'%')
+		OR payment.enterprise_id like CONCAT('%',#{search},'%'))
+		and `date` BETWEEN #{start} AND #{end}
+		order by date DESC
+
 	</select>
+	
+	
 </mapper>

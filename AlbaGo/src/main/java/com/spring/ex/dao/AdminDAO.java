@@ -180,8 +180,8 @@ public interface AdminDAO {
 	 
 	    //주간 매출 
 		int weeklysales();
-	 
-		ArrayList<Payment> PaymentSearch(String payment_date, String product_type); //날짜검색(오늘, 일주일, 한달)
+		
+		// 매출 총 검색
 		ArrayList<Payment> PaymentSearch(Map<String, Object> map);
 		
 		

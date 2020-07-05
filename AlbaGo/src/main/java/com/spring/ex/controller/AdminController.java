@@ -663,10 +663,39 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/payment/total") // 매출관리 검색
-	public String payment(Model m, @RequestParam("payment_date") String payment_date,
-			@RequestParam("product_type") String product_type) {
+	public String payment_T(Model m, 
+			@RequestParam(value = "start", defaultValue="0000-00-00") String start,
+			@RequestParam(value = "end", defaultValue="9999-12-31") String end,
+			@RequestParam("product_type") String product_type,
+			@RequestParam("search") String search) {
 		String page = "/admin/payment";
-		ArrayList<Payment> payment = adminService.PaymentSearch(payment_date, product_type);
+		if(start.equals(null)) {
+			start="0000-00-00";
+		}
+		if(end.equals(null)) {
+			end="9999-12-31";
+		}
+		String endd=end+" 23:59:59";
+		System.out.println(start);
+		System.out.println(end);
+		System.out.println(product_type);
+		System.out.println(search);
+		ArrayList<Payment> payment = adminService.PaymentSearch(start, endd, product_type, search);
+		System.out.println(payment);
+		
+		// 전체 매출
+		int all_totalsales = adminService.all_totalsales();
+		m.addAttribute("all_totalsales", all_totalsales);
+
+				
+		// 오늘 매출 
+		int todaysales = adminService.todaysales();
+		m.addAttribute("todaysales", todaysales);
+				  
+		// 주간 매출 
+		int weeklysales = adminService.weeklysales();
+		m.addAttribute("weeklysales", weeklysales);
+		
 		m.addAttribute("payment", payment);
 		return page;
 	}

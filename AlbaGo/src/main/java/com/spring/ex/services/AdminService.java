@@ -486,13 +486,15 @@ public class AdminService {
 			return adminDAO.weeklysales(); 
 		}
 		
-	//인재 게시판 총검색
-	public ArrayList<Payment> PaymentSearch(String payment_date, String product_type) {
+	//매출 게시판 총검색
+	public ArrayList<Payment> PaymentSearch(String start,String end, String product_type,String search) {
 		ArrayList<Payment> Payment = null;
 			
 		Map<String, Object> map=new HashMap<String,Object>();
-		map.put("payment_date",payment_date);
+		map.put("start",start);
+		map.put("end",end);
 		map.put("product_type",product_type);
+		map.put("search",search);
 		return adminDAO.PaymentSearch(map);
 	}
 	 
