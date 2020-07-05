@@ -776,6 +776,7 @@
 		WHERE (community.title like CONCAT('%',#{search},'%')
 		OR community.individual_id like CONCAT('%',#{search},'%'))
 		and `date` BETWEEN #{start} AND #{end}
+		order by date DESC
 	</select>
 	
 	<!-- 커뮤니티 게시글 삭제 -->

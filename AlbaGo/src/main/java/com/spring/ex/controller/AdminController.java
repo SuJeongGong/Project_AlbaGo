@@ -62,11 +62,6 @@ public class AdminController {
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main(Model m) {
-		//개인검색
-		
-		//기업검색
-		
-		//두개 더한거
 		
 		ArrayList<HashMap<String, Object>> sales = adminService.selectRecentSales();
 		m.addAttribute("Recent_sales", sales);
@@ -284,10 +279,11 @@ public class AdminController {
 		if(end.equals(null)) {
 			end="9999-12-31";
 		}
+		String endd = "23:59:59";
 		System.out.println(start);
 		System.out.println(end);
 		System.out.println(search);
-		ArrayList<BoardCommunity> boardcommunities = adminService.community_total_search(start, end, search);
+		ArrayList<BoardCommunity> boardcommunities = adminService.community_total_search(start, endd, search);
 		System.out.println(boardcommunities);
 		m.addAttribute("boardcommunities", boardcommunities);
 
