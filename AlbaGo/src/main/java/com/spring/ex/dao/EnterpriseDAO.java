@@ -19,13 +19,23 @@ import com.spring.ex.dto.Volunteer;
 
 public interface EnterpriseDAO {
 	Enterprise selectEnterprise(String id);//회원정보 가져오기 
-	ArrayList<Recruit> selectRecruits(String id);//공고 가져오기 
-	ArrayList<Scrap_enterprise> selectScrap(String id);//스크랩 가져오기
-	ArrayList<Volunteer> selectVolunteer(String id);//지원자 목록 가져오기
-	ArrayList<Payment> selectPayment(String id);//결제 기록 가져오기
-	ArrayList<Advertising> selectAdvertising(String id);//광고/배너 기록
-	ArrayList<PaymentHistoryResume> selectpaymentHistoryResume(String id);//이력서 보기 사용기록
-	ArrayList<PaymentHistoryUp> selectpaymentHistoryUp(String id);//up버튼 id 사용기록
+	ArrayList<Recruit> selectRecruits(HashMap<String, Object> map);//공고 가져오기 
+	int selectRecruitsCount(HashMap<String, Object> map);//공고 페이징
+	ArrayList<Scrap_enterprise> selectScrap(HashMap<String, Object> map);//스크랩 가져오기
+	int selectScrapCount(HashMap<String, Object> map);//스크랩 페이징
+	ArrayList<Volunteer> selectVolunteer(HashMap<String, Object> map);//지원자 목록 가져오기
+	int selectVolunteerCount(HashMap<String, Object> map);//지원자 목록 페이징
+	ArrayList<Payment> selectPayment(HashMap<String, Object> map);//결제 기록 가져오기
+	int selectPaymentCount(HashMap<String, Object> map);//결제 기록 페이징
+	ArrayList<Advertising> selectAdvertising(HashMap<String, Object> map);//광고/배너 기록
+	int selectAdvertisingCount(HashMap<String, Object> map);//광고/배너 페이징
+	ArrayList<PaymentHistoryResume> selectpaymentHistoryResume(HashMap<String, Object> map);//이력서 보기 사용기록
+	int selectpaymentHistoryResumeCount(HashMap<String, Object> map);//이력서 보기 페이징
+	ArrayList<PaymentHistoryUp> selectpaymentHistoryUp(HashMap<String, Object> map);//up버튼 id 사용기록
+	int selectpaymentHistoryUpCount(HashMap<String, Object> map);//up버튼 id 페이징
+	
+	
+	
 	ArrayList<BoardRecruit> boardRecruits(String id) ;
 	int updateAccount(Enterprise enterprise);//회원정보 수정
 	int updateVolunteerResult(HashMap<String, Object> map);//지원결과 저장하기

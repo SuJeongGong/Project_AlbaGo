@@ -43,18 +43,11 @@ public class BoardResumeService {
 	}
 
 	//게시판 검색
-	public ArrayList<BoardResume> total_List(String category, String place, String gender, String education, String term, String title) {
-		ArrayList<BoardResume> boardresumes = null;
-		
-		Map<String, Object> map=new HashMap<String,Object>();
-		map.put("category",category);
-		map.put("place",place);
-		map.put("gender",gender);
-		map.put("education",education);
-		map.put("term",term);
-		map.put("title",title);
-		System.out.println(boardResumeDAO.total_List(map)+"맵");
+	public ArrayList<BoardResume> total_List(Map<String, Object> map) {
 		return boardResumeDAO.total_List(map);
+	}
+	public int selectListCount(Map<String, Object> map) {
+		return boardResumeDAO.selectListCount(map);
 	}
 		
 	//조회수

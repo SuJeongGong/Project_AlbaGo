@@ -26,6 +26,7 @@ public interface BoardResumeDAO {
 	
 	//검색
 	ArrayList<BoardResume> total_List(Map<String, Object> map);
+	int selectListCount(Map<String, Object> map);
 	
 	//조회수
 	int updateViews(int board_resume_id);

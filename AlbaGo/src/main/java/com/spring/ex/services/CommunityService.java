@@ -20,8 +20,12 @@ public class CommunityService {
 		return communityDAO.insertContent(content);
 	}
 
-	public ArrayList<BoardCommunity> selectList() {
-		return communityDAO.selectList();
+	public ArrayList<BoardCommunity> selectList(int page) {
+		return communityDAO.selectList(page);
+	}
+	
+	public int selectListCount() {
+		return communityDAO.selectListCount();
 	}
 
 	public BoardCommunity selectContent(int community_id) {

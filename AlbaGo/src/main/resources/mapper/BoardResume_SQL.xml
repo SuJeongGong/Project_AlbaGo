@@ -80,6 +80,21 @@ FROM board_resume,resume,career
 		board_resume_id = #{board_resume_id}
 	</where>
 	</update>
+	<select id="selectListCount" resultType="int" parameterType="hashmap">
+			SELECT count(*)
+		FROM board_resume, resume, individual 
+		<where> board_resume.resume_id = resume.resume_id
+		and resume.individual_id = individual.individual_id
+		and board_resume.delete_check = 1
+		and resume.category like CONCAT('%',#{category},'%')
+		and resume.place like CONCAT('%',#{place},'%')
+		and individual.gender like CONCAT('%',#{gender},'%')
+		and individual.education like CONCAT('%',#{education},'%')
+		and resume.term like CONCAT('%',#{term},'%')
+		and board_resume.title like CONCAT('%',#{title},'%')
+		</where>
+		ORDER BY board_resume.date DESC
+	</select>
 	
 	<!-- 리스트 사이드바 -->
 	<select id = "total_List" resultType="BoardResume" parameterType="hashmap">
@@ -95,6 +110,8 @@ FROM board_resume,resume,career
 		and resume.term like CONCAT('%',#{term},'%')
 		and board_resume.title like CONCAT('%',#{title},'%')
 		</where>
+		ORDER BY board_resume.date DESC
+		LIMIT #{start},10
 	</select>
 	
 	<!-- 최신글순 -->

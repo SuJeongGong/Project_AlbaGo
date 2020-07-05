@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="com.spring.ex.dto.BoardRecruit"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,9 +12,48 @@
 </head>
 <body>
 	<%@ include file="../serve/header.jsp" %>
+	<%
+	HashMap<String, Object> map=(HashMap<String, Object>)request.getAttribute("map");//검색 조건
+	String local_category= (String)map.get("local_category");
+	String enterprise_category=(String)map.get("enterprise_category");
+	String gender=(String)map.get("gender");
+	String education=(String)map.get("education");
+	String term=(String)map.get("term");
+	String title_keyword=(String)map.get("title");
 	
 	
+	if(local_category==null){
+		local_category = "";
+	}	
+	if(enterprise_category==null){
+		enterprise_category = "";
+	}	
+	if(gender==null){
+		gender = "";
+	}	
+	if(education==null){
+		education = "";
+	}	
+	if(term==null){
+		term = "";
+	}	
+	if(title_keyword==null){
+		title_keyword = "";
+	}
 	
+	%>
+	
+	
+		
+	<script type="text/javascript">
+		function page(page){
+			var page = page;
+			location.href="?page="+page+"&local_category=<%=local_category %>&enterprise_category=<%=enterprise_category %>&gender=<%=gender %>&education=<%=education %>& term=<%=term %>&title=<%=title_keyword %>";
+			
+			
+		}
+	
+	</script>
 	
 	
 	    <!-- job_listing_area_start  -->
@@ -117,7 +157,6 @@
 	                            </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
                 
@@ -197,22 +236,25 @@
                               		int count = (int)request.getAttribute("count");
                                 System.out.println(pageNum);
                                 System.out.println(count);
-                                	if(pageNum>1){
+                                	if(pageNum>1){//<
                                 		%>
-                                        <li><a href="?page=<%= pageNum -1%>"> <i class="ti-angle-left"></i> </a></li>
+                                        <li>
+                                        <a href="javascript:page(<%=pageNum+1%>)"> 
+                                        <i class="ti-angle-left"></i> </a></li>
                                 		
                                 		<%                             		                                		
                                 	}
-                                	for (int i =1; i<=count ; i++){
+                                	for (int i =1; i<=count ; i++){//각각 번호 
                                 		%>
                                 		
-                                        <li><a href="?page=<%=i %>"><span><%=i %></span></a></li>
+                                        <li><a href="javascript:page(<%=i%>)"> <span><%=i %></span></a></li>
                                 		
                                 		<%
                                 	}	
-                                	if(pageNum<count){
+                                	if(pageNum<count){//>
                                 		%>
-                                        <li><a href="?page=<%=pageNum+1 %>"> <i class="ti-angle-right"></i> </a></li>
+                                        <li><a href="javascript:page(<%=pageNum+1%>)"> 
+                                        <i class="ti-angle-right"></i> </a></li>
                                 		
                                 		<%                             		                                		
                                 	}

@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.spring.ex.dto.Individual"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,6 +14,29 @@
 
 
 <body>
+	<%
+	HashMap<String, Object> map=(HashMap<String, Object>)request.getAttribute("map");//검색 조건
+	String category= (String)map.get("category");
+	String search=(String)map.get("search");
+	
+	
+	if(category==null){
+		category = "";
+	}	
+	if(search==null){
+		search = "";
+	}	
+	%>
+	<script type="text/javascript">
+		function page(page){
+			var page = page;
+			location.href="?page="+page+"&category=<%=category %>&search=<%=search %>";
+			
+			
+		}
+	
+	</script>
+
 
     <div id="wrapper">
         <!-- 사이드 바 -->
@@ -37,7 +61,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="<%=request.getContextPath()%>/admin/individual_list/id" method="get" name="keyword" id="keyword">
+                                <form action="<%=request.getContextPath()%>/admin/individual" method="get" name="keyword" id="keyword">
 	            
                                     <div class="input-group">
                                         <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
@@ -80,7 +104,7 @@
 											%>
                             	
                                         <tr>
-                                            <td><a href="<%=conPath%>/admin/individual_detail?individual_id=<%=individual_id%>"><%=name%></a></td>
+                                            <td><a href="<%=conPath%>/admin/individual/detail?individual_id=<%=individual_id%>"><%=name%></a></td>
                                             <td><%=individual_id%></td>
                                             <td><%=password %></td>
                                             <td><%=phone %></td>
@@ -92,22 +116,43 @@
                                 </table>
                             </div>
 
-                            <div class="text-center" style="float: left;">
-                                <ul class="pagination">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                    </li>
-                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">1
-                                            <span class="sr-only">(current)</span></a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2 </a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
-                                    </li>
-                                </ul>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="pagination_wrap">
+                                    <ul>
+                                <%
+                                	int pageNum = (int)request.getAttribute("pageNum");
+                              		int count = (int)request.getAttribute("count");
+                                System.out.println(pageNum);
+                                System.out.println(count);
+                                	if(pageNum>1){//<
+                                		%>
+                                        <li>
+                                        <a href="javascript:page(<%=pageNum+1%>)"> 
+                                        <i class="ti-angle-left"></i> </a></li>
+                                		
+                                		<%                             		                                		
+                                	}
+                                	for (int i =1; i<=count ; i++){//각각 번호 
+                                		%>
+                                		
+                                        <li><a href="javascript:page(<%=i%>)"> <span><%=i %></span></a></li>
+                                		
+                                		<%
+                                	}	
+                                	if(pageNum<count){//>
+                                		%>
+                                        <li><a href="javascript:page(<%=pageNum+1%>)"> 
+                                        <i class="ti-angle-right"></i> </a></li>
+                                		
+                                		<%                             		                                		
+                                	}
+                                
+                                %>
+                                    </ul>
+                                </div>
                             </div>
+                        </div>
                         </div>
                     </div>
 
