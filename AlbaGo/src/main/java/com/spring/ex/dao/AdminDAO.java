@@ -188,11 +188,12 @@ public interface AdminDAO {
 	 
 	    //주간 매출 
 		int weeklysales();
-	 
 		
-		
+		// 매출 총 검색
+		ArrayList<Payment> PaymentSearch(Map<String, Object> map);
 		
 		
 		//공수정 - 관리자 메인 화면
 		ArrayList<HashMap<String ,Object>> selectCountItem_Enterprise(String item);
+		
 }
