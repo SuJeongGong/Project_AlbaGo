@@ -37,174 +37,178 @@ public class AdminService {
 		return adminDAO.selectWeekTotal();
 	}
 	//개인회원정보 '리스트'전체를 보여주는 테이블
-	public ArrayList<Individual> selectlist() {
-		return adminDAO.selectlist();
+	public ArrayList<Individual> selectIndividualList(HashMap<String, Object> map) {
+		return adminDAO.selectIndividualList(map);
 	}
-	//개인회원정보에서 카테고리를 선택해서 검색
-	public ArrayList<Individual> selectId(String category, String search) {
-		ArrayList<Individual> individuals=null;
-		
-		if(category.equals("individual_id")) {
-			return adminDAO.selectIdIndividual_id(search);
-		}else if(category.equals("name")) {
-			return adminDAO.selectIdName(search);
-		}else if(category.equals("phone")) {
-			return adminDAO.selectIdPhone(search);
-		}
-		return null;
+	//개인회원정보 '리스트'전체를 보여주는 테이블의 총 갯수
+	public int selectIndividualListCount(HashMap<String, Object> map) {
+		return adminDAO.selectIndividualListCount(map);
 	}
-	//개인회원정보 '상세정보'를 볼수있는 테이블
-	public Individual selectIndividualAccount(String id){
-		return adminDAO.selectIndividualAccount(id);	
-	}
-	//개인 계정정지
-	public int changestate(String individual_id,int result) {
-		
-		HashMap<String, Object> map= new HashMap<String, Object>();
-		
-		map.put("individual_id", individual_id);
-		map.put("result", result);
-		return adminDAO.changestate(map);
-	}
-	//개인회원정보 '수정' ajax
-	public int updateIndividualAccount(Individual individual) {
-		return adminDAO.updateIndividualAccount(individual);	
-	}
-	//이력서 관리를 할 수 있는 테이블
-	public ArrayList<Resume> selectResume(String id) {
-		return adminDAO.selectResume(id);	
-	}
-	//이력서 삭제 ajax
-	public int deleteResume(int resume_id) {
-
-		return adminDAO.deleteResume(resume_id);	
-	}
-	
-	
-	//지원한 알바
-	public ArrayList<Volunteer> selectApplypartjob(String id){
-		return adminDAO.selectApplypartjob(id);
-	}
-
-	// 지원 취소 ajax
-	public int deleteVolunteer(int volounteer_id) {
-		
-		System.out.println(adminDAO.deleteVolunteer(volounteer_id));
-		return adminDAO.deleteVolunteer(volounteer_id);	
-	}
-
-	//인재 게시판 작성글
-	public ArrayList<BoardResume> selectResumeWrite(String id) {
-		return adminDAO.selectResumeWrite(id);	
-	}
-	
-	//인재 게시판 삭제 ajax
-	public int deletBoardResume(int board_resume_id) {
-		System.out.println(board_resume_id);
-		System.out.println(adminDAO.deletBoardResume(board_resume_id));
-		return adminDAO.deletBoardResume(board_resume_id);	
-	}
-	
-	//커뮤니티 게시판 작성글
-	public ArrayList<BoardCommunity> selectCommunity(String id) {
-		return adminDAO.selectCommunity(id);	
-	}
-	
-	//커뮤니티 게시판 삭제 ajax
-	public int deleteCommunity(int community_id) {
-		int res = -1;
-
-		if(adminDAO.deleteComments(community_id)>=1) {//댓글부터 삭제 
-			if(adminDAO.deleteCommunity(community_id)>=1) {
-				res = 1;
-			}
-		}else {//댓글이 없는경우, 댓글 삭제를 못한경우 
-			res = adminDAO.deleteCommunity(community_id);
-		}
-		return res;
-	}
-	//기업스크랩
-	public ArrayList<Scrap_Individual> selectEnterpriseScrap(String id) {
-		return adminDAO.selectEnterpriseScrap(id);
-	}
-	//기업스크랩 삭제 
-	public int deleteEnterpriseScrap(int scrap_individual_id) {
-		return adminDAO.deleteEnterpriseScrap(scrap_individual_id);
-	}
-	
-	//기업회원정보 '리스트'전체를 보여주는 테이블
-	public ArrayList<Enterprise> selectEnterpriselist() {
-		return adminDAO.selectEnterpriselist();
-	}
-	//개인회원정보에서 카테고리를 선택해서 검색
-		public ArrayList<Enterprise> selectEnterpriselist(String category, String search) {
-			ArrayList<Enterprise> enterprises=null;
-			
-			if(category.equals("enterprise_id")) {
-				return adminDAO.selectEnterprise_id(search);				//아이디
-			}else if(category.equals("name")) {
-				return adminDAO.selectEnterprise_name(search);				//기업이름
-			}else if(category.equals("phone")) {
-				return adminDAO.selectEnterprise_phone(search);				//기업전화번호
-			}else if(category.equals("manager_name")) {
-				return adminDAO.selectEnterprise_manager_name(search);		//담당자이름
-			}else if(category.equals("manager_phone")) {
-				return adminDAO.selectEnterprise_manager_phone(search);		//담당자 번호
-			}
-			
-			return null;
-		}
-	//기업회원정보 '상세정보'를 볼수있는 테이블
-	public Enterprise selectEnterpriseAccount(String id){
-		return adminDAO.selectEnterpriseAccount(id);	
-	}
-	//기업회원정보수정할수있는 
-	public int updateEnterpriseAccount(Enterprise enterprise){
-		System.out.println(enterprise);
-		return adminDAO.updateEnterpriseAccount(enterprise);	
-	}
-	//기업 계정정지
-	public int changeEnterprisestate(String enterprise_id,int result) {
-		
-		HashMap<String, Object> map= new HashMap<String, Object>();
-		
-		map.put("enterprise_id", enterprise_id);
-		map.put("result", result);
-		return adminDAO.changeEnterprisestate(map);
-	}
-	//공고 관리
-	public ArrayList<Recruit> selectRecruit(String id) {
-		return adminDAO.selectRecruit(id);
-	}
-	//공고 삭제 
-	public int deleteEnterpriseRecruit(int recruit_id) {
-		return adminDAO.deleteEnterpriseRecruit(recruit_id);
-	}
-	//공고글 삭제
-	public int deleteEnterpriseBoardRecruit(int board_recruit_id) {
-		System.out.println("공고글삭제"+board_recruit_id);
-		return adminDAO.deleteEnterpriseBoardRecruit(board_recruit_id);
-	}
-	//공고글 관리
-	public ArrayList<BoardRecruit> selectRecruitWrite(String id) {
-		return adminDAO.selectRecruitWrite(id);
-	}
-	//인재스크랩
-	public ArrayList<Scrap_enterprise> selectScrap(String id) {
-		return adminDAO.selectScrap(id);
-	}
-	//인재스크랩 삭제
-	public int deleteScrap(int scrap_id) {
-		return adminDAO.deleteScrap(scrap_id);
-	}
-	//상품결제내역
-	public ArrayList<Payment> selectPayment(String id) {
-		return adminDAO.selectPayment(id);
-	}
-	//상품 총계
-	public Product sumPayment(String id) {
-		return adminDAO.sumPayment(id);
-	}
+//	//개인회원정보에서 카테고리를 선택해서 검색
+//	public ArrayList<Individual> selectId(String category, String search) {
+//		ArrayList<Individual> individuals=null;
+//		
+//		if(category.equals("individual_id")) {
+//			return adminDAO.selectIdIndividual_id(search);
+//		}else if(category.equals("name")) {
+//			return adminDAO.selectIdName(search);
+//		}else if(category.equals("phone")) {
+//			return adminDAO.selectIdPhone(search);
+//		}
+//		return null;
+//	}
+//	//개인회원정보 '상세정보'를 볼수있는 테이블
+//	public Individual selectIndividualAccount(String id){
+//		return adminDAO.selectIndividualAccount(id);	
+//	}
+//	//개인 계정정지
+//	public int changestate(String individual_id,int result) {
+//		
+//		HashMap<String, Object> map= new HashMap<String, Object>();
+//		
+//		map.put("individual_id", individual_id);
+//		map.put("result", result);
+//		return adminDAO.changestate(map);
+//	}
+//	//개인회원정보 '수정' ajax
+//	public int updateIndividualAccount(Individual individual) {
+//		return adminDAO.updateIndividualAccount(individual);	
+//	}
+//	//이력서 관리를 할 수 있는 테이블
+//	public ArrayList<Resume> selectResume(String id) {
+//		return adminDAO.selectResume(id);	
+//	}
+//	//이력서 삭제 ajax
+//	public int deleteResume(int resume_id) {
+//
+//		return adminDAO.deleteResume(resume_id);	
+//	}
+//	
+//	
+//	//지원한 알바
+//	public ArrayList<Volunteer> selectApplypartjob(String id){
+//		return adminDAO.selectApplypartjob(id);
+//	}
+//
+//	// 지원 취소 ajax
+//	public int deleteVolunteer(int volounteer_id) {
+//		
+//		System.out.println(adminDAO.deleteVolunteer(volounteer_id));
+//		return adminDAO.deleteVolunteer(volounteer_id);	
+//	}
+//
+//	//인재 게시판 작성글
+//	public ArrayList<BoardResume> selectResumeWrite(String id) {
+//		return adminDAO.selectResumeWrite(id);	
+//	}
+//	
+//	//인재 게시판 삭제 ajax
+//	public int deletBoardResume(int board_resume_id) {
+//		System.out.println(board_resume_id);
+//		System.out.println(adminDAO.deletBoardResume(board_resume_id));
+//		return adminDAO.deletBoardResume(board_resume_id);	
+//	}
+//	
+//	//커뮤니티 게시판 작성글
+//	public ArrayList<BoardCommunity> selectCommunity(String id) {
+//		return adminDAO.selectCommunity(id);	
+//	}
+//	
+//	//커뮤니티 게시판 삭제 ajax
+//	public int deleteCommunity(int community_id) {
+//		int res = -1;
+//
+//		if(adminDAO.deleteComments(community_id)>=1) {//댓글부터 삭제 
+//			if(adminDAO.deleteCommunity(community_id)>=1) {
+//				res = 1;
+//			}
+//		}else {//댓글이 없는경우, 댓글 삭제를 못한경우 
+//			res = adminDAO.deleteCommunity(community_id);
+//		}
+//		return res;
+//	}
+//	//기업스크랩
+//	public ArrayList<Scrap_Individual> selectEnterpriseScrap(String id) {
+//		return adminDAO.selectEnterpriseScrap(id);
+//	}
+//	//기업스크랩 삭제 
+//	public int deleteEnterpriseScrap(int scrap_individual_id) {
+//		return adminDAO.deleteEnterpriseScrap(scrap_individual_id);
+//	}
+//	
+//	//기업회원정보 '리스트'전체를 보여주는 테이블
+//	public ArrayList<Enterprise> selectEnterpriselist() {
+//		return adminDAO.selectEnterpriselist();
+//	}
+//	//개인회원정보에서 카테고리를 선택해서 검색
+//		public ArrayList<Enterprise> selectEnterpriselist(String category, String search) {
+//			ArrayList<Enterprise> enterprises=null;
+//			
+//			if(category.equals("enterprise_id")) {
+//				return adminDAO.selectEnterprise_id(search);				//아이디
+//			}else if(category.equals("name")) {
+//				return adminDAO.selectEnterprise_name(search);				//기업이름
+//			}else if(category.equals("phone")) {
+//				return adminDAO.selectEnterprise_phone(search);				//기업전화번호
+//			}else if(category.equals("manager_name")) {
+//				return adminDAO.selectEnterprise_manager_name(search);		//담당자이름
+//			}else if(category.equals("manager_phone")) {
+//				return adminDAO.selectEnterprise_manager_phone(search);		//담당자 번호
+//			}
+//			
+//			return null;
+//		}
+//	//기업회원정보 '상세정보'를 볼수있는 테이블
+//	public Enterprise selectEnterpriseAccount(String id){
+//		return adminDAO.selectEnterpriseAccount(id);	
+//	}
+//	//기업회원정보수정할수있는 
+//	public int updateEnterpriseAccount(Enterprise enterprise){
+//		System.out.println(enterprise);
+//		return adminDAO.updateEnterpriseAccount(enterprise);	
+//	}
+//	//기업 계정정지
+//	public int changeEnterprisestate(String enterprise_id,int result) {
+//		
+//		HashMap<String, Object> map= new HashMap<String, Object>();
+//		
+//		map.put("enterprise_id", enterprise_id);
+//		map.put("result", result);
+//		return adminDAO.changeEnterprisestate(map);
+//	}
+//	//공고 관리
+//	public ArrayList<Recruit> selectRecruit(String id) {
+//		return adminDAO.selectRecruit(id);
+//	}
+//	//공고 삭제 
+//	public int deleteEnterpriseRecruit(int recruit_id) {
+//		return adminDAO.deleteEnterpriseRecruit(recruit_id);
+//	}
+//	//공고글 삭제
+//	public int deleteEnterpriseBoardRecruit(int board_recruit_id) {
+//		System.out.println("공고글삭제"+board_recruit_id);
+//		return adminDAO.deleteEnterpriseBoardRecruit(board_recruit_id);
+//	}
+//	//공고글 관리
+//	public ArrayList<BoardRecruit> selectRecruitWrite(String id) {
+//		return adminDAO.selectRecruitWrite(id);
+//	}
+//	//인재스크랩
+//	public ArrayList<Scrap_enterprise> selectScrap(String id) {
+//		return adminDAO.selectScrap(id);
+//	}
+//	//인재스크랩 삭제
+//	public int deleteScrap(int scrap_id) {
+//		return adminDAO.deleteScrap(scrap_id);
+//	}
+//	//상품결제내역
+//	public ArrayList<Payment> selectPayment(String id) {
+//		return adminDAO.selectPayment(id);
+//	}
+//	//상품 총계
+//	public Product sumPayment(String id) {
+//		return adminDAO.sumPayment(id);
+//	}
 
 	/*##################################################*/
 	//임승재

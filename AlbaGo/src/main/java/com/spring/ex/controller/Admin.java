@@ -34,8 +34,8 @@ import com.spring.ex.services.AdminService;
 import com.spring.ex.services.ProductService;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/admin/Board")
+public class Admin {
 
 	@Autowired
 	ProductService productService;
@@ -269,184 +269,190 @@ public class AdminController {
 	}
 
 	@RequestMapping("/individual_list") // 개인 리스트
-	public String individual_list(Model m) {
+	public String individual_list(Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "/admin/individual_list";
 
-		ArrayList<Individual> individuals = adminService.selectlist();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (pageNum-1)*10);
+		ArrayList<Individual> individuals = adminService.selectIndividualList(map);
 		m.addAttribute("individuals", individuals);
+		m.addAttribute("count", adminService.selectIndividualListCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 		System.out.println(individuals);
 		return page;
 	}
 
-	@RequestMapping("/individual_list/id") // 개인 검색
-	public String individual_id(Model m, @RequestParam("category") String category,
-			@RequestParam("search") String search) {
-		String page = "/admin/individual_list";
-		ArrayList<Individual> individuals = adminService.selectId(category, search);
-		m.addAttribute("individuals", individuals);
-
-		return page; //
-	}
-
-	@RequestMapping("/enterprise_list") // 기업 리스트
-	public String enterprise_list(Model m) {
-		String page = "admin/enterprise_list";
-		ArrayList<Enterprise> enterprises = adminService.selectEnterpriselist();
-		m.addAttribute("enterprises", enterprises);
-
-		return page;
-	}
-
-	@RequestMapping("/enterprise_list/id") // 기업 검색
-	public String enterprise_id(Model m, @RequestParam("category") String category,
-			@RequestParam("search") String search) {
-		String page = "/admin/enterprise_list";
-		ArrayList<Enterprise> enterprises = adminService.selectEnterpriselist(category, search);
-		m.addAttribute("enterprises", enterprises);
-
-		return page; //
-	}
-
-	@RequestMapping("/individual_detail") // 개인 - 디테일?
-	public String individual_detail(Model m, @RequestParam("individual_id") String individual_id) {
-		String page = "/admin/individual_detail";
-
-		// 개인 회원정보 상세보기
-		Individual individual = adminService.selectIndividualAccount(individual_id);
-		m.addAttribute("individual", individual);
-
-		// 이력서 관리
-		ArrayList<Resume> resume = adminService.selectResume(individual_id);
-		m.addAttribute("resume", resume);
-
-		// 지원한알바
-		ArrayList<Volunteer> volunteer = adminService.selectApplypartjob(individual_id);
-		m.addAttribute("volunteers", volunteer);
-
-		// 인재 게시판 작성글
-		ArrayList<BoardResume> resumewrite = adminService.selectResumeWrite(individual_id);
-		m.addAttribute("resumewrite", resumewrite);
-
-		// 커뮤니티 게시판 작성글
-		ArrayList<BoardCommunity> community = adminService.selectCommunity(individual_id);
-		m.addAttribute("communitys", community);
-
-		return page;
-
-	}
-
-	@RequestMapping("/individual_detail/update") // 개인정보 수정 - 수정하기
-	public String individual_detail(@ModelAttribute("individual") Individual individual) {
-		String page = "/admin/individual_detail";
-		if (1 <= adminService.updateIndividualAccount(individual)) {
-			System.out.println(individual);
-			System.out.println("수정");
-			page = "redirect:/admin/individual_list";
-
-		}
-		return page;
-	}
-
-	// ajax
-	//// 계정정지 AJAX
-	@RequestMapping(value = "/changestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int changestate(@RequestParam("individual_id") String individual_id,@RequestParam("result") int result) {
-		return adminService.changestate(individual_id,result);
-	}
-
-	// 이력서삭제 AJAX
-	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteResume(@RequestParam("resume_id") int resume_id) {
-		return adminService.deleteResume(resume_id);
-	}
-
-	// 지원한 알바 지원취소 AJAX
-	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteVolunteer(@RequestParam("volunteer_id") int volunteer_id) {
-		System.out.println("volunteer_id" + volunteer_id);
-		return adminService.deleteVolunteer(volunteer_id);
-	}
-
-	// 인재 게시판 취소 AJAX
-	@RequestMapping(value = "/deletBoardResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deletBoardResume(@RequestParam("board_resume_id") int board_resume_id) {
-		System.out.println("board_resume_id" + board_resume_id);
-		return adminService.deletBoardResume(board_resume_id);
-	}
-
-	// 커뮤니티 게시판 삭제 AJAX
-	@RequestMapping(value = "/deleteCommunity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 삭제
-	public @ResponseBody int delete(@RequestParam("community_id") int community_id) {
-		System.out.println("community_id :" + community_id);
-		return adminService.deleteCommunity(community_id);
-	} // 글삭제
-
-	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
-	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {
-		String page = "admin/enterprise_detail";
-
-		// 기업 회원정보 상세보기
-		Enterprise enterprise = adminService.selectEnterpriseAccount(enterprise_id);
-		m.addAttribute("enterprise", enterprise);
-		
-		//공고관리
-		ArrayList<Recruit> recruit = adminService.selectRecruit(enterprise_id);
-		m.addAttribute("recruit", recruit);
-		
-		// 공고글 관리
-		ArrayList<BoardRecruit> boardrecruit = adminService.selectRecruitWrite(enterprise_id);
-		m.addAttribute("boardrecruit", boardrecruit);
-
-		// 인재스크랩
-		ArrayList<Scrap_enterprise> scrap_enterprise = adminService.selectScrap(enterprise_id);
-		m.addAttribute("scrap_enterprise", scrap_enterprise);
-
-		// 결제내역
-		ArrayList<Payment> payment = adminService.selectPayment(enterprise_id);
-		m.addAttribute("payment", payment);
-
-		return page;
-	}
-
-	@RequestMapping("/enterprise_detail/update") // 기업정보 수정 - 수정하기
-	public String enterprise_detail(@ModelAttribute("enterprise") Enterprise enterprise) {
-		String page = "/admin/enterprise_detail";
-		System.out.println();
-
-		System.out.println("컨트롤러 if전" + enterprise);
-		if (1 <= adminService.updateEnterpriseAccount(enterprise)) {
- 
-			System.out.println(enterprise);
-			System.out.println("수정");
-			page = "redirect:/admin/enterprise_list";
-
-		}
- 
-		return page;
-	}
-	//관리자
-	//기업 계정정지 AJAX
-	@RequestMapping(value = "/changeEnterprisestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int changeEnterprisestate(@RequestParam("enterprise_id") String enterprise_id,@RequestParam("result") int result) {
-		return adminService.changeEnterprisestate(enterprise_id,result);
-	}
-
-	// 공고삭제 AJAX
-	@RequestMapping(value = "/deleteEnterpriseRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteEnterpriseRecruit(@RequestParam("recruit_id") int recruit_id) {
-		return adminService.deleteEnterpriseRecruit(recruit_id);
-	}
-	//공고글 삭제 AJAX
-	@RequestMapping(value = "/deleteEnterpriseBoardRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteEnterpriseBoardRecruit(@RequestParam("board_recruit_id") int board_recruit_id) {
-		return adminService.deleteEnterpriseBoardRecruit(board_recruit_id);
-	}
-	//인재글 삭제 AJAX
-	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteScrap(@RequestParam("scrap_id") int scrap_id) {
-		return adminService.deleteScrap(scrap_id);
-	}
-	
+//	@RequestMapping("/individual_list/id") // 개인 검색
+//	public String individual_id(Model m, @RequestParam("category") String category,
+//			@RequestParam("search") String search,
+//			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+//		String page = "/admin/individual_list";
+//		ArrayList<Individual> individuals = adminService.selectId(category, search);
+//		m.addAttribute("individuals", individuals);
+//
+//		return page; //
+//	}
+//
+//	@RequestMapping("/enterprise_list") // 기업 리스트
+//	public String enterprise_list(Model m) {
+//		String page = "admin/enterprise_list";
+//		ArrayList<Enterprise> enterprises = adminService.selectEnterpriselist();
+//		m.addAttribute("enterprises", enterprises);
+//
+//		return page;
+//	}
+//
+//	@RequestMapping("/enterprise_list/id") // 기업 검색
+//	public String enterprise_id(Model m, @RequestParam("category") String category,
+//			@RequestParam("search") String search) {
+//		String page = "/admin/enterprise_list";
+//		ArrayList<Enterprise> enterprises = adminService.selectEnterpriselist(category, search);
+//		m.addAttribute("enterprises", enterprises);
+//
+//		return page; //
+//	}
+//
+//	@RequestMapping("/individual_detail") // 개인 - 디테일?
+//	public String individual_detail(Model m, @RequestParam("individual_id") String individual_id) {
+//		String page = "/admin/individual_detail";
+//
+//		// 개인 회원정보 상세보기
+//		Individual individual = adminService.selectIndividualAccount(individual_id);
+//		m.addAttribute("individual", individual);
+//
+//		// 이력서 관리
+//		ArrayList<Resume> resume = adminService.selectResume(individual_id);
+//		m.addAttribute("resume", resume);
+//
+//		// 지원한알바
+//		ArrayList<Volunteer> volunteer = adminService.selectApplypartjob(individual_id);
+//		m.addAttribute("volunteers", volunteer);
+//
+//		// 인재 게시판 작성글
+//		ArrayList<BoardResume> resumewrite = adminService.selectResumeWrite(individual_id);
+//		m.addAttribute("resumewrite", resumewrite);
+//
+//		// 커뮤니티 게시판 작성글
+//		ArrayList<BoardCommunity> community = adminService.selectCommunity(individual_id);
+//		m.addAttribute("communitys", community);
+//
+//		return page;
+//
+//	}
+//
+//	@RequestMapping("/individual_detail/update") // 개인정보 수정 - 수정하기
+//	public String individual_detail(@ModelAttribute("individual") Individual individual) {
+//		String page = "/admin/individual_detail";
+//		if (1 <= adminService.updateIndividualAccount(individual)) {
+//			System.out.println(individual);
+//			System.out.println("수정");
+//			page = "redirect:/admin/individual_list";
+//
+//		}
+//		return page;
+//	}
+//
+//	// ajax
+//	//// 계정정지 AJAX
+//	@RequestMapping(value = "/changestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int changestate(@RequestParam("individual_id") String individual_id,@RequestParam("result") int result) {
+//		return adminService.changestate(individual_id,result);
+//	}
+//
+//	// 이력서삭제 AJAX
+//	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int deleteResume(@RequestParam("resume_id") int resume_id) {
+//		return adminService.deleteResume(resume_id);
+//	}
+//
+//	// 지원한 알바 지원취소 AJAX
+//	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int deleteVolunteer(@RequestParam("volunteer_id") int volunteer_id) {
+//		System.out.println("volunteer_id" + volunteer_id);
+//		return adminService.deleteVolunteer(volunteer_id);
+//	}
+//
+//	// 인재 게시판 취소 AJAX
+//	@RequestMapping(value = "/deletBoardResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int deletBoardResume(@RequestParam("board_resume_id") int board_resume_id) {
+//		System.out.println("board_resume_id" + board_resume_id);
+//		return adminService.deletBoardResume(board_resume_id);
+//	}
+//
+//	// 커뮤니티 게시판 삭제 AJAX
+//	@RequestMapping(value = "/deleteCommunity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 삭제
+//	public @ResponseBody int delete(@RequestParam("community_id") int community_id) {
+//		System.out.println("community_id :" + community_id);
+//		return adminService.deleteCommunity(community_id);
+//	} // 글삭제
+//
+//	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
+//	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {
+//		String page = "admin/enterprise_detail";
+//
+//		// 기업 회원정보 상세보기
+//		Enterprise enterprise = adminService.selectEnterpriseAccount(enterprise_id);
+//		m.addAttribute("enterprise", enterprise);
+//		
+//		//공고관리
+//		ArrayList<Recruit> recruit = adminService.selectRecruit(enterprise_id);
+//		m.addAttribute("recruit", recruit);
+//		
+//		// 공고글 관리
+//		ArrayList<BoardRecruit> boardrecruit = adminService.selectRecruitWrite(enterprise_id);
+//		m.addAttribute("boardrecruit", boardrecruit);
+//
+//		// 인재스크랩
+//		ArrayList<Scrap_enterprise> scrap_enterprise = adminService.selectScrap(enterprise_id);
+//		m.addAttribute("scrap_enterprise", scrap_enterprise);
+//
+//		// 결제내역
+//		ArrayList<Payment> payment = adminService.selectPayment(enterprise_id);
+//		m.addAttribute("payment", payment);
+//
+//		return page;
+//	}
+//
+//	@RequestMapping("/enterprise_detail/update") // 기업정보 수정 - 수정하기
+//	public String enterprise_detail(@ModelAttribute("enterprise") Enterprise enterprise) {
+//		String page = "/admin/enterprise_detail";
+//		System.out.println();
+//
+//		System.out.println("컨트롤러 if전" + enterprise);
+//		if (1 <= adminService.updateEnterpriseAccount(enterprise)) {
+// 
+//			System.out.println(enterprise);
+//			System.out.println("수정");
+//			page = "redirect:/admin/enterprise_list";
+//
+//		}
+// 
+//		return page;
+//	}
+//	//관리자
+//	//기업 계정정지 AJAX
+//	@RequestMapping(value = "/changeEnterprisestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int changeEnterprisestate(@RequestParam("enterprise_id") String enterprise_id,@RequestParam("result") int result) {
+//		return adminService.changeEnterprisestate(enterprise_id,result);
+//	}
+//
+//	// 공고삭제 AJAX
+//	@RequestMapping(value = "/deleteEnterpriseRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int deleteEnterpriseRecruit(@RequestParam("recruit_id") int recruit_id) {
+//		return adminService.deleteEnterpriseRecruit(recruit_id);
+//	}
+//	//공고글 삭제 AJAX
+//	@RequestMapping(value = "/deleteEnterpriseBoardRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int deleteEnterpriseBoardRecruit(@RequestParam("board_recruit_id") int board_recruit_id) {
+//		return adminService.deleteEnterpriseBoardRecruit(board_recruit_id);
+//	}
+//	//인재글 삭제 AJAX
+//	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody int deleteScrap(@RequestParam("scrap_id") int scrap_id) {
+//		return adminService.deleteScrap(scrap_id);
+//	}
+//	
 	
 	//--------------------------------
 	
