@@ -46,18 +46,16 @@
                     <h5 class="font-weight-bold">희망 근무 기간</h5>&nbsp;&nbsp;
                     <input type="radio" name="term" id="term_5" value="하루" class="ip">&nbsp;
                     <label for="term_5">하루</label>&nbsp;
-                    <input type="radio" name="term" id="term_5" value="1주일 이하" class="ip">&nbsp;
-                    <label for="term_5">1주일 이하</label>&nbsp;
+                    <input type="radio" name="term" id="term_5" value="일주일" class="ip">&nbsp;
+                    <label for="term_5">일주일</label>&nbsp;
                     <input type="radio" name="term" id="term_10" value="1개월" class="ip">&nbsp;
                     <label for="term_10">1개월</label>&nbsp;
                     <input type="radio" name="term" id="term_20" value="3개월~6개월" class="ip">&nbsp;
                     <label for="term_20">3개월~6개월</label>&nbsp;
-                    <input type="radio" name="term" id="term_30" value="6개월~1년" class="ip">&nbsp;
-                    <label for="term_30">6개월~1년</label>&nbsp;
+                    <input type="radio" name="term" id="term_30" value="6개월~12개월" class="ip">&nbsp;
+                    <label for="term_30">6개월~12개월</label>&nbsp;
                     <input type="radio" name="term" id="term_40" value="1년이상" class="ip">&nbsp;
-                    <label for="term_40">1년이상</label>&nbsp;
-                    <input type="radio" name="term" id="term_45" value="기간협의" class="ip">&nbsp;
-                    <label for="term_45">기간협의</label>
+                    <label for="term_40">1년이상</label>
 
                 </div>
                 <div class="form-group row">

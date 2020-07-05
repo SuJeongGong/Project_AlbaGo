@@ -30,7 +30,9 @@ import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
+import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.AdminService;
+import com.spring.ex.services.EnterpriseService;
 import com.spring.ex.services.ProductService;
 
 @Controller
@@ -41,9 +43,26 @@ public class AdminController {
 	ProductService productService;
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	EnterpriseService enterpriseService;
+	
+	@RequestMapping("/manager_topbar")
+	public String manager_topbar(Model m, @RequestParam("search") String search) {
+		String page = null;
+		System.out.println(search);
+		ArrayList<BoardResume> boardresumes = adminService.total_I(search);
+		ArrayList<BoardRecruit> boardrecruits = adminService.total_E(search);
+		m.addAttribute("boardresumes", boardresumes);
+		m.addAttribute("boardrecruits", boardrecruits);
+		System.out.println(boardresumes);
+		System.out.println(boardrecruits);
+		
+		return page;
+	}
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main(Model m) {
+		
 		ArrayList<HashMap<String, Object>> sales = adminService.selectRecentSales();
 		m.addAttribute("sales", sales);
 
@@ -111,15 +130,15 @@ public class AdminController {
 
 	}
 
-	@RequestMapping("/recruit/id") // 공고글 검색
-	public String boardrecruit_id(Model m, @RequestParam("category") String category,
-			@RequestParam("search") String search) {
-		String page = "/admin/recruit";
-		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_id(category, search);
-		m.addAttribute("boardrecruits", boardrecruits);
-
-		return page;
-	}
+//	@RequestMapping("/recruit/id") // 공고글 검색
+//	public String boardrecruit_id(Model m, @RequestParam("category") String category,
+//			@RequestParam("search") String search) {
+//		String page = "/admin/recruit";
+//		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_id(category, search);
+//		m.addAttribute("boardrecruits", boardrecruits);
+//
+//		return page;
+//	}
 
 	@RequestMapping("/recruit/day") // 공고글 날짜 검색 (오늘, 일주일, 한달)
 	public String boardrecruit_day(Model m, @RequestParam("day") String day,
@@ -134,10 +153,15 @@ public class AdminController {
 	@RequestMapping("/recruit/total") // 총 공고글 검색
 	public String boardrecruit_t(Model m, @RequestParam("enterprise_category") String enterprise_category,
 			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
-			@RequestParam("education") String education) {
+			@RequestParam("education") String education,
+			@RequestParam("day") String day,
+			@RequestParam("search") String search
+			) {
 		String page = "/admin/recruit";
+		System.out.println(day);
+		System.out.println(search);
 		ArrayList<BoardRecruit> boardrecruits = adminService.total_List_Rc(enterprise_category, local_category, gender,
-				education);
+				education, day, search);
 		m.addAttribute("boardrecruits", boardrecruits);
 		
 		// 전체 공고 갯수
@@ -208,10 +232,12 @@ public class AdminController {
 	@RequestMapping("/resume/total") // 인재글 검색
 	public String boardresume_t(Model m, @RequestParam("individual_category") String individual_category,
 			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
-			@RequestParam("education") String education) {
+			@RequestParam("education") String education,
+			@RequestParam("day") String day,
+			@RequestParam("search") String search) {
 		String page = "/admin/resume";
 		ArrayList<BoardResume> boardresumes = adminService.total_List_Rs(individual_category, local_category, gender,
-				education);
+				education, day, search);
 		m.addAttribute("boardresumes", boardresumes);
 		
 		// 전체 인재 갯수
@@ -236,7 +262,7 @@ public class AdminController {
 		System.out.println(boardresume_id);
 		return adminService.deleteBoardResumes(boardresume_id);
 	}
-
+	 
 	@RequestMapping("/community") // 커뮤니티 게시판 -관리자 ver
 	public String community(Model m) {
 		// 커뮤니티 리스트
@@ -245,20 +271,24 @@ public class AdminController {
 		return "admin/community";
 	}
 
-	@RequestMapping("/community/id") // 커뮤니티 검색
-	public String community_id(Model m, @RequestParam("category") String category,
+	@RequestMapping("/community/total") // 커뮤니티 날짜 검색 (오늘, 일주일, 한달)
+	public String community_day(Model m, 
+			@RequestParam(value = "start", defaultValue ="0000-00-00") String start, 
+			@RequestParam(value = "end", defaultValue ="9999-12-31") String end,
 			@RequestParam("search") String search) {
 		String page = "/admin/community";
-		ArrayList<BoardCommunity> boardcommunities = adminService.community_List_id(category, search);
-		m.addAttribute("boardcommunities", boardcommunities);
-
-		return page;
-	}
-
-	@RequestMapping("/community/day") // 커뮤니티 날짜 검색 (오늘, 일주일, 한달)
-	public String community_day(Model m, @RequestParam("day") String day, @RequestParam("daysearch") String daysearch) {
-		String page = "/admin/community";
-		ArrayList<BoardCommunity> boardcommunities = adminService.community_List_day(day, daysearch);
+		if(start.equals(null)) {
+			start="0000-00-00"; 
+		}
+		if(end.equals(null)) {
+			end="9999-12-31";
+		}
+		String endd = end+" 23:59:59";
+		System.out.println(start);
+		System.out.println(end);
+		System.out.println(search);
+		ArrayList<BoardCommunity> boardcommunities = adminService.community_total_search(start, endd, search);
+		System.out.println(boardcommunities);
 		m.addAttribute("boardcommunities", boardcommunities);
 
 		return page;
@@ -675,10 +705,36 @@ public class AdminController {
 		return page;
 	}
 	
-	@RequestMapping("/volunteerlist")
-	public String volunteer_list() {
+	@RequestMapping("/volunteerlist") //지원자보기
+	public String volunteer_list(Model m, @RequestParam(value = "board_recruit_id") String board_recruit_id) {
+		System.out.println(board_recruit_id);
+		
+		ArrayList<Volunteer> volunteers = adminService.board_list(board_recruit_id);
+		System.out.println(volunteers);
+		m.addAttribute("volunteers", volunteers);
 		return "/admin/volunteerlist";
 	}
+	 
+	// 아약스 처리 지원자 보기
+	@RequestMapping(value = "/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int updateResultB(String result, int id) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("volunteer_id", id);
+		map.put("result", result);
+		return enterpriseService.updateVolunteerResult(map);
+	}
+
+	@RequestMapping(value = "/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int updateResultsB(@RequestParam(value = "result") String result,
+		@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("volunteer_ids", volunteer_ids);
+		map.put("result", result);
+		return enterpriseService.updateVolunteerResults(map);
+	}
+	
 	
 	
 

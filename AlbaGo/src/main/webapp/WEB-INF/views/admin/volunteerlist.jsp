@@ -13,7 +13,7 @@
   <%
 ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers");
 %>
-  <%-- <script>
+  <script>
     function updateResult(id, result) {
 
       $.ajax({
@@ -90,12 +90,13 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
       }, false);
     }
 
-  </script> --%>
+  </script>
 
 </head>
 
 <body>
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.js"></script> 
   <div id="wrapper">
     <!-- 사이드 바 -->
     <%@ include file="../serve/manager_sidebar.jsp" %>
@@ -135,8 +136,8 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
                     <tr>
                       <th><input type="checkbox" class="selectAllMembers" onclick='OnOffMemberAllClickBtn()' /></th>
                       <th>지원번호</th>
-                      <th>공고글 제목</th>
                       <th>지원자 아이디</th>
+                      <th>지원자 이름</th>
                       <th>이력서보기</th>
                       <th>메모</th>
                       <th>지원날짜</th>
@@ -151,8 +152,8 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
 								Volunteer volunteer = volunteers.get(i);
 
 								int recruit_id = volunteer.getBoard_recruit_id();
-								String title = volunteer.getBoard_recruit_title();
 								String individual_id = volunteer.getIndividual_id();
+								String individual_name = volunteer.getName();
 								String resume_title = volunteer.getBoard_recruit_title();
 								int resume_id = volunteer.getResume_id();
 								String memo = volunteer.getMemo();
@@ -169,10 +170,8 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
                     <tr>
                       <td><input type="checkbox" class="memberChk" name="volunteer_id" value="<%=volunteer_id%>"></td>
                       <td><%=volunteer_id%></td>
-                      <td><a
-                          href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=volunteer.getBoard_recruit_id() %>"><%=title%></a>
-                      </td>
                       <td><%=individual_id%></td>
+                      <td><%=individual_name%></td>
                       <td><a href="<%=request.getContextPath()%>/enterprise/volunteer/resume?resume_id=<%=resume_id%>"
                           class="btn btn-outline-primary">보기</a></td>
                       <td><%=memo%></td>
@@ -193,7 +192,31 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
                   </tbody>
                 </table>
               </div>
+				
+			  <script>
+                            var selectAll = document.querySelector(".selectAllMembers");
+                            selectAll.addEventListener('click', function () {
+                                var objs = document.querySelectorAll(".memberChk");
+                                for (var i = 0; i < objs.length; i++) {
+                                    objs[i].checked = selectAll.checked;
+                                };
+                            }, false);
 
+                            var objs = document.querySelectorAll(".memberChk");
+                            for (var i = 0; i < objs.length; i++) {
+                                objs[i].addEventListener('click', function () {
+                                    var selectAll = document.querySelector(".selectAllMembers");
+                                    for (var j = 0; j < objs.length; j++) {
+                                        if (objs[j].checked === false) {
+                                            selectAll.checked = false;
+                                            return;
+                                        };
+                                    };
+                                    selectAll.checked = true;
+                                }, false);
+                            } 
+                        </script>
+				
               <div class="text-center" style="float: left;">
                 <ul class="pagination">
                   <li class="page-item disabled">

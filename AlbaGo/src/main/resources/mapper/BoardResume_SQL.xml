@@ -36,7 +36,7 @@
 	
 	<!-- 글보여주기 -->
 	<select id = "selectView" resultType="BoardResume" parameterType="int">
-		SELECT individual.individual_id, individual.`name`, individual.gender, FLOOR( (CAST(REPLACE(CURRENT_DATE,'-','') AS UNSIGNED)- CAST(REPLACE(individual.birth,'-','')AS UNSIGNED)) / 10000 ) AS age , individual.phone, individual.education,
+		SELECT individual.individual_id, individual.`name`, individual.gender,<![CDATA[ (YEAR(CURDATE())-YEAR(birth)) - (RIGHT(CURDATE(),5)<RIGHT(birth,5)) + 1 AS age ]]>, individual.phone, individual.education,
 		resume.place, resume.salary_type, resume.salary_amount, resume.category, resume.term, resume.`time`, resume.`day`,  
 		board_resume.title as board_resume_title, board_resume.memo, board_resume.`date`, board_resume.delete_check
 		FROM individual, resume, board_resume
