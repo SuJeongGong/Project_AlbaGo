@@ -199,6 +199,7 @@ public class AdminService {
 	}
 	//상품결제내역
 	public ArrayList<Payment> selectPayment(String id) {
+		System.out.println(id);
 		return adminDAO.selectPayment(id);
 	}
 	//상품 총계

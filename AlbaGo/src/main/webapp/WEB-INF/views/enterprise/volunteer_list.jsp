@@ -99,6 +99,7 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
 								onclick='OnOffMemberAllClickBtn()' /></th>
 							<th>지원번호</th>
 							<th>공고글 제목</th>
+							<th>지원자 이름</th>
 							<th>지원자 아이디</th>
 							<th>이력서보기</th>
 							<th>메모</th>
@@ -115,6 +116,7 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
 
 								int recruit_id = volunteer.getBoard_recruit_id();
 								String title = volunteer.getBoard_recruit_title();
+								String individual_name=volunteer.getIndividual_name();
 								String individual_id = volunteer.getIndividual_id();
 								String resume_title = volunteer.getBoard_recruit_title();
 								int resume_id = volunteer.getResume_id();
@@ -135,6 +137,8 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
 							<td><%=volunteer_id%></td>
 							<td><a
 								href="<%=request.getContextPath()%>/recruit/content?board_recruit_id=<%=volunteer.getBoard_recruit_id() %>"><%=title%></a></td>
+							
+							<td><%=individual_name%></td>
 							<td><%=individual_id%></td>
 							<td><a
 								href="<%=request.getContextPath()%>/enterprise/volunteer/resume?resume_id=<%=resume_id%>"

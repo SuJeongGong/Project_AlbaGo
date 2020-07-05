@@ -439,6 +439,7 @@
 		AND enterprise.enterprise_id=#{id}
 		AND product.delete_check =1
 		</where>
+		ORDER BY date DESC
 		</select>
 		
 		<select id="sumPayment" parameterType="String" resultType="product">

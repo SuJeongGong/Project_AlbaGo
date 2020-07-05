@@ -28,7 +28,8 @@
 </head>
 
 
-<body>
+<body>	
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <div id="wrapper">
         <!-- 사이드 바 -->

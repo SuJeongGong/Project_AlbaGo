@@ -37,8 +37,8 @@
 		#{type},
 		#{term},
 		#{price},
-		#{explan},
 		#{amount},
+		#{explan},
 		1
 		)
 

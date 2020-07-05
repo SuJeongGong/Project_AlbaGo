@@ -45,7 +45,7 @@ public class AdminController {
 	@RequestMapping("/main") // 관리자 메인
 	public String main(Model m) {
 		ArrayList<HashMap<String, Object>> sales = adminService.selectRecentSales();
-		m.addAttribute("Recent_sales", sales);
+		m.addAttribute("sales", sales);
 
 		ArrayList<HashMap<String, Object>> items = adminService.selectItems();
 		m.addAttribute("items", items);
@@ -72,6 +72,10 @@ public class AdminController {
 		// 오늘 매출액
 		HashMap<String, Object> totalM = adminService.total_M();
 		m.addAttribute("totalM", totalM);
+		
+		//일주일 매출액 
+		int selectWeekTotal=adminService.selectWeekTotal();
+		m.addAttribute("selectweek", selectWeekTotal);
 
 		// 오늘 공고 갯수
 		int todaycount = adminService.today_Count();
@@ -330,6 +334,14 @@ public class AdminController {
 		// 커뮤니티 게시판 작성글
 		ArrayList<BoardCommunity> community = adminService.selectCommunity(individual_id);
 		m.addAttribute("communitys", community);
+		
+		//기업스크랩
+		ArrayList<Scrap_Individual> scrap_individual= adminService.selectEnterpriseScrap(individual_id);
+		m.addAttribute("scrap_individual", scrap_individual);
+		
+
+		
+		
 
 		return page;
 
@@ -381,6 +393,13 @@ public class AdminController {
 		return adminService.deleteCommunity(community_id);
 	} // 글삭제
 
+	
+	//기업스크랩 삭제 AJAX
+	@RequestMapping(value = "/deleteEnterpriseScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteEnterpriseScrap(@RequestParam("scrap_individual_id") int scrap_individual_id) {
+		return adminService.deleteEnterpriseScrap(scrap_individual_id);
+	}
+	
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {
 		String page = "admin/enterprise_detail";
@@ -391,7 +410,7 @@ public class AdminController {
 		
 		//공고관리
 		ArrayList<Recruit> recruit = adminService.selectRecruit(enterprise_id);
-		m.addAttribute("recruit", recruit);
+		m.addAttribute("recruit", recruit); 
 		
 		// 공고글 관리
 		ArrayList<BoardRecruit> boardrecruit = adminService.selectRecruitWrite(enterprise_id);
@@ -404,7 +423,11 @@ public class AdminController {
 		// 결제내역
 		ArrayList<Payment> payment = adminService.selectPayment(enterprise_id);
 		m.addAttribute("payment", payment);
-
+		
+		//총매출
+		Product product = adminService.sumPayment(enterprise_id);
+		m.addAttribute("product", product);
+		 
 		return page;
 	}
 
@@ -441,17 +464,18 @@ public class AdminController {
 	public @ResponseBody int deleteEnterpriseBoardRecruit(@RequestParam("board_recruit_id") int board_recruit_id) {
 		return adminService.deleteEnterpriseBoardRecruit(board_recruit_id);
 	}
-	//인재글 삭제 AJAX
+	//스크랩글 삭제 AJAX
 	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteScrap(@RequestParam("scrap_id") int scrap_id) {
 		return adminService.deleteScrap(scrap_id);
 	}
 	
 	
+	
 	//--------------------------------
 	
 	
-	@RequestMapping("/product/product") // 상품보기
+	@RequestMapping("/product/product") // 상품보기 리스트 
 	public String list(Model m, HttpServletRequest request) {
 
 		ArrayList<Product> products = productService.selectProductList();
@@ -460,7 +484,7 @@ public class AdminController {
 		return "/admin/product_product";
 	}
 
-	@RequestMapping("/product_account") // 상품상세보기
+	@RequestMapping("/product/product_account") // 상품상세보기
 	public String update_account(HttpServletRequest request, Model m, @RequestParam("product_id") int product_id) {
 		String page = "/admin/product_account";
 		Product product = productService.product_account(product_id);
@@ -469,7 +493,7 @@ public class AdminController {
 		return page;
 	}
 
-	@RequestMapping("/advertising/product") // 광고 보기
+	@RequestMapping("/advertising/product") // 광고 보기 - 리스트 
 	public String advertisingㅣist(Model m, HttpServletRequest request) {
 
 		ArrayList<Product> products = productService.selectAdvertisingList();
@@ -487,13 +511,13 @@ public class AdminController {
 		return page;
 	}
 
-	@RequestMapping("/account/update") // 상품수정하기
-	public String update(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
+	@RequestMapping("/account/product/update") // 상품수정하기
+	public String update( @ModelAttribute("product") Product product) {
 
 		System.out.println(product);
 		String page = "/admin/product_account";
 		if (productService.update_product(product) >= 1) {
-			page = "/admin/main";
+			page = "redirect:/admin/product/product";
 			System.out.println("DB연결성공");
 		} else {
 			page = "/admin/product_account";
@@ -538,12 +562,17 @@ public class AdminController {
 
 		m.addAttribute("payments", payments);
 
-		return "admin/product_approve";
+		return "admin/product_approve"; 
 	}
 
 	@RequestMapping("/add_product_term") // 기간있는 상품추가 보여주는 폼
 	public String add_product_term() {
 		String page = "/admin/add_product_term";
+		return page;
+	}
+	@RequestMapping("/add_advertising") // 광고상품추가 보여주는 폼
+	public String add_advertising() {
+		String page = "/admin/add_advertising";
 		return page;
 	}
 
@@ -554,27 +583,13 @@ public class AdminController {
 		String page = "/admin/add_product/result";
 		System.out.println(product);
 		if (productService.insertProduct(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
-			page = "/admin/main";
+			page = "redirect:/admin/product/product";
 		}
 
 		return page;
 	}
 
-	@RequestMapping("/add_product_no_term") // 기간이없는 상품추가 보여주는 폼
-	public String add_product_no_term() {
-		String page = "admin/add_product_no_term";
 
-		return page;
-	}
-
-	@RequestMapping("/add_product_no_term/result") // 기간이없는 상품추가 DB
-	public String add_product_no_term_result(HttpServletRequest request, @ModelAttribute("product") Product product,
-			BindingResult result) {
-
-		String page = "/admin/add_product_no_term/result";
-
-		return page;
-	}
 
 	@RequestMapping("/advertising/approve") // 결제승인
 	public String advertisingApprove(Model m) {

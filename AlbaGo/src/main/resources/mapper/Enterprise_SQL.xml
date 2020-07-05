@@ -13,20 +13,22 @@
 
 	<select id="selectScrap" parameterType="String"
 		resultType="Scrap_enterprise">
-		SELECT board_resume.title AS title,
+SELECT board_resume.title AS title,
 		scrap_enterprise.date AS DATE,
 		board_resume.date AS resume_date,
 		resume.individual_id as
 		individual_id,
+		individual.name as individual_name,
 		scrap_enterprise.scrap_enterprise_id as
 		scrap_enterprise_id
 		from
-		scrap_enterprise, board_resume , resume
+		scrap_enterprise, board_resume , resume,individual
 		<where>
 			scrap_enterprise.board_resume_id =board_resume.board_resume_id
+			AND resume.individual_id=individual.individual_id
 			AND resume.resume_id = board_resume.resume_id
-			and enterprise_id =
-			#{id}
+			and enterprise_id =#{id}
+			
 		</where>
 		ORDER BY scrap_enterprise.scrap_enterprise_id DESC
 
@@ -43,9 +45,11 @@
 		volunteer.result as result,
 		volunteer.resume_id as resume_id,
 		resume.title as resume_title,
-		volunteer.volunteer_id as volunteer_id
+		volunteer.volunteer_id as volunteer_id,
+		individual.name AS individual_name
 
-		FROM resume,volunteer,board_recruit,enterprise,recruit
+
+		FROM resume,volunteer,board_recruit,enterprise,recruit,individual
 		<where>
 			resume.resume_id =volunteer.resume_id
 			AND
@@ -54,7 +58,9 @@
 			recruit.recruit_id = board_recruit.recruit_id
 			AND
 			enterprise.enterprise_id = recruit.enterprise_id
-			and
+			AND resume.individual_id=individual.individual_id
+			AND 
+			
 			enterprise.enterprise_id = #{id}
 		</where>
 		ORDER BY volunteer.volunteer_id DESC

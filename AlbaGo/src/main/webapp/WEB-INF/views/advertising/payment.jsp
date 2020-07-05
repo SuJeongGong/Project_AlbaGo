@@ -47,7 +47,7 @@
 							<h4>설명:
 							<%=product.getExplan()%></h4>
 					
-						<form name = "advertising" action="<%=request.getContextPath()%>/product/payment/result">
+						<form name = "advertising" action="<%=request.getContextPath()%>/advertising/payment/result">
 						
 						<div class="row">
 						&emsp;	<h4>적용할 공고글</h4> &emsp;
@@ -71,7 +71,6 @@
 							<input type="text" height="100"  class="col-sm-3 form-control" placeholder="시작날짜  2020-01-01"name ="start_date"/>
 						
 						</div>
-						</form>
 						</div>
 						<div class="row">
 								<div class="col-md-6"> 
@@ -81,6 +80,8 @@
 										<a  class="btn btn-outline-primary" href="<%=request.getContextPath() %>/product/list">목록으로</a>
 	
 							</div>	
+							
+						</form>
 							</div>
 							</div>	
 							</div>

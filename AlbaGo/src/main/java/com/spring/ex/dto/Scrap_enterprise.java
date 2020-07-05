@@ -16,5 +16,7 @@ public class Scrap_enterprise {
 	String board_resume_title;// 인재글제목
 	String resume_title;//이력서제목
 	int resume_id;//이력서
+	String individual_name;
+	
 	
 }

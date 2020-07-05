@@ -38,7 +38,11 @@
 				resume.title as resume_title,
 				volunteer.volunteer_id as volunteer_id,
 				volunteer.resume_id as resume_id,
-				volunteer.board_recruit_id as board_recruit_id
+				volunteer.board_recruit_id as board_recruit_id,
+				enterprise.enterprise_id,
+				enterprise.name as enterprise_name
+			
+				
 				
 		FROM resume,volunteer,board_recruit,enterprise,recruit
 		<where>
@@ -46,7 +50,7 @@
 			AND volunteer.board_recruit_id = board_recruit.board_recruit_id
 			AND recruit.recruit_id = board_recruit.recruit_id
 			AND enterprise.enterprise_id = recruit.enterprise_id
-				AND volunteer.individual_id = #{id}
+			AND volunteer.individual_id = #{id}
 		</where>
 		ORDER BY volunteer.volunteer_id DESC
 
