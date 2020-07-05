@@ -62,30 +62,36 @@
 						<div class="collapse show" id="collapseCardExample">
 							<div class="card-body">
 								<table>
+								<form action="<%=request.getContextPath() %>/admin/payment/total" method="get" name="keyword" id="keyword">
 									<th style="width: 900px;">기간</th>
 									<tr>
-										<td><input type="text" name="date" style="width: 150px;">&nbsp;&nbsp; ~ &nbsp;&nbsp;			
-										    <input type="text" name="date" style="width: 150px;"> 
-											<input type="submit" value="오늘" class="btn py-1 px-1 btn-primary">&nbsp;
-											<input type="submit" value="1주일" class="btn py-1 px-1 btn-primary">&nbsp; 
-											<input type="submit" value="1개월" class="btn py-1 px-1 btn-primary">
+										<td><input type="text" name="start" style="width: 150px;">&nbsp;&nbsp; ~ &nbsp;&nbsp;			
+										    <input type="text" name="end" style="width: 150px;"> 			
 										</td>
 									</tr>
+									<tr>
+									<td>
+                                    	</td>
+                                    	</tr>
 									<th>상품명 검색</th>
+									
 									<tr>
 										<td>
-                                            <select name="day" style="width:150px;">
+                                            <select name="product_type" style="width:150px;">
                                             	<option value="">--선택하십시오--</option>
-                                            	<option value="ad">전체</option>
+                                            	<option value="">전체</option>
                                             	<option value="ad">광고</option>
                                             	<option value="up">up</option>
                                             	<option value="resume">resume</option>
                                             	<option value="board">board</option>
                                             </select>
-                                            <input type="hidden" name="daysearch">
-                                    		<button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
+                                    	</td>
+                                    	<td>
+                                            <input type="text" name="search" style="width: 150px;">
+                                    		<button type="submit" class="btn py-1 px-1 btn-primary" >&nbsp;검색</button>
                                     	</td>
 									</tr>
+								</form>
 								</table>
 							</div>
 						</div>

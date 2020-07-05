@@ -53,18 +53,16 @@
                     <h5 class="font-weight-bold">근무 기간</h5>&nbsp;&nbsp;
                     <input type="radio" name="term" id="term_5" value="하루" class="ip">&nbsp;
                     <label for="term_5">하루</label>&nbsp;
-                    <input type="radio" name="term" id="term_6" value="1주일 이하" class="ip">&nbsp;
-                    <label for="term_6">1주일 이하</label>&nbsp;
+                    <input type="radio" name="term" id="term_6" value="일주일" class="ip">&nbsp;
+                    <label for="term_6">일주일</label>&nbsp;
                     <input type="radio" name="term" id="term_10" value="1개월" class="ip">&nbsp;
                     <label for="term_10">1개월</label>&nbsp;
                     <input type="radio" name="term" id="term_20" value="3개월~6개월" class="ip">&nbsp;
                     <label for="term_20">3개월~6개월</label>&nbsp;
-                    <input type="radio" name="term" id="term_30" value="6개월~1년" class="ip">&nbsp;
-                    <label for="term_30">6개월~1년</label>&nbsp;
+                    <input type="radio" name="term" id="term_30" value="6개월~12개월" class="ip">&nbsp;
+                    <label for="term_30">6개월~12개월</label>&nbsp;
                     <input type="radio" name="term" id="term_40" value="1년이상" class="ip">&nbsp;
-                    <label for="term_40">1년이상</label>&nbsp;
-                    <input type="radio" name="term" id="term_45" value="기간협의" class="ip">&nbsp;
-                    <label for="term_45">기간협의</label>
+                    <label for="term_40">1년이상</label>
 
                 </div>
                 <div class="form-group row">
@@ -147,8 +145,8 @@
                             <option value="초등학교 졸업">초등학교 졸업</option>
                             <option value="중학교 졸업">중학교 졸업</option>
                             <option value="고등학교 졸업">고등학교 졸업</option>
-                            <option value="대학(2,3년제) 졸업">대학(2,3년제) 졸업</option>
-                            <option value="대학(4년제) 졸업">대학(4년제) 졸업</option>
+                            <option value="대학교(2,3년) 졸업">대학(2,3년제) 졸업</option>
+                            <option value="대학교(4년) 졸업">대학(4년제) 졸업</option>
                             <option value="대학원 졸업 이상">대학원 졸업이상</option>
                         </select>
                 </div>

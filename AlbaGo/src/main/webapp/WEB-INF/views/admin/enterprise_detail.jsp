@@ -32,6 +32,7 @@
 </head>
 
 <body>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <div id="wrapper">
         <!-- 사이드 바 -->
         <%@ include file="../serve/manager_sidebar.jsp" %>

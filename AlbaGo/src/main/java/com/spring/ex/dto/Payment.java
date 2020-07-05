@@ -18,4 +18,5 @@ public class Payment {
 	String name; //product name 상품명
 	String term;//product term 상품기간
 	
+	
 }

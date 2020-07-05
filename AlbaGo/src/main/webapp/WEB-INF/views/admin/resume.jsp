@@ -86,9 +86,10 @@
                         <div class="collapse show" id="collapseCardExample">
                             <div class="card-body">
                                 <table>
-                                    <th style="width: 700px;">업직종</th>
+                                    <th style="width: 400px;">업직종</th>
                                     <th style="width: 400px;">희망지역</th>
-                                    <th style="width: 1200px;">성별&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;학력</th>
+                                    <th style="width: 400px;">성별&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;학력</th>
+                                    <th>작성일자</th>
                                     <tr>
                                     	<form action="<%=request.getContextPath() %>/admin/resume/total" method="get" name="keyword" id="keyword">
                                         <td><select name="individual_category">
@@ -140,36 +141,23 @@
                                                 <option value="고등학교 졸업">고등학교 졸업</option>
                                                 <option value="2/3년제 졸업">대학교(2, 3년) 졸업</option>
                                                 <option value="4년제 졸업">대학교(4년) 졸업</option>
+                                                <option value="대학원 이상 졸업">대학원 이상 졸업</option>
                                             </select>
-                                            <button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
                                         </td>
-                                        </form>
-                                    </tr>
-                                    
-                                    <th>작성일자</th>
-                                    <th></th>                                    
-                                    <th>검색</th>
-
-                                    <tr>
-                                        <form action="<%=request.getContextPath() %>/admin/resume/day" method="get" name="keyword" id="keyword">
-                                    	<td>
+                                        <td>
                                             <select name="day" style="width:150px;">
                                             	<option value="">--선택하십시오--</option>
                                             	<option value="today">오늘</option>
                                             	<option value="week">일주일</option>
                                             	<option value="month">1개월</option>
                                             </select>
-                                            <input type="hidden" name="daysearch">
-                                    		<button type="submit" class="btn py-1 px-1 btn-primary">&nbsp;검색</button>
                                     	</td>
-                                    	</form>	
-                                    	<td></td>
-                                    	<form action="<%=request.getContextPath() %>/admin/resume/id" method="get" name="keyword" id="keyword">
-                                    	<td><select name="category" style="width: 100px;">
-                                                <option value="">전체</option>
-                                                <option value="writer">작성자</option>
-                                                <option value="title">제목</option>
-                                            </select>
+                                    </tr>
+                                                                   
+                                    <th>검색</th>
+
+                                    <tr>
+                                    	<td>
                                             <input type="text" name="search" style="width: 350px;">
                                             <button type="submit" class="btn py-1 px-1 btn-primary">검색</button>
                                         </td>

@@ -171,11 +171,11 @@ pageEncoding="UTF-8"%>
                 고등학교 졸업
               </div>&nbsp;&nbsp;&nbsp;&nbsp;<br>
               <div class="a custom-radio">
-                <input type="radio" name="education" id="collage23" class="a-input" value="2/3년제 졸업" checked>
+                <input type="radio" name="education" id="collage23" class="a-input" value="대학교(2,3년) 졸업" checked>
                 2/3년제 졸업
               </div>
               <div class="a custom-radio">
-                <input type="radio" name="education" id="collage4" class="a-input" value="4년제 졸업" checked>
+                <input type="radio" name="education" id="collage4" class="a-input" value="대학교(4년) 졸업" checked>
                 4년제 졸업
               </div>&nbsp;&nbsp;&nbsp;&nbsp;&ensp;&ensp;&ensp;<br>
               <div class="a custom-radio">

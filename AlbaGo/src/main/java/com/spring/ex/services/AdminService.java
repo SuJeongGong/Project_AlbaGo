@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.ex.dao.AdminDAO;
+import com.spring.ex.dao.EnterpriseDAO;
 import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
@@ -199,6 +200,7 @@ public class AdminService {
 	}
 	//상품결제내역
 	public ArrayList<Payment> selectPayment(String id) {
+		System.out.println(id);
 		return adminDAO.selectPayment(id);
 	}
 	//상품 총계
@@ -221,6 +223,19 @@ public class AdminService {
 	//오늘 매출액
 	public HashMap<String,Object> total_M() {
 		return adminDAO.total_M();
+	}
+	//총검색
+	public ArrayList<BoardResume> total_I(String search) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("search",search);
+		
+		return adminDAO.total_I(map);
+	}
+	public ArrayList<BoardRecruit> total_E(String search) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("search",search);
+		
+		return adminDAO.total_E(map);
 	}
 	
 	//전체 인재 갯수
@@ -274,7 +289,7 @@ public class AdminService {
 	}
 	
 	//공고 게시판 총검색
-	public ArrayList<BoardRecruit> total_List_Rc(String category, String place, String gender, String education) {
+	public ArrayList<BoardRecruit> total_List_Rc(String category, String place, String gender, String education, String day, String search) {
 		ArrayList<BoardRecruit> boardrecruits = null;
 		
 		Map<String, Object> map=new HashMap<String,Object>();
@@ -282,7 +297,25 @@ public class AdminService {
 		map.put("place",place);
 		map.put("gender",gender);
 		map.put("education",education);
-		return adminDAO.total_List_Rc(map);
+		map.put("day",day);
+		map.put("search",search);
+		if(day.equals("today")) {
+			return adminDAO.total_List_Rc_T(map);
+		}
+		else if(day.equals("week")) {
+			return adminDAO.total_List_Rc_W(map);
+		}
+		else if(day.equals("month")) {
+			return adminDAO.total_List_Rc_M(map);
+		}
+		else {
+			return adminDAO.total_List_Rc(map);
+		}
+	}
+	
+	//공고 게시판에서 지원자보기
+	public ArrayList<Volunteer> board_list(String id) {
+		return adminDAO.board_list(id);
 	}
 	
 	//공고 게시판 선택삭제
@@ -292,9 +325,6 @@ public class AdminService {
 		
 		return forDeleteSQL(ids, "deleteBoardRecruit");
 	}
-	
-	
-
 	
 	// 게시글 삭제
 	public int forDeleteSQL(ArrayList<String> ids, String methodName) {
@@ -390,7 +420,7 @@ public class AdminService {
 	
 	
 	//인재 게시판 총검색
-	public ArrayList<BoardResume> total_List_Rs(String category, String place, String gender, String education) {
+	public ArrayList<BoardResume> total_List_Rs(String category, String place, String gender, String education, String day, String search) {
 		ArrayList<BoardResume> boardresumes = null;
 		
 		Map<String, Object> map=new HashMap<String,Object>();
@@ -398,7 +428,20 @@ public class AdminService {
 		map.put("place",place);
 		map.put("gender",gender);
 		map.put("education",education);
-		return adminDAO.total_List_Rs(map);
+		map.put("day",day);
+		map.put("search",search);
+		if(day.equals("today")) {
+			return adminDAO.total_List_Rs_T(map);
+		}
+		else if(day.equals("week")) {
+			return adminDAO.total_List_Rs_W(map);
+		}
+		else if(day.equals("month")) {
+			return adminDAO.total_List_Rs_M(map);
+		}
+		else {
+			return adminDAO.total_List_Rs(map);
+		}
 	}
 		
 	
@@ -426,34 +469,15 @@ public class AdminService {
 		return forDeleteSQL(ids, "deleteBoardCommunity");
 	}
 	
-		
-	//커뮤니티 게시판 선택검색
-	public ArrayList<BoardCommunity> community_List_id(String category, String search) {
+	//커뮤니티 게시판 총 검색
+	public ArrayList<BoardCommunity> community_total_search(String start, String end, String search) {
 		ArrayList<BoardCommunity> boardcommunities = null;
 		
-		if(category.equals("writer")) {
-			return adminDAO.writer_search_C(search);
-		}
-		else if(category.equals("title")) {
-			return adminDAO.title_search_C(search);
-		}
-		return null;
-	}
-	
-	//커뮤니티 게시판 날짜 검색
-	public ArrayList<BoardCommunity> community_List_day(String day, String daysearch) {
-		ArrayList<BoardCommunity> boardcommunities = null;
-		
-		if(day.equals("today")) {
-			return adminDAO.today_search_C(daysearch);
-		}
-		else if(day.equals("week")) {
-			return adminDAO.week_search_C(daysearch);
-		}
-		else if(day.equals("month")) {
-			return adminDAO.month_search_C(daysearch);
-		}
-		return null;
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		map.put("search",search);
+		return adminDAO.community_total_search(map);
 	}
 	
 	//공수정
@@ -485,6 +509,20 @@ public class AdminService {
 		public int weeklysales() { 
 			return adminDAO.weeklysales(); 
 		}
+		
+		
+		
+	//매출 게시판 총검색
+	public ArrayList<Payment> PaymentSearch(String start,String end, String product_type,String search) {
+		ArrayList<Payment> Payment = null;
+			
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("start",start);
+		map.put("end",end);
+		map.put("product_type",product_type);
+		map.put("search",search);
+		return adminDAO.PaymentSearch(map);
+	}
 	 
 }
 

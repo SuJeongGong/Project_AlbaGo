@@ -171,7 +171,7 @@ function UseResume(){
                             <ul>
                                 <li>이름 : <span><%=board_content.getName() %></span></li>
                                 <li>성별 : <span><%=board_content.getGender() %></span></li>
-                                <li>나이 : <span>만) <%=board_content.getAge() %>세</span></li>
+                                <li>나이 : <span><%=board_content.getAge() %>세</span></li>
                                 <li>최종학력 : <span><%=board_content.getEducation() %></span></li>
                                 <li>연락처 : <span>010-****-****</span></li>
                             </ul>

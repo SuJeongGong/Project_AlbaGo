@@ -106,6 +106,9 @@ public interface AdminDAO {
 		int selet_TE_join();
 		//오늘 매출액
 		HashMap<String,Object> total_M();
+		//총검색
+		ArrayList<BoardResume> total_I(Map<String, Object> map);
+		ArrayList<BoardRecruit> total_E(Map<String, Object> map);
 	
 	/** 공고글 관리 */
 		//전체 공고 갯수
@@ -128,6 +131,11 @@ public interface AdminDAO {
 		ArrayList<BoardRecruit> week_search_Rc(String week);
 		ArrayList<BoardRecruit> month_search_Rc(String month);
 		ArrayList<BoardRecruit> total_List_Rc(Map<String, Object> map);
+		ArrayList<BoardRecruit> total_List_Rc_T(Map<String, Object> map);
+		ArrayList<BoardRecruit> total_List_Rc_W(Map<String, Object> map);
+		ArrayList<BoardRecruit> total_List_Rc_M(Map<String, Object> map);
+		ArrayList<Volunteer> board_list(String id);//지원자 목록 가져오기
+
 	
 	/** 인재글관리 */
 		//전체 인재 갯수
@@ -151,6 +159,9 @@ public interface AdminDAO {
 		ArrayList<BoardResume> week_search_Rs(String week);
 		ArrayList<BoardResume> month_search_Rs(String month);
 		ArrayList<BoardResume> total_List_Rs(Map<String, Object> map);
+		ArrayList<BoardResume> total_List_Rs_T(Map<String, Object> map);
+		ArrayList<BoardResume> total_List_Rs_W(Map<String, Object> map);
+		ArrayList<BoardResume> total_List_Rs_M(Map<String, Object> map);
 		
 	/** 커뮤니티 관리 */
 		//공고 게시판
@@ -161,10 +172,7 @@ public interface AdminDAO {
 		int deleteCommunities(int community_id); //커뮤니티글 삭제하기
 		int countComment(int comment_id); //댓글 확인
 		int deleteComment(int comment_id); //댓글 삭제
-		ArrayList<BoardCommunity> community_List_day(String day, String daysearch); //날짜검색(오늘, 일주일, 한달)
-		ArrayList<BoardCommunity> today_search_C(String today);
-		ArrayList<BoardCommunity> week_search_C(String week);
-		ArrayList<BoardCommunity> month_search_C(String month);
+		ArrayList<BoardCommunity> community_total_search(Map<String, Object> map);
 		
 	/** 매출 관리 */
 		//---송원준---
@@ -180,11 +188,12 @@ public interface AdminDAO {
 	 
 	    //주간 매출 
 		int weeklysales();
-	 
 		
-		
+		// 매출 총 검색
+		ArrayList<Payment> PaymentSearch(Map<String, Object> map);
 		
 		
 		//공수정 - 관리자 메인 화면
 		ArrayList<HashMap<String ,Object>> selectCountItem_Enterprise(String item);
+		
 }

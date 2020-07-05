@@ -14,5 +14,6 @@ public class Scrap_Individual {
 	String name;//기업이름
 	String board_recruit_title;//공고글 제목
 	String recruit_title;//공고제목
+	String individual_name;
 	
 }

@@ -28,7 +28,7 @@
 
 
 						<a class="btn btn-info edit" aria-label="Settings"
-							href="<%=conPath%>/admin/add_product_term">상품 추가</a>
+							href="<%=conPath%>/admin/add_advertising">상품 추가</a>
 				</div>
 				<%
 					ArrayList<Product> products = (ArrayList) request.getAttribute("products");

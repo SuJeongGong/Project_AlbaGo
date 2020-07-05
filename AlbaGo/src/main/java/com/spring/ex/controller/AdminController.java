@@ -30,7 +30,9 @@ import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
+import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.AdminService;
+import com.spring.ex.services.EnterpriseService;
 import com.spring.ex.services.ProductService;
 
 @Controller
@@ -41,11 +43,28 @@ public class AdminController {
 	ProductService productService;
 	@Autowired
 	AdminService adminService;
+	@Autowired
+	EnterpriseService enterpriseService;
+	
+	@RequestMapping("/manager_topbar")
+	public String manager_topbar(Model m, @RequestParam("search") String search) {
+		String page = null;
+		System.out.println(search);
+		ArrayList<BoardResume> boardresumes = adminService.total_I(search);
+		ArrayList<BoardRecruit> boardrecruits = adminService.total_E(search);
+		m.addAttribute("boardresumes", boardresumes);
+		m.addAttribute("boardrecruits", boardrecruits);
+		System.out.println(boardresumes);
+		System.out.println(boardrecruits);
+		
+		return page;
+	}
 
 	@RequestMapping("/main") // 관리자 메인
 	public String main(Model m) {
+		
 		ArrayList<HashMap<String, Object>> sales = adminService.selectRecentSales();
-		m.addAttribute("Recent_sales", sales);
+		m.addAttribute("sales", sales);
 
 		ArrayList<HashMap<String, Object>> items = adminService.selectItems();
 		m.addAttribute("items", items);
@@ -72,6 +91,10 @@ public class AdminController {
 		// 오늘 매출액
 		HashMap<String, Object> totalM = adminService.total_M();
 		m.addAttribute("totalM", totalM);
+		
+		//일주일 매출액 
+		int selectWeekTotal=adminService.selectWeekTotal();
+		m.addAttribute("selectweek", selectWeekTotal);
 
 		// 오늘 공고 갯수
 		int todaycount = adminService.today_Count();
@@ -107,15 +130,15 @@ public class AdminController {
 
 	}
 
-	@RequestMapping("/recruit/id") // 공고글 검색
-	public String boardrecruit_id(Model m, @RequestParam("category") String category,
-			@RequestParam("search") String search) {
-		String page = "/admin/recruit";
-		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_id(category, search);
-		m.addAttribute("boardrecruits", boardrecruits);
-
-		return page;
-	}
+//	@RequestMapping("/recruit/id") // 공고글 검색
+//	public String boardrecruit_id(Model m, @RequestParam("category") String category,
+//			@RequestParam("search") String search) {
+//		String page = "/admin/recruit";
+//		ArrayList<BoardRecruit> boardrecruits = adminService.recruit_List_id(category, search);
+//		m.addAttribute("boardrecruits", boardrecruits);
+//
+//		return page;
+//	}
 
 	@RequestMapping("/recruit/day") // 공고글 날짜 검색 (오늘, 일주일, 한달)
 	public String boardrecruit_day(Model m, @RequestParam("day") String day,
@@ -130,10 +153,15 @@ public class AdminController {
 	@RequestMapping("/recruit/total") // 총 공고글 검색
 	public String boardrecruit_t(Model m, @RequestParam("enterprise_category") String enterprise_category,
 			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
-			@RequestParam("education") String education) {
+			@RequestParam("education") String education,
+			@RequestParam("day") String day,
+			@RequestParam("search") String search
+			) {
 		String page = "/admin/recruit";
+		System.out.println(day);
+		System.out.println(search);
 		ArrayList<BoardRecruit> boardrecruits = adminService.total_List_Rc(enterprise_category, local_category, gender,
-				education);
+				education, day, search);
 		m.addAttribute("boardrecruits", boardrecruits);
 		
 		// 전체 공고 갯수
@@ -204,10 +232,12 @@ public class AdminController {
 	@RequestMapping("/resume/total") // 인재글 검색
 	public String boardresume_t(Model m, @RequestParam("individual_category") String individual_category,
 			@RequestParam("local_category") String local_category, @RequestParam("gender") String gender,
-			@RequestParam("education") String education) {
+			@RequestParam("education") String education,
+			@RequestParam("day") String day,
+			@RequestParam("search") String search) {
 		String page = "/admin/resume";
 		ArrayList<BoardResume> boardresumes = adminService.total_List_Rs(individual_category, local_category, gender,
-				education);
+				education, day, search);
 		m.addAttribute("boardresumes", boardresumes);
 		
 		// 전체 인재 갯수
@@ -232,7 +262,7 @@ public class AdminController {
 		System.out.println(boardresume_id);
 		return adminService.deleteBoardResumes(boardresume_id);
 	}
-
+	 
 	@RequestMapping("/community") // 커뮤니티 게시판 -관리자 ver
 	public String community(Model m) {
 		// 커뮤니티 리스트
@@ -241,20 +271,24 @@ public class AdminController {
 		return "admin/community";
 	}
 
-	@RequestMapping("/community/id") // 커뮤니티 검색
-	public String community_id(Model m, @RequestParam("category") String category,
+	@RequestMapping("/community/total") // 커뮤니티 날짜 검색 (오늘, 일주일, 한달)
+	public String community_day(Model m, 
+			@RequestParam(value = "start", defaultValue ="0000-00-00") String start, 
+			@RequestParam(value = "end", defaultValue ="9999-12-31") String end,
 			@RequestParam("search") String search) {
 		String page = "/admin/community";
-		ArrayList<BoardCommunity> boardcommunities = adminService.community_List_id(category, search);
-		m.addAttribute("boardcommunities", boardcommunities);
-
-		return page;
-	}
-
-	@RequestMapping("/community/day") // 커뮤니티 날짜 검색 (오늘, 일주일, 한달)
-	public String community_day(Model m, @RequestParam("day") String day, @RequestParam("daysearch") String daysearch) {
-		String page = "/admin/community";
-		ArrayList<BoardCommunity> boardcommunities = adminService.community_List_day(day, daysearch);
+		if(start.equals(null)) {
+			start="0000-00-00"; 
+		}
+		if(end.equals(null)) {
+			end="9999-12-31";
+		}
+		String endd = end+" 23:59:59";
+		System.out.println(start);
+		System.out.println(end);
+		System.out.println(search);
+		ArrayList<BoardCommunity> boardcommunities = adminService.community_total_search(start, endd, search);
+		System.out.println(boardcommunities);
 		m.addAttribute("boardcommunities", boardcommunities);
 
 		return page;
@@ -330,6 +364,14 @@ public class AdminController {
 		// 커뮤니티 게시판 작성글
 		ArrayList<BoardCommunity> community = adminService.selectCommunity(individual_id);
 		m.addAttribute("communitys", community);
+		
+		//기업스크랩
+		ArrayList<Scrap_Individual> scrap_individual= adminService.selectEnterpriseScrap(individual_id);
+		m.addAttribute("scrap_individual", scrap_individual);
+		
+
+		
+		
 
 		return page;
 
@@ -381,6 +423,13 @@ public class AdminController {
 		return adminService.deleteCommunity(community_id);
 	} // 글삭제
 
+	
+	//기업스크랩 삭제 AJAX
+	@RequestMapping(value = "/deleteEnterpriseScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int deleteEnterpriseScrap(@RequestParam("scrap_individual_id") int scrap_individual_id) {
+		return adminService.deleteEnterpriseScrap(scrap_individual_id);
+	}
+	
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
 	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {
 		String page = "admin/enterprise_detail";
@@ -391,7 +440,7 @@ public class AdminController {
 		
 		//공고관리
 		ArrayList<Recruit> recruit = adminService.selectRecruit(enterprise_id);
-		m.addAttribute("recruit", recruit);
+		m.addAttribute("recruit", recruit); 
 		
 		// 공고글 관리
 		ArrayList<BoardRecruit> boardrecruit = adminService.selectRecruitWrite(enterprise_id);
@@ -404,7 +453,11 @@ public class AdminController {
 		// 결제내역
 		ArrayList<Payment> payment = adminService.selectPayment(enterprise_id);
 		m.addAttribute("payment", payment);
-
+		
+		//총매출
+		Product product = adminService.sumPayment(enterprise_id);
+		m.addAttribute("product", product);
+		 
 		return page;
 	}
 
@@ -441,17 +494,18 @@ public class AdminController {
 	public @ResponseBody int deleteEnterpriseBoardRecruit(@RequestParam("board_recruit_id") int board_recruit_id) {
 		return adminService.deleteEnterpriseBoardRecruit(board_recruit_id);
 	}
-	//인재글 삭제 AJAX
+	//스크랩글 삭제 AJAX
 	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteScrap(@RequestParam("scrap_id") int scrap_id) {
 		return adminService.deleteScrap(scrap_id);
 	}
 	
 	
+	
 	//--------------------------------
 	
 	
-	@RequestMapping("/product/product") // 상품보기
+	@RequestMapping("/product/product") // 상품보기 리스트 
 	public String list(Model m, HttpServletRequest request) {
 
 		ArrayList<Product> products = productService.selectProductList();
@@ -460,7 +514,7 @@ public class AdminController {
 		return "/admin/product_product";
 	}
 
-	@RequestMapping("/product_account") // 상품상세보기
+	@RequestMapping("/product/product_account") // 상품상세보기
 	public String update_account(HttpServletRequest request, Model m, @RequestParam("product_id") int product_id) {
 		String page = "/admin/product_account";
 		Product product = productService.product_account(product_id);
@@ -469,7 +523,7 @@ public class AdminController {
 		return page;
 	}
 
-	@RequestMapping("/advertising/product") // 광고 보기
+	@RequestMapping("/advertising/product") // 광고 보기 - 리스트 
 	public String advertisingㅣist(Model m, HttpServletRequest request) {
 
 		ArrayList<Product> products = productService.selectAdvertisingList();
@@ -487,13 +541,13 @@ public class AdminController {
 		return page;
 	}
 
-	@RequestMapping("/account/update") // 상품수정하기
-	public String update(HttpServletRequest request, @ModelAttribute("product_id") Product product) {
+	@RequestMapping("/account/product/update") // 상품수정하기
+	public String update( @ModelAttribute("product") Product product) {
 
 		System.out.println(product);
 		String page = "/admin/product_account";
 		if (productService.update_product(product) >= 1) {
-			page = "/admin/main";
+			page = "redirect:/admin/product/product";
 			System.out.println("DB연결성공");
 		} else {
 			page = "/admin/product_account";
@@ -538,12 +592,17 @@ public class AdminController {
 
 		m.addAttribute("payments", payments);
 
-		return "admin/product_approve";
+		return "admin/product_approve"; 
 	}
 
 	@RequestMapping("/add_product_term") // 기간있는 상품추가 보여주는 폼
 	public String add_product_term() {
 		String page = "/admin/add_product_term";
+		return page;
+	}
+	@RequestMapping("/add_advertising") // 광고상품추가 보여주는 폼
+	public String add_advertising() {
+		String page = "/admin/add_advertising";
 		return page;
 	}
 
@@ -554,27 +613,13 @@ public class AdminController {
 		String page = "/admin/add_product/result";
 		System.out.println(product);
 		if (productService.insertProduct(product) >= 1) {// DB연결 , 연결 결과값 비교로 리턴될 페이지 경로값 변경
-			page = "/admin/main";
+			page = "redirect:/admin/product/product";
 		}
 
 		return page;
 	}
 
-	@RequestMapping("/add_product_no_term") // 기간이없는 상품추가 보여주는 폼
-	public String add_product_no_term() {
-		String page = "admin/add_product_no_term";
 
-		return page;
-	}
-
-	@RequestMapping("/add_product_no_term/result") // 기간이없는 상품추가 DB
-	public String add_product_no_term_result(HttpServletRequest request, @ModelAttribute("product") Product product,
-			BindingResult result) {
-
-		String page = "/admin/add_product_no_term/result";
-
-		return page;
-	}
 
 	@RequestMapping("/advertising/approve") // 결제승인
 	public String advertisingApprove(Model m) {
@@ -635,6 +680,8 @@ public class AdminController {
 		return productService.advertisingUpdatePaymentsResult(map);
 	}
 	
+	//---------------------------------------------
+	
 	@RequestMapping("/payment") 
 	public String payment(Model m) {
 		String page = "/admin/payment";
@@ -660,10 +707,75 @@ public class AdminController {
 		return page;
 	}
 	
-	@RequestMapping("/volunteerlist")
-	public String volunteer_list() {
+	@RequestMapping("/payment/total") // 매출관리 검색
+	public String payment_T(Model m, 
+			@RequestParam(value = "start", defaultValue="0000-00-00") String start,
+			@RequestParam(value = "end", defaultValue="9999-12-31") String end,
+			@RequestParam("product_type") String product_type,
+			@RequestParam("search") String search) {
+		String page = "/admin/payment";
+		if(start.equals(null)) {
+			start="0000-00-00";
+		}
+		if(end.equals(null)) {
+			end="9999-12-31";
+		}
+		String endd=end+" 23:59:59";
+		System.out.println(start);
+		System.out.println(end);
+		System.out.println(product_type);
+		System.out.println(search);
+		ArrayList<Payment> payment = adminService.PaymentSearch(start, endd, product_type, search);
+		System.out.println(payment);
+		
+		// 전체 매출
+		int all_totalsales = adminService.all_totalsales();
+		m.addAttribute("all_totalsales", all_totalsales);
+
+				
+		// 오늘 매출 
+		int todaysales = adminService.todaysales();
+		m.addAttribute("todaysales", todaysales);
+				  
+		// 주간 매출 
+		int weeklysales = adminService.weeklysales();
+		m.addAttribute("weeklysales", weeklysales);
+		
+		m.addAttribute("payment", payment);
+		return page;
+	}
+	
+	
+	@RequestMapping("/volunteerlist") //지원자보기
+	public String volunteer_list(Model m, @RequestParam(value = "board_recruit_id") String board_recruit_id) {
+		System.out.println(board_recruit_id);
+		
+		ArrayList<Volunteer> volunteers = adminService.board_list(board_recruit_id);
+		System.out.println(volunteers);
+		m.addAttribute("volunteers", volunteers);
 		return "/admin/volunteerlist";
 	}
+	 
+	// 아약스 처리 지원자 보기
+	@RequestMapping(value = "/updateResult", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int updateResultB(String result, int id) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("volunteer_id", id);
+		map.put("result", result);
+		return enterpriseService.updateVolunteerResult(map);
+	}
+
+	@RequestMapping(value = "/updateResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int updateResultsB(@RequestParam(value = "result") String result,
+		@RequestParam(value = "volunteer_ids[]") ArrayList<String> volunteer_ids) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("volunteer_ids", volunteer_ids);
+		map.put("result", result);
+		return enterpriseService.updateVolunteerResults(map);
+	}
+	
 	
 	
 
