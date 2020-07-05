@@ -410,7 +410,7 @@ public class AdminController {
 		
 		//공고관리
 		ArrayList<Recruit> recruit = adminService.selectRecruit(enterprise_id);
-		m.addAttribute("recruit", recruit);
+		m.addAttribute("recruit", recruit); 
 		
 		// 공고글 관리
 		ArrayList<BoardRecruit> boardrecruit = adminService.selectRecruitWrite(enterprise_id);
