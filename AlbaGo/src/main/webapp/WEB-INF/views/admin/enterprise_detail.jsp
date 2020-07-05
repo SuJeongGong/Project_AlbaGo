@@ -101,7 +101,7 @@
                             <div class="card-body">
 
 						     <!-- 기업 회원정보 form 시작 -->
-                           	<form action="<%=request.getContextPath() %>/admin/enterprise_detail/update" name="enterprise"  class="col-xl-12" >
+                           	<form action="<%=request.getContextPath() %>/admin/member/enterprise_detail/update" name="enterprise"  class="col-xl-12" >
                                   <table id="res1" class="table table-bordered ">
                                     <tr>
                                         <th>기업아이디</th>

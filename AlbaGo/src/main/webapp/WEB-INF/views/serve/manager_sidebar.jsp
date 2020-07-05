@@ -61,13 +61,13 @@ String conPath = request.getContextPath();
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="<%=conPath%>/admin/individual_list">
+        <a class="nav-link" href="<%=conPath%>/admin/member/individual">
           <i class="fas fa-fw fa-table"></i>
           <span>개인</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link"  href="<%=conPath%>/admin/enterprise_list" >
+        <a class="nav-link"  href="<%=conPath%>/admin/member/enterprise" >
           <i class="fas fa-fw fa-table"></i>
           <span>기업</span></a>
       </li>

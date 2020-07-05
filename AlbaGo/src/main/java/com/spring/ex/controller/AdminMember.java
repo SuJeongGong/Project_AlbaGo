@@ -19,13 +19,15 @@ import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
+import com.spring.ex.dto.Product;
 import com.spring.ex.dto.Recruit;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
 import com.spring.ex.services.AdminMemberService;
 
-@RequestMapping("/admin")
+@RequestMapping("/admin/member")
 @Controller
 public class AdminMember {
 	@Autowired
@@ -43,10 +45,11 @@ public class AdminMember {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("category", category);
 		map.put("search", search);
-		m.addAttribute("map", map);
+
 		ArrayList<Individual> individuals = adminMemberService.selectIndividual(category, search,(pageNum - 1) * 10);
 		System.out.println(individuals);
 		System.out.println(map);
+		m.addAttribute("map", map);
 		m.addAttribute("individuals", individuals);
 		m.addAttribute("count", adminMemberService.selectIndividualCount(category, search) / 10 + 1);// 기업정보
 		m.addAttribute("pageNum", pageNum);// 기업정보
@@ -55,7 +58,10 @@ public class AdminMember {
 	}
 
 	@RequestMapping("/individual/detail") // 개인 - 디테일?
-	public String individual_detail(Model m, @RequestParam("individual_id") String individual_id) {
+	public String individual_detail(Model m, @RequestParam("individual_id") String individual_id
+			,@RequestParam(value = "category", defaultValue = "enterprise_id") String category
+			,@RequestParam(value = "search", defaultValue = "") String search
+			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "/admin/individual_detail";
 
 		// 개인 회원정보 상세보기
@@ -77,20 +83,23 @@ public class AdminMember {
 		// 커뮤니티 게시판 작성글
 		ArrayList<BoardCommunity> community = adminMemberService.selectCommunity(individual_id);
 		m.addAttribute("communitys", community);
-
+		//기업스크랩
+		ArrayList<Scrap_Individual> scrap_individual= adminMemberService.selectEnterpriseScrap(individual_id);
+		m.addAttribute("scrap_individual", scrap_individual);
 		return page;
 
 	}
 
-	@RequestMapping("/individual/detail/update") // 개인정보 수정 - 수정하기
-	public String individual_detail(@ModelAttribute("individual") Individual individual) {
+	@RequestMapping("/individual_detail/update") // 개인정보 수정 - 수정하기
+	public String individual_detail(@ModelAttribute("individual") Individual individual	) {
 		String page = "/admin/individual_detail";
 		if (1 <= adminMemberService.updateIndividualAccount(individual)) {
 			System.out.println(individual);
 			System.out.println("수정");
-			page = "redirect:/admin/individual_list";
+			page = "redirect:/admin/main";
 
 		}
+		
 		return page;
 	}
 
@@ -131,7 +140,7 @@ public class AdminMember {
 
 	// 기업회원#################################################################################################
 
-	@RequestMapping("/enterprise/list") // 기업 리스트
+	@RequestMapping("/enterprise") // 기업 리스트
 	public String enterprise_list(Model m
 			,@RequestParam(value = "category", defaultValue = "enterprise_id") String category
 			,@RequestParam(value = "search", defaultValue = "") String search
@@ -150,7 +159,9 @@ public class AdminMember {
 	}
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
-	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id) {
+	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id			,@RequestParam(value = "category", defaultValue = "enterprise_id") String category
+			,@RequestParam(value = "search", defaultValue = "") String search
+			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "admin/enterprise_detail";
 
 		// 기업 회원정보 상세보기
@@ -173,11 +184,17 @@ public class AdminMember {
 		ArrayList<Payment> payment = adminMemberService.selectPayment(enterprise_id);
 		m.addAttribute("payment", payment);
 
+		//총매출
+		Product product = adminMemberService.sumPayment(enterprise_id);
+		m.addAttribute("product", product);
 		return page;
 	}
 
 	@RequestMapping("/enterprise_detail/update") // 기업정보 수정 - 수정하기
-	public String enterprise_detail(@ModelAttribute("enterprise") Enterprise enterprise) {
+	public String enterprise_detail(@ModelAttribute("enterprise") Enterprise enterprise			
+			,@RequestParam(value = "category", defaultValue = "enterprise_id") String category
+			,@RequestParam(value = "search", defaultValue = "") String search
+			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "/admin/enterprise_detail";
 		System.out.println();
 
@@ -186,7 +203,7 @@ public class AdminMember {
 
 			System.out.println(enterprise);
 			System.out.println("수정");
-			page = "redirect:/admin/enterprise_list";
+			page = "redirect:/admin/main";
 
 		}
 

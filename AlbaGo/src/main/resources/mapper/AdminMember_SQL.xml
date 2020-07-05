@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="com.spring.ex.dao.AdminMemberDAO">
-	<!-- 개인 -->
-	<!-- 개인 리스트 검색까지 -->
 	<select id="selectIndividual" resultType="Individual"
 		parameterType="hashmap">
 		SELECT *
 		FROM Individual
 		<where>
-		#{category} like CONCAT('%',#{search},'%')
+			<if test="category.equals('individual_id')">
+				individual_id like CONCAT('%',#{search},'%')
+			</if>
+			<if test="category.equals('phone')">
+				phone like CONCAT('%',#{search},'%')
+			</if>
+			<if test="category.equals('name')">
+				name like CONCAT('%',#{search},'%')
+			</if>
 		</where>
 		LIMIT #{page},10
 	</select>
@@ -19,7 +24,15 @@
 		SELECT Count(*)
 		FROM Individual
 		<where>
-			#{category} like CONCAT('%',#{search},'%')
+			<if test="category.equals('individual_id')">
+				individual_id like CONCAT('%',#{search},'%')
+			</if>
+			<if test="category.equals('phone')">
+				phone like CONCAT('%',#{search},'%')
+			</if>
+			<if test="category.equals('name')">
+				name like CONCAT('%',#{search},'%')
+			</if>
 		</where>
 	</select>
 
@@ -38,7 +51,8 @@
 		set
 		password=#{password},
 		name = #{name},
-		gender = #{gender},
+		gender =
+		#{gender},
 		birth = #{birth},
 		phone = #{phone},
 		education = #{education}
@@ -46,7 +60,7 @@
 			individual_id = #{individual_id}
 		</where>
 	</update>
-		
+
 	<!-- 개인계정상태변경 -->
 	<update id="invididualChangestate" parameterType="hashmap">
 		update individual
@@ -81,23 +95,31 @@
 		resultType="Volunteer">
 		Select
 		board_recruit.title as board_recruit_title,
-		enterprise.name AS enterprise_name,
+		enterprise.name AS
+		enterprise_name,
 		resume.title as resume_title,
 		volunteer.date as date,
 		volunteer.result as result,
-		volunteer.board_recruit_id as board_recruit_id,
+		volunteer.board_recruit_id as
+		board_recruit_id,
 		volunteer.individual_id AS individual_id,
 		volunteer.volunteer_id,
 		board_recruit.delete_check ,
 		resume.delete_check
-		FROM resume,volunteer,board_recruit,enterprise,recruit
+		FROM
+		resume,volunteer,board_recruit,enterprise,recruit
 		<where>
 			resume.resume_id =volunteer.resume_id
-			AND volunteer.board_recruit_id = board_recruit.board_recruit_id
-			AND recruit.recruit_id = board_recruit.recruit_id
-			AND enterprise.enterprise_id = recruit.enterprise_id
-			AND volunteer.individual_id =#{individual_id}
-			AND board_recruit.delete_check =1
+			AND
+			volunteer.board_recruit_id = board_recruit.board_recruit_id
+			AND
+			recruit.recruit_id = board_recruit.recruit_id
+			AND
+			enterprise.enterprise_id = recruit.enterprise_id
+			AND
+			volunteer.individual_id =#{individual_id}
+			AND
+			board_recruit.delete_check =1
 			AND resume.delete_check=1
 		</where>
 		ORDER BY volunteer.volunteer_id DESC
@@ -116,7 +138,8 @@
 		resultType="BoardResume">
 		SELECT
 		board_resume.title AS board_resume_title ,
-		resume.title AS resume_title,
+		resume.title AS
+		resume_title,
 		board_resume.memo,
 		board_resume.date,
 		board_resume.board_resume_id
@@ -126,9 +149,12 @@
 
 		<where>
 			board_resume.resume_id = resume.resume_id
-			AND resume.individual_id = individual.individual_id
-			AND individual.individual_id = #{individual_id}
-			AND board_resume.delete_check =1
+			AND
+			resume.individual_id = individual.individual_id
+			AND
+			individual.individual_id = #{individual_id}
+			AND
+			board_resume.delete_check =1
 		</where>
 	</select>
 
@@ -153,7 +179,8 @@
 		FROM community,individual
 
 		<where> community.individual_id=individual.individual_id
-			AND individual.individual_id=#{individual_id}
+			AND
+			individual.individual_id=#{individual_id}
 		</where>
 	</select>
 
@@ -164,19 +191,20 @@
 		DELETE FROM `comment`
 		WHERE `comment`.community_id =#{comment_id}
 	</delete>
-
 	<!-- 커뮤니티글 글삭제 -->
 	<delete id="deleteCommunity" parameterType="int">
 		DELETE FROM community
 		WHERE community_id = #{community_id}
 	</delete>
 
+
 	<!-- 기업스크랩 -->
 	<select id="selectEnterpriseScrap" parameterType="String"
 		resultType="Scrap_individual">
 		SELECT
 		board_recruit.title AS board_recruit_title,
-		recruit.title as recruit_title ,
+		recruit.title as
+		recruit_title ,
 		recruit.enterprise_id as enterprise_id,
 		scrap_individual_id,
 		enterprise.name,
@@ -184,46 +212,64 @@
 		scrap_individual.date AS date,
 		board_recruit.board_recruit_id
 
-		From scrap_individual, board_recruit ,recruit,enterprise
+		From
+		scrap_individual, board_recruit ,recruit,enterprise
 
 		<where>
-			scrap_individual.board_recruit_id =board_recruit.board_recruit_id
-			AND recruit.recruit_id = board_recruit.recruit_id
-			AND recruit.enterprise_id=enterprise.enterprise_id
-			AND individual_id =#{id}
+			scrap_individual.board_recruit_id
+			=board_recruit.board_recruit_id
+			AND recruit.recruit_id =
+			board_recruit.recruit_id
+			AND
+			recruit.enterprise_id=enterprise.enterprise_id
+			AND individual_id
+			=#{id}
 			AND board_recruit.delete_check =1
 		</where>
 		ORDER BY scrap_individual.date DESC
 
 	</select>
-
 	<!-- 기업스크랩 취소 -->
 	<delete id="deleteEnterpriseScrap" parameterType="int">
 		delete from
 		Scrap_individual where scrap_individual_id = #{scrap_individual_id}
 	</delete>
 
-
 	<!-- ###################################################################### -->
 	<!-- 기업회원 관리자 검색 -->
 	<select id="selectEnterprise" resultType="Enterprise"
-		parameterType="hashmap"> <!-- 기업아이디 -->
+		parameterType="hashmap">
 		SELECT *
 		FROM Enterprise
 		<where>
-			#{category} like CONCAT('%',#{search},'%')
+			<if test="category.equals('enterprise_id')">
+				enterprise_id like CONCAT('%',#{search},'%')
+			</if>
+			<if test="category.equals('phone')">
+				phone like CONCAT('%',#{search},'%')
+			</if>
+			<if test="category.equals('name')">
+				name like CONCAT('%',#{search},'%')
+			</if>
 		</where>
 		LIMIT #{page},10
 	</select>
 	<select id="selectEnterpriseCount" resultType="int"
-		parameterType="hashmap"> <!-- 기업아이디 -->
+		parameterType="hashmap">
 		SELECT Count(*)
 		FROM Enterprise
 		<where>
-			#{category} like CONCAT('%',#{search},'%')
+			<if test="category.equals('enterprise_id')">
+				enterprise_id like CONCAT('%',#{search},'%')
+			</if>
+			<if test="category.equals('phone')">
+				phone like CONCAT('%',#{search},'%')
+			</if>
+			<if test="category.equals('name')">
+				name like CONCAT('%',#{search},'%')
+			</if>
 		</where>
 	</select>
-
 
 	<!-- 기업 회원 정보 -->
 	<select id="selectEnterpriseAccount" parameterType="String"
@@ -244,7 +290,8 @@
 		manager_name = #{manager_name},
 		manager_phone = #{manager_phone},
 		address = #{address},
-		category = #{category},
+		category =
+		#{category},
 		up_count = #{up_count},
 		resume_count = #{resume_count},
 		board_recruit_count = #{board_recruit_count}
@@ -252,7 +299,6 @@
 			enterprise_id = #{enterprise_id}
 		</where>
 	</update>
-
 	<!-- 기업 계정정지 -->
 	<update id="changeEnterprisestate" parameterType="hashmap">
 		update enterprise
@@ -261,7 +307,6 @@
 			enterprise_id = #{enterprise_id}
 		</where>
 	</update>
-
 	<!-- 공고관리 -->
 	<select id="selectRecruit" parameterType="String"
 		resultType="Recruit">
@@ -271,12 +316,12 @@
 		<where>
 			Recruit.recruit_id=board_recruit.recruit_id
 			AND
-			enterprise_id = #{enterprise_id}
+			enterprise_id =
+			#{enterprise_id}
 
 			AND board_recruit.delete_check=1
 		</where>
 	</select>
-
 	<!-- 공고관리삭제 ajax -->
 	<update id="deleteEnterpriseRecruit" parameterType="int">
 		update recruit
@@ -285,7 +330,6 @@
 			recruit_id=#{recruit_id}
 		</where>
 	</update>
-
 
 	<!-- 공고게시판 작성글 -->
 	<select id="selectRecruitWrite" parameterType="String"
@@ -302,13 +346,15 @@
 
 		<where>
 			board_recruit.recruit_id = recruit.recruit_id
-			AND recruit.enterprise_id = enterprise.enterprise_id
-			AND enterprise.enterprise_id = #{enterprise_id}
+			AND
+			recruit.enterprise_id = enterprise.enterprise_id
+			AND
+			enterprise.enterprise_id = #{enterprise_id}
 
-			AND board_recruit.delete_check =1
+			AND
+			board_recruit.delete_check =1
 		</where>
 	</select>
-
 
 	<!-- 공고글 관리 삭제 ajax -->
 	<update id="deleteEnterpriseBoardRecruit" parameterType="int">
@@ -320,29 +366,32 @@
 	</update>
 
 
-
 	<!-- 인재스크랩 -->
 	<select id="selectScrap" parameterType="String"
 		resultType="Scrap_enterprise">
 
 		SELECT
 		board_resume.title AS board_resume_title,
-		resume.title as resume_title ,
+		resume.title as
+		resume_title ,
 		resume.individual_id as individual_id,
 		scrap_enterprise_id,
 		individual.name,
 		board_resume.memo,
 		resume.resume_id,
 		board_resume.board_resume_id,
-		scrap_enterprise.date AS date
+		scrap_enterprise.date AS
+		date
 
 		From scrap_enterprise, board_resume ,resume,individual
 
 		<where>
 			scrap_enterprise.board_resume_id =board_resume.board_resume_id
 			AND resume.resume_id = board_resume.resume_id
-			AND resume.individual_id=individual.individual_id
-			AND enterprise_id =#{enterprise_id}
+			AND
+			resume.individual_id=individual.individual_id
+			AND enterprise_id
+			=#{enterprise_id}
 			AND board_resume.delete_check =1
 		</where>
 		ORDER BY scrap_enterprise.date DESC
@@ -353,7 +402,33 @@
 		delete from
 		Scrap_enterprise where scrap_enterprise_id = #{scrap_id}
 	</delete>
+			<select id="selectPayment"  parameterType="String" resultType="Payment">
+	
+		SELECT 
+		product.name AS name,
+		product.price AS product_price,
+		product.term AS term,
+		payment.date AS date
+		FROM payment , enterprise,product
+		<where> 
+		payment.enterprise_id=enterprise.enterprise_id
+		AND payment.product_id=product.product_id
+		AND enterprise.enterprise_id=#{enterprise_id}
+		AND product.delete_check =1
+		</where>
+		ORDER BY date DESC
+		</select>
+				
+		<select id="sumPayment" parameterType="String" resultType="product">
+		SELECT  SUM(price) AS sum_price 
+		FROM product,payment,enterprise
 
-
-
+		<where>  
+		product.product_id =payment.product_id 
+		AND payment.enterprise_id=enterprise.enterprise_id	
+		AND enterprise.enterprise_id=#{enterprise_id}
+		AND product.delete_check=1
+		AND payment.result="승인"
+		</where>
+		</select>	
 </mapper>

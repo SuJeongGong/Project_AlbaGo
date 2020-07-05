@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.spring.ex.dto.BoardResume;
-import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
+import com.spring.ex.dto.Enterprise;
 import com.spring.ex.dto.Individual;
 import com.spring.ex.dto.Payment;
 import com.spring.ex.dto.Product;
@@ -17,6 +16,8 @@ import com.spring.ex.dto.Resume;
 import com.spring.ex.dto.Scrap_Individual;
 import com.spring.ex.dto.Scrap_enterprise;
 import com.spring.ex.dto.Volunteer;
+
+
 
 public interface AdminDAO {
 	//---이예슬---
@@ -28,76 +29,76 @@ public interface AdminDAO {
 	//일주일 매출액Product sumPayment(String id);
 	int selectWeekTotal();
 	
-//	//개인회원정보에서 카테고리를 선택해서 검색
-//	ArrayList<Individual> selectId(String category,String search);
-//	ArrayList<Individual> selectIdIndividual_id(String individual_id);
-//	ArrayList<Individual> selectIdName(String name);
-//	ArrayList<Individual> selectIdPhone(String phone);
-//	
-//	//<!-- 개인관리자 링크타고 -->
-//	//<!-- 개인 회원 정보 -->
-//	Individual selectIndividualAccount(String id);
-//	//<!--개인 계정정지-->
-//	int changestate(HashMap<String, Object> map);
-//	//<!-- 개인 회원 정보 수정-->
-//	int updateIndividualAccount(Individual individual);
-//	//<!-- 이력서 관리 -->
-//	ArrayList<Resume> selectResume(String id);
-//	//<!--이력서 삭제 AJAX -->
-//	int deleteResume(int resume_id);
-//	//<!-- 지원한 알바-->
-//	ArrayList<Volunteer> selectApplypartjob(String id);
-//	//<!--지원알바 취소 AJAX-->
-//	   int deleteVolunteer(int volounteer_id);
-//	//<!--인재글 게시판-->
-//	ArrayList<BoardResume> selectResumeWrite(String id);
-//	//<!-- 인재 게시판 취소 AJAX -->
-//	int deletBoardResume(int board_resume_id);
-//	//<!--커뮤니티 게시판 작성글-->
-//	ArrayList<BoardCommunity> selectCommunity(String id);
-//	//<!--커뮤니티 게시판 삭제 AJAX -->
-//	int deleteCommunity(int comment_id);    //댓글삭제  -댓글번호로 삭제  -> 1개만 지워지고
-//	int deleteComments(int comment_id);    //댓글삭제  -글 번호로 삭제  -> 몇개가 있던
-//	//<!--기업스크랩-->	
-//	ArrayList<Scrap_Individual> selectEnterpriseScrap(String id);
-//	//<!--기업스크랩삭제-->
-//	int deleteEnterpriseScrap(int scrap_individual_id);
-//	
-//	//기업회원 검색 전체를 보여주는 테이블
-//	ArrayList<Enterprise> selectEnterpriselist();
-//	//개인회원정보에서 카테고리를 선택해서 검색
-//	ArrayList<Enterprise> selectEnterpriselist(String category,String search);
-//	ArrayList<Enterprise> selectEnterprise_id(String enterprise_id); 			//아이디
-//	ArrayList<Enterprise> selectEnterprise_name(String name);					//기업이름
-//	ArrayList<Enterprise> selectEnterprise_phone(String business_number);		//기업전화번호
-//	ArrayList<Enterprise> selectEnterprise_manager_name(String manager_name);	//담당자이름
-//	ArrayList<Enterprise> selectEnterprise_manager_phone(String manager_phone);	//담당자 번호
-//	
-//	//<!--기업관리자 링크타고-->
-//	//<!--기업 회원 정보-->
-//	Enterprise selectEnterpriseAccount(String id);
-//	//<!-- 기업 회원 정보 수정-->
-//	int updateEnterpriseAccount(Enterprise enterprise);
-//	//<!--기업 계정상태바꾸기-->
-//	int changeEnterprisestate(HashMap<String, Object> map);
-//	//<!--공고관리-->
-//	ArrayList<Recruit> selectRecruit(String id);
-//	//<!--공고삭제-->
-//	int deleteEnterpriseRecruit(int recruit_id);
-//	//<!--공고글 삭제-->
-//	int deleteEnterpriseBoardRecruit(int board_recruit_id);
-//
-//	//<!-- 공고글관리 -->
-//	ArrayList<BoardRecruit> selectRecruitWrite(String id);
-//	//<!--인재스크랩-->	
-//	ArrayList<Scrap_enterprise> selectScrap(String id);
-//	//<!--인재스크랩 삭제-->
-//	int deleteScrap(int scrap_id);
-//	//<!--상품결제내역-->
-//	ArrayList<Payment> selectPayment(String id);
-//	//<!--상품 총계-->
-//	Product sumPayment(String id);
-//	
+	//개인회원정보에서 카테고리를 선택해서 검색
+	ArrayList<Individual> selectId(String category,String search);
+	ArrayList<Individual> selectIdIndividual_id(String individual_id);
+	ArrayList<Individual> selectIdName(String name);
+	ArrayList<Individual> selectIdPhone(String phone);
+	ArrayList<Individual> selectlist();
+	//<!-- 개인관리자 링크타고 -->
+	//<!-- 개인 회원 정보 -->
+	Individual selectIndividualAccount(String id);
+	//<!--개인 계정정지-->
+	int changestate(HashMap<String, Object> map);
+	//<!-- 개인 회원 정보 수정-->
+	int updateIndividualAccount(Individual individual);
+	//<!-- 이력서 관리 -->
+	ArrayList<Resume> selectResume(String id);
+	//<!--이력서 삭제 AJAX -->
+	int deleteResume(int resume_id);
+	//<!-- 지원한 알바-->
+	ArrayList<Volunteer> selectApplypartjob(String id);
+	//<!--지원알바 취소 AJAX-->
+	   int deleteVolunteer(int volounteer_id);
+	//<!--인재글 게시판-->
+	ArrayList<BoardResume> selectResumeWrite(String id);
+	//<!-- 인재 게시판 취소 AJAX -->
+	int deletBoardResume(int board_resume_id);
+	//<!--커뮤니티 게시판 작성글-->
+	ArrayList<BoardCommunity> selectCommunity(String id);
+	//<!--커뮤니티 게시판 삭제 AJAX -->
+	int deleteCommunity(int comment_id);    //댓글삭제  -댓글번호로 삭제  -> 1개만 지워지고
+	int deleteComments(int comment_id);    //댓글삭제  -글 번호로 삭제  -> 몇개가 있던
+	//<!--기업스크랩-->	
+	ArrayList<Scrap_Individual> selectEnterpriseScrap(String id);
+	//<!--기업스크랩삭제-->
+	int deleteEnterpriseScrap(int scrap_individual_id);
+	
+	//기업회원 검색 전체를 보여주는 테이블
+	ArrayList<Enterprise> selectEnterpriselist();
+	//개인회원정보에서 카테고리를 선택해서 검색
+	ArrayList<Enterprise> selectEnterpriselist(String category,String search);
+	ArrayList<Enterprise> selectEnterprise_id(String enterprise_id); 			//아이디
+	ArrayList<Enterprise> selectEnterprise_name(String name);					//기업이름
+	ArrayList<Enterprise> selectEnterprise_phone(String business_number);		//기업전화번호
+	ArrayList<Enterprise> selectEnterprise_manager_name(String manager_name);	//담당자이름
+	ArrayList<Enterprise> selectEnterprise_manager_phone(String manager_phone);	//담당자 번호
+	
+	//<!--기업관리자 링크타고-->
+	//<!--기업 회원 정보-->
+	Enterprise selectEnterpriseAccount(String id);
+	//<!-- 기업 회원 정보 수정-->
+	int updateEnterpriseAccount(Enterprise enterprise);
+	//<!--기업 계정상태바꾸기-->
+	int changeEnterprisestate(HashMap<String, Object> map);
+	//<!--공고관리-->
+	ArrayList<Recruit> selectRecruit(String id);
+	//<!--공고삭제-->
+	int deleteEnterpriseRecruit(int recruit_id);
+	//<!--공고글 삭제-->
+	int deleteEnterpriseBoardRecruit(int board_recruit_id);
+
+	//<!-- 공고글관리 -->
+	ArrayList<BoardRecruit> selectRecruitWrite(String id);
+	//<!--인재스크랩-->	
+	ArrayList<Scrap_enterprise> selectScrap(String id);
+	//<!--인재스크랩 삭제-->
+	int deleteScrap(int scrap_id);
+	//<!--상품결제내역-->
+	ArrayList<Payment> selectPayment(String id);
+	//<!--상품 총계-->
+	Product sumPayment(String id);
+	
 	/*############################*/
 	//---임승재---
 	/** 오늘 가입한 기업,개인 개수 */

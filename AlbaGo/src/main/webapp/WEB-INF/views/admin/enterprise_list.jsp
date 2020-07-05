@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="com.spring.ex.dto.Enterprise"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,7 +14,29 @@
 
 
 
-<body>
+<body>	
+<%
+	HashMap<String, Object> map=(HashMap<String, Object>)request.getAttribute("map");//검색 조건
+	String urlCategory= (String)map.get("category");
+	String urlSearch=(String)map.get("search");
+	
+	
+	if(urlCategory==null){
+		urlCategory = "";
+	}	
+	if(urlSearch==null){
+		urlSearch = "";
+	}	
+	%>
+	<script type="text/javascript">
+		function page(page){
+			var page = page;
+			location.href="?page="+page+"&category=<%=urlCategory %>&search=<%=urlSearch %>";
+			
+			
+		}
+	
+	</script>
 
     <div id="wrapper">
         <!-- 사이드 바 -->
@@ -38,7 +61,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="<%=conPath%>/admin/enterprise_list/id" method="get" name="keyword" id="keyword">
+                                <form action="<%=conPath%>/admin/member/enterprise_list/id" method="get" name="keyword" id="keyword">
                                     <div class="input-group">
                                         <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
                                       
@@ -84,7 +107,7 @@
 												String category=list.getCategory();
 											%>
                                         <tr>
-                                            <td><a href="<%=conPath%>/admin/enterprise_detail?enterprise_id=<%=enterprise_id %>"><%=enterprise_id%></a></td>
+                                            <td><a href="<%=conPath%>/admin/member/enterprise_detail?enterprise_id=<%=enterprise_id %>"><%=enterprise_id%></a></td>
                                           	<td><%=password %></td>
                                             <td><%=name %></td>
                                             <td><%=business_number %></td>
@@ -97,20 +120,35 @@
                                 </table>
                             </div>
 
-                            <div class="text-center" style="float: left;">
+                            					<div class="text-center" style="float: left;">
                                 <ul class="pagination">
+                                <%
+                                	int pageNum = (int)request.getAttribute("pageNum");
+                              		int count = (int)request.getAttribute("count");
+                                System.out.println(pageNum);
+                                System.out.println(count);
+                                	if(pageNum>1){//<
+                                		%>
                                     <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                    </li>
-                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">1
-                                            <span class="sr-only">(current)</span></a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2 </a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                        <a class="page-link" href="javascript:page(<%=pageNum+1%>)" >Previous</a>
+                                    </li>      		<%                             		                                		
+                                	}
+                                	for (int i =1; i<=count ; i++){//각각 번호 
+                                		%>
+                  
+                                    <li class="page-item"><a class="page-link" href="javascript:page(<%=i%>)"><%=i%> </a></li>
+                   		<%
+                                	}	
+                                	if(pageNum<count){//>
+                                		%>
+                   
                                     <li class="page-item">
-                                        <a class="page-link" href="#">Next</a>
+                                        <a class="page-link" href="javascript:page(<%=pageNum+1%>)">Next</a>
                                     </li>
+                                     		<%                             		                                		
+                                	}
+                                
+                                %>
                                 </ul>
                             </div>
                         </div>

@@ -45,7 +45,7 @@
 		<where> product.product_id = payment.product_id</where>
 		group by product.type
 	</select>
-	<!-- 
+	<!-- 개인 -->
 	<select id="selectlist" resultType="Individual">
 		SELECT *
 		FROM Individual
@@ -79,17 +79,17 @@
 	phone like CONCAT('%',#{phone},'%')
 	</where> 
 	</select>
-				개인 -->
+				
 	<!-- 개인관리자 링크타고 -->
-   <!-- 개인 회원 정보 보기
+   <!-- 개인 회원 정보 보기 -->
    <select id="selectIndividualAccount" parameterType="String" resultType="Individual">
    SELECT * 
    FROM Individual
    <where>
    individual_id=#{id}
    </where>
-   </select>    -->
-   <!-- 개인 회원 정보 수정
+   </select>   
+   <!-- 개인 회원 정보 수정 -->
    
    <update id="updateIndividualAccount" parameterType="int">
       update individual 
@@ -103,8 +103,8 @@
       <where>
          individual_id = #{individual_id}
       </where>
-   </update> -->
-   <!-- 개인계정정지 
+   </update>
+   <!-- 개인계정정지    -->
    <update id="changestate" parameterType="hashmap">
     update individual 
       set state=#{result}
@@ -112,8 +112,8 @@
          individual_id = #{individual_id}
       </where>
    </update>
-   -->
-   <!-- 이력서관리 
+
+   <!-- 이력서관리 -->
    <select id="selectResume" parameterType="String" resultType="Resume">
    SELECT title,date ,resume_id,individual_id
    FROM RESUME 
@@ -121,9 +121,9 @@
    individual_id=#{id} 
    AND   RESUME.delete_check =1
    </where>    
-   </select>-->
+   </select>
    
-   <!-- 이력서관리삭제 ajax
+   <!-- 이력서관리삭제 ajax   -->
    <update id="deleteResume" parameterType="int">
    update resume
    set delete_check = 0
@@ -131,8 +131,8 @@
    resume_id=#{resume_id}
    </where>
    </update>
-    -->
-   <!-- 지원한 알바 
+ 
+   <!-- 지원한 알바 -->
    <select id="selectApplypartjob" parameterType="String" resultType="Volunteer">
    Select
       board_recruit.title as board_recruit_title,
@@ -156,17 +156,17 @@
    AND resume.delete_check=1
    </where>
    ORDER BY volunteer.volunteer_id DESC
-   </select>-->
+   </select>
    
-   <!-- 지원한 알바  취소 AJAX 
+   <!-- 지원한 알바  취소 AJAX -->
       <delete id="deleteVolunteer" parameterType="int">
       delete from volunteer
       <where>
       volunteer_id=#{volunteer_id}
       </where>
-   </delete>-->
+   </delete>
 	
-	<!-- 인재 게시판 작성글 
+	<!-- 인재 게시판 작성글 -->
 	<select id="selectResumeWrite" parameterType="String" resultType="BoardResume">
 	SELECT 
 		board_resume.title AS board_resume_title ,
@@ -184,18 +184,18 @@
 		AND individual.individual_id = #{id}
 		AND board_resume.delete_check =1
 		</where>
-	</select>-->
+	</select>
 	
-	<!-- 인재 게시판 취소 AJAX 
+	<!-- 인재 게시판 취소 AJAX -->
 	<update id="deletBoardResume" parameterType="int">
    	update board_resume
    	set delete_check = 0
    	<where> 
    	board_resume_id=#{board_resume_id}
    	</where>
-   	</update>-->
+   	</update>
 
-	<!--커뮤니티 게시판 작성글 
+	<!--커뮤니티 게시판 작성글 -->
 	<select id="selectCommunity" parameterType="String" resultType="BoardCommunity">
 	SELECT 
 		community.date AS date,
@@ -208,21 +208,21 @@
 		<where> community.individual_id=individual.individual_id 
 		AND individual.individual_id=#{id}
 		</where>
-	</select> -->
+	</select> 
 	
 	<!--커뮤니티 게시판 삭제 AJAX -->
 	
-	<!-- 커뮤니티글 댓글삭제
+	<!-- 커뮤니티글 댓글삭제-->
 	<delete id="deleteComments" parameterType="int">
 		DELETE FROM `comment` WHERE `comment`.community_id =#{comment_id}
-	</delete> -->
+	</delete> 
 	
-	<!-- 커뮤니티글 글삭제 
+	<!-- 커뮤니티글 글삭제 --> 
 	<delete id="deleteCommunity" parameterType="int">
 		DELETE FROM community WHERE community_id = #{community_id}
-	</delete>--> 
+	</delete>
 	
-	<!-- 기업스크랩 
+	<!-- 기업스크랩 -->
 		<select id="selectEnterpriseScrap"  parameterType="String" resultType="Scrap_individual">
 		SELECT 
 		board_recruit.title AS board_recruit_title,
@@ -245,71 +245,71 @@
 		</where>
 		ORDER BY scrap_individual.date DESC
 		
-		</select>-->
+		</select>
 
-		<!-- 기업스크랩 취소 
+		<!-- 기업스크랩 취소 -->
 	<delete id="deleteEnterpriseScrap" parameterType="int">
 		delete from
 		Scrap_individual where scrap_individual_id = #{scrap_individual_id}
-	</delete> -->
+	</delete> 
 	
 	
 <!-- ###################################################################### -->
-	<!-- 기업회원 관리자 검색 
+	<!-- 기업회원 관리자 검색  -->
 	<select id = "selectEnterpriselist" resultType="Enterprise" parameterType="String">
 		SELECT *
 		FROM Enterprise
-	</select> -->
-<!-- 기업아이디 
+	</select>
+<!-- 기업아이디 -->
 	<select id="selectEnterprise_id" resultType="Enterprise" parameterType="String"> 
 	SELECT *
 	FROM Enterprise
 	<where>
 	enterprise_id like CONCAT('%',#{enterprise_id},'%') 
 	</where> 
-	</select>-->
-	<!-- 기업이름 
+	</select>
+	<!-- 기업이름 -->
 	<select id="selectEnterprise_name" resultType="Enterprise" parameterType="String"> 
 	SELECT *
 	FROM Enterprise
 	<where>
 	name like CONCAT('%',#{name},'%') 
 	</where> 
-	</select>-->
-	<!-- 기업전화번호
+	</select>
+	<!-- 기업전화번호-->
 	<select id="selectEnterprise_phone" resultType="Enterprise" parameterType="String"> 
 	SELECT *
 	FROM Enterprise
 	<where>
 	business_number like CONCAT('%',#{business_number},'%') 
 	</where> 
-	</select>-->
-	 <!-- 담당자이름
+	</select>
+	 <!-- 담당자이름-->
 	<select id="selectEnterprise_manager_name" resultType="Enterprise" parameterType="String"> 
 	SELECT *
 	FROM Enterprise
 	<where>
 	manager_name like CONCAT('%',#{manager_name},'%') 
 	</where> 
-	</select>-->
-	<!-- 담당자번호
+	</select>
+	<!-- 담당자번호-->
 	<select id="selectEnterprise_manager_phone" resultType="Enterprise" parameterType="String"> 
 	SELECT *
 	FROM Enterprise
 	<where>
 	manager_phone like CONCAT('%',#{manager_phone},'%') 
 	</where> 
-	</select>-->
+	</select>
 	
-	<!-- 기업 회원 정보
+	<!-- 기업 회원 정보-->
 	<select id="selectEnterpriseAccount" parameterType="String" resultType="Enterprise">
 	SELECT * 
 	FROM Enterprise
 	<where>
 	enterprise_id=#{id}
 	</where>
-	</select>-->
-	<!-- 기업회원정보수정 
+	</select>
+	<!-- 기업회원정보수정 -->
 	 <update id="updateEnterpriseAccount" parameterType="int">
       update enterprise 
       set 
@@ -326,18 +326,18 @@
       <where>
          enterprise_id = #{enterprise_id}
       </where>
-   </update>-->
+   </update>
    
-   <!-- 기업 계정정지 
+   <!-- 기업 계정정지 -->
    <update id="changeEnterprisestate" parameterType="hashmap">
     update enterprise 
       set state=#{result}
       <where>
          enterprise_id = #{enterprise_id}
       </where>
-   </update>-->
+   </update>
    
-	<!-- 공고관리 
+	<!-- 공고관리 -->
    <select id="selectRecruit"  parameterType="String" resultType="Recruit">
 	 	SELECT recruit.title,recruit.date,recruit.place,recruit.recruit_id,board_recruit.board_recruit_id
 		FROM Recruit,board_recruit
@@ -348,9 +348,10 @@
 	
 		AND board_recruit.delete_check=1
 		</where>
-	</select>-->
+	</select>
 	
 	<!-- 공고관리삭제 ajax 
+	-->
    <update id="deleteEnterpriseRecruit" parameterType="int">
    update recruit
  	set delete_check = 0
@@ -359,8 +360,8 @@
    </where>
    </update>
    
-	-->
 	<!-- 공고게시판 작성글
+-->
 	<select id="selectRecruitWrite"  parameterType="String" resultType="BoardRecruit">
 		SELECT 
 		board_recruit.title,
@@ -381,8 +382,8 @@
 		</where>
 	</select>
 	
--->
    <!-- 공고글 관리 삭제 ajax
+	-->
    	<update id="deleteEnterpriseBoardRecruit" parameterType="int">
 	update board_recruit
 	set delete_check = 0
@@ -392,8 +393,7 @@
 	</update>
 
 
-	-->
-	<!-- 인재스크랩 
+	<!-- 인재스크랩 -->
 		<select id="selectScrap"  parameterType="String" resultType="Scrap_enterprise">
 	
 		SELECT 
@@ -418,13 +418,13 @@
 		</where>
 		ORDER BY scrap_enterprise.date DESC
 		
-		</select>-->
-	<!-- 인재스크랩 취소  
+		</select>
+	<!-- 인재스크랩 취소  -->
 	<delete id="deleteScrap" parameterType="int">
 		delete from
 		Scrap_enterprise where scrap_enterprise_id = #{scrap_id}
-	</delete>-->
-	<!-- 상품 결제내역 
+	</delete>
+	<!-- 상품 결제내역 	-->
 		<select id="selectPayment"  parameterType="String" resultType="Payment">
 	
 		SELECT 
@@ -454,7 +454,7 @@
 		AND payment.result="승인"
 		</where>
 		</select>	
-	-->
+
 	<!-- #################  -->
 	<!-- 임승재  -->
 	

@@ -96,7 +96,7 @@
                             </div>
                             <div class="card-body">
                             <!-- 회원정보 form 시작 -->
-                         	<form action="<%=request.getContextPath() %>/admin/individual_detail/update"name="individual"  class="col-xl-12" >
+                         	<form action="<%=request.getContextPath() %>/admin/member/individual_detail/update"name="individual"  class="col-xl-12" >
                                 <table id="res5" class="table table-bordered ">
 	               			<tr>
 	               				<th>아이디</th>
