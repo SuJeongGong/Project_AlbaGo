@@ -279,7 +279,7 @@ public class AdminController {
 		if(end.equals(null)) {
 			end="9999-12-31";
 		}
-		String endd = "23:59:59";
+		String endd = end+" 23:59:59";
 		System.out.println(start);
 		System.out.println(end);
 		System.out.println(search);
