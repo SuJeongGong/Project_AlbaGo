@@ -65,14 +65,18 @@
 	<!-- 임승재  -->
 	
 	<!-- 총검색  -->
-	<select id="total_I" resultType="BoardResume" parameterType="hashmap">
-		SELECT *
+	<select id="searchIndi" resultType="hashmap" parameterType="String">
+		SELECT individual_id as member_id,
+		name as name,
+		phone as phone
 		FROM individual
 		WHERE (individual_id LIKE CONCAT('%',#{search},'%')
 		OR name LIKE CONCAT('%',#{search},'%'))
 	</select>
-	<select id="total_E" resultType="BoardRecruit" parameterType="hashmap">
-		SELECT *
+	<select id="searchEnter" resultType="hashmap" parameterType="String">
+		SELECT  enterprise_id as member_id,
+		name as name,
+		manager_phone as phone
 		FROM enterprise
 		WHERE (enterprise_id LIKE CONCAT('%',#{search},'%')
 		OR `NAME` LIKE CONCAT('%',#{search},'%'))

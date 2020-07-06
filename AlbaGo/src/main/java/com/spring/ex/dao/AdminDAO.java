@@ -109,13 +109,9 @@ public interface AdminDAO {
 		//오늘 매출액
 		HashMap<String,Object> total_M();
 		//총검색
-		ArrayList<BoardResume> total_I(Map<String, Object> map);
-		ArrayList<BoardRecruit> total_E(Map<String, Object> map);
-	
-//	/** 공고글 관리 */
-//		//전체 공고 갯수
-//		int all_Count();
-//		
+		ArrayList<HashMap<String, Object>> searchEnter(String keyword);
+		ArrayList<HashMap<String, Object>>  searchIndi(String keyword);
+
 //		//오늘 공고 갯수
 	int today_Count();
 //		

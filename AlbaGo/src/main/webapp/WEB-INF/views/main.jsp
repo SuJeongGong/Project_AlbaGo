@@ -60,7 +60,7 @@
                         <input type="text" placeholder="검색할 단어" name="title">
                     </div>
                     <div class="job_btn col-lg-3 col-md-3">
-						<button type="submit" class="boxed-btn3">검색</button>
+						<button type="submit" class="boxed-btn3 col-lg-12 col-md-12">검색</button>
 					</div>
             	</form>
 

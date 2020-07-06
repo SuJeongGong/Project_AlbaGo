@@ -37,7 +37,7 @@ import com.spring.ex.services.ProductService;
 
 @Controller
 @RequestMapping("/admin")
-public class AdminProductController {
+public class AdminMainController {
 
 	@Autowired
 	ProductService productService;
@@ -46,18 +46,19 @@ public class AdminProductController {
 	@Autowired
 	EnterpriseService enterpriseService;
 	
-	@RequestMapping("/manager_topbar")
-	public String manager_topbar(Model m, @RequestParam("search") String search) {
-		String page = null;
+	@RequestMapping("/search")
+	public String search(Model m		
+			,@RequestParam(value = "search", defaultValue = "") String search
+			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		System.out.println(search);
-		ArrayList<BoardResume> boardresumes = adminService.total_I(search);
-		ArrayList<BoardRecruit> boardrecruits = adminService.total_E(search);
-		m.addAttribute("boardresumes", boardresumes);
-		m.addAttribute("boardrecruits", boardrecruits);
-		System.out.println(boardresumes);
-		System.out.println(boardrecruits);
+		ArrayList<HashMap<String, Object>>  E_members = adminService.searchEnter(search);
+		ArrayList<HashMap<String, Object>>  I_members = adminService.searchIndi(search);
+		System.out.println(E_members);
+		m.addAttribute("E_members", E_members);
+		m.addAttribute("I_members", I_members);
+		System.out.println(I_members);
 		
-		return page;
+		return "admin/search";
 	}
 
 	@RequestMapping("/main") // 관리자 메인

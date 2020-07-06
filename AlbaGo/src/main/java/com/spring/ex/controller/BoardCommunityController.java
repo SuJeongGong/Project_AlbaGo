@@ -20,6 +20,7 @@ import com.spring.ex.dao.CommunityDAO;
 import com.spring.ex.dto.BoardComment;
 import com.spring.ex.dto.BoardCommunity;
 import com.spring.ex.dto.BoardRecruit;
+import com.spring.ex.interceptor.Auth;
 import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.CommunityService;
 
@@ -43,7 +44,7 @@ public class BoardCommunityController {
 		
 		return "/community/list";
 	}
-	
+	@Auth
 	@RequestMapping("/write/save")//작성
 	public String writeSave(HttpServletRequest request , @ModelAttribute("community") BoardCommunity community){
 	
@@ -69,7 +70,7 @@ public class BoardCommunityController {
 		return "/community/write"; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
 	}
 	
-	
+	@Auth
 	@RequestMapping("comment/write")//댓글작성
 	public @ResponseBody int writeComment(@AuthUser String id, @ModelAttribute("comment")String comment, @ModelAttribute("community")int community){
 		//아이디 가져오고  -(@AuthUser String id
@@ -122,7 +123,7 @@ public class BoardCommunityController {
 	}
 	
 	
-	
+	@Auth
 	@RequestMapping("/content/update") // 수정화면에 수정 버튼 누르면
 	public String contentUpdate(HttpServletRequest request,@ModelAttribute("community") BoardCommunity boardCommunity) {
 		String page = "/community/update"; //안되면 
@@ -145,7 +146,7 @@ public class BoardCommunityController {
 	}
 	
 	
-	
+	@Auth
 	@RequestMapping("/update")//수정화면보기
 	public String update(HttpServletRequest request, Model m) {
 		String page = "/community/list";
@@ -168,7 +169,7 @@ public class BoardCommunityController {
 		return page;
 	}
 	
-	
+	@Auth
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)//삭제
 	public String delete(@RequestParam ("community_id") int community_id) {
 		String page = "/community/content";//성공 안했을 때의 페이지 
@@ -182,7 +183,7 @@ public class BoardCommunityController {
 		}
 		return page;
 	}
-	
+	@Auth
 	@RequestMapping(value = "comment/delete", method = RequestMethod.GET)//댓글삭제
 	public String commentdelete(int comment_id) {
 		String page = "/community/content";

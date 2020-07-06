@@ -21,6 +21,7 @@ import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.BoardResume;
 import com.spring.ex.dto.Career;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.interceptor.Auth;
 import com.spring.ex.services.BoardResumeService;
 import com.spring.ex.services.IndividualService;
 import com.spring.ex.services.ResumeService;
@@ -65,7 +66,7 @@ public class BoardResumeController {
 		System.out.println(boardresumes +"boardrecruits");
 		return page;
 	}
-	
+	@Auth
 	@RequestMapping("/write/save") //저장하기
 	public String write_save(HttpServletRequest request, @ModelAttribute("boardresume") BoardResume boardresume, BindingResult result) {
 		String page = "/resume/write";
@@ -99,7 +100,7 @@ public class BoardResumeController {
 		return page;
 	}
 	
-	
+	@Auth
 	@RequestMapping("/write")//작성화면
 	public String write(HttpServletRequest request, Model m) {
 		String id = request.getSession().getAttribute("id").toString(); //로그인한 사람
@@ -141,7 +142,7 @@ public class BoardResumeController {
 		
 		return "/resume/content";
 	}
-	
+	@Auth
 	@RequestMapping("content/write_update") //수정화면에 수정 버튼 누르면
 	public String contentUpdate(HttpServletRequest request, @ModelAttribute("boardresume") BoardResume boardresume) {
 		String page = "/resume/write_update"; //안되면
@@ -162,7 +163,7 @@ public class BoardResumeController {
 		return page;
 	}
 	
-	
+	@Auth
 	@RequestMapping("/write_update")//수정화면보기
 	public String update(HttpServletRequest request, Model m) {
 		String page="/resume/list";
@@ -185,7 +186,7 @@ public class BoardResumeController {
 		}
 		return page;
 	}
-	
+	@Auth
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(int board_resume_id) {
 		String page = "/resume/content";

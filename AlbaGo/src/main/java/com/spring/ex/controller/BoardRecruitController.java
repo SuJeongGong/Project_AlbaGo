@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spring.ex.dao.BoardRecruitDAO;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.Resume;
+import com.spring.ex.interceptor.Auth;
 import com.spring.ex.services.BoardRecruitService;
 import com.spring.ex.services.EnterpriseService;
 import com.spring.ex.services.RecruitService;
@@ -90,7 +91,7 @@ public class BoardRecruitController {
 		
 		return page;
 	}
-
+	@Auth
 	@RequestMapping("/write/save") // 저장하기
 	public String write_save(HttpServletRequest request, @ModelAttribute("boardrecruit") BoardRecruit boardrecruit,
 			BindingResult result) {
@@ -123,7 +124,7 @@ public class BoardRecruitController {
 
 		return page;
 	}
-
+	@Auth
 	@RequestMapping("/write") //
 	public String write(HttpServletRequest request, Model m) {
 		String id = request.getSession().getAttribute("id").toString();// 로그인한 사람 아이디
@@ -173,7 +174,7 @@ public class BoardRecruitController {
 		m.addAttribute("board_content", board_content);// 여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
 		return "/recruit/content";
 	}
-
+	@Auth
 	@RequestMapping("/content/write_update") // 수정화면에 수정 버튼 누르면
 	public String contentUpdate(HttpServletRequest request, @ModelAttribute("boardrecruit") BoardRecruit boardrecruit) {
 		String page = "/recruit/write_update"; // 안되면
@@ -194,7 +195,7 @@ public class BoardRecruitController {
 		}
 		return page;
 	}
-
+	@Auth
 	@RequestMapping("/write_update") // 수정화면보기
 	public String update(HttpServletRequest request, Model m) {
 		String page = "/recruit/list";
@@ -218,7 +219,7 @@ public class BoardRecruitController {
 		}
 		return page;
 	}
-
+	@Auth
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(int board_recruit_id) {
 		String page = "/recruit/content";

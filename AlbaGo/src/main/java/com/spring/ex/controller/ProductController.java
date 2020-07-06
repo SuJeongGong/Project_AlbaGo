@@ -75,7 +75,7 @@ public class ProductController {
 		}
 		return page;
 	}
-
+	@Auth
 	@RequestMapping("/advertising/payment") // 상세보기
 	public String advertising(HttpServletRequest request, Model m,@RequestParam("product_id")int product_id,@AuthUser String id ) {
 		Product product=productService.enterprise_selectWrite(product_id);
