@@ -29,7 +29,7 @@ import com.spring.ex.services.AdminMemberService;
 
 @RequestMapping("/admin/member")
 @Controller
-public class AdminMember {
+public class AdminMemberController {
 	@Autowired
 	AdminMemberService adminMemberService;
 

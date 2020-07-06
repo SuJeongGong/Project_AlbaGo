@@ -36,7 +36,7 @@ import com.spring.ex.services.ProductService;
 
 @Controller
 @RequestMapping("/admin/board")
-public class AdminBoard {
+public class AdminBoardController {
 
 	@Autowired
 	AdminBoardService adminBoardService;

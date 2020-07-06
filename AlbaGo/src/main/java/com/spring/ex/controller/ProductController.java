@@ -45,6 +45,7 @@ public class ProductController {
 
 		return page;
 	}	
+	@Auth
 	@RequestMapping("/product/payment/result") // 상세보기
 	public String payment(@AuthUser String id ,@RequestParam("product_id")int product_id) {
 		
