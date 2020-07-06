@@ -26,7 +26,7 @@
 		(
 			null,
 			#{resume_id},
-			#{title},
+			#{board_resume_title},
 			0,
 			#{memo},
 			null,

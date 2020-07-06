@@ -506,7 +506,7 @@ HashMap<String, Object> totalM =(HashMap)request.getAttribute("totalM");
 										// Include a dollar sign in the ticks
 										callback : function(value, index,
 												values) {
-											return '$' + number_format(value);
+											return '$' + number_format(value)+"원";
 										}
 									},
 									gridLines : {
