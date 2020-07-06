@@ -62,7 +62,7 @@ public class BoardCommunityController {
 		// communitys = 저장할 값
 		return "redirect:/community/list"; // 커뮤니티 리스트 로 돌아가는게 맞는데 뭔가 안됌 나중에 처리
 	}
-
+	@Auth
 	@RequestMapping("/write") // 작성
 	public String write() {
 
