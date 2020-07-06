@@ -150,7 +150,7 @@ public class BoardRecruitController {
 			System.out.println(boardrecruit);
 			if (boardRecruitService.updateBoard(boardrecruit) >= 1) {
 				System.out.println("DB연결 성공");
-				page = "redirect:/recruit/lsit";
+				page = "redirect:/recruit/list";
 			} else {
 				System.out.println("DB연결 실패");
 			}
@@ -163,7 +163,7 @@ public class BoardRecruitController {
 	public String update( @AuthUser String id, Model m, @RequestParam("board_recruit_id") int board_recruit_id) {
 		String page = "/recruit/list";
 
-		if (id.split("/")[1].equals("기업")) { // 기업회원이 맞는지 확인
+		if (id.split("/")[1].equals("개인")) { // 기업회원이 맞는지 확인
 			return page;
 		} 
 
@@ -185,7 +185,7 @@ public class BoardRecruitController {
 		System.out.println(board_recruit_id); // jsp에서 가져온 값
 		if (1 <= boardRecruitService.deleteBoard(board_recruit_id)) {
 			System.out.println("DB연결 성공!");
-			page = "redirect:/recruit/lsit";
+			page = "redirect:/recruit/list";
 		} else {
 			System.out.println("DB연결 실패!");
 		}

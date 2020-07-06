@@ -19,6 +19,7 @@ import com.spring.ex.dto.Volunteer;
 
 public interface EnterpriseDAO {
 	Enterprise selectEnterprise(String id);//회원정보 가져오기 
+	Recruit selectRecruit(int recruit_id);
 	ArrayList<Recruit> selectRecruits(HashMap<String, Object> map);//공고 가져오기 
 	int selectRecruitsCount(HashMap<String, Object> map);//공고 페이징
 	ArrayList<Scrap_enterprise> selectScrap(HashMap<String, Object> map);//스크랩 가져오기
@@ -42,7 +43,6 @@ public interface EnterpriseDAO {
 	int deleteScrap(int scrap_id);//스크랩 삭제하기
 	int deleteRecruit(int recruit_id);//공고 삭제하기
 	int insertRecruit(Recruit recruit);
-	Recruit selectRecruit(int recruit_id);
 	Resume selectVolunteerResume(int resume_id);//지원자의 지원 이력서 가져오기
 	ArrayList<Career> selectVolunteerCareer(int resume_id);//지원자의 지원 이력서중에 경력 가져오기
 	int insertScrap(Scrap_enterprise scrap);//기업이 인재 스크랩 추가하기

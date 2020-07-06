@@ -222,6 +222,13 @@
 		ORDER BY recruit.recruit_id DESC
 
 	</select>
+	<select id ="selectRecruit" parameterType="String" resultType="Recruit">
+		select * 
+		from recruit
+		<where>
+			recruit_id = #{recruit_id}
+		</where>
+	</select>
 
 
 	<select id="boardRecruits" parameterType="String" resultType="BoardRecruit">
