@@ -16,7 +16,7 @@ public interface BoardRecruitDAO {
 	
 	//공고글 보여주기
 	BoardRecruit selectView(int id);
-	
+	ArrayList<BoardRecruit> selectRecruit(String enterprise_id);
 	//삭제
 	int deleteBoard(int board_recruit_id);
 	

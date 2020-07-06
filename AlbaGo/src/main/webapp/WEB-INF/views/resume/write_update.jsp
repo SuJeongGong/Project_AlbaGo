@@ -30,18 +30,18 @@
 					</div>
 					<input type="hidden" name ="board_resume_id" value="<%=board_content.getBoard_resume_id()%>">
 					<label for="title">제목 </label>
-					<input type="text" class="form-control" id="title" name="title" value="<%=board_content.getBoard_resume_title() %>">
+					<input type="text" class="form-control" id="title" name="board_resume_title" value="<%=board_content.getBoard_resume_title() %>">
 					<label for="message">내용</label>
 					<textarea name="memo" id="memo" cols="30" rows="10" class="form-control"> <%=board_content.getMemo() %></textarea>
 					<br/>
 					<div class="row col-lg-12">
-						<h4 class="col-lg-2">공고 선택</h4>
+						<h4 class="col-lg-2">이력서 선택</h4>
 						<select name="resume_id" class="col-lg-6">
 						<%
 						ArrayList<BoardResume> resumes = (ArrayList)request.getAttribute("resume");
 							for(int i=0; i<resumes.size(); i++) {
 								BoardResume resume = resumes.get(i);
-								String title = resume.getBoard_resume_title();
+								String title = resume.getResume_title();
 								int resume_id = resume.getResume_id(); %>
 							<option value="<%=resume_id%>"><%=title%></option>
 						<%

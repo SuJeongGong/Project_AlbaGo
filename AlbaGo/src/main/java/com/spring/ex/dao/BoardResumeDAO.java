@@ -23,7 +23,7 @@ public interface BoardResumeDAO {
 	
 	//수정
 	int updateBoard(BoardResume boardresume);
-	
+	ArrayList<BoardResume> selectResume(String id);
 	//검색
 	ArrayList<BoardResume> total_List(Map<String, Object> map);
 	int selectListCount(Map<String, Object> map);

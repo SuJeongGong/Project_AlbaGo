@@ -169,11 +169,6 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="serch_cat d-flex justify-content-end">
-                                        <select id="sort" name="sort">
-                                            <option data-display="" value="">정렬 기준</option>
-                                            <option value="최신순">최신순</option>
-                                            <option value="조회수순">조회수순 </option>
-                                        </select>
                                         <a href="<%=request.getContextPath() %>/recruit/write" class="boxed-btn3">글쓰기</a>
                                     </div>
                                 </div>

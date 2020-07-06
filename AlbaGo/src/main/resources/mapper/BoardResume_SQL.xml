@@ -9,7 +9,12 @@
 		where resume.resume_id = board_resume.resume_id
 		and board_resume.delete_check = 1
 	</select>
-	
+	<!-- 글쓸때 인재 가져오기 -->
+	<select id="selectResume" resultType="BoardResume" parameterType="String">
+		select title as resume_title, resume_id
+		from resume
+		where individual_id = #{individual_id}
+	</select>
 	<!-- 인재글 작성 -->
 	<insert id = "insertBoard_resume" parameterType="BoardResume">
 		insert into board_resume
@@ -65,7 +70,7 @@ FROM board_resume,resume,career
 	<!-- 글 수정 -->
 	<update id="updateBoard" parameterType="BoardResume">
 		UPDATE board_resume
-		SET title = #{title},
+		SET title = #{board_resume_title},
 			memo = #{memo}
 		<where>
 			board_resume_id = #{board_resume_id}

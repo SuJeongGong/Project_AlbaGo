@@ -23,9 +23,9 @@ import com.spring.ex.dao.BoardRecruitDAO;
 import com.spring.ex.dto.BoardRecruit;
 import com.spring.ex.dto.Resume;
 import com.spring.ex.interceptor.Auth;
+import com.spring.ex.interceptor.AuthUser;
 import com.spring.ex.services.BoardRecruitService;
 import com.spring.ex.services.EnterpriseService;
-import com.spring.ex.services.RecruitService;
 
 @Controller
 @RequestMapping("/recruit")
@@ -34,13 +34,10 @@ public class BoardRecruitController {
 	@Autowired
 	BoardRecruitService boardRecruitService;
 	@Autowired
-	RecruitService recruitService;
-	@Autowired
 	EnterpriseService enterpriseService;
 
-
-	@RequestMapping(value="/list")
-	public String list_total(Model m,HttpServletRequest request,
+	@RequestMapping(value = "/list")
+	public String list_total(Model m, HttpServletRequest request,
 			@RequestParam(value = "enterprise_category", defaultValue = "") String enterprise_category,
 			@RequestParam(value = "local_category", defaultValue = "") String local_category,
 			@RequestParam(value = "gender", defaultValue = "") String gender,
@@ -68,14 +65,14 @@ public class BoardRecruitController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		HashMap<String, Object> map=new HashMap<String,Object>();
-		map.put("category",enterprise_category);
-		map.put("place",local_category);
-		map.put("gender",gender);
-		map.put("education",education);
-		map.put("term",term);
-		map.put("title",title);
-		map.put("start",(pageNum-1) * 10 );
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("category", enterprise_category);
+		map.put("place", local_category);
+		map.put("gender", gender);
+		map.put("education", education);
+		map.put("term", term);
+		map.put("title", title);
+		map.put("start", (pageNum - 1) * 10);
 		ArrayList<BoardRecruit> boardrecruits = boardRecruitService.total_List(map);
 		int count = boardRecruitService.selectListCount(map);
 		System.out.println("local_category" + local_category);
@@ -86,54 +83,37 @@ public class BoardRecruitController {
 
 		m.addAttribute("boardrecruits", boardrecruits);
 		m.addAttribute("pageNum", pageNum);
-		m.addAttribute("count",  count / 10 + 1);
-		m.addAttribute("map",  map);
-		
+		m.addAttribute("count", count / 10 + 1);
+		m.addAttribute("map", map);
+
 		return page;
 	}
+
 	@Auth
 	@RequestMapping("/write/save") // 저장하기
-	public String write_save(HttpServletRequest request, @ModelAttribute("boardrecruit") BoardRecruit boardrecruit,
+	public String write_save(@ModelAttribute("boardrecruit") BoardRecruit boardrecruit, @AuthUser String id,
 			BindingResult result) {
 		String page = "/recruit/write";
-		System.out.println("왜 갑자기 말썽이니?");
-		String id = request.getSession().getAttribute("id").toString();// 로그인한 사람 아이디
-		String type = request.getSession().getAttribute("type").toString();// 로그인한 회원 타입 - 기업, 개인
-		System.out.println("되나?1");
-		int a = boardrecruit.getBoard_recruit_id();
-		int b = boardrecruit.getRecruit_id();
-		String c = boardrecruit.getTitle();
-		// int d = boardrecruit.getViews();
-		String e = boardrecruit.getMemo();
-		System.out.println(a);
-		System.out.println(b);
-		System.out.println(c);
-		System.out.println(e);
-		if (id == null) {
-			page = "/join/login";
+
+		if (id.split("/")[1].equals("개인")) {
 			System.out.println("되나?2");
-		}
-		if (type == "개인") {
-			System.out.println("되나?2");
-			page = "/recruit/lsit";
+			page = "redirect:/recruit/lsit";
 		}
 		if (1 <= boardRecruitService.insertBoard_recruit(boardrecruit)) {
 			System.out.println("되나?2");
-			page = "/main";
+			page = "redirect:/recruit/lsit";
 		}
 
 		return page;
 	}
+
 	@Auth
 	@RequestMapping("/write") //
-	public String write(HttpServletRequest request, Model m) {
-		String id = request.getSession().getAttribute("id").toString();// 로그인한 사람 아이디
-		String type = request.getSession().getAttribute("type").toString();// 로그인한 회원 타입 - 기업, 개인
-
-		ArrayList<BoardRecruit> recruits = recruitService.selectRecruit(id);
-		System.out.println(id);
-		System.out.println(type);
-		System.out.println("잘되라");
+	public String write(Model m, @AuthUser String id) {
+		if(id.split("/")[1].equals("개인")) {
+			return "redirect:/recruit/list";
+		}
+		ArrayList<BoardRecruit> recruits = boardRecruitService.selectRecruit(id.split("/")[0]);
 
 		m.addAttribute("recruit", recruits);
 
@@ -141,73 +121,53 @@ public class BoardRecruitController {
 	}
 
 	@RequestMapping("/content") // 보는화면
-	public String content(Model m, HttpServletRequest request) {
-		// 디비처리 select로 글 내용 가져오기
-		// update로 조회수
+	public String content(Model m, @AuthUser String id, @RequestParam("board_recruit_id") int board_recruit_id) {
 
-		System.out.println(request.getParameter("board_recruit_id").toString());
-		int board_recruit_id = Integer.parseInt(request.getParameter("board_recruit_id"));
+		if (boardRecruitService.updateViews(board_recruit_id) >= 1) {
+			BoardRecruit board_content = boardRecruitService.selectView(board_recruit_id);
+			board_content.setBoard_recruit_id(board_recruit_id);
 
-		System.out.println("되나?1");
-		BoardRecruit board_content = boardRecruitService.selectView(board_recruit_id);
-		board_content.setBoard_recruit_id(board_recruit_id);
-
-		System.out.println(board_content);
-
-		int counts = boardRecruitService.updateViews(board_recruit_id);
-
-		if (request.getSession().getAttribute("id") != null) {
-			ArrayList<Resume> resume = boardRecruitService
-					.selectResumes(request.getSession().getAttribute("id").toString());
+			ArrayList<Resume> resume = boardRecruitService.selectResumes(id.split("/")[0]);
 			if (resume != null) {
 				m.addAttribute("resumes", resume);
-				System.out.println("if문 안에 :" + resume);
 			}
-			System.out.println("if문 밖ㅇ에 :" + resume);
+
+			m.addAttribute("board_content", board_content);// 여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
 		}
 
-		if (1 <= counts) {
-			System.out.println("조회수 증가 성공");
-			m.addAttribute("counts", counts);
-		}
-
-		m.addAttribute("board_content", board_content);// 여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
 		return "/recruit/content";
 	}
+
 	@Auth
 	@RequestMapping("/content/write_update") // 수정화면에 수정 버튼 누르면
-	public String contentUpdate(HttpServletRequest request, @ModelAttribute("boardrecruit") BoardRecruit boardrecruit) {
+	public String contentUpdate( @AuthUser String id,  @ModelAttribute("boardrecruit") BoardRecruit boardrecruit) {
 		String page = "/recruit/write_update"; // 안되면
-		HttpSession session = request.getSession();
+	
 
-		if (!session.getAttribute("type").toString().equals("기업")) { // 기업회원이 맞는지 확인
+		if (id.split("/")[1].equals("개인")) { // 기업회원이 맞는지 확인
 			return "/recruit/list";
-		} else {
-
+		} 
 			System.out.println(boardrecruit);
-
 			if (boardRecruitService.updateBoard(boardrecruit) >= 1) {
 				System.out.println("DB연결 성공");
-				page = "/main";
+				page = "redirect:/recruit/lsit";
 			} else {
 				System.out.println("DB연결 실패");
 			}
-		}
+	
 		return page;
 	}
+
 	@Auth
 	@RequestMapping("/write_update") // 수정화면보기
-	public String update(HttpServletRequest request, Model m) {
+	public String update( @AuthUser String id, Model m, @RequestParam("board_recruit_id") int board_recruit_id) {
 		String page = "/recruit/list";
-		HttpSession session = request.getSession(); // 아이디 세션 가져오기
 
-		if (!session.getAttribute("type").toString().equals("기업")) {// 기업인 확인
-			return "/recruit/list";
-		} else {
-			String id = session.getAttribute("id").toString();// 로그인 된 아이디
-			int board_recruit_id = Integer.parseInt(request.getParameter("board_recruit_id"));// 파라미터로 들어온 값 , 글번호
+		if (id.split("/")[1].equals("기업")) { // 기업회원이 맞는지 확인
+			return page;
+		} 
 
-			ArrayList<BoardRecruit> recruits = recruitService.selectRecruit(id); // 공고 글쓴 값들 ?recruit의 값들 가져오기?
+			ArrayList<BoardRecruit> recruits = boardRecruitService.selectRecruit(id.split("/")[0]); // 공고 글쓴 값들 ?recruit의 값들 가져오기?
 			m.addAttribute("recruit", recruits); // 공고값
 
 			BoardRecruit boardrecruit = boardRecruitService.selectView(board_recruit_id);
@@ -215,10 +175,9 @@ public class BoardRecruitController {
 			System.out.println("수정 화면 보여주는 컨트롤러 " + boardrecruit);
 			m.addAttribute("board_content", boardrecruit); // 여기 속성이름 지정하는거랑 jsp에서 가져오는거랑 달라서 그랬어
 			page = "/recruit/write_update";
-
-		}
 		return page;
 	}
+
 	@Auth
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(int board_recruit_id) {
@@ -226,7 +185,7 @@ public class BoardRecruitController {
 		System.out.println(board_recruit_id); // jsp에서 가져온 값
 		if (1 <= boardRecruitService.deleteBoard(board_recruit_id)) {
 			System.out.println("DB연결 성공!");
-			page = "/main";
+			page = "redirect:/recruit/lsit";
 		} else {
 			System.out.println("DB연결 실패!");
 		}

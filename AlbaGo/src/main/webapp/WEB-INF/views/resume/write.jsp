@@ -27,7 +27,7 @@
 	                    <a  class="btn py-1 px-1 btn-primary col-lg-2" href="">이력서 수정</a>
                     </div>
                     <label for="title">제목 </label>
-                    <input type="text" class="form-control" id="title" name="title">
+                    <input type="text" class="form-control" id="title" name="board_resume_title">
                     <label for="message">내용</label>
                     <textarea name="memo" id="memo" cols="30" rows="10" class="form-control"></textarea>
                     <br/>

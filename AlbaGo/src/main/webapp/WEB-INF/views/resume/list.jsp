@@ -168,16 +168,10 @@
                         <div class="recent_joblist white-bg ">
                             <div class="row align-items-center">
                                 <div class="col-md-6">
-                                    <h4>인재글 게시판</h4>
+                                    <h3>인재글 게시판</h3>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="serch_cat d-flex justify-content-end">
-                                        <select>
-                                            <option data-display="정렬 기준">정렬 기준</option>
-                                            <option value="1">최신순</option>
-                                            <option value="2">조회수순 </option>
-                                            <option value="4">지원순</option>
-                                        </select>
                                         <a href="<%=request.getContextPath() %>/resume/write" class="boxed-btn3">글쓰기</a>
                                     </div>
                                 </div>

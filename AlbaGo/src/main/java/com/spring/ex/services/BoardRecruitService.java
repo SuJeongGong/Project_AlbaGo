@@ -20,6 +20,9 @@ public class BoardRecruitService {
 	public int insertBoard_recruit(BoardRecruit boardrecruit) {
 		return boardRecruitDAO.insertBoard_recruit(boardrecruit);
 	}
+	public ArrayList<BoardRecruit> selectRecruit(String enterprise_id) {
+		return boardRecruitDAO.selectRecruit(enterprise_id);
+	}
 
 //	public ArrayList<BoardRecruit> selectList() {
 //		return boardRecruitDAO.selectList();

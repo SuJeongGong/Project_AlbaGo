@@ -29,6 +29,9 @@ public class BoardResumeService {
 	public BoardResume selectView(int id){
 		return boardResumeDAO.selectView(id);
 	}
+	public ArrayList<BoardResume> selectResume(String individual_id) {
+		return boardResumeDAO.selectResume(individual_id);
+	}
 	
 	public int deleteBoard(int board_resume_id) {
 		return boardResumeDAO.deleteBoard(board_resume_id);
