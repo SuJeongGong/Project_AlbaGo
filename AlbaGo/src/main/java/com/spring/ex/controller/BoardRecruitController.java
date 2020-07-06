@@ -159,7 +159,7 @@ public class BoardRecruitController {
 	}
 
 	@Auth
-	@RequestMapping("/write_update") // 수정화면보기
+	@RequestMapping("/update") // 수정화면보기
 	public String update( @AuthUser String id, Model m, @RequestParam("board_recruit_id") int board_recruit_id) {
 		String page = "/recruit/list";
 

@@ -10,11 +10,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
-
-$(document).ready(function(){
-	$("div[name='hide']").hide();
-})
-
 function insertComment(community) {
 	if("<%=request.getSession().getAttribute("id")%>"==null){
 		alert("로그인을 해주세요");
@@ -34,7 +29,6 @@ function insertComment(community) {
 				//alert("결과 저장 완료");
 				$("#res").load(window.location.href + " #res");
 				$("#comment").val("");
-				$("div[name='hide']").hide();
 			
 			}else{
 				alert("실패");
@@ -42,19 +36,29 @@ function insertComment(community) {
 		}
 	});
 }
-
-function updateResults(result) {
-	var volunteer_ids = [];
-	$("input[name='volunteer_id']:checked").each(function(){
-		if(this.checked){
-			volunteer_ids.push($(this).val());
-			console.log($(this).val());
+function deleteComment(comment_id) {
+	if("<%=request.getSession().getAttribute("id")%>"==null){
+		alert("로그인을 해주세요");
+		return ; 
+	}
+	console.log(comment);
+	$.ajax({
+		url : "./comment/delete",
+		method : "GET",
+		data : {
+			comment_id : comment_id
+		},
+		success :function(res){
+			if(res>=1){
+				//alert("결과 저장 완료");
+				$("#res").load(window.location.href + " #res");
+			
+			}else{
+				alert("실패");
+			}
 		}
-	})
-	
-
+	});
 }
-
 </script>
 <title>Insert title here</title>
 </head>
@@ -154,11 +158,6 @@ function updateResults(result) {
 									
 										<p class="comment"><%=cm_contents%></p>
 										</div>
-										<div id="commentUpdate<%=i%>" name="hide">
-											<textarea class="form-control" name="commentsUpdate"
-												id="commentUpdateContent<%=i%>" cols="30" rows="3"><%=cm_contents%></textarea>
-											<button class="btn btn-info edit w-10" onclick="update(<%=comment.getComment_id()%>,<%=i%>)">수정 저장</button>
-										</div>
 										<div style="text-align: right;">
 											<%
 												if (request.getSession().getAttribute("id") != null) {
@@ -168,9 +167,7 @@ function updateResults(result) {
 															System.out.println(comment.getIndividual_id() + "디비에서 가져온");
 															if (session_id2.equals(comment.getIndividual_id())) {
 											%>
-											<button class="btn btn-info edit w-10" 	 	onclick="commentUpdate(<%=i%>)">댓글수정</button>
-											<a class="btn btn-outline-danger w-10"
-												href="<%=request.getContextPath()%>/community/comment/delete?comment_id=<%=comment.getComment_id()%>">댓글삭제</a>
+											<button class="btn btn-outline-danger w-10" onclick="deleteComment(<%=comment.getComment_id()%>)" >댓글삭제</button>
 											<%
 												}
 														}
@@ -213,38 +210,6 @@ function updateResults(result) {
 	</section>
 	<!--================ Blog Area end =================-->
 
-	<script type="text/javascript">
-	function updateComment(content,comment_id,i) {
-		console.log(content);
-		console.log(comment_id);
-		$.ajax({
-			url : "./comment/update",
-			method : "GET",
-			data : {
-				content : content,
-				comment_id: comment_id
-			},
-			success :function(res){
-				if(res>=1){
-					//alert("결과 저장 완료");
-					$("#res"+i).load(window.location.href + " #res"+i);
-					$("#res"+i).hide();
-				}else{
-					alert("실패");
-				}
-			}
-		});
-		$("#commentUpdate"+i).hide();
-	}
-	function update(comment_id, i) {
-		var content = 	$("#commentUpdateContent"+i).val();
-		console.log("content"+content);
-		updateComment(content,comment_id,i)
-	}
-	function commentUpdate(i){	
-		$("#commentUpdate"+i).show();
-	}
-	</script>
 
 
 
