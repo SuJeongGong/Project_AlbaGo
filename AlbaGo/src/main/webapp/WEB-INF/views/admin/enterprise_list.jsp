@@ -68,7 +68,7 @@
                                             <select id="category" name="category">
                                                 <option value="enterprise_id" id="enterprise_id">기업아이디</option>
                                                 <option value="name" id="name">기업이름</option>
-                                                <option value="phone" id="phone">기업전화번호</option>
+                                                <option value="business_number" id="phone">사업자번호</option>
                                                 <option value="manager_name" id="manager_name">담당자이름</option>
                                                 <option value="manager_phone" id="manager_phone">담당자번호</option>
                                             </select>
@@ -87,7 +87,7 @@
                                             <th>기업아이디</th>
                                             <th>비밀번호</th>
                                             <th>기업이름</th>
-                                            <th>기업전화번호</th>
+                                            <th>사업자번호</th>
                                             <th>담당자이름</th>
                                             <th>담당자번호</th>
                                             <th>카테고리</th>

@@ -23,13 +23,13 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 
   
 </head>
 
 
 <body>	
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
     <div id="wrapper">
         <!-- 사이드 바 -->
@@ -494,14 +494,14 @@
                             <div class="card-body">
 					<script>
 			
-					function deleteEnterpriseScrap(scrap_individual_id) {
-						console.log(scrap_individual_id);
+					function deleteEnterpriseScrap(scrap_id) {
+						console.log(scrap_id);
 						$.ajax({
-							url : "./deleteEnterpriseScrap",
+							url : "./deleteScrap",
 							method : "GET",
 							data : {
 								
-								scrap_individual_id : scrap_individual_id
+								scrap_id : scrap_id
 							
 							},
 							success :function(res4){

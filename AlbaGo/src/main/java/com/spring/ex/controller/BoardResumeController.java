@@ -87,7 +87,7 @@ public class BoardResumeController {
 	public String write(Model m, @AuthUser String id) {
 
 		if (id.split("/")[1].equals("기업")) {
-			return "/resume/list";
+			return "redirect:/resume/list";
 		}
 		ArrayList<BoardResume> resumes = boardResumeService.selectResume(id.split("/")[0]);
 		System.out.println();

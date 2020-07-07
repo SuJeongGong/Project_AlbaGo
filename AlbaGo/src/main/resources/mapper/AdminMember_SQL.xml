@@ -248,8 +248,14 @@
 			<if test="category.equals('phone')">
 				phone like CONCAT('%',#{search},'%')
 			</if>
-			<if test="category.equals('name')">
-				name like CONCAT('%',#{search},'%')
+			<if test="category.equals('business_number')">
+				business_number like CONCAT('%',#{search},'%')
+			</if>
+			<if test="category.equals('manager_name')">
+				manager_name like CONCAT('%',#{search},'%')
+			</if>
+			<if test="category.equals('manager_phone')">
+				manager_phone like CONCAT('%',#{search},'%')
 			</if>
 		</where>
 		LIMIT #{page},10

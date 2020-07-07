@@ -72,7 +72,7 @@ public class BoardCommunityController {
 	@Auth
 	@RequestMapping("comment/write") // 댓글작성
 	public @ResponseBody int writeComment(@AuthUser String id, @ModelAttribute("comment") String comment,
-			@ModelAttribute("community") int community) {
+			@ModelAttribute("community_id") int community) {
 		// 아이디 가져오고 -(@AuthUser String id
 		// 댓글 내용 가져오고 - @ModelAttribute("comment") BoardComment comments
 		// comments에 id 값 넣어주기

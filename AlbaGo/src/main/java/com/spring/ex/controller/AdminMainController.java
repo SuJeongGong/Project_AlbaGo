@@ -148,7 +148,7 @@ public class AdminMainController {
 		String page = "/admin/product_account";
 
 		if (productService.delete_product(product) >= 1) {
-			page = "/admin/main";
+			page = "redirect:/admin/product/product";
 			System.out.println("DB연결성공");
 		} else {
 			System.out.println("실패라고요");

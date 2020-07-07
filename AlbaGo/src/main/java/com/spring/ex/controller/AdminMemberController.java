@@ -105,39 +105,44 @@ public class AdminMemberController {
 
 	// ajax
 	//// 계정정지 AJAX
-	@RequestMapping(value = "/changestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/individual/changestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int changestate(@RequestParam("individual_id") String individual_id,
 			@RequestParam("result") int result) {
+		System.out.println(individual_id+"를    "+result);
 		return adminMemberService.changestate(individual_id, result);
 	}
 
 	// 이력서삭제 AJAX
-	@RequestMapping(value = "/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/individual/deleteResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteResume(@RequestParam("resume_id") int resume_id) {
 		return adminMemberService.deleteResume(resume_id);
 	}
 
 	// 지원한 알바 지원취소 AJAX
-	@RequestMapping(value = "/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/individual/deleteVolunteer", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteVolunteer(@RequestParam("volunteer_id") int volunteer_id) {
 		System.out.println("volunteer_id" + volunteer_id);
 		return adminMemberService.deleteVolunteer(volunteer_id);
 	}
 
 	// 인재 게시판 취소 AJAX
-	@RequestMapping(value = "/deletBoardResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/individual/deletBoardResume", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deletBoardResume(@RequestParam("board_resume_id") int board_resume_id) {
 		System.out.println("board_resume_id" + board_resume_id);
 		return adminMemberService.deletBoardResume(board_resume_id);
 	}
 
 	// 커뮤니티 게시판 삭제 AJAX
-	@RequestMapping(value = "/deleteCommunity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 삭제
-	public @ResponseBody int delete(@RequestParam("community_id") int community_id) {
+	@RequestMapping(value = "/individual/deleteCommunity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE) // 삭제
+	public @ResponseBody int deleteCommunity(@RequestParam("community_id") int community_id) {
 		System.out.println("community_id :" + community_id);
 		return adminMemberService.deleteCommunity(community_id);
 	} // 글삭제
-
+	@RequestMapping(value = "/individual/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody int individualDeleteScrap(@RequestParam("scrap_id") int scrap_id) {
+		System.out.println("scrap_id   "+scrap_id);
+		return adminMemberService.deleteEnterpriseScrap(scrap_id);
+	}
 	// 기업회원#################################################################################################
 
 	@RequestMapping("/enterprise") // 기업 리스트
@@ -158,7 +163,8 @@ public class AdminMemberController {
 	}
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
-	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id			,@RequestParam(value = "category", defaultValue = "enterprise_id") String category
+	public String enterprise_detail(Model m, @RequestParam("enterprise_id") String enterprise_id			
+			,@RequestParam(value = "category", defaultValue = "enterprise_id") String category
 			,@RequestParam(value = "search", defaultValue = "") String search
 			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "admin/enterprise_detail";
@@ -202,7 +208,7 @@ public class AdminMemberController {
 
 			System.out.println(enterprise);
 			System.out.println("수정");
-			page = "redirect:/admin/enterprise_list";
+			page = "redirect:/admin/enterprise";
 
 		}
 
@@ -211,26 +217,26 @@ public class AdminMemberController {
 
 	// 관리자
 	// 기업 계정정지 AJAX
-	@RequestMapping(value = "/changeEnterprisestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/enterprise/changestate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int changeEnterprisestate(@RequestParam("enterprise_id") String enterprise_id,
 			@RequestParam("result") int result) {
 		return adminMemberService.changeEnterprisestate(enterprise_id, result);
 	}
 
 	// 공고삭제 AJAX
-	@RequestMapping(value = "/deleteEnterpriseRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/enterprise/deleteRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteEnterpriseRecruit(@RequestParam("recruit_id") int recruit_id) {
 		return adminMemberService.deleteEnterpriseRecruit(recruit_id);
 	}
 
 	// 공고글 삭제 AJAX
-	@RequestMapping(value = "/deleteEnterpriseBoardRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/enterprise/deleteBoardRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteEnterpriseBoardRecruit(@RequestParam("board_recruit_id") int board_recruit_id) {
 		return adminMemberService.deleteEnterpriseBoardRecruit(board_recruit_id);
 	}
 
 	// 인재글 삭제 AJAX
-	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/enterprise/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody int deleteScrap(@RequestParam("scrap_id") int scrap_id) {
 		return adminMemberService.deleteScrap(scrap_id);
 	}

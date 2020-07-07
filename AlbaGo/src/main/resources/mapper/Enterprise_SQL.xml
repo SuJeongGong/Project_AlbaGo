@@ -47,17 +47,17 @@
 	<!-- 지원자 -->
 	<select id="selectVolunteer" parameterType="hashmap" resultType="Volunteer">
 		SELECT volunteer.board_recruit_id as board_recruit_id,
-		board_recruit.title as board_recruit_title,
-		volunteer.individual_id as
-		individual_id,
-		volunteer.memo as memo,
-		volunteer.date as date,
-		volunteer.result as result,
-		volunteer.resume_id as resume_id,
-		resume.title as resume_title,
-		volunteer.volunteer_id as volunteer_id
+				board_recruit.title as board_recruit_title,
+				volunteer.individual_id as individual_id,
+				volunteer.memo as memo,
+				volunteer.date as date,
+				volunteer.result as result,
+				volunteer.resume_id as resume_id,
+				resume.title as resume_title,
+				volunteer.volunteer_id as volunteer_id,
+				individual.name as individual_name
 
-		FROM resume,volunteer,board_recruit,enterprise,recruit
+		FROM resume,volunteer,board_recruit,enterprise,recruit,individual 
 		<where>
 			resume.resume_id =volunteer.resume_id
 			AND
@@ -68,6 +68,7 @@
 			enterprise.enterprise_id = recruit.enterprise_id
 			and
 			enterprise.enterprise_id = #{id}
+			AND volunteer.individual_id = individual.individual_id
 		</where>
 		ORDER BY volunteer.volunteer_id DESC
 		LIMIT #{start},10
@@ -75,7 +76,7 @@
 	<select id="selectVolunteerCount" parameterType="hashmap" resultType="int">
 		SELECT count(*)
 
-		FROM resume,volunteer,board_recruit,enterprise,recruit
+		FROM resume,volunteer,board_recruit,enterprise,recruit,individual
 		<where>
 			resume.resume_id =volunteer.resume_id
 			AND
@@ -86,6 +87,7 @@
 			enterprise.enterprise_id = recruit.enterprise_id
 			and
 			enterprise.enterprise_id = #{id}
+			AND volunteer.individual_id = individual.individual_id
 		</where>
 		ORDER BY volunteer.volunteer_id DESC
 	</select>

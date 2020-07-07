@@ -10,26 +10,21 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
-function insertComment(community) {
-	if("<%=request.getSession().getAttribute("id")%>"==null){
-		alert("로그인을 해주세요");
-		return ; 
-	}
+function insertComment(community_id) {
 	var comment = 	$("#comment").val();
 	console.log(comment);
 	$.ajax({
 		url : "./comment/write",
 		method : "GET",
 		data : {
-			community : community,
+			community_id : community_id,
 			comment: comment
 		},
 		success :function(res){
+			console.log(res);
 			if(res>=1){
-				//alert("결과 저장 완료");
-				$("#res").load(window.location.href + " #res");
 				$("#comment").val("");
-			
+				$("#refresh").load(window.location.href + " #refresh");
 			}else{
 				alert("실패");
 			}
@@ -37,10 +32,6 @@ function insertComment(community) {
 	});
 }
 function deleteComment(comment_id) {
-	if("<%=request.getSession().getAttribute("id")%>"==null){
-		alert("로그인을 해주세요");
-		return ; 
-	}
 	console.log(comment);
 	$.ajax({
 		url : "./comment/delete",
@@ -51,7 +42,7 @@ function deleteComment(comment_id) {
 		success :function(res){
 			if(res>=1){
 				//alert("결과 저장 완료");
-				$("#res").load(window.location.href + " #res");
+				$("#refresh").load(window.location.href + " #refresh");
 			
 			}else{
 				alert("실패");
@@ -126,7 +117,7 @@ function deleteComment(comment_id) {
 					<br />
 
 
-					<div >
+					<div id="refresh">
 						<%
 							ArrayList<BoardComment> comments = (ArrayList) request.getAttribute("comments");//글에 적여있는 댓글 여러개 가져오기 
 							System.out.println(comments + "댓글 확인");
@@ -142,41 +133,38 @@ function deleteComment(comment_id) {
 						%>
 
 
-						<div class="comment-list" id="res">
+						<div class="comment-list" >
 							<div class="single-comment justify-content-between d-flex">
 								<div class="user justify-content-between d-flex">
-									<div  id="res<%=i%>">
-									<div class="desc" style="width: 1000px;">
-										<div class="d-flex justify-content-between">
-											<div class="d-flex align-items-center">
-												<ul class="blog-info-link mt-3 mb-4">
-													<li><i class="fa fa-user"></i><%=cm_id%></li>
-													<li><i class="fa fa-clock-o"></i><%=cm_date.split(":")[0]%>:<%=date.split(":")[1]%></li>
-												</ul>
+									<div>
+										<div class="desc" style="width: 1000px;">
+											<div class="d-flex justify-content-between">
+												<div class="d-flex align-items-center">
+													<ul class="blog-info-link mt-3 mb-4">
+														<li><i class="fa fa-user"></i><%=cm_id%></li>
+														<li><i class="fa fa-clock-o"></i><%=cm_date.split(":")[0]%>:<%=date.split(":")[1]%></li>
+													</ul>
+												</div>
 											</div>
+										
+											<p class="comment"><%=cm_contents%></p>
 										</div>
-									
-										<p class="comment"><%=cm_contents%></p>
-										</div>
-										<div style="text-align: right;">
-											<%
-												if (request.getSession().getAttribute("id") != null) {
-															String session_id2 = request.getSession().getAttribute("id").toString();
-
-															System.out.println(session_id2 + "세션에서 가져온");
-															System.out.println(comment.getIndividual_id() + "디비에서 가져온");
-															if (session_id2.equals(comment.getIndividual_id())) {
-											%>
-											<button class="btn btn-outline-danger w-10" onclick="deleteComment(<%=comment.getComment_id()%>)" >댓글삭제</button>
-											<%
-												}
-														}
-											%>
+											<div style="text-align: right;">
+												<%
+													if (request.getSession().getAttribute("id") != null) {
+																String session_id2 = request.getSession().getAttribute("id").toString();
+																if (session_id2.equals(comment.getIndividual_id())) {
+												%>
+												<button class="btn btn-outline-danger w-10" onclick="deleteComment(<%=comment.getComment_id()%>)" >댓글삭제</button>
+												<%
+													}
+															}
+												%>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 
 
 
