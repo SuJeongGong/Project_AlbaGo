@@ -96,10 +96,9 @@
 			</div>
 			<!-- 끝 main -->
 			<!-- footer -->
-			<%@ include file="../serve/manager_footer.jsp"%>
 		</div>
 		<!-- 끝 content wrapper -->
-	</div>
+			<%@ include file="../serve/manager_footer.jsp"%>  
 	<!-- 끝  wrapper -->
 </body>
 

@@ -43,47 +43,13 @@ public class AdminBoardController {
 	@Autowired
 	EnterpriseService enterpriseService;
 
-//	@RequestMapping("/recruit") // 공고글 검색
-//	public String boardrecruit_id(Model m
-//			,@RequestParam(value = "category", defaultValue = "recruit_id") String category
-//			,@RequestParam(value = "search", defaultValue = "") String search
-//			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
-//		String page = "/admin/recruit";
-//		
-//		// 전체 공고 갯수
-//		int allcount = adminBoardService.all_Count();
-//		m.addAttribute("allcount", allcount);
-//
-//		// 오늘 공고 갯수
-//		int todaycount = adminBoardService.today_Count();
-//		m.addAttribute("todaycount", todaycount);
-//
-//		// 오늘 공고 갯수
-//		int yesterdaycount = adminBoardService.yesterday_Count();
-//		m.addAttribute("yesterdaycount", yesterdaycount);
-//		ArrayList<BoardRecruit> boardrecruits = adminBoardService.recruit_List_id(category, search);
-//		m.addAttribute("boardrecruits", boardrecruits);
-//
-//		return page;
-//	}
-
-//	@RequestMapping("/recruit/day") // 공고글 날짜 검색 (오늘, 일주일, 한달)
-//	public String boardrecruit_day(Model m, @RequestParam("day") String day,
-//			@RequestParam("daysearch") String daysearch) {
-//		String page = "/admin/recruit";
-//		ArrayList<BoardRecruit> boardrecruits = adminBoardService.recruit_List_day(day, daysearch);
-//		m.addAttribute("boardrecruits", boardrecruits);
-//
-//		return page;
-//	}
-
 	@RequestMapping("/recruit") // 총 공고글 검색
 	public String boardrecruit_t(Model m
 			,@RequestParam(value="enterprise_category", defaultValue = "") String enterprise_category
 			,@RequestParam(value="local_category", defaultValue = "") String local_category
 			,@RequestParam(value="gender", defaultValue = "") String gender
 			,@RequestParam(value="education", defaultValue = "") String education
-			,@RequestParam(value="day", defaultValue = "") String day
+			,@RequestParam(value="day", defaultValue = "all") String day
 			,@RequestParam(value="search", defaultValue = "") String search
 			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "/admin/recruit";
@@ -96,7 +62,7 @@ public class AdminBoardController {
 		map.put("search", search);
 		map.put("page", (pageNum-1)*10);
 		
-		System.out.println(day);
+		System.out.println(map);
 		System.out.println(search);
 		ArrayList<BoardRecruit> boardrecruits = adminBoardService.selectRecruit(map);
 		m.addAttribute("boardrecruits", boardrecruits);
@@ -165,7 +131,7 @@ public class AdminBoardController {
 			,@RequestParam(value="local_category", defaultValue = "") String local_category
 			,@RequestParam(value="gender", defaultValue = "") String gender
 			,@RequestParam(value="education", defaultValue = "") String education
-			,@RequestParam(value="day", defaultValue = "") String day
+			,@RequestParam(value="day", defaultValue = "all") String day
 			,@RequestParam(value="search", defaultValue = "") String search
 			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "/admin/resume";

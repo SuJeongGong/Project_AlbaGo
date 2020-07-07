@@ -145,7 +145,6 @@ public class AdminMemberController {
 			,@RequestParam(value = "category", defaultValue = "enterprise_id") String category
 			,@RequestParam(value = "search", defaultValue = "") String search
 			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
-		String page = "admin/enterprise_list";
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("category", category);
 		map.put("search", search);
@@ -155,7 +154,7 @@ public class AdminMemberController {
 		m.addAttribute("count", adminMemberService.selectEnterpriseCount(category,search) / 10 + 1);// 기업정보
 		m.addAttribute("pageNum", pageNum);// 기업정보
 
-		return page;
+		return "admin/enterprise_list";
 	}
 
 	@RequestMapping("/enterprise_detail") // 기업 - 디테일?
@@ -203,7 +202,7 @@ public class AdminMemberController {
 
 			System.out.println(enterprise);
 			System.out.println("수정");
-			page = "redirect:/admin/main";
+			page = "redirect:/admin/enterprise_list";
 
 		}
 

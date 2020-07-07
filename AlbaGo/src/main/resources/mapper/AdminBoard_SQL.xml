@@ -30,8 +30,8 @@
 	</select>
 
 	<!-- 공고글 전체 검색 -->
-	<select id="selectRecruit" resultType="BoardRecruit"
-		parameterType="hashmap">
+	<select id="selectRecruit" resultType="BoardRecruit" parameterType="hashmap">
+
 		SELECT board_recruit.board_recruit_id AS board_recruit_id,
 		board_recruit.`date` AS date , board_recruit.title AS title,
 		recruit.enterprise_id AS enterprise_id, recruit.place AS place,
@@ -42,68 +42,51 @@
 			board_recruit.recruit_id = recruit.recruit_id
 			and
 			board_recruit.delete_check = 1
-			<if test="category != null">
-				and recruit.category like CONCAT('%',#{category},'%')
-			</if>
-			<if test="place != null">
-				and recruit.place like CONCAT('%',#{place},'%')
-			</if>
-			<if test="gender != null">
+
+				and recruit.category like CONCAT('%',#{enterprise_category},'%')
+				and recruit.place like CONCAT('%',#{local_category},'%')
 				and recruit.gender like CONCAT('%',#{gender},'%')
-			</if>
-			<if test="education != null">
 				and recruit.education like CONCAT('%',#{education},'%')
-			</if>
-			<if test="search != null">
 				and (board_recruit.title like CONCAT('%',#{search},'%')
-				OR recruit.enterprise_id like CONCAT('%',#{search},'%'))
+						OR recruit.enterprise_id like CONCAT('%',#{search},'%'))
+									
+			<if test='day !="all" and day.equals("today")'>
+				<![CDATA[ AND board_recruit.`date` >= CURDATE()]]>
 			</if>
-			<if test="day != null and day.equals('today')">
-				AND board_recruit.`date` >= CURDATE()
+			<if test='day !="all" and day.equals("week")'>
+					<![CDATA[ AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)]]>
 			</if>
-			<if test="day != null and day.equals('week')">
-				AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)
-			</if>
-			<if test="day != null and day.equals('month')">
-				AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)
-			</if>
+			<if test='day !="all" and day.equals("month")'>
+				<![CDATA[ 	AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)]]>
+			</if>	
 		</where>
 		LIMIT #{page},10
+
 	</select>
-	<select id="selectRecruitCount" resultType="int"
-		parameterType="hashmap">
+	<select id="selectRecruitCount" resultType="int" parameterType="hashmap">
 		SELECT Count(*)
 		FROM board_recruit, recruit
 		<where>
 			board_recruit.recruit_id = recruit.recruit_id
-			and
-			board_recruit.delete_check = 1
-			<if test="category != null">
-				and recruit.category like CONCAT('%',#{category},'%')
-			</if>
-			<if test="place != null">
-				and recruit.place like CONCAT('%',#{place},'%')
-			</if>
-			<if test="gender != null">
+			and board_recruit.delete_check = 1  
+
+				and recruit.category like CONCAT('%',#{enterprise_category},'%')
+				and recruit.place like CONCAT('%',#{local_category},'%')
 				and recruit.gender like CONCAT('%',#{gender},'%')
-			</if>
-			<if test="education != null">
 				and recruit.education like CONCAT('%',#{education},'%')
-			</if>
-			<if test="search != null">
 				and (board_recruit.title like CONCAT('%',#{search},'%')
-				OR recruit.enterprise_id like CONCAT('%',#{search},'%'))
+						OR recruit.enterprise_id like CONCAT('%',#{search},'%'))
+			<if test='day !="all" and day.equals("today")'>
+				<![CDATA[ AND board_recruit.`date` >= CURDATE()]]>
 			</if>
-			<if test="day != null and day.equals('today')">
-				AND board_recruit.`date` >= CURDATE()
+			<if test='day !="all" and day.equals("week")'>
+					<![CDATA[ AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)]]>
 			</if>
-			<if test="day != null and day.equals('week')">
-				AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)
-			</if>
-			<if test="day != null and day.equals('month')">
-				AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)
-			</if>
+			<if test='day !="all" and day.equals("month")'>
+				<![CDATA[ 	AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)]]>
+			</if>	 
 		</where>
+					
 	</select>
 
 
@@ -134,8 +117,7 @@
 		update
 		board_recruit
 		set delete_check = 0
-		where board_recruit_id =
-		#{boardrecruit_id}
+		where board_recruit_id = #{boardrecruit_id}
 	</update>
 
 
@@ -182,36 +164,24 @@
 		individual.gender, individual.education
 		FROM board_resume, resume, individual
 		<where>
-			board_resume.resume_id =
-			resume.resume_id
-			AND resume.individual_id =
-			individual.individual_id
+			board_resume.resume_id = 	resume.resume_id
+			AND resume.individual_id = individual.individual_id
 			and board_resume.delete_check = 1
-			<if test="category != null">
-				and resume.category like CONCAT('%',#{category},'%')
-			</if>
-			<if test="place != null">
-				and resume.place like CONCAT('%',#{place},'%')
-			</if>
-			<if test="gender != null">
+				and resume.category like CONCAT('%',#{individual_category},'%')
+				and resume.place like CONCAT('%',#{local_category},'%')
 				and individual.gender like CONCAT('%',#{gender},'%')
-			</if>
-			<if test="education != null">
 				and individual.education like CONCAT('%',#{education},'%')
-			</if>
-			<if test="search != null">
 				and (board_resume.title like CONCAT('%',#{search},'%')
 				OR resume.individual_id like CONCAT('%',#{search},'%'))
+			<if test='day !="all" and day.equals("today")'>
+				<![CDATA[ AND board_recruit.`date` >= CURDATE()]]>
 			</if>
-			<if test="day != null and day.equals('today')">
-				AND board_resume.`date` >= CURDATE()
+			<if test='day !="all" and day.equals("week")'>
+					<![CDATA[ AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)]]>
 			</if>
-			<if test="day != null and day.equals('week')">
-				AND board_resume.`date` > (NOW() - INTERVAL 7 DAY)
-			</if>
-			<if test="day != null and day.equals('month')">
-				AND board_resume.`date` > (NOW() - INTERVAL 1 MONTH)
-			</if>
+			<if test='day !="all" and day.equals("month")'>
+				<![CDATA[ 	AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)]]>
+			</if>	
 		LIMIT #{page},10
 
 		</where>
@@ -222,36 +192,24 @@
 		SELECT Count(*)
 		FROM board_resume, resume, individual
 		<where>
-			board_resume.resume_id =
-			resume.resume_id
-			AND resume.individual_id =
-			individual.individual_id
+			board_resume.resume_id = resume.resume_id
+			AND resume.individual_id = individual.individual_id
 			and board_resume.delete_check = 1
-			<if test="category != null">
-				and resume.category like CONCAT('%',#{category},'%')
-			</if>
-			<if test="place != null">
-				and resume.place like CONCAT('%',#{place},'%')
-			</if>
-			<if test="gender != null">
+				and resume.category like CONCAT('%',#{individual_category},'%')
+				and resume.place like CONCAT('%',#{local_category},'%')
 				and individual.gender like CONCAT('%',#{gender},'%')
-			</if>
-			<if test="education != null">
 				and individual.education like CONCAT('%',#{education},'%')
-			</if>
-			<if test="search != null">
 				and (board_resume.title like CONCAT('%',#{search},'%')
 				OR resume.individual_id like CONCAT('%',#{search},'%'))
+			<if test='day !="all" and day.equals("today")'>
+				<![CDATA[ AND board_recruit.`date` >= CURDATE()]]>
 			</if>
-			<if test="day != null and day.equals('today')">
-				AND board_resume.`date` >= CURDATE()
+			<if test='day !="all" and day.equals("week")'>
+					<![CDATA[ AND board_recruit.`date` > (NOW() - INTERVAL 7 DAY)]]>
 			</if>
-			<if test="day != null and day.equals('week')">
-				AND board_resume.`date` > (NOW() - INTERVAL 7 DAY)
-			</if>
-			<if test="day != null and day.equals('month')">
-				AND board_resume.`date` > (NOW() - INTERVAL 1 MONTH)
-			</if>
+			<if test='day !="all" and day.equals("month")'>
+				<![CDATA[ 	AND board_recruit.`date` > (NOW() - INTERVAL 1 MONTH)]]>
+			</if>	
 
 		</where>
 	</select>
@@ -288,7 +246,7 @@
 		<where>
 		(community.title like CONCAT('%',#{search},'%')
 		OR
-		community.individual_id like CONCAT('%',#{search},'%'))
+		community.individual_id like CONCAT('%',#{search},'%')) 
 		and `date` BETWEEN #{start} AND #{end}
 		</where>
 	</select>

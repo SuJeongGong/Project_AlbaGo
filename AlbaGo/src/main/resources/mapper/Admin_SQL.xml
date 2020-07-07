@@ -119,8 +119,9 @@
 		 
 		 
 		FROM board_recruit, recruit
-		WHERE board_recruit.recruit_id = recruit.recruit_id
+		<where> board_recruit.recruit_id = recruit.recruit_id
 		and board_recruit.delete_check = 1
+		</where>
 	</select>
 	
 	

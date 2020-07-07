@@ -61,7 +61,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="<%=conPath%>/admin/member/enterprise_list/id" method="get" name="keyword" id="keyword">
+                                <form action="<%=conPath%>/admin/member/enterprise" method="get" name="keyword" id="keyword">
                                     <div class="input-group">
                                         <!-- USE TWITTER TYPEAHEAD JSON WITH API TO SEARCH -->
                                       
@@ -73,9 +73,9 @@
                                                 <option value="manager_phone" id="manager_phone">담당자번호</option>
                                             </select>
                                        
-                                         <input type="text" class="form-control form-control-sm" name="search" > <!-- 검색내용입력 -->
+                                         <input type="text"   class="form-control form-control-sm"  name="search" > <!-- 검색내용입력 -->
                                         <span class="input-group-btn">
-                                            <button  class="btn btn-info" type="submit" >검색</button>
+                                            <button class="btn btn-sm btn-primary" type="submit" >검색</button>
                                         </span>
                                     </div>
                                 </form>
