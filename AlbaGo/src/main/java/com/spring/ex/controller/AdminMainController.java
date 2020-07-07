@@ -2,6 +2,7 @@ package com.spring.ex.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -48,8 +49,7 @@ public class AdminMainController {
 	
 	@RequestMapping("/search")
 	public String search(Model m		
-			,@RequestParam(value = "search", defaultValue = "") String search
-			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+			,@RequestParam(value = "search", defaultValue = "") String search) {
 		System.out.println(search);
 		ArrayList<HashMap<String, Object>>  E_members = adminService.searchEnter(search);
 		ArrayList<HashMap<String, Object>>  I_members = adminService.searchIndi(search);
@@ -90,8 +90,11 @@ public class AdminMainController {
 
 	
 	@RequestMapping("/product/product") // 상품보기 리스트 
-	public String list(Model m, HttpServletRequest request) {
-		m.addAttribute("products", productService.selectProductList());
+	public String list(Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+		m.addAttribute("products", productService.selectProductList((pageNum-1)*10));
+		m.addAttribute("count", productService.selectProductListCount()/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 		return "/admin/product_product";
 	}
 
@@ -102,8 +105,12 @@ public class AdminMainController {
 	}
 
 	@RequestMapping("/advertising/product") // 광고 보기 - 리스트 
-	public String advertisingㅣist(Model m, HttpServletRequest request) {
-		m.addAttribute("products", productService.selectAdvertisingList());
+	public String advertisingㅣist(Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {		
+		m.addAttribute("products", productService.selectAdvertisingList((pageNum-1)*10));
+		m.addAttribute("count", productService.selectAdvertisingListCount()/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
+
 		return "/admin/advertising_product";
 	}
 
@@ -157,8 +164,11 @@ public class AdminMainController {
 	}
 
 	@RequestMapping("/product/approve") // 결제승인
-	public String approve(Model m) {
-		m.addAttribute("payments", productService.selectProductPayments());
+	public String approve(Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+		m.addAttribute("payments", productService.selectProductPayments((pageNum-1)*10));
+		m.addAttribute("count", productService.selectProductPaymentsCount()/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 		return "admin/product_approve"; 
 	}
 
@@ -185,8 +195,11 @@ public class AdminMainController {
 	}
 	
 	@RequestMapping("/advertising/approve") // 결제승인
-	public String advertisingApprove(Model m) {
-		m.addAttribute("payments", productService.selectAdvertisingPayments());
+	public String advertisingApprove(Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+		m.addAttribute("payments", productService.selectAdvertisingPayments((pageNum-1)*10));
+		m.addAttribute("count", productService.selectAdvertisingPaymentsCount()/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 		return "admin/advertising_approve";
 	} // 아약스 처리
 
@@ -240,41 +253,38 @@ public class AdminMainController {
 		return productService.advertisingUpdatePaymentsResult(map);
 	}
 	
-	@RequestMapping("/payment") 
-	public String payment(Model m) {
-		String page = "/admin/payment";
-
-		// 전체 매출
-		m.addAttribute("all_totalsales", adminService.all_totalsales());
-		// 오늘 매출 
-		m.addAttribute("todaysales", adminService.todaysales());
-		// 주간 매출 
-		m.addAttribute("weeklysales",  adminService.weeklysales());
-		// 매출 리스트		
-		m.addAttribute("payment", adminService.selectPaymentList());
-		
-		return page;
-	}
+//	@RequestMapping("/payment") 
+//	public String payment(Model m,
+//			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+//		String page = "/admin/payment";
+//
+//		// 전체 매출
+//		m.addAttribute("all_totalsales", adminService.all_totalsales());
+//		// 오늘 매출 
+//		m.addAttribute("todaysales", adminService.todaysales());
+//		// 주간 매출 
+//		m.addAttribute("weeklysales",  adminService.weeklysales());
+//		// 매출 리스트		
+//		m.addAttribute("payment", adminService.selectPaymentList());
+//		
+//		return page;
+//	}
 	
-	@RequestMapping("/payment/total") // 매출관리 검색
+	@RequestMapping("/payment") // 매출관리 검색
 	public String payment_T(Model m, 
 			@RequestParam(value = "start", defaultValue="0000-00-00") String start,
 			@RequestParam(value = "end", defaultValue="9999-12-31") String end,
-			@RequestParam("product_type") String product_type,
-			@RequestParam("search") String search) {
+			@RequestParam(value ="product_type",defaultValue="") String product_type,
+			@RequestParam(value ="search",defaultValue="") String search,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "/admin/payment";
-		if(start.equals(null)) {
-			start="0000-00-00";
-		}
-		if(end.equals(null)) {
-			end="9999-12-31";
-		}
-		String endd=end+" 23:59:59";
-		System.out.println(start);
-		System.out.println(end);
-		System.out.println(product_type);
-		System.out.println(search);
-		ArrayList<Payment> payment = adminService.PaymentSearch(start, endd, product_type, search);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("product_type", product_type);
+		map.put("search", search);
+		map.put("page", (pageNum-1)*10);
+		ArrayList<Payment> payment = adminService.PaymentSearch(map);
 		System.out.println(payment);
 		
 		// 전체 매출
@@ -289,7 +299,9 @@ public class AdminMainController {
 		// 주간 매출 
 		int weeklysales = adminService.weeklysales();
 		m.addAttribute("weeklysales", weeklysales);
-		
+
+		m.addAttribute("count", adminService.PaymentSearchCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 		m.addAttribute("payment", payment);
 		return page;
 	}

@@ -22,14 +22,23 @@ public class IndividualService {
 	public Individual selectIndividual(String id) {
 		return individualDAO.selectIndividual(id);
 	}
-	public ArrayList<Scrap_Individual> selectScrap(String id) {
-		return individualDAO.selectScrap(id);
+	public ArrayList<Scrap_Individual> selectScrap(HashMap<String, Object> map) {
+		return individualDAO.selectScrap(map);
 	}
-	public ArrayList<Resume> selectResumes(String id) {
-		return individualDAO.selectResumeList(id);
+	public int selectScrapCount(HashMap<String, Object> map) {
+		return individualDAO.selectScrapCount(map);
 	}
-	public ArrayList<Volunteer> selectVolunteer(String id) {
-		return individualDAO.selectVolunteer(id);
+	public ArrayList<Resume> selectResumes(HashMap<String, Object> map) {
+		return individualDAO.selectResumeList(map);
+	}
+	public int selectResumesCount(HashMap<String, Object> map) {
+		return individualDAO.selectResumeListCount(map);
+	}
+	public ArrayList<Volunteer> selectVolunteer(HashMap<String, Object> map) {
+		return individualDAO.selectVolunteer(map);
+	}
+	public int selectVolunteerCount(HashMap<String, Object> map) {
+		return individualDAO.selectVolunteerCount(map);
 	}
 	public int updateAccount(Individual individual) {
 		return individualDAO.updateAccount(individual);

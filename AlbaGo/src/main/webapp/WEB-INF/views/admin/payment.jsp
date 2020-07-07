@@ -186,19 +186,34 @@
 							<hr>
 
 
-							<div class="text-center" style="float: left;">
+<div class="text-center" style="float: left;">
 								<ul class="pagination">
-									<li class="page-item disabled"><a class="page-link"
-										href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item active" aria-current="page"><a
-										class="page-link" href="##">2 <span class="sr-only">(current)</span></a>
-									</li>
-									<li class="page-item"><a class="page-link" href="###">3</a></li>
-									<li class="page-item"><a class="page-link" href="####">4</a></li>
-									<li class="page-item"><a class="page-link" href="#####">5</a></li>
-									<li class="page-item"><a class="page-link" href="#">Next</a>
-									</li>
+									<%
+										int pageNum = (int) request.getAttribute("pageNum");
+										int count = (int) request.getAttribute("count");
+										System.out.println(pageNum);
+										System.out.println(count);
+										if (pageNum > 1) {//<
+									%>
+									<li class="page-item"><a class="page-link"
+										href="?page=<%=pageNum - 1%>">Previous</a></li>
+									<%
+										}
+										for (int i = 1; i <= count; i++) {//각각 번호
+									%>
+
+									<li class="page-item"><a class="page-link"
+										href="?page=<%=i%>"><%=i%> </a></li>
+									<%
+										}
+										if (pageNum < count) {//>
+									%>
+
+									<li class="page-item"><a class="page-link"
+										href="?page=<%=pageNum + 1%>">Next</a></li>
+									<%
+										}
+									%>
 								</ul>
 							</div>
 

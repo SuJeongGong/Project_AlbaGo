@@ -60,20 +60,43 @@
 		</div>
 
 
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="pagination_wrap">
-					<ul>
-						<li><a href="#"> <i class="ti-angle-left"></i>
-						</a></li>
-						<li><a href="#"><span>01</span></a></li>
-						<li><a href="#"><span>02</span></a></li>
-						<li><a href="#"> <i class="ti-angle-right"></i>
-						</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+<div class="row">
+                            <div class="col-lg-12">
+                                <div class="pagination_wrap">
+                                    <ul>
+                                <%
+                                	int pageNum = (int)request.getAttribute("pageNum");
+                              		int count = (int)request.getAttribute("count");
+                                System.out.println(pageNum);
+                                System.out.println(count);
+                                	if(pageNum>1){//<
+                                		%>
+                                        <li>
+                                        <a href="?page=<%=pageNum - 1%>"> 
+                                        <i class="ti-angle-left"></i> </a></li>
+                                		
+                                		<%                             		                                		
+                                	}
+                                	for (int i =1; i<=count ; i++){//각각 번호 
+                                		%>
+                                		
+                                        <li><a href="?page=<%=i%>"> <span><%=i %></span></a></li>
+                                		
+                                		<%
+                                	}	
+                                	if(pageNum<count){//>
+                                		%>
+                                        <li><a href="?page=<%=pageNum + 1%>"> 
+                                        <i class="ti-angle-right"></i> </a></li>
+                                		
+                                		<%                             		                                		
+                                	}
+                                
+                                %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 	</div>
 
 	<!-- featured_candidates_area_end  -->

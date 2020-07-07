@@ -188,7 +188,8 @@ public interface AdminDAO {
 		int weeklysales();
 		
 		// 매출 총 검색
-		ArrayList<Payment> PaymentSearch(Map<String, Object> map);
+		ArrayList<Payment> PaymentSearch(HashMap<String, Object> map);
+		int PaymentSearchCount(HashMap<String, Object> map);
 		
 		
 		//공수정 - 관리자 메인 화면

@@ -14,9 +14,12 @@ public interface IndividualDAO {
 	List<Individual> selectIndividual();
 	
 	Individual selectIndividual(String id);
-	ArrayList<Resume> selectResumeList(String id);
-	ArrayList<Scrap_Individual> selectScrap(String id);
-	ArrayList<Volunteer> selectVolunteer(String id);
+	ArrayList<Resume> selectResumeList(HashMap<String, Object> map);
+	int selectResumeListCount(HashMap<String, Object> map);
+	ArrayList<Scrap_Individual> selectScrap(HashMap<String, Object> map);
+	int selectScrapCount(HashMap<String, Object> map);
+	ArrayList<Volunteer> selectVolunteer(HashMap<String, Object> map);
+	int selectVolunteerCount(HashMap<String, Object> map);
 	int updateAccount(Individual individual);
 	int deleteVolunteer(int volunteer_id);
 	int deleteScrap(int scrap_id);

@@ -70,7 +70,7 @@
                             
                             
                         </script>
-<title>결제승인</title>
+<title>광고승인</title>
 </head>
 
 <body>
@@ -90,7 +90,7 @@
 					<!-- 요기다 작성  -->
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">결제 승인</h1>
+					<h1 class="h3 mb-2 text-gray-800">광고 승인</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
@@ -195,7 +195,36 @@
 
 
 				</div>
-				<!-- 끝 main 본문  -->
+				<!-- 끝 main 본문  -->	<div class="text-center" style="float: left;">
+								<ul class="pagination">
+									<%
+										int pageNum = (int) request.getAttribute("pageNum");
+										int count = (int) request.getAttribute("count");
+										System.out.println(pageNum);
+										System.out.println(count);
+										if (pageNum > 1) {//<
+									%>
+									<li class="page-item"><a class="page-link"
+										href="?page=<%=pageNum - 1%>">Previous</a></li>
+									<%
+										}
+										for (int i = 1; i <= count; i++) {//각각 번호
+									%>
+
+									<li class="page-item"><a class="page-link"
+										href="?page=<%=i%>"><%=i%> </a></li>
+									<%
+										}
+										if (pageNum < count) {//>
+									%>
+
+									<li class="page-item"><a class="page-link"
+										href="?page=<%=pageNum + 1%>">Next</a></li>
+									<%
+										}
+									%>
+								</ul>
+							</div>
 			</div>
 			<!-- 끝 main -->
 			<!-- footer -->

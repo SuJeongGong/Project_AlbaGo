@@ -180,12 +180,25 @@
 		payment.enterprise_id as enterprise_id,
 		payment.date as date
 		FROM product,payment 
-		WHERE payment.product_id = product.product_id
+		<where> payment.product_id = product.product_id
 		and product.type like CONCAT('%',#{product_type},'%')
 		and (product.name like CONCAT('%',#{search},'%')
 		OR payment.enterprise_id like CONCAT('%',#{search},'%'))
 		and `date` BETWEEN #{start} AND #{end}
-		order by date DESC
+		</where>
+		order by payment.date DESC
+		LIMIT #{page},10
+
+	</select>
+	<select id = "PaymentSearchCount" resultType="int" parameterType="hashmap">
+		SELECT count(*)
+		FROM product,payment 
+		<where> payment.product_id = product.product_id
+		and product.type like CONCAT('%',#{product_type},'%')
+		and (product.name like CONCAT('%',#{search},'%')
+		OR payment.enterprise_id like CONCAT('%',#{search},'%'))
+		and `date` BETWEEN #{start} AND #{end}
+		</where>
 
 	</select>
 	

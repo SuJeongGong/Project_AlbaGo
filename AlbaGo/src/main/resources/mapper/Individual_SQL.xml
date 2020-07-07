@@ -10,13 +10,26 @@
 		</where>
 	</select>
 
-	<select id="selectScrap" parameterType="String" resultType="Scrap_Individual">
+	<select id="selectScrap" parameterType="hashmap" resultType="Scrap_Individual">
 		SELECT board_recruit.title AS title, 
 				scrap_individual.date AS DATE,
 				board_recruit.date AS recruit_date, 
 				scrap_individual.scrap_individual_id AS scrap_id, 
 				enterprise.name as name
 
+		from
+		scrap_individual, board_recruit , recruit,enterprise
+		<where>
+				scrap_individual.board_recruit_id =board_recruit.board_recruit_id
+			AND recruit.recruit_id = board_recruit.recruit_id
+			AND enterprise.enterprise_id = recruit.enterprise_id
+			and individual_id = #{id}
+	</where>
+		ORDER BY scrap_individual.scrap_individual_id DESC
+		limit #{page},10
+	</select>
+	<select id="selectScrapCount" parameterType="hashmap" resultType="int">
+		SELECT Count(*)
 		from
 		scrap_individual, board_recruit , recruit,enterprise
 		<where>
@@ -53,11 +66,36 @@
 			AND volunteer.individual_id = #{id}
 		</where>
 		ORDER BY volunteer.volunteer_id DESC
+		limit #{page},10
+
+	</select>
+	<select id="selectVolunteerCount" parameterType="hashmap"
+		resultType="int">
+	SELECT count(*)
+		FROM resume,volunteer,board_recruit,enterprise,recruit
+		<where>
+		resume.resume_id =volunteer.resume_id
+			AND volunteer.board_recruit_id = board_recruit.board_recruit_id
+			AND recruit.recruit_id = board_recruit.recruit_id
+			AND enterprise.enterprise_id = recruit.enterprise_id
+			AND volunteer.individual_id = #{id}
+		</where>
+		ORDER BY volunteer.volunteer_id DESC
 
 	</select>
 
-	<select id="selectResumeList" parameterType="String" resultType="Resume">
+	<select id="selectResumeList" parameterType="hashmap" resultType="Resume">
 		SELECT *
+		FROM resume
+		<where>
+			individual_id = #{id}
+			and delete_check = 1
+		</where>
+		ORDER BY resume.resume_id DESC
+		limit #{page},10
+	</select>
+	<select id="selectResumeListCount" parameterType="hashmap" resultType="int">
+		SELECT count(*)
 		FROM resume
 		<where>
 			individual_id = #{id}

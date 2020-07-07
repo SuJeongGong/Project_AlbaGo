@@ -1,6 +1,7 @@
 package com.spring.ex.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,10 +34,14 @@ public class IndividualController {
 	@RequestMapping("/mypage") // 마이페이지 메인
 	public String mypage(@AuthUser String id, Model m) {//    실제 아이디 값 / 그 아이디의 타입  -> asdf/개인   -> id.split("/")[1]
 		// 모델에 담기
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id",id.split("/")[0]);
+		map.put("page",0);
 		m.addAttribute("Iinfo", individualSerive.selectIndividual(id.split("/")[0]));// 기업정보
-		m.addAttribute("scraps", individualSerive.selectScrap(id.split("/")[0]));// 스크랩
-		m.addAttribute("resumes", individualSerive.selectResumes(id.split("/")[0]));// 스크랩
-		m.addAttribute("volunteers", individualSerive.selectVolunteer(id.split("/")[0]));// 스크랩
+		m.addAttribute("scraps", individualSerive.selectScrap(map));// 스크랩
+		m.addAttribute("resumes", individualSerive.selectResumes(map));// 스크랩
+		m.addAttribute("volunteers", individualSerive.selectVolunteer(map));// 스크랩
 		return "/individual/mypage";
 	}
 
@@ -56,8 +61,14 @@ public class IndividualController {
 	}
 
 	@RequestMapping("/scrap") // 스크랩 공고- 리스트 보여주기
-	public String scrap(@AuthUser String id, Model m) {
-		m.addAttribute("scraps", individualSerive.selectScrap(id.split("/")[0]));
+	public String scrap(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id",id.split("/")[0]);
+		map.put("page",(pageNum-1)*10);
+		m.addAttribute("scraps", individualSerive.selectScrap(map));
+		m.addAttribute("count", individualSerive.selectScrapCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 
 		return "/individual/scrap";
 	}
@@ -65,8 +76,14 @@ public class IndividualController {
 
 
 	@RequestMapping("/profile/list") // 이력서 - 리스트 보여주기
-	public String profileList(@AuthUser String id, Model m) {
-		m.addAttribute("Resumes", individualSerive.selectResumes(id.split("/")[0]));// why salary는 안나오죠?
+	public String profileList(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id",id.split("/")[0]);
+		map.put("page",(pageNum-1)*10);
+		m.addAttribute("Resumes", individualSerive.selectResumes(map));
+		m.addAttribute("count", individualSerive.selectResumesCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 		return "/individual/profile_list";
 	}
 
@@ -114,10 +131,16 @@ public class IndividualController {
 	}
 
 	@RequestMapping("/support") // 지원현황 - 리스트 보여주기
-	public String support(@AuthUser String id, Model m) {
+	public String support(@AuthUser String id, Model m,
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 
-		m.addAttribute("volunteers", individualSerive.selectVolunteer(id.split("/")[0]));// why salary는 안나오죠?
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id",id.split("/")[0]);
+		map.put("page",(pageNum-1)*10);
+		m.addAttribute("volunteers", individualSerive.selectVolunteer(map));// why salary는 안나오죠?
 
+		m.addAttribute("count", individualSerive.selectVolunteerCount(map)/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 		return "/individual/support";
 	}
 

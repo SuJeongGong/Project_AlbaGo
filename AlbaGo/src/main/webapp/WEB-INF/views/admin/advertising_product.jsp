@@ -89,6 +89,36 @@
 				
 			</div>
 			<!-- 끝 main 본문  -->
+				<div class="text-center" style="float: left;">
+								<ul class="pagination">
+									<%
+										int pageNum = (int) request.getAttribute("pageNum");
+										int count = (int) request.getAttribute("count");
+										System.out.println(pageNum);
+										System.out.println(count);
+										if (pageNum > 1) {//<
+									%>
+									<li class="page-item disabled"><a class="page-link"
+										href="?page=<%=pageNum - 1%>">Previous</a></li>
+									<%
+										}
+										for (int i = 1; i <= count; i++) {//각각 번호
+									%>
+
+									<li class="page-item"><a class="page-link"
+										href="?page=<%=i%>"><%=i%> </a></li>
+									<%
+										}
+										if (pageNum < count) {//>
+									%>
+
+									<li class="page-item"><a class="page-link"
+										href="?page=<%=pageNum + 1%>">Next</a></li>
+									<%
+										}  
+									%>
+								</ul>
+							</div>
 		</div>
 		<!-- 끝 main -->
 		<!-- footer -->

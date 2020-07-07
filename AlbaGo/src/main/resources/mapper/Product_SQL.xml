@@ -3,15 +3,31 @@
 <mapper namespace="com.spring.ex.dao.ProductDAO">
 
 	<!-- 관리자 상품입니다 -->
-	<select id="selectProductList" resultType="Product"> <!-- 관리자에서 상품보기 -->
+	<select id="selectProductList" resultType="Product"  parameterType ="int"> <!-- 관리자에서 상품보기 -->
 		SELECT * FROM product
 		<where>
 		delete_check =1
 		and TYPE !="ad" 
 		</where>
+		limit #{page},12
 	</select>
-	<select id="selectAdvertisingList" resultType="Product"> <!-- 관리자에서 상품보기 -->
+	<select id="selectProductListCount" resultType="int"> <!-- 관리자에서 상품보기 -->
+		SELECT count(*) FROM product
+		<where>
+		delete_check =1
+		and TYPE !="ad" 
+		</where>
+	</select>
+	<select id="selectAdvertisingList" resultType="Product" parameterType ="int"> <!-- 관리자에서 상품보기 -->
 		SELECT * FROM product
+		<where>
+		delete_check =1
+		and TYPE ="ad" 
+		</where>
+		limit #{page},12
+	</select>
+	<select id="selectAdvertisingListCount" resultType="int"> <!-- 관리자에서 상품보기 -->
+		SELECT count(*) FROM product
 		<where>
 		delete_check =1
 		and TYPE ="ad" 
@@ -80,8 +96,16 @@
 	<!-- ############################################################# -->
 	
 	<!-- 기업입니다 -->
-	<select id="enterprise_selectList" resultType="Product"><!-- 기업에서 상품보기 -->
+	<select id="enterprise_selectList" resultType="Product" parameterType="int"><!-- 기업에서 상품보기 -->
 		SELECT * FROM product
+		<where>
+		delete_check =1
+				and TYPE !="ad" 
+		</where>
+		limit #{page},9
+	</select>
+	<select id="enterprise_selectListCount" resultType="int"><!-- 기업에서 상품보기 -->
+		SELECT count(*) FROM product
 		<where>
 		delete_check =1
 				and TYPE !="ad" 
@@ -116,7 +140,7 @@
 		null);
 	</insert>
 	
-	<select id="selectProductPayments" resultType="Payment">
+	<select id="selectProductPayments" resultType="Payment" parameterType="int">
 		select  payment.payment_id as payment_id, 
 				enterprise.name as enterprise_name, 
 				product.name as product_name,
@@ -131,9 +155,20 @@
 			and product.type != "ad"
 		</where>
 		order by payment.payment_id DESC
+		limit #{page},10
+	</select>
+	<select id="selectProductPaymentsCount" resultType="int">
+		select  count(*)
+		from Payment, enterprise, product 
+		<where>
+			payment.enterprise_id = enterprise.enterprise_id
+			and payment.product_id = product.product_id
+			and product.type != "ad"
+		</where>
+		order by payment.payment_id DESC
 	</select>
 
-	<select id="selectAdvertisingPayments" resultType="Payment">
+	<select id="selectAdvertisingPayments" resultType="Payment"  parameterType="int">
 		select  payment.payment_id as payment_id, 
 				enterprise.name as enterprise_name, 
 				product.name as product_name,
@@ -141,6 +176,17 @@
 				product.term as use_date,
 				payment.date as date,
 				product.type as product_type
+		from Payment, enterprise, product 
+		<where>
+			payment.enterprise_id = enterprise.enterprise_id
+			and payment.product_id = product.product_id
+			and product.type = "ad"
+		</where>
+		order by payment.payment_id DESC
+		limit #{page},10
+	</select>
+	<select id="selectAdvertisingPaymentsCount" resultType="int">
+		select  count(*)
 		from Payment, enterprise, product 
 		<where>
 			payment.enterprise_id = enterprise.enterprise_id
@@ -211,8 +257,16 @@
 	</update>
 	
 		<!-- 기업입니다 // 광고-->
-	<select id="enterprise_selectAdList" resultType="Product"><!-- 기업에서 상품보기 -->
+	<select id="enterprise_selectAdList" resultType="Product" parameterType="int"><!-- 기업에서 상품보기 -->
 		SELECT * FROM product
+		<where>
+		delete_check =1
+		and TYPE ="ad" 
+		</where>
+		limit #{page},9
+	</select>
+	<select id="enterprise_selectAdListCount" resultType="int"><!-- 기업에서 상품보기 -->
+		SELECT count(*) FROM product
 		<where>
 		delete_check =1
 		and TYPE ="ad" 

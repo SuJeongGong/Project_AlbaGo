@@ -19,12 +19,18 @@ public class ProductService {
 	ProductDAO productDAO;
 
 	// 관리자
-	public ArrayList<Product> selectProductList() {
-		return productDAO.selectProductList();
+	public ArrayList<Product> selectProductList(int page) {
+		return productDAO.selectProductList(page);
+	}
+	public int selectProductListCount() {
+		return productDAO.selectProductListCount();
 	}
 
-	public ArrayList<Product> selectAdvertisingList() {
-		return productDAO.selectAdvertisingList();
+	public ArrayList<Product> selectAdvertisingList(int page) {
+		return productDAO.selectAdvertisingList(page);
+	}
+	public int selectAdvertisingListCount() {
+		return productDAO.selectAdvertisingListCount();
 	}
 
 	public int insertProduct(Product product) {
@@ -44,12 +50,18 @@ public class ProductService {
 	}
 
 	// 기업
-	public ArrayList<Product> enterprise_selectList() {
-		return productDAO.enterprise_selectList();
+	public ArrayList<Product> enterprise_selectList(int page) {
+		return productDAO.enterprise_selectList(page);
+	}
+	public int enterprise_selectListCount() {
+		return productDAO.enterprise_selectListCount();
 	}
 
-	public ArrayList<Product> enterprise_selectAdList() {
-		return productDAO.enterprise_selectAdList();
+	public ArrayList<Product> enterprise_selectAdList(int page) {
+		return productDAO.enterprise_selectAdList(page);
+	}
+	public int enterprise_selectAdListCount() {
+		return productDAO.enterprise_selectAdListCount();
 	}
 
 	public Product enterprise_selectWrite(int product_id) {
@@ -60,12 +72,18 @@ public class ProductService {
 		return productDAO.insertProduct_payment(payment);
 	}
 
-	public ArrayList<Payment> selectProductPayments() {
-		return productDAO.selectProductPayments();
+	public ArrayList<Payment> selectProductPayments(int page) {
+		return productDAO.selectProductPayments(page);
+	}
+	public int selectProductPaymentsCount() {
+		return productDAO.selectProductPaymentsCount();
 	}
 
-	public ArrayList<Payment> selectAdvertisingPayments() {
-		return productDAO.selectAdvertisingPayments();
+	public ArrayList<Payment> selectAdvertisingPayments(int page) {
+		return productDAO.selectAdvertisingPayments(page);
+	}
+	public int selectAdvertisingPaymentsCount() {
+		return productDAO.selectAdvertisingPaymentsCount();
 	}
 
 	public int updatePaymentsResult(HashMap<String, Object> map) {

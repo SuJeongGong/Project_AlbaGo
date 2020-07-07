@@ -36,10 +36,13 @@ public class ProductController {
 	}  
 
 	@RequestMapping("/product/list") // 기업이 상품리스트 보는화면
-	public String list(Model m, HttpServletRequest request) {
+	public String list(Model m, 
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page="/product/list";
 
-		ArrayList<Product> products = productService.enterprise_selectList(); 
+		ArrayList<Product> products = productService.enterprise_selectList(pageNum); 
+		m.addAttribute("count", productService.enterprise_selectListCount()/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 
 		m.addAttribute("products", products);
 
@@ -92,11 +95,14 @@ public class ProductController {
 		return "/advertising/payment";
 	}
 	@RequestMapping("/advertising/list") // 기업이 상품리스트 보는화면
-	public String productList(Model m, HttpServletRequest request) {
+	public String productList(Model m, 
+			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 
-		ArrayList<Product> products = productService.enterprise_selectAdList(); 
+		ArrayList<Product> products = productService.enterprise_selectAdList(pageNum); 
 
 		m.addAttribute("products", products);
+		m.addAttribute("count", productService.enterprise_selectListCount()/10 + 1);// 기업정보
+		m.addAttribute("pageNum", pageNum);// 기업정보
 
 		return "/advertising/list";
 	}
