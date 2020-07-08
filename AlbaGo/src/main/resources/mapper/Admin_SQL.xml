@@ -29,8 +29,7 @@
 	</select>
 	<!-- 개인 -->
 	<select id="selectRecentSales" resultType="HashMap">
-		SELECT DATE_FORMAT(payment.DATE , "%Y/%m %d") as date, SUM(price) as
-		price
+		SELECT DATE_FORMAT(payment.DATE , "%Y/%m %d") as date,IFNULL( SUM(price), 0) as price
 		FROM product, payment
 		<where>product.product_id
 			= payment.product_id

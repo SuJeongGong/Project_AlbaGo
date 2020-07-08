@@ -34,7 +34,6 @@
 		SELECT community_id , title, individual_id
 		FROM community
 		ORDER BY views DESC
-		LIMIT 3
 	</select>
 
 </mapper>
