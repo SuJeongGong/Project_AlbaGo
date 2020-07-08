@@ -104,12 +104,13 @@ function deleteScraps() {
 								String individual_id = scrap.getIndividual_id();
 								String board_date = scrap.getResume_date().split(" ")[0];
 								String scrap_date = scrap.getDate().split(" ")[0];
+								int board_resume_id = scrap.getBoard_resume_id();
 						%>
 
 
 						<tr >
 							<td><input type="checkbox" class="memberChk"	name = "scrap_id" value="<%=scrap_id %>"	></td>
-							<td><%=title%></td>
+							<td><a href ="<%=request.getContextPath() %>/resume/content?board_resume_id=<%= board_resume_id%>"><%=title%></a></td>
 							<td><%=individual_id%></td>
 							<td><%=board_date%></td>
 							<td><%=scrap_date%></td>

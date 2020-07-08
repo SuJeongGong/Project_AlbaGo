@@ -109,6 +109,7 @@
 		update individual 
 		set name = #{name},
 			gender = #{gender},
+			password = #{password},
 			birth = #{birth},
 			phone = #{phone},
 			education = #{education}

@@ -16,6 +16,7 @@
 	<!-- 스크랩 보기 -->
 	<select id="selectScrap" parameterType="hashmap" resultType="Scrap_enterprise">
 		SELECT board_resume.title AS title,
+		board_resume.board_resume_id as board_resume_id,
 		scrap_enterprise.date AS DATE,
 		board_resume.date AS resume_date,
 		resume.individual_id as  
@@ -306,6 +307,8 @@
 		set name = #{name},
 		business_number =
 		#{business_number},
+		password =
+		#{password},
 		manager_name = #{manager_name},
 		manager_phone =
 		#{manager_phone},
