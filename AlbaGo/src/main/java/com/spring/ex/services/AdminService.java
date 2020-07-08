@@ -30,11 +30,31 @@ public class AdminService {
 	AdminDAO adminDAO;
 
 	public ArrayList<HashMap<String, Object>> selectRecentSales() {
-		return adminDAO.selectRecentSales();
+		ArrayList<HashMap<String, Object>>  data = adminDAO.selectRecentSales();
+		for(int i =0;i<=6;i++) {
+			if(data.size()<=i) {
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("price", 0);
+				String date = data.get(i-1).get("date").toString().split(" ")[0]+" "
+						+String.valueOf(Integer.parseInt(data.get(i-1).get("date").toString().split(" ")[1])+1);
+				System.out.println("date : " +date);
+				map.put("date", date);
+				data.add(data.size(), map);
+			}
+		}
+		 return data;
 	}
 
 	public ArrayList<HashMap<String, Object>> selectItems() {
-		return adminDAO.selectItems();
+		ArrayList<HashMap<String, Object>>  data = adminDAO.selectItems();
+		while(data.size()<4) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("count", 0);
+			map.put("type", "");
+			data.add(data.size(), map);
+		}
+		System.out.println("data    "+data);
+		 return data;
 	}
 
 	// 일주일 매출액
@@ -81,7 +101,15 @@ public class AdminService {
 	// 공수정
 	// 아이템별로 기업결제 횟수 알려주는거
 	public ArrayList<HashMap<String, Object>> selectCountItem_Enterprise(String item) {
-		return adminDAO.selectCountItem_Enterprise(item);
+		ArrayList<HashMap<String, Object>>  data = adminDAO.selectCountItem_Enterprise(item);
+		
+		while(data.size()<5) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("count", 0);
+			map.put("type", item);
+			data.add(data.size(), map);
+		}
+		 return data;
 	}
 
 	/* ################################################## */

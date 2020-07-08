@@ -110,7 +110,9 @@ public class IndividualController {
 			int i = 0;
 			while (true) {
 				System.out.println("careers   :  "+careers);
-				if (request.getParameter("career_end_date" + i).equals("")) {
+				System.out.println("i : " +i);
+				System.out.println("request.getParameter(\"career_end_date\" + i) : " +request.getParameter("career_end_date" + i));
+				if (request.getParameter("career_end_date" + i)==null||request.getParameter("career_end_date" + i).equals("")) {
 					System.out.println("break");
 					break;
 				}

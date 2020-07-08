@@ -95,7 +95,7 @@ public class IndividualService {
 	}
 
 	public int deleteResume(ArrayList<String> ids) {
-		System.out.println(ids);
+		System.out.println("ids"+ids);
 
 		return forDeleteSQL(ids,"deleteResume");
 	}

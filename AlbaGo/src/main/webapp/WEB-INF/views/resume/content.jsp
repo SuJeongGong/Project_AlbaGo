@@ -43,7 +43,7 @@ function scrapSave(board_resume_id){
 		success : function(res) {
 			console.log(res);
 			if(res>=1){
-				alert("스크랩 되었습니다.<br>마이페이지에서 확인 가능합니다.");
+				alert("스크랩 되었습니다.마이페이지에서 확인 가능합니다.");
 			}else if(res ==-2){
 				alert("개인회원은 사용할 수 없는 기능입니다.");
 			}else if(res ==-1){

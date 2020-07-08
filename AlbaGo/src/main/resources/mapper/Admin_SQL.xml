@@ -6,18 +6,17 @@
 
 <!-- 아이템별 기업마다 결제한 횟수-->
 <select id="selectCountItem_Enterprise" parameterType= "string" resultType= "hashmap">
-	SELECT COUNT(*) AS count, payment.enterprise_id FROM payment,product 
+	SELECT IFNULL( COUNT(*) , 0) AS count, payment.enterprise_id FROM payment,product 
 	<where> product.product_id = payment.product_id
 	AND  product.`type` = #{item}
 	</where>
 	group by payment.enterprise_id 
 	order BY count DESC
-	LIMIT 5
 </select>
 	<!-- 이예슬 -->
 	<!-- 메인일주일매출액  -->
 	<select id="selectWeekTotal" resultType="int">
-		SELECT  SUM(price) AS sum_price 
+		SELECT  IFNULL( SUM(price), 0) AS sum_price 
 		FROM product,payment
 
 		<where>
@@ -40,19 +39,19 @@
 	</select>
 
 	<select id="selectItems" resultType="HashMap">
-		SELECT COUNT(*) as count, product.type as type FROM payment,product
+		SELECT IFNULL( COUNT(*), 0) as count, product.type as type FROM payment,product
 		<where> product.product_id = payment.product_id</where>
 		group by product.type
 	</select>
 		<select id="today_Count" resultType="int">
-		select count(*)
+		select IFNULL( COUNT(*), 0)
 		from
 		board_recruit
 		where date >= CURDATE()
 		and board_recruit.delete_check = 1
 	</select>
 		<select id="today_Count_resume" resultType="int">
-		select count(*)
+		select IFNULL( COUNT(*), 0)
 		from
 		board_resume
 		where date >= CURDATE()
