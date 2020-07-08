@@ -238,9 +238,8 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 	}
 
 	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int updateResults(ArrayList<String> scrap_id) {
-
-		return enterpriseService.deleteScraps(scrap_id);
+	public @ResponseBody int updateResults(ArrayList<String> scrap_ids) {
+		return enterpriseService.deleteScraps(scrap_ids);
 	}
 
 	@RequestMapping(value = "/recruit/deleteRecruit", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

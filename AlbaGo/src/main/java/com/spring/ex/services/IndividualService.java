@@ -86,6 +86,7 @@ public class IndividualService {
 
 	public int deleteScrap(ArrayList<String> ids) {
 
+		System.out.println("scrap_ids     "+ids);
 		return forDeleteSQL(ids,"deleteScrap");
 	}
 
@@ -111,6 +112,8 @@ public class IndividualService {
 	
 	public int forDeleteSQL(ArrayList<String> ids,String methodName) {
 		int res = 0;
+		
+		System.out.println(ids.size());
 		for(int i =0; i<ids.size();i++) {
 			if(methodName.equals("deleteResume")) {
 				if (1 <= individualDAO.deleteResume(Integer.parseInt(ids.get(i)))) {
@@ -118,6 +121,7 @@ public class IndividualService {
 				}
 			}
 			else if(methodName.equals("deleteScrap")) {
+				System.out.println("deleteScrap deleteScrap실행은 되나요??");
 				if (1 <= individualDAO.deleteScrap(Integer.parseInt(ids.get(i)))) {
 					res = 1;
 				}

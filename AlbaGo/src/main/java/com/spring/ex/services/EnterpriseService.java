@@ -142,9 +142,9 @@ public class EnterpriseService {
 		return enterpriseDAO.deleteScrap(scrap_id);
 	}
 
-	public int deleteScraps(ArrayList<String> ids) {
-
-		return forDeleteSQL(ids,"deleteRecruit");
+	public int deleteScraps(ArrayList<String> scrap_ids) {
+		System.out.println("ids  "+scrap_ids);
+		return forDeleteSQL(scrap_ids,"deleteScrap");
 	}
 
 	public int deleteRecruit(int recruit_id) {
@@ -153,14 +153,13 @@ public class EnterpriseService {
 	}
 
 	public int deleteRecruits(ArrayList<String> ids) {
-		System.out.println(ids);
-
 		return forDeleteSQL(ids,"deleteRecruit");
 	}
 	
 	
 	public int forDeleteSQL(ArrayList<String> ids,String methodName) {
 		int res = 0;
+		System.out.println("ids  "+ids);
 		for(int i =0; i<ids.size();i++) {
 			if(methodName.equals("deleteRecruit")) {
 				if (1 <= enterpriseDAO.deleteRecruit(Integer.parseInt(ids.get(i)))) {

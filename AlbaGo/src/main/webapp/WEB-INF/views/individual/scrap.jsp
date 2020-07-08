@@ -25,7 +25,7 @@ function deleteScrap(scrap_id) {
 
 				 $("#res").load(window.location.href + " #res");
 			}else{
-				alert("사용실패")
+				alert("삭제실패실패")
 			}
 		}
 	});
@@ -35,10 +35,10 @@ function deleteScraps() {
 	$("input[name='scrap_id']:checked").each(function(){
 		if(this.checked){
 			scrap_ids.push($(this).val());
-			console.log($(this).val());
 		}
 	})
 	
+console.log(scrap_ids);
 	$.ajax({
 		url : "./deleteScraps",
 		method : "GET",
@@ -51,7 +51,7 @@ function deleteScraps() {
 
 				 $("#res").load(window.location.href + " #res");
 			}else{
-				alert("사용실패")
+				alert("삭제실패")
 			}
 		}
 	});

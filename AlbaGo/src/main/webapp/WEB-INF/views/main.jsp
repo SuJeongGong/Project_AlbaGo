@@ -80,15 +80,24 @@
 								<h3>우리동네 알바</h3>
 								</p> <br />
 								<h4>
-									<a href="#">서울</a> &nbsp; <a href="#">경기</a> &nbsp; <a href="#">인천</a>
-									&nbsp; <a href="#">부산</a> <br />
-									<br /> <a href="#">대구</a> &nbsp; <a href="#">대전</a> &nbsp; <a
-										href="#">경남</a> &nbsp; <a href="#">전남</a> <br />
-									<br /> <a href="#">충남</a> &nbsp; <a href="#">광주</a> &nbsp; <a
-										href="#">울산</a> &nbsp; <a href="#">경북</a> <br />
-									<br /> <a href="#">전북</a> &nbsp; <a href="#">충북</a> &nbsp; <a
-										href="#">강원</a> &nbsp; <a href="#">제주</a> <br />
-									<br /> <a href="#">세종</a> &nbsp; <a href="#">전국</a>
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=서울">서울</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=경기">경기</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=인천">인천</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=부산">부산</a> <br /> <br /> 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=대구">대구</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=대전">대전</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=경남">경남</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=전남">전남</a> <br /> <br /> 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=충남">충남</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=광주">광주</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=울산">울산</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=경북">경북</a> <br /> <br /> 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=전북">전북</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=충북">충북</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=강원">강원</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=제주">제주</a> <br /> <br /> 
+									<a href="<%=request.getContextPath()%>/recruit/list?local_category=세종">세종</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list">전국</a>
 								</h4></li>
 						</ul>
 					</div>
@@ -101,19 +110,19 @@
 								<h3>카테고리별 알바</h3>
 								</p> <br />
 								<p>
-									<a href="#"><i class="fas fa-utensils fa-1x"></i>외식/음료</a>
-									&emsp; <a href="#"><i class="fas fa-shopping-cart fa-1x"></i>유통/판매
-									</a> &nbsp; <a href="#"><i class="fab fa-fort-awesome fa-1x"></i>문화/여가/생활
-									</a> &nbsp; <a href="#"><i class="fas fa-concierge-bell fa-1x"></i>서비스</a>
-									<a href="#"><i class="fas fa-pen-fancy fa-1x"></i>사무직</a> <a
-										href="#"><i class="fas fa-headset fa-1x"></i>고객상담/리서치</a> <a
-										href="#"><i class="fas fa-hammer fa-1x"></i>생산/건설/노무</a>
-									&nbsp; <a href="#"><i class="fas fa-paint-brush fa-1x"></i>디자인</a>
-									<a href="#"><i class="fas fa-truck fa-1x"></i>운전/배달</a> &nbsp;
-									<a href="#"><i class="fas fa-chalkboard-teacher fa-1x"></i>교육/강사</a>
-									<a href="#"><i class="fas fa-desktop fa-1x"></i>IT/컴퓨터</a>
-									&emsp; <a href="#"><i class="fas fa-video fa-1x"></i>미디어</a>
-									&emsp; <a href="#"><i class="fas fa-user-md fa-1x"></i>병원/간호/연구</a>
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=외식/음료"><i class="fas fa-utensils fa-1x"></i>외식/음료</a> &emsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=유통/판매 "><i class="fas fa-shopping-cart fa-1x"></i>유통/판매 </a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=문화/여가/생활"><i class="fab fa-fort-awesome fa-1x"></i>문화/여가/생활 </a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=서비스"><i class="fas fa-concierge-bell fa-1x"></i>서비스</a>
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=사무직"><i class="fas fa-pen-fancy fa-1x"></i>사무직</a> 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=고객상담/리서치"><i class="fas fa-headset fa-1x"></i>고객상담/리서치</a> 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=생산/건설/노무"><i class="fas fa-hammer fa-1x"></i>생산/건설/노무</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=디자인"><i class="fas fa-paint-brush fa-1x"></i>디자인</a>
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=운전/배달"><i class="fas fa-truck fa-1x"></i>운전/배달</a> &nbsp;
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=교육/강사"><i class="fas fa-chalkboard-teacher fa-1x"></i>교육/강사</a>
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=IT/컴퓨터"><i class="fas fa-desktop fa-1x"></i>IT/컴퓨터</a> &emsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=미디어"><i class="fas fa-video fa-1x"></i>미디어</a> &emsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=병원/간호/연구"><i class="fas fa-user-md fa-1x"></i>병원/간호/연구</a>
 
 								</p></li>
 						</ul>
@@ -126,15 +135,14 @@
 							<li><p class="titleSub">
 								<h3>기간별 알바</h3>
 								</p> <br />
-								<p>
-									<br /> <a href="#"><i class="fas fa-calendar-alt fa-2x"></i>하루</a>
-									&nbsp;&nbsp;&nbsp;&emsp;&nbsp; <a href="#"><i
-										class="fas fa-calendar-alt fa-2x"></i>일주일</a> &emsp;<br />
-									<br /> <a href="#"><i class="fas fa-calendar-alt fa-2x"></i>1개월</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>3~6개월</a>
-									<br />
-									<br /> <a href="#"><i class="fas fa-calendar-alt fa-2x"></i>6~12개월</a>
-									<a href="#"><i class="fas fa-calendar-alt fa-2x"></i>1년이상</a>
+								<p> <br /> 
+								<a href="<%=request.getContextPath()%>/recruit/list?term=하루"><i class="fas fa-calendar-alt fa-2x"></i>하루</a>
+									&nbsp;&nbsp;&nbsp;&emsp;&nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?term=일주일"><i class="fas fa-calendar-alt fa-2x"></i>일주일</a> &emsp;<br /> <br /> 
+									<a href="<%=request.getContextPath()%>/recruit/list?term=1개월"><i class="fas fa-calendar-alt fa-2x"></i>1개월</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a href="<%=request.getContextPath()%>/recruit/list?term=3~6개월"><i class="fas fa-calendar-alt fa-2x"></i>3~6개월</a> <br /><br /> 
+									<a href="<%=request.getContextPath()%>/recruit/list?term=6~12개월"><i class="fas fa-calendar-alt fa-2x"></i>6~12개월</a>
+									<a href="<%=request.getContextPath()%>/recruit/list?term=1년이상"><i class="fas fa-calendar-alt fa-2x"></i>1년이상</a>
 								</p></li>
 						</ul>
 					</div>
@@ -147,15 +155,12 @@
 								<h3>최종학력</h3>
 								</p>
 								<p>
-									<a href="#"><i class="fas fa-graduation-cap fa-2x"></i>초등학교
-										졸업</a> <br /> <a href="#"><i
-										class="fas fa-graduation-cap fa-2x"></i>중학교 졸업</a> <br /> <a
-										href="#"><i class="fas fa-graduation-cap fa-2x"></i>고등학교
-										졸업</a> <br /> <a href="#"><i
-										class="fas fa-graduation-cap fa-2x"></i>대학교(2,3년) 졸업</a> <br /> <a
-										href="#"><i class="fas fa-graduation-cap fa-2x"></i>대학교(4년)
-										졸업</a><br /> <a href="#"><i
-										class="fas fa-graduation-cap fa-2x"></i>대학원 졸업 이상</a><br />
+									<a href="<%=request.getContextPath()%>/recruit/list?education=초등학교 졸업"><i class="fas fa-graduation-cap fa-2x"></i>초등학교 졸업</a> <br /> 
+										<a href="<%=request.getContextPath()%>/recruit/list?education=중학교 졸업"><i class="fas fa-graduation-cap fa-2x"></i>중학교 졸업</a> <br />
+										<a href="<%=request.getContextPath()%>/recruit/list?education=고등학교 졸업"><i class="fas fa-graduation-cap fa-2x"></i>고등학교 졸업</a> <br /> 
+										<a href="<%=request.getContextPath()%>/recruit/list?education=대학교(2,3년)졸업"><i class="fas fa-graduation-cap fa-2x"></i>대학교(2,3년) 졸업</a> <br /> 
+										<a href="<%=request.getContextPath()%>/recruit/list?education=대학교(4년)졸업"><i class="fas fa-graduation-cap fa-2x"></i>대학교(4년) 졸업</a><br /> 
+										<a href="<%=request.getContextPath()%>/recruit/list?education=대학원 졸업 이상"><i class="fas fa-graduation-cap fa-2x"></i>대학원 졸업 이상</a><br />
 								</p></li>
 						</ul>
 					</div>

@@ -40,7 +40,7 @@ public class ProductController {
 			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page="/product/list";
 
-		ArrayList<Product> products = productService.enterprise_selectList(pageNum); 
+		ArrayList<Product> products = productService.enterprise_selectList((pageNum-1)*10); 
 		m.addAttribute("count", productService.enterprise_selectListCount()/10 + 1);// 기업정보
 		m.addAttribute("pageNum", pageNum);// 기업정보
 
@@ -98,7 +98,7 @@ public class ProductController {
 	public String productList(Model m, 
 			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 
-		ArrayList<Product> products = productService.enterprise_selectAdList(pageNum); 
+		ArrayList<Product> products = productService.enterprise_selectAdList((pageNum-1)*10); 
 
 		m.addAttribute("products", products);
 		m.addAttribute("count", productService.enterprise_selectListCount()/10 + 1);// 기업정보

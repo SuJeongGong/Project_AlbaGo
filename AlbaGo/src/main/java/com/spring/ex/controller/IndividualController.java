@@ -172,8 +172,8 @@ public class IndividualController {
 	}
 
 	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int deleteScraps(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_ids) {
-
+	public @ResponseBody int deleteScraps(ArrayList<String> scrap_ids) {
+		System.out.println("scrap_ids     "+scrap_ids);
 		return individualSerive.deleteScrap(scrap_ids);
 	}
 

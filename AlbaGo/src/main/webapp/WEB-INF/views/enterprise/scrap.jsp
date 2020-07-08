@@ -37,15 +37,15 @@ function deleteScraps() {
 	$("input[name='scrap_id']:checked").each(function(){
 		if(this.checked){
 			scrap_ids.push($(this).val());
-			console.log($(this).val());
 		}
 	})
 	
+	console.log(scrap_ids);
 	$.ajax({
 		url : "./deleteScraps",
 		method : "GET",
 		data : {
-			scrap_ids: scrap_ids
+			"scrap_ids": scrap_ids
 		},
 		success :function(res){
 			if(res>=1){

@@ -12,14 +12,14 @@
 		limit #{page},12
 	</select>
 	<select id="selectProductListCount" resultType="int"> <!-- 관리자에서 상품보기 -->
-		SELECT count(*) FROM product
+		SELECT COUNT(*) FROM product
 		<where>
 		delete_check =1
 		and TYPE !="ad" 
 		</where>
 	</select>
 	<select id="selectAdvertisingList" resultType="Product" parameterType ="int"> <!-- 관리자에서 상품보기 -->
-		SELECT * FROM product
+		SELECT * FROM advertising
 		<where>
 		delete_check =1
 		and TYPE ="ad" 
@@ -27,7 +27,7 @@
 		limit #{page},12
 	</select>
 	<select id="selectAdvertisingListCount" resultType="int"> <!-- 관리자에서 상품보기 -->
-		SELECT count(*) FROM product
+		SELECT COUNT(*) FROM advertising
 		<where>
 		delete_check =1
 		and TYPE ="ad" 
