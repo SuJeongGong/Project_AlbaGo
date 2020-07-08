@@ -134,6 +134,7 @@
 		<where> enterprise.enterprise_id = #{enterprise_id}
 			and enterprise.enterprise_id = recruit.enterprise_id
 			and recruit.recruit_id= board_recruit.recruit_id
+			and board_recruit.delete_check =1
 		</where>
 	</select>
 	

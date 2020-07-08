@@ -142,6 +142,7 @@
 							<table width="95%">
 								<tr>
 									<th>제목</th>
+									<th>사용한 이력서 제목</th>
 									<th>작성날짜</th>
 								</tr>
 								<%
@@ -155,8 +156,10 @@
 										Volunteer volunteer = volunteers.get(i);
 										String title = volunteer.getResume_title();
 										String date = volunteer.getDate();
+										String name = volunteer.getEnterprise_name();
 								%>
 								<tr>
+									<td><%=name%></td>
 									<td><%=title%></td>
 									<td><%=date.split(" ")[0]%></td>
 								</tr>
@@ -194,7 +197,8 @@
 							<br>
 							<table width="95%">
 								<tr>
-									<th>제목</th>
+									<th>기업이름</th>
+									<th>공고글 제목</th>
 									<th>작성날짜</th>
 								</tr>
 								<%
@@ -208,8 +212,10 @@
 										Scrap_Individual scrap = scraps.get(i);
 										String title = scrap.getTitle();
 										String date = scrap.getDate().split(" ")[0];
+										String name = scrap.getName();
 								%>
 								<tr>
+									<td><%=name%></td>
 									<td><%=title%></td>
 									<td><%=date%></td>
 								</tr>

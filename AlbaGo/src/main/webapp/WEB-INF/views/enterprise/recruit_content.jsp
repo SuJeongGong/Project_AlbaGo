@@ -48,7 +48,7 @@
 				</div>
 				<div class="form-group row">
 					<h5 class="font-weight-bold">근무 요일</h5>
-					&nbsp;&nbsp;<%=recruit.getDate().split(" ")[0]%>
+					&nbsp;&nbsp;<%=recruit.getDay()%>
 				</div>
 				<div class="form-group row">
 					<h5 class="font-weight-bold">근무 시간&nbsp;&nbsp;&nbsp;&nbsp;</h5>
@@ -78,10 +78,7 @@
 				</div>
 
 				<br />
-				<div class="row"> <input
-						type="button" value="마이페이지"
-						class="btn py-1 px-1 btn-primary col-lg-4">
-				</div>
+
 			</form>
 		</div>
 	</div>

@@ -50,7 +50,7 @@
 	               			</tr>
 	               			<tr>
 	               				<th>생년월일</th>
-	               				<td><input type="text" class="form-control" name = "birth" id="birth" value="<%=birth %>"></td>
+	               				<td><input type="text" class="form-control" name = "birth" id="birth" value="<%=birth.split(" ")[0] %>"></td>
 	               			</tr>
 	               			<tr>
 	               				<th>최종학력</th>
@@ -58,7 +58,7 @@
 	               			</tr>
 	               			<tr>
 	               				<th>가입날짜</th>
-	               		 		<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date%></td>
+	               		 		<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date.split(" ")[0]%></td>
 	               			</tr>
 	               		</table>
 	               		<div class="row">

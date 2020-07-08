@@ -189,8 +189,8 @@ public class AdminBoardController {
 			,@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "/admin/community";
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("start", start);
-		map.put("end", end);
+		map.put("start", start+" 00:00:00");
+		map.put("end", end+" 23:59:59");
 		map.put("search", search);
 		map.put("page", (pageNum-1)*10);
 

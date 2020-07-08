@@ -279,8 +279,8 @@ public class AdminMainController {
 			@RequestParam(value = "page", defaultValue = "1") int pageNum) {
 		String page = "/admin/payment";
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("start", start);
-		map.put("end", end);
+		map.put("start", start+" 00:00:00");
+		map.put("end", end+" 23:59:59");
 		map.put("product_type", product_type);
 		map.put("search", search);
 		map.put("page", (pageNum-1)*10);

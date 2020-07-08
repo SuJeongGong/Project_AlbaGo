@@ -81,11 +81,7 @@
 
 
                 <br />
-                <div class="row">
-                    <input type="submit" value="등록하기" class="btn py-1 px-1 btn-primary col-lg-4">
-                    <input type="reset" value="처음부터" class="btn py-1 px-1 btn-primary col-lg-4">
-                    <input type="button" value="마이페이지" class="btn py-1 px-1 btn-primary col-lg-4">
-                </div>
+
             </form>
         </div>
     </div>

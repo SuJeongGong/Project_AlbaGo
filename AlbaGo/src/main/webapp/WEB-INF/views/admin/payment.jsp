@@ -62,7 +62,7 @@
 						<div class="collapse show" id="collapseCardExample">
 							<div class="card-body">
 								<table>
-								<form action="<%=request.getContextPath() %>/admin/payment/total" method="get" name="keyword" id="keyword">
+								<form action="<%=request.getContextPath() %>/admin/payment" method="get" name="keyword" id="keyword">
 									<th style="width: 900px;">기간</th>
 									<tr>
 										<td><input type="text" name="start" style="width: 150px;">&nbsp;&nbsp; ~ &nbsp;&nbsp;			
