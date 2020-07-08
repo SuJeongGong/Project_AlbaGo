@@ -45,7 +45,7 @@ function deleteScraps() {
 		url : "./deleteScraps",
 		method : "GET",
 		data : {
-			"scrap_ids": scrap_ids
+			scrap_ids:scrap_ids
 		},
 		success :function(res){
 			if(res>=1){
@@ -88,7 +88,6 @@ function deleteScraps() {
 						<tr>
 							<th><input type="checkbox" class="selectAllMembers"  onclick='OnOffMemberAllClickBtn()'/></th>
 							<th>인재글 제목</th>
-							<th>인재 이름</th>
 							<th>인재 아이디</th>
 							<th>인재글 작성날짜</th>
 							<th>스크랩 날짜</th>
@@ -105,14 +104,12 @@ function deleteScraps() {
 								String individual_id = scrap.getIndividual_id();
 								String board_date = scrap.getResume_date().split(" ")[0];
 								String scrap_date = scrap.getDate().split(" ")[0];
-								String individual_name=scrap.getIndividual_name();
 						%>
 
 
 						<tr >
 							<td><input type="checkbox" class="memberChk"	name = "scrap_id" value="<%=scrap_id %>"	></td>
 							<td><%=title%></td>
-							<td><%=individual_name%></td>
 							<td><%=individual_id%></td>
 							<td><%=board_date%></td>
 							<td><%=scrap_date%></td>

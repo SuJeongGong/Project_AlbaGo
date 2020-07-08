@@ -18,7 +18,7 @@
 		SELECT board_resume.title AS title,
 		scrap_enterprise.date AS DATE,
 		board_resume.date AS resume_date,
-		resume.individual_id as
+		resume.individual_id as  
 		individual_id,
 		scrap_enterprise.scrap_enterprise_id as
 		scrap_enterprise_id

@@ -233,12 +233,13 @@ public class EnterpriseController {// 회원 벨리데이션 처리 - 회원 구
 	}
 
 	@RequestMapping(value = "/deleteScrap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int updateResult(int scrap_id) {
+	public @ResponseBody int deleteScrap(int scrap_id) {
 		return enterpriseService.deleteScrap(scrap_id);
 	}
 
 	@RequestMapping(value = "/deleteScraps", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody int updateResults(ArrayList<String> scrap_ids) {
+	public @ResponseBody int deleteScraps(@RequestParam(value = "scrap_ids[]") ArrayList<String> scrap_ids) {
+		System.out.println("deleteScraps실행");
 		return enterpriseService.deleteScraps(scrap_ids);
 	}
 
