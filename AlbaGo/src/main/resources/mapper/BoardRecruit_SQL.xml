@@ -47,7 +47,7 @@
 		and recruit.term like CONCAT('%',#{term},'%')
 		and board_recruit.title like CONCAT('%',#{title},'%')
 		</where>
-			ORDER BY board_recruit.date DESC
+			ORDER BY board_recruit.up_date DESC
 			LIMIT #{start},10
 	</select>
 	<!-- 게시글작성 -->

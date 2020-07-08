@@ -14,6 +14,7 @@
 		Individual individual = (Individual)request.getAttribute("Iinfo");
 	
 		String id = individual.getIndividual_id();
+		String password = individual.getPassword();
 		String name = individual.getName();
 		String birth = individual.getBirth();
 		String gender = individual.getGender();
@@ -26,7 +27,7 @@
 			<div class="container-fluid">
 			<br>
 				<div class="d-sm-flex align-items-center justify-content-between mb-4">
-            		<h1 class="h3 mb-0 text-gray-800">기업 회원 정보</h1>
+            		<h1 class="h3 mb-0 text-gray-800">개인 회원 정보</h1>
             				</div>
 				<!-- main 본문을 한 줄로 묶기 -->
 				<div class="row" >
@@ -35,6 +36,10 @@
 	               			<tr>
 	               				<th>아이디</th>
 	               				<td><input type="hidden" name ="individual_id" id ="individual_id" value="<%=id%>" ><%=id%></td>
+	               			</tr>
+	               			<tr>
+	               				<th>아이디</th>
+	               				<td><input type="text" class="form-control"  name ="password" id ="password" value="<%=password%>" ></td>
 	               			</tr>
 	               			<tr>
 	               				<th>이름</th>

@@ -101,7 +101,7 @@ public class IndividualController {
 	@RequestMapping("/profile/write/save") // 이력서 작성 - 저장하기
 	public String profileWriteSave(@AuthUser String id, @ModelAttribute("profile") Resume resume,
 			HttpServletRequest request) {
-		String page = "/profile/write/save";// 성공 안하면
+		String page = "/profile/profile_write";// 성공 안하면
 		ArrayList<Career> careers = new ArrayList<Career>();
 		resume.setIndividual_id(id.split("/")[0]); // 세션에서 로그인 값 받아와서 이력서에 넣기
 
@@ -109,7 +109,9 @@ public class IndividualController {
 			System.out.println("DB에 값 넣기 성공 ( 이력서 )");
 			int i = 0;
 			while (true) {
-				if (request.getParameter("career_end_date" + i) == null) {
+				System.out.println("careers   :  "+careers);
+				if (request.getParameter("career_end_date" + i).equals("")) {
+					System.out.println("break");
 					break;
 				}
 				Career career = new Career();
@@ -122,11 +124,15 @@ public class IndividualController {
 				careers.add(career);
 				i = i + 1;
 			}
-		}
-		if (1 <= individualSerive.insertCareer(careers, resume.getResume_id())) {// 경력 저장에 성공했다면
-			System.out.println("DB에 값 넣기 성공 ( 경력 )");
 			page = "redirect:/individual/profile/list"; // 성공했을때 경로
 		}
+		System.out.println(careers.isEmpty());
+		if(!careers.isEmpty()) {
+			if (1 <= individualSerive.insertCareer(careers, resume.getResume_id())) {// 경력 저장에 성공했다면
+				System.out.println("DB에 값 넣기 성공 ( 경력 )");
+			}
+		}
+		
 		return page;
 	}
 

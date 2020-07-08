@@ -52,11 +52,12 @@
 							for (int i = 0; i < paymentHistoriesResume.size(); i++) {
 								PaymentHistoryResume paymentHistoryResume = paymentHistoriesResume.get(i);
 								String boardResumeTitle = paymentHistoryResume.getBoard_resume_title();
+								int board_resume_id = paymentHistoryResume.getBoard_resume_id();
 								String phone = paymentHistoryResume.getResume_phone();//null나옴 아마 sql문을 고져야할듯 as board_recruit_title로 
 								String date = paymentHistoryResume.getDate().split(" ")[0];
 						%>
 						<tr>
-							<td><%=boardResumeTitle%></td>
+							<td><a href ="<%=request.getContextPath()%>/resume/content?board_resume_id=<%=board_resume_id %>"><%=boardResumeTitle%></a></td>
 							<td><%=phone%></td>
 							<td><%=date%></td>
 						</tr>

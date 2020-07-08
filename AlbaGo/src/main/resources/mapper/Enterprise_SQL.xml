@@ -150,7 +150,8 @@
 	<select id="selectpaymentHistoryResume" parameterType="hashmap" resultType="PaymentHistoryResume">
 		SELECT board_resume.title AS board_resume_title,
 		payment_history_resume.resume_phone AS resume_phone,
-		payment_history_resume.date as date
+		payment_history_resume.date as date,
+		board_resume.board_resume_id as board_resume_id
 
 		FROM payment_history_resume,board_resume
 

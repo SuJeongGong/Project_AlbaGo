@@ -15,7 +15,8 @@
 				scrap_individual.date AS DATE,
 				board_recruit.date AS recruit_date, 
 				scrap_individual.scrap_individual_id AS scrap_id, 
-				enterprise.name as name
+				enterprise.name as name,
+				board_recruit.board_recruit_id as board_recruit_id
 
 		from
 		scrap_individual, board_recruit , recruit,enterprise
