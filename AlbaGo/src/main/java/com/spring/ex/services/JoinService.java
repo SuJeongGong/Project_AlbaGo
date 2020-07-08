@@ -73,6 +73,13 @@ public class JoinService {
 	public int selectCheckIndividualPw(String id) {
 		return joinDAO.selectCheckIndividualPw(id);
 	}
+	
+	public int selectCheckEnterpriseState(String id) {
+		return joinDAO.selectCheckEnterpriseState(id);
+	}
+	public int selectCheckIndividualState(String id) {
+		return joinDAO.selectCheckIndividualState(id);
+	}
 
 
 }

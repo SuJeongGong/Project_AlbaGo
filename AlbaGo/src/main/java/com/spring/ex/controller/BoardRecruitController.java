@@ -97,11 +97,11 @@ public class BoardRecruitController {
 
 		if (id.split("/")[1].equals("개인")) {
 			System.out.println("되나?2");
-			page = "redirect:/recruit/lsit";
+			page = "redirect:/recruit/list";
 		}
 		if (1 <= boardRecruitService.insertBoard_recruit(boardrecruit)) {
 			System.out.println("되나?2");
-			page = "redirect:/recruit/lsit";
+			page = "redirect:/recruit/list";
 		}
 
 		return page;
@@ -112,6 +112,9 @@ public class BoardRecruitController {
 	public String write(Model m, @AuthUser String id) {
 		if(id.split("/")[1].equals("개인")) {
 			return "redirect:/recruit/list";
+		}
+		if(boardRecruitService.selectEnterpriseBoardCount(id.split("/")[0])<=boardRecruitService.selectEnterpriseWriteBoardCount(id.split("/")[0])) {
+			return"redirect:/recruit/list";
 		}
 		ArrayList<BoardRecruit> recruits = boardRecruitService.selectRecruit(id.split("/")[0]);
 

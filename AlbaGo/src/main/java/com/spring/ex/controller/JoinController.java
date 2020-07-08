@@ -58,12 +58,17 @@ public class JoinController {
 		System.out.println(selectPwResult);
 		if (selectIdResult >= 1 && selectPwResult >= 1) {
 			System.out.println("session 기본값 : "+session.toString());
+			if( 1==joinService.selectCheckEnterpriseState(id)) {
+				session.setAttribute("id", id);// 세션에 아이디 넣기
+				session.setAttribute("type", "기업");// 세션에 기업인지, 개인인지 구분자 넣기
+				session.setMaxInactiveInterval(900);
 
-			session.setAttribute("id", id);// 세션에 아이디 넣기
-			session.setAttribute("type", "기업");// 세션에 기업인지, 개인인지 구분자 넣기
-			session.setMaxInactiveInterval(900);
+				page = "redirect:/main";// db값넣기 성공시 result페이지로
+			}else {
+				System.out.println("계정 상태 정지");
+				page = "redirect:/join/login";
+			}
 
-			page = "redirect:/main";// db값넣기 성공시 result페이지로
 		} else {
 			System.out.println("login 실패");
 			page = "redirect:/join/login";
@@ -83,12 +88,17 @@ public class JoinController {
 		int selectPwResult = joinService.selectCheckIndividualPw(pw);
 		System.out.println(selectIdResult);
 		if (selectIdResult >= 1 && selectPwResult >= 1) {
-			System.out.println("login 성공");
 
-			session.setAttribute("id", id);// 세션에 아이디 넣기
-			session.setAttribute("type", "개인");// 세션에 기업인지, 개인인지 구분자 넣기
+			if( 1==joinService.selectCheckIndividualState(id)) {
+				System.out.println("login 성공");
+				session.setAttribute("id", id);// 세션에 아이디 넣기
+				session.setAttribute("type", "개인");// 세션에 기업인지, 개인인지 구분자 넣기
 
 			page =  "redirect:/main";/// db값넣기 성공시 result페이지로
+			}else {
+				System.out.println("계정 상태 정지");
+				page = "redirect:/join/login";
+			}
 		} else {
 			System.out.println("login 실패");
 			page = "redirect:/join/login";

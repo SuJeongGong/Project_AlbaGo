@@ -87,6 +87,12 @@
 	<select id="selectCheckIndividualPw"  resultType ="int" parameterType = "String">
 		SELECT COUNT(*) FROM individual WHERE password= #{pw}
 	</select>
+	<select id="selectCheckIndividualState"  resultType ="int" parameterType = "String">
+		SELECT state FROM individual WHERE individual_id= #{id}
+	</select>
+	<select id="selectCheckEnterpriseState"  resultType ="int" parameterType = "String">
+		SELECT state FROM enterprise WHERE enterprise_id= #{id}
+	</select>
 	
 	
 	<!-- 기업 , 개인 아이디 중복 확인 -->

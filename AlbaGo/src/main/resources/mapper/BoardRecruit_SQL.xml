@@ -124,5 +124,18 @@
 	
 	</select>
 	
+	<select id ="selectEnterpriseBoardCount" parameterType="String" resultType="int">
+		select board_recruit_count from enterprise where enterprise_id = #{enterprise_id}
+	</select>
+	
+	<select id ="selectEnterpriseWriteBoardCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		from enterprise , board_recruit, recruit
+		<where> enterprise.enterprise_id = #{enterprise_id}
+			and enterprise.enterprise_id = recruit.enterprise_id
+			and recruit.recruit_id= board_recruit.recruit_id
+		</where>
+	</select>
+	
 
 </mapper>

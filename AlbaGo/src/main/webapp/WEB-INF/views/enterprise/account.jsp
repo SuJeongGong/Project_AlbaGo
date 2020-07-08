@@ -21,6 +21,7 @@
 		String name = enterprise.getName();
 		int resume_count = enterprise.getResume_count();
 		int up_count = enterprise.getUp_count();
+		int board_recruit_count = enterprise.getBoard_recruit_count();
 		
 	
 	%>
@@ -58,10 +59,7 @@
 	               				<th>담당자 연락처</th>
 	               				<td><input type="text" class="col-sm-10 form-control" name = "manager_phone" id="manager_phone" value="<%=manager_phone %>"></td>
 	               			</tr>
-	               			<tr>
-	               				<th>가입날짜</th>
-	               				<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date%></td>
-	               			</tr>
+	               		
 	               			<tr>
 	               				<th>연락처 읽기 횟수</th>
 	               				<td><input type ="hidden" name ="resume_count" id ="resume_count" value="<%=resume_count%>"><%=resume_count%></td>
@@ -69,6 +67,14 @@
 	               			<tr>
 	               				<th>UP 횟수</th>
 	               				<td><input type ="hidden" name ="up_count" id ="up_count" value="<%=up_count%>"><%=up_count%></td>
+	               			</tr>
+	               			<tr>
+	               				<th>게시글 작성 갯수</th>
+	               				<td><input type ="hidden" name ="board_recruit_count" id ="board_recruit_count" value="<%=board_recruit_count%>"><%=board_recruit_count%></td>
+	               			</tr>
+	               				<tr>
+	               				<th>가입날짜</th>
+	               				<td><input type ="hidden" name ="date" id ="date" value="<%=date%>"><%=date%></td>
 	               			</tr>
 	               		</table>
 	               		<div class="row">

@@ -31,4 +31,7 @@ public interface BoardRecruitDAO {
 	//조회수
 	int updateViews(int board_recruit_id);
 	int selectListCount(Map<String, Object> map);
+	
+	int selectEnterpriseBoardCount(String enterprise_id);
+	int selectEnterpriseWriteBoardCount(String enterprise_id);
 }

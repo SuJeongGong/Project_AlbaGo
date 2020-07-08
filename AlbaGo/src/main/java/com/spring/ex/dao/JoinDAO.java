@@ -31,4 +31,7 @@ public interface JoinDAO {
 	
 	int selectCheckIndividualId(String id);// 개인  - 아이디 맞는지 확인
 	int selectCheckIndividualPw(String pw);//개인 - 비밀번호 맞는지 확인
+	
+	int selectCheckIndividualState(String id);//개인 - 계정상태 확인
+	int selectCheckEnterpriseState(String id);//기업 - 계정상태 확인
 }
