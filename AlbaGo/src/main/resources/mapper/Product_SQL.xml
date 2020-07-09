@@ -19,7 +19,7 @@
 		</where>
 	</select>
 	<select id="selectAdvertisingList" resultType="Product" parameterType ="int"> <!-- 관리자에서 상품보기 -->
-		SELECT * FROM advertising
+		SELECT * FROM product
 		<where>
 		delete_check =1
 		and TYPE ="ad" 
@@ -27,7 +27,7 @@
 		limit #{page},12
 	</select>
 	<select id="selectAdvertisingListCount" resultType="int"> <!-- 관리자에서 상품보기 -->
-		SELECT COUNT(*) FROM advertising
+		SELECT COUNT(*) FROM product
 		<where>
 		delete_check =1
 		and TYPE ="ad" 
