@@ -36,6 +36,14 @@ pageEncoding="UTF-8"%>
   				$("#dupChk").html('');
   			}
   		});
+  		$("#phone").change(function() {
+  			if($(this).val().trim() != '') {
+  				selectCheckPhone($(this).val());
+  			}
+  			else {
+  				$("#checkPhone").html('');
+  			}
+  		});
   	})
   	
   	function selectCheckId(individual_id) {
@@ -53,7 +61,7 @@ pageEncoding="UTF-8"%>
   				}else{
   					text="<span style = 'color:blue'>사용 가능한 아이디입니다.</span>";
   				}
-  				$("#dupChk").html(text);
+  				$("#dupChk").html(text);  
   				if(res == 0) {
   					btn.disabled = false;  					
   				}
@@ -63,10 +71,62 @@ pageEncoding="UTF-8"%>
   			}
   		});
   	}
-  </script>
+  	
+  	//핸드폰 중복확인
+  	function selectCheckPhone(phone) {
+  		
+  		$.ajax({
+  			url : "../join/selectCheckPhone",//컨트롤러에 요청할것 RequestMapping과 맞게끔
+  			method : "GET",
+  			data : {
+  				phone : phone
+  			},
+  			success : function(res) {
+  				var text;
+  				if(res==1){
+  					text="<span style='color:red'>이미 등록된 휴대폰 번호 입니다.</span>";
+  				}else{
+  					text="<span style = 'color:blue'>사용 가능한 휴대폰 번호 입니다.</span>";
+  				}
+  				$("#checkPhone").html(text);
+  				if(res == 0) {
+  					btn.disabled = false;  					
+  				}
+  				else {
+  					btn.disabled = 'disabled';
+  				}
+  			}
+  		});
+  	}
+  	
+  	//비밀번호 확인 
+  	function selectCheckPhone(phone) {
+  		
+  		$.ajax({
+  			url : "../join/selectCheckPhone",//컨트롤러에 요청할것 RequestMapping과 맞게끔
+  			method : "GET",
+  			data : {
+  				phone : phone
+  			},
+  			success : function(res) {
+  				var text;
+  				if(res==1){
+  					text="<span style='color:red'>이미 등록된 휴대폰 번호 입니다.</span>";
+  				}else{
+  					text="<span style = 'color:blue'>사용 가능한 휴대폰 번호 입니다.</span>";
+  				}
+  				$("#checkPhone").html(text);
+  				if(res == 0) {
+  					btn.disabled = false;  					
+  				}
+  				else {
+  					btn.disabled = 'disabled';
+  				}
+  			}
+  		});
+  	}
   
-  <!-- 비번 일치 확인 -->
-  <script>
+ //비번 일치 확인
     var same_result = false;
   	function ok_pwd() {
   		var pwd1 = $('#password').val();
@@ -116,23 +176,32 @@ pageEncoding="UTF-8"%>
             </div>
             <hr>
             <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
+              <div class="col-sm-3 mb-3 mb-sm-0">
+              이름 : 
+              </div>                 
+              <div class="col-sm-9 mb-3 mb-sm-0">
                 <input type="text" class="form-control form-control-user" id="name" value="${individual.name}" name="name" placeholder="이름입력">
               </div>                 
             </div>
             <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
+              <div class="col-sm-3 mb-3 mb-sm-0">
+              아이디 :
+              </div> 
+              <div class="col-sm-9 mb-3 mb-sm-0">
                 <input type="text" class="form-control form-control-user" name="individual_id" value="${individual.individual_id}" id="individual_id" placeholder="ID입력" >
               </div> 
-              <div class="col-sm-6">
+              <div class="col-sm-12">
               	<span id="dupChk"></span>
               </div>        
             </div>
             <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
+              <div class="col-sm-3 mb-3 mb-sm-0">
+	비밀번호 : 
+              </div>
+              <div class="col-sm-4 mb-3 mb-sm-0">
                 <input type="password" class="form-control form-control-user" name ="password"value="${individual.password}" id="password" placeholder="Password">
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-4">
                 <input type="password" class="form-control form-control-user" name = "password2" id="password2" placeholder="Repeat Password" onKeyUp="ok_pwd()">
               </div>
               <div class="col-sm-12" style="text-align:center">
@@ -142,22 +211,31 @@ pageEncoding="UTF-8"%>
             <hr>
             
 
-            <span class="box">생년월일</span> <br><br>
             
             <div class="form-group row">
-              <div class="col-sm-7 mb-3 mb-sm-0">
+              <div class="col-sm-3 mb-3 mb-sm-0">
+              생년월일 : 
+              </div>
+              <div class="col-sm-9 mb-3 mb-sm-0">
+
                 <input type="text" class="form-control form-control-user" name="birth" value="${individual.individual_birth}" id="individual_birth" placeholder="0000-00-00으로 적어주세요">
               </div>
             </div>
-            <span class="box">핸드폰번호</span><br><br>
             <div class="form-group row">
-              <div class="col-sm-7 mb-3 mb-sm-0">
+              <div class="col-sm-3 mb-3 mb-sm-0">
+              휴대폰 번호 : 
+              </div>
+              <div class="col-sm-9 mb-3 mb-sm-0">
                 <input type="text" class="form-control form-control-user" name="phone" value="${individual.phone}" id="phone" placeholder="'-빼고 적어주세요'">
               </div>
+              <div class="col-sm-12">
+              	<span id="checkPhone"></span>
+              </div>  
             </div>
-            <span class="box">최종학력</span><br><br>
-            
             <div class="form-group row">
+                    <div class="col-sm-3 mb-3 mb-sm-0">
+             최종학력 : 
+              </div>
               <div class="a custom-radio">
                 <input type="radio" name="education" id="element" class="a-input" value="초등학교 졸업" checked>
                                 초등학교 졸업

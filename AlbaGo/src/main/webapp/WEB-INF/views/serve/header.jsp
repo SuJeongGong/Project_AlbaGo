@@ -153,7 +153,7 @@
 	%>
 	
 	 
-                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            <div class="col-xl-3 col-md-3 col-lg-3 d-none d-lg-block">
                                 <div class="Appointment">
                                     <div class="phone_num d-none d-xl-block">
                                         <a href="<%=joinLoginPath%>" class="boxed-btn4">로그인</a>
@@ -163,7 +163,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 col-md-3">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
 	
@@ -235,6 +235,9 @@
         <div class="container">
             <div class="bradcam_text">
                 <br />
+
+                
+                
                 <br />
                 <br />
                 <br />
