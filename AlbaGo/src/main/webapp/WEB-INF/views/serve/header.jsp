@@ -51,7 +51,7 @@
                             <div class="col-xl-2 col-lg-2">                        
                                 <div class="logo">                                     <!-- 로고자리_area -->        
                                     <a href="<%=request.getContextPath() %>/main">
-                                        <img src="<c:url value="/img/logo.png" />" alt="로고" width="90%" hright="40%">
+                                        <img src="<c:url value="/img/logo.png" />" alt="로고" width="80%" height="40%">
                                     </a>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li  class="submenu">알바</i>
+                                            <li  class="submenu">구인</i>
                                             <li><a href="<%=recruitPath%>">지역 </a>
                                                 <ul class="submenu">
                                                     <li><a href="<%=recruitPath%>?local_category=서울">서울</a></li>
@@ -82,23 +82,19 @@
                                             </li>
                                             <li><a href="<%=recruitPath%>">카테고리 </a>
                                                 <ul class="submenu">
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=외식/음료">외식/음료</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=유통/판매">유통/판매</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=문화/여가/생활">문화/여가/생활</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=서비스">서비스</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=사무직">사무직</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=고객상담/리서치">고객상담/리서치</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=생산/건설/노무">생산/건설/노무</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=교육/강사">교육/강사</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=디자인">디자인</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=미디어">미디어</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=운전/배달">운전/배달</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=병원/간호/연구">병원/간호/연구</a></li>
-                                                    <li><a href="<%=recruitPath%>?enterprise_category=IT/컴퓨터">IT/컴퓨터</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=아동,청소년">아동,청소년</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=어르신">어르신</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=장애인">장애인</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=여성">여성</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=정신보건">정신보건</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=노숙인">노숙인</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=복지관">복지관</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=자원봉사">자원봉사</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=기타">기타</a></li>
                                                 </ul>
                                             </li>
                                             <span>|</span>
-                                            <li  class="submenu">인재</i>
+                                            <li  class="submenu">구직</i>
                                             <li><a href="<%=resumePath%>">지역 </a>
                                                 <ul class="submenu">
                                                     <li><a href="<%=resumePath%>?local_category=서울">서울</a></li>
@@ -121,19 +117,15 @@
                                             </li>
                                             <li><a href="<%=resumePath%>">카테고리 </a>
                                                 <ul class="submenu">
-                                                    <li><a href="<%=resumePath%>?enterprise_category=외식/음료">외식/음료</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=유통/판매">유통/판매</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=문화/여가/생활">문화/여가/생활</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=서비스">서비스</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=사무직">사무직</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=고객상담/리서치">고객상담/리서치</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=생산/건설/노무">생산/건설/노무</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=교육/강사">교육/강사</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=디자인">디자인</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=미디어">미디어</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=운전/배달">운전/배달</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=병원/간호/연구">병원/간호/연구</a></li>
-                                                    <li><a href="<%=resumePath%>?enterprise_category=IT/컴퓨터">IT/컴퓨터</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=아동,청소년">아동,청소년</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=어르신">어르신</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=장애인">장애인</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=여성">여성</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=정신보건">정신보건</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=노숙인">노숙인</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=복지관">복지관</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=자원봉사">자원봉사</a></li>
+                                                    <li><a href="<%=recruitPath%>?enterprise_category=기타">기타</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="<%=communityPath %>">커뮤니티</a></li>

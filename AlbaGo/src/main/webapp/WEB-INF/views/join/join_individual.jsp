@@ -71,61 +71,7 @@ pageEncoding="UTF-8"%>
   			}
   		});
   	}
-  	
-  	//핸드폰 중복확인
-  	function selectCheckPhone(phone) {
-  		
-  		$.ajax({
-  			url : "../join/selectCheckPhone",//컨트롤러에 요청할것 RequestMapping과 맞게끔
-  			method : "GET",
-  			data : {
-  				phone : phone
-  			},
-  			success : function(res) {
-  				var text;
-  				if(res==1){
-  					text="<span style='color:red'>이미 등록된 휴대폰 번호 입니다.</span>";
-  				}else{
-  					text="<span style = 'color:blue'>사용 가능한 휴대폰 번호 입니다.</span>";
-  				}
-  				$("#checkPhone").html(text);
-  				if(res == 0) {
-  					btn.disabled = false;  					
-  				}
-  				else {
-  					btn.disabled = 'disabled';
-  				}
-  			}
-  		});
-  	}
-  	
-  	//비밀번호 확인 
-  	function selectCheckPhone(phone) {
-  		
-  		$.ajax({
-  			url : "../join/selectCheckPhone",//컨트롤러에 요청할것 RequestMapping과 맞게끔
-  			method : "GET",
-  			data : {
-  				phone : phone
-  			},
-  			success : function(res) {
-  				var text;
-  				if(res==1){
-  					text="<span style='color:red'>이미 등록된 휴대폰 번호 입니다.</span>";
-  				}else{
-  					text="<span style = 'color:blue'>사용 가능한 휴대폰 번호 입니다.</span>";
-  				}
-  				$("#checkPhone").html(text);
-  				if(res == 0) {
-  					btn.disabled = false;  					
-  				}
-  				else {
-  					btn.disabled = 'disabled';
-  				}
-  			}
-  		});
-  	}
-  
+
  //비번 일치 확인
     var same_result = false;
   	function ok_pwd() {
@@ -137,11 +83,13 @@ pageEncoding="UTF-8"%>
   			text="<span style = 'color:blue'>비밀번호가 일치합니다.</span>";
   			same_result=true;
   			s_result.html(text);
+  			$('#btn').show();
   		}
   		else {
   			text="<span style = 'color:red'>비밀번호가 일치하지 않습니다.</span>";
   			same_result=false;
   			s_result.html(text);
+  			$('#btn').hide();
   		}
   	}
   </script>
@@ -161,7 +109,7 @@ pageEncoding="UTF-8"%>
               <h1 class="h4 text-gray-900 mb-3" id ="test">개인 회원가입</h1>
               <hr>
             </div>
-            <form class="user" action ="<%=conPath%>/join/join_individual/join_result">
+            <form class="user" action ="<%=conPath%>/join/join_individual/join_result" name = "individual">
               <div class="from-group row">
                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -218,7 +166,8 @@ pageEncoding="UTF-8"%>
               </div>
               <div class="col-sm-9 mb-3 mb-sm-0">
 
-                <input type="text" class="form-control form-control-user" name="birth" value="${individual.individual_birth}" id="individual_birth" placeholder="0000-00-00으로 적어주세요">
+                <input type="text" class="form-control form-control-user" name="birth" value="${individual.birth}" id="birth" placeholder="0000-00-00으로 적어주세요">
+                <input type="hidden"  name="education" value="없음" id="education" >
               </div>
             </div>
             <div class="form-group row">
@@ -232,37 +181,9 @@ pageEncoding="UTF-8"%>
               	<span id="checkPhone"></span>
               </div>  
             </div>
-            <div class="form-group row">
-                    <div class="col-sm-3 mb-3 mb-sm-0">
-             최종학력 : 
-              </div>
-              <div class="a custom-radio">
-                <input type="radio" name="education" id="element" class="a-input" value="초등학교 졸업" checked>
-                                초등학교 졸업
-              </div>&nbsp;&nbsp;&nbsp;&nbsp;
-              <div class="a custom-radio">
-                <input type="radio" name="education" id="middle" class="a-input" value="중학교 졸업" checked>
-                                중학교 졸업
-              </div>&nbsp;&nbsp;&nbsp;&nbsp;
-              <div class="a custom-radio">
-                <input type="radio" name="education" id="high" class="a-input" value="고등학교 졸업" checked>
-                고등학교 졸업
-              </div>&nbsp;&nbsp;&nbsp;&nbsp;<br>
-              <div class="a custom-radio">
-                <input type="radio" name="education" id="collage23" class="a-input" value="대학교(2,3년) 졸업" checked>
-                2/3년제 졸업
-              </div>
-              <div class="a custom-radio">
-                <input type="radio" name="education" id="collage4" class="a-input" value="대학교(4년) 졸업" checked>
-                4년제 졸업
-              </div>&nbsp;&nbsp;&nbsp;&nbsp;&ensp;&ensp;&ensp;<br>
-              <div class="a custom-radio">
-                <input type="radio" name="education" id="collage5" class="a-input" value="대학원 졸업 이상" checked>
-                대학원 졸업 이상
-              </div>
-            </div>
+            
             <br>
-            <input type = "submit" value="전송" class="btn btn-primary btn-user btn" id="btn"/>
+            <input type = "submit" value="가입" class="btn btn-primary btn-user btn" id="btn"/>
  
 			</form>
           </div>

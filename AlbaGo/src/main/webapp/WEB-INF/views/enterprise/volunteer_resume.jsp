@@ -8,7 +8,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>지원한이력서 상세보기</title>
+    <title>지원한 이력서 상세보기</title>
 </head>
 
 <body>

@@ -105,6 +105,9 @@ public class BoardResumeController {
 			BoardResume board_content = boardResumeService.selectView(board_resume_id);
 			board_content.setBoard_resume_id(board_resume_id);
 			ArrayList<Career> careers = boardResumeService.selectCareers(board_resume_id);
+			System.out.println("careers TEST ===============================================");
+			System.out.println("careers TEST ===============================================");
+			System.out.println(careers);
 			m.addAttribute("board_content", board_content);
 			m.addAttribute("careers", careers);
 		}

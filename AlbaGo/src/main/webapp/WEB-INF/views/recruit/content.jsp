@@ -159,7 +159,6 @@ function insertVolunteer(board_recruit_id) {
                                 <li>채용인원 : <span><%=board_content.getPeople_count() %>명</span></li>
                                 <li>성별 : <span><%=board_content.getGender() %></span></li>
                                 <li>연령 : <span><%=board_content.getAge().split(",")[0] %>세 ~ <%=board_content.getAge().split(",")[1] %>세</span></li>
-                                <li>최종학력 : <span><%=board_content.getEducation() %></span></li>
                             </ul>
                         </div>
                         <hr/>

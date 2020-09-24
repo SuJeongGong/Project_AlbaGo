@@ -23,11 +23,11 @@
 	<div class="container">
 		<br />
 		<div class="row">
-			<h1>인재글 연락처 확인 사용 내역</h1>
+			<h1>구인글 연락처 확인 사용 내역</h1>
 		</div>
 		<div class="row">
 			<ul>
-				<li>인재글 연락처 확인 사용 내역을 확인 하실 수 있습니다.</li>
+				<li>구인글 연락처 확인 사용 내역을 확인 하실 수 있습니다.</li>
 				<li>최신순으로 정렬되어 있습니다.</li>
 			</ul>
 
@@ -38,7 +38,7 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>사용한 인재글</th>
+							<th>사용한 구인글</th>
 							<th>연락처</th>
 							<th>사용날짜</th>
 						</tr>

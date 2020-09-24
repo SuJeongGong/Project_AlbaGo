@@ -45,7 +45,7 @@
 	               				<td><input type = "text" class="form-control" name ="password" id ="password" value="<%=password%>" ></td>
 	               			</tr>
 	               			<tr>
-	               				<th>기업이름</th>
+	               				<th>단체이름</th>
 	               				<td><input type="text" class=" form-control" name = "name" id="name" value="<%=name%>"></td>
 	               			</tr>
 	               			<tr>
@@ -66,7 +66,7 @@
 	               			</tr>
 	               		
 	               			<tr>
-	               				<th>연락처 읽기 횟수</th>
+	               				<th>이력서 읽기 횟수</th>
 	               				<td><input type ="hidden" name ="resume_count" id ="resume_count" value="<%=resume_count%>"><%=resume_count%></td>
 	               			</tr>
 	               			<tr>

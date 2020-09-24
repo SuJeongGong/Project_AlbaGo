@@ -38,7 +38,7 @@
 	               				<td><input type="hidden" name ="individual_id" id ="individual_id" value="<%=id%>" ><%=id%></td>
 	               			</tr>
 	               			<tr>
-	               				<th>아이디</th>
+	               				<th>비밀번호</th>
 	               				<td><input type="text" class="form-control"  name ="password" id ="password" value="<%=password%>" ></td>
 	               			</tr>
 	               			<tr>

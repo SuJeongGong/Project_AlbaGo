@@ -88,8 +88,8 @@ function checkMember(){
 									</label>
 									</div>
 								</div>
-									<input type="text" id="name" name="name" class="form-control form-control-user"  placeholder="이름입력 (기업의 경우 매니저 이름을 적어주세요. )" value="${name}" > 
-									<input type="text" id="phone" name="phone" class="form-control form-control-user" placeholder="연락처-빼고 적어주세요 (기업의 경우 매니저 전화번호을 적어주세요. )" value="${phone}">
+									<input type="text" id="name" name="name" class="form-control form-control-user"  placeholder="이름입력 (단체의 경우 매니저 이름을 적어주세요.)" value="${name}" > 
+									<input type="text" id="phone" name="phone" class="form-control form-control-user" placeholder="연락처-빼고 적어주세요 (단체의 경우 매니저 전화번호을 적어주세요.)" value="${phone}">
 							<br> <br> <button class="btn btn-primary btn-user btn-block" type="submit"> 아이디 찾기 </button>
 								
 							</form>

@@ -56,7 +56,7 @@
                 </div><hr />
                 <table class="table table-bordered" width="100%" name="career">
                     <thead>
-                        <th>기업이름</th>
+                        <th>단체이름</th>
                         <th>맡은업무</th>
                         <th>시작날짜</th>
                         <th>마지막날짜</th>

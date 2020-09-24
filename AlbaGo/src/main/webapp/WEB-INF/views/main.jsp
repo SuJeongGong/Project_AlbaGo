@@ -40,20 +40,17 @@
                         </select>
                     </div>
                     <div class="single_input col-lg-3 col-md-3">
-                        <select class="wide" name="enterprise_category">
-                            <option value="">전체</option>
-                            <option value="외식/음료">외식/음료</option>
-                            <option value="유통/판매">유통/판매</option>
-                            <option value="문화/여가/생활">문화/여가/생활</option>
-                            <option value="서비스">서비스</option>
-                            <option value="사무직">사무직</option>
-                            <option value="고객상담/리서치">고객상담/리서치</option>
-                            <option value="생산/건설/노무">생산/건설/노무</option>
-                            <option value="교육/강사">교육/강사</option>
-                            <option value="디자인">디자인</option>
-                            <option value="운전/배달">운전/배달</option>
-                            <option value="병원/간호/연구">병원/간호/연구</option>
-                            <option value="IT/컴퓨터">IT/컴퓨터</option>
+                        <select class="wide" name="enterprise_category">      
+                        	 <option value="">전체</option>                                   
+                             <option value="enterprise_category=외식/음료">아동,청소년</option>
+                             <option value="enterprise_category=유통/판매">어르신</option>
+                             <option value="enterprise_category=문화/여가/생활">장애인</option>
+                             <option value="enterprise_category=서비스">여성</option>
+                             <option value="enterprise_category=사무직">정신보건</option>
+                             <option value="enterprise_category=고객상담/리서치">노숙인</option>
+                             <option value="enterprise_category=생산/건설/노무">복지관</option>
+                             <option value="enterprise_category=교육/강사">자원봉사</option>
+                             <option value="enterprise_category=디자인">기타</option>
                         </select>
                     </div>
                     <div class="single_input col-lg-3 col-md-3">
@@ -77,7 +74,7 @@
 					<div class="single_company">
 						<ul style="display: table; margin: auto; padding: 0;">
 							<li><p class="titleSub">
-								<h3>우리동네 알바</h3>
+								<h3>지역별</h3>
 								</p> <br />
 								<h4>
 									<a href="<%=request.getContextPath()%>/recruit/list?local_category=서울">서울</a> &nbsp; 
@@ -107,24 +104,20 @@
 					<div class="single_company">
 						<ul style="display: table; margin: auto; padding: 0;">
 							<li><p class="titleSub">
-								<h3>카테고리별 알바</h3>
+								<h3>카테고리</h3>
 								</p> <br />
-								<p>
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=외식/음료"><i class="fas fa-utensils fa-1x"></i>외식/음료</a> &emsp; 
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=유통/판매 "><i class="fas fa-shopping-cart fa-1x"></i>유통/판매 </a> &nbsp; 
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=문화/여가/생활"><i class="fab fa-fort-awesome fa-1x"></i>문화/여가/생활 </a> &nbsp; 
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=서비스"><i class="fas fa-concierge-bell fa-1x"></i>서비스</a>
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=사무직"><i class="fas fa-pen-fancy fa-1x"></i>사무직</a> 
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=고객상담/리서치"><i class="fas fa-headset fa-1x"></i>고객상담/리서치</a> 
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=생산/건설/노무"><i class="fas fa-hammer fa-1x"></i>생산/건설/노무</a> &nbsp; 
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=디자인"><i class="fas fa-paint-brush fa-1x"></i>디자인</a>
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=운전/배달"><i class="fas fa-truck fa-1x"></i>운전/배달</a> &nbsp;
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=교육/강사"><i class="fas fa-chalkboard-teacher fa-1x"></i>교육/강사</a>
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=IT/컴퓨터"><i class="fas fa-desktop fa-1x"></i>IT/컴퓨터</a> &emsp; 
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=미디어"><i class="fas fa-video fa-1x"></i>미디어</a> &emsp; 
-									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=병원/간호/연구"><i class="fas fa-user-md fa-1x"></i>병원/간호/연구</a>
+								<h4>
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=아동,청소년">아동,청소년</a> &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=여석">여성</a>&nbsp; <br /><br />
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=장애인">장애인</a> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=어르신">어르신</a> &nbsp; <br /><br />
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=정신보건">정신보건</a> &nbsp;  &nbsp;  &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=노숙인">노숙인</a> &nbsp; <br /><br />
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=복지관">복지관</a> &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; 
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=자원봉사">자원봉사</a>&nbsp; <br /><br />
+									<a href="<%=request.getContextPath()%>/recruit/list?enterprise_category=기타">기타</a> &nbsp;
 
-								</p></li>
+								</h4></li>
 						</ul>
 					</div>
 				</div>
@@ -133,7 +126,7 @@
 					<div class="single_company">
 						<ul style="display: table; margin: auto; padding: 0;">
 							<li><p class="titleSub">
-								<h3>기간별 알바</h3>
+								<h3>기간별</h3>
 								</p> <br />
 								<p> <br /> 
 								<a href="<%=request.getContextPath()%>/recruit/list?term=하루"><i class="fas fa-calendar-alt fa-2x"></i>하루</a>
@@ -152,15 +145,15 @@
 					<div class="single_company">
 						<ul style="display: table; margin: auto; padding: 0;">
 							<li><p class="titleSub">
-								<h3>최종학력</h3>
+								<h3>경력</h3>
 								</p>
 								<p>
-									<a href="<%=request.getContextPath()%>/recruit/list?education=초등학교 졸업"><i class="fas fa-graduation-cap fa-2x"></i>초등학교 졸업</a> <br /> 
-										<a href="<%=request.getContextPath()%>/recruit/list?education=중학교 졸업"><i class="fas fa-graduation-cap fa-2x"></i>중학교 졸업</a> <br />
-										<a href="<%=request.getContextPath()%>/recruit/list?education=고등학교 졸업"><i class="fas fa-graduation-cap fa-2x"></i>고등학교 졸업</a> <br /> 
-										<a href="<%=request.getContextPath()%>/recruit/list?education=대학교(2,3년)졸업"><i class="fas fa-graduation-cap fa-2x"></i>대학교(2,3년) 졸업</a> <br /> 
-										<a href="<%=request.getContextPath()%>/recruit/list?education=대학교(4년)졸업"><i class="fas fa-graduation-cap fa-2x"></i>대학교(4년) 졸업</a><br /> 
-										<a href="<%=request.getContextPath()%>/recruit/list?education=대학원 졸업 이상"><i class="fas fa-graduation-cap fa-2x"></i>대학원 졸업 이상</a><br />
+									<a href="<%=request.getContextPath()%>/recruit/list?education=무관"><i class="fas fa-graduation-cap fa-2x"></i>무관</a> <br /> 
+										<a href="<%=request.getContextPath()%>/recruit/list?education=신입"><i class="fas fa-graduation-cap fa-2x"></i>신입</a> <br />
+										<a href="<%=request.getContextPath()%>/recruit/list?education=1~2년"><i class="fas fa-graduation-cap fa-2x"></i>1~2년</a> <br /> 
+										<a href="<%=request.getContextPath()%>/recruit/list?education=3~4년"><i class="fas fa-graduation-cap fa-2x"></i>3~4년</a> <br /> 
+										<a href="<%=request.getContextPath()%>/recruit/list?education=5~9년"><i class="fas fa-graduation-cap fa-2x"></i>5~9년</a><br /> 
+										<a href="<%=request.getContextPath()%>/recruit/list?education=10년 이상"><i class="fas fa-graduation-cap fa-2x"></i>10년 이상</a><br />
 								</p></li>
 						</ul>
 					</div>
@@ -177,7 +170,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section_title text-center mb-40">
-						<h3>추천 알바</h3>
+						<h3>베스트</h3>
 					</div>
 				</div>
 			</div>

@@ -31,32 +31,34 @@
   <div class="container">
     <div class="row text-center">
         <div class="col-md-12">
-            <h2 style="text-align: center;">알바고</h2>
-            <h2>통합 회원가입을 환영합니다.</h2>
+        <br>
+        <br>
+        <br>
+            <h2 style="text-align: center;">복지GO</h2>
+        <br>
+        <br>
             <hr/>
+        <br>
+        <br>
         </div>
         <div class="col-md-6" style="margin-top: 20px;">
             <div class="pricing-table" style="border: skyblue;">
                 <div class="panel panel-primary" style="border: none;">
                     <div class="controle-header panel-heading panel-heading-landing">
-                        <h1 class="panel-title panel-title-landing">
-                            개인회원가입
-                        </h1>
+                        <h3 class="panel-title panel-title-landing">
+                            개인 회원
+                        </h3>
                     </div>
                     <div class="panel-body panel-body-landing">
                         <table class="table">
                             <tr>
                                 <td width="50px"></td>
-                                <td>이력서를 등록하고</td>
-                            </tr>
-                            <tr>
-                                <td width="50px"></i></td>
-                                <td>알바를 찾아보세요.</td>
+                                <td>일반개인 및 사회복지사 등</td>
                             </tr>
                         </table>
                     </div>
                     <div class="panel-footer panel-footer-landing">
-                        <a href="join_individual" class="btn btn-price btn-success btn-lg">개인회원가입</a>
+                        <a href="join_individual" class="btn btn-price btn-success btn-lg">개인회원 가입</a>
                     </div>
                 </div>
             </div>
@@ -66,24 +68,20 @@
             <div class="pricing-table">
                 <div class="panel panel-primary" style="border: none;">
                     <div class="controle-header panel-heading panel-heading-landing">
-                        <h1 class="panel-title panel-title-landing">
-                            기업회원가입
-                        </h1>
+                        <h3 class="panel-title panel-title-landing">
+                            단체 회원
+                        </h3>
                     </div>
                     <div class="panel-body panel-body-landing">
                         <table class="table">
                             <tr>
                                 <td width="50px"></td>
-                                <td>공고를 등록하고</td>
-                            </tr>
-                            <tr>
-                                <td width="50px"></i></td>
-                                <td>인재를 찾아보세요.</td>
+                                <td>사회복지기관 및 직능단체 등</td>
                             </tr>
                         </table>
                     </div>
                     <div class="panel-footer panel-footer-landing">
-                        <a href="join_enterprise" class="btn btn-price btn-success btn-lg">기업회원가입</a>
+                        <a href="join_enterprise" class="btn btn-price btn-success btn-lg">단체회원 가입</a>
                     </div>
                 </div>
             </div>

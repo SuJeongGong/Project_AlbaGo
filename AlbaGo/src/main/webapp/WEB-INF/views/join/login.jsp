@@ -51,7 +51,7 @@ function checkMember(){
            <div class="card-body">
             <form class="form-signin" name = "f_login" onsubmit="checkMember()">
             	<input type ="radio" name="type" value="개인" checked>개인
-            	<input type ="radio" name="type" value="기업">기업
+            	<input type ="radio" name="type" value="기업">단체
               <h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
               <label for="inputEmail" class="sr-only">Your ID</label>
               <input type="text" name="id" id="id" class="form-control" placeholder="Your ID"  autofocus>

@@ -98,18 +98,15 @@
                                             <select class="wide" id="enterprise_category" name="enterprise_category">
                                                 <option data-display="" value="">카테고리</option>
                                                 <option value="">전체</option>
-                                                <option value="외식/음료">외식/음료</option>
-                                                <option value="유통/판매">유통/판매</option>
-                                                <option value="문화/여가/생활">문화/여가/생활</option>
-                                                <option value="서비스">서비스</option>
-                                                <option value="사무직">사무직</option>
-                                                <option value="고객상담/리서치">고객상담/리서치</option>
-                                                <option value="생산/건설/노무">생산/건설/노무</option>
-                                                <option value="교육/강사">교육/강사</option>
-                                                <option value="디자인">디자인</option>
-                                                <option value="운전/배달">운전/배달</option>
-                                                <option value="병원/간호/연구">병원/간호/연구</option>
-                                                <option value="IT/컴퓨터">IT/컴퓨터</option>
+                                                <option value="아동,청소년">아동,청소년</option>
+                                                <option value="어르신">어르신</option>
+                                                <option value="장애인">장애인</option>
+                                                <option value="여성">여성</option>
+                                                <option value="정신보건">정신보건</option>
+                                                <option value="노숙인">노숙인</option>
+                                                <option value="복지관">복지관</option>
+                                                <option value="자원봉사">자원봉사</option>
+                                                <option value="기타">기타</option>
                                             </select>
                                         </div>
                                     </div>
@@ -126,12 +123,13 @@
                                     <div class="col-lg-12">
                                         <div class="single_field">
                                             <select class="wide" id="education" name="education">
-                                                <option data-display="" value="">최종학력</option>
-                                                <option value="초등학교 졸업">초등학교 졸업</option>
-                                                <option value="중학교 졸업">중학교 졸업</option>
-                                                <option value="고등학교 졸업">고등학교 졸업</option>
-                                                <option value="2/3년제 졸업">2/3년제 졸업</option>
-                                                <option value="4년제 졸업">4년제 졸업</option>
+                                                <option data-display="" value="">경력</option>
+                            <option value="무관">무관</option>
+                                                <option value="신입">신입</option>
+                                                <option value="1~2년">1~2년</option>
+                                                <option value="3~4년">3~4년</option>
+                                                <option value="5~9년">5~9년</option>
+                                                <option value="10년 이상">10년 이상</option>
                                             </select>
                                         </div>
                                     </div>
@@ -168,7 +166,7 @@
                         <div class="recent_joblist white-bg ">
                             <div class="row align-items-center">
                                 <div class="col-md-6">
-                                    <h3>인재글 게시판</h3>
+                                    <h4>구직 게시판</h4>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="serch_cat d-flex justify-content-end">

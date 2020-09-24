@@ -18,7 +18,7 @@
                 <div class="form-group row">
                     <h5 class="font-weight-bold">이력서 제목&nbsp;&nbsp;&nbsp;</h5><input type="text"
                         class="col-sm-10 form-control " id="title" maxlength="20" size="20" name="title"
-                        placeholder="회원님께서 구분 가능하게 이력서의 이름을 지어주세요. / 공고 게시판에 올라가는 제목은 아닙니다.">
+                        placeholder="회원님께서 구분 가능하게 이력서의 이름을 지어주세요. / 구직 게시판에 올라가는 제목은 아닙니다.">
                 </div>
                 <br /><br />
 
@@ -27,19 +27,16 @@
                 <div class="row form-group ">
                     <h5 class="font-weight-bold ">희망 업직종</h5>&nbsp;&nbsp;
                     <select class="form-control col-lg-2" name="category">
-                        <option value="외식/음료">외식/음료</option>
-                        <option value="유통/판매">유통/판매</option>
-                        <option value="문화/여가/생활">문화/여가/생활</option>
-                        <option value="서비스">서비스</option>
-                        <option value="사무직">사무직</option>
-                        <option value="고객상담/리서치">고객상담/리서치</option>
-                        <option value="생산/건설/노무">생산/건설/노무</option>
-                        <option value="교육/강사">교육/강사</option>
-                        <option value="디자인">디자인</option>
-                        <option value="미디어">미디어</option>
-                        <option value="운전/배달">운전/배달</option>
-                        <option value="병원/간호/연구">병원/간호/연구</option>
-                        <option value="IT/컴퓨터">IT/컴퓨터</option>
+                                                <option value="">전체</option>
+                                                <option value="아동,청소년">아동,청소년</option>
+                                                <option value="어르신">어르신</option>
+                                                <option value="장애인">장애인</option>
+                                                <option value="여성">여성</option>
+                                                <option value="정신보건">정신보건</option>
+                                                <option value="노숙인">노숙인</option>
+                                                <option value="복지관">복지관</option>
+                                                <option value="자원봉사">자원봉사</option>
+                                                <option value="기타">기타</option>
                     </select>
                 </div>
                 <div class="form-group row">

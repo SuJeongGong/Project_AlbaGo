@@ -87,8 +87,8 @@ function deleteVolunteers() {
 						</tr>
 						<tr>
 							<th><input type="checkbox" class="selectAllMembers" onclick='OnOffMemberAllClickBtn()'/></th>
-							<th>공고글 제목</th>
-							<th>기업이름</th>
+							<th>구인글 제목</th>
+							<th>단체이름</th>
 							<th>이력서 제목</th>
 							<th>지원 이력서</th>
 							<th>메모</th>

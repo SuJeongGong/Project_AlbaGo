@@ -4,7 +4,7 @@ pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8"><title>기업 회원가입</title>
+  <meta charset="UTF-8"><title>단체 회원가입</title>
   <style>
     .box{
       width:120px; 
@@ -46,12 +46,15 @@ pageEncoding="UTF-8"%>
   				var text;
   				if(res==1){
   					text="<span style='color:red'>이미 등록된 아이디 입니다.</span>";
+
   				}else{
   					text="<span style = 'color:blue'>사용 가능한 아이디입니다.</span>";
+
   				}
   				$("#dupChk_e").html(text);
   				if(res == 0) {
-  					btn.disabled = false;  					
+  					btn.disabled = false;  	
+  					
   				}
   				else {
   					btn.disabled = 'disabled';
@@ -73,11 +76,15 @@ pageEncoding="UTF-8"%>
   			text="<span style = 'color:blue'>비밀번호가 일치합니다.</span>";
   			same_result=true;
   			s_result.html(text);
+
+				$('#btn').show();
   		}
   		else {
   			text="<span style = 'color:red'>비밀번호가 일치하지 않습니다.</span>";
   			same_result=false;
   			s_result.html(text);
+
+				$('#btn').hide();
   		}
   	}
   </script>
@@ -96,7 +103,7 @@ pageEncoding="UTF-8"%>
         <div class="col-lg-12">
           <div class="p-5">
             <div class="text-center">
-              <h1 class="h4 text-gray-900 mb-3">기업 회원가입</h1>
+              <h1 class="h4 text-gray-900 mb-3">단체 회원가입</h1>
               <hr>
             </div>
             <form class="user" action ="<%=conPath%>/join/join_enterprise/join_result">
@@ -104,7 +111,7 @@ pageEncoding="UTF-8"%>
 
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="name" value="${enterprise.name}"placeholder="기업 이름 입력" name="name">
+                  <input type="text" class="form-control form-control-user" id="name" value="${enterprise.name}"placeholder="단체 이름 입력" name="name">
                 </div>                 
               </div>
               <div class="form-group row">
@@ -155,24 +162,19 @@ pageEncoding="UTF-8"%>
               <div class="form-group row">
                 <div class="col-lg-12">
                   <select class="form-control col-lg-12" id="cateogry" name="category">
-                    <option data-display="카테고리">카테고리</option>
-                    <option value="외식/음료">외식/음료</option>
-                    <option value="유통/판매">유통/판매</option>
-                    <option value="문화/여가/생활">문화/여가/생활</option>
-                    <option value="서비스">서비스</option>
-                    <option value="사무직">사무직</option>
-                    <option value="고객상담/리서치">고객상담/리서치</option>
-                    <option value="생산/건설/노무">생산/건설/노무</option>
-                    <option value="교육/강사">교육/강사</option>
-                    <option value="디자인">디자인</option>
-                    <option value="미디어">미디어</option>
-                    <option value="운전/배달">운전/배달</option>
-                    <option value="병원/간호/연구">병원/간호/연구</option>
-                    <option value="IT/컴퓨터">IT/컴퓨터</option>
+                                                <option value="아동,청소년">아동,청소년</option>
+                                                <option value="어르신">어르신</option>
+                                                <option value="장애인">장애인</option>
+                                                <option value="여성">여성</option>
+                                                <option value="정신보건">정신보건</option>
+                                                <option value="노숙인">노숙인</option>
+                                                <option value="복지관">복지관</option>
+                                                <option value="자원봉사">자원봉사</option>
+                                                <option value="기타">기타</option>
                   </select>
                 </div>
               </div>
-			  <input type = "submit" value="전송" class="btn btn-primary btn-user btn" id="btn"/>
+			  <input type = "submit" value="가입" class="btn btn-primary btn-user btn" id="btn"/>
               <br>
               
 

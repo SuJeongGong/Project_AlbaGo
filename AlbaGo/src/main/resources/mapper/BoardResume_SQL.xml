@@ -56,7 +56,7 @@ FROM board_resume,resume,career
 <where>
 			board_resume.resume_id = resume.resume_id 
 	AND   resume.resume_id = career.resume_id
-	AND 	board_resume.board_resume_id = 2
+	AND 	board_resume.board_resume_id = #{board_resume_id}
 		</where>
 	</select>
 	

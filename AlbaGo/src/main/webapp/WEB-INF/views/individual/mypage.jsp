@@ -50,7 +50,6 @@
 							<li>이름 : <span><%=Iinfo.getName()%></span></li>
 							<li>성별 : <span><%=Iinfo.getGender()%></span></li>
 							<li>생년월일 : <span><%=Iinfo.getBirth().split(" ")[0]%></span></li>
-							<li>최종학력 : <span><%=Iinfo.getEducation()%></span></li>
 							<li>가입날짜 : <span><%=Iinfo.getDate().split(" ")[0]%></span></li>
 						</div>
 					</div>
@@ -136,7 +135,7 @@
 					<div class="descript_wrap white-bg">
 						<div class="single_wrap">
 							<p>
-								지원한 알바 목록을 자세히 보고싶으시면<br> 자세히 버튼을 눌러 지원한 알바 페이지로 이동해주세요
+								지원한 구인글 목록을 자세히 보고싶으시면<br> 자세히 버튼을 눌러 지원한 구인글 페이지로 이동해주세요
 							</p>
 							<br>
 							<table width="95%">
@@ -191,14 +190,14 @@
 					<div class="descript_wrap white-bg">
 						<div class="single_wrap">
 							<p>
-								스크랩한 알바 목록을 수정하거나 자세히 보고싶으시면 <br> 자세히 버튼을 눌러 스크랩한 알바 페이지로
+								스크랩한 구인글 목록을 수정하거나 자세히 보고싶으시면 <br> 자세히 버튼을 눌러 스크랩한 구인글 페이지로
 								이동해주세요
 							</p>
 							<br>
 							<table width="95%">
 								<tr>
-									<th>기업이름</th>
-									<th>공고글 제목</th>
+									<th>단체이름</th>
+									<th>구인글 제목</th>
 									<th>작성날짜</th>
 								</tr>
 								<%

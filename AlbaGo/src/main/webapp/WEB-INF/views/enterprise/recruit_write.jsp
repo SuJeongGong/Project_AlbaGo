@@ -23,19 +23,16 @@
                 <div class="row form-group ">
                     <h5 class="font-weight-bold ">업직종</h5>&nbsp;&nbsp;
                     <select class="form-control col-lg-2" name="category">
-                        <option value="외식/음료">외식/음료</option>
-                        <option value="유통/판매">유통/판매</option>
-                        <option value="문화/여가/생활">문화/여가/생활</option>
-                        <option value="서비스">서비스</option>
-                        <option value="사무직">사무직</option>
-                        <option value="고객상담/리서치">고객상담/리서치</option>
-                        <option value="생산/건설/노무">생산/건설/노무</option>
-                        <option value="교육/강사">교육/강사</option>
-                        <option value="디자인">디자인</option>
-                        <option value="미디어">미디어</option>
-                        <option value="운전/배달">운전/배달</option>
-                        <option value="병원/간호/연구">병원/간호/연구</option>
-                        <option value="IT/컴퓨터">IT/컴퓨터</option>
+                                                <option value="">전체</option>
+                                                <option value="아동,청소년">아동,청소년</option>
+                                                <option value="어르신">어르신</option>
+                                                <option value="장애인">장애인</option>
+                                                <option value="여성">여성</option>
+                                                <option value="정신보건">정신보건</option>
+                                                <option value="노숙인">노숙인</option>
+                                                <option value="복지관">복지관</option>
+                                                <option value="자원봉사">자원봉사</option>
+                                                <option value="기타">기타</option>
                     </select>
                 </div>
                 <div class=" row form-group">
@@ -139,15 +136,14 @@
                     <input type="text" id="age" name="age" maxlength="20" class="col-sm-1 form-control">&nbsp;세
                 </div>
                 <div class="row  form-group">
-                    <h5 class="font-weight-bold">학력조건</h5>&nbsp;&nbsp;
+                    <h5 class="font-weight-bold">경력조건</h5>&nbsp;&nbsp;
                         <select class="col-sm-10 form-control col-lg-2" name="education">
-                            <option value="all_education">무관</option>
-                            <option value="초등학교 졸업">초등학교 졸업</option>
-                            <option value="중학교 졸업">중학교 졸업</option>
-                            <option value="고등학교 졸업">고등학교 졸업</option>
-                            <option value="대학교(2,3년) 졸업">대학(2,3년제) 졸업</option>
-                            <option value="대학교(4년) 졸업">대학(4년제) 졸업</option>
-                            <option value="대학원 졸업 이상">대학원 졸업이상</option>
+                            <option value="무관">무관</option>
+                                                <option value="신입">신입</option>
+                                                <option value="1~2년">1~2년</option>
+                                                <option value="3~4년">3~4년</option>
+                                                <option value="5~9년">5~9년</option>
+                                                <option value="10년 이상">10년 이상</option>
                         </select>
                 </div>
                 <br />

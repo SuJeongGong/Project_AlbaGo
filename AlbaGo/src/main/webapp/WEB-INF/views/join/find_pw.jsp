@@ -70,7 +70,7 @@ function checkMember(){
 									</label>
 									<label class="radio-inline">
 									<input type="radio" name="radio" id="radio_enterprise" value="기업회원">
-									기업회원 
+									단체회원 
 									</label>
 									</div>
 								</div>

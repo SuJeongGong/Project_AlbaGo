@@ -81,8 +81,8 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
 		</div>
 		<div class="row">
 			<ul>
-				<li>공고글에 지원한 지원자들을 확인하고 결과를 저장할 수 있습니다.</li>
-				<li>공고글 제목을 누르면 공고 게시판으로 이동합니다.</li>
+				<li>구인글에 지원한 지원자들을 확인하고 결과를 저장할 수 있습니다.</li>
+				<li>구인글 제목을 누르면 구인 게시판으로 이동합니다.</li>
 				<li>결과는 언제든 수정 가능합니다</li>
 			</ul>
 
@@ -99,7 +99,7 @@ ArrayList<Volunteer> volunteers = (ArrayList) request.getAttribute("volunteers")
 							<th><input type="checkbox" class="selectAllMembers"
 								onclick='OnOffMemberAllClickBtn()' /></th>
 							<th>지원번호</th>
-							<th>공고글 제목</th>
+							<th>구인글 제목</th>
 							<th>지원자 이름</th>
 							<th>지원자 아이디</th>
 							<th>이력서보기</th>

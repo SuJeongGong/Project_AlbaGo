@@ -17,13 +17,13 @@
                 <div class="row align-items-center">
                     <div class="col-lg-7 col-md-6">
                         <div class="slider_text">
-                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">5,000개 이상의 알바자리
+                            <h5 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">사회복지와 관련된 일자리 검색
                             </h5>
-                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">알바GO에서 찾아보세요
+                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">복지GO에서 찾아보세요
                             </h3>
                             <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s"></p>
                             <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
-                                <a href="<%=request.getContextPath() %>/main" class="boxed-btn3">알바GO 홈화면으로 이동</a>
+                                <a href="<%=request.getContextPath() %>/main" class="boxed-btn3">복지GO 홈화면으로 이동</a>
                             </div>
                         </div>
                     </div>

@@ -87,9 +87,9 @@ function deleteScraps() {
 						</tr>
 						<tr>
 							<th><input type="checkbox" class="selectAllMembers"  onclick='OnOffMemberAllClickBtn()'/></th>
-							<th>인재글 제목</th>
+							<th>구직글 제목</th>
 							<th>인재 아이디</th>
-							<th>인재글 작성날짜</th>
+							<th>구직글 작성날짜</th>
 							<th>스크랩 날짜</th>
 							<th>삭제</th>
 						</tr>

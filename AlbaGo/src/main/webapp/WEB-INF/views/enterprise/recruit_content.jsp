@@ -74,7 +74,7 @@
 					<h5 class="font-weight-bold">연령&nbsp;&nbsp;&nbsp;&nbsp;</h5><%=recruit.getAge().split(",")[0]%>세 이상~<%=recruit.getAge().split(",")[1]%>세
 				</div>
 				<div class="form-group row">
-					<h5 class="font-weight-bold">학력조건&nbsp;&nbsp;&nbsp;&nbsp;</h5><%=recruit.getEducation()%>
+					<h5 class="font-weight-bold">경력조건&nbsp;&nbsp;&nbsp;&nbsp;</h5><%=recruit.getEducation()%>
 				</div>
 
 				<br />

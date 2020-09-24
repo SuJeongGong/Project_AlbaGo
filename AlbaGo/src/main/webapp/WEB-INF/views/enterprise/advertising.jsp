@@ -37,7 +37,7 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>사용한 공고글</th>
+							<th>사용한 구인글</th>
 							<th>시작하는 날짜</th>
 							<th>끝나는 날짜</th>
 						</tr>

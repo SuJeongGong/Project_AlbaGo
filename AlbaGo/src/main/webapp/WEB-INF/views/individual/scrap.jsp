@@ -85,9 +85,9 @@ console.log(scrap_ids);
 						</tr>
 						<tr>
 							<th><input type="checkbox" class="selectAllMembers"  onclick='OnOffMemberAllClickBtn()'/></th>
-							<th>공고글 제목</th>
-							<th>기업이름</th>
-							<th>공고글 작성날짜</th>
+							<th>구인글 제목</th>
+							<th>단체이름</th>
+							<th>구인글 작성날짜</th>
 							<th>스크랩 날짜</th>
 							<th>삭제</th>
 						</tr>
